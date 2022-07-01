@@ -22,7 +22,7 @@
 ### Todoary commit 컨벤션
 
 ```
-[commit type]:subject
+[commit type] : subject
 v
 [commit message]
 ```
