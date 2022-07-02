@@ -7,12 +7,6 @@
 
 import UIKit
 
-extension UIView{
-    func addSubviews(){
-        
-    }
-}
-
 extension SignUpViewController {
     
     func setUpView(){
@@ -39,9 +33,9 @@ extension SignUpViewController {
         self.view.addSubview(pwTextField)
         self.view.addSubview(pwBorderLine)
         
-        self.view.addSubview(pwCertificationField)
+        self.view.addSubview(pwCertificationTextField)
         self.view.addSubview(pwCertificationBorderLine)
-        self.view.addSubview(pwInCorrectLabel)
+        self.view.addSubview(pwIncorrectLabel)
         
         self.view.addSubview(nameTitle)
         self.view.addSubview(nameTextField)
@@ -164,7 +158,7 @@ extension SignUpViewController {
             make.bottom.equalTo(pwTextField.snp.bottom).offset(2)
         }
         
-        pwCertificationField.snp.makeConstraints{ make in
+        pwCertificationTextField.snp.makeConstraints{ make in
             make.top.equalTo(pwBorderLine.snp.bottom).offset(41)
             make.leading.equalTo(idTitle)
             make.height.equalTo(20)
@@ -175,17 +169,17 @@ extension SignUpViewController {
             make.width.equalTo(certificationBorderLine)
             make.height.equalTo(1)
             make.leading.equalTo(idTextField.snp.leading)
-            make.bottom.equalTo(pwCertificationField.snp.bottom).offset(2)
+            make.bottom.equalTo(pwCertificationTextField.snp.bottom).offset(2)
         }
         
-        pwInCorrectLabel.snp.makeConstraints{ make in
+        pwIncorrectLabel.snp.makeConstraints{ make in
             make.top.equalTo(pwCertificationBorderLine.snp.bottom).offset(7)
             make.leading.equalTo(idTextField.snp.leading)
         }
         
         //name
         nameTitle.snp.makeConstraints{ make in
-            make.top.equalTo(pwInCorrectLabel).offset(45)
+            make.top.equalTo(pwIncorrectLabel).offset(45)
             make.leading.equalTo(idTitle)
         }
         

@@ -13,6 +13,43 @@ class SignUpViewController: UIViewController {
     
     //MARK: - UIComponenets
     
+    var email: String = ""
+    var certificationCode : String = ""
+    var passwd : String = ""
+    var passwdCheck : String = ""
+    var name : String = ""
+    var nickname : String = ""
+    
+    var isValidCertiCode = false{
+        didSet{
+            self.validateUserInput()
+        }
+    }
+    
+    var isValidPasswd = false{
+        didSet{
+            self.validateUserInput()
+        }
+    }
+    
+    var isValidPasswdCheck = false{
+        didSet{
+            self.validateUserInput()
+        }
+    }
+    
+    var isValidName = false{
+        didSet{
+            self.validateUserInput()
+        }
+    }
+    
+    var isValidNickname = false{
+        didSet{
+            self.validateUserInput()
+        }
+    }
+    
     let navigationBar = UIView()
     
     //id
@@ -24,6 +61,7 @@ class SignUpViewController: UIViewController {
     
     let idTextField = UITextField().then{
         $0.placeholder = "이메일"
+        $0.textColor = .headline
         $0.font = UIFont.nbFont(type: .body2)
     }
     
@@ -68,6 +106,7 @@ class SignUpViewController: UIViewController {
     }
 
     let certificationTextField = UITextField().then{
+        $0.textColor = .headline
         $0.font = UIFont.nbFont(type: .body2)
     }
 
@@ -92,6 +131,7 @@ class SignUpViewController: UIViewController {
 
     let pwTextField = UITextField().then{
         $0.placeholder = "영문, 숫자 포함 8자리 이상"
+        $0.textColor = .headline
         $0.font = UIFont.nbFont(type: .body2)
     }
 
@@ -99,18 +139,20 @@ class SignUpViewController: UIViewController {
         $0.backgroundColor = .todoaryGrey
     }
 
-    let pwCertificationField = UITextField().then{
+    let pwCertificationTextField = UITextField().then{
         $0.font = UIFont.nbFont(type: .body2)
+        $0.textColor = .headline
     }
 
     let pwCertificationBorderLine = UIView().then{
         $0.backgroundColor = .todoaryGrey
     }
 
-    let pwInCorrectLabel = UILabel().then{
+    let pwIncorrectLabel = UILabel().then{
         $0.text = "비밀번호가 일치하지 않습니다"
         $0.textColor = .todoaryGrey
         $0.font = UIFont.nbFont(type: .body2)
+        $0.isHidden = true
     }
 
     //name
@@ -122,6 +164,7 @@ class SignUpViewController: UIViewController {
 
     let nameTextField = UITextField().then{
         $0.font = UIFont.nbFont(type: .body2)
+        $0.textColor = .headline
     }
 
     let nameBorderLine = UIView().then{
@@ -138,7 +181,8 @@ class SignUpViewController: UIViewController {
     let nickNameTextField = UITextField().then{
         $0.textColor = .todoaryGrey
         $0.font = UIFont.nbFont(type: .body2)
-        $0.text = "Todoary에서 사용하실 닉네임을 알려주세요"
+        $0.placeholder = "Todoary에서 사용하실 닉네임을 알려주세요"
+        $0.textColor = .headline
     }
 
     let nickNameBorderLine = UIView().then{
@@ -146,7 +190,8 @@ class SignUpViewController: UIViewController {
     }
 
     let nextButton = UIButton().then{
-        $0.setTitle("다음으로", for: .normal)
+        $0.isEnabled = false
+        $0.setTitle("다음", for: .normal)
         $0.backgroundColor = .buttonColor
         $0.setTitleColor(.white, for: .normal)
         $0.titleLabel?.font = UIFont.nbFont(type: .button1)
@@ -159,8 +204,67 @@ class SignUpViewController: UIViewController {
 
         setUpView()
         setUpConstraint()
+        textFieldAddRecognizer()
     }
 
+    func validateUserInput(){
+        if isValidName
+            && isValidPasswd
+            && isValidNickname
+            && isValidCertiCode
+            && isValidPasswdCheck {
+            nextButton.isEnabled = true
+        }else{
+            nextButton.isEnabled = false
+        }
+    }
+    
+    func textFieldAddRecognizer(){
+        
+        let tfArray = [nameTextField,pwTextField,pwCertificationTextField,nickNameTextField,idTextField,certificationTextField]
+        
+        tfArray.forEach{ each in
+            each.addTarget(self, action: #selector(textFieldDidEditingChanged(_:)), for: .editingChanged)
+        }
+    }
+    
+    @objc
+    func textFieldDidEditingChanged(_ sender: UITextField){
+        
+        let text = sender.text ?? ""
+        
+        switch sender {
+        case idTextField:
+            email = text
+            return
+        case certificationTextField:
+            isValidCertiCode = true
+            return
+        case pwTextField:
+            isValidPasswd = text.isValidPassword()
+            passwd = text
+            return
+        case pwCertificationTextField:
+            let bool = (text == passwd)
+            isValidPasswdCheck = bool
+            if (!bool){
+                pwIncorrectLabel.isHidden = false
+            }else{
+                pwIncorrectLabel.isHidden = true
+            }
+            return
+        case nameTextField:
+            isValidName = text.isValidName()
+            name = text
+            return
+        case nickNameTextField:
+            isValidNickname = text.isValidNickname()
+            nickname = text
+            return
+        default:
+            fatalError("Missing Textfield")
+        }
+    }
     
     
 
