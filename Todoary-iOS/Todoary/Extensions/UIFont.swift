@@ -13,6 +13,7 @@ enum TextStyles {
     case subtitle
     case body1
     case body2
+    case sub1
     case button1
     case button2
     case subButton
@@ -40,6 +41,8 @@ extension UIFont {
             return UIFont(name: "AppleSDGothicNeo-Medium", size: 14)!
         case .body2:
             return UIFont(name: "AppleSDGothicNeo-Medium", size: 14)!
+        case .sub1:
+            return UIFont(name: "AppleSDGothicNeo-Medium", size: 12)!
         case .button1:
             return UIFont(name: "AppleSDGothicNeo-SemiBold", size: 18)!
         case .button2:

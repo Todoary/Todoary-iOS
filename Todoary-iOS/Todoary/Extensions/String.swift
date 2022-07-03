@@ -34,7 +34,7 @@ extension String{
     
     //1자 이상, 8자 이하
     func isValidNickname() -> Bool{
-        let nicknameRegEx = "^[가-힣A-Za-z]{1,8}"
+        let nicknameRegEx = "^[가-힣A-Za-z0-9]{1,8}"
         let nicknameTest = NSPredicate(format: "SELF MATCHES %@", nicknameRegEx)
         return nicknameTest.evaluate(with: self)
     }

@@ -20,6 +20,12 @@ class SignUpViewController: UIViewController {
     var name : String = ""
     var nickname : String = ""
     
+    var isValidEmail = false{
+        didSet{
+            self.validateUserInput()
+        }
+    }
+    
     var isValidCertiCode = false{
         didSet{
             self.validateUserInput()
@@ -60,7 +66,7 @@ class SignUpViewController: UIViewController {
     }
     
     let idTextField = UITextField().then{
-        $0.placeholder = "이메일"
+        $0.placeholder = "이메일을 입력해주세요"
         $0.textColor = .headline
         $0.font = UIFont.nbFont(type: .body2)
     }
@@ -69,33 +75,19 @@ class SignUpViewController: UIViewController {
         $0.backgroundColor = .todoaryGrey
     }
     
-    let emailSignLabel = UILabel().then{
-        $0.text = "@"
-        $0.font = UIFont.nbFont(type: .body2)
-        $0.textColor = .todoaryGrey
-    }
-    
-    let emailLabel = UILabel().then{
-        $0.text = "선택"
-        $0.font = UIFont.nbFont(type: .body2)
-        $0.textColor = .todoaryGrey
-    }
-    
-    let emailBorderLine = UIView().then{
-        $0.backgroundColor = .todoaryGrey
-    }
-    
-    let emailArrowButton = UIButton().then{
-        $0.setImage(UIImage(named: "arrow_down"), for: .normal)
-    }
-    
     let idCertificationButton = UIButton().then{
         $0.setTitle("인증하기", for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.titleLabel?.font = UIFont.nbFont(type: .subButton)
         $0.backgroundColor = .buttonColor
         $0.layer.cornerRadius = 22/2
+        
         $0.addTarget(self, action: #selector(certificationBtnDidClicked(_:)), for: .touchUpInside)
+    }
+    
+    let idCanUseLabel = UILabel().then{
+        $0.font = UIFont.nbFont(type: .sub1)
+        $0.isHidden = true
     }
     
     //인증코드
@@ -152,7 +144,7 @@ class SignUpViewController: UIViewController {
 
     let pwIncorrectLabel = UILabel().then{
         $0.text = "비밀번호가 일치하지 않습니다"
-        $0.textColor = .todoaryGrey
+        $0.textColor = .problemRed
         $0.font = UIFont.nbFont(type: .body2)
         $0.isHidden = true
     }
@@ -224,10 +216,16 @@ class SignUpViewController: UIViewController {
     
     func textFieldAddRecognizer(){
         
-        let tfArray = [nameTextField,pwTextField,pwCertificationTextField,nickNameTextField,idTextField,certificationTextField]
+        let tfChangedArray = [idTextField, nameTextField,pwTextField,nickNameTextField,certificationTextField]
         
-        tfArray.forEach{ each in
+        tfChangedArray.forEach{ each in
             each.addTarget(self, action: #selector(textFieldDidEditingChanged(_:)), for: .editingChanged)
+        }
+        
+        let tfEndEditingArray = [idTextField, pwCertificationTextField]
+        
+        tfEndEditingArray.forEach{ each in
+            each.addTarget(self, action: #selector(textFieldDidEditingEnd(_:)), for: .editingDidEnd)
         }
     }
     
@@ -238,6 +236,7 @@ class SignUpViewController: UIViewController {
         
         switch sender {
         case idTextField:
+            isValidEmail = text.isValidEmail()
             email = text
             return
         case certificationTextField:
@@ -247,15 +246,6 @@ class SignUpViewController: UIViewController {
             isValidPasswd = text.isValidPassword()
             passwd = text
             return
-        case pwCertificationTextField:
-            let bool = (text == passwd)
-            isValidPasswdCheck = bool
-            if (!bool){
-                pwIncorrectLabel.isHidden = false
-            }else{
-                pwIncorrectLabel.isHidden = true
-            }
-            return
         case nameTextField:
             isValidName = text.isValidName()
             name = text
@@ -263,6 +253,36 @@ class SignUpViewController: UIViewController {
         case nickNameTextField:
             isValidNickname = text.isValidNickname()
             nickname = text
+            return
+        default:
+            fatalError("Missing Textfield")
+        }
+    }
+    
+    @objc
+    func textFieldDidEditingEnd(_ sender : UITextField){
+        
+        switch sender{
+        case idTextField:
+            idCanUseLabel.isHidden = false
+            if(isValidEmail){
+                idCanUseLabel.text = "*사용 가능한 이메일 입니다."
+                idCanUseLabel.textColor = .todoaryGrey
+            }else{
+                idCanUseLabel.text = "*이미 사용중인 이메일입니다."
+                idCanUseLabel.textColor = .problemRed
+            }
+            return
+        case pwCertificationTextField:
+            
+            let bool = (sender.text == passwd)
+            isValidPasswdCheck = bool
+            
+            if (bool){
+                pwIncorrectLabel.isHidden = true
+            }else{
+                pwIncorrectLabel.isHidden = false
+            }
             return
         default:
             fatalError("Missing Textfield")
