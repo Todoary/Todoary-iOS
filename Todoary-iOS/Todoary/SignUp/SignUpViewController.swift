@@ -95,6 +95,7 @@ class SignUpViewController: UIViewController {
         $0.titleLabel?.font = UIFont.nbFont(type: .subButton)
         $0.backgroundColor = .buttonColor
         $0.layer.cornerRadius = 22/2
+        $0.addTarget(self, action: #selector(certificationBtnDidClicked(_:)), for: .touchUpInside)
     }
     
     //인증코드
@@ -120,6 +121,7 @@ class SignUpViewController: UIViewController {
         $0.titleLabel?.font = UIFont.nbFont(type: .subButton)
         $0.backgroundColor = .buttonColor
         $0.layer.cornerRadius = 22/2
+        $0.addTarget(self, action: #selector(certificationOKBtnDidClicked(_:)), for: .touchUpInside)
     }
 
     //pw
@@ -205,6 +207,7 @@ class SignUpViewController: UIViewController {
         setUpView()
         setUpConstraint()
         textFieldAddRecognizer()
+    
     }
 
     func validateUserInput(){
@@ -264,6 +267,36 @@ class SignUpViewController: UIViewController {
         default:
             fatalError("Missing Textfield")
         }
+    }
+    
+    @objc
+    func certificationBtnDidClicked(_ sender: UIButton){
+        
+        let alert = UIAlertController(title: "인증코드가 메일로 발송되었습니다.", message: "", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        
+        alert.addAction(alertAction)
+        self.present(alert, animated: true, completion: nil)
+            
+    }
+    
+    @objc
+    func certificationOKBtnDidClicked(_ sender: UIButton){
+        
+        let alertTitle : String!
+        
+        if isValidCertiCode{
+            alertTitle = "인증이 완료되었습니다."
+        }else{
+            alertTitle = "인증코드가 일치하지 않습니다."
+        }
+        
+        let alert = UIAlertController(title: alertTitle, message: "", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        
+        alert.addAction(alertAction)
+        self.present(alert, animated: true, completion: nil)
+            
     }
     
     
