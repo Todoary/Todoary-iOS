@@ -26,6 +26,11 @@
 		572E5B18286ED60C00D1FAA0 /* AppleSDGothicNeoSB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 572E5B15286ED60C00D1FAA0 /* AppleSDGothicNeoSB.ttf */; };
 		572E5B1A286F056800D1FAA0 /* SignUpViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E5B19286F056800D1FAA0 /* SignUpViewController+Layout.swift */; };
 		5B93D8A67A229AA6C9BB8AB4 /* Pods_Todoary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70BFA075BC3082433B39DDB /* Pods_Todoary.framework */; };
+		ACACCFFE286F1AF10029D5CE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACCFFD286F1AF10029D5CE /* LoginViewController.swift */; };
+		ACACD000286F3EA30029D5CE /* LoginViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACCFFF286F3EA30029D5CE /* LoginViewController+Layout.swift */; };
+		ACACD004286F6BE40029D5CE /* PwFindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACD003286F6BE40029D5CE /* PwFindViewController.swift */; };
+		ACACD006286F6BF70029D5CE /* PwFindViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACD005286F6BF70029D5CE /* PwFindViewController+Layout.swift */; };
+		ACACD0092873366D0029D5CE /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACD0082873366D0029D5CE /* NavigationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +76,11 @@
 		572E5B15286ED60C00D1FAA0 /* AppleSDGothicNeoSB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AppleSDGothicNeoSB.ttf; sourceTree = "<group>"; };
 		572E5B19286F056800D1FAA0 /* SignUpViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignUpViewController+Layout.swift"; sourceTree = "<group>"; };
 		838439C8F09B9E7FFC421176 /* Pods_Todoary_TodoaryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Todoary_TodoaryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACACCFFD286F1AF10029D5CE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		ACACCFFF286F3EA30029D5CE /* LoginViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+Layout.swift"; sourceTree = "<group>"; };
+		ACACD003286F6BE40029D5CE /* PwFindViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PwFindViewController.swift; path = Todoary/Login/PwFindViewController.swift; sourceTree = SOURCE_ROOT; };
+		ACACD005286F6BF70029D5CE /* PwFindViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PwFindViewController+Layout.swift"; path = "Todoary/Login/PwFindViewController+Layout.swift"; sourceTree = SOURCE_ROOT; };
+		ACACD0082873366D0029D5CE /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NavigationView.swift; path = Todoary/Login/NavigationView.swift; sourceTree = SOURCE_ROOT; };
 		B70BFA075BC3082433B39DDB /* Pods_Todoary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Todoary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E55EFE0725C14803EBD9E70B /* Pods_TodoaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0738BD694AE7415B196AF3F /* Pods-Todoary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todoary.release.xcconfig"; path = "Target Support Files/Pods-Todoary/Pods-Todoary.release.xcconfig"; sourceTree = "<group>"; };
@@ -143,6 +153,9 @@
 		572E5AD8286EBDCC00D1FAA0 /* Todoary */ = {
 			isa = PBXGroup;
 			children = (
+				ACACD007287336560029D5CE /* NavigationView */,
+				ACACD002286F6BBA0029D5CE /* PwFindController */,
+				ACACCFFC286F19BC0029D5CE /* Login */,
 				572E5B0C286EC09900D1FAA0 /* UIFont */,
 				572E5B09286EC04800D1FAA0 /* SignUp */,
 				572E5AD9286EBDCC00D1FAA0 /* AppDelegate.swift */,
@@ -202,6 +215,32 @@
 				E55EFE0725C14803EBD9E70B /* Pods_TodoaryTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ACACCFFC286F19BC0029D5CE /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				ACACCFFD286F1AF10029D5CE /* LoginViewController.swift */,
+				ACACCFFF286F3EA30029D5CE /* LoginViewController+Layout.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		ACACD002286F6BBA0029D5CE /* PwFindController */ = {
+			isa = PBXGroup;
+			children = (
+				ACACD003286F6BE40029D5CE /* PwFindViewController.swift */,
+				ACACD005286F6BF70029D5CE /* PwFindViewController+Layout.swift */,
+			);
+			path = PwFindController;
+			sourceTree = "<group>";
+		};
+		ACACD007287336560029D5CE /* NavigationView */ = {
+			isa = PBXGroup;
+			children = (
+				ACACD0082873366D0029D5CE /* NavigationView.swift */,
+			);
+			path = NavigationView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -448,10 +487,15 @@
 			files = (
 				572E5B12286EC3C800D1FAA0 /* SignUpViewController.swift in Sources */,
 				572E5ADE286EBDCC00D1FAA0 /* ViewController.swift in Sources */,
+				ACACD004286F6BE40029D5CE /* PwFindViewController.swift in Sources */,
 				572E5B1A286F056800D1FAA0 /* SignUpViewController+Layout.swift in Sources */,
 				572E5B0B286EC06100D1FAA0 /* UIColor.swift in Sources */,
+				ACACD006286F6BF70029D5CE /* PwFindViewController+Layout.swift in Sources */,
+				ACACCFFE286F1AF10029D5CE /* LoginViewController.swift in Sources */,
 				572E5ADA286EBDCC00D1FAA0 /* AppDelegate.swift in Sources */,
+				ACACD000286F3EA30029D5CE /* LoginViewController+Layout.swift in Sources */,
 				572E5B0E286EC10500D1FAA0 /* UIFont.swift in Sources */,
+				ACACD0092873366D0029D5CE /* NavigationView.swift in Sources */,
 				572E5ADC286EBDCC00D1FAA0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
