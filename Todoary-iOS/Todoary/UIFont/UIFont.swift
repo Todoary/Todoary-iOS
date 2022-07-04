@@ -17,6 +17,7 @@ enum TextStyles {
     case button1
     case button2
     case subButton
+    case alert
 }
 
 enum NBWeight: String {
@@ -49,6 +50,8 @@ extension UIFont {
             return UIFont(name: "AppleSDGothicNeo-SemiBold", size: 18)!
         case .subButton:
             return UIFont(name: "AppleSDGothicNeo-Medium", size: 10)!
+        case .alert:
+            return UIFont(name: "SFProText-Semibold", size: 16)!
         }
     }
     

@@ -11,7 +11,7 @@ extension SignUpViewController {
     
     func setUpView(){
         
-        self.view.addSubview(navigationBar)
+        self.view.addSubview(navigationView)
 
         self.view.addSubview(idTitle)
         self.view.addSubview(idTextField)
@@ -28,6 +28,7 @@ extension SignUpViewController {
         self.view.addSubview(pwTitle)
         self.view.addSubview(pwTextField)
         self.view.addSubview(pwBorderLine)
+        self.view.addSubview(pwInvalidLabel)
         
         self.view.addSubview(pwCertificationTextField)
         self.view.addSubview(pwCertificationBorderLine)
@@ -47,15 +48,14 @@ extension SignUpViewController {
     
     func setUpConstraint(){
         
-        navigationBar.snp.makeConstraints{ make in
+        navigationView.snp.makeConstraints{ make in
             make.top.equalToSuperview().offset(53)
             make.width.equalToSuperview()
-            make.height.equalTo(31)
         }
 
         //id
         idTitle.snp.makeConstraints{ make in
-            make.top.equalTo(navigationBar.snp.bottom).offset(72)
+            make.top.equalTo(navigationView.snp.bottom).offset(72)
             make.leading.equalToSuperview().offset(38)
         }
 
@@ -129,6 +129,11 @@ extension SignUpViewController {
             make.height.equalTo(1)
             make.leading.trailing.equalTo(idBorderLine)
             make.bottom.equalTo(pwTextField.snp.bottom).offset(2)
+        }
+        
+        pwInvalidLabel.snp.makeConstraints{ make in
+            make.top.equalTo(pwBorderLine.snp.bottom).offset(7)
+            make.leading.equalTo(idTextField.snp.leading)
         }
         
         pwCertificationTextField.snp.makeConstraints{ make in

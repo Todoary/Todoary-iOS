@@ -56,7 +56,9 @@ class SignUpViewController: UIViewController {
         }
     }
     
-    let navigationBar = UIView()
+    let navigationView = NavigationView().then{
+        $0.navigationTitle.text = "회원가입"
+    }
     
     //id
     let idTitle = UILabel().then{
@@ -67,6 +69,7 @@ class SignUpViewController: UIViewController {
     
     let idTextField = UITextField().then{
         $0.placeholder = "이메일을 입력해주세요"
+        $0.setPlaceholderColor()
         $0.textColor = .headline
         $0.font = UIFont.nbFont(type: .body2)
     }
@@ -100,6 +103,7 @@ class SignUpViewController: UIViewController {
 
     let certificationTextField = UITextField().then{
         $0.textColor = .headline
+        $0.setPlaceholderColor()
         $0.font = UIFont.nbFont(type: .body2)
     }
 
@@ -125,6 +129,7 @@ class SignUpViewController: UIViewController {
 
     let pwTextField = UITextField().then{
         $0.placeholder = "영문, 숫자 포함 8자리 이상"
+        $0.setPlaceholderColor()
         $0.textColor = .headline
         $0.font = UIFont.nbFont(type: .body2)
     }
@@ -132,9 +137,17 @@ class SignUpViewController: UIViewController {
     let pwBorderLine = UIView().then{
         $0.backgroundColor = .todoaryGrey
     }
+    
+    let pwInvalidLabel = UILabel().then{
+        $0.text = "*영문, 숫자 포함 8자리 이상"
+        $0.textColor = .problemRed
+        $0.font = UIFont.nbFont(type: .sub1)
+        $0.isHidden = true
+    }
 
     let pwCertificationTextField = UITextField().then{
         $0.font = UIFont.nbFont(type: .body2)
+        $0.setPlaceholderColor()
         $0.textColor = .headline
     }
 
@@ -145,7 +158,7 @@ class SignUpViewController: UIViewController {
     let pwIncorrectLabel = UILabel().then{
         $0.text = "비밀번호가 일치하지 않습니다"
         $0.textColor = .problemRed
-        $0.font = UIFont.nbFont(type: .body2)
+        $0.font = UIFont.nbFont(type: .sub1)
         $0.isHidden = true
     }
 
@@ -157,7 +170,9 @@ class SignUpViewController: UIViewController {
     }
 
     let nameTextField = UITextField().then{
+        $0.placeholder = "이름을 입력해주세요"
         $0.font = UIFont.nbFont(type: .body2)
+        $0.setPlaceholderColor()
         $0.textColor = .headline
     }
 
@@ -173,9 +188,9 @@ class SignUpViewController: UIViewController {
     }
 
     let nickNameTextField = UITextField().then{
-        $0.textColor = .todoaryGrey
-        $0.font = UIFont.nbFont(type: .body2)
         $0.placeholder = "Todoary에서 사용하실 닉네임을 알려주세요"
+        $0.setPlaceholderColor()
+        $0.font = UIFont.nbFont(type: .body2)
         $0.textColor = .headline
     }
 
@@ -216,17 +231,13 @@ class SignUpViewController: UIViewController {
     
     func textFieldAddRecognizer(){
         
-        let tfChangedArray = [idTextField, nameTextField,pwTextField,nickNameTextField,certificationTextField]
+        let tfChangedArray = [idTextField, nameTextField,nickNameTextField,certificationTextField, pwCertificationTextField]
         
         tfChangedArray.forEach{ each in
             each.addTarget(self, action: #selector(textFieldDidEditingChanged(_:)), for: .editingChanged)
         }
         
-        let tfEndEditingArray = [idTextField, pwCertificationTextField]
-        
-        tfEndEditingArray.forEach{ each in
-            each.addTarget(self, action: #selector(textFieldDidEditingEnd(_:)), for: .editingDidEnd)
-        }
+        pwTextField.addTarget(self, action: #selector(textFieldDidEditingEnd(_:)), for: .editingDidEnd)
     }
     
     @objc
@@ -242,9 +253,15 @@ class SignUpViewController: UIViewController {
         case certificationTextField:
             isValidCertiCode = true
             return
-        case pwTextField:
-            isValidPasswd = text.isValidPassword()
-            passwd = text
+        case pwCertificationTextField:
+            let bool = (sender.text == passwd)
+            isValidPasswdCheck = bool
+            
+            if (bool){
+                pwIncorrectLabel.isHidden = true
+            }else{
+                pwIncorrectLabel.isHidden = false
+            }
             return
         case nameTextField:
             isValidName = text.isValidName()
@@ -262,27 +279,15 @@ class SignUpViewController: UIViewController {
     @objc
     func textFieldDidEditingEnd(_ sender : UITextField){
         
+        let text = sender.text ?? ""
+        
         switch sender{
-        case idTextField:
-            idCanUseLabel.isHidden = false
-            if(isValidEmail){
-                idCanUseLabel.text = "*사용 가능한 이메일 입니다."
-                idCanUseLabel.textColor = .todoaryGrey
-            }else{
-                idCanUseLabel.text = "*이미 사용중인 이메일입니다."
-                idCanUseLabel.textColor = .problemRed
+        case pwTextField:
+            isValidPasswd = text.isValidPassword()
+            if(!isValidPasswd){
+                pwInvalidLabel.isHidden = false
             }
-            return
-        case pwCertificationTextField:
-            
-            let bool = (sender.text == passwd)
-            isValidPasswdCheck = bool
-            
-            if (bool){
-                pwIncorrectLabel.isHidden = true
-            }else{
-                pwIncorrectLabel.isHidden = false
-            }
+            passwd = text
             return
         default:
             fatalError("Missing Textfield")
@@ -292,11 +297,26 @@ class SignUpViewController: UIViewController {
     @objc
     func certificationBtnDidClicked(_ sender: UIButton){
         
-        let alert = UIAlertController(title: "인증코드가 메일로 발송되었습니다.", message: "", preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        //이메일 중복 여부 확인
+        idCanUseLabel.isHidden = false
         
-        alert.addAction(alertAction)
-        self.present(alert, animated: true, completion: nil)
+        if(isValidEmail){
+            idCanUseLabel.text = "*사용 가능한 이메일입니다."
+            idCanUseLabel.textColor = .todoaryGrey
+            
+            //이메일 사용 가능한 경우, 메일 발송 팝업 띄우기
+            let alert = UIAlertController(title: "인증코드가 메일로 발송되었습니다.", message: "", preferredStyle: .alert)
+            
+            let alertAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+            
+            alert.setTitle()
+            alert.addAction(alertAction)
+            self.present(alert, animated: true, completion: nil)
+            
+        }else{
+            idCanUseLabel.text = "*이미 사용중인 이메일입니다."
+            idCanUseLabel.textColor = .problemRed
+        }
             
     }
     

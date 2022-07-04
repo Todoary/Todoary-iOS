@@ -4,14 +4,8 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string></string>
+		<string>SF-Pro-Text-Semibold.otf</string>
 	</array>
-	<key>item2</key>
-	<string>AppleSDGothicNeoM.ttf</string>
-	<key>item1</key>
-	<string>AppleSDGothicNeoSB.ttf</string>
-	<key>item0</key>
-	<string>AppleSDGothicNeoB.ttf</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
