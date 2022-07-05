@@ -140,7 +140,7 @@ class SignUpViewController: UIViewController {
     
     let pwInvalidLabel = UILabel().then{
         $0.text = "*영문, 숫자 포함 8자리 이상"
-        $0.textColor = .problemRed
+        $0.textColor = .noticeRed
         $0.font = UIFont.nbFont(type: .sub1)
         $0.isHidden = true
     }
@@ -157,7 +157,7 @@ class SignUpViewController: UIViewController {
 
     let pwIncorrectLabel = UILabel().then{
         $0.text = "비밀번호가 일치하지 않습니다"
-        $0.textColor = .problemRed
+        $0.textColor = .noticeRed
         $0.font = UIFont.nbFont(type: .sub1)
         $0.isHidden = true
     }
@@ -327,7 +327,7 @@ class SignUpViewController: UIViewController {
             
         }else{
             idCanUseLabel.text = "*이메일 형식이 올바르지 않습니다."
-            idCanUseLabel.textColor = .problemRed
+            idCanUseLabel.textColor = .noticeRed
         }
             
     }

@@ -30,7 +30,7 @@ extension UIColor{
         alpha: 1
     )
     
-    static let problemRed = UIColor(
+    static let noticeRed = UIColor(
         red: 224/255,
         green: 46/255,
         blue: 46/255,
