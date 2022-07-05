@@ -12,14 +12,11 @@
 		572E5ADA286EBDCC00D1FAA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E5AD9286EBDCC00D1FAA0 /* AppDelegate.swift */; };
 		572E5ADC286EBDCC00D1FAA0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E5ADB286EBDCC00D1FAA0 /* SceneDelegate.swift */; };
 		572E5ADE286EBDCC00D1FAA0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E5ADD286EBDCC00D1FAA0 /* ViewController.swift */; };
-		572E5AE1286EBDCC00D1FAA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 572E5ADF286EBDCC00D1FAA0 /* Main.storyboard */; };
 		572E5AE3286EBDCE00D1FAA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 572E5AE2286EBDCE00D1FAA0 /* Assets.xcassets */; };
 		572E5AE6286EBDCE00D1FAA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 572E5AE4286EBDCE00D1FAA0 /* LaunchScreen.storyboard */; };
 		572E5AF1286EBDCF00D1FAA0 /* TodoaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E5AF0286EBDCF00D1FAA0 /* TodoaryTests.swift */; };
 		572E5AFB286EBDCF00D1FAA0 /* TodoaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E5AFA286EBDCF00D1FAA0 /* TodoaryUITests.swift */; };
 		572E5AFD286EBDCF00D1FAA0 /* TodoaryUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E5AFC286EBDCF00D1FAA0 /* TodoaryUITestsLaunchTests.swift */; };
-		572E5B0B286EC06100D1FAA0 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E5B0A286EC06100D1FAA0 /* UIColor.swift */; };
-		572E5B0E286EC10500D1FAA0 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E5B0D286EC10500D1FAA0 /* UIFont.swift */; };
 		572E5B12286EC3C800D1FAA0 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E5B11286EC3C800D1FAA0 /* SignUpViewController.swift */; };
 		572E5B1A286F056800D1FAA0 /* SignUpViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E5B19286F056800D1FAA0 /* SignUpViewController+Layout.swift */; };
 		57E0603528705BB400E6B4EF /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E0603428705BB400E6B4EF /* String.swift */; };
@@ -56,7 +53,6 @@
 		572E5AD9286EBDCC00D1FAA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		572E5ADB286EBDCC00D1FAA0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		572E5ADD286EBDCC00D1FAA0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		572E5AE0286EBDCC00D1FAA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		572E5AE2286EBDCE00D1FAA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		572E5AE5286EBDCE00D1FAA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		572E5AE7286EBDCE00D1FAA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -65,8 +61,6 @@
 		572E5AF6286EBDCF00D1FAA0 /* TodoaryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoaryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		572E5AFA286EBDCF00D1FAA0 /* TodoaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoaryUITests.swift; sourceTree = "<group>"; };
 		572E5AFC286EBDCF00D1FAA0 /* TodoaryUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoaryUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		572E5B0A286EC06100D1FAA0 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
-		572E5B0D286EC10500D1FAA0 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		572E5B11286EC3C800D1FAA0 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		572E5B19286F056800D1FAA0 /* SignUpViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignUpViewController+Layout.swift"; sourceTree = "<group>"; };
 		57E0603428705BB400E6B4EF /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -74,7 +68,6 @@
 		57E060382872573600E6B4EF /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		57E0603D28726F8500E6B4EF /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
 		57E0603F2873E8D200E6B4EF /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
-		57E060422874618A00E6B4EF /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
 		838439C8F09B9E7FFC421176 /* Pods_Todoary_TodoaryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Todoary_TodoaryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B70BFA075BC3082433B39DDB /* Pods_Todoary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Todoary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E55EFE0725C14803EBD9E70B /* Pods_TodoaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,7 +146,6 @@
 				572E5AD9286EBDCC00D1FAA0 /* AppDelegate.swift */,
 				572E5ADB286EBDCC00D1FAA0 /* SceneDelegate.swift */,
 				572E5ADD286EBDCC00D1FAA0 /* ViewController.swift */,
-				572E5ADF286EBDCC00D1FAA0 /* Main.storyboard */,
 				572E5AE2286EBDCE00D1FAA0 /* Assets.xcassets */,
 				572E5AE4286EBDCE00D1FAA0 /* LaunchScreen.storyboard */,
 				572E5AE7286EBDCE00D1FAA0 /* Info.plist */,
@@ -202,10 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				572E5B1B286F1B3300D1FAA0 /* Extensions */,
-				57E060422874618A00E6B4EF /* SF-Pro-Text-Semibold.otf */,
-				572E5B0D286EC10500D1FAA0 /* UIFont.swift */,
 				57E060362871729200E6B4EF /* NavigationView.swift */,
-				572E5B0A286EC06100D1FAA0 /* UIColor.swift */,
 			);
 			path = CommonSource;
 			sourceTree = "<group>";
@@ -331,7 +320,6 @@
 			files = (
 				572E5AE6286EBDCE00D1FAA0 /* LaunchScreen.storyboard in Resources */,
 				572E5AE3286EBDCE00D1FAA0 /* Assets.xcassets in Resources */,
-				572E5AE1286EBDCC00D1FAA0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,9 +455,7 @@
 				57E060402873E8D200E6B4EF /* TestViewController.swift in Sources */,
 				572E5B1A286F056800D1FAA0 /* SignUpViewController+Layout.swift in Sources */,
 				57E0603528705BB400E6B4EF /* String.swift in Sources */,
-				572E5B0B286EC06100D1FAA0 /* UIColor.swift in Sources */,
 				572E5ADA286EBDCC00D1FAA0 /* AppDelegate.swift in Sources */,
-				572E5B0E286EC10500D1FAA0 /* UIFont.swift in Sources */,
 				572E5ADC286EBDCC00D1FAA0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -507,14 +493,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		572E5ADF286EBDCC00D1FAA0 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				572E5AE0286EBDCC00D1FAA0 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		572E5AE4286EBDCE00D1FAA0 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

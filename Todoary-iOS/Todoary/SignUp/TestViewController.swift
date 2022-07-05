@@ -9,10 +9,6 @@ import UIKit
 
 class TestViewController: UIViewController {
     
-//    let navigationView = NavigationView(frame: .zero, ).then{
-//        $0.navigationTitle.text = "second title"
-//    }
-    
     var navigationView : NavigationView!
     
     override func viewDidLoad() {
