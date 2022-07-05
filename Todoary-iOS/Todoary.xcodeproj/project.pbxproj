@@ -18,8 +18,6 @@
 		572E5AF1286EBDCF00D1FAA0 /* TodoaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E5AF0286EBDCF00D1FAA0 /* TodoaryTests.swift */; };
 		572E5AFB286EBDCF00D1FAA0 /* TodoaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E5AFA286EBDCF00D1FAA0 /* TodoaryUITests.swift */; };
 		572E5AFD286EBDCF00D1FAA0 /* TodoaryUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E5AFC286EBDCF00D1FAA0 /* TodoaryUITestsLaunchTests.swift */; };
-		572E5B0B286EC06100D1FAA0 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E5B0A286EC06100D1FAA0 /* UIColor.swift */; };
-		572E5B0E286EC10500D1FAA0 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E5B0D286EC10500D1FAA0 /* UIFont.swift */; };
 		572E5B12286EC3C800D1FAA0 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E5B11286EC3C800D1FAA0 /* SignUpViewController.swift */; };
 		572E5B1A286F056800D1FAA0 /* SignUpViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E5B19286F056800D1FAA0 /* SignUpViewController+Layout.swift */; };
 		5B93D8A67A229AA6C9BB8AB4 /* Pods_Todoary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70BFA075BC3082433B39DDB /* Pods_Todoary.framework */; };
@@ -27,7 +25,6 @@
 		ACACD000286F3EA30029D5CE /* LoginViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACCFFF286F3EA30029D5CE /* LoginViewController+Layout.swift */; };
 		ACACD004286F6BE40029D5CE /* PwFindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACD003286F6BE40029D5CE /* PwFindViewController.swift */; };
 		ACACD006286F6BF70029D5CE /* PwFindViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACD005286F6BF70029D5CE /* PwFindViewController+Layout.swift */; };
-		ACACD0092873366D0029D5CE /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACD0082873366D0029D5CE /* NavigationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,8 +62,6 @@
 		572E5AF6286EBDCF00D1FAA0 /* TodoaryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoaryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		572E5AFA286EBDCF00D1FAA0 /* TodoaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoaryUITests.swift; sourceTree = "<group>"; };
 		572E5AFC286EBDCF00D1FAA0 /* TodoaryUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoaryUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		572E5B0A286EC06100D1FAA0 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
-		572E5B0D286EC10500D1FAA0 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		572E5B11286EC3C800D1FAA0 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		572E5B19286F056800D1FAA0 /* SignUpViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignUpViewController+Layout.swift"; sourceTree = "<group>"; };
 		838439C8F09B9E7FFC421176 /* Pods_Todoary_TodoaryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Todoary_TodoaryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,7 +69,6 @@
 		ACACCFFF286F3EA30029D5CE /* LoginViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+Layout.swift"; sourceTree = "<group>"; };
 		ACACD003286F6BE40029D5CE /* PwFindViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PwFindViewController.swift; path = Todoary/Login/PwFindViewController.swift; sourceTree = SOURCE_ROOT; };
 		ACACD005286F6BF70029D5CE /* PwFindViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PwFindViewController+Layout.swift"; path = "Todoary/Login/PwFindViewController+Layout.swift"; sourceTree = SOURCE_ROOT; };
-		ACACD0082873366D0029D5CE /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NavigationView.swift; path = Todoary/CommonSource/NavigationView.swift; sourceTree = SOURCE_ROOT; };
 		B70BFA075BC3082433B39DDB /* Pods_Todoary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Todoary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E55EFE0725C14803EBD9E70B /* Pods_TodoaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0738BD694AE7415B196AF3F /* Pods-Todoary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todoary.release.xcconfig"; path = "Target Support Files/Pods-Todoary/Pods-Todoary.release.xcconfig"; sourceTree = "<group>"; };
@@ -219,9 +213,6 @@
 		ACACD00A287461590029D5CE /* CommonSource */ = {
 			isa = PBXGroup;
 			children = (
-				ACACD0082873366D0029D5CE /* NavigationView.swift */,
-				572E5B0D286EC10500D1FAA0 /* UIFont.swift */,
-				572E5B0A286EC06100D1FAA0 /* UIColor.swift */,
 			);
 			path = CommonSource;
 			sourceTree = "<group>";
@@ -469,13 +460,10 @@
 				572E5ADE286EBDCC00D1FAA0 /* ViewController.swift in Sources */,
 				ACACD004286F6BE40029D5CE /* PwFindViewController.swift in Sources */,
 				572E5B1A286F056800D1FAA0 /* SignUpViewController+Layout.swift in Sources */,
-				572E5B0B286EC06100D1FAA0 /* UIColor.swift in Sources */,
 				ACACD006286F6BF70029D5CE /* PwFindViewController+Layout.swift in Sources */,
 				ACACCFFE286F1AF10029D5CE /* LoginViewController.swift in Sources */,
 				572E5ADA286EBDCC00D1FAA0 /* AppDelegate.swift in Sources */,
 				ACACD000286F3EA30029D5CE /* LoginViewController+Layout.swift in Sources */,
-				572E5B0E286EC10500D1FAA0 /* UIFont.swift in Sources */,
-				ACACD0092873366D0029D5CE /* NavigationView.swift in Sources */,
 				572E5ADC286EBDCC00D1FAA0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
