@@ -56,9 +56,9 @@ class SignUpViewController: UIViewController {
         }
     }
     
-    let navigationView = NavigationView().then{
-        $0.navigationTitle.text = "회원가입"
-    }
+//    let navigationView = NavigationView().then{
+//        $0.navigationTitle.text = "회원가입"
+//    }
     
     //id
     let idTitle = UILabel().then{
@@ -199,12 +199,13 @@ class SignUpViewController: UIViewController {
     }
 
     let nextButton = UIButton().then{
-        $0.isEnabled = false
+//        $0.isEnabled = false
         $0.setTitle("다음", for: .normal)
         $0.backgroundColor = .buttonColor
         $0.setTitleColor(.white, for: .normal)
         $0.titleLabel?.font = UIFont.nbFont(type: .button1)
         $0.layer.cornerRadius = 52/2
+        $0.addTarget(self, action: #selector(nextButtonDidClicked(_:)), for: .touchUpInside)
     }
 
     override func viewDidLoad() {
@@ -301,6 +302,10 @@ class SignUpViewController: UIViewController {
         idCanUseLabel.isHidden = false
         
         if(isValidEmail){
+            
+            /*
+            if() 사용가능 이메일 점검 조건문 추가
+             */
             idCanUseLabel.text = "*사용 가능한 이메일입니다."
             idCanUseLabel.textColor = .todoaryGrey
             
@@ -313,8 +318,15 @@ class SignUpViewController: UIViewController {
             alert.addAction(alertAction)
             self.present(alert, animated: true, completion: nil)
             
+            /*
+            else{
+                idCanUseLabel.text = "*이미 사용중인 이메일입니다."
+                idCanUseLabel.textColor = .problemRed
+            }
+             */
+            
         }else{
-            idCanUseLabel.text = "*이미 사용중인 이메일입니다."
+            idCanUseLabel.text = "*이메일 형식이 올바르지 않습니다."
             idCanUseLabel.textColor = .problemRed
         }
             
@@ -337,6 +349,12 @@ class SignUpViewController: UIViewController {
         alert.addAction(alertAction)
         self.present(alert, animated: true, completion: nil)
             
+    }
+    
+    @objc
+    func nextButtonDidClicked(_ sender: UIButton){
+        print("click")
+        self.navigationController?.pushViewController(TestViewController(), animated: true)
     }
     
     
