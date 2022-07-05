@@ -11,7 +11,6 @@ class NavigationView: UIView {
 
     let backBtn = UIButton().then{
         $0.setImage(UIImage(named: "back_arrow"), for: .normal)
-        $0.addTarget(self, action: #selector(backBtnDidTab), for: .touchUpInside)
     }
     
     let navigationTitle = UILabel().then{
@@ -54,8 +53,5 @@ class NavigationView: UIView {
             make.height.equalTo(22)
         }
     }
-    @objc func backBtnDidTab() {
-        self.inputAccessoryViewController?.navigationController?.popViewController(animated: true)
-        }
 
 }
