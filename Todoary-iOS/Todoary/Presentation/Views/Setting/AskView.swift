@@ -9,6 +9,8 @@ import Foundation
 
 class AskView: BaseView{
     
+    
+    
     let tableView = UITableView().then{
         $0.isScrollEnabled = false
         
