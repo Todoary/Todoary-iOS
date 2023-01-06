@@ -11,7 +11,11 @@ import SnapKit
 import Then
 import AuthenticationServices
 
+<<<<<<< Updated upstream
 class LoginViewController: UIViewController, BaseViewControllerProtocol {
+=======
+class LoginViewController: UIViewController {
+>>>>>>> Stashed changes
     
     //MARK: - Properties
     

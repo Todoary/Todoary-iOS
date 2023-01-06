@@ -25,6 +25,10 @@ class GetCalendataManager {
                     switch result.code {
                     case 1000:
                         print("캘린더조회성공")
+<<<<<<< Updated upstream
+=======
+                        
+>>>>>>> Stashed changes
                         if let vc = viewController as? HomeViewController{
                             vc.successAPI_calendar(result.result)
                         }

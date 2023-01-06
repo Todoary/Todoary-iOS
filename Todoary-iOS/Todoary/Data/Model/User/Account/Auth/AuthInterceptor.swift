@@ -35,11 +35,20 @@ final class Interceptor: RequestInterceptor {
                         completion(.doNotRetryWithError(error))
                     }
                 case .failure(let error):
+<<<<<<< Updated upstream
                     self.window = UIWindow(frame: UIScreen.main.bounds)
                     navigationController = UINavigationController(rootViewController: LoginViewController())
                     self.window?.rootViewController = self.navigationController
                     self.window?.makeKeyAndVisible()
                     completion(.doNotRetryWithError(error))
+=======
+                    completion(.retry)
+//                    self.window = UIWindow(frame: UIScreen.main.bounds)
+//                    navigationController = UINavigationController(rootViewController: LoginViewController())
+//                    self.window?.rootViewController = self.navigationController
+//                    self.window?.makeKeyAndVisible()
+//                    completion(.doNotRetryWithError(error))
+>>>>>>> Stashed changes
                 }
             }
         }else {

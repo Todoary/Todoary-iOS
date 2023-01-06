@@ -12,98 +12,51 @@ import AuthenticationServices
 
 class AccountViewController : BaseViewController {
     
-    //MARK: - UIComponenets
+    let mainView = AccountView()
     
-    //tableView
-    var tableView : UITableView!
-    
-    //profile
-    
-    let profileImage = UIImageView().then {
-        $0.image = UIImage(named: "profile")
-        $0.contentMode = .scaleAspectFill
-        $0.layer.borderWidth = 0.5
-        $0.layer.borderColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1).cgColor
-        $0.layer.cornerRadius = 85/2
-        $0.clipsToBounds = true
-    }
-    
-    let nickName = UILabel().then{
-        $0.text = ""
-        $0.textColor = .black
-        $0.addLetterSpacing(spacing: 0.36)
-        $0.font = UIFont.nbFont(type: .header)
-    }
-    
-    let introduce = UILabel().then{
-        $0.text = ""
-        $0.textColor = .black
-        $0.numberOfLines = 2
-        $0.addLetterSpacing(spacing: 0.28)
-        $0.font = UIFont.nbFont(type: .body1)
-    }
-    
-    let profileChangeBtn = UIButton().then{
-        $0.titleEdgeInsets = UIEdgeInsets(top: 1, left: 0, bottom: 0, right: 0)
-        $0.setTitle("프로필 변경", for: .normal)
-        $0.backgroundColor = .white
-        $0.setTitleColor(.silver_115, for: .normal)
-        $0.titleLabel?.font = UIFont.nbFont(ofSize: 13, weight: .semibold)
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.silver_115.cgColor
-        $0.layer.cornerRadius = 31/2
-        $0.addTarget(self, action: #selector(profileChangeBtnDidTab), for: .touchUpInside)
-    }
-    
-    let accountTitle = UILabel().then{
-        $0.text = "계정"
-        $0.textColor = .black
-        $0.addLetterSpacing(spacing: 0.28)
-        $0.font = UIFont.nbFont(type: .body2)
-    }
-    
-    //account
-    let userAccount = UILabel().then{
-        $0.text = ""
-        $0.textColor = .black
-        $0.addLetterSpacing(spacing: 0.32)
-        $0.font = UIFont.nbFont(type: .tableCell)
-    }
-    
-    let accountBorderLine = UIView().then{
-        $0.backgroundColor = .silver_225
-    }
     
     
     //MARK: - Lifecycles
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
-        navigationTitle.text = "계정"
-        
-        tableView = UITableView().then{
-            $0.isScrollEnabled = false
-            $0.separatorStyle = .none
-            $0.register(AccountTableViewCell.self, forCellReuseIdentifier: "accountTableViewCell")
-            $0.delegate = self
-            $0.dataSource = self
-        }
-
         self.view.backgroundColor = .white
-        
-        setUpView()
-        setUpConstraint()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         GetProfileDataManager().getProfileDataManger(self)
     }
     
+    override func style(){
+        super.style()
+        navigationTitle.text = "계정"
+    }
+    
+    override func layout(){
+        
+        super.layout()
+        
+        self.view.addSubview(mainView)
+        
+        mainView.snp.makeConstraints{
+            $0.top.equalToSuperview().offset(Const.Offset.top)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+    
+    override func initialize() {
+
+        mainView.tableView.delegate = self
+        mainView.tableView.dataSource = self
+        
+        mainView.profileChangeButton.addTarget(self, action: #selector(profileChangeButtonDidTab), for: .touchUpInside)
+    }
+    
     //MARK: - Actions
     
-    @objc func profileChangeBtnDidTab() {
+    @objc func profileChangeButtonDidTab() {
         
         let profileViewController = ProfileViewController()
         navigationController?.pushViewController(profileViewController, animated: true)
@@ -155,12 +108,12 @@ class AccountViewController : BaseViewController {
     //MARK: - Helpers
     
     func successAPI_account(_ result : GetProfileResult) {
-        nickName.text = result.nickname
-        introduce.text = result.introduce
-        userAccount.text = result.email
+        mainView.nickName.text = result.nickname
+        mainView.introduce.text = result.introduce
+        mainView.userAccount.text = result.email
         if (result.profileImgUrl != nil){
             let url = URL(string: result.profileImgUrl!)
-            profileImage.load(url: url!)
+            mainView.profileImage.load(url: url!)
         }
     }
     

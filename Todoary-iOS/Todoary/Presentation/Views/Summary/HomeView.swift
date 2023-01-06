@@ -9,7 +9,11 @@ import Foundation
 import SnapKit
 
 
+<<<<<<< Updated upstream
 class HomeView: UIView, BaseViewProtocol{
+=======
+class HomeView: UIView {
+>>>>>>> Stashed changes
     
     //MARK: - UIComponenets
 

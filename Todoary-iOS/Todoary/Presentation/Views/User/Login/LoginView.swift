@@ -8,7 +8,11 @@
 import UIKit
 import AuthenticationServices
 
+<<<<<<< Updated upstream
 class LoginView: UIView, BaseViewProtocol {
+=======
+class LoginView: BaseView {
+>>>>>>> Stashed changes
     
     //MARK: - UIComponenets
     
@@ -120,6 +124,7 @@ class LoginView: UIView, BaseViewProtocol {
         $0.layer.borderColor = UIColor.todoaryGrey.cgColor
         $0.layer.cornerRadius = 25/2
     }
+<<<<<<< Updated upstream
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -133,6 +138,11 @@ class LoginView: UIView, BaseViewProtocol {
     }
     
     func hierarchy(){
+=======
+
+    
+    override func hierarchy(){
+>>>>>>> Stashed changes
         self.addSubview(logo)
         self.addSubview(comment)
         self.addSubview(picture)
@@ -156,7 +166,11 @@ class LoginView: UIView, BaseViewProtocol {
     
     }
     
+<<<<<<< Updated upstream
     func layout(){
+=======
+    override func layout(){
+>>>>>>> Stashed changes
 
         logo.snp.makeConstraints{ make in
             make.top.equalToSuperview().offset(100)

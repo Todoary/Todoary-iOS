@@ -15,6 +15,9 @@ class HomeViewController : UIViewController, BaseViewControllerProtocol {
     
     //MARK: - Properties
     
+    
+    //MARK: - Properties
+    
     static var check : Int!
     
     let now = Date()
@@ -40,7 +43,11 @@ class HomeViewController : UIViewController, BaseViewControllerProtocol {
     var calendarRecord = [Int](repeating: 0, count: 32)
     var diaryRecord = [Int](repeating: 0, count: 32)
     
+<<<<<<< Updated upstream:Todoary-iOS/Todoary/Presentation/ViewControllers/Summary/HomeViewController.swift
     static let bottomSheetVC = SummaryBottomViewController()
+=======
+    static let bottomSheetVC = SummaryBottomSheetViewController()
+>>>>>>> Stashed changes:Todoary-iOS/Todoary/Presentation/ViewControllers/Summary/Home/HomeViewController.swift
     
     let mainView = HomeView()
     

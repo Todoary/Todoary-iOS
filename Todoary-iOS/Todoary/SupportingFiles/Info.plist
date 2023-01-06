@@ -27,7 +27,12 @@
 		<string>NotoSerifKR-Regular.otf</string>
 		<string>NotoSerifKR-SemiBold.otf</string>
 	</array>
+<<<<<<< Updated upstream
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Todoary가 사진에 접근하려고 합니다. 허용하지 않아도 Todoary를 사용할 수 있지만, 산택하신 기능을 사용할 수 없습니다.</string>
+=======
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Todoary가 사진에 접근하려고 합니다. 허용하지 않아도 Todoary를 사용할 수 있지만, 선택하신 기능을 사용할 수 없습니다.</string>
+>>>>>>> Stashed changes
 </dict>
 </plist>
