@@ -18,106 +18,17 @@ class ProfileViewController : BaseViewController {
     
     var isPhoto = false
     
-    //MARK: - UIComponenets
+    let mainView = ProfileView()
     
-    //profile
-    
-    let profileImage = UIImageView().then {
-        $0.image = UIImage(named: "profile")
-        $0.contentMode = .scaleAspectFill
-        $0.layer.borderWidth = 0.5
-        $0.layer.borderColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1).cgColor
-        $0.layer.cornerRadius = 85/2
-        $0.clipsToBounds = true
-    }
-    
-    let imagePicker = UIButton().then{
-        $0.titleEdgeInsets = UIEdgeInsets(top: 1.5, left: 0, bottom: 0, right: 0)
-        $0.setTitle("사진 변경", for: .normal)
-        $0.backgroundColor = .white
-        $0.setTitleColor(.silver_115, for: .normal)
-        $0.titleLabel?.font = UIFont.nbFont(ofSize: 12, weight: .semibold)
-        $0.layer.borderColor = UIColor.silver_115.cgColor
-        $0.layer.borderWidth = 1
-        $0.layer.cornerRadius = 26/2
-        $0.addTarget(self, action: #selector(imagePickerDidTab), for: .touchUpInside)
-    }
-    
-    let nickNameTitle = UILabel().then{
-        $0.text = "닉네임"
-        $0.textColor = .black
-        $0.addLetterSpacing(spacing: 0.28)
-        $0.font = UIFont.nbFont(type: .body2)
-    }
-    
-    let nickNameTf = UITextField().then{
-        $0.font = UIFont.nbFont(type: .tableCell)
-        $0.addLeftPadding()
-        $0.addLetterSpacing(spacing: 0.28)
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.silver_217.cgColor
-        $0.layer.cornerRadius = 10
-    }
-    
-    let nickNameCount = UILabel().then{
-        $0.text = "0/10"
-        $0.textColor = .todoaryGrey
-        $0.font = UIFont.nbFont(ofSize: 12, weight: .medium)
-    }
-    
-    let nickNameNotice = UILabel().then{
-        $0.isHidden = true
-        $0.text = "이미 사용중인 닉네임입니다."
-        $0.textColor = .todoaryGrey
-        $0.font = UIFont.nbFont(ofSize: 12, weight: .medium)
-    }
-    
-    let introduceTitle = UILabel().then{
-        $0.text = "한줄소개"
-        $0.textColor = .black
-        $0.addLetterSpacing(spacing: 0.28)
-        $0.font = UIFont.nbFont(type: .body2)
-    }
-    
-    let introduceTf = UITextView().then{
-        $0.text = "소개글을 입력해주세요"
-        $0.font = UIFont.nbFont(type: .tableCell)
-        $0.addLeftPadding()
-        $0.textViewTypeSetting()
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.silver_217.cgColor
-        $0.layer.cornerRadius = 10
-    }
-    
-    let introduceCount = UILabel().then{
-        $0.text = "0/30"
-        $0.textColor = .todoaryGrey
-        $0.font = UIFont.nbFont(ofSize: 12, weight: .medium)
-    }
-    
-    let confirmBtn = UIButton().then{
-        $0.setTitle("확인", for: .normal)
-        $0.backgroundColor = .white
-        $0.setTitleColor(.black, for: .normal)
-        $0.titleLabel?.font = UIFont.nbFont(type: .button1)
-        $0.layer.borderColor = UIColor.silver_217.cgColor
-        $0.layer.borderWidth = 1
-        $0.layer.cornerRadius = 15
-        $0.addTarget(self, action: #selector(confirmBtnDidTab), for: .touchUpInside)
-    }
+
     
     //MARK: - Lifecycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationTitle.text = "계정"
-        
         self.view.backgroundColor = .white
         
-        setUpView()
-        setUpConstraint()
-    
         GetProfileDataManager().getProfileDataManger(self)
         
         //닉네임 textfield 10자 글자수제한 + observer
@@ -131,8 +42,35 @@ class ProfileViewController : BaseViewController {
                                             selector: #selector(textViewDidChange(_:)),
                                             name: UITextView.textDidChangeNotification,
                                             object: nil)
+    }
+    
+    override func style(){
+        super.style()
+        navigationTitle.text = "계정"
+    }
+    
+    override func layout(){
+        
+        super.layout()
+        
+        self.view.addSubview(mainView)
+        
+        mainView.snp.makeConstraints{
+            $0.top.equalToSuperview().offset(Const.Offset.top)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+    
+    override func initialize() {
+        
+        mainView.imagePicker.addTarget(self, action: #selector(imagePickerDidTab), for: .touchUpInside)
+        mainView.confirmBtn.addTarget(self, action: #selector(confirmBtnDidTab), for: .touchUpInside)
         
     }
+    
+    
+    
+    //MARK: - Actions
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -140,8 +78,6 @@ class ProfileViewController : BaseViewController {
             self.view.window?.frame.origin.y = 0
         }
     }
-    
-    //MARK: - Actions
     
     //사진변경 버튼 누르기 -> 현재사진삭제 or 갤러리선택
     @objc func imagePickerDidTab(_ sender: Any) {
@@ -153,7 +89,7 @@ class ProfileViewController : BaseViewController {
         
         let removeAction = UIAlertAction(title: "현재 사진 삭제", style: .default, handler:
                                             {(UIAlertAction) in
-            self.profileImage.image = UIImage(named: "profile")
+            self.mainView.profileImage.image = UIImage(named: "profile")
         })
         
         let albumSelectAction = UIAlertAction(title: "갤러리에서 선택", style: .default, handler: { [self](UIAlertAction) in
@@ -181,10 +117,10 @@ class ProfileViewController : BaseViewController {
     }
     
     @objc func confirmBtnDidTab() {
-        let profileInput = ProfileInput(nickname: nickNameTf.text, introduce: introduceTf.text)
+        let profileInput = ProfileInput(nickname: mainView.nickNameTf.text, introduce: mainView.introduceTf.text)
         ProfileDataManager().profileDataManager(self,profileInput)
         
-        profileImgDataManager().profileImgData(self, profileImage.image!)
+        profileImgDataManager().profileImgData(self, mainView.profileImage.image!)
     }
     
     //MARK: - Helpers
@@ -192,11 +128,11 @@ class ProfileViewController : BaseViewController {
     @objc func textFieldDidChange(_ notification: Notification) {
         if let textField = notification.object as? UITextField {
             switch textField {
-            case nickNameTf:
-                if let text = nickNameTf.text {
+            case mainView.nickNameTf:
+                if let text = mainView.nickNameTf.text {
                     
-                    if nickNameTf.text!.count < 11 {
-                        nickNameCount.text = "\(text.count)/10"
+                    if mainView.nickNameTf.text!.count < 11 {
+                        mainView.nickNameCount.text = "\(text.count)/10"
                     }
                     
                     if text.count >= 10 {
@@ -204,7 +140,7 @@ class ProfileViewController : BaseViewController {
                         let maxIndex = text.index(text.startIndex, offsetBy: 10)
                         //문자열 자르기
                         let newString = text.substring(to: maxIndex)
-                        nickNameTf.text = newString
+                        mainView.nickNameTf.text = newString
                     }
                 }
             default:
@@ -216,11 +152,11 @@ class ProfileViewController : BaseViewController {
     @objc func textViewDidChange(_ notification: Notification) {
         if let textView = notification.object as? UITextView {
             switch textView {
-            case introduceTf:
-                if let text = introduceTf.text {
+            case mainView.introduceTf:
+                if let text = mainView.introduceTf.text {
                     
-                    if introduceTf.text!.count < 31 {
-                        introduceCount.text = "\(text.count)/30"
+                    if mainView.introduceTf.text!.count < 31 {
+                        mainView.introduceCount.text = "\(text.count)/30"
                     }
                     
                     if text.count >= 30 {
@@ -228,7 +164,7 @@ class ProfileViewController : BaseViewController {
                         let maxIndex = text.index(text.startIndex, offsetBy: 30)
                         //문자열 자르기
                         let newString = text.substring(to: maxIndex)
-                        introduceTf.text = newString
+                        mainView.introduceTf.text = newString
                     }
                 }
             default:
@@ -243,8 +179,8 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            profileImage.contentMode = .scaleAspectFill
-            profileImage.image = pickedImage //4
+            mainView.profileImage.contentMode = .scaleAspectFill
+            mainView.profileImage.image = pickedImage //4
         }
         dismiss(animated: true, completion: nil)
     }
@@ -294,15 +230,15 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
 extension ProfileViewController {
     // 프로필 조회 성공시에 불리는 함수
     func successAPI_profile(_ result : GetProfileResult) {
-        nickNameTf.text = result.nickname
-        introduceTf.text = result.introduce
-        nickNameCount.text = "\(result.nickname!.count)/10"
+        mainView.nickNameTf.text = result.nickname
+        mainView.introduceTf.text = result.introduce
+        mainView.nickNameCount.text = "\(result.nickname!.count)/10"
         if ((result.introduce != nil)){
-            introduceCount.text = "\(result.introduce!.count)/30"
+            mainView.introduceCount.text = "\(result.introduce!.count)/30"
         }
         if (result.profileImgUrl != nil){
             let url = URL(string: result.profileImgUrl!)
-            profileImage.load(url: url!)
+            mainView.profileImage.load(url: url!)
         }
     }
 }

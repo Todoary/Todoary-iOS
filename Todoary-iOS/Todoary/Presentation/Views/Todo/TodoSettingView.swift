@@ -7,41 +7,123 @@
 
 import UIKit
 
-extension TodoSettingViewController {
+class TodoSettingView: BaseView {
     
-    func setUpView(){
-        
-        self.view.addSubview(completeBtn)
-        self.view.addSubview(todo)
-        self.view.addSubview(todoBorderLine)
-        
-        self.view.addSubview(dateTitle)
-        self.view.addSubview(date)
-        self.view.addSubview(dateBorderLine)
+    let collectionView = UICollectionView(frame: .init(), collectionViewLayout: LeftAlignedCollectionViewFlowLayout()).then{
+        $0.showsVerticalScrollIndicator = false
+        $0.register(TodoCategoryCell.self, forCellWithReuseIdentifier: TodoCategoryCell.cellIdentifier)
+    }
+    
+    let completeBtn = UIButton().then{
+        $0.setTitle("완료", for: .normal)
+        $0.addLetterSpacing(spacing: 0.36)
+        $0.backgroundColor = .white
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = UIFont.nbFont(ofSize: 18, weight: .medium)
+    }
 
-        self.view.addSubview(alarm)
-        self.view.addSubview(time)
-        self.view.addSubview(alarmSwitch)
-        self.view.addSubview(alarmBorderLine)
+    
+    let todo = UITextField().then{
+        $0.placeholder = "투두이름"
+        $0.font = UIFont.nbFont(type: .body2)
+        $0.setPlaceholderColor(.todoaryGrey)
+    }
+    
+    let todoBorderLine = UIView().then{
+        $0.backgroundColor = .silver_225
+    }
+    
+    let dateTitle = UILabel().then{
+        $0.text = "날짜"
+        $0.textColor = .black
+        $0.addLetterSpacing(spacing: 0.28)
+        $0.font = UIFont.nbFont(type: .body2)
+    }
+    
+    let date = UIButton().then{
+        $0.setTitle("2022년 7월 20일", for: .normal)
+        $0.addLetterSpacing(spacing: 0.28)
+        $0.backgroundColor = .white
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = UIFont.nbFont(type: .body2)
+        $0.titleLabel?.textAlignment = .right
+    }
+    
+    let dateBorderLine = UIView().then{
+        $0.backgroundColor = .silver_225
+    }
+    
+    let alarm = UILabel().then{
+        $0.text = "알람"
+        $0.textColor = .black
+        $0.addLetterSpacing(spacing: 0.28)
+        $0.font = UIFont.nbFont(type: .body2)
+    }
+    
+    var time = UIButton().then{
+        $0.isHidden = true
+        $0.backgroundColor = .white
+        $0.setTitle("AM 8:00", for: .normal)
+        $0.setTitleColor(.black, for: .normal)
+        $0.addLetterSpacing(spacing: 0.28)
+        $0.titleLabel?.font = UIFont.nbFont(type: .body2)
+        $0.titleLabel?.textAlignment = .right
+    }
+    
+    let alarmSwitch = UISwitch()
+    
+    let alarmBorderLine = UIView().then{
+        $0.backgroundColor = .silver_225
+    }
+    
+    let category = UILabel().then{
+        $0.text = "카테고리"
+        $0.textColor = .black
+        $0.addLetterSpacing(spacing: 0.28)
+        $0.font = UIFont.nbFont(type: .body2)
+    }
+    
+    let plusBtn = UIButton().then{
+        $0.setImage(UIImage(named: "categoryadd"), for: .normal)
+    }
+    
+    let categoryBorderLine = UIView().then{
+        $0.backgroundColor = .silver_225
+    }
+    
+    override func hierarchy(){
         
-        self.view.addSubview(category)
-        self.view.addSubview(plusBtn)
-        self.view.addSubview(collectionView)
-        self.view.addSubview(categoryBorderLine)
+        self.addSubview(completeBtn)
+        self.addSubview(todo)
+        self.addSubview(todoBorderLine)
+        
+        self.addSubview(dateTitle)
+        self.addSubview(date)
+        self.addSubview(dateBorderLine)
+
+        self.addSubview(alarm)
+        self.addSubview(time)
+        self.addSubview(alarmSwitch)
+        self.addSubview(alarmBorderLine)
+        
+        self.addSubview(category)
+        self.addSubview(plusBtn)
+        self.addSubview(collectionView)
+        self.addSubview(categoryBorderLine)
 
     }
     
-    func setUpConstraint(){
+    override func layout(){
         
         completeBtn.snp.makeConstraints{ make in
-            make.top.equalToSuperview().offset(58)
+            make.top.equalToSuperview().offset(-15)
             make.trailing.equalToSuperview().offset(-21)
             make.width.equalTo(35)
             make.height.equalTo(22)
         }
         
         todo.snp.makeConstraints{ make in
-            make.top.equalToSuperview().offset(111)
+            make.top.equalToSuperview().offset(16)
             make.leading.equalToSuperview().offset(31)
             make.trailing.equalToSuperview().offset(-31)
         }

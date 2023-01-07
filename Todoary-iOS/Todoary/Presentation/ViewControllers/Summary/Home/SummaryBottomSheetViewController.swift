@@ -80,7 +80,7 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
         HomeViewController.dismissBottomSheet()
         
         let vc = TodoSettingViewController()
-        vc.date.setTitle(todoDate.dateUsedTodo, for: .normal)
+        vc.mainView.date.setTitle(todoDate.dateUsedTodo, for: .normal)
         vc.todoDate = todoDate
         
         self.homeNavigaiton.pushViewController(vc, animated: true)
@@ -180,7 +180,7 @@ extension SummaryBottomSheetViewController: MoveViewController, AddButtonClickPr
         HomeViewController.dismissBottomSheet()
         
         let vc = TodoSettingViewController()
-        vc.date.setTitle(todoDate.dateUsedTodo, for: .normal)
+        vc.mainView.date.setTitle(todoDate.dateUsedTodo, for: .normal)
         vc.todoDate = todoDate
         
         self.homeNavigaiton.pushViewController(vc, animated: true)

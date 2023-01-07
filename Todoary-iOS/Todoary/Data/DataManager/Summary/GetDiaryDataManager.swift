@@ -24,7 +24,9 @@ class GetDiaryDataManager {
                     switch result.code {
                     case 1000:
                         print("다이어리존재여부조회 성공")
-                        HomeViewController.successAPI_diary(result.result)
+                        if let vc = viewController as? HomeViewController{
+                            vc.successAPI_diary(result.result)
+                        }
                     case 2005:
                         print("유효하지 않은 회원정보입니다")
                     case 2010:

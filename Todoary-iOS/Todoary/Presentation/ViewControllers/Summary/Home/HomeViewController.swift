@@ -12,6 +12,9 @@ import Then
 
 class HomeViewController : UIViewController {
     
+    
+    //MARK: - Properties
+    
     static var check : Int!
     
     let now = Date()
@@ -34,104 +37,24 @@ class HomeViewController : UIViewController {
     var weekdayAdding = 0
     let inset = UIEdgeInsets(top: 1, left: 3, bottom: 0, right: 3)
     
-    static var calendarRecord = [Int](repeating: 0, count: 32)
-    static var diaryRecord = [Int](repeating: 0, count: 32)
+    var calendarRecord = [Int](repeating: 0, count: 32)
+    var diaryRecord = [Int](repeating: 0, count: 32)
     
     static let bottomSheetVC = SummaryBottomSheetViewController()
     
-    //MARK: - UIComponenets
-
-    //settingBtn
+    let mainView = HomeView()
     
-    let settingBtn = UIButton().then{
-        $0.setImage(UIImage(named: "homemenu"), for: .normal)
-        $0.addTarget(self, action: #selector(settingBtnDidTap), for: .touchUpInside)
-    }
-    
-    //todoaryLogo
-    
-    let logo = UIImageView().then{
-        $0.image = UIImage(named: "home_apptitle")
-    }
-    
-    //profile
-    
-    let profileImage = UIButton().then {
-        $0.imageView?.contentMode = .scaleAspectFill
-        $0.setImage(UIImage(named: "home_profile"),for: .normal)
-        $0.clipsToBounds = true
-        $0.layer.cornerRadius = 40/2
-        $0.layer.borderWidth = 0.5
-        $0.layer.borderColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1).cgColor
-        $0.addTarget(self, action: #selector(profileBtnDidTap), for: .touchUpInside)
-    }
-    
-    let nickname = paddingLabel().then{
-        $0.layer.backgroundColor = UIColor.calendarExistColor.cgColor
-        $0.layer.cornerRadius = 6
-        $0.textAlignment = .center
-        $0.text = ""
-        $0.textColor = .black
-        $0.addLetterSpacing(spacing: 0.28)
-        $0.font = UIFont.nbFont(ofSize: 14, weight: .semibold)
-    }
-    
-    let introduce = UILabel().then{
-        $0.text = ""
-        $0.textColor = .black
-        $0.addLetterSpacing(spacing: 0.24)
-        $0.font = UIFont.nbFont(type: .sub1)
-    }
-    
-    lazy var year_Month = UIButton().then{
-        $0.setTitle("2022년 8월", for: .normal)
-        $0.setTitleColor(.black, for: .normal)
-        $0.titleLabel?.font = UIFont.nbFont(ofSize: 18, weight: .bold)
-        $0.titleLabel?.textAlignment = .left
-        $0.contentHorizontalAlignment = .left
-        $0.addTarget(self, action: #selector(settingInit), for: .touchUpInside)
-    }
-    
-    lazy var previousMonthBtn = UIButton().then{
-        $0.setImage(UIImage(named: "home_previous"), for: .normal)
-        $0.addTarget(self, action: #selector(prevBtnDidTap), for: .touchUpInside)
-    }
-    
-    lazy var nextMonthBtn = UIButton().then{
-        $0.setImage(UIImage(named: "home_next"), for: .normal)
-        $0.addTarget(self, action: #selector(nextBtnDidTap), for: .touchUpInside)
-    }
-    
-    static let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()).then {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumInteritemSpacing = 1
-        layout.minimumLineSpacing = 1
-        $0.backgroundColor = .white
-        $0.contentInset = UIEdgeInsets.init(top: 0, left: 2, bottom: 0, right: 2)
-        $0.collectionViewLayout = layout
-    }
-
-
-//MARK: - viewDidLoad
+//MARK: - Lifecycles
 
     override func viewDidLoad() {
     
         super.viewDidLoad()
-    
         self.view.backgroundColor = .white
-        self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.isNavigationBarHidden = true
         
-        setUpView()
-        setUpConstraint()
-      
-        
-        HomeViewController.collectionView.delegate = self
-        HomeViewController.collectionView.dataSource = self
-        HomeViewController.collectionView.register(WeekCell.self, forCellWithReuseIdentifier: "weekCell")
-        HomeViewController.collectionView.register(CalendarCell.self, forCellWithReuseIdentifier: "calendarCell")
-        
-        self.initView()
-       
+        style()
+        layout()
+        initialize()
 
     }
     
@@ -144,7 +67,7 @@ class HomeViewController : UIViewController {
 
         GetDiaryDataManager().getDiaryDataManager(self, yearMonth: "\(dateFormatterYear.string(from: component!))-\(dateFormatterMonth.string(from: component!))")
 
-        HomeViewController.collectionView.reloadData()
+        mainView.collectionView.reloadData()
 
         GetProfileDataManager().getProfileDataManger(self)
 
@@ -155,7 +78,36 @@ class HomeViewController : UIViewController {
         showBottomSheet()
         
     }
-
+    
+    //MARK: - BaseProtocol
+    
+    func style() {
+    }
+    
+    func layout() {
+        
+        self.view.addSubview(mainView)
+        
+        mainView.snp.makeConstraints{
+            $0.top.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+    
+    func initialize() {
+        
+        mainView.collectionView.delegate = self
+        mainView.collectionView.dataSource = self
+        mainView.collectionView.register(WeekCell.self, forCellWithReuseIdentifier: "weekCell")
+        mainView.collectionView.register(CalendarCell.self, forCellWithReuseIdentifier: "calendarCell")
+        
+        mainView.profileImage.addTarget(self, action: #selector(profileBtnDidTap), for: .touchUpInside)
+        mainView.settingButton.addTarget(self, action: #selector(settingBtnDidTap), for: .touchUpInside)
+        mainView.year_Month.addTarget(self, action: #selector(settingInit), for: .touchUpInside)
+        mainView.previousMonthButton.addTarget(self, action: #selector(prevBtnDidTap), for: .touchUpInside)
+        mainView.nextMonthButton.addTarget(self, action: #selector(nextBtnDidTap), for: .touchUpInside)
+        
+        self.initView()
+    }
     
     //MARK: - Actions
     
@@ -181,17 +133,28 @@ class HomeViewController : UIViewController {
         DiaryDataManager().gets(convertDate.dateSendServer)
     }
     
-    //MARK: - Helpers
+    //MARK: - API
     
     func successAPI_home(_ result : GetProfileResult) {
-        nickname.text = result.nickname
-        introduce.text = result.introduce
+        mainView.nickname.text = result.nickname
+        mainView.introduce.text = result.introduce
         if (result.profileImgUrl != nil){
             let url = URL(string: result.profileImgUrl!)
-            profileImage.load(url: url!)
+            mainView.profileImage.load(url: url!)
         }
     }
-    static func successAPI_calendar(_ result : [Int]) {
+    
+    func failureAPI_home() {
+        if ((mainView.nickname.text?.isEmpty) == true) {
+            self.initView()
+            print("하이1")
+        }else {
+            print("하이")
+        }
+        viewWillAppear(true)
+    }
+    
+    func successAPI_calendar(_ result : [Int]) {
         
         calendarRecord = [Int](repeating: 0, count: 32)
         
@@ -200,10 +163,10 @@ class HomeViewController : UIViewController {
                 calendarRecord[result[i]] = result[i]
             }
         }
-        HomeViewController.collectionView.reloadData()
+        mainView.collectionView.reloadData()
     }
     
-    static func successAPI_diary(_ result : [Int]) {
+    func successAPI_diary(_ result : [Int]) {
         
         diaryRecord = [Int](repeating: 0, count: 32)
         
@@ -212,8 +175,10 @@ class HomeViewController : UIViewController {
                 diaryRecord[result[i]] = result[i]
             }
         }
-        HomeViewController.collectionView.reloadData()
+        mainView.collectionView.reloadData()
     }
+    
+    //MARK: - Helpers
     
     static func dismissBottomSheet(){
         HomeViewController.bottomSheetVC.dismiss(animated: true, completion: nil)

@@ -29,42 +29,10 @@ class ColorPickerViewController : BaseViewController {
     
     //카테고리 마지막 하나 남았을때 삭제막기용
     var currentCategoryCount: Int?
+    
+    let mainView = ColorPickerView()
 
-    //MARK: - UIComponenets
-    
-    let categoryTitle = UITextField().then{
-        $0.placeholder = "카테고리 이름을 입력해주세요"
-        $0.font = UIFont.nbFont(ofSize: 15, weight: .medium)
-        $0.addLeftPadding(padding: 11)
-        $0.borderStyle = .none
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.silver_217.cgColor
-        $0.layer.cornerRadius = 10
-        $0.setPlaceholderColor(.todoaryGrey)
-    }
-    
-    let deleteBtn = UIButton().then{
-        $0.setImage(UIImage (named: "category_trash"), for: .normal)
-        $0.addTarget(self, action: #selector(deleteBtnDidTap), for: .touchUpInside)
-    }
-    
-    let colorview = UIView().then{
-        $0.layer.cornerRadius = 15
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.silver_217.cgColor
-    }
-    
-    let completeBtn = UIButton().then{
-        $0.setTitle("완료", for: .normal)
-        $0.backgroundColor = .white
-        $0.setTitleColor(.black, for: .normal)
-        $0.titleLabel?.textAlignment = .center
-        $0.titleLabel?.font = UIFont.nbFont(ofSize: 18, weight: .semibold)
-        $0.layer.cornerRadius = 15
-        $0.layer.borderColor = UIColor.silver_217.cgColor
-        $0.layer.borderWidth = 1
-        $0.addTarget(self, action: #selector(completeBtnDidTap), for: .touchUpInside)
-    }
+
     
     //MARK: - Lifecycles
     
@@ -74,14 +42,32 @@ class ColorPickerViewController : BaseViewController {
         
         self.view.backgroundColor = .white
         
-        setUpView()
-        setUpConstraint()
+    }
+    
+    override func style(){
+        super.style()
+    }
+    
+    override func layout(){
+        
+        super.layout()
+        
+        self.view.addSubview(mainView)
+        
+        mainView.snp.makeConstraints{
+            $0.top.equalToSuperview().offset(Const.Offset.top)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+    
+    override func initialize() {
         
         configure()
         setupCollectionView()
-        
         categoryReceive()
         
+        mainView.deleteBtn.addTarget(self, action: #selector(deleteBtnDidTap), for: .touchUpInside)
+        mainView.completeBtn.addTarget(self, action: #selector(completeBtnDidTap), for: .touchUpInside)
     }
     
     //MARK: - Actions
@@ -94,12 +80,12 @@ class ColorPickerViewController : BaseViewController {
         if categoryData != nil {
             
             //수정본
-            if(categoryTitle.text == "" ){
+            if(mainView.categoryTitle.text == "" ){
                 let alert = ConfirmAlertViewController(title: "제목을 넣어주세요")
                 alert.modalPresentationStyle = .overFullScreen
                 self.present(alert, animated: false, completion: nil)
                 
-            }else if(categoryTitle.text!.count > 5){
+            }else if(mainView.categoryTitle.text!.count > 5){
                 
                 let alert = ConfirmAlertViewController(title: "카테고리명을 5글자 이하로 설정해주세요.")
                 alert.modalPresentationStyle = .overFullScreen
@@ -107,7 +93,7 @@ class ColorPickerViewController : BaseViewController {
                 
             }else{
                 print(selectColor!)
-                let categoryModifyInput = CategoryModifyInput(title: categoryTitle.text!, color: selectColor)
+                let categoryModifyInput = CategoryModifyInput(title: mainView.categoryTitle.text!, color: selectColor)
                 CategoryModifyDataManager().categoryModifyDataManager(self,categoryModifyInput,categoryId: categoryId)
                 
             }
@@ -121,20 +107,20 @@ class ColorPickerViewController : BaseViewController {
                 alert.modalPresentationStyle = .overFullScreen
                 self.present(alert, animated: false, completion: nil)
                 
-            }else if(categoryTitle.text == ""){
+            }else if(mainView.categoryTitle.text == ""){
                 
                 let alert = ConfirmAlertViewController(title: "제목을 넣어주세요")
                 alert.modalPresentationStyle = .overFullScreen
                 self.present(alert, animated: false, completion: nil)
                 
-            }else if(categoryTitle.text!.count > 5){
+            }else if(mainView.categoryTitle.text!.count > 5){
                 let alert = ConfirmAlertViewController(title: "카테고리명을 5글자 이하로 설정해주세요")
                 alert.modalPresentationStyle = .overFullScreen
                 self.present(alert, animated: false, completion: nil)
                 
             }else{
                 print(selectColor!)
-                let categoryMakeInput = CategoryMakeInput(title: categoryTitle.text!, color: selectColor)
+                let categoryMakeInput = CategoryMakeInput(title: mainView.categoryTitle.text!, color: selectColor)
                 CategoryMakeDataManager().categoryMakeDataManager(self,categoryMakeInput)
             }
             
@@ -161,7 +147,7 @@ class ColorPickerViewController : BaseViewController {
     //정보가 있을 경우에 카테고리정보받아오기
     func categoryReceive(){
         if categoryData != nil {
-            categoryTitle.text = categoryData.title
+            mainView.categoryTitle.text = categoryData.title
             categoryId = categoryData.id
             selectColor = categoryData.color
             ColorPickerCollectionView?.reloadData()

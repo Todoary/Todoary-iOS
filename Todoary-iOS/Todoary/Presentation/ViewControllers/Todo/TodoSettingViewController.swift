@@ -37,98 +37,12 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
     //받아올 정보가 없을때 활성화 되는 투두 data
     var todoInitData : GetTodoInfo!
     
-    var collectionView : UICollectionView!
-    
     //선택한 날짜 정보 가져오기
     var todoDate : ConvertDate?
     
+    let flowLayout = LeftAlignedCollectionViewFlowLayout()
     
-    //MARK: - UIComponenets
-    
-    let completeBtn = UIButton().then{
-        $0.setTitle("완료", for: .normal)
-        $0.addLetterSpacing(spacing: 0.36)
-        $0.backgroundColor = .white
-        $0.setTitleColor(.black, for: .normal)
-        $0.titleLabel?.font = UIFont.nbFont(ofSize: 18, weight: .medium)
-        $0.addTarget(self, action: #selector(todocompleteBtnDidTap), for: .touchUpInside)
-    }
-
-    
-    let todo = UITextField().then{
-        $0.placeholder = "투두이름"
-        $0.font = UIFont.nbFont(type: .body2)
-        $0.setPlaceholderColor(.todoaryGrey)
-    }
-    
-    let todoBorderLine = UIView().then{
-        $0.backgroundColor = .silver_225
-    }
-    
-    let dateTitle = UILabel().then{
-        $0.text = "날짜"
-        $0.textColor = .black
-        $0.addLetterSpacing(spacing: 0.28)
-        $0.font = UIFont.nbFont(type: .body2)
-    }
-    
-    let date = UIButton().then{
-        $0.setTitle("2022년 7월 20일", for: .normal)
-        $0.addLetterSpacing(spacing: 0.28)
-        $0.backgroundColor = .white
-        $0.setTitleColor(.black, for: .normal)
-        $0.titleLabel?.font = UIFont.nbFont(type: .body2)
-        $0.titleLabel?.textAlignment = .right
-        $0.addTarget(self, action: #selector(dateDidTap), for: .touchUpInside)
-    }
-    
-    let dateBorderLine = UIView().then{
-        $0.backgroundColor = .silver_225
-    }
-    
-    let alarm = UILabel().then{
-        $0.text = "알람"
-        $0.textColor = .black
-        $0.addLetterSpacing(spacing: 0.28)
-        $0.font = UIFont.nbFont(type: .body2)
-    }
-    
-    var time = UIButton().then{
-        $0.isHidden = true
-        $0.backgroundColor = .white
-        $0.setTitle("AM 8:00", for: .normal)
-        $0.setTitleColor(.black, for: .normal)
-        $0.addLetterSpacing(spacing: 0.28)
-        $0.titleLabel?.font = UIFont.nbFont(type: .body2)
-        $0.titleLabel?.textAlignment = .right
-        $0.addTarget(self, action: #selector(timeDidTap), for: .touchUpInside)
-    }
-    
-    let alarmSwitch = UISwitch().then{
-        $0.addTarget(self, action: #selector(onClickSwitch(sender:)), for: .valueChanged)
-
-    }
-    
-    let alarmBorderLine = UIView().then{
-        $0.backgroundColor = .silver_225
-    }
-    
-    let category = UILabel().then{
-        $0.text = "카테고리"
-        $0.textColor = .black
-        $0.addLetterSpacing(spacing: 0.28)
-        $0.font = UIFont.nbFont(type: .body2)
-    }
-    
-    let plusBtn = UIButton().then{
-        $0.setImage(UIImage(named: "categoryadd"), for: .normal)
-        $0.addTarget(self, action: #selector(plusBtnDidTap), for: .touchUpInside)
-    }
-    
-    let categoryBorderLine = UIView().then{
-        $0.backgroundColor = .silver_225
-    }
-    
+    let mainView = TodoSettingView()
     
     //MARK: - Lifecycles
     
@@ -137,35 +51,57 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
         
         self.view.backgroundColor = .white
         
-        let flowLayout = LeftAlignedCollectionViewFlowLayout()
-        flowLayout.scrollDirection = .vertical
-        flowLayout.minimumInteritemSpacing = CGFloat(8)
         
-        
-        //카테고리 컬렉션뷰(수평스크롤)
-        collectionView = UICollectionView(frame: .init(), collectionViewLayout: flowLayout).then{
-            $0.delegate = self
-            $0.dataSource = self
-            $0.showsVerticalScrollIndicator = false
-            $0.register(TodoCategoryCell.self, forCellWithReuseIdentifier: TodoCategoryCell.cellIdentifier)
-        }
-        
-        setUpView()
-        setUpConstraint()
-        setupLongGestureRecognizerOnCollection()
-        getTodoData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         GetCategoryDataManager().getCategoryDataManager(self)
     }
     
+    override func style(){
+        super.style()
+    }
+    
+    override func layout(){
+        
+        super.layout()
+        
+        self.view.addSubview(mainView)
+        
+        mainView.snp.makeConstraints{
+            $0.top.equalToSuperview().offset(Const.Offset.top)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+    
+    override func initialize() {
+        
+        setupLongGestureRecognizerOnCollection()
+        getTodoData()
+        
+        flowLayout.scrollDirection = .vertical
+        flowLayout.minimumInteritemSpacing = CGFloat(8)
+        
+        
+        //카테고리 컬렉션뷰(수평스크롤)
+        mainView.collectionView.collectionViewLayout = flowLayout
+        mainView.collectionView.delegate = self
+        mainView.collectionView.dataSource = self
+        
+        mainView.completeBtn.addTarget(self, action: #selector(todocompleteBtnDidTap), for: .touchUpInside)
+        mainView.time.addTarget(self, action: #selector(timeDidTap), for: .touchUpInside)
+        mainView.plusBtn.addTarget(self, action: #selector(plusBtnDidTap), for: .touchUpInside)
+        mainView.date.addTarget(self, action: #selector(dateDidTap), for: .touchUpInside)
+        
+        mainView.alarmSwitch.addTarget(self, action: #selector(onClickSwitch(sender:)), for: .valueChanged)
+    }
+    
+    //MARK: - Actions
+    
     //아무데나 누르기 -> 키보드 내리기
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
-    //MARK: - Actions
     
     //날짜 누르면 캘린더 바텀시트 띄우기
     @objc func dateDidTap() {
@@ -202,14 +138,14 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
         //TODO: 투두 글자수 20자 이하 제한 걸기
         if todoSettingData.todoId != -1 {
             
-            if(todo.text!.isEmpty){
+            if(mainView.todo.text!.isEmpty){
                 
                 let alert = ConfirmAlertViewController(title: "제목을 넣어주세요")
                 alert.modalPresentationStyle = .overFullScreen
                 self.present(alert, animated: false, completion: nil)
                 
                 
-            }else if(todo.text!.count > 20){
+            }else if(mainView.todo.text!.count > 20){
                 
                 let alert = ConfirmAlertViewController(title: "투두를 20자 이하로 설정해주세요")
                 alert.modalPresentationStyle = .overFullScreen
@@ -217,7 +153,7 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
                 
             }else{
 
-                todoSettingData.title = todo.text!
+                todoSettingData.title = mainView.todo.text!
                 let todoModifyInput = TodoModifyInput(title: todoSettingData.title,
                                                       targetDate: todoSettingData.targetDate,
                                                       isAlarmEnabled: todoSettingData.isAlarmEnabled,
@@ -230,19 +166,19 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
             
         }else {
             
-            if(todo.text!.isEmpty){
+            if(mainView.todo.text!.isEmpty){
                 
                 let alert = ConfirmAlertViewController(title: "제목을 넣어주세요")
                 alert.modalPresentationStyle = .overFullScreen
                 self.present(alert, animated: false, completion: nil)
                 
-            }else if(todo.text!.count > 20){
+            }else if(mainView.todo.text!.count > 20){
                 let alert = ConfirmAlertViewController(title: "투두를 20자 이하로 설정해주세요")
                 alert.modalPresentationStyle = .overFullScreen
                 self.present(alert, animated: false, completion: nil)
                 
             }else{
-                todoSettingData.title = todo.text!
+                todoSettingData.title = mainView.todo.text!
                 
                 let todoSettingInput = TodoSettingInput(title: todoSettingData.title,
                                                         targetDate: todoSettingData.targetDate,
@@ -258,7 +194,7 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
     @objc func plusBtnDidTap() {
         let colorPickerViewController = ColorPickerViewController()
         
-        colorPickerViewController.deleteBtn.isHidden = true
+        colorPickerViewController.mainView.deleteBtn.isHidden = true
         
         self.navigationController?.pushViewController(colorPickerViewController, animated: true)
         self.navigationController?.isNavigationBarHidden = true
@@ -267,7 +203,7 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
     //알람 uiswitch 변경 제스쳐
     @objc func onClickSwitch(sender: UISwitch) {
         if sender.isOn {
-            time.isHidden = false
+            mainView.time.isHidden = false
             todoSettingData.isAlarmEnabled = true
             todoSettingData.targetTime = "08:00"
             
@@ -277,7 +213,7 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
             
             self.present(todoAlarmBottomSheetVC, animated: false, completion: nil)
         }else {
-            time.isHidden = true
+            mainView.time.isHidden = true
             todoSettingData.targetTime = ""
             todoSettingData.isAlarmEnabled = false
         }
@@ -297,7 +233,7 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
             let year : Int? = Int(result[0])
             let month  : Int? = Int(result[1])
             let day : Int? = Int(result[2])
-            date.setTitle(String(year ?? 2022) + "년 " + String(month ?? 08)+"월 " + String(day ?? 01) + "일", for: .normal)
+            mainView.date.setTitle(String(year ?? 2022) + "년 " + String(month ?? 08)+"월 " + String(day ?? 01) + "일", for: .normal)
     
             if todoSettingData.targetTime != nil {
                 //받아온 시간 형식에 맞게 변경
@@ -309,23 +245,23 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
                 //date->string
                 dateFormatter.dateFormat = "a hh:mm"
                 dateFormatter.locale = Locale(identifier: "en_US")
-                time.setTitle(dateFormatter.string(from: initTime!), for: .normal)
+                mainView.time.setTitle(dateFormatter.string(from: initTime!), for: .normal)
                 
                 TodoSettingViewController.selectCategory = todoSettingData.categoryId
                 
             }
             
             //title설정
-            todo.text = todoSettingData.title
+            mainView.todo.text = todoSettingData.title
             //알람 스위치 설정
-            alarmSwitch.isOn = todoSettingData.isAlarmEnabled
-            if alarmSwitch.isOn{
-                time.isHidden = false
+            mainView.alarmSwitch.isOn = todoSettingData.isAlarmEnabled
+            if mainView.alarmSwitch.isOn{
+                mainView.time.isHidden = false
             }else {
-                time.isHidden = true
+                mainView.time.isHidden = true
             }
             
-            collectionView?.reloadData()
+            mainView.collectionView.reloadData()
             
         }else { // 없을때
             todoSettingData = GetTodoInfo(todoId: -1,
@@ -339,7 +275,7 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
                                           color: -1)
             
             if(todoDate != nil){ //요약화면에서 투두 생성할 경우, 타겟 날짜 존재
-                date.setTitle(todoDate!.dateUsedTodo, for: .normal)
+                mainView.date.setTitle(todoDate!.dateUsedTodo, for: .normal)
                 todoSettingData.targetDate = todoDate!.dateSendServer
             }else{ //카테고리화면에서 투두 생성할 경우, 타켓 날짜 존재하지 않음 -> 오늘 날짜로 설정
                 
@@ -357,7 +293,7 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
                 
                 
                 //날짜 초기값 설정(오늘)
-                self.date.setTitle("\(year)년 \(month!)월 \(day!)일", for: .normal)
+                self.mainView.date.setTitle("\(year)년 \(month!)월 \(day!)일", for: .normal)
             }
         }
     }
@@ -372,19 +308,19 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
             if TodoSettingViewController.selectCategory == -1{
                 TodoSettingViewController.selectCategory = categoryData[0].id
             }
-            collectionView.reloadData()
+            mainView.collectionView.reloadData()
         }
     }
     
     //알람 시간 받아오기
     func alarmComplete(time: String, time_api: String) {
-        self.time.setTitle(time, for: .normal)
+        self.mainView.time.setTitle(time, for: .normal)
         self.todoSettingData.targetTime = time_api
     }
     
     //캘린더 날짜 받아오기
     func calendarComplete(date: String, date_api: String) {
-        self.date.setTitle(date, for: .normal)
+        self.mainView.date.setTitle(date, for: .normal)
         self.todoSettingData.targetDate = date_api
     }
     
@@ -394,7 +330,7 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
         longPressedGesture.minimumPressDuration = 0.5
         longPressedGesture.delegate = self
         longPressedGesture.delaysTouchesBegan = true
-        collectionView?.addGestureRecognizer(longPressedGesture)
+        mainView.collectionView.addGestureRecognizer(longPressedGesture)
     }
     
     @objc func handleLongPress(gestureRecognizer: UILongPressGestureRecognizer) {
@@ -402,9 +338,9 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
             return
         }
         
-        let p = gestureRecognizer.location(in: collectionView)
+        let p = gestureRecognizer.location(in: mainView.collectionView)
         
-        if let indexPath = collectionView?.indexPathForItem(at: p) {
+        if let indexPath = mainView.collectionView.indexPathForItem(at: p) {
             
             let colorPickerViewController = ColorPickerViewController()
             
