@@ -48,7 +48,7 @@ class BaseService {
             
             switch decodingMode {
             case .model:
-                return .success(decodedData.data ?? "None-Data")
+                return .success(decodedData.result ?? "None-Data")
                 
             case .message:
                 return .success(decodedData.message ?? "None-Data")
