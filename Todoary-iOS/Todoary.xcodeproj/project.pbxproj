@@ -94,6 +94,7 @@
 		57C481BD2969535A008731D9 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C481BC2969535A008731D9 /* NetworkResult.swift */; };
 		57C481BF29695370008731D9 /* HeaderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C481BE29695370008731D9 /* HeaderType.swift */; };
 		57C481C12969537A008731D9 /* GeneralResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C481C02969537A008731D9 /* GeneralResponse.swift */; };
+		57C481C4296957DB008731D9 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C481C3296957DB008731D9 /* CategoryModel.swift */; };
 		57D5B60B29580F4400216C94 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D5B60A29580F4400216C94 /* BaseTableViewCell.swift */; };
 		57D5B60D29580F6600216C94 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D5B60C29580F6600216C94 /* BaseCollectionViewCell.swift */; };
 		57D5B60F29580F8400216C94 /* BaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D5B60E29580F8400216C94 /* BaseProtocol.swift */; };
@@ -360,6 +361,7 @@
 		57C481BC2969535A008731D9 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		57C481BE29695370008731D9 /* HeaderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderType.swift; sourceTree = "<group>"; };
 		57C481C02969537A008731D9 /* GeneralResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralResponse.swift; sourceTree = "<group>"; };
+		57C481C3296957DB008731D9 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		57D5B60A29580F4400216C94 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		57D5B60C29580F6600216C94 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		57D5B60E29580F8400216C94 /* BaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProtocol.swift; sourceTree = "<group>"; };
@@ -646,6 +648,11 @@
 			isa = PBXGroup;
 			children = (
 				57C481C02969537A008731D9 /* GeneralResponse.swift */,
+				57C481C9296957F1008731D9 /* Auth */,
+				57C481C8296957EF008731D9 /* User */,
+				57C481C7296957ED008731D9 /* Todo */,
+				57C481C6296957EC008731D9 /* Category */,
+				57C481C5296957E9008731D9 /* Diary */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -1710,6 +1717,42 @@
 			path = WillDelete;
 			sourceTree = "<group>";
 		};
+		57C481C5296957E9008731D9 /* Diary */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Diary;
+			sourceTree = "<group>";
+		};
+		57C481C6296957EC008731D9 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				57C481C3296957DB008731D9 /* CategoryModel.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		57C481C7296957ED008731D9 /* Todo */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Todo;
+			sourceTree = "<group>";
+		};
+		57C481C8296957EF008731D9 /* User */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		57C481C9296957F1008731D9 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		57D5B6102958107700216C94 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -2139,6 +2182,7 @@
 				E0F99883288A57760051C7AA /* PwFindInput.swift in Sources */,
 				ACACD01728749F880029D5CE /* PwFindView.swift in Sources */,
 				E0AB9EC3287B1C670064CADA /* SettingAgreementView.swift in Sources */,
+				57C481C4296957DB008731D9 /* CategoryModel.swift in Sources */,
 				ACAE1D3F2898D9CD00B34DCC /* TodoModifyDataManager.swift in Sources */,
 				572E9AB7287BC07A00F915DF /* AskView.swift in Sources */,
 				AC9128CB287AD5D20056932A /* AccountView.swift in Sources */,
