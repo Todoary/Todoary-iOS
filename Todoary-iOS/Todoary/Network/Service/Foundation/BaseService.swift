@@ -44,7 +44,7 @@ class BaseService {
         else { return .pathErr }
         
         switch statusCode {
-        case 200..<300:
+        case 1000..<3000:
             
             switch decodingMode {
             case .model:
@@ -57,12 +57,10 @@ class BaseService {
                 return .success(decodedData)
             }
             
-        case 400..<500:
-            return .requestErr(decodedData)
-            
-        case 500:
+        case 4000..<5000:
             return .serverErr
-            
+        case 5000..<6000:
+            return .requestErr(decodedData)
         default:
             return .networkFail
         }
@@ -71,9 +69,9 @@ class BaseService {
     func judgeStatusWithEmptyReponse(by statusCode: Int?) -> NetworkResult<Any> {
         guard let statusCode = statusCode else { return .pathErr }
         switch statusCode {
-        case 200..<300: return .success(())
-        case 400..<500: return .requestErr(())
-        case 500:       return .serverErr
+        case 1000..<3000: return .success(())
+        case 4000..<5000: return .serverErr
+        case 5000..<6000:       return .requestErr(())
         default:        return .networkFail
         }
     }
