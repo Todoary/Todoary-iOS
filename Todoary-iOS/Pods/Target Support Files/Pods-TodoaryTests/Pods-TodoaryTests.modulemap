@@ -1,0 +1,6 @@
+framework module Pods_TodoaryTests {
+  umbrella header "Pods-TodoaryTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
