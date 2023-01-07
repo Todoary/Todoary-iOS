@@ -11,155 +11,75 @@ import SnapKit
 import Then
 import AuthenticationServices
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController {
+    
+    //MARK: - Properties
+    
+    let mainView = LoginView()
     
     var validateAutoLogin = false
     
-    //MARK: - UIComponenets
-    
-    let logo = UIImageView().then{
-        $0.image = UIImage(named: "login_logo")
-        $0.contentMode = .scaleAspectFill
-    }
-    
-    let comment = UIImageView().then{
-        $0.image = UIImage(named: "login_comment")
-        $0.contentMode = .scaleAspectFill
-    }
-    
-    let picture = UIImageView().then{
-        $0.image = UIImage(named: "loginPic")
-        $0.contentMode = .scaleAspectFill
-    }
-    
-    //id
-    let idTitle = UILabel().then{
-        $0.text = "아이디"
-        $0.textColor = .headline
-        $0.font = UIFont.nbFont(ofSize: 16, weight: .bold)
-    }
-    
-    let idTf = UITextField().then{
-        $0.placeholder = "가입하신 이메일을 입력해주세요"
-        $0.textFieldTypeSetting(type: .body1)
-        $0.font = UIFont.nbFont(type: .body2)
-        $0.setPlaceholderColor()
-        $0.returnKeyType = .next
-        $0.enablesReturnKeyAutomatically = true
-        $0.addTarget(self, action: #selector(tfDidChange), for: .editingChanged)
-    }
-    
-    let idBorderLine = UIView().then{
-        $0.backgroundColor = .todoaryGrey
-    }
-
-
-    //pw
-    let pwTitle = UILabel().then{
-        $0.text = "비밀번호"
-        $0.textColor = .headline
-        $0.font = UIFont.nbFont(ofSize: 16, weight: .bold)
-    }
-
-    let pwTf = UITextField().then{
-        $0.placeholder = "비밀번호를 입력해주세요"
-        $0.textFieldTypeSetting(type: .body1)
-        $0.isSecureTextEntry = true
-        $0.font = UIFont.nbFont(type: .body2)
-        $0.setPlaceholderColor()
-        $0.returnKeyType = .done
-        $0.enablesReturnKeyAutomatically = true
-        $0.addTarget(self, action: #selector(tfDidChange), for: .editingChanged)
-    }
-
-    let pwBorderLine = UIView().then{
-        $0.backgroundColor = .todoaryGrey
-    }
-
-    let autoLoginTitle = UILabel().then{
-        $0.textAlignment = .center
-        $0.text = "자동로그인"
-        $0.addLetterSpacing(spacing: 0.28)
-        $0.textColor = .todoaryGrey
-        $0.font = UIFont.nbFont(type: .body2)
-    }
-    
-    let autoLoginBtn = UIButton().then{
-        $0.setImage(UIImage(named: "check_box_outline_blank"), for: .normal)
-        $0.setImage(UIImage(named: "check_box"), for: .selected)
-        $0.addTarget(self, action: #selector(autoLoginBtnDidTab), for: .touchUpInside)
-    }
-  
-    let loginBtn = UIButton().then{
-        $0.setTitle("로그인", for: .normal)
-        $0.backgroundColor = UIColor(red: 184/255, green: 184/255, blue: 184/255, alpha: 1)
-        $0.setTitleColor(.white, for: .normal)
-        $0.titleLabel?.textAlignment = .center
-        $0.titleLabel?.font = UIFont.nbFont(ofSize: 20, weight: .semibold)
-        $0.layer.cornerRadius = 51/2
-        $0.isEnabled = false
-        $0.addTarget(self, action: #selector(loginBtnDidTab), for: .touchUpInside)
-    }
-    
-    let appleBtn = UIButton().then{
-        $0.setImage(UIImage(named: "appleid_button 1"), for: .normal)
-        $0.contentMode = .scaleToFill
-        $0.imageView?.contentMode = .scaleToFill
-        $0.layer.cornerRadius = 51/2
-        $0.addTarget(self, action: #selector(appleBtnDidTab), for: .touchUpInside)
-    }
-    
-    let signUpBtn = UIButton().then{
-        $0.setTitle("회원가입", for: .normal)
-        $0.backgroundColor = .white
-        $0.setTitleColor(.todoaryGrey, for: .normal)
-        $0.titleLabel?.font = UIFont.nbFont(ofSize: 20, weight: .semibold)
-        $0.titleLabel?.textAlignment = .center
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.buttonColor.cgColor
-        $0.layer.cornerRadius = 51/2
-        $0.addTarget(self, action: #selector(signUpBtnDidTab), for: .touchUpInside)
-    }
-    
-    let pwSearchBtn = UIButton().then{
-        $0.setTitle("비밀번호를 잊으셨나요?", for: .normal)
-        $0.backgroundColor = .white
-        $0.setTitleColor(.todoaryGrey, for: .normal)
-        $0.titleLabel?.font = UIFont.nbFont(type: .subButton)
-        $0.titleLabel?.textAlignment = .center
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.todoaryGrey.cgColor
-        $0.layer.cornerRadius = 25/2
-        $0.addTarget(self, action: #selector(pwSearchBtnDidTab), for: .touchUpInside)
-    }
-
     //MARK: - Lifecycles
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
         self.view.backgroundColor = .white
-        self.idTf.delegate = self
-        self.pwTf.delegate = self
-
-        setUpView()
-        setUpConstraint()
         
+        style()
+        layout()
+        initialize()
         
         //로그인VC 접근시 기존 스택VC들 제거
         let endIndex = (self.navigationController?.viewControllers.endIndex)!
         
         self.navigationController?.viewControllers.removeSubrange(0..<endIndex - 1)
         
-//        UserDefaults.standard.removeObject(forKey: "accessToken")
-//        UserDefaults.standard.removeObject(forKey: "refreshToken")
-//        KeyChain.delete(key: Const.UserDefaults.appleIdentifier)
-//        KeyChain.delete(key: Const.UserDefaults.appleRefreshToken)
-        
-    
-        
     }
+    
+    //MARK: - BaseProtocol
+    
+    func style() {
+    }
+    
+    func layout() {
+        
+        self.view.addSubview(mainView)
+        
+        mainView.snp.makeConstraints{
+            $0.top.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+    
+    func initialize() {
+        addActionToTextFieldByCase()
+        setTextFieldDelegate()
+        
+        mainView.autoLoginButton.addTarget(self, action: #selector(autoLoginButtonDidTab), for: .touchUpInside)
+        mainView.loginButton.addTarget(self, action: #selector(loginButtonDidTab), for: .touchUpInside)
+        mainView.appleLoginButton.addTarget(self, action: #selector(appleButtonDidTab), for: .touchUpInside)
+        mainView.signUpButton.addTarget(self, action: #selector(signUpButtonDidTab), for: .touchUpInside)
+        mainView.pwSearchButton.addTarget(self, action: #selector(pwSearchButtonDidTab), for: .touchUpInside)
+    }
+    
+    func addActionToTextFieldByCase(){
+        
+        let tfChangedArray = [mainView.idTextField, mainView.pwTextField]
+        
+        tfChangedArray.forEach{ each in
+            each.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        }
+    }
+    
+    func setTextFieldDelegate(){
+        let textFields = [mainView.idTextField, mainView.pwTextField]
+        
+        textFields.forEach{ each in
+            each.delegate = self
+        }
+    }
+
+    //MARK: - Actions
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -167,50 +87,49 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.view.window?.frame.origin.y = 0
         }
     }
-
-    //MARK: - Actions
     
-    @objc func tfDidChange() {
-        if idTf.text != "" && pwTf.text != ""{
-            loginBtn.backgroundColor = .buttonColor
-            loginBtn.isEnabled = true
+    
+    @objc func textFieldDidChange() {
+        if mainView.idTextField.text != "" && mainView.pwTextField.text != ""{
+            mainView.loginButton.backgroundColor = .buttonColor
+            mainView.loginButton.isEnabled = true
         }else{
-            loginBtn.backgroundColor = UIColor(red: 184/255, green: 184/255, blue: 184/255, alpha: 1)
-            loginBtn.isEnabled = false
+            mainView.loginButton.backgroundColor = UIColor(red: 184/255, green: 184/255, blue: 184/255, alpha: 1)
+            mainView.loginButton.isEnabled = false
         }
     }
     
-    @objc func signUpBtnDidTab() {
+    @objc func signUpButtonDidTab() {
         let vc = AgreementViewController()
         navigationController?.pushViewController(vc, animated: true)
         navigationController?.isNavigationBarHidden = true
     }
-    @objc func pwSearchBtnDidTab() {
+    @objc func pwSearchButtonDidTab() {
         
         let pwFindViewController = PwFindViewController()
         navigationController?.pushViewController(pwFindViewController, animated: true)
         navigationController?.isNavigationBarHidden = true
                 }
     
-    @objc func autoLoginBtnDidTab() {
-        if autoLoginBtn.isSelected {
-            autoLoginBtn.isSelected = false
+    @objc func autoLoginButtonDidTab() {
+        if mainView.autoLoginButton.isSelected {
+            mainView.autoLoginButton.isSelected = false
             validateAutoLogin = false
         }
         else {
-            autoLoginBtn.isSelected = true
+            mainView.autoLoginButton.isSelected = true
             validateAutoLogin = true
         }
     }
     
-    @objc func loginBtnDidTab() {
+    @objc func loginButtonDidTab() {
         if validateAutoLogin == false {
-            let loginInput = LoginInput(email: idTf.text, password: pwTf.text)
+            let loginInput = LoginInput(email: mainView.idTextField.text, password: mainView.pwTextField.text)
             LoginDataManager().loginDataManager(self,loginInput)
         } else {
             // 자동로그인을 눌렀을 때
-            let autoLoginInput = AutoLoginInput(email: idTf.text, password: pwTf.text)
-            AutoLoginDataManager() .autologin(self,autoLoginInput)
+            let autoLoginInput = AutoLoginInput(email: mainView.idTextField.text, password: mainView.pwTextField.text)
+            AutoLoginDataManager().autologin(self,autoLoginInput)
         }
         
         UIView.animate(withDuration: 0.3){
@@ -219,29 +138,28 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
       
     }
     
-    @objc func appleBtnDidTab() {
-
-            let appleIDProvider = ASAuthorizationAppleIDProvider()
-            let request = appleIDProvider.createRequest()
-            request.requestedScopes = [.fullName, .email]
-            
-            let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-            authorizationController.delegate = self
-            authorizationController.presentationContextProvider = self
-            authorizationController.performRequests()
+    @objc func appleButtonDidTab() {
+        
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
         
     }
-        
-        
-    
-    //MARK: - Helpers
-    
-    
+}
+
+//MARK: - Keyboard
+
+extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == idTf {
-                pwTf.becomeFirstResponder()
+        if textField == mainView.idTextField {
+            mainView.pwTextField.becomeFirstResponder()
             } else {
-                pwTf.resignFirstResponder()
+                mainView.pwTextField.resignFirstResponder()
                 UIView.animate(withDuration: 0.3){
                     self.view.window?.frame.origin.y = 0
                 }
@@ -259,8 +177,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         return true
     }
-    
 }
+
+//MARK: - Helpers
 
 extension LoginViewController: ASAuthorizationControllerPresentationContextProviding, ASAuthorizationControllerDelegate{
     

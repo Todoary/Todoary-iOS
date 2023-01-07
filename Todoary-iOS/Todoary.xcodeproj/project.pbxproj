@@ -113,7 +113,7 @@
 		57FFEDBC28DC1C230041719B /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FFEDBB28DC1C230041719B /* Const.swift */; };
 		653C013BA7F152A065BBDC7B /* Pods_TodoaryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6E8C0E6CB0EA8691D12EEB0 /* Pods_TodoaryTests.framework */; };
 		AC5E27C7288C37C80056EC69 /* TodoSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27C6288C37C80056EC69 /* TodoSettingViewController.swift */; };
-		AC5E27C9288C37E60056EC69 /* TodoSettingViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27C8288C37E60056EC69 /* TodoSettingViewController+Layout.swift */; };
+		AC5E27C9288C37E60056EC69 /* TodoSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27C8288C37E60056EC69 /* TodoSettingView.swift */; };
 		AC5E27CB288C38130056EC69 /* TodoCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27CA288C38130056EC69 /* TodoCalendarCell.swift */; };
 		AC5E27CD288C38290056EC69 /* TodoWeekCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27CC288C38290056EC69 /* TodoWeekCell.swift */; };
 		AC5E27D3288C39090056EC69 /* TodoCalendarBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27D2288C39090056EC69 /* TodoCalendarBottomSheetViewController.swift */; };
@@ -130,18 +130,18 @@
 		AC5E27F228914EAE0056EC69 /* TodoSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27F128914EAE0056EC69 /* TodoSettingModel.swift */; };
 		AC67C2DC2892904C00071763 /* SetKeboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC67C2DB2892904C00071763 /* SetKeboard.swift */; };
 		AC9128C9287AD5A80056932A /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9128C8287AD5A80056932A /* AccountViewController.swift */; };
-		AC9128CB287AD5D20056932A /* AccountViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9128CA287AD5D20056932A /* AccountViewController+Layout.swift */; };
+		AC9128CB287AD5D20056932A /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9128CA287AD5D20056932A /* AccountView.swift */; };
 		AC9128CD287AFE620056932A /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9128CC287AFE620056932A /* AccountTableViewCell.swift */; };
 		AC9128D0287B34B30056932A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9128CF287B34B30056932A /* ProfileViewController.swift */; };
-		AC9128D2287B34C80056932A /* ProfileViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9128D1287B34C80056932A /* ProfileViewController+Layout.swift */; };
+		AC9128D2287B34C80056932A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9128D1287B34C80056932A /* ProfileView.swift */; };
 		AC9859C6287DC219009FC2F8 /* MailSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9859C5287DC219009FC2F8 /* MailSender.swift */; };
 		AC9859C9288290C8009FC2F8 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9859C8288290C8009FC2F8 /* Calendar.swift */; };
 		AC9859CB288334AC009FC2F8 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9859CA288334AC009FC2F8 /* CalendarCell.swift */; };
 		AC9859CD288505C5009FC2F8 /* WeekCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9859CC288505C5009FC2F8 /* WeekCell.swift */; };
 		ACACD01128749F520029D5CE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACD00F28749F520029D5CE /* LoginViewController.swift */; };
-		ACACD01228749F520029D5CE /* LoginViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACD01028749F520029D5CE /* LoginViewController+Layout.swift */; };
+		ACACD01228749F520029D5CE /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACD01028749F520029D5CE /* LoginView.swift */; };
 		ACACD01628749F880029D5CE /* PwFindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACD01428749F880029D5CE /* PwFindViewController.swift */; };
-		ACACD01728749F880029D5CE /* PwFindViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACD01528749F880029D5CE /* PwFindViewController+Layout.swift */; };
+		ACACD01728749F880029D5CE /* PwFindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACD01528749F880029D5CE /* PwFindView.swift */; };
 		ACAE1D3F2898D9CD00B34DCC /* TodoModifyDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAE1D3E2898D9CD00B34DCC /* TodoModifyDataManager.swift */; };
 		ACAE1D412898D9DD00B34DCC /* TodoModifyInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAE1D402898D9DD00B34DCC /* TodoModifyInput.swift */; };
 		ACAE1D432898D9EC00B34DCC /* TodoModifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAE1D422898D9EC00B34DCC /* TodoModifyModel.swift */; };
@@ -180,7 +180,7 @@
 		E03856BB28914D8500CEEFBA /* ColorPickerBottomsheetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03856BA28914D8500CEEFBA /* ColorPickerBottomsheetCollectionViewCell.swift */; };
 		E03DCC4C28929D0F00532180 /* AutoLoginInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03DCC4B28929D0F00532180 /* AutoLoginInput.swift */; };
 		E0439ABB288C598A0075CBF0 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0439ABA288C598A0075CBF0 /* ColorPickerViewController.swift */; };
-		E0439ABD288C599A0075CBF0 /* ColorPickerViewController + layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0439ABC288C599A0075CBF0 /* ColorPickerViewController + layout.swift */; };
+		E0439ABD288C599A0075CBF0 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0439ABC288C599A0075CBF0 /* ColorPickerView.swift */; };
 		E0439AC0288C5B0F0075CBF0 /* ColorPickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0439ABE288C5B0F0075CBF0 /* ColorPickerCollectionViewCell.swift */; };
 		E045C670287BDB8B00D89D62 /* SettingAgreementViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E045C66F287BDB8B00D89D62 /* SettingAgreementViewCell.swift */; };
 		E06F1AC928A605930066B824 /* AdvertiseTextSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06F1AC828A605930066B824 /* AdvertiseTextSettingViewController.swift */; };
@@ -193,7 +193,7 @@
 		E0AB9EB7287B1B8E0064CADA /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AB9EB6287B1B8E0064CADA /* SettingViewController.swift */; };
 		E0AB9EB9287B1BA00064CADA /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AB9EB8287B1BA00064CADA /* SettingView.swift */; };
 		E0AB9EBB287B1BF40064CADA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AB9EBA287B1BF40064CADA /* HomeViewController.swift */; };
-		E0AB9EBD287B1C070064CADA /* HomeViewController + Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AB9EBC287B1C070064CADA /* HomeViewController + Layout.swift */; };
+		E0AB9EBD287B1C070064CADA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AB9EBC287B1C070064CADA /* HomeView.swift */; };
 		E0AB9EC1287B1C570064CADA /* SettingAgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AB9EC0287B1C570064CADA /* SettingAgreementViewController.swift */; };
 		E0AB9EC3287B1C670064CADA /* SettingAgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AB9EC2287B1C670064CADA /* SettingAgreementView.swift */; };
 		E0AB9EC8287B44C90064CADA /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AB9EC7287B44C90064CADA /* SettingTableViewCell.swift */; };
@@ -374,7 +374,7 @@
 		9FB0EF046833AE19A057D847 /* Pods-TodoaryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoaryTests.release.xcconfig"; path = "Target Support Files/Pods-TodoaryTests/Pods-TodoaryTests.release.xcconfig"; sourceTree = "<group>"; };
 		AA1B412CC301CC2E570F1921 /* Pods_Todoary_TodoaryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Todoary_TodoaryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC5E27C6288C37C80056EC69 /* TodoSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoSettingViewController.swift; sourceTree = "<group>"; };
-		AC5E27C8288C37E60056EC69 /* TodoSettingViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoSettingViewController+Layout.swift"; sourceTree = "<group>"; };
+		AC5E27C8288C37E60056EC69 /* TodoSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoSettingView.swift; sourceTree = "<group>"; };
 		AC5E27CA288C38130056EC69 /* TodoCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCalendarCell.swift; sourceTree = "<group>"; };
 		AC5E27CC288C38290056EC69 /* TodoWeekCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoWeekCell.swift; sourceTree = "<group>"; };
 		AC5E27D2288C39090056EC69 /* TodoCalendarBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCalendarBottomSheetViewController.swift; sourceTree = "<group>"; };
@@ -391,18 +391,18 @@
 		AC5E27F128914EAE0056EC69 /* TodoSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoSettingModel.swift; sourceTree = "<group>"; };
 		AC67C2DB2892904C00071763 /* SetKeboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetKeboard.swift; sourceTree = "<group>"; };
 		AC9128C8287AD5A80056932A /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
-		AC9128CA287AD5D20056932A /* AccountViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountViewController+Layout.swift"; sourceTree = "<group>"; };
+		AC9128CA287AD5D20056932A /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		AC9128CC287AFE620056932A /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
 		AC9128CF287B34B30056932A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		AC9128D1287B34C80056932A /* ProfileViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+Layout.swift"; sourceTree = "<group>"; };
+		AC9128D1287B34C80056932A /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		AC9859C5287DC219009FC2F8 /* MailSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailSender.swift; sourceTree = "<group>"; };
 		AC9859C8288290C8009FC2F8 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		AC9859CA288334AC009FC2F8 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		AC9859CC288505C5009FC2F8 /* WeekCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekCell.swift; sourceTree = "<group>"; };
 		ACACD00F28749F520029D5CE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		ACACD01028749F520029D5CE /* LoginViewController+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginViewController+Layout.swift"; sourceTree = "<group>"; };
+		ACACD01028749F520029D5CE /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		ACACD01428749F880029D5CE /* PwFindViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PwFindViewController.swift; sourceTree = "<group>"; };
-		ACACD01528749F880029D5CE /* PwFindViewController+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PwFindViewController+Layout.swift"; sourceTree = "<group>"; };
+		ACACD01528749F880029D5CE /* PwFindView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PwFindView.swift; sourceTree = "<group>"; };
 		ACAE1D3E2898D9CD00B34DCC /* TodoModifyDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModifyDataManager.swift; sourceTree = "<group>"; };
 		ACAE1D402898D9DD00B34DCC /* TodoModifyInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModifyInput.swift; sourceTree = "<group>"; };
 		ACAE1D422898D9EC00B34DCC /* TodoModifyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModifyModel.swift; sourceTree = "<group>"; };
@@ -445,7 +445,7 @@
 		E03856BA28914D8500CEEFBA /* ColorPickerBottomsheetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerBottomsheetCollectionViewCell.swift; sourceTree = "<group>"; };
 		E03DCC4B28929D0F00532180 /* AutoLoginInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLoginInput.swift; sourceTree = "<group>"; };
 		E0439ABA288C598A0075CBF0 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
-		E0439ABC288C599A0075CBF0 /* ColorPickerViewController + layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColorPickerViewController + layout.swift"; sourceTree = "<group>"; };
+		E0439ABC288C599A0075CBF0 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		E0439ABE288C5B0F0075CBF0 /* ColorPickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerCollectionViewCell.swift; sourceTree = "<group>"; };
 		E045C66F287BDB8B00D89D62 /* SettingAgreementViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAgreementViewCell.swift; sourceTree = "<group>"; };
 		E06F1AC828A605930066B824 /* AdvertiseTextSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertiseTextSettingViewController.swift; sourceTree = "<group>"; };
@@ -456,7 +456,7 @@
 		E0AB9EB6287B1B8E0064CADA /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		E0AB9EB8287B1BA00064CADA /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		E0AB9EBA287B1BF40064CADA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		E0AB9EBC287B1C070064CADA /* HomeViewController + Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController + Layout.swift"; sourceTree = "<group>"; };
+		E0AB9EBC287B1C070064CADA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E0AB9EC0287B1C570064CADA /* SettingAgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAgreementViewController.swift; sourceTree = "<group>"; };
 		E0AB9EC2287B1C670064CADA /* SettingAgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAgreementView.swift; sourceTree = "<group>"; };
 		E0AB9EC7287B44C90064CADA /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
@@ -892,7 +892,7 @@
 			isa = PBXGroup;
 			children = (
 				57556A8D295FC90700B67369 /* Category */,
-				E0AB9EBC287B1C070064CADA /* HomeViewController + Layout.swift */,
+				E0AB9EBC287B1C070064CADA /* HomeView.swift */,
 				57D5D107289924AC004A16DA /* SummaryBottomSheetView.swift */,
 			);
 			path = Summary;
@@ -992,7 +992,7 @@
 		5701EA6C2956F1C900F21F63 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				AC9128D1287B34C80056932A /* ProfileViewController+Layout.swift */,
+				AC9128D1287B34C80056932A /* ProfileView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1017,7 +1017,7 @@
 		5701EA6F2956F1D000F21F63 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				ACACD01028749F520029D5CE /* LoginViewController+Layout.swift */,
+				ACACD01028749F520029D5CE /* LoginView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1034,7 +1034,7 @@
 		5701EA712956F1D400F21F63 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				AC9128CA287AD5D20056932A /* AccountViewController+Layout.swift */,
+				AC9128CA287AD5D20056932A /* AccountView.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -1042,7 +1042,7 @@
 		5701EA722956F1FB00F21F63 /* UserPassword */ = {
 			isa = PBXGroup;
 			children = (
-				ACACD01528749F880029D5CE /* PwFindViewController+Layout.swift */,
+				ACACD01528749F880029D5CE /* PwFindView.swift */,
 			);
 			path = UserPassword;
 			sourceTree = "<group>";
@@ -1071,8 +1071,8 @@
 		5701EA762957097A00F21F63 /* Todo */ = {
 			isa = PBXGroup;
 			children = (
-				AC5E27C8288C37E60056EC69 /* TodoSettingViewController+Layout.swift */,
-				E0439ABC288C599A0075CBF0 /* ColorPickerViewController + layout.swift */,
+				AC5E27C8288C37E60056EC69 /* TodoSettingView.swift */,
+				E0439ABC288C599A0075CBF0 /* ColorPickerView.swift */,
 			);
 			path = Todo;
 			sourceTree = "<group>";
@@ -1947,7 +1947,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0218B1E28A4D5EA00E48618 /* DiaryStickerCollectionViewCell.swift in Sources */,
-				ACACD01228749F520029D5CE /* LoginViewController+Layout.swift in Sources */,
+				ACACD01228749F520029D5CE /* LoginView.swift in Sources */,
 				E0F998C9288A6B310051C7AA /* AdDataManager.swift in Sources */,
 				57294AC0289116F500DA2F31 /* TodoCheckboxInput.swift in Sources */,
 				57294AB22891161D00DA2F31 /* GetTodo.swift in Sources */,
@@ -2007,7 +2007,7 @@
 				574A704528852523003C8F99 /* TodoListTitleCell.swift in Sources */,
 				ACCD87BD2893C46D00C34CE7 /* CategoryMakeDataManager.swift in Sources */,
 				E0F9988C288A57EB0051C7AA /* ProfileModel.swift in Sources */,
-				AC9128D2287B34C80056932A /* ProfileViewController+Layout.swift in Sources */,
+				AC9128D2287B34C80056932A /* ProfileView.swift in Sources */,
 				ACCD87BB2893C45400C34CE7 /* CategoryMakeModel.swift in Sources */,
 				AC5E27CB288C38130056EC69 /* TodoCalendarCell.swift in Sources */,
 				57294AB42891162800DA2F31 /* GetTodoDataManager.swift in Sources */,
@@ -2053,11 +2053,11 @@
 				ACE7D5FA28A819A70093854A /* PinNumberSettingViewController.swift in Sources */,
 				AC9128C9287AD5A80056932A /* AccountViewController.swift in Sources */,
 				E0F99883288A57760051C7AA /* PwFindInput.swift in Sources */,
-				ACACD01728749F880029D5CE /* PwFindViewController+Layout.swift in Sources */,
+				ACACD01728749F880029D5CE /* PwFindView.swift in Sources */,
 				E0AB9EC3287B1C670064CADA /* SettingAgreementView.swift in Sources */,
 				ACAE1D3F2898D9CD00B34DCC /* TodoModifyDataManager.swift in Sources */,
 				572E9AB7287BC07A00F915DF /* AskView.swift in Sources */,
-				AC9128CB287AD5D20056932A /* AccountViewController+Layout.swift in Sources */,
+				AC9128CB287AD5D20056932A /* AccountView.swift in Sources */,
 				E0F998C4288A6AF80051C7AA /* SignoutModel.swift in Sources */,
 				E076E9ED28703DEE001E14E1 /* AgreementViewController.swift in Sources */,
 				ACCD87CB2897BB4C00C34CE7 /* CategoryModifyInput.swift in Sources */,
@@ -2069,7 +2069,7 @@
 				E0F99891288A58260051C7AA /* ProfileImgInput.swift in Sources */,
 				ACE7D5FC28A819C10093854A /* PinNumberSettingView.swift in Sources */,
 				57B9F70F28D94F4400ACEC94 /* BaseAlertViewController.swift in Sources */,
-				AC5E27C9288C37E60056EC69 /* TodoSettingViewController+Layout.swift in Sources */,
+				AC5E27C9288C37E60056EC69 /* TodoSettingView.swift in Sources */,
 				AC5E27E1289020350056EC69 /* AuthJwtInput.swift in Sources */,
 				ACCD87C02895930500C34CE7 /* GetCategoryDataManager.swift in Sources */,
 				5750364A288A3EB0006A9070 /* SignUpInput.swift in Sources */,
@@ -2114,7 +2114,7 @@
 				ACCD87D72897E79100C34CE7 /* GetCalendarModel.swift in Sources */,
 				57D5D108289924AC004A16DA /* SummaryBottomSheetView.swift in Sources */,
 				E0C4BD6128720FBA00FDEA0E /* PrivacyTextViewController.swift in Sources */,
-				E0AB9EBD287B1C070064CADA /* HomeViewController + Layout.swift in Sources */,
+				E0AB9EBD287B1C070064CADA /* HomeView.swift in Sources */,
 				E02E7FA62874637C0006F6FA /* UIButton.swift in Sources */,
 				E045C670287BDB8B00D89D62 /* SettingAgreementViewCell.swift in Sources */,
 				E03856B928913D3E00CEEFBA /* CategoryBottomSheetViewController.swift in Sources */,
@@ -2122,7 +2122,7 @@
 				57B16855295A8A2600639A15 /* SignUpView.swift in Sources */,
 				57294AAF2891159300DA2F31 /* TodoDeleteDataManager.swift in Sources */,
 				E0C4BD632872100900FDEA0E /* PrivacyTextView.swift in Sources */,
-				E0439ABD288C599A0075CBF0 /* ColorPickerViewController + layout.swift in Sources */,
+				E0439ABD288C599A0075CBF0 /* ColorPickerView.swift in Sources */,
 				E076E9EB28703CAF001E14E1 /* AgreementView.swift in Sources */,
 				E0F99888288A57C70051C7AA /* ProfileDataManager.swift in Sources */,
 				ACCD87D02897DB8C00C34CE7 /* CategoryDeleteDataManager.swift in Sources */,
@@ -2336,7 +2336,7 @@
 				DEVELOPMENT_TEAM = 65XRT42S6C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Todoary/SupportingFiles/Info.plist;
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진 기능을 사용하려면 '사진/비디오' 접근권한을 허용해야 합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Todoary가 사진에 접근하려고 합니다. 허용하지 않아도 Todoary를 사용할 수 있지만, 선택하신 기능을 사용할 수 없습니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -2373,7 +2373,7 @@
 				DEVELOPMENT_TEAM = 65XRT42S6C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Todoary/SupportingFiles/Info.plist;
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진 기능을 사용하려면 '사진/비디오' 접근권한을 허용해야 합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Todoary가 사진에 접근하려고 합니다. 허용하지 않아도 Todoary를 사용할 수 있지만, 선택하신 기능을 사용할 수 없습니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

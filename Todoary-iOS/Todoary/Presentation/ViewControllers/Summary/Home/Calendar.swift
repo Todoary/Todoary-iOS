@@ -40,7 +40,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         
         self.month_component = Int(dateFormatterMonth.string(from: firstDayOfMonth!))!
         self.year_component = Int(dateFormatterYear.string(from: firstDayOfMonth!))!
-        self.year_Month.setTitle(dateFormatterYear.string(from: firstDayOfMonth!)+"년 "+String(self.month_component)+"월", for: .normal)
+        mainView.year_Month.setTitle(dateFormatterYear.string(from: firstDayOfMonth!)+"년 "+String(self.month_component)+"월", for: .normal)
         
         
         self.days.removeAll()
@@ -101,11 +101,11 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
             cell.diary.isHidden = true
             
             if (indexPath.row - emptyDay) >= 1 && (indexPath.row - emptyDay) < 32 {
-                if HomeViewController.calendarRecord[indexPath.row-emptyDay] != 0{
+                if calendarRecord[indexPath.row-emptyDay] != 0{
                     cell.dateLabel.layer.backgroundColor = UIColor.calendarExistColor.cgColor
                     cell.dateLabel.textColor = .black
                 }
-                if HomeViewController.diaryRecord[indexPath.row-emptyDay] != 0{
+                if diaryRecord[indexPath.row-emptyDay] != 0{
                     cell.diary.isHidden = false
                 }
             }
@@ -176,7 +176,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         
         cell.select.isHidden = true
         
-        if HomeViewController.calendarRecord[indexPath.row-emptyDay] != 0 {
+        if calendarRecord[indexPath.row-emptyDay] != 0 {
             cell.dateLabel.layer.backgroundColor = UIColor.calendarExistColor.cgColor
             cell.dateLabel.textColor = .black
             cell.dateLabel.layer.shadowRadius = 0
@@ -190,7 +190,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
             cell.dateLabel.layer.shadowOpacity = 0
         }
         
-        if HomeViewController.diaryRecord[indexPath.row-emptyDay] != 0 {
+        if diaryRecord[indexPath.row-emptyDay] != 0 {
             cell.diary.isHidden = false
         }else {
             cell.diary.isHidden = true
@@ -212,11 +212,11 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         components.month = components.month! - 1
         self.calculation()
         let date = cal.date(from: components)
-        HomeViewController.calendarRecord = [Int](repeating: 0, count: 32)
-        HomeViewController.diaryRecord = [Int](repeating: 0, count: 32)
+        calendarRecord = [Int](repeating: 0, count: 32)
+        diaryRecord = [Int](repeating: 0, count: 32)
         GetCalendataManager().getCalendataManager(self, yearMonth: "\(dateFormatterYear.string(from: date!))-\(dateFormatterMonth.string(from: date!))")
         GetDiaryDataManager().getDiaryDataManager(self, yearMonth: "\(dateFormatterYear.string(from: date!))-\(dateFormatterMonth.string(from: date!))")
-        HomeViewController.collectionView.reloadData()
+        mainView.collectionView.reloadData()
         
         requestTodoFirstDayOfMonth()
     }
@@ -227,11 +227,11 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         components.month = components.month! + 1
         self.calculation()
         let date = cal.date(from: components)
-        HomeViewController.calendarRecord = [Int](repeating: 0, count: 32)
-        HomeViewController.diaryRecord = [Int](repeating: 0, count: 32)
+        calendarRecord = [Int](repeating: 0, count: 32)
+        diaryRecord = [Int](repeating: 0, count: 32)
         GetCalendataManager().getCalendataManager(self, yearMonth: "\(dateFormatterYear.string(from: date!))-\(dateFormatterMonth.string(from: date!))")
         GetDiaryDataManager().getDiaryDataManager(self, yearMonth: "\(dateFormatterYear.string(from: date!))-\(dateFormatterMonth.string(from: date!))")
-        HomeViewController.collectionView.reloadData()
+        mainView.collectionView.reloadData()
         
         requestTodoFirstDayOfMonth()
     }
