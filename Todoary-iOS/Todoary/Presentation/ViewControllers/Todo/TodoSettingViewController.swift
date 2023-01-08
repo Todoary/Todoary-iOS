@@ -60,6 +60,7 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
     
     override func style(){
         super.style()
+        setRightButtonWithText("완료")
     }
     
     override func layout(){
@@ -88,7 +89,7 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
         mainView.collectionView.delegate = self
         mainView.collectionView.dataSource = self
         
-        mainView.completeBtn.addTarget(self, action: #selector(todocompleteBtnDidTap), for: .touchUpInside)
+        rightButton.addTarget(self, action: #selector(todocompleteBtnDidTap), for: .touchUpInside)
         mainView.time.addTarget(self, action: #selector(timeDidTap), for: .touchUpInside)
         mainView.plusBtn.addTarget(self, action: #selector(plusBtnDidTap), for: .touchUpInside)
         mainView.date.addTarget(self, action: #selector(dateDidTap), for: .touchUpInside)
@@ -194,7 +195,7 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
     @objc func plusBtnDidTap() {
         let colorPickerViewController = ColorPickerViewController()
         
-        colorPickerViewController.mainView.deleteBtn.isHidden = true
+        colorPickerViewController.setRightButtonWithText("완료")
         
         self.navigationController?.pushViewController(colorPickerViewController, animated: true)
         self.navigationController?.isNavigationBarHidden = true
@@ -347,6 +348,8 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
             colorPickerViewController.currentCategoryCount = categoryData.count
             
             colorPickerViewController.categoryData = CategoryData(id: categoryData[indexPath.row].id, title: categoryData[indexPath.row].title, color: categoryData[indexPath.row].color)
+            
+            colorPickerViewController.setRightButtonWithImage(UIImage(named: "category_trash"))
             
             self.navigationController?.pushViewController(colorPickerViewController, animated: true)
             self.navigationController?.isNavigationBarHidden = true

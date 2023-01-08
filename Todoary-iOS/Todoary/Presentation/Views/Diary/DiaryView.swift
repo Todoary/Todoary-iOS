@@ -65,7 +65,7 @@ class DiaryView: BaseView {
     override func layout() {
 
         todoTableView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(131.5)
+            make.top.equalToSuperview().offset(44)
                 make.leading.equalToSuperview()
                 make.width.equalToSuperview()
                 make.height.equalTo(161)

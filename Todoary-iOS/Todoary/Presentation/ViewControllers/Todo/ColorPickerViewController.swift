@@ -66,8 +66,8 @@ class ColorPickerViewController : BaseViewController {
         setupCollectionView()
         categoryReceive()
         
-        mainView.deleteBtn.addTarget(self, action: #selector(deleteBtnDidTap), for: .touchUpInside)
-        mainView.completeBtn.addTarget(self, action: #selector(completeBtnDidTap), for: .touchUpInside)
+//        .addTarget(self, action: #selector(deleteBtnDidTap), for: .touchUpInside)
+        rightButton.addTarget(self, action: #selector(completeBtnDidTap), for: .touchUpInside)
     }
     
     //MARK: - Actions

@@ -60,22 +60,13 @@ class HomeViewController : UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        self.calculation()
-        let component = cal.date(from: components)
-
-        GetCalendataManager().getCalendataManager(self, yearMonth: "\(dateFormatterYear.string(from: component!))-\(dateFormatterMonth.string(from: component!))")
-
-        GetDiaryDataManager().getDiaryDataManager(self, yearMonth: "\(dateFormatterYear.string(from: component!))-\(dateFormatterMonth.string(from: component!))")
-
-        mainView.collectionView.reloadData()
-
-        GetProfileDataManager().getProfileDataManger(self)
-
-        let fcmToken = FcmTokenInput(fcm_token: UserDefaults.standard.string(forKey: "fcmToken"))
-
-        FcmTokendataManager().fcmTokendataManager(self, fcmToken)
-
-        showBottomSheet()
+        apiSetting()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        failureAPI_home()
         
     }
     
@@ -107,6 +98,25 @@ class HomeViewController : UIViewController {
         mainView.nextMonthButton.addTarget(self, action: #selector(nextBtnDidTap), for: .touchUpInside)
         
         self.initView()
+    }
+    
+    func apiSetting() {
+        self.calculation()
+        let component = cal.date(from: components)
+
+        GetCalendataManager().getCalendataManager(self, yearMonth: "\(dateFormatterYear.string(from: component!))-\(dateFormatterMonth.string(from: component!))")
+
+        GetDiaryDataManager().getDiaryDataManager(self, yearMonth: "\(dateFormatterYear.string(from: component!))-\(dateFormatterMonth.string(from: component!))")
+
+        mainView.collectionView.reloadData()
+
+        GetProfileDataManager().getProfileDataManger(self)
+
+        let fcmToken = FcmTokenInput(fcm_token: UserDefaults.standard.string(forKey: "fcmToken"))
+
+        FcmTokendataManager().fcmTokendataManager(self, fcmToken)
+
+        showBottomSheet()
     }
     
     //MARK: - Actions
@@ -148,10 +158,11 @@ class HomeViewController : UIViewController {
         if ((mainView.nickname.text?.isEmpty) == true) {
             self.initView()
             print("하이1")
+            apiSetting()
         }else {
             print("하이")
         }
-        viewWillAppear(true)
+        
     }
     
     func successAPI_calendar(_ result : [Int]) {
