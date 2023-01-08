@@ -25,17 +25,21 @@ class CategoryViewController: BaseViewController {
     let mainView = CategoryView()
     
     //MARK: - LifeCycle
-
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-        style()
-        layout()
-        initialize()
-    }
     
     override func viewWillAppear(_ animated: Bool) {
+        /*
+        CategoryService.shared.getCategories{ result in
+            switch result {
+            case .success(let data):
+                print("success")
+                break
+            default:
+                print("fail")
+                break
+            }
+        
+        }
+         */
         GetCategoryDataManager().get(self)
     }
     
