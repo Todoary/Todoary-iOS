@@ -10,15 +10,12 @@ import Alamofire
 
 class TodoAlarmDataManager{
     
-    let headers : HTTPHeaders = [.authorization(UserDefaults.standard.string(forKey: "accessToken")!)]
-    
     func patch(viewController: AlarmAlertViewController,todoId: Int, parameter: TodoSettingInput){
     
         AF.request("https://todoary.com/todo/\(todoId)/alarm",
                    method: .patch,
                    parameters: parameter,
                    encoder: JSONParameterEncoder.default,
-                   headers: headers,
                    interceptor: Interceptor())
             .validate().responseDecodable(of: ApiModel.self) { response in
                 switch response.result {

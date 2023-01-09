@@ -12,7 +12,7 @@ class AuthJwtDataManager{
     
     func authJwtDataManager( _ parameter: AuthJwtInput){
         
-        AF.request("https://todoary.com/auth/jwt", method: .post, parameters: parameter, encoder: JSONParameterEncoder.default, headers: nil, interceptor: JwtInterceptor()).validate().responseDecodable(of: AuthJwtModel.self) { response in
+        AF.request("https://todoary.com/auth/jwt", method: .post, parameters: parameter, encoder: JSONParameterEncoder.default, headers: nil).validate().responseDecodable(of: AuthJwtModel.self) { response in
             switch response.result {
             case .success(let result):
                 switch result.code{
@@ -20,6 +20,7 @@ class AuthJwtDataManager{
                     UserDefaults.standard.set(result.result?.token?.accessToken, forKey: "accessToken")
                     UserDefaults.standard.set(result.result?.token?.refreshToken, forKey: "refreshToken")
                     print("토큰재발급 성공")
+                    
                     
                 default:
                     print("데이터베이스에러")

@@ -8,11 +8,9 @@
 import Alamofire
 
 class SignoutDataManager {
-  
-        let headers : HTTPHeaders = [.authorization(UserDefaults.standard.string(forKey: "accessToken")!)]
         
         //통신
-    func signout(_ viewController : UIViewController) {AF.request("https://todoary.com/users/signout", method: .post, parameters: nil, headers: headers, interceptor: Interceptor()).validate().responseDecodable(of: SignoutModel.self) {response in
+    func signout(_ viewController : UIViewController) {AF.request("https://todoary.com/users/signout", method: .post, parameters: nil, interceptor: Interceptor()).validate().responseDecodable(of: SignoutModel.self) {response in
             switch response.result {
             case .success(let result) :
                 switch result.code {

@@ -10,12 +10,11 @@ import Alamofire
 
 class DiaryDataManager {
     
-    let headers : HTTPHeaders = [.authorization(UserDefaults.standard.string(forKey: "accessToken")!)]
-    
     //다이어리 생성/수정
     func posts(viewController: DiaryViewController, createdDate: String, parameter: DiaryInput){
         
-        AF.request("https://todoary.com/diary/\(createdDate)", method: .post, parameters: parameter, encoder: JSONParameterEncoder.default, headers: self.headers).validate().responseDecodable(of: ApiModel.self) { response in
+        AF.request("https://todoary.com/diary/\(createdDate)", method: .post, parameters: parameter, encoder: JSONParameterEncoder.default,
+                   interceptor: Interceptor()).validate().responseDecodable(of: ApiModel.self) { response in
             switch response.result {
             case .success(let result):
                 if(result.code == 1000){
@@ -42,7 +41,7 @@ class DiaryDataManager {
         AF.request("https://todoary.com/diary/\(createdDate)",
                    method: .delete,
                    parameters: [:],
-                   headers: headers)
+                   interceptor: Interceptor())
             .validate()
             .responseDecodable(of: ApiModel.self) { response in
                 switch response.result {
@@ -57,7 +56,8 @@ class DiaryDataManager {
     
     func gets(_ date: String){
         AF.request("https://todoary.com/diary", method: .get, parameters: ["createdDate":date],
-                   encoding: URLEncoding.queryString, headers: headers).validate().responseDecodable(of: GetDiaryModel.self) { response in
+                   encoding: URLEncoding.queryString,
+                   interceptor: Interceptor()).validate().responseDecodable(of: GetDiaryModel.self) { response in
             switch response.result {
             case .success(let result):
                 HomeViewController.bottomSheetVC.checkGetDiaryApiResultCode(result)
@@ -70,7 +70,8 @@ class DiaryDataManager {
     //다이어리 스티커 생성/수정/삭제
     func diaryStickerDataManager(viewController: DiaryViewController, createdDate: String, parameter: DiaryStickerInput){
         
-        AF.request("https://todoary.com/diary/\(createdDate)/sticker", method: .put, parameters: parameter, encoder: JSONParameterEncoder.default, headers: self.headers).validate().responseDecodable(of: DiaryStickerModel.self) { response in
+        AF.request("https://todoary.com/diary/\(createdDate)/sticker", method: .put, parameters: parameter, encoder: JSONParameterEncoder.default
+                   , interceptor: Interceptor()).validate().responseDecodable(of: DiaryStickerModel.self) { response in
             
             switch response.result {
             case .success(let result):
@@ -93,7 +94,7 @@ class DiaryDataManager {
     
     func getDiarySticker(viewController: DiaryViewController, createdDate: String){
         
-        AF.request("https://todoary.com/diary/\(createdDate)/sticker", method: .get, parameters: nil,  headers: self.headers, interceptor: Interceptor()).validate().responseDecodable(of: GetDiaryStickerModel.self) { response in
+        AF.request("https://todoary.com/diary/\(createdDate)/sticker", method: .get, parameters: nil, interceptor: Interceptor()).validate().responseDecodable(of: GetDiaryStickerModel.self) { response in
             switch response.result {
             case .success(let result):
                 switch result.code {

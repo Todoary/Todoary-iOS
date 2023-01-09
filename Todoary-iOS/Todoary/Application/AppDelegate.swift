@@ -26,10 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if (UserDefaults.standard.string(forKey: "refreshToken") != nil){
             self.window = UIWindow(frame: UIScreen.main.bounds)
             
-            let authJwt = AuthJwtInput(refreshToken: UserDefaults.standard.string(forKey: "refreshToken"))
-            AuthJwtDataManager().authJwtDataManager(authJwt)
-            
-            
             if UserDefaults.standard.bool(forKey: "appPasswordCheck") == true {
                 navigationController = UINavigationController(rootViewController: AppPasswordViewController())
                 self.window?.rootViewController = navigationController

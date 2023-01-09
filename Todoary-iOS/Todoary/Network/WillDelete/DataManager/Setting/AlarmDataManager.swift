@@ -18,12 +18,9 @@ class AlarmDataManager {
     
     func get(viewController: AlarmSettingViewController){
         
-        let headers : HTTPHeaders = [.authorization(UserDefaults.standard.string(forKey: "accessToken")!)]
-        
         AF.request("https://todoary.com/users/alarm",
                    method: .get,
-                   parameters: nil,
-                   headers: headers, interceptor: Interceptor())
+                   parameters: nil, interceptor: Interceptor())
             .validate().responseDecodable(of: GetAlarmCheckModel.self) { response in
                 switch response.result {
                 case .success(let result):
@@ -50,7 +47,7 @@ class AlarmDataManager {
                    method: .patch,
                    parameters: ["isChecked":isChecked],
                    encoder: JSONParameterEncoder.default,
-                   headers: headers)
+                   interceptor: Interceptor())
             .validate().responseDecodable(of: ApiModel.self) { response in
                 switch response.result {
                 case .success(let result):

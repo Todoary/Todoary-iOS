@@ -9,15 +9,13 @@ import Alamofire
 
 class CategoryModifyDataManager {
     
-    let headers : HTTPHeaders = [.authorization(UserDefaults.standard.string(forKey: "accessToken")!)]
-    
     func patch(categoryId : Int, parameter: CategoryModifyInput, viewController : CategoryBottomSheetViewController, categoryViewController: CategoryViewController) {
         
         AF.request("https://todoary.com/category/\(categoryId)",
                    method: .patch,
                    parameters: parameter,
                    encoder: JSONParameterEncoder.default,
-                   headers: headers)
+                   interceptor: Interceptor())
             .validate()
             .responseDecodable(of: CategoryModifyModel.self) { response in
                 switch response.result {
@@ -51,7 +49,6 @@ class CategoryModifyDataManager {
                    method: .patch,
                    parameters: parameter,
                    encoder: JSONParameterEncoder.default,
-                   headers: headers,
                    interceptor: Interceptor())
             .validate()
             .responseDecodable(of: CategoryModifyModel.self) { response in

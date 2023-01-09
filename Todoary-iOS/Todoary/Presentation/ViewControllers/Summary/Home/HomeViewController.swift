@@ -17,6 +17,8 @@ class HomeViewController : UIViewController {
     
     static var check : Int!
     
+    var nickname = ""
+    var introduce = ""
     let now = Date()
     var cal = Calendar.current
     let dateFormatterYear = DateFormatter()
@@ -60,21 +62,7 @@ class HomeViewController : UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        self.calculation()
-        let component = cal.date(from: components)
-
-        GetCalendataManager().getCalendataManager(self, yearMonth: "\(dateFormatterYear.string(from: component!))-\(dateFormatterMonth.string(from: component!))")
-
-        GetDiaryDataManager().getDiaryDataManager(self, yearMonth: "\(dateFormatterYear.string(from: component!))-\(dateFormatterMonth.string(from: component!))")
-
-        mainView.collectionView.reloadData()
-
-        GetProfileDataManager().getProfileDataManger(self)
-
-        let fcmToken = FcmTokenInput(fcm_token: UserDefaults.standard.string(forKey: "fcmToken"))
-
-        FcmTokendataManager().fcmTokendataManager(self, fcmToken)
-
+        apiSetting()
         showBottomSheet()
         
     }
@@ -107,6 +95,24 @@ class HomeViewController : UIViewController {
         mainView.nextMonthButton.addTarget(self, action: #selector(nextBtnDidTap), for: .touchUpInside)
         
         self.initView()
+    }
+    
+    func apiSetting() {
+        self.calculation()
+        let component = cal.date(from: components)
+
+        GetCalendataManager().getCalendataManager(self, yearMonth: "\(dateFormatterYear.string(from: component!))-\(dateFormatterMonth.string(from: component!))")
+
+        GetDiaryDataManager().getDiaryDataManager(self, yearMonth: "\(dateFormatterYear.string(from: component!))-\(dateFormatterMonth.string(from: component!))")
+
+        mainView.collectionView.reloadData()
+
+        GetProfileDataManager().getProfileDataManger(self)
+
+        let fcmToken = FcmTokenInput(fcm_token: UserDefaults.standard.string(forKey: "fcmToken"))
+
+        FcmTokendataManager().fcmTokendataManager(self, fcmToken)
+        
     }
     
     //MARK: - Actions
@@ -142,16 +148,6 @@ class HomeViewController : UIViewController {
             let url = URL(string: result.profileImgUrl!)
             mainView.profileImage.load(url: url!)
         }
-    }
-    
-    func failureAPI_home() {
-        if ((mainView.nickname.text?.isEmpty) == true) {
-            self.initView()
-            print("하이1")
-        }else {
-            print("하이")
-        }
-        viewWillAppear(true)
     }
     
     func successAPI_calendar(_ result : [Int]) {

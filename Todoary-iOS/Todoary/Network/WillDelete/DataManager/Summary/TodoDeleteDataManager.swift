@@ -12,12 +12,9 @@ class TodoDeleteDataManager{
     
     func delete(viewController: CategoryViewController, todoId: Int, indexPath: IndexPath){
         
-        let headers : HTTPHeaders = [.authorization(UserDefaults.standard.string(forKey: "accessToken")!)]
-        
         AF.request("https://todoary.com/todo/\(todoId)",
                    method: .delete,
                    parameters: [:],
-                   headers: headers,
                    interceptor: Interceptor())
             .validate()
             .responseDecodable(of: UserDeleteModel.self) { response in
@@ -32,13 +29,11 @@ class TodoDeleteDataManager{
     }
 
     func delete(todoId: Int, indexPath: IndexPath){
-        
-        let headers : HTTPHeaders = [.authorization(UserDefaults.standard.string(forKey: "accessToken")!)]
-        
+    
         AF.request("https://todoary.com/todo/\(todoId)",
                    method: .delete,
                    parameters: [:],
-                   headers: headers)
+                   interceptor: Interceptor())
             .validate()
             .responseDecodable(of: UserDeleteModel.self) { response in
                 switch response.result {

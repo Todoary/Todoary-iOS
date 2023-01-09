@@ -10,14 +10,11 @@ import Alamofire
 
 class TodoGetByCategoryDataManager{
     
-    let headers : HTTPHeaders = [.authorization(UserDefaults.standard.string(forKey: "accessToken")!)]
-    
     func get(viewController: CategoryViewController, categoryId: Int){
         
         AF.request("https://todoary.com/todo/category/\(categoryId)",
                    method: .get,
                    parameters: nil,
-                   headers: headers,
                    interceptor: Interceptor())
             .validate().responseDecodable(of: GetTodoModel.self) { response in
                 switch response.result {
@@ -34,7 +31,7 @@ class TodoGetByCategoryDataManager{
         AF.request("https://todoary.com/todo/category/\(categoryId)",
                    method: .get,
                    parameters: nil,
-                   headers: headers)
+                   interceptor: Interceptor())
             .validate().responseDecodable(of: GetTodoModel.self) { response in
                 switch response.result {
                 case .success(let result):

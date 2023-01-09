@@ -9,19 +9,11 @@ import UIKit
 
 class TodoSettingView: BaseView {
     
+    
     let collectionView = UICollectionView(frame: .init(), collectionViewLayout: LeftAlignedCollectionViewFlowLayout()).then{
         $0.showsVerticalScrollIndicator = false
         $0.register(TodoCategoryCell.self, forCellWithReuseIdentifier: TodoCategoryCell.cellIdentifier)
     }
-    
-    let completeBtn = UIButton().then{
-        $0.setTitle("완료", for: .normal)
-        $0.addLetterSpacing(spacing: 0.36)
-        $0.backgroundColor = .white
-        $0.setTitleColor(.black, for: .normal)
-        $0.titleLabel?.font = UIFont.nbFont(ofSize: 18, weight: .medium)
-    }
-
     
     let todo = UITextField().then{
         $0.placeholder = "투두이름"
@@ -93,7 +85,6 @@ class TodoSettingView: BaseView {
     
     override func hierarchy(){
         
-        self.addSubview(completeBtn)
         self.addSubview(todo)
         self.addSubview(todoBorderLine)
         
@@ -114,13 +105,6 @@ class TodoSettingView: BaseView {
     }
     
     override func layout(){
-        
-        completeBtn.snp.makeConstraints{ make in
-            make.top.equalToSuperview().offset(-15)
-            make.trailing.equalToSuperview().offset(-21)
-            make.width.equalTo(35)
-            make.height.equalTo(22)
-        }
         
         todo.snp.makeConstraints{ make in
             make.top.equalToSuperview().offset(16)
