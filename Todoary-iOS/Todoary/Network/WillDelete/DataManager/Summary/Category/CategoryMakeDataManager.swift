@@ -9,10 +9,8 @@ import Alamofire
 
 class CategoryMakeDataManager {
     
-    let headers : HTTPHeaders = [.authorization(UserDefaults.standard.string(forKey: "accessToken")!)]
-    
     func categoryMakeDataManager(parameter: CategoryMakeInput, categoryVC: CategoryViewController, viewController : CategoryBottomSheetViewController) {
-        AF.request("https://todoary.com/category", method: .post, parameters: parameter,  encoder: JSONParameterEncoder.default , headers: headers).validate().responseDecodable(of: CategoryMakeModel.self) { response in
+        AF.request("https://todoary.com/category", method: .post, parameters: parameter,  encoder: JSONParameterEncoder.default , interceptor: Interceptor()).validate().responseDecodable(of: CategoryMakeModel.self) { response in
             switch response.result {
             case .success(let result):
                 switch result.code {
@@ -40,7 +38,7 @@ class CategoryMakeDataManager {
     }
     
     func categoryMakeDataManager( _ viewController : ColorPickerViewController , _ parameter: CategoryMakeInput) {
-        AF.request("https://todoary.com/category", method: .post, parameters: parameter,  encoder: JSONParameterEncoder.default , headers: headers, interceptor: Interceptor()).validate().responseDecodable(of: CategoryMakeModel.self) { response in
+        AF.request("https://todoary.com/category", method: .post, parameters: parameter,  encoder: JSONParameterEncoder.default, interceptor: Interceptor()).validate().responseDecodable(of: CategoryMakeModel.self) { response in
             switch response.result {
             case .success(let result):
                 switch result.code {

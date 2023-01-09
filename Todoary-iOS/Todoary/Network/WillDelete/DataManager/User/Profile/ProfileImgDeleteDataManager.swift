@@ -9,14 +9,11 @@ import Alamofire
 
 class ProfileImgDeleteDataManager {
     
-    let headers : HTTPHeaders = [.authorization(UserDefaults.standard.string(forKey: "accessToken")!)]
-    
     //통신
     func profileImgDelete(_ veiwController : ProfileViewController) {
         AF.request("http://todoary.com/users/profile-img",
                    method: .delete,
                    encoding: URLEncoding(destination: .queryString),
-                   headers: headers,
                    interceptor: Interceptor()).validate().responseDecodable(of: ProfileImgDeleteModel.self)
         {response in
             switch response.result {

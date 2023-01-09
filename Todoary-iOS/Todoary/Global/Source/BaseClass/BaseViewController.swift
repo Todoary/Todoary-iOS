@@ -62,7 +62,7 @@ class BaseViewController: UIViewController {
     
     func initialize() { }
     
-    final func setRightButtonWithText(_ text: String){
+    func setRightButtonWithText(_ text: String){
         
         rightButton.setTitle(text, for: .normal)
         
@@ -75,7 +75,7 @@ class BaseViewController: UIViewController {
         }
     }
     
-    final func setRightButtonWithImage(_ image: UIImage!){
+    func setRightButtonWithImage(_ image: UIImage!){
         
         rightButton.setImage(image, for: .normal)
         

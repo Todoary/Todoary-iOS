@@ -9,10 +9,8 @@ import Alamofire
 
 class TodoModifyDataManager {
     
-    let headers : HTTPHeaders = [.authorization(UserDefaults.standard.string(forKey: "accessToken")!)]
-    
     func todoModifyDataManager( _ viewController : TodoSettingViewController , _ parameter: TodoModifyInput, todoId: Int) {
-        AF.request("https://todoary.com/todo/\(todoId)", method: .patch, parameters: parameter,  encoder: JSONParameterEncoder.default , headers: headers, interceptor: Interceptor()).validate().responseDecodable(of: TodoModifyModel.self) { response in
+        AF.request("https://todoary.com/todo/\(todoId)", method: .patch, parameters: parameter,  encoder: JSONParameterEncoder.default, interceptor: Interceptor()).validate().responseDecodable(of: TodoModifyModel.self) { response in
             switch response.result {
             case .success(let result):
                 switch result.code {

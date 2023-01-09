@@ -9,10 +9,8 @@ import Alamofire
 
 class FcmTokendataManager {
     
-    let headers : HTTPHeaders = [.authorization(UserDefaults.standard.string(forKey: "accessToken")!)]
-    
     func fcmTokendataManager( _ viewController : HomeViewController , _ parameter: FcmTokenInput) {
-        AF.request("https://todoary.com/users/fcm_token", method: .patch, parameters: parameter,  encoder: JSONParameterEncoder.default , headers: headers, interceptor: Interceptor()).validate().responseDecodable(of: FcmTokenModel.self) { response in
+        AF.request("https://todoary.com/users/fcm_token", method: .patch, parameters: parameter,  encoder: JSONParameterEncoder.default , interceptor: Interceptor()).validate().responseDecodable(of: FcmTokenModel.self) { response in
             switch response.result {
             case .success(let result):
                 switch result.code {

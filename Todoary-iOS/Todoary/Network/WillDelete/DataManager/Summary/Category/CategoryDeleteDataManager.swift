@@ -9,14 +9,12 @@ import Alamofire
 
 class CategoryDeleteDataManager {
     
-    let headers : HTTPHeaders = [.authorization(UserDefaults.standard.string(forKey: "accessToken")!)]
-    
     func delete(categoryId : Int, viewController : CategoryBottomSheetViewController, categoryViewController: CategoryViewController) {
         
         AF.request("https://todoary.com/category/\(categoryId)",
                    method: .delete,
                    parameters: nil,
-                   headers: headers)
+                   interceptor: Interceptor())
             .validate()
             .responseDecodable(of: CategoryDeleteModel.self) { response in
                 switch response.result {
@@ -47,7 +45,6 @@ class CategoryDeleteDataManager {
         AF.request("https://todoary.com/category/\(categoryId)",
                    method: .delete,
                    parameters: nil,
-                   headers: headers,
                    interceptor: Interceptor())
             .validate()
             .responseDecodable(of: CategoryDeleteModel.self) { response in

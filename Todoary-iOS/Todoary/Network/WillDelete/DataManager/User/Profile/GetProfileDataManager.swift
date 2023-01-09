@@ -13,7 +13,7 @@ class GetProfileDataManager {
     
     
     func getProfileDataManger( _ viewController : UIViewController) {
-        AF.request("https://todoary.com/users", method: .get, parameters: nil, headers: headers,interceptor: Interceptor()).validate().responseDecodable(of: GetProfileModel.self) { response in
+        AF.request("https://todoary.com/users", method: .get, parameters: nil,interceptor: Interceptor()).validate().responseDecodable(of: GetProfileModel.self) { response in
             switch response.result {
             case .success(let result):
                 switch result.code{

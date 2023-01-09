@@ -9,14 +9,11 @@ import Alamofire
 
 class GetDiaryDataManager {
     
-    let headers : HTTPHeaders = [.authorization(UserDefaults.standard.string(forKey: "accessToken")!)]
-    
     func getDiaryDataManager(_ viewController : UIViewController , yearMonth : String) {
         
         AF.request("https://todoary.com/diary/days/\(yearMonth)",
                    method: .get,
-                   parameters: nil,
-                   headers: headers,interceptor: Interceptor())
+                   parameters: nil,interceptor: Interceptor())
             .validate()
             .responseDecodable(of: GetDiaryExistenceModel.self) { response in
                 switch response.result {

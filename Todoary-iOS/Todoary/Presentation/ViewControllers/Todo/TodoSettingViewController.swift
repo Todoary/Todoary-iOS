@@ -88,7 +88,6 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
         mainView.collectionView.collectionViewLayout = flowLayout
         mainView.collectionView.delegate = self
         mainView.collectionView.dataSource = self
-        
         rightButton.addTarget(self, action: #selector(todocompleteBtnDidTap), for: .touchUpInside)
         mainView.time.addTarget(self, action: #selector(timeDidTap), for: .touchUpInside)
         mainView.plusBtn.addTarget(self, action: #selector(plusBtnDidTap), for: .touchUpInside)
@@ -193,9 +192,7 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
     
     //카테고리 플러스 버튼 누르기 -> 카테고리 생성 화면
     @objc func plusBtnDidTap() {
-        let colorPickerViewController = ColorPickerViewController()
-        
-        colorPickerViewController.setRightButtonWithText("완료")
+        let colorPickerViewController = ColorPickerViewController(rightButtonTitle: "완료")
         
         self.navigationController?.pushViewController(colorPickerViewController, animated: true)
         self.navigationController?.isNavigationBarHidden = true
@@ -343,13 +340,11 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
         
         if let indexPath = mainView.collectionView.indexPathForItem(at: p) {
             
-            let colorPickerViewController = ColorPickerViewController()
+            let colorPickerViewController = ColorPickerViewController(rightButtonImage: UIImage(named: "category_trash"))
             
             colorPickerViewController.currentCategoryCount = categoryData.count
             
             colorPickerViewController.categoryData = CategoryData(id: categoryData[indexPath.row].id, title: categoryData[indexPath.row].title, color: categoryData[indexPath.row].color)
-            
-            colorPickerViewController.setRightButtonWithImage(UIImage(named: "category_trash"))
             
             self.navigationController?.pushViewController(colorPickerViewController, animated: true)
             self.navigationController?.isNavigationBarHidden = true

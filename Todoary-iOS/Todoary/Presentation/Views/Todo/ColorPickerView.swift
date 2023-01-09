@@ -27,6 +27,8 @@ class ColorPickerView: BaseView {
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.silver_217.cgColor
     }
+    
+    
 
     
     override func hierarchy(){

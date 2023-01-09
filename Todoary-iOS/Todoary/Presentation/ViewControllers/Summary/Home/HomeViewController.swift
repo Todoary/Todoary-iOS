@@ -17,6 +17,8 @@ class HomeViewController : UIViewController {
     
     static var check : Int!
     
+    var nickname = ""
+    var introduce = ""
     let now = Date()
     var cal = Calendar.current
     let dateFormatterYear = DateFormatter()
@@ -61,12 +63,7 @@ class HomeViewController : UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         apiSetting()
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
-        failureAPI_home()
+        showBottomSheet()
         
     }
     
@@ -115,8 +112,7 @@ class HomeViewController : UIViewController {
         let fcmToken = FcmTokenInput(fcm_token: UserDefaults.standard.string(forKey: "fcmToken"))
 
         FcmTokendataManager().fcmTokendataManager(self, fcmToken)
-
-        showBottomSheet()
+        
     }
     
     //MARK: - Actions
@@ -152,17 +148,6 @@ class HomeViewController : UIViewController {
             let url = URL(string: result.profileImgUrl!)
             mainView.profileImage.load(url: url!)
         }
-    }
-    
-    func failureAPI_home() {
-        if ((mainView.nickname.text?.isEmpty) == true) {
-            self.initView()
-            print("하이1")
-            apiSetting()
-        }else {
-            print("하이")
-        }
-        
     }
     
     func successAPI_calendar(_ result : [Int]) {

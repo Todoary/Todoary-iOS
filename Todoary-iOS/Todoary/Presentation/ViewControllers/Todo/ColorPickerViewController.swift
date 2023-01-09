@@ -44,6 +44,32 @@ class ColorPickerViewController : BaseViewController {
         
     }
     
+    init(rightButtonTitle: String){
+            super.init(nibName: nil, bundle: nil)
+            self.setRightButtonWithText(rightButtonTitle)
+        }
+
+    init(rightButtonImage: UIImage!){
+        super.init(nibName: nil, bundle: nil)
+        self.setRightButtonWithImage(rightButtonImage)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func setRightButtonWithText( _ text: String) {
+        super.setRightButtonWithText(text)
+
+        self.rightButton.addTarget(self, action: #selector(completeBtnDidTap), for: .touchUpInside)
+    }
+
+    override func setRightButtonWithImage( _ image: UIImage!) {
+        super.setRightButtonWithImage(image)
+
+        self.rightButton.addTarget(self, action: #selector(deleteBtnDidTap), for: .touchUpInside)
+    }
+    
     override func style(){
         super.style()
     }

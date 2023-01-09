@@ -8,11 +8,9 @@
 import Alamofire
 
 class GetCategoryDataManager {
-    
-    let headers : HTTPHeaders = [.authorization(UserDefaults.standard.string(forKey: "accessToken")!)]
 
     func get( _ viewController : CategoryViewController ) {
-        AF.request("https://todoary.com/category", method: .get , parameters: nil, headers: headers, interceptor: Interceptor()).validate().responseDecodable(of: GetCategoryModel.self) { response in
+        AF.request("https://todoary.com/category", method: .get , parameters: nil, interceptor: Interceptor()).validate().responseDecodable(of: GetCategoryModel.self) { response in
             switch response.result {
             case .success(let result):
                 switch result.code {
@@ -32,7 +30,7 @@ class GetCategoryDataManager {
     }
     
     func getCategoryDataManager( _ viewController : UIViewController ) {
-        AF.request("https://todoary.com/category", method: .get , parameters: nil, headers: headers).validate().responseDecodable(of: GetCategoryModel.self) { response in
+        AF.request("https://todoary.com/category", method: .get , parameters: nil, interceptor: Interceptor()).validate().responseDecodable(of: GetCategoryModel.self) { response in
             switch response.result {
             case .success(let result):
                 switch result.code {
