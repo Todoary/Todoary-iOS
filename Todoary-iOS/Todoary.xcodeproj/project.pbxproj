@@ -42,6 +42,21 @@
 		572E9AC1287BC90A00F915DF /* FontSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E9AC0287BC90A00F915DF /* FontSettingTableViewCell.swift */; };
 		572E9AC3287C643000F915DF /* InfoMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E9AC2287C643000F915DF /* InfoMessageView.swift */; };
 		573844BA288CF01D009529CD /* NewTodoAddBtnTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573844B9288CF01D009529CD /* NewTodoAddBtnTableViewCell.swift */; };
+		57397F88296D471B0088B5F4 /* UserRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F87296D471B0088B5F4 /* UserRouter.swift */; };
+		57397F8A296D472C0088B5F4 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F89296D472C0088B5F4 /* UserService.swift */; };
+		57397F8C296D4F370088B5F4 /* SignUpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F8B296D4F370088B5F4 /* SignUpRouter.swift */; };
+		57397F8E296D4F570088B5F4 /* SignUpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F8D296D4F570088B5F4 /* SignUpService.swift */; };
+		57397F90296D50850088B5F4 /* WithdrawalRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F8F296D50850088B5F4 /* WithdrawalRouter.swift */; };
+		57397F92296D50A90088B5F4 /* WithdrawalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F91296D50A90088B5F4 /* WithdrawalService.swift */; };
+		57397F94296D50FF0088B5F4 /* TodoIndividualRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F93296D50FF0088B5F4 /* TodoIndividualRouter.swift */; };
+		57397F96296D510C0088B5F4 /* TodoIndividualService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F95296D510C0088B5F4 /* TodoIndividualService.swift */; };
+		57397F98296D51170088B5F4 /* DiaryTextRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F97296D51170088B5F4 /* DiaryTextRouter.swift */; };
+		57397F9A296D51210088B5F4 /* DiaryTextService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F99296D51210088B5F4 /* DiaryTextService.swift */; };
+		57397F9C296D515E0088B5F4 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F9B296D515E0088B5F4 /* SignUpModel.swift */; };
+		57397F9E296D51780088B5F4 /* WithdrawalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F9D296D51780088B5F4 /* WithdrawalModel.swift */; };
+		57397FA0296D51810088B5F4 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F9F296D51810088B5F4 /* UserModel.swift */; };
+		57397FA2296D518C0088B5F4 /* TodoIndividualModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397FA1296D518C0088B5F4 /* TodoIndividualModel.swift */; };
+		57397FA4296D51960088B5F4 /* DiaryTextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397FA3296D51960088B5F4 /* DiaryTextModel.swift */; };
 		57468A6A289BCDE800056691 /* NoTodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57468A69289BCDE800056691 /* NoTodoTableViewCell.swift */; };
 		574913B7287ADF5600381BCD /* AlarmSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574913B6287ADF5600381BCD /* AlarmSettingViewController.swift */; };
 		574913B9287ADF6500381BCD /* AlarmSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574913B8287ADF6500381BCD /* AlarmSettingView.swift */; };
@@ -306,6 +321,21 @@
 		572E9AC0287BC90A00F915DF /* FontSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSettingTableViewCell.swift; sourceTree = "<group>"; };
 		572E9AC2287C643000F915DF /* InfoMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoMessageView.swift; sourceTree = "<group>"; };
 		573844B9288CF01D009529CD /* NewTodoAddBtnTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTodoAddBtnTableViewCell.swift; sourceTree = "<group>"; };
+		57397F87296D471B0088B5F4 /* UserRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRouter.swift; sourceTree = "<group>"; };
+		57397F89296D472C0088B5F4 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		57397F8B296D4F370088B5F4 /* SignUpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRouter.swift; sourceTree = "<group>"; };
+		57397F8D296D4F570088B5F4 /* SignUpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpService.swift; sourceTree = "<group>"; };
+		57397F8F296D50850088B5F4 /* WithdrawalRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalRouter.swift; sourceTree = "<group>"; };
+		57397F91296D50A90088B5F4 /* WithdrawalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalService.swift; sourceTree = "<group>"; };
+		57397F93296D50FF0088B5F4 /* TodoIndividualRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoIndividualRouter.swift; sourceTree = "<group>"; };
+		57397F95296D510C0088B5F4 /* TodoIndividualService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoIndividualService.swift; sourceTree = "<group>"; };
+		57397F97296D51170088B5F4 /* DiaryTextRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTextRouter.swift; sourceTree = "<group>"; };
+		57397F99296D51210088B5F4 /* DiaryTextService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTextService.swift; sourceTree = "<group>"; };
+		57397F9B296D515E0088B5F4 /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
+		57397F9D296D51780088B5F4 /* WithdrawalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalModel.swift; sourceTree = "<group>"; };
+		57397F9F296D51810088B5F4 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		57397FA1296D518C0088B5F4 /* TodoIndividualModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoIndividualModel.swift; sourceTree = "<group>"; };
+		57397FA3296D51960088B5F4 /* DiaryTextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTextModel.swift; sourceTree = "<group>"; };
 		57468A69289BCDE800056691 /* NoTodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoTodoTableViewCell.swift; sourceTree = "<group>"; };
 		574913B6287ADF5600381BCD /* AlarmSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingViewController.swift; sourceTree = "<group>"; };
 		574913B8287ADF6500381BCD /* AlarmSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingView.swift; sourceTree = "<group>"; };
@@ -1663,6 +1693,8 @@
 		57C481AC296952A0008731D9 /* Diary */ = {
 			isa = PBXGroup;
 			children = (
+				57397F97296D51170088B5F4 /* DiaryTextRouter.swift */,
+				57397F99296D51210088B5F4 /* DiaryTextService.swift */,
 			);
 			path = Diary;
 			sourceTree = "<group>";
@@ -1679,6 +1711,8 @@
 		57C481AE296952A4008731D9 /* Todo */ = {
 			isa = PBXGroup;
 			children = (
+				57397F93296D50FF0088B5F4 /* TodoIndividualRouter.swift */,
+				57397F95296D510C0088B5F4 /* TodoIndividualService.swift */,
 			);
 			path = Todo;
 			sourceTree = "<group>";
@@ -1686,6 +1720,8 @@
 		57C481AF296952A6008731D9 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				57397F87296D471B0088B5F4 /* UserRouter.swift */,
+				57397F89296D472C0088B5F4 /* UserService.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1693,6 +1729,10 @@
 		57C481B0296952A8008731D9 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				57397F8B296D4F370088B5F4 /* SignUpRouter.swift */,
+				57397F8D296D4F570088B5F4 /* SignUpService.swift */,
+				57397F8F296D50850088B5F4 /* WithdrawalRouter.swift */,
+				57397F91296D50A90088B5F4 /* WithdrawalService.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -1720,6 +1760,7 @@
 		57C481C5296957E9008731D9 /* Diary */ = {
 			isa = PBXGroup;
 			children = (
+				57397FA3296D51960088B5F4 /* DiaryTextModel.swift */,
 			);
 			path = Diary;
 			sourceTree = "<group>";
@@ -1735,6 +1776,7 @@
 		57C481C7296957ED008731D9 /* Todo */ = {
 			isa = PBXGroup;
 			children = (
+				57397FA1296D518C0088B5F4 /* TodoIndividualModel.swift */,
 			);
 			path = Todo;
 			sourceTree = "<group>";
@@ -1742,6 +1784,7 @@
 		57C481C8296957EF008731D9 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				57397F9F296D51810088B5F4 /* UserModel.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1749,6 +1792,8 @@
 		57C481C9296957F1008731D9 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				57397F9B296D515E0088B5F4 /* SignUpModel.swift */,
+				57397F9D296D51780088B5F4 /* WithdrawalModel.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -2072,7 +2117,10 @@
 				E0218B1E28A4D5EA00E48618 /* DiaryStickerCollectionViewCell.swift in Sources */,
 				ACACD01228749F520029D5CE /* LoginView.swift in Sources */,
 				E0F998C9288A6B310051C7AA /* AdDataManager.swift in Sources */,
+				57397F94296D50FF0088B5F4 /* TodoIndividualRouter.swift in Sources */,
+				57397F92296D50A90088B5F4 /* WithdrawalService.swift in Sources */,
 				57294AC0289116F500DA2F31 /* TodoCheckboxInput.swift in Sources */,
+				57397FA4296D51960088B5F4 /* DiaryTextModel.swift in Sources */,
 				57294AB22891161D00DA2F31 /* GetTodo.swift in Sources */,
 				E0218B2928A54C0700E48618 /* AdvertiseTextSettingView.swift in Sources */,
 				5750365A288A3FF8006A9070 /* AutoLoginModel.swift in Sources */,
@@ -2101,11 +2149,13 @@
 				57E75EB528E2731100AC24B2 /* TodoAlarmDataManager.swift in Sources */,
 				E0F9989D288A591D0051C7AA /* GetProfileDataManager.swift in Sources */,
 				E0C4BD672872115800FDEA0E /* UseServiceViewController.swift in Sources */,
+				57397FA0296D51810088B5F4 /* UserModel.swift in Sources */,
 				5750365F288BE33F006A9070 /* CategoryViewController.swift in Sources */,
 				E0F99898288A58870051C7AA /* ProfileImgDeleteModel.swift in Sources */,
 				57294AD12894F72F00DA2F31 /* TodoPinInput.swift in Sources */,
 				57294AC42891170B00DA2F31 /* TodoCheckboxDataManager.swift in Sources */,
 				577A01BC28A4E1A9004B2575 /* ToastMessageView.swift in Sources */,
+				57397F9A296D51210088B5F4 /* DiaryTextService.swift in Sources */,
 				57C481B929695334008731D9 /* BaseRouter.swift in Sources */,
 				570DD835295EC4F700A0D2A9 /* DiaryViewController+Text.swift in Sources */,
 				E06F1ACD28A61EF70066B824 /* NewAppPasswordViewController+Layout.swift in Sources */,
@@ -2153,6 +2203,7 @@
 				ACACD01128749F520029D5CE /* LoginViewController.swift in Sources */,
 				57503652288A3FB7006A9070 /* LoginInput.swift in Sources */,
 				ACFBEC9728B3779700B9D66F /* FcmTokenModel.swift in Sources */,
+				57397F9E296D51780088B5F4 /* WithdrawalModel.swift in Sources */,
 				E0F3CDC92895696E00A74AB7 /* DiaryTabelViewCell.swift in Sources */,
 				AC5E27F028914E930056EC69 /* TodoSettingInput.swift in Sources */,
 				AC5E27F228914EAE0056EC69 /* TodoSettingModel.swift in Sources */,
@@ -2166,6 +2217,7 @@
 				5750364E288A3ECE006A9070 /* SignUpModel.swift in Sources */,
 				E076E9F028703ECE001E14E1 /* AppPasswordViewController.swift in Sources */,
 				E0439ABB288C598A0075CBF0 /* ColorPickerViewController.swift in Sources */,
+				57397F90296D50850088B5F4 /* WithdrawalRouter.swift in Sources */,
 				5750364C288A3EC0006A9070 /* SignUpDataManager.swift in Sources */,
 				E03DCC4C28929D0F00532180 /* AutoLoginInput.swift in Sources */,
 				ACCD87C22895931600C34CE7 /* GetCategoryInput.swift in Sources */,
@@ -2177,6 +2229,7 @@
 				57C481BB29695344008731D9 /* HTTPMethodURL.swift in Sources */,
 				57D5B60D29580F6600216C94 /* BaseCollectionViewCell.swift in Sources */,
 				572E9ABF287BC4E600F915DF /* FontSettingView.swift in Sources */,
+				57397F98296D51170088B5F4 /* DiaryTextRouter.swift in Sources */,
 				ACE7D5FA28A819A70093854A /* PinNumberSettingViewController.swift in Sources */,
 				AC9128C9287AD5A80056932A /* AccountViewController.swift in Sources */,
 				E0F99883288A57760051C7AA /* PwFindInput.swift in Sources */,
@@ -2194,6 +2247,7 @@
 				AC67C2DC2892904C00071763 /* SetKeboard.swift in Sources */,
 				E03856BB28914D8500CEEFBA /* ColorPickerBottomsheetCollectionViewCell.swift in Sources */,
 				E0F998C6288A6B010051C7AA /* SignoutInput.swift in Sources */,
+				57397FA2296D518C0088B5F4 /* TodoIndividualModel.swift in Sources */,
 				E0F99891288A58260051C7AA /* ProfileImgInput.swift in Sources */,
 				ACE7D5FC28A819C10093854A /* PinNumberSettingView.swift in Sources */,
 				57B9F70F28D94F4400ACEC94 /* BaseAlertViewController.swift in Sources */,
@@ -2214,6 +2268,7 @@
 				E0C4BD652872114B00FDEA0E /* UseServiceView.swift in Sources */,
 				AC5E27D3288C39090056EC69 /* TodoCalendarBottomSheetViewController.swift in Sources */,
 				572E5B0B286EC06100D1FAA0 /* UIColor.swift in Sources */,
+				57397F8E296D4F570088B5F4 /* SignUpService.swift in Sources */,
 				E0218B3028A5503000E48618 /* LoadingScreenViewController.swift in Sources */,
 				AC9128CD287AFE620056932A /* AccountTableViewCell.swift in Sources */,
 				E0F998C2288A6AD60051C7AA /* SignoutDataManager.swift in Sources */,
@@ -2237,6 +2292,7 @@
 				574913BB287ADF8E00381BCD /* AlarmSettingTableViewCell.swift in Sources */,
 				ACCD87D22897DB9E00C34CE7 /* CategoryDeleteModel.swift in Sources */,
 				E0AB9EC8287B44C90064CADA /* SettingTableViewCell.swift in Sources */,
+				57397F8A296D472C0088B5F4 /* UserService.swift in Sources */,
 				E02E7FA42874631D0006F6FA /* UILabel.swift in Sources */,
 				57C481B72969531C008731D9 /* BaseService.swift in Sources */,
 				AC9859C9288290C8009FC2F8 /* Calendar.swift in Sources */,
@@ -2247,9 +2303,11 @@
 				E0C4BD6128720FBA00FDEA0E /* PrivacyTextViewController.swift in Sources */,
 				E0AB9EBD287B1C070064CADA /* HomeView.swift in Sources */,
 				E02E7FA62874637C0006F6FA /* UIButton.swift in Sources */,
+				57397F96296D510C0088B5F4 /* TodoIndividualService.swift in Sources */,
 				E045C670287BDB8B00D89D62 /* SettingAgreementViewCell.swift in Sources */,
 				E03856B928913D3E00CEEFBA /* CategoryBottomSheetViewController.swift in Sources */,
 				ACFBEC9928B379E000B9D66F /* FcmTokenInput.swift in Sources */,
+				57397F8C296D4F370088B5F4 /* SignUpRouter.swift in Sources */,
 				57B16855295A8A2600639A15 /* SignUpView.swift in Sources */,
 				57294AAF2891159300DA2F31 /* TodoDeleteDataManager.swift in Sources */,
 				E0C4BD632872100900FDEA0E /* PrivacyTextView.swift in Sources */,
@@ -2269,6 +2327,7 @@
 				572E9AB9287BC4AC00F915DF /* ScreenSettingViewController.swift in Sources */,
 				AC5E27D8288C68DB0056EC69 /* EmailCheckModel.swift in Sources */,
 				ACACD01628749F880029D5CE /* PwFindViewController.swift in Sources */,
+				57397F9C296D515E0088B5F4 /* SignUpModel.swift in Sources */,
 				578B7AA928AD114400E7B4F4 /* DiaryInput.swift in Sources */,
 				57DF45FD28A60DB90002D66C /* DiaryFont.swift in Sources */,
 				57C481BF29695370008731D9 /* HeaderType.swift in Sources */,
@@ -2280,6 +2339,7 @@
 				570DD833295EC4DB00A0D2A9 /* DiaryViewController.swift in Sources */,
 				572E5B0E286EC10500D1FAA0 /* UIFont.swift in Sources */,
 				AC5E27CD288C38290056EC69 /* TodoWeekCell.swift in Sources */,
+				57397F88296D471B0088B5F4 /* UserRouter.swift in Sources */,
 				57503663288BE3A0006A9070 /* CategoryTodoTableViewCell.swift in Sources */,
 				572E9ABD287BC4DD00F915DF /* FontSettingViewController.swift in Sources */,
 				AC9859C6287DC219009FC2F8 /* MailSender.swift in Sources */,
@@ -2500,9 +2560,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Todoary/Todoary.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 65XRT42S6C;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 65XRT42S6C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Todoary/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Todoary가 사진에 접근하려고 합니다. 허용하지 않아도 Todoary를 사용할 수 있지만, 선택하신 기능을 사용할 수 없습니다.";
@@ -2522,6 +2584,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.todoary.ms.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Ad Hoc";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Todoary Development";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Todoary/Resource/Sheet/Todoary-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
