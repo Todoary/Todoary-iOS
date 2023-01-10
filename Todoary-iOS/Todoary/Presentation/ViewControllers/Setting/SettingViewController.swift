@@ -81,7 +81,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource{
         switch indexPath.row{
         case 0:
             cell.title.text = "알림"
-            cell.img.image = UIImage(named: "Alarm")
+            cell.img.image = UIImage(named: "settingAlarm")
             return cell
         case 1:
             cell.title.text = "화면"
