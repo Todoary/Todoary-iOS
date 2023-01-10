@@ -72,6 +72,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
     }
     
+    func homeToLoginViewController(){
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = LoginViewController()
+    }
+    
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         return UIInterfaceOrientationMask.portrait
     }
