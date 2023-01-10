@@ -27,7 +27,7 @@ final class Interceptor: RequestInterceptor {
         if (UserDefaults.standard.string(forKey: "refreshToken") != nil){
             let authJwt = AuthJwtInput(refreshToken: UserDefaults.standard.string(forKey: "refreshToken"))
             
-            AF.request("https://todoary.com/auth/jwt", method: .post, parameters: authJwt, encoder: JSONParameterEncoder.default, headers: nil).validate().responseDecodable(of: AuthJwtModel.self) { [self] response in
+            AF.request("https://todoary.com/auth/jwt", method: .post, parameters: authJwt, encoder: JSONParameterEncoder.default, headers: nil).validate().responseDecodable(of: AuthJwtModel.self) { response in
                 
                 switch response.result{
                 case .success(let result):
@@ -36,63 +36,42 @@ final class Interceptor: RequestInterceptor {
                         UserDefaults.standard.set(result.result?.token?.accessToken, forKey: "accessToken")
                         UserDefaults.standard.set(result.result?.token?.refreshToken, forKey: "refreshToken")
                         print("interceptor 성공")
-//                        completion(.retry)
+                        completion(.retry)
                         
                     case 2002:
                         print("유효하지않은 JWT입니다")
                         HomeViewController.dismissBottomSheet()
-                        self.window = UIWindow(frame: UIScreen.main.bounds)
-                        navigationController = UINavigationController(rootViewController: LoginViewController())
-                        self.window?.rootViewController = self.navigationController
-                        self.window?.makeKeyAndVisible()
+                        HomeViewController().navigationController?.pushViewController(LoginViewController(), animated: false)
                         completion(.doNotRetryWithError(error))
                     case 2003:
                         print("만료된jwt")
                         HomeViewController.dismissBottomSheet()
-                        self.window = UIWindow(frame: UIScreen.main.bounds)
-                        navigationController = UINavigationController(rootViewController: LoginViewController())
-                        self.window?.rootViewController = self.navigationController
-                        self.window?.makeKeyAndVisible()
+                        HomeViewController().navigationController?.pushViewController(LoginViewController(), animated: false)
                         completion(.doNotRetryWithError(error))
                     case 2006:
                         print("유저정보와 일치하지 않는")
                         HomeViewController.dismissBottomSheet()
-                        self.window = UIWindow(frame: UIScreen.main.bounds)
-                        navigationController = UINavigationController(rootViewController: LoginViewController())
-                        self.window?.rootViewController = self.navigationController
-                        self.window?.makeKeyAndVisible()
+                        HomeViewController().navigationController?.pushViewController(LoginViewController(), animated: false)
                         completion(.doNotRetryWithError(error))
                     case 4000:
                         print("데이터베이스연결에 실패")
                         HomeViewController.dismissBottomSheet()
-                        self.window = UIWindow(frame: UIScreen.main.bounds)
-                        navigationController = UINavigationController(rootViewController: LoginViewController())
-                        self.window?.rootViewController = self.navigationController
-                        self.window?.makeKeyAndVisible()
+                        HomeViewController().navigationController?.pushViewController(LoginViewController(), animated: false)
                         completion(.doNotRetryWithError(error))
                     case 4015:
                         print("Fcm")
                         HomeViewController.dismissBottomSheet()
-                        self.window = UIWindow(frame: UIScreen.main.bounds)
-                        navigationController = UINavigationController(rootViewController: LoginViewController())
-                        self.window?.rootViewController = self.navigationController
-                        self.window?.makeKeyAndVisible()
+                        HomeViewController().navigationController?.pushViewController(LoginViewController(), animated: false)
                         completion(.doNotRetryWithError(error))
                     default:
                         print("에러")
                         HomeViewController.dismissBottomSheet()
-                        self.window = UIWindow(frame: UIScreen.main.bounds)
-                        navigationController = UINavigationController(rootViewController: LoginViewController())
-                        self.window?.rootViewController = self.navigationController
-                        self.window?.makeKeyAndVisible()
+                        HomeViewController().navigationController?.pushViewController(LoginViewController(), animated: false)
                         completion(.doNotRetryWithError(error))
                     }
                 case .failure(let error):
                     HomeViewController.dismissBottomSheet()
-                    self.window = UIWindow(frame: UIScreen.main.bounds)
-                    navigationController = UINavigationController(rootViewController: LoginViewController())
-                    self.window?.rootViewController = self.navigationController
-                    self.window?.makeKeyAndVisible()
+                    HomeViewController().navigationController?.pushViewController(LoginViewController(), animated: false)
                     completion(.doNotRetryWithError(error))
                 }
             }
