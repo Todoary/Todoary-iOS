@@ -42,43 +42,43 @@ final class Interceptor: RequestInterceptor {
                         print("유효하지않은 JWT입니다")
                         HomeViewController.dismissBottomSheet()
                         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                        appDelegate.moveLoginViewController()
+                        appDelegate.homeToLoginViewController()
                         completion(.doNotRetryWithError(error))
                     case 2003:
                         print("만료된jwt")
                         HomeViewController.dismissBottomSheet()
                         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                        appDelegate.moveLoginViewController()
+                        appDelegate.homeToLoginViewController()
                         completion(.doNotRetryWithError(error))
                     case 2006:
                         print("유저정보와 일치하지 않는")
                         HomeViewController.dismissBottomSheet()
                         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                        appDelegate.moveLoginViewController()
+                        appDelegate.homeToLoginViewController()
                         completion(.doNotRetryWithError(error))
                     case 4000:
                         print("데이터베이스연결에 실패")
                         HomeViewController.dismissBottomSheet()
                         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                        appDelegate.moveLoginViewController()
+                        appDelegate.homeToLoginViewController()
                         completion(.doNotRetryWithError(error))
                     case 4015:
                         print("Fcm")
                         HomeViewController.dismissBottomSheet()
                         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                        appDelegate.moveLoginViewController()
+                        appDelegate.homeToLoginViewController()
                         completion(.doNotRetryWithError(error))
                     default:
                         print("에러")
                         HomeViewController.dismissBottomSheet()
                         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                        appDelegate.moveLoginViewController()
+                        appDelegate.homeToLoginViewController()
                         completion(.doNotRetryWithError(error))
                     }
                 case .failure(let error):
                     HomeViewController.dismissBottomSheet()
                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                    appDelegate.moveLoginViewController()
+                    appDelegate.homeToLoginViewController()
                     completion(.doNotRetryWithError(error))
                 }
             }
