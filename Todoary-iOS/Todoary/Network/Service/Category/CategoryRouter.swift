@@ -11,7 +11,7 @@ import Alamofire
 enum CategoryRouter{
     case getCategories
     case postCategory(requeset: CategoryMakeInput)
-    case fetchCategory(id: Int, request: CategoryMakeInput)
+    case patchCategory(id: Int, request: CategoryMakeInput)
     case deleteCategory(id: Int)
 }
 
@@ -22,7 +22,7 @@ extension CategoryRouter: BaseRouter{
         switch self{
         case .getCategories:                        return HTTPMethodURL.GET.category
         case .postCategory:                         return HTTPMethodURL.POST.category
-        case .fetchCategory(let id, _):             return HTTPMethodURL.PATCH.category + "/\(id)"
+        case .patchCategory(let id, _):             return HTTPMethodURL.PATCH.category + "/\(id)"
         case .deleteCategory(let id):               return HTTPMethodURL.DELETE.category + "/\(id)"
         }
     }
@@ -31,7 +31,7 @@ extension CategoryRouter: BaseRouter{
         switch self{
         case .getCategories:                        return .get
         case .postCategory:                         return .post
-        case .fetchCategory:                        return .patch
+        case .patchCategory:                        return .patch
         case .deleteCategory:                       return .delete
         }
     }
@@ -40,7 +40,7 @@ extension CategoryRouter: BaseRouter{
         switch self{
         case .getCategories:                        return .requestPlain
         case .postCategory(let request):            return .requestBody(request)
-        case .fetchCategory(_, let request):        return .requestBody(request)
+        case .patchCategory(_, let request):        return .requestBody(request)
         case .deleteCategory:                       return .requestPlain
         }
     }
