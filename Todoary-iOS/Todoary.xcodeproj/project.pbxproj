@@ -52,7 +52,6 @@
 		57397F96296D510C0088B5F4 /* TodoIndividualService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F95296D510C0088B5F4 /* TodoIndividualService.swift */; };
 		57397F98296D51170088B5F4 /* DiaryTextRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F97296D51170088B5F4 /* DiaryTextRouter.swift */; };
 		57397F9A296D51210088B5F4 /* DiaryTextService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F99296D51210088B5F4 /* DiaryTextService.swift */; };
-		57397F9C296D515E0088B5F4 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F9B296D515E0088B5F4 /* SignUpModel.swift */; };
 		57397F9E296D51780088B5F4 /* WithdrawalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F9D296D51780088B5F4 /* WithdrawalModel.swift */; };
 		57397FA0296D51810088B5F4 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F9F296D51810088B5F4 /* UserModel.swift */; };
 		57397FA2296D518C0088B5F4 /* TodoIndividualModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397FA1296D518C0088B5F4 /* TodoIndividualModel.swift */; };
@@ -331,7 +330,6 @@
 		57397F95296D510C0088B5F4 /* TodoIndividualService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoIndividualService.swift; sourceTree = "<group>"; };
 		57397F97296D51170088B5F4 /* DiaryTextRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTextRouter.swift; sourceTree = "<group>"; };
 		57397F99296D51210088B5F4 /* DiaryTextService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTextService.swift; sourceTree = "<group>"; };
-		57397F9B296D515E0088B5F4 /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		57397F9D296D51780088B5F4 /* WithdrawalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalModel.swift; sourceTree = "<group>"; };
 		57397F9F296D51810088B5F4 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		57397FA1296D518C0088B5F4 /* TodoIndividualModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoIndividualModel.swift; sourceTree = "<group>"; };
@@ -1792,7 +1790,6 @@
 		57C481C9296957F1008731D9 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				57397F9B296D515E0088B5F4 /* SignUpModel.swift */,
 				57397F9D296D51780088B5F4 /* WithdrawalModel.swift */,
 			);
 			path = Auth;
@@ -2327,7 +2324,6 @@
 				572E9AB9287BC4AC00F915DF /* ScreenSettingViewController.swift in Sources */,
 				AC5E27D8288C68DB0056EC69 /* EmailCheckModel.swift in Sources */,
 				ACACD01628749F880029D5CE /* PwFindViewController.swift in Sources */,
-				57397F9C296D515E0088B5F4 /* SignUpModel.swift in Sources */,
 				578B7AA928AD114400E7B4F4 /* DiaryInput.swift in Sources */,
 				57DF45FD28A60DB90002D66C /* DiaryFont.swift in Sources */,
 				57C481BF29695370008731D9 /* HeaderType.swift in Sources */,
