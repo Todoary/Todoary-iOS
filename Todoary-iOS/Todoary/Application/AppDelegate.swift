@@ -73,8 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func homeToLoginViewController(){
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = LoginViewController()
+        navigationController?.pushViewController(LoginViewController(), animated: false)
     }
     
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
