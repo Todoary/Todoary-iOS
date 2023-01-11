@@ -6,3 +6,20 @@
 //
 
 import Foundation
+
+struct SignUpRequestModel: Codable{
+    
+}
+
+struct AppleSignUpRequestModel: Codable{
+    
+}
+
+struct AppleSignUPResultModel: Codable{
+    
+}
+
+
+struct DeleteAppleAccountModel: Codable{
+    
+}
