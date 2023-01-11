@@ -23,7 +23,7 @@ extension CategoryService {
     }
     
     func modifyCategory(id: Int, request: CategoryMakeInput, completion: @escaping (NetworkResult<Any>) -> Void){
-        requestObjectWithEmptyResponse(CategoryRouter.fetchCategory(id: id, request: request), completion: completion)
+        requestObjectWithEmptyResponse(CategoryRouter.patchCategory(id: id, request: request), completion: completion)
     }
     
     func deleteCategory(id: Int, completion: @escaping (NetworkResult<Any>) -> Void){

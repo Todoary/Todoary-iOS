@@ -89,7 +89,9 @@ extension BaseRouter {
             guard let dictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any] else { throw NSError() }
             
             request.httpBody = try JSONSerialization.data(withJSONObject: dictionary, options: [])
-//            request.httpBody = try JSONSerialization.data(withJSONObject: body, options: [])
+            
+        case .requestBodyWithDictionary(let body):
+            request.httpBody = try JSONSerialization.data(withJSONObject: body, options: [])
             
         case .queryBody(let query, let body):
             let queryParams = query.map { URLQueryItem(name: $0.key, value: "\($0.value)") }
@@ -128,7 +130,7 @@ extension BaseRouter {
 enum RequestParams {
     case queryBody(_ query: [String: Any], _ body: [String: Any])
     case query(_ query: [String: Any])
-//    case requestBody(_ body: [String: Any])
     case requestBody(_ body: Encodable)
+    case requestBodyWithDictionary(_ body: [String: Any])
     case requestPlain
 }
