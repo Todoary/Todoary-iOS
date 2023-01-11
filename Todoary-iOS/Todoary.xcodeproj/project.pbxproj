@@ -172,8 +172,6 @@
 		ACBAE554296E697700E71CAD /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE553296E697700E71CAD /* LoginService.swift */; };
 		ACBAE556296E698200E71CAD /* PasswordFindRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE555296E698200E71CAD /* PasswordFindRouter.swift */; };
 		ACBAE558296E699000E71CAD /* PasswordFindService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE557296E699000E71CAD /* PasswordFindService.swift */; };
-		ACBAE55A296E699E00E71CAD /* LogoutRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE559296E699E00E71CAD /* LogoutRouter.swift */; };
-		ACBAE55C296E69AA00E71CAD /* LogoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE55B296E69AA00E71CAD /* LogoutService.swift */; };
 		ACBAE55E296E69B200E71CAD /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE55D296E69B200E71CAD /* ProfileRouter.swift */; };
 		ACBAE560296E69BF00E71CAD /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE55F296E69BF00E71CAD /* ProfileService.swift */; };
 		ACBAE562296E69C800E71CAD /* TodoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE561296E69C800E71CAD /* TodoRouter.swift */; };
@@ -468,8 +466,6 @@
 		ACBAE553296E697700E71CAD /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		ACBAE555296E698200E71CAD /* PasswordFindRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFindRouter.swift; sourceTree = "<group>"; };
 		ACBAE557296E699000E71CAD /* PasswordFindService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFindService.swift; sourceTree = "<group>"; };
-		ACBAE559296E699E00E71CAD /* LogoutRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRouter.swift; sourceTree = "<group>"; };
-		ACBAE55B296E69AA00E71CAD /* LogoutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutService.swift; sourceTree = "<group>"; };
 		ACBAE55D296E69B200E71CAD /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
 		ACBAE55F296E69BF00E71CAD /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		ACBAE561296E69C800E71CAD /* TodoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRouter.swift; sourceTree = "<group>"; };
@@ -1765,8 +1761,6 @@
 				ACBAE553296E697700E71CAD /* LoginService.swift */,
 				ACBAE555296E698200E71CAD /* PasswordFindRouter.swift */,
 				ACBAE557296E699000E71CAD /* PasswordFindService.swift */,
-				ACBAE559296E699E00E71CAD /* LogoutRouter.swift */,
-				ACBAE55B296E69AA00E71CAD /* LogoutService.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -2184,7 +2178,6 @@
 				E0F9989D288A591D0051C7AA /* GetProfileDataManager.swift in Sources */,
 				E0C4BD672872115800FDEA0E /* UseServiceViewController.swift in Sources */,
 				57397FA0296D51810088B5F4 /* UserModel.swift in Sources */,
-				ACBAE55A296E699E00E71CAD /* LogoutRouter.swift in Sources */,
 				5750365F288BE33F006A9070 /* CategoryViewController.swift in Sources */,
 				E0F99898288A58870051C7AA /* ProfileImgDeleteModel.swift in Sources */,
 				57294AD12894F72F00DA2F31 /* TodoPinInput.swift in Sources */,
@@ -2229,7 +2222,6 @@
 				AC5E27E52890211C0056EC69 /* AuthJwtModel.swift in Sources */,
 				574A6FF028826EB5003C8F99 /* SummaryBottomSheetViewController.swift in Sources */,
 				573844BA288CF01D009529CD /* NewTodoAddBtnTableViewCell.swift in Sources */,
-				ACBAE55C296E69AA00E71CAD /* LogoutService.swift in Sources */,
 				ACBAE552296E696C00E71CAD /* LoginRouter.swift in Sources */,
 				ACBAE564296E69D000E71CAD /* TodoService.swift in Sources */,
 				ACFBECA128B5E05100B9D66F /* DiaryStickerModel.swift in Sources */,
