@@ -170,14 +170,17 @@
 		ACAE1D432898D9EC00B34DCC /* TodoModifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAE1D422898D9EC00B34DCC /* TodoModifyModel.swift */; };
 		ACBAE552296E696C00E71CAD /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE551296E696C00E71CAD /* LoginRouter.swift */; };
 		ACBAE554296E697700E71CAD /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE553296E697700E71CAD /* LoginService.swift */; };
-		ACBAE556296E698200E71CAD /* PasswordFindRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE555296E698200E71CAD /* PasswordFindRouter.swift */; };
-		ACBAE558296E699000E71CAD /* PasswordFindService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE557296E699000E71CAD /* PasswordFindService.swift */; };
+		ACBAE556296E698200E71CAD /* PasswordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE555296E698200E71CAD /* PasswordRouter.swift */; };
+		ACBAE558296E699000E71CAD /* PasswordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE557296E699000E71CAD /* PasswordService.swift */; };
 		ACBAE55E296E69B200E71CAD /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE55D296E69B200E71CAD /* ProfileRouter.swift */; };
 		ACBAE560296E69BF00E71CAD /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE55F296E69BF00E71CAD /* ProfileService.swift */; };
 		ACBAE562296E69C800E71CAD /* TodoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE561296E69C800E71CAD /* TodoRouter.swift */; };
 		ACBAE564296E69D000E71CAD /* TodoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE563296E69D000E71CAD /* TodoService.swift */; };
 		ACBAE566296E69EF00E71CAD /* DiaryStickerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE565296E69EF00E71CAD /* DiaryStickerRouter.swift */; };
 		ACBAE568296E69FB00E71CAD /* DiaryStickerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE567296E69FB00E71CAD /* DiaryStickerService.swift */; };
+		ACBAE56A29702D5300E71CAD /* TodoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE56929702D5300E71CAD /* TodoModel.swift */; };
+		ACBAE56C29702D6600E71CAD /* DiaryStickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE56B29702D6600E71CAD /* DiaryStickerModel.swift */; };
+		ACBAE56E29702D7700E71CAD /* ProfileGetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE56D29702D7700E71CAD /* ProfileGetModel.swift */; };
 		ACCD87B92893C43F00C34CE7 /* CategoryMakeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87B82893C43F00C34CE7 /* CategoryMakeInput.swift */; };
 		ACCD87BB2893C45400C34CE7 /* CategoryMakeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87BA2893C45400C34CE7 /* CategoryMakeModel.swift */; };
 		ACCD87BD2893C46D00C34CE7 /* CategoryMakeDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87BC2893C46D00C34CE7 /* CategoryMakeDataManager.swift */; };
@@ -256,7 +259,6 @@
 		E0F9989A288A589A0051C7AA /* ProfileImgDeleteInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F99899288A589A0051C7AA /* ProfileImgDeleteInput.swift */; };
 		E0F9989D288A591D0051C7AA /* GetProfileDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9989C288A591D0051C7AA /* GetProfileDataManager.swift */; };
 		E0F9989F288A592E0051C7AA /* GetProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9989E288A592E0051C7AA /* GetProfileModel.swift */; };
-		E0F998A1288A59400051C7AA /* GetProfileInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998A0288A59400051C7AA /* GetProfileInput.swift */; };
 		E0F998A4288A59A80051C7AA /* UserDeleteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998A3288A59A80051C7AA /* UserDeleteDataManager.swift */; };
 		E0F998A6288A59B70051C7AA /* UserDeleteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998A5288A59B70051C7AA /* UserDeleteModel.swift */; };
 		E0F998A8288A683E0051C7AA /* UserDeleteInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998A7288A683E0051C7AA /* UserDeleteInput.swift */; };
@@ -464,14 +466,17 @@
 		ACAE1D422898D9EC00B34DCC /* TodoModifyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModifyModel.swift; sourceTree = "<group>"; };
 		ACBAE551296E696C00E71CAD /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
 		ACBAE553296E697700E71CAD /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
-		ACBAE555296E698200E71CAD /* PasswordFindRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFindRouter.swift; sourceTree = "<group>"; };
-		ACBAE557296E699000E71CAD /* PasswordFindService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFindService.swift; sourceTree = "<group>"; };
+		ACBAE555296E698200E71CAD /* PasswordRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRouter.swift; sourceTree = "<group>"; };
+		ACBAE557296E699000E71CAD /* PasswordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordService.swift; sourceTree = "<group>"; };
 		ACBAE55D296E69B200E71CAD /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
 		ACBAE55F296E69BF00E71CAD /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		ACBAE561296E69C800E71CAD /* TodoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRouter.swift; sourceTree = "<group>"; };
 		ACBAE563296E69D000E71CAD /* TodoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoService.swift; sourceTree = "<group>"; };
 		ACBAE565296E69EF00E71CAD /* DiaryStickerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryStickerRouter.swift; sourceTree = "<group>"; };
 		ACBAE567296E69FB00E71CAD /* DiaryStickerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryStickerService.swift; sourceTree = "<group>"; };
+		ACBAE56929702D5300E71CAD /* TodoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModel.swift; sourceTree = "<group>"; };
+		ACBAE56B29702D6600E71CAD /* DiaryStickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryStickerModel.swift; sourceTree = "<group>"; };
+		ACBAE56D29702D7700E71CAD /* ProfileGetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileGetModel.swift; sourceTree = "<group>"; };
 		ACCD87B82893C43F00C34CE7 /* CategoryMakeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryMakeInput.swift; sourceTree = "<group>"; };
 		ACCD87BA2893C45400C34CE7 /* CategoryMakeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryMakeModel.swift; sourceTree = "<group>"; };
 		ACCD87BC2893C46D00C34CE7 /* CategoryMakeDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryMakeDataManager.swift; sourceTree = "<group>"; };
@@ -552,7 +557,6 @@
 		E0F99899288A589A0051C7AA /* ProfileImgDeleteInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImgDeleteInput.swift; sourceTree = "<group>"; };
 		E0F9989C288A591D0051C7AA /* GetProfileDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetProfileDataManager.swift; sourceTree = "<group>"; };
 		E0F9989E288A592E0051C7AA /* GetProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetProfileModel.swift; sourceTree = "<group>"; };
-		E0F998A0288A59400051C7AA /* GetProfileInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetProfileInput.swift; sourceTree = "<group>"; };
 		E0F998A3288A59A80051C7AA /* UserDeleteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeleteDataManager.swift; sourceTree = "<group>"; };
 		E0F998A5288A59B70051C7AA /* UserDeleteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeleteModel.swift; sourceTree = "<group>"; };
 		E0F998A7288A683E0051C7AA /* UserDeleteInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeleteInput.swift; sourceTree = "<group>"; };
@@ -1479,7 +1483,6 @@
 			children = (
 				E0F99899288A589A0051C7AA /* ProfileImgDeleteInput.swift */,
 				E0F99890288A58260051C7AA /* ProfileImgInput.swift */,
-				E0F998A0288A59400051C7AA /* GetProfileInput.swift */,
 				E0F99889288A57D60051C7AA /* ProfileInput.swift */,
 			);
 			path = Input;
@@ -1759,8 +1762,8 @@
 				57397F91296D50A90088B5F4 /* WithdrawalService.swift */,
 				ACBAE551296E696C00E71CAD /* LoginRouter.swift */,
 				ACBAE553296E697700E71CAD /* LoginService.swift */,
-				ACBAE555296E698200E71CAD /* PasswordFindRouter.swift */,
-				ACBAE557296E699000E71CAD /* PasswordFindService.swift */,
+				ACBAE555296E698200E71CAD /* PasswordRouter.swift */,
+				ACBAE557296E699000E71CAD /* PasswordService.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -1789,6 +1792,7 @@
 			isa = PBXGroup;
 			children = (
 				57397FA3296D51960088B5F4 /* DiaryTextModel.swift */,
+				ACBAE56B29702D6600E71CAD /* DiaryStickerModel.swift */,
 			);
 			path = Diary;
 			sourceTree = "<group>";
@@ -1805,6 +1809,7 @@
 			isa = PBXGroup;
 			children = (
 				57397FA1296D518C0088B5F4 /* TodoIndividualModel.swift */,
+				ACBAE56929702D5300E71CAD /* TodoModel.swift */,
 			);
 			path = Todo;
 			sourceTree = "<group>";
@@ -1813,6 +1818,7 @@
 			isa = PBXGroup;
 			children = (
 				57397F9F296D51810088B5F4 /* UserModel.swift */,
+				ACBAE56D29702D7700E71CAD /* ProfileGetModel.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -2157,7 +2163,6 @@
 				AC5E27EE28914E810056EC69 /* TodoSettingDataManager.swift in Sources */,
 				AC5E27D5288C68920056EC69 /* EmailCheckDataManager.swift in Sources */,
 				57503661288BE380006A9070 /* CategoryButtonCollectionViewCell.swift in Sources */,
-				E0F998A1288A59400051C7AA /* GetProfileInput.swift in Sources */,
 				574A704F28865FEE003C8F99 /* HiddenTransparentButtonView.swift in Sources */,
 				E0F3CDCB2895698400A74AB7 /* DiaryTabelViewCell+Layout.swift in Sources */,
 				574A704B28852F9B003C8F99 /* DiaryBannerCell.swift in Sources */,
@@ -2191,6 +2196,7 @@
 				57C481C12969537A008731D9 /* GeneralResponse.swift in Sources */,
 				E06F1AC928A605930066B824 /* AdvertiseTextSettingViewController.swift in Sources */,
 				57E6516A28B31910006CB053 /* AppleLoginInput.swift in Sources */,
+				ACBAE56C29702D6600E71CAD /* DiaryStickerModel.swift in Sources */,
 				57294AC62891189700DA2F31 /* ApiModel.swift in Sources */,
 				AC5E27DA288EFCFE0056EC69 /* TodoCalendar.swift in Sources */,
 				ACCD87D52897E77E00C34CE7 /* GetCalendataManager.swift in Sources */,
@@ -2212,7 +2218,7 @@
 				574A704528852523003C8F99 /* TodoListTitleCell.swift in Sources */,
 				ACCD87BD2893C46D00C34CE7 /* CategoryMakeDataManager.swift in Sources */,
 				E0F9988C288A57EB0051C7AA /* ProfileModel.swift in Sources */,
-				ACBAE558296E699000E71CAD /* PasswordFindService.swift in Sources */,
+				ACBAE558296E699000E71CAD /* PasswordService.swift in Sources */,
 				AC9128D2287B34C80056932A /* ProfileView.swift in Sources */,
 				ACCD87BB2893C45400C34CE7 /* CategoryMakeModel.swift in Sources */,
 				AC5E27CB288C38130056EC69 /* TodoCalendarCell.swift in Sources */,
@@ -2316,6 +2322,7 @@
 				57556A8F295FC93300B67369 /* CategoryBottomSheetView.swift in Sources */,
 				ACCD87CD2897BB6500C34CE7 /* CategoryModifyModel.swift in Sources */,
 				E0AB9EC1287B1C570064CADA /* SettingAgreementViewController.swift in Sources */,
+				ACBAE56A29702D5300E71CAD /* TodoModel.swift in Sources */,
 				57E6516628B2F0E4006CB053 /* AppleLoginModel.swift in Sources */,
 				AC9859CD288505C5009FC2F8 /* WeekCell.swift in Sources */,
 				ACBAE562296E69C800E71CAD /* TodoRouter.swift in Sources */,
@@ -2340,7 +2347,7 @@
 				E0AB9EBD287B1C070064CADA /* HomeView.swift in Sources */,
 				E02E7FA62874637C0006F6FA /* UIButton.swift in Sources */,
 				57397F96296D510C0088B5F4 /* TodoIndividualService.swift in Sources */,
-				ACBAE556296E698200E71CAD /* PasswordFindRouter.swift in Sources */,
+				ACBAE556296E698200E71CAD /* PasswordRouter.swift in Sources */,
 				E045C670287BDB8B00D89D62 /* SettingAgreementViewCell.swift in Sources */,
 				E03856B928913D3E00CEEFBA /* CategoryBottomSheetViewController.swift in Sources */,
 				ACFBEC9928B379E000B9D66F /* FcmTokenInput.swift in Sources */,
@@ -2373,6 +2380,7 @@
 				ACCD87C42895932500C34CE7 /* GetCategoryModel.swift in Sources */,
 				57556A91295FDCBE00B67369 /* BaseBottomSheetViewController.swift in Sources */,
 				570DD833295EC4DB00A0D2A9 /* DiaryViewController.swift in Sources */,
+				ACBAE56E29702D7700E71CAD /* ProfileGetModel.swift in Sources */,
 				572E5B0E286EC10500D1FAA0 /* UIFont.swift in Sources */,
 				AC5E27CD288C38290056EC69 /* TodoWeekCell.swift in Sources */,
 				57397F88296D471B0088B5F4 /* UserRouter.swift in Sources */,
