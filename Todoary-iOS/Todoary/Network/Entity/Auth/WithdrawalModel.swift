@@ -8,7 +8,11 @@
 import Foundation
 
 struct SignUpRequestModel: Codable{
-    
+    var email: String?
+    var name: String?
+    var nickname: String?
+    var password: String?
+    var isTermsEnable: Bool?
 }
 
 struct AppleSignUpRequestModel: Codable{
