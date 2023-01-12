@@ -29,8 +29,8 @@ extension AccountRouter: BaseRouter{
         switch self{
         case .signUp:                   return HTTPMethodURL.POST.signup
         case .signUpWithApple:          return HTTPMethodURL.POST.loginApple
-        case .deleteAccount:            return HTTPMethodURL.POST.loginApple
-        case .deleteAppleAccount:       return HTTPMethodURL.POST.loginApple
+        case .deleteAccount:            return HTTPMethodURL.PATCH.userDelete
+        case .deleteAppleAccount:       return HTTPMethodURL.POST.revokeApple
         }
     }
     
