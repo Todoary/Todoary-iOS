@@ -73,6 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func homeToLoginViewController(){
+        HomeViewController.dismissBottomSheet()
         navigationController?.pushViewController(LoginViewController(), animated: false)
     }
     
