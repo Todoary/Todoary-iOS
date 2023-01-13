@@ -27,7 +27,7 @@ extension AlarmService {
     }
     
     func getUserAlarmActiveStatus(completion: @escaping (NetworkResult<Any>) -> Void){
-        requestObject(AlarmRouter.getAlarms, type: AlarmActiveStautsModel.self, decodingMode: .model, completion: completion)
+        requestObject(AlarmRouter.getAlarms, type: AlarmActiveStautsResultModel.self, decodingMode: .model, completion: completion)
     }
 }
 

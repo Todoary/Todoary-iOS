@@ -19,14 +19,14 @@ extension AccountService {
     }
     
     func generateAppleAccount(request: AppleSignUpRequestModel, completion: @escaping (NetworkResult<Any>) -> Void){
-        requestObject(AccountRouter.signUpWithApple(request: request), type: AppleSignUPResultModel.self, decodingMode: .model, completion: completion)
+        requestObject(AccountRouter.signUpWithApple(request: request), type: AppleSignUpResultModel.self, decodingMode: .model, completion: completion)
     }
     
     func deleteAccount(completion: @escaping (NetworkResult<Any>) -> Void){
         requestObjectWithEmptyResponse(AccountRouter.deleteAccount, completion: completion)
     }
     
-    func deleteAppleAccount(request: DeleteAppleAccountModel, completion: @escaping (NetworkResult<Any>) -> Void){
+    func deleteAppleAccount(request: DeleteAppleAccountRequestModel, completion: @escaping (NetworkResult<Any>) -> Void){
         requestObjectWithEmptyResponse(AccountRouter.deleteAppleAccount(request: request), completion: completion)
     }
     
