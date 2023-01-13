@@ -16,7 +16,7 @@ enum AccountRouter{
     case signUpWithApple(request: AppleSignUpRequestModel)
     case deleteAccount
     case deleteAppleAccount(request: DeleteAppleAccountModel)
-    case emailDuplicate(email: String)
+    case emailDuplicate(request: String)
 }
 
 /*

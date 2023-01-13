@@ -31,6 +31,6 @@ extension AccountService {
     }
     
     func getIsUserEmailDuplicate(email: String, completion: @escaping (NetworkResult<Any>) -> Void){
-        requestObjectWithEmptyResponse(AccountRouter.emailDuplicate(email: email), completion: completion)
+        requestObjectWithEmptyResponse(AccountRouter.emailDuplicate(request: email), completion: completion)
     }
 }
