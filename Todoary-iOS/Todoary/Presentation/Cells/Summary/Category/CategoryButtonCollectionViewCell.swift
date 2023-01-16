@@ -12,11 +12,8 @@ class CategoryButtonCollectionViewCell: UICollectionViewCell {
     //MARK: - Properties
     
     static let cellIdentifier = "CategoryButtonCollectionViewCell"
-    
-    var viewController: CategoryViewController!
-    
+
     var categoryData : CategoryModel!
-    
     var categoryColor: UIColor!
     
     //MARK: - UI
@@ -27,7 +24,6 @@ class CategoryButtonCollectionViewCell: UICollectionViewCell {
         $0.addLetterSpacing(spacing: 0.28)
         $0.titleLabel?.textAlignment = .center
         $0.layer.borderWidth = 1
-//        $0.addTarget(self, action: #selector(categoryButtonDidClicked(_:)), for: .touchUpInside)
         $0.titleEdgeInsets = UIEdgeInsets(top: 5, left: 0, bottom: 4, right: 0)
         $0.layer.cornerRadius = 26/2
         $0.isUserInteractionEnabled = false

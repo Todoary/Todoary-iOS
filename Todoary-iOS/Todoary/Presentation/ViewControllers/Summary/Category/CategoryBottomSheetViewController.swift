@@ -114,10 +114,16 @@ class CategoryBottomSheetViewController : BaseBottomSheetViewController {
             
             CategoryService.shared.generateCategory(request: parameter){ result in
                 switch result{
-                case .success:
+                case .success(let data):
                     self.completion()
                     self.dismiss(animated: true)
                     break
+                    //TODO: 1000이 아닌 경우 처리..
+                    /*
+                    if(data.code == 2104){
+                        print("같은 이름의 카테고리가 이미 존재합니다")
+                    }
+                     */
                 default:
                     DataBaseErrorAlert.show(in: self)
                     break

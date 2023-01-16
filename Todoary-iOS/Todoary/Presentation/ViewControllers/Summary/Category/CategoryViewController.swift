@@ -11,35 +11,36 @@ class CategoryViewController: BaseViewController {
     
     //MARK: - Properties
     
-    var isCategoryAdd = false //카테고리 새로 생성했을 때, collectionView 끝으로 스크롤 위한 프로퍼티
-    var isEditingMode = false
+    private var isCategoryAdd = false
+    private var isEditingMode = false
     
-    var selectCategoryIndex : IndexPath = [0,0]
+    let collectionViewInitialIndex: IndexPath = [0,0]
+    var selectCategoryIndex : IndexPath!
 
     var todoData = [TodoResultModel](){
         didSet{
-            print("todoData 호출?")
             mainView.todoTableView.reloadData()
         }
     }
-    var categories = [CategoryModel]()
+    var categories = [CategoryModel](){
+        didSet{
+            mainView.categoryCollectionView.reloadData()
+        }
+    }
     
     let mainView = CategoryView()
     
-    //MARK: - LifeCycle
+    //MARK: - Override
     override func viewWillAppear(_ animated: Bool) {
         requestGetCategories()
     }
     
     override func style() {
-        
         super.style()
-        
         setRightButtonWithImage(UIImage(named: "category_trash"))
     }
     
     override func layout() {
-        
         super.layout()
         
         self.view.addSubview(mainView)
@@ -50,6 +51,8 @@ class CategoryViewController: BaseViewController {
     }
     
     override func initialize() {
+        
+        selectCategoryIndex = collectionViewInitialIndex
         
         mainView.todoTableView.delegate = self
         mainView.todoTableView.dataSource = self
@@ -62,8 +65,7 @@ class CategoryViewController: BaseViewController {
     
     //MARK: - Action
     
-    @objc
-    func trashButtonDidClicked(){
+    @objc func trashButtonDidClicked(){
         
         let leading = isEditingMode ? 32 : 58
         let trailing = isEditingMode ? -30 : -4
@@ -82,20 +84,17 @@ class CategoryViewController: BaseViewController {
         isEditingMode.toggle()
     }
     
-    @objc func categoryDidPressedLong(_ gesture : UILongPressGestureRecognizer){ //카테고리 수정
+    @objc func categoryBottomSheetWillShowAndModifyCategory(_ gesture : UILongPressGestureRecognizer){ //카테고리 수정
         guard let index = (mainView.categoryCollectionView.indexPath(for: gesture.view! as! UICollectionViewCell)) else { return }
         
-        let vc = CategoryBottomSheetViewController().show(in: self)
-        vc.completion = {
-            self.requestGetCategories()
+        let vc = CategoryBottomSheetViewController().show(in: self).then{
+            $0.currentData = categories[index.row]
+            $0.mainView.categoryTextField.text = categories[index.row].title
+            $0.currentCategoryCount = categories.count
+            $0.completion = {
+                self.requestGetCategories()
+            }
         }
-        vc.currentData = categories[index.row]
-        vc.mainView.categoryTextField.text = categories[index.row].title
-        vc.currentCategoryCount = categories.count
-    }
-    
-    private func showDeleteCategoryToastMessage(){
-        
     }
     
     
@@ -145,6 +144,7 @@ extension CategoryViewController: CategoryTodoCellDelegate{
                 print("[requestGetCategories] success")
                 if let data = data as? [CategoryModel]{
                     self.categories = data
+                    self.isCategoryAdd = false
                     self.processResponseGetCategories()
                 }
                 break
@@ -157,14 +157,12 @@ extension CategoryViewController: CategoryTodoCellDelegate{
     }
     
     private func processResponseGetCategories(){
-        mainView.categoryCollectionView.reloadData()
         
-        if(selectCategoryIndex.row == categories.count){
+        if(selectCategoryIndex.row == categories.count){ //마지막에 위치한 category 삭제했을 경우, 그 이전 category를 select 상태로..
             selectCategoryIndex = [0, categories.count - 1]
             mainView.categoryCollectionView.reloadData()
         }
         
-        //TODO: - 카테고리 생성할 때만 마지막에 포커스 가도록 수정
         if(isCategoryAdd){
             mainView.categoryCollectionView.scrollToItem(at: [0, categories.count], at: .right, animated: true)
             isCategoryAdd = false
@@ -299,17 +297,15 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
             
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryButtonCollectionViewCell.cellIdentifier, for: indexPath) as? CategoryButtonCollectionViewCell else { fatalError() }
             
-            cell.viewController = self
             cell.categoryData = categories[indexPath.row]
             cell.setBtnAttribute()
             
-            let longPress = UILongPressGestureRecognizer(target: self, action: #selector(categoryDidPressedLong))
+            let longPress = UILongPressGestureRecognizer(target: self, action: #selector(categoryBottomSheetWillShowAndModifyCategory))
             cell.addGestureRecognizer(longPress)
             
             if(indexPath == selectCategoryIndex){
                 cell.buttonIsSelected()
             }
-            
             return cell
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryPlusButtonCell.cellIdentifier, for: indexPath)
@@ -337,24 +333,27 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
             return CGSize(width: 50, height: 26)
         }
     }
-    
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        
+        if(indexPath.row == categories.count){
+            let vc = CategoryBottomSheetViewController().show(in: self)
+            vc.mainView.deleteBtn.setTitle("취소", for: .normal)
+            vc.completion = {
+                self.isCategoryAdd = true
+                self.requestGetCategories()
+            }
+            return false
+        }
+        return true
+    }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if(indexPath == selectCategoryIndex){
             return
         }
         
-        if(indexPath.row == categories.count){
-            let vc = CategoryBottomSheetViewController().show(in: self)
-            vc.completion = {
-                self.requestGetCategories()
-            }
-            vc.mainView.deleteBtn.setTitle("취소", for: .normal)
-            return
-        }
-        
-        if(indexPath != [0,0] && selectCategoryIndex == [0,0]){
-            guard let cell = mainView.categoryCollectionView.cellForItem(at: selectCategoryIndex) as? CategoryButtonCollectionViewCell else { return }
+        if(indexPath != collectionViewInitialIndex && selectCategoryIndex == collectionViewInitialIndex){
+            guard let cell = mainView.categoryCollectionView.cellForItem(at: collectionViewInitialIndex) as? CategoryButtonCollectionViewCell else { return }
             cell.buttonIsNotSelected()
         }
         
@@ -367,7 +366,6 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard let cell = mainView.categoryCollectionView.cellForItem(at: indexPath) as? CategoryButtonCollectionViewCell else { return }
-        
         cell.buttonIsNotSelected()
     }
 }
