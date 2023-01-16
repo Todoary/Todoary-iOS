@@ -1,5 +1,5 @@
 //
-//  UserRouter.swift
+//  AlarmRouter.swift
 //  Todoary
 //
 //  Created by 박지윤 on 2023/01/10.
@@ -14,10 +14,6 @@ enum AlarmRouter{
     case patchDiaryAlarm(request: Bool)
     case patchRemindAlarm(request: Bool)
     case getAlarms
-}
-
-enum MarketingRouter{
-    case patchAgreement(request: Bool)
 }
 
 //MARK: - Extension

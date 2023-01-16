@@ -42,8 +42,8 @@
 		572E9AC1287BC90A00F915DF /* FontSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E9AC0287BC90A00F915DF /* FontSettingTableViewCell.swift */; };
 		572E9AC3287C643000F915DF /* InfoMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E9AC2287C643000F915DF /* InfoMessageView.swift */; };
 		573844BA288CF01D009529CD /* NewTodoAddBtnTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573844B9288CF01D009529CD /* NewTodoAddBtnTableViewCell.swift */; };
-		57397F88296D471B0088B5F4 /* UserRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F87296D471B0088B5F4 /* UserRouter.swift */; };
-		57397F8A296D472C0088B5F4 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F89296D472C0088B5F4 /* UserService.swift */; };
+		57397F88296D471B0088B5F4 /* AlarmRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F87296D471B0088B5F4 /* AlarmRouter.swift */; };
+		57397F8A296D472C0088B5F4 /* AlarmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F89296D472C0088B5F4 /* AlarmService.swift */; };
 		57397F8C296D4F370088B5F4 /* AccountRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F8B296D4F370088B5F4 /* AccountRouter.swift */; };
 		57397F8E296D4F570088B5F4 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F8D296D4F570088B5F4 /* AccountService.swift */; };
 		57397F94296D50FF0088B5F4 /* TodoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F93296D50FF0088B5F4 /* TodoRouter.swift */; };
@@ -81,6 +81,8 @@
 		57556A8F295FC93300B67369 /* CategoryBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57556A8E295FC93300B67369 /* CategoryBottomSheetView.swift */; };
 		57556A91295FDCBE00B67369 /* BaseBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57556A90295FDCBE00B67369 /* BaseBottomSheetViewController.swift */; };
 		57556A932960030400B67369 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57556A922960030400B67369 /* BaseView.swift */; };
+		575DE94E2975124100E61B8F /* MarketingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575DE94D2975124100E61B8F /* MarketingRouter.swift */; };
+		575DE9502975125400E61B8F /* MarketingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575DE94F2975125400E61B8F /* MarketingService.swift */; };
 		576ED6B028748FFA007389CD /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576ED6AF28748FFA007389CD /* NavigationView.swift */; };
 		576ED6B228749021007389CD /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576ED6B128749021007389CD /* String.swift */; };
 		576ED6B42874902A007389CD /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576ED6B32874902A007389CD /* UITextField.swift */; };
@@ -320,8 +322,8 @@
 		572E9AC0287BC90A00F915DF /* FontSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSettingTableViewCell.swift; sourceTree = "<group>"; };
 		572E9AC2287C643000F915DF /* InfoMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoMessageView.swift; sourceTree = "<group>"; };
 		573844B9288CF01D009529CD /* NewTodoAddBtnTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTodoAddBtnTableViewCell.swift; sourceTree = "<group>"; };
-		57397F87296D471B0088B5F4 /* UserRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRouter.swift; sourceTree = "<group>"; };
-		57397F89296D472C0088B5F4 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		57397F87296D471B0088B5F4 /* AlarmRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmRouter.swift; sourceTree = "<group>"; };
+		57397F89296D472C0088B5F4 /* AlarmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmService.swift; sourceTree = "<group>"; };
 		57397F8B296D4F370088B5F4 /* AccountRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRouter.swift; sourceTree = "<group>"; };
 		57397F8D296D4F570088B5F4 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		57397F93296D50FF0088B5F4 /* TodoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRouter.swift; sourceTree = "<group>"; };
@@ -360,6 +362,8 @@
 		57556A8E295FC93300B67369 /* CategoryBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryBottomSheetView.swift; sourceTree = "<group>"; };
 		57556A90295FDCBE00B67369 /* BaseBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBottomSheetViewController.swift; sourceTree = "<group>"; };
 		57556A922960030400B67369 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		575DE94D2975124100E61B8F /* MarketingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingRouter.swift; sourceTree = "<group>"; };
+		575DE94F2975125400E61B8F /* MarketingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingService.swift; sourceTree = "<group>"; };
 		576ED6AF28748FFA007389CD /* NavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
 		576ED6B128749021007389CD /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		576ED6B32874902A007389CD /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
@@ -1701,10 +1705,12 @@
 		57C481AF296952A6008731D9 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				57397F87296D471B0088B5F4 /* UserRouter.swift */,
-				57397F89296D472C0088B5F4 /* UserService.swift */,
+				57397F87296D471B0088B5F4 /* AlarmRouter.swift */,
+				57397F89296D472C0088B5F4 /* AlarmService.swift */,
 				ACBAE55D296E69B200E71CAD /* ProfileRouter.swift */,
 				ACBAE55F296E69BF00E71CAD /* ProfileService.swift */,
+				575DE94D2975124100E61B8F /* MarketingRouter.swift */,
+				575DE94F2975125400E61B8F /* MarketingService.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -2196,6 +2202,7 @@
 				57E6516828B2F969006CB053 /* AppleLoginDataManager.swift in Sources */,
 				5750364E288A3ECE006A9070 /* SignUpModel.swift in Sources */,
 				E076E9F028703ECE001E14E1 /* AppPasswordViewController.swift in Sources */,
+				575DE9502975125400E61B8F /* MarketingService.swift in Sources */,
 				ACBAE560296E69BF00E71CAD /* ProfileService.swift in Sources */,
 				E0439ABB288C598A0075CBF0 /* ColorPickerViewController.swift in Sources */,
 				5750364C288A3EC0006A9070 /* SignUpDataManager.swift in Sources */,
@@ -2210,6 +2217,7 @@
 				57D5B60D29580F6600216C94 /* BaseCollectionViewCell.swift in Sources */,
 				572E9ABF287BC4E600F915DF /* FontSettingView.swift in Sources */,
 				57397F98296D51170088B5F4 /* DiaryRouter.swift in Sources */,
+				575DE94E2975124100E61B8F /* MarketingRouter.swift in Sources */,
 				ACE7D5FA28A819A70093854A /* PinNumberSettingViewController.swift in Sources */,
 				AC9128C9287AD5A80056932A /* AccountViewController.swift in Sources */,
 				E0F99883288A57760051C7AA /* PwFindInput.swift in Sources */,
@@ -2272,7 +2280,7 @@
 				574913BB287ADF8E00381BCD /* AlarmSettingTableViewCell.swift in Sources */,
 				ACCD87D22897DB9E00C34CE7 /* CategoryDeleteModel.swift in Sources */,
 				E0AB9EC8287B44C90064CADA /* SettingTableViewCell.swift in Sources */,
-				57397F8A296D472C0088B5F4 /* UserService.swift in Sources */,
+				57397F8A296D472C0088B5F4 /* AlarmService.swift in Sources */,
 				E02E7FA42874631D0006F6FA /* UILabel.swift in Sources */,
 				57C481B72969531C008731D9 /* BaseService.swift in Sources */,
 				AC9859C9288290C8009FC2F8 /* Calendar.swift in Sources */,
@@ -2319,7 +2327,7 @@
 				ACBAE56E29702D7700E71CAD /* ProfileGetModel.swift in Sources */,
 				572E5B0E286EC10500D1FAA0 /* UIFont.swift in Sources */,
 				AC5E27CD288C38290056EC69 /* TodoWeekCell.swift in Sources */,
-				57397F88296D471B0088B5F4 /* UserRouter.swift in Sources */,
+				57397F88296D471B0088B5F4 /* AlarmRouter.swift in Sources */,
 				57503663288BE3A0006A9070 /* CategoryTodoTableViewCell.swift in Sources */,
 				572E9ABD287BC4DD00F915DF /* FontSettingViewController.swift in Sources */,
 				AC9859C6287DC219009FC2F8 /* MailSender.swift in Sources */,
