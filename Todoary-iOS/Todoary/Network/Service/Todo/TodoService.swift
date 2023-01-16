@@ -2,7 +2,7 @@
 //  TodoService.swift
 //  Todoary
 //
-//  Created by 송채영 on 2023/01/11.
+//  Created by 박지윤 on 2023/01/10.
 //
 
 import Foundation
@@ -20,5 +20,25 @@ extension TodoService {
     
     func modifyTodo(id: Int, request: TodoModifyInput, completion: @escaping (NetworkResult<Any>) -> Void){
         requestObjectWithEmptyResponse(TodoRouter.patchTodo(id: id, request: request), completion: completion)
+    }
+    
+    func getTodoByDate(date: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        requestObject(TodoRouter.getTodoByDate(date: date), type: [TodoResultModel].self, decodingMode: .model, completion: completion)
+    }
+    
+    func getTodoByCategory(id: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
+        requestObject(TodoRouter.getTodoByCategory(id: id), type: [TodoResultModel].self, decodingMode: .model, completion: completion)
+    }
+    
+    func modifyTodoCheckStatus(id: Int, isChecked: Bool, completion: @escaping (NetworkResult<Any>) -> Void) {
+        requestObjectWithEmptyResponse(TodoRouter.patchCheck(id: id, isChecked: isChecked), completion: completion)
+    }
+    
+    func modifyTodoPinStatus(id: Int, isPinned: Bool, completion: @escaping (NetworkResult<Any>) -> Void) {
+        requestObjectWithEmptyResponse(TodoRouter.patchPin(id: id, isPinned: isPinned), completion: completion)
+    }
+    
+    func modifyTodoAlarm(id: Int, request: TodoAlarmRequestModel, completion: @escaping (NetworkResult<Any>) -> Void) {
+        requestObjectWithEmptyResponse(TodoRouter.patchAlarm(id: id, request: request), completion: completion)
     }
 }

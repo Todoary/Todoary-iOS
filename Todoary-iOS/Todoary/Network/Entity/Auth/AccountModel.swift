@@ -1,5 +1,5 @@
 //
-//  WithdrawalModel.swift
+//  AccountModel.swift
 //  Todoary
 //
 //  Created by 박지윤 on 2023/01/10.
@@ -24,14 +24,13 @@ struct AppleSignUpRequestModel: Codable{
     let userIdentifier: String
 }
 
-// Token 구조체 Codable 선언 이후 아래 주석 풀기
 struct AppleSignUpResultModel: Codable{
     let isNewUser: Bool
     let name: String
     let email: String
     let provider: String
     let providerId: String
-//    let token: Token
+    let token: Token
     let appleRefreshToken: String
 }
 

@@ -26,12 +26,16 @@ class CategoryViewController: BaseViewController {
     
     //MARK: - LifeCycle
     
-    override func viewWillAppear(_ animated: Bool) {
-        /*
+    func requestGetCategories(){
         CategoryService.shared.getCategories{ result in
             switch result {
             case .success(let data):
                 print("success")
+         
+         
+         
+         
+         
                 break
             default:
                 print("fail")
@@ -39,8 +43,30 @@ class CategoryViewController: BaseViewController {
             }
         
         }
-         */
-        GetCategoryDataManager().get(self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        
+        
+        CategoryService.shared.getCategories{ result in
+            switch result {
+            case .success(let data):
+                print("success")
+         
+         
+         
+         
+         
+                break
+            default:
+                print("fail")
+                break
+            }
+        
+        }
+         
+//        GetCategoryDataManager().get(self)
     }
     
     override func style() {
