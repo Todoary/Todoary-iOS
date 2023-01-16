@@ -13,7 +13,7 @@ class DiaryTabelViewCell: UITableViewCell {
     
     static let cellIdentifier = "DiaryTabelViewCell"
     
-    var cellData : GetTodoInfo!
+    var cellData : TodoResultModel!
     
     var navigationController: UINavigationController!
     
@@ -92,3 +92,4 @@ class DiaryTabelViewCell: UITableViewCell {
         }
     }
 }
+

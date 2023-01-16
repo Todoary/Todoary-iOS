@@ -9,6 +9,7 @@ import Alamofire
 
 class GetCategoryDataManager {
 
+    /* will delete
     func get( _ viewController : CategoryViewController ) {
         AF.request("https://todoary.com/category", method: .get , parameters: nil, interceptor: Interceptor()).validate().responseDecodable(of: GetCategoryModel.self) { response in
             switch response.result {
@@ -28,16 +29,17 @@ class GetCategoryDataManager {
             }
         }
     }
+     */
     
     func getCategoryDataManager( _ viewController : UIViewController ) {
-        AF.request("https://todoary.com/category", method: .get , parameters: nil, interceptor: Interceptor()).validate().responseDecodable(of: GetCategoryModel.self) { response in
+        AF.request("https://todoary.com/category", method: .get , parameters: nil, interceptor: Interceptor()).validate().responseDecodable(of: GeneralResponse<[CategoryModel]>.self) { response in
             switch response.result {
             case .success(let result):
                 switch result.code {
                 case 1000:
                     print("카테고리조회성공")
                     if let vc = viewController as? TodoSettingViewController {
-                        vc.successAPI_category(result.result)
+                        vc.successAPI_category(result.result!)
                     }
 //                    else if let vc = viewController as? SummaryBottomSheetViewController {
 //                        vc.successAPI_category(result.result)

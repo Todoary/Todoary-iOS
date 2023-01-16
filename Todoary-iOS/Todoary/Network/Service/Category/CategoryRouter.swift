@@ -10,8 +10,8 @@ import Alamofire
 
 enum CategoryRouter{
     case getCategories
-    case postCategory(requeset: CategoryMakeInput)
-    case patchCategory(id: Int, request: CategoryMakeInput)
+    case postCategory(requeset: CategoryModel)
+    case patchCategory(id: Int, request: CategoryModel)
     case deleteCategory(id: Int)
 }
 

@@ -11,11 +11,11 @@ class CategoryButtonCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Properties
     
-    static let cellIdentifier = "categoryButtonCell"
+    static let cellIdentifier = "CategoryButtonCollectionViewCell"
     
     var viewController: CategoryViewController!
     
-    var categoryData : GetCategoryResult!
+    var categoryData : CategoryModel!
     
     var categoryColor: UIColor!
     
@@ -27,9 +27,10 @@ class CategoryButtonCollectionViewCell: UICollectionViewCell {
         $0.addLetterSpacing(spacing: 0.28)
         $0.titleLabel?.textAlignment = .center
         $0.layer.borderWidth = 1
-        $0.addTarget(self, action: #selector(categoryButtonDidClicked(_:)), for: .touchUpInside)
+//        $0.addTarget(self, action: #selector(categoryButtonDidClicked(_:)), for: .touchUpInside)
         $0.titleEdgeInsets = UIEdgeInsets(top: 5, left: 0, bottom: 4, right: 0)
         $0.layer.cornerRadius = 26/2
+        $0.isUserInteractionEnabled = false
     }
    
     //MARK: - LifeCycle
@@ -82,32 +83,18 @@ class CategoryButtonCollectionViewCell: UICollectionViewCell {
     
     func buttonIsSelected(){
         categoryBtn.isSelected = true
-        
         categoryBtn.backgroundColor = self.categoryColor
     }
     
     func buttonIsNotSelected(){
         categoryBtn.isSelected = false
-        
         categoryBtn.backgroundColor = .white
-    }
-    
-    //MARK: - ACTION
-    
-    @objc
-    func categoryButtonDidClicked(_ sender: UIButton){
-        if(!categoryBtn.isSelected){
-            
-            guard let tableView = self.superview as? UICollectionView else{return}
-            let index = tableView.indexPath(for: self)
-            TodoGetByCategoryDataManager().get(indexPath: index!, viewController: self.viewController, categoryId: categoryData.id)
-        }
     }
 }
 
 class CategoryPlusButtonCell: UICollectionViewCell{
     
-    static let cellIdentifier = "categoryPlusCell"
+    static let cellIdentifier = "CategoryPlusButtonCell"
     
     let plusImage = UIImageView().then{
         $0.image = UIImage(named: "category_plus")

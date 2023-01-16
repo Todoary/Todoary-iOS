@@ -10,23 +10,6 @@ import Alamofire
 
 class TodoCheckboxDataManager{
     
-    func patch(cell: CategoryTodoTableViewCell, parameter: TodoCheckboxInput){
-        
-        AF.request("https://todoary.com/todo/check",
-                   method: .patch,
-                   parameters: parameter,
-                   encoder: JSONParameterEncoder.default,
-                   interceptor: Interceptor())
-            .validate().responseDecodable(of: ApiModel.self) { response in
-                switch response.result {
-                case .success(let result):
-                    cell.checkSendCheckboxApiResultCode(result.code)
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
-    }
-    
     func patch(cell: DiaryTabelViewCell, parameter: TodoCheckboxInput){
         
         AF.request("https://todoary.com/todo/check",

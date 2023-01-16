@@ -17,7 +17,6 @@
 		57294AAF2891159300DA2F31 /* TodoDeleteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57294AAE2891159300DA2F31 /* TodoDeleteDataManager.swift */; };
 		57294AB22891161D00DA2F31 /* GetTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57294AB12891161D00DA2F31 /* GetTodo.swift */; };
 		57294AB42891162800DA2F31 /* GetTodoDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57294AB32891162800DA2F31 /* GetTodoDataManager.swift */; };
-		57294ABD289116C500DA2F31 /* TodoGetByCategoryDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57294ABC289116C500DA2F31 /* TodoGetByCategoryDataManager.swift */; };
 		57294AC0289116F500DA2F31 /* TodoCheckboxInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57294ABF289116F500DA2F31 /* TodoCheckboxInput.swift */; };
 		57294AC42891170B00DA2F31 /* TodoCheckboxDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57294AC32891170B00DA2F31 /* TodoCheckboxDataManager.swift */; };
 		57294AC62891189700DA2F31 /* ApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57294AC52891189700DA2F31 /* ApiModel.swift */; };
@@ -293,7 +292,6 @@
 		57294AAE2891159300DA2F31 /* TodoDeleteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDeleteDataManager.swift; sourceTree = "<group>"; };
 		57294AB12891161D00DA2F31 /* GetTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTodo.swift; sourceTree = "<group>"; };
 		57294AB32891162800DA2F31 /* GetTodoDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTodoDataManager.swift; sourceTree = "<group>"; };
-		57294ABC289116C500DA2F31 /* TodoGetByCategoryDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoGetByCategoryDataManager.swift; sourceTree = "<group>"; };
 		57294ABF289116F500DA2F31 /* TodoCheckboxInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCheckboxInput.swift; sourceTree = "<group>"; };
 		57294AC32891170B00DA2F31 /* TodoCheckboxDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCheckboxDataManager.swift; sourceTree = "<group>"; };
 		57294AC52891189700DA2F31 /* ApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiModel.swift; sourceTree = "<group>"; };
@@ -1164,7 +1162,6 @@
 			isa = PBXGroup;
 			children = (
 				5701EA9F2957244400F21F63 /* Category */,
-				57294ABC289116C500DA2F31 /* TodoGetByCategoryDataManager.swift */,
 				57294AB32891162800DA2F31 /* GetTodoDataManager.swift */,
 				57294AAE2891159300DA2F31 /* TodoDeleteDataManager.swift */,
 				57E75EB428E2731100AC24B2 /* TodoAlarmDataManager.swift */,
@@ -2124,7 +2121,6 @@
 				E0F99893288A58320051C7AA /* ProfileImgModel.swift in Sources */,
 				572E5B12286EC3C800D1FAA0 /* SignUpViewController.swift in Sources */,
 				57B16857295ABAF900639A15 /* CategoryView.swift in Sources */,
-				57294ABD289116C500DA2F31 /* TodoGetByCategoryDataManager.swift in Sources */,
 				574913B9287ADF6500381BCD /* AlarmSettingView.swift in Sources */,
 				5722461228C1A223009B7C78 /* BaseViewController.swift in Sources */,
 				E0AB9EBB287B1BF40064CADA /* HomeViewController.swift in Sources */,

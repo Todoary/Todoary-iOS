@@ -13,7 +13,7 @@ class AlarmAlertViewController: UIViewController {
     
     var pickTime = [0,0,0] //0: hour, 1: minute, 2: am/pm
     
-    var todoData: GetTodoInfo!{
+    var todoData: TodoResultModel!{
         didSet{
             setPickerTime()
         }

@@ -17,7 +17,7 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
     
     //MARK: - Properties
     
-    var todoDataList : [GetTodoInfo]! = []
+    var todoDataList : [TodoResultModel]! = []
     
     var isDiaryExist = false //for 다이어리 작성했을 때 view 구성
     
@@ -212,7 +212,7 @@ extension SummaryBottomSheetViewController{
         switch code{
         case 1000:
             print("체크박스 API 성공")
-            todoDataList[indexPath.row - 1].isChecked?.toggle()
+            todoDataList[indexPath.row - 1].isChecked.toggle()
             mainView.summaryTableView.reloadData()
             return
         default:
@@ -221,7 +221,7 @@ extension SummaryBottomSheetViewController{
         }
     }
     
-    func checkGetTodoApiResultCode(_ result: GetTodoModel){
+    func checkGetTodoApiResultCode(_ result: GeneralResponse<[TodoResultModel]>){
 
         switch result.code{
         case 1000:

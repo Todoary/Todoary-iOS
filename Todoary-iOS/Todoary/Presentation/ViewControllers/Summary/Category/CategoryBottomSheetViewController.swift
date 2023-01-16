@@ -11,14 +11,17 @@ import SnapKit
 import Then
 
 class CategoryBottomSheetViewController : BaseBottomSheetViewController {
-    // MARK: - Properties
-    var currentData : GetCategoryResult?
     
+    enum State{
+        case generate, modify, delete
+    }
+    
+    // MARK: - Properties
+    var currentData : CategoryModel?
     var currentCategoryCount: Int? //현재 1개의 카테고리만 존재할 경우 삭제 금지시키기 위한 프로퍼ㅣ
     
     var isKeyboardOpen = false
-    
-    var categoryVC: CategoryViewController!
+    var completion: (() -> Void)!
     
     let mainView = CategoryBottomSheetView()
     
@@ -32,8 +35,9 @@ class CategoryBottomSheetViewController : BaseBottomSheetViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Override
+    
     override func viewWillAppear(_ animated: Bool) {
-        
         if let currentData = currentData {
             mainView.colorCollectionView.selectItem(at: [0,currentData.color], animated: true, scrollPosition: UICollectionView.ScrollPosition.centeredVertically)
         }
@@ -47,7 +51,6 @@ class CategoryBottomSheetViewController : BaseBottomSheetViewController {
     override func layout() {
         
         self.view.addSubview(mainView)
-        
         mainView.snp.makeConstraints{
             $0.top.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(self.view.safeAreaLayoutGuide)
@@ -68,8 +71,7 @@ class CategoryBottomSheetViewController : BaseBottomSheetViewController {
     
     //MARK: - Actions
     
-    @objc
-    func confirmBtnDidClicked(){
+    @objc func confirmBtnDidClicked(){
         
         guard let select = mainView.colorCollectionView.indexPathsForSelectedItems else { return }
         
@@ -89,29 +91,47 @@ class CategoryBottomSheetViewController : BaseBottomSheetViewController {
         
         let color = select[0].row
         
-        //TODO: - Code Refactor
-        
         if(currentData != nil){ //카테고리 수정 API 호출
-            let parameter = CategoryModifyInput(title: categoryText, color: color)
             
-            guard let data = currentData else { return }
+            let parameter = CategoryModel(title: categoryText, color: color)
             
-            CategoryModifyDataManager().patch(categoryId: data.id, parameter: parameter, viewController: self, categoryViewController: categoryVC)
+            guard let data = currentData, let categoryId = data.id else { return }
+            
+            CategoryService.shared.modifyCategory(id: categoryId, request: parameter){ result in
+                switch result{
+                case .success:
+                    self.completion()
+                    self.dismiss(animated: true)
+                    break
+                default:
+                    DataBaseErrorAlert.show(in: self)
+                    break
+                }
+            }
             
         }else{ //카테고리 생성 API 호출
-            let parameter = CategoryMakeInput(title: categoryText, color: color)
+            let parameter = CategoryModel(title: categoryText, color: color)
             
-            CategoryMakeDataManager().categoryMakeDataManager(parameter: parameter, categoryVC: categoryVC, viewController: self)
+            CategoryService.shared.generateCategory(request: parameter){ result in
+                switch result{
+                case .success:
+                    self.completion()
+                    self.dismiss(animated: true)
+                    break
+                default:
+                    DataBaseErrorAlert.show(in: self)
+                    break
+                }
+            }
         }
     }
     
     @objc
     func deleteCancelBtnDidClicked(){
         
-        guard let data = currentData else {
+        guard let data = currentData, let categoryId = data.id else {
             //버튼: 취소일 경우
             self.dismiss(animated: true)
-//            hideBottomSheetAndGoBack()
             return
         }
         //버튼: 삭제일 경우
@@ -124,7 +144,17 @@ class CategoryBottomSheetViewController : BaseBottomSheetViewController {
                 self.present(alert, animated: true, completion: nil)
                 
             }else{
-                CategoryDeleteDataManager().delete(categoryId: data.id, viewController: self, categoryViewController: self.categoryVC)
+                CategoryService.shared.deleteCategory(id: categoryId){ result in
+                    switch result{
+                    case .success:
+                        self.completion()
+                        self.dismiss(animated: true)
+                        break
+                    default:
+                        DataBaseErrorAlert.show(in: self)
+                        break
+                    }
+                }
             }
         }
         

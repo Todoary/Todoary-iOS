@@ -82,7 +82,7 @@ class DiaryViewController: BaseViewController , UIGestureRecognizerDelegate{
     
     var currentFont: DiaryFont = DiaryFont(fontName: .font1)
     
-    var todoDataList : [GetTodoInfo]! = []
+    var todoDataList : [TodoResultModel]! = []
     
     var diaryData: GetDiaryInfo?
     

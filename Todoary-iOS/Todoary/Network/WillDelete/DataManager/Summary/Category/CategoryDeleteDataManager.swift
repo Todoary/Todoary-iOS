@@ -9,6 +9,7 @@ import Alamofire
 
 class CategoryDeleteDataManager {
     
+    /*
     func delete(categoryId : Int, viewController : CategoryBottomSheetViewController, categoryViewController: CategoryViewController) {
         
         AF.request("https://todoary.com/category/\(categoryId)",
@@ -22,7 +23,7 @@ class CategoryDeleteDataManager {
                     switch result.code {
                     case 1000:
                         print("카테고리삭제성공")
-                        GetCategoryDataManager().get(categoryViewController)
+//                        GetCategoryDataManager().get(categoryViewController) -> 대체 필요
                         viewController.dismiss(animated: true)
 //                        viewController.hideBottomSheetAndGoBack()
                     case 2010:
@@ -39,6 +40,7 @@ class CategoryDeleteDataManager {
                 }
             }
     }
+     */
     
     func categoryDeleteDataManager(_ viewController : ColorPickerViewController , categoryId : Int) {
         

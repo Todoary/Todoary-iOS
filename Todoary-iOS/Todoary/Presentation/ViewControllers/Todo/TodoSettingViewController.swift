@@ -22,7 +22,7 @@ import Then
 class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarComplete , UIGestureRecognizerDelegate{
     
     //카테고리 정보 받아오는 struct
-    var categoryData : [GetCategoryResult]! = []
+    var categoryData : [CategoryModel]! = []
     
     //선택된 카테고리
     static var selectCategory: Int = -1
@@ -32,10 +32,10 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
     var now = Date()
     
     //받아올 정보가 있을때 활성화되는 투두 data
-    var todoSettingData : GetTodoInfo!
+    var todoSettingData : TodoResultModel!
     
     //받아올 정보가 없을때 활성화 되는 투두 data
-    var todoInitData : GetTodoInfo!
+    var todoInitData : TodoResultModel!
     
     //선택한 날짜 정보 가져오기
     var todoDate : ConvertDate?
@@ -262,15 +262,15 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
             mainView.collectionView.reloadData()
             
         }else { // 없을때
-            todoSettingData = GetTodoInfo(todoId: -1,
-                                          title: "",
-                                          targetDate: "",
-                                          isAlarmEnabled: false,
-                                          targetTime: "",
-                                          createdTime: "",
-                                          categoryId: -1,
-                                          categoryTitle: "",
-                                          color: -1)
+            todoSettingData = TodoResultModel(todoId: -1,
+                                              isChecked: false,
+                                              title: "",
+                                              targetDate: "",
+                                              isAlarmEnabled: false,
+                                              createdTime: "",
+                                              categoryId: -1,
+                                              categoryTitle: "",
+                                              color: -1)
             
             if(todoDate != nil){ //요약화면에서 투두 생성할 경우, 타겟 날짜 존재
                 mainView.date.setTitle(todoDate!.dateUsedTodo, for: .normal)
@@ -297,7 +297,7 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
     }
     
     //카테고리 조회 api 성공
-    func successAPI_category(_ result : [GetCategoryResult]) {
+    func successAPI_category(_ result : [CategoryModel]) {
         if(result.isEmpty){
         }else {
             print("카테고리 목록", result)

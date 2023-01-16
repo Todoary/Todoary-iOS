@@ -23,7 +23,7 @@ class CategoryModifyDataManager {
                     switch result.code {
                     case 1000:
                         print("카테고리수정성공")
-                        GetCategoryDataManager().get(categoryViewController)
+//                        GetCategoryDataManager().get(categoryViewController) -> 대체 필요
                         viewController.dismiss(animated: true)
 //                        viewController.hideBottomSheetAndGoBack()
                     case 2010:

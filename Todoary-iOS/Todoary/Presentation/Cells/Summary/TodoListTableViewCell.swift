@@ -24,7 +24,7 @@ class TodoListTableViewCell: UITableViewCell {
     
     var navigation : UINavigationController!
     
-    var cellData : GetTodoInfo!
+    var cellData : TodoResultModel!
     
     //MARK: - Properties(for swipe)
     
