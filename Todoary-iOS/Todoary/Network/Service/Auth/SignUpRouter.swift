@@ -15,7 +15,8 @@ enum AccountRouter{
     case signUp(request: SignUpRequestModel)
     case signUpWithApple(request: AppleSignUpRequestModel)
     case deleteAccount
-    case deleteAppleAccount(request: DeleteAppleAccountModel)
+    case deleteAppleAccount(request: DeleteAppleAccountRequestModel)
+    case emailDuplicate(request: String)
 }
 
 /*
@@ -29,8 +30,9 @@ extension AccountRouter: BaseRouter{
         switch self{
         case .signUp:                   return HTTPMethodURL.POST.signup
         case .signUpWithApple:          return HTTPMethodURL.POST.loginApple
-        case .deleteAccount:            return HTTPMethodURL.POST.loginApple
-        case .deleteAppleAccount:       return HTTPMethodURL.POST.loginApple
+        case .deleteAccount:            return HTTPMethodURL.PATCH.userDelete
+        case .deleteAppleAccount:       return HTTPMethodURL.POST.revokeApple
+        case .emailDuplicate:           return HTTPMethodURL.GET.emailDuplicate
         }
     }
     
@@ -40,6 +42,7 @@ extension AccountRouter: BaseRouter{
         case .signUpWithApple:          return .post
         case .deleteAccount:            return .patch
         case .deleteAppleAccount:       return .post
+        case .emailDuplicate:           return .get
         }
     }
     
@@ -49,6 +52,9 @@ extension AccountRouter: BaseRouter{
         case .signUpWithApple(let request):             return .requestBody(request)
         case .deleteAccount:                            return .requestPlain
         case .deleteAppleAccount(let request):          return .requestBody(request)
+        case .emailDuplicate(let email):
+            let parameter : [String:Any] = ["email" : email]
+            return .query(parameter)
         }
     }
     

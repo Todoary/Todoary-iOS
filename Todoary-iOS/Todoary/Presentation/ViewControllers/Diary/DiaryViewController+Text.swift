@@ -7,14 +7,11 @@
 
 import UIKit
 
+//MARK: - UITableViewDelegate
 extension DiaryViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ DiaryTableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if todoDataList.isEmpty{
-            return 1
-        }else {
-            return todoDataList.count
-        }
+        return todoDataList.isEmpty ? 1 : todoDataList.count
     }
     
     func tableView(_ DiaryTableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -51,6 +48,7 @@ extension DiaryViewController: UITableViewDelegate, UITableViewDataSource{
     }
 }
 
+//MARK: - UITextViewDelegate
 extension DiaryViewController: UITextViewDelegate {
 
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -140,7 +138,7 @@ extension DiaryViewController{
         mainView.textView.setTextWithLineHeight(spaing: 25)
     }
     
-    
+    //TODO: 메서드 하나로 통일
     @objc func yellowBtnDidClicked(){
 
         let selectedRange = mainView.textView.selectedRange
