@@ -22,11 +22,21 @@ extension ProfileService {
         requestObjectWithEmptyResponse(ProfileRouter.patchProfile(requeset: request), completion: completion)
     }
     
-    func modifyProfileImage(request: ProfileImgInput, completion: @escaping (NetworkResult<Any>) -> Void){
-        requestObjectWithEmptyResponse(ProfileRouter.patchProfileImage(request: request), completion: completion)
-    }
-    
     func deleteProfileImage(completion: @escaping (NetworkResult<Any>) -> Void){
         requestObjectWithEmptyResponse(ProfileRouter.deleteProfileImage, completion: completion)
+    }
+    
+    func modifyProfileImage (image: UIImage, completion: @escaping (NetworkResult<Any>) -> Void) {
+        
+        AFManager.upload(multipartFormData: ProfileRouter.patchProfileImage(image: image).multipart, with: ProfileRouter.patchProfileImage(image: image)).responseData { response in
+            switch(response.result) {
+            case .success:
+                let networkResult = self.judgeStatusWithEmptyReponse(by: response.response?.statusCode)
+                completion(networkResult) 
+                
+            case .failure(let err) :
+                print(err.localizedDescription)
+            }
+        }
     }
 }
