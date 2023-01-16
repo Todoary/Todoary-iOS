@@ -27,6 +27,18 @@ extension AlarmService {
     }
     
     func getUserAlarmActiveStatus(completion: @escaping (NetworkResult<Any>) -> Void){
-        requestObject(AlarmRouter.getAlarms, type: AlarmActiveStautsModel.self, decodingMode: .model, completion: completion)
+        requestObject(AlarmRouter.getAlarms, type: AlarmActiveStautsResultModel.self, decodingMode: .model, completion: completion)
+    }
+}
+
+class MarketingService: BaseService{
+    static let shared = MarketingService()
+    private override init() {}
+}
+
+extension MarketingService {
+    
+    func modifyMarketingAgreementStatus(request: Bool, completion: @escaping (NetworkResult<Any>) -> Void){
+        requestObjectWithEmptyResponse(MarketingRouter.patchAgreement(request: request), completion: completion)
     }
 }

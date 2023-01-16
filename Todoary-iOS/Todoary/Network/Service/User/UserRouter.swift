@@ -58,3 +58,36 @@ extension AlarmRouter: BaseRouter{
         }
     }
 }
+
+enum MarketingRouter{
+    case patchAgreement(request: Bool)
+}
+
+extension MarketingRouter: BaseRouter{
+    
+    var path: String{
+        switch self{
+        case .patchAgreement:                   return HTTPMethodURL.PATCH.marketing
+        }
+    }
+    
+    var method: HTTPMethod{
+        switch self{
+        case .patchAgreement:                   return .patch
+        }
+    }
+    
+    var parameters: RequestParams {
+        switch self{
+        case .patchAgreement(let request):
+            let parameter: [String:Any] = ["isChecked" : request]
+            return .requestBodyWithDictionary(parameter)
+        }
+    }
+    
+    var header: HeaderType{
+        switch self{
+        default:                    return .withToken
+        }
+    }
+}

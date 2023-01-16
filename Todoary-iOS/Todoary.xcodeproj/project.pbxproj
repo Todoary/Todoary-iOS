@@ -179,7 +179,7 @@
 		ACBAE566296E69EF00E71CAD /* DiaryStickerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE565296E69EF00E71CAD /* DiaryStickerRouter.swift */; };
 		ACBAE568296E69FB00E71CAD /* DiaryStickerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE567296E69FB00E71CAD /* DiaryStickerService.swift */; };
 		ACBAE56A29702D5300E71CAD /* TodoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE56929702D5300E71CAD /* TodoModel.swift */; };
-		ACBAE56C29702D6600E71CAD /* DiaryStickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE56B29702D6600E71CAD /* DiaryStickerModel.swift */; };
+		ACBAE56C29702D6600E71CAD /* DiaryStickerResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE56B29702D6600E71CAD /* DiaryStickerResultModel.swift */; };
 		ACBAE56E29702D7700E71CAD /* ProfileGetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE56D29702D7700E71CAD /* ProfileGetModel.swift */; };
 		ACCD87B92893C43F00C34CE7 /* CategoryMakeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87B82893C43F00C34CE7 /* CategoryMakeInput.swift */; };
 		ACCD87BB2893C45400C34CE7 /* CategoryMakeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87BA2893C45400C34CE7 /* CategoryMakeModel.swift */; };
@@ -475,7 +475,7 @@
 		ACBAE565296E69EF00E71CAD /* DiaryStickerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryStickerRouter.swift; sourceTree = "<group>"; };
 		ACBAE567296E69FB00E71CAD /* DiaryStickerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryStickerService.swift; sourceTree = "<group>"; };
 		ACBAE56929702D5300E71CAD /* TodoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModel.swift; sourceTree = "<group>"; };
-		ACBAE56B29702D6600E71CAD /* DiaryStickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryStickerModel.swift; sourceTree = "<group>"; };
+		ACBAE56B29702D6600E71CAD /* DiaryStickerResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryStickerResultModel.swift; sourceTree = "<group>"; };
 		ACBAE56D29702D7700E71CAD /* ProfileGetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileGetModel.swift; sourceTree = "<group>"; };
 		ACCD87B82893C43F00C34CE7 /* CategoryMakeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryMakeInput.swift; sourceTree = "<group>"; };
 		ACCD87BA2893C45400C34CE7 /* CategoryMakeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryMakeModel.swift; sourceTree = "<group>"; };
@@ -909,10 +909,10 @@
 		5701EA5B2956F10D00F21F63 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				5701EA692956F18D00F21F63 /* AppPassword */,
 				5701EA672956F16000F21F63 /* Agreement */,
 				E015059828B3F3E500E83157 /* OnboardingViewController.swift */,
 				E0AB9EB6287B1B8E0064CADA /* SettingViewController.swift */,
-				ACE7D5F928A819A70093854A /* PinNumberSettingViewController.swift */,
 				E0AB9EC0287B1C570064CADA /* SettingAgreementViewController.swift */,
 				574913B6287ADF5600381BCD /* AlarmSettingViewController.swift */,
 				57B36ECC287AFAD400378E16 /* AskViewController.swift */,
@@ -957,9 +957,9 @@
 		5701EA5F2956F11700F21F63 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				575DE94C2974FB3F00E61B8F /* AppPassword */,
 				5701EA702956F1D200F21F63 /* Agreement */,
 				572E9AC2287C643000F915DF /* InfoMessageView.swift */,
-				ACE7D5FB28A819C10093854A /* PinNumberSettingView.swift */,
 				E0AB9EC2287B1C670064CADA /* SettingAgreementView.swift */,
 				574913B8287ADF6500381BCD /* AlarmSettingView.swift */,
 				572E9AB6287BC07A00F915DF /* AskView.swift */,
@@ -1014,8 +1014,8 @@
 		5701EA642956F13100F21F63 /* Password */ = {
 			isa = PBXGroup;
 			children = (
-				5701EA6A2956F18E00F21F63 /* UserPassword */,
-				5701EA692956F18D00F21F63 /* AppPassword */,
+				AC9859C5287DC219009FC2F8 /* MailSender.swift */,
+				ACACD01428749F880029D5CE /* PwFindViewController.swift */,
 			);
 			path = Password;
 			sourceTree = "<group>";
@@ -1056,19 +1056,11 @@
 		5701EA692956F18D00F21F63 /* AppPassword */ = {
 			isa = PBXGroup;
 			children = (
+				ACE7D5F928A819A70093854A /* PinNumberSettingViewController.swift */,
 				E076E9EF28703ECE001E14E1 /* AppPasswordViewController.swift */,
 				E06F1ACA28A61E710066B824 /* NewAppPasswordViewController.swift */,
 			);
 			path = AppPassword;
-			sourceTree = "<group>";
-		};
-		5701EA6A2956F18E00F21F63 /* UserPassword */ = {
-			isa = PBXGroup;
-			children = (
-				AC9859C5287DC219009FC2F8 /* MailSender.swift */,
-				ACACD01428749F880029D5CE /* PwFindViewController.swift */,
-			);
-			path = UserPassword;
 			sourceTree = "<group>";
 		};
 		5701EA6C2956F1C900F21F63 /* Profile */ = {
@@ -1082,8 +1074,7 @@
 		5701EA6D2956F1CB00F21F63 /* Password */ = {
 			isa = PBXGroup;
 			children = (
-				5701EA722956F1FB00F21F63 /* UserPassword */,
-				5701EA732956F20600F21F63 /* AppPassword */,
+				ACACD01528749F880029D5CE /* PwFindView.swift */,
 			);
 			path = Password;
 			sourceTree = "<group>";
@@ -1119,23 +1110,6 @@
 				AC9128CA287AD5D20056932A /* AccountView.swift */,
 			);
 			path = Account;
-			sourceTree = "<group>";
-		};
-		5701EA722956F1FB00F21F63 /* UserPassword */ = {
-			isa = PBXGroup;
-			children = (
-				ACACD01528749F880029D5CE /* PwFindView.swift */,
-			);
-			path = UserPassword;
-			sourceTree = "<group>";
-		};
-		5701EA732956F20600F21F63 /* AppPassword */ = {
-			isa = PBXGroup;
-			children = (
-				E005DE7A287019F900814C79 /* AppPasswordViewController+Layout.swift */,
-				E06F1ACC28A61EF70066B824 /* NewAppPasswordViewController+Layout.swift */,
-			);
-			path = AppPassword;
 			sourceTree = "<group>";
 		};
 		5701EA752957087300F21F63 /* Todo */ = {
@@ -1696,6 +1670,16 @@
 			path = Category;
 			sourceTree = "<group>";
 		};
+		575DE94C2974FB3F00E61B8F /* AppPassword */ = {
+			isa = PBXGroup;
+			children = (
+				ACE7D5FB28A819C10093854A /* PinNumberSettingView.swift */,
+				E005DE7A287019F900814C79 /* AppPasswordViewController+Layout.swift */,
+				E06F1ACC28A61EF70066B824 /* NewAppPasswordViewController+Layout.swift */,
+			);
+			path = AppPassword;
+			sourceTree = "<group>";
+		};
 		57B9F70D28D94F0300ACEC94 /* Alert */ = {
 			isa = PBXGroup;
 			children = (
@@ -1792,7 +1776,7 @@
 			isa = PBXGroup;
 			children = (
 				57397FA3296D51960088B5F4 /* DiaryTextModel.swift */,
-				ACBAE56B29702D6600E71CAD /* DiaryStickerModel.swift */,
+				ACBAE56B29702D6600E71CAD /* DiaryStickerResultModel.swift */,
 			);
 			path = Diary;
 			sourceTree = "<group>";
@@ -2196,7 +2180,7 @@
 				57C481C12969537A008731D9 /* GeneralResponse.swift in Sources */,
 				E06F1AC928A605930066B824 /* AdvertiseTextSettingViewController.swift in Sources */,
 				57E6516A28B31910006CB053 /* AppleLoginInput.swift in Sources */,
-				ACBAE56C29702D6600E71CAD /* DiaryStickerModel.swift in Sources */,
+				ACBAE56C29702D6600E71CAD /* DiaryStickerResultModel.swift in Sources */,
 				57294AC62891189700DA2F31 /* ApiModel.swift in Sources */,
 				AC5E27DA288EFCFE0056EC69 /* TodoCalendar.swift in Sources */,
 				ACCD87D52897E77E00C34CE7 /* GetCalendataManager.swift in Sources */,
