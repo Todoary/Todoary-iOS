@@ -21,5 +21,10 @@ class DataBaseErrorAlert: UIAlertController {
         self.addAction(alertAction)
         
     }
+    
+    static func show(in viewController: UIViewController){
+        let alert = DataBaseErrorAlert()
+        viewController.present(alert, animated: true, completion: nil)
+    }
 
 }
