@@ -11,7 +11,7 @@ import Alamofire
 enum ProfileRouter{
     case getProfile
     case patchProfile(requeset: ProfileInput)
-    case patchProfileImage(request: ProfileImgInput)
+    case patchProfileImage(image: UIImage)
     case deleteProfileImage
 }
 
@@ -41,7 +41,7 @@ extension ProfileRouter: BaseRouter{
         switch self{
         case .getProfile:                           return .requestPlain
         case .patchProfile(let request):            return .requestBody(request)
-        case .patchProfileImage(let request):       return .requestBody(request as! Encodable)
+        case .patchProfileImage:                    return .requestPlain
         case .deleteProfileImage:                   return .requestPlain
         }
     }
@@ -52,5 +52,19 @@ extension ProfileRouter: BaseRouter{
         default:                                    return .withToken
         }
     }
-}
+    
+    var multipart: MultipartFormData {
+        switch self {
+        case .patchProfileImage(let image):
+            let multiPart = MultipartFormData()
 
+            if let image = image.jpegData(compressionQuality: 0.1) {
+                multiPart.append(image, withName: "profile-img", fileName: "\(image).jpeg", mimeType: "image/ipeg")
+            }
+
+            return multiPart
+        
+        default: return MultipartFormData()
+        }
+    }
+}
