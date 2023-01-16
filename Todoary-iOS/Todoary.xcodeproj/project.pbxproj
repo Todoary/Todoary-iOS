@@ -909,10 +909,10 @@
 		5701EA5B2956F10D00F21F63 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				5701EA692956F18D00F21F63 /* AppPassword */,
 				5701EA672956F16000F21F63 /* Agreement */,
 				E015059828B3F3E500E83157 /* OnboardingViewController.swift */,
 				E0AB9EB6287B1B8E0064CADA /* SettingViewController.swift */,
-				ACE7D5F928A819A70093854A /* PinNumberSettingViewController.swift */,
 				E0AB9EC0287B1C570064CADA /* SettingAgreementViewController.swift */,
 				574913B6287ADF5600381BCD /* AlarmSettingViewController.swift */,
 				57B36ECC287AFAD400378E16 /* AskViewController.swift */,
@@ -957,9 +957,9 @@
 		5701EA5F2956F11700F21F63 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				575DE94C2974FB3F00E61B8F /* AppPassword */,
 				5701EA702956F1D200F21F63 /* Agreement */,
 				572E9AC2287C643000F915DF /* InfoMessageView.swift */,
-				ACE7D5FB28A819C10093854A /* PinNumberSettingView.swift */,
 				E0AB9EC2287B1C670064CADA /* SettingAgreementView.swift */,
 				574913B8287ADF6500381BCD /* AlarmSettingView.swift */,
 				572E9AB6287BC07A00F915DF /* AskView.swift */,
@@ -1014,8 +1014,8 @@
 		5701EA642956F13100F21F63 /* Password */ = {
 			isa = PBXGroup;
 			children = (
-				5701EA6A2956F18E00F21F63 /* UserPassword */,
-				5701EA692956F18D00F21F63 /* AppPassword */,
+				AC9859C5287DC219009FC2F8 /* MailSender.swift */,
+				ACACD01428749F880029D5CE /* PwFindViewController.swift */,
 			);
 			path = Password;
 			sourceTree = "<group>";
@@ -1056,19 +1056,11 @@
 		5701EA692956F18D00F21F63 /* AppPassword */ = {
 			isa = PBXGroup;
 			children = (
+				ACE7D5F928A819A70093854A /* PinNumberSettingViewController.swift */,
 				E076E9EF28703ECE001E14E1 /* AppPasswordViewController.swift */,
 				E06F1ACA28A61E710066B824 /* NewAppPasswordViewController.swift */,
 			);
 			path = AppPassword;
-			sourceTree = "<group>";
-		};
-		5701EA6A2956F18E00F21F63 /* UserPassword */ = {
-			isa = PBXGroup;
-			children = (
-				AC9859C5287DC219009FC2F8 /* MailSender.swift */,
-				ACACD01428749F880029D5CE /* PwFindViewController.swift */,
-			);
-			path = UserPassword;
 			sourceTree = "<group>";
 		};
 		5701EA6C2956F1C900F21F63 /* Profile */ = {
@@ -1082,8 +1074,7 @@
 		5701EA6D2956F1CB00F21F63 /* Password */ = {
 			isa = PBXGroup;
 			children = (
-				5701EA722956F1FB00F21F63 /* UserPassword */,
-				5701EA732956F20600F21F63 /* AppPassword */,
+				ACACD01528749F880029D5CE /* PwFindView.swift */,
 			);
 			path = Password;
 			sourceTree = "<group>";
@@ -1119,23 +1110,6 @@
 				AC9128CA287AD5D20056932A /* AccountView.swift */,
 			);
 			path = Account;
-			sourceTree = "<group>";
-		};
-		5701EA722956F1FB00F21F63 /* UserPassword */ = {
-			isa = PBXGroup;
-			children = (
-				ACACD01528749F880029D5CE /* PwFindView.swift */,
-			);
-			path = UserPassword;
-			sourceTree = "<group>";
-		};
-		5701EA732956F20600F21F63 /* AppPassword */ = {
-			isa = PBXGroup;
-			children = (
-				E005DE7A287019F900814C79 /* AppPasswordViewController+Layout.swift */,
-				E06F1ACC28A61EF70066B824 /* NewAppPasswordViewController+Layout.swift */,
-			);
-			path = AppPassword;
 			sourceTree = "<group>";
 		};
 		5701EA752957087300F21F63 /* Todo */ = {
@@ -1694,6 +1668,16 @@
 				57556A8E295FC93300B67369 /* CategoryBottomSheetView.swift */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		575DE94C2974FB3F00E61B8F /* AppPassword */ = {
+			isa = PBXGroup;
+			children = (
+				ACE7D5FB28A819C10093854A /* PinNumberSettingView.swift */,
+				E005DE7A287019F900814C79 /* AppPasswordViewController+Layout.swift */,
+				E06F1ACC28A61EF70066B824 /* NewAppPasswordViewController+Layout.swift */,
+			);
+			path = AppPassword;
 			sourceTree = "<group>";
 		};
 		57B9F70D28D94F0300ACEC94 /* Alert */ = {
