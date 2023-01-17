@@ -17,11 +17,12 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
     
     //MARK: - Properties
     
-    var todoData = [TodoResultModel](){
-        didSet{
-            self.mainView.summaryTableView.reloadData()
-        }
-    }
+    var todoData = [TodoResultModel]()
+//    {
+//        didSet{
+//            self.mainView.summaryTableView.reloadData()
+//        }
+//    }
     
     var isDiaryExist = false //for 다이어리 작성했을 때 view 구성
     var diaryData: GetDiaryInfo?
@@ -154,6 +155,7 @@ extension SummaryBottomSheetViewController: RequestSummaryCellDelegate{
         let index = indexPath.row - 1
         
         todoData[index].isChecked.toggle()
+        mainView.summaryTableView.reloadData()
         let data = todoData[index]
         
         TodoService.shared.modifyTodoCheckStatus(id: data.todoId, isChecked: data.isChecked){ result in
@@ -183,7 +185,8 @@ extension SummaryBottomSheetViewController: RequestSummaryCellDelegate{
             }
         }
     }
-    func processResponseDeleteDiary(){
+    
+    private func processResponseDeleteDiary(){
         isDiaryExist = false
         mainView.summaryTableView.reloadData()
         showDeleteCompleteToastMessage(type: .Diary)
@@ -191,6 +194,34 @@ extension SummaryBottomSheetViewController: RequestSummaryCellDelegate{
         //TODO: API 대체
         GetDiaryDataManager().getDiaryDataManager(self, yearMonth: todoDate!.yearMonthSendServer)
     }
+    
+    private func requestPatchTodoPin(index: Int){
+
+        todoData[index].isPinned.toggle()
+        self.dataArraySortByPin()
+        
+        let parameter = todoData[index]
+        
+        guard let newIndex = todoData.firstIndex(of: parameter) else{ return }
+        
+        mainView.summaryTableView.moveRow(at: [0,index], to: IndexPath(row: newIndex + 1, section: 0))
+        mainView.summaryTableView.reloadData()
+        
+        TodoService.shared.modifyTodoPinStatus(id: parameter.todoId,
+                                               isPinned: parameter.isPinned){ result in
+            switch result{
+            case .success:
+                print("[requestPatchTodoPin] success")
+                break
+            default:
+                print("[requestPatchTodoPin] fail")
+                self.todoData[index].isPinned.toggle()
+                break
+            }
+        }
+    }
+    
+    
 }
 
 //MARK: - AddButtonDelegate
@@ -261,30 +292,6 @@ extension SummaryBottomSheetViewController{
             let alert = DataBaseErrorAlert()
             self.present(alert, animated: true, completion: nil)
             return
-        }
-    }
-    
-    func checkSendPinApiResultCode(_ code: Int, _ indexPath: IndexPath){
-        switch code{
-        case 1000:
-            print("핀 고정 성공")
-            //pin 고정 또는 pin 고정 아니며 핀 고정 개수 초과하지 않은 케이스
-            var willChangeData = todoData[indexPath.row-1]
-            
-            willChangeData.isPinned!.toggle()
-            todoData[indexPath.row-1].isPinned = willChangeData.isPinned
-            
-            dataArraySortByPin()
-        
-            guard let newIndex = todoData.firstIndex(of: willChangeData) else{ return }
-            
-            mainView.summaryTableView.moveRow(at: indexPath, to: IndexPath(row: newIndex + 1, section: 0))
-            mainView.summaryTableView.reloadData()
-            return
-            
-        default:
-            let alert = DataBaseErrorAlert()
-            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -411,22 +418,15 @@ extension SummaryBottomSheetViewController: SelectedTableViewCellDeliver{
     
     func cellWillPin(_ indexPath: IndexPath){
         
-        let pinnedCount: Int = getPinnedCount()
-        
+        let pinnedCount = getPinnedCount()
         let willChangeData = todoData[indexPath.row-1]
         let currentPin = willChangeData.isPinned!
     
         if(!currentPin && pinnedCount >= 2){ //pin 상태가 아니지만, 핀 고정 개수 초과
-            
-            let alert = ConfirmAlertViewController(title: "고정은 2개까지만 가능합니다.")
-            alert.modalPresentationStyle = .overFullScreen
-            self.present(alert, animated: false, completion: nil)
+            let alert = ConfirmAlertViewController(title: "고정은 2개까지만 가능합니다.").show(in: self)
             return
         }
-        
-        let parameter = TodoPinInput(todoId: willChangeData.todoId, isPinned: !currentPin)
-        
-        TodoPinDataManager().patch(parameter: parameter, indexPath: indexPath)
+        requestPatchTodoPin(index: indexPath.row - 1)
     }
     
     func cellWillClamp(_ indexPath: IndexPath){
