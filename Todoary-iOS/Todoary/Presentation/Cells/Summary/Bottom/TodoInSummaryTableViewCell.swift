@@ -14,21 +14,30 @@ enum CurrentHidden{
     case right
 }
 
+protocol RequestSummaryCellDelegate{
+    func requestPatchTodoCheckStatus(cell: TodoInSummaryTableViewCell)
+}
+
+protocol SelectedTableViewCellDeliver: AnyObject{
+    func cellDidTapped(_ indexPath: IndexPath)
+    func cellWillAlarmEnabled(_ indexPath: IndexPath)
+    func cellWillPin(_ indexPath: IndexPath)
+    func cellWillClamp(_ indexPath: IndexPath)
+}
+
 class TodoInSummaryTableViewCell: UITableViewCell {
     
     //MARK: - Properties
     
-    static let cellIdentifier = "todoListCell"
-    
-    weak var delegate : SelectedTableViewCellDeliver?
-    
-    var navigation : UINavigationController!
+    static let cellIdentifier = "TodoInSummaryTableViewCell"
     
     var cellData : TodoResultModel!
+    var navigation : UINavigationController!
+    var requestDelegate: RequestSummaryCellDelegate!
+    weak var delegate : SelectedTableViewCellDeliver?
     
     //MARK: - Properties(for swipe)
     
-    //new ver.
     lazy var leftWidth : CGFloat = 105
     lazy var rightWidth : CGFloat = 58
     
@@ -180,10 +189,9 @@ class TodoInSummaryTableViewCell: UITableViewCell {
 
 //MARK: - Swipe Method
 extension TodoInSummaryTableViewCell{
-
-    @objc
-    func handlePan(_ recognizer: UIPanGestureRecognizer){
-
+    
+    @objc func handlePan(_ recognizer: UIPanGestureRecognizer){
+        
         let translation = recognizer.translation(in: self)
         let superView = self.superview?.superview
         
@@ -194,7 +202,7 @@ extension TodoInSummaryTableViewCell{
         if (recognizer.state == .changed){
             
             center = CGPoint(x: originalCenter.x + translation.x, y: originalCenter.y)
-    
+            
             //기존: 왼: 1.5, 오: 1.2 -> new: 왼: 1.2, 오: 1.5
             if(frame.origin.x > 0){ //왼쪽 view
                 isClamp = frame.origin.x > leftWidth * 1.2 && isViewAdd != .right
@@ -218,7 +226,7 @@ extension TodoInSummaryTableViewCell{
                                         width: bounds.size.width,
                                         height: bounds.size.height)
                     superView?.bringSubviewToFront(hiddenRightView)
-//                    superView?.bringSubviewToFront(HomeViewController.bottomSheetVC.addButton)
+                    //                    superView?.bringSubviewToFront(HomeViewController.bottomSheetVC.addButton)
                     UIView.animate(withDuration: 0.4, animations: {self.frame = clampFrame})
                 }else{
                     isViewAdd = .left
@@ -233,7 +241,7 @@ extension TodoInSummaryTableViewCell{
             }
         }
     }
-
+    
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer {
             let translation = panGestureRecognizer.translation(in: superview)
@@ -290,7 +298,7 @@ extension TodoInSummaryTableViewCell{
         UIView.animate(withDuration: 0.25,
                        animations: { self.frame = originalFrame },
                        completion: { _ in
-                self.removeHiddenViews()
+            self.removeHiddenViews()
         })
         
         isClamp = false
@@ -308,8 +316,8 @@ extension TodoInSummaryTableViewCell{
         UIView.animate(withDuration: 0.25,
                        animations: { self.frame = originalFrame },
                        completion: { _ in
-                self.removeHiddenViews()
-                self.delegate?.cellWillPin(indexPath)
+            self.removeHiddenViews()
+            self.delegate?.cellWillPin(indexPath)
         })
         
         isClamp = false
@@ -356,16 +364,11 @@ extension TodoInSummaryTableViewCell{
         }
     }
     
-    @objc
-    func checkBoxDidClicked(_ sender: UIButton){
-        
-        let parameter = TodoCheckboxInput(todoId: cellData.todoId, isChecked: !sender.isSelected)
-        
-        TodoCheckboxDataManager().patch(indexPath: getCellIndexPath()!, parameter: parameter)
+    @objc func checkBoxDidClicked(_ sender: UIButton){
+        requestDelegate.requestPatchTodoCheckStatus(cell: self)
     }
     
-    @objc
-    func alarmBtnDidClicked(_ sender : UIButton){
+    @objc func alarmBtnDidClicked(_ sender : UIButton){
         
         guard let indexPath = getCellIndexPath() else { return }
         
@@ -374,8 +377,7 @@ extension TodoInSummaryTableViewCell{
         cellWillMoveOriginalPosition()
     }
     
-    @objc
-    func deleteButtonDidClicked(_ sender : UIButton){
+    @objc func deleteButtonDidClicked(_ sender : UIButton){
         
         guard let indexPath = getCellIndexPath() else { return }
 
@@ -384,19 +386,11 @@ extension TodoInSummaryTableViewCell{
         TodoDeleteDataManager().delete(todoId: cellData.todoId, indexPath: indexPath)
     }
     
-    @objc
-    func pinButtonDidClicked(_ sender : UIButton){
+    @objc func pinButtonDidClicked(_ sender : UIButton){
         
         guard let indexPath = getCellIndexPath() else { return }
         
         cellWillMoveOriginalPosition(indexPath)
     }
-}
-
-protocol SelectedTableViewCellDeliver: AnyObject{
-    func cellDidTapped(_ indexPath: IndexPath)
-    func cellWillAlarmEnabled(_ indexPath: IndexPath)
-    func cellWillPin(_ indexPath: IndexPath)
-    func cellWillClamp(_ indexPath: IndexPath)
 }
 

@@ -26,21 +26,4 @@ class TodoCheckboxDataManager{
                 }
             }
     }
-    
-    func patch(indexPath: IndexPath, parameter: TodoCheckboxInput){
-        
-        AF.request("https://todoary.com/todo/check",
-                   method: .patch,
-                   parameters: parameter,
-                   encoder: JSONParameterEncoder.default,
-                   interceptor: Interceptor())
-            .validate().responseDecodable(of: ApiModel.self) { response in
-                switch response.result {
-                case .success(let result):
-                    HomeViewController.bottomSheetVC.checkSendCheckboxApiResultCode(indexPath: indexPath, code: result.code)
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
-    }
 }

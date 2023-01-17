@@ -17,7 +17,11 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
     
     //MARK: - Properties
     
-    var todoData = [TodoResultModel]()
+    var todoData = [TodoResultModel](){
+        didSet{
+            self.mainView.summaryTableView.reloadData()
+        }
+    }
     
     var isDiaryExist = false //for 다이어리 작성했을 때 view 구성
     var diaryData: GetDiaryInfo?
@@ -88,16 +92,7 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
         
         let alert = CancelAlertViewController(title: "다이어리를 삭제하시겠습니까?").show(in: self)
         alert.alertHandler = {
-            DiaryService.shared.deleteDiary(date: self.todoDate.dateSendServer){ result in
-                switch result{
-                case .success:
-                    self.processResponseDeleteDiary()
-                    break
-                default:
-                    DataBaseErrorAlert.show(in: self.homeNavigaiton)
-                    break
-                }
-            }
+            self.requestDeleteDiary()
         }
     }
     
@@ -151,11 +146,49 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
 }
 
 //MARK: - API
-extension SummaryBottomSheetViewController{
+extension SummaryBottomSheetViewController: RequestSummaryCellDelegate{
+    
+    func requestPatchTodoCheckStatus(cell: TodoInSummaryTableViewCell) {
+        
+        guard let indexPath = mainView.summaryTableView.indexPath(for: cell) else { return }
+        let index = indexPath.row - 1
+        
+        todoData[index].isChecked.toggle()
+        let data = todoData[index]
+        
+        TodoService.shared.modifyTodoCheckStatus(id: data.todoId, isChecked: data.isChecked){ result in
+            switch result{
+            case .success(_):
+                print("[requestPatchTodoCheckStatus] success")
+                break
+            default:
+                print("[requestPatchTodoCheckStatus] fail")
+                self.todoData[index].isChecked.toggle()
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+            
+        }
+    }
+    
+    private func requestDeleteDiary(){
+        DiaryService.shared.deleteDiary(date: self.todoDate.dateSendServer){ result in
+            switch result{
+            case .success:
+                self.processResponseDeleteDiary()
+                break
+            default:
+                DataBaseErrorAlert.show(in: self.homeNavigaiton)
+                break
+            }
+        }
+    }
     func processResponseDeleteDiary(){
         isDiaryExist = false
         mainView.summaryTableView.reloadData()
         showDeleteCompleteToastMessage(type: .Diary)
+        
+        //TODO: API 대체
         GetDiaryDataManager().getDiaryDataManager(self, yearMonth: todoDate!.yearMonthSendServer)
     }
 }
@@ -215,19 +248,6 @@ extension SummaryBottomSheetViewController: MoveViewController, AddButtonClickPr
 
 //MARK: - API
 extension SummaryBottomSheetViewController{
-    
-    func checkSendCheckboxApiResultCode(indexPath: IndexPath, code: Int){
-        switch code{
-        case 1000:
-            print("체크박스 API 성공")
-            todoData[indexPath.row - 1].isChecked.toggle()
-            mainView.summaryTableView.reloadData()
-            return
-        default:
-            let alert = DataBaseErrorAlert()
-            homeNavigaiton.present(alert, animated: true, completion: nil)
-        }
-    }
     
     func checkGetTodoApiResultCode(_ result: GeneralResponse<[TodoResultModel]>){
 
@@ -362,8 +382,9 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
             if(todoData.count != 0){
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoInSummaryTableViewCell.cellIdentifier, for: indexPath)
                         as? TodoInSummaryTableViewCell else{ fatalError() }
-
+                
                 cell.navigation = homeNavigaiton
+                cell.requestDelegate = self
                 cell.delegate = self
                 cell.cellData = todoData[indexPath.row-1]
                 cell.cellWillSettingWithData()
