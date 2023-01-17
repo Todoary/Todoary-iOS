@@ -15,19 +15,19 @@ class AccountService: BaseService{
 extension AccountService {
     
     func login(request: LoginInput, completion: @escaping (NetworkResult<Any>) -> Void){
-//        requestObjectWithEmptyResponse(AccountRouter.login(requeset: request), completion: completion)
+        requestObjectWithEmptyResponse(AccountRouter.login(requeset: request), completion: completion)
     }
     
     func autoLogin(request: AutoLoginInput, completion: @escaping (NetworkResult<Any>) -> Void){
-//        requestObjectWithEmptyResponse(AccountRouter.autoLogin(request: request), completion: completion)
+        requestObjectWithEmptyResponse(AccountRouter.autoLogin(request: request), completion: completion)
     }
     
     func logout(request: SignoutInput, completion: @escaping (NetworkResult<Any>) -> Void){
-//        requestObjectWithEmptyResponse(AccountRouter.logout, completion: completion)
+        requestObjectWithEmptyResponse(AccountRouter.logout, completion: completion)
     }
     
     func generateAccount(request: SignUpRequestModel, completion: @escaping (NetworkResult<Any>) -> Void){
-//        requestObjectWithEmptyResponse(AccountRouter.signUp(request: request), completion: completion)
+        requestObjectWithEmptyResponse(AccountRouter.signUp(request: request), completion: completion)
     }
     
     func generateAppleAccount(request: AppleSignUpRequestModel, completion: @escaping (NetworkResult<Any>) -> Void){
@@ -35,7 +35,7 @@ extension AccountService {
     }
     
     func deleteAccount(completion: @escaping (NetworkResult<Any>) -> Void){
-//        requestObjectWithEmptyResponse(AccountRouter.deleteAccount, completion: completion)
+        requestObjectWithEmptyResponse(AccountRouter.deleteAccount, completion: completion)
     }
     
     func deleteAppleAccount(request: DeleteAppleAccountRequestModel, completion: @escaping (NetworkResult<Any>) -> Void){

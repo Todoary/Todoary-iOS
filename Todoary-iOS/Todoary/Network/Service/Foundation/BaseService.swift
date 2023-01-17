@@ -92,7 +92,7 @@ class BaseService {
     }
     
     func requestObjectWithEmptyResponse(_ target: BaseRouter,
-                                   decodingMode: DecodingMode,
+                                        decodingMode: DecodingMode = .code,
                                    completion: @escaping (NetworkResult<Any>) -> Void) {
         AFManager.request(target).responseData { response in
             switch response.result {

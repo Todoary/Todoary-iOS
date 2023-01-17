@@ -103,6 +103,14 @@ class CategoryBottomSheetViewController : BaseBottomSheetViewController {
                     self.completion()
                     self.dismiss(animated: true)
                     break
+                case .invalidSuccess(let code):
+                    switch code{
+                    case 2104:
+                        self.showToastMessageView("같은 이름의 카테고리가 이미 존재합니다")
+                        break
+                    default:
+                        break
+                    }
                 default:
                     DataBaseErrorAlert.show(in: self)
                     break

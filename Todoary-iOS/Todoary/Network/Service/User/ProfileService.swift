@@ -19,11 +19,11 @@ extension ProfileService {
     }
     
     func modifyProfile(request: ProfileInput, completion: @escaping (NetworkResult<Any>) -> Void){
-//        requestObjectWithEmptyResponse(ProfileRouter.patchProfile(requeset: request), completion: completion)
+        requestObjectWithEmptyResponse(ProfileRouter.patchProfile(requeset: request), completion: completion)
     }
     
     func deleteProfileImage(completion: @escaping (NetworkResult<Any>) -> Void){
-//        requestObjectWithEmptyResponse(ProfileRouter.deleteProfileImage, completion: completion)
+        requestObjectWithEmptyResponse(ProfileRouter.deleteProfileImage, completion: completion)
     }
     
     func modifyProfileImage (image: UIImage, completion: @escaping (NetworkResult<Any>) -> Void) {

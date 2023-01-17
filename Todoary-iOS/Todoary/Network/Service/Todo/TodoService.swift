@@ -15,11 +15,11 @@ class TodoService: BaseService{
 extension TodoService {
     
     func generateTodo(request: TodoSettingInput, completion: @escaping (NetworkResult<Any>) -> Void){
-//        requestObjectWithEmptyResponse(TodoRouter.postTodo(requeset: request), completion: completion)
+        requestObjectWithEmptyResponse(TodoRouter.postTodo(requeset: request), completion: completion)
     }
     
     func modifyTodo(id: Int, request: TodoModifyInput, completion: @escaping (NetworkResult<Any>) -> Void){
-//        requestObjectWithEmptyResponse(TodoRouter.patchTodo(id: id, request: request), completion: completion)
+        requestObjectWithEmptyResponse(TodoRouter.patchTodo(id: id, request: request), completion: completion)
     }
     
     func getTodoByDate(date: String, completion: @escaping (NetworkResult<Any>) -> Void) {
@@ -31,14 +31,14 @@ extension TodoService {
     }
     
     func modifyTodoCheckStatus(id: Int, isChecked: Bool, completion: @escaping (NetworkResult<Any>) -> Void) {
-//        requestObjectWithEmptyResponse(TodoRouter.patchCheck(id: id, isChecked: isChecked), completion: completion)
+        requestObjectWithEmptyResponse(TodoRouter.patchCheck(id: id, isChecked: isChecked), completion: completion)
     }
     
     func modifyTodoPinStatus(id: Int, isPinned: Bool, completion: @escaping (NetworkResult<Any>) -> Void) {
-//        requestObjectWithEmptyResponse(TodoRouter.patchPin(id: id, isPinned: isPinned), completion: completion)
+        requestObjectWithEmptyResponse(TodoRouter.patchPin(id: id, isPinned: isPinned), completion: completion)
     }
     
     func modifyTodoAlarm(id: Int, request: TodoAlarmRequestModel, completion: @escaping (NetworkResult<Any>) -> Void) {
-//        requestObjectWithEmptyResponse(TodoRouter.patchAlarm(id: id, request: request), completion: completion)
+        requestObjectWithEmptyResponse(TodoRouter.patchAlarm(id: id, request: request), completion: completion)
     }
 }
