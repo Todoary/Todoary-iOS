@@ -15,7 +15,8 @@ enum CurrentHidden{
 }
 
 protocol RequestSummaryCellDelegate{
-    func requestPatchTodoCheckStatus(cell: TodoInSummaryTableViewCell)
+    func requestPatchTodoCheckStatus(index: Int)
+    func requestDeleteTodo(index: Int)
 }
 
 protocol SelectedTableViewCellDeliver: AnyObject{
@@ -52,7 +53,7 @@ class TodoInSummaryTableViewCell: UITableViewCell {
     lazy var checkBox = UIButton().then{
         $0.setImage(UIImage(named: "todo_check_empty"), for: .normal)
         $0.setImage(UIImage(named: "todo_check"), for: .selected)
-        $0.addTarget(self, action: #selector(checkBoxDidClicked(_:)), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(checkBoxDidClicked), for: .touchUpInside)
     }
     
     let titleLabel = UILabel().then{
@@ -97,12 +98,12 @@ class TodoInSummaryTableViewCell: UITableViewCell {
     }
     
     lazy var hiddenLeftView = HiddenLeftButtonView().then{
-        $0.pinButton.addTarget(self, action: #selector(pinButtonDidClicked(_:)), for: .touchUpInside)
+        $0.pinButton.addTarget(self, action: #selector(pinButtonDidClicked), for: .touchUpInside)
         $0.alarmBtn.addTarget(self, action: #selector(alarmBtnDidClicked(_:)), for: .touchUpInside)
     }
     
     lazy var hiddenRightView = HiddenRightButtonView().then{
-        $0.deleteButton.addTarget(self, action: #selector(deleteButtonDidClicked(_:)), for: .touchUpInside)
+        $0.deleteButton.addTarget(self, action: #selector(deleteButtonDidClicked), for: .touchUpInside)
     }
     
     lazy var hiddenView = UIView().then{
@@ -327,6 +328,11 @@ extension TodoInSummaryTableViewCell{
 
 extension TodoInSummaryTableViewCell{
     
+    var dataIndex: Int?{
+        let indexPath = (self.superview as? UITableView)?.indexPath(for: self)
+        return indexPath?.row
+    }
+    
     func getCellIndexPath() -> IndexPath?{
         return (self.superview as? UITableView)?.indexPath(for: self)
     }
@@ -364,8 +370,9 @@ extension TodoInSummaryTableViewCell{
         }
     }
     
-    @objc func checkBoxDidClicked(_ sender: UIButton){
-        requestDelegate.requestPatchTodoCheckStatus(cell: self)
+    @objc func checkBoxDidClicked(){
+        guard let index = dataIndex else { return }
+        requestDelegate.requestPatchTodoCheckStatus(index: index)
     }
     
     @objc func alarmBtnDidClicked(_ sender : UIButton){
@@ -377,19 +384,24 @@ extension TodoInSummaryTableViewCell{
         cellWillMoveOriginalPosition()
     }
     
-    @objc func deleteButtonDidClicked(_ sender : UIButton){
+    //TODO: 삭제 API 설계 후 진행
+    @objc func deleteButtonDidClicked(){
         
-        guard let indexPath = getCellIndexPath() else { return }
-
+        /*
+        guard let index = dataIndex else { return }
         cellWillMoveOriginalPosition()
-        
+        requestDelegate.requestDeleteTodo(index: index)
+         */
+
+
+        guard let indexPath = getCellIndexPath() else { return }
+        cellWillMoveOriginalPosition()
         TodoDeleteDataManager().delete(todoId: cellData.todoId, indexPath: indexPath)
+
     }
     
-    @objc func pinButtonDidClicked(_ sender : UIButton){
-        
+    @objc func pinButtonDidClicked(){
         guard let indexPath = getCellIndexPath() else { return }
-        
         cellWillMoveOriginalPosition(indexPath)
     }
 }

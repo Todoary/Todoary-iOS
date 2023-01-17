@@ -144,15 +144,17 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
         })
          
     }
+    
+    func getTodoDataIndex(from cell: TodoInSummaryTableViewCell) -> Int!{
+        guard let indexPath = mainView.summaryTableView.indexPath(for: cell) else { return nil }
+        return indexPath.row - 1
+    }
 }
 
 //MARK: - API
 extension SummaryBottomSheetViewController: RequestSummaryCellDelegate{
     
-    func requestPatchTodoCheckStatus(cell: TodoInSummaryTableViewCell) {
-        
-        guard let indexPath = mainView.summaryTableView.indexPath(for: cell) else { return }
-        let index = indexPath.row - 1
+    func requestPatchTodoCheckStatus(index: Int) {
         
         todoData[index].isChecked.toggle()
         mainView.summaryTableView.reloadData()
@@ -219,6 +221,29 @@ extension SummaryBottomSheetViewController: RequestSummaryCellDelegate{
                 break
             }
         }
+    }
+    
+    func requestPatchTodoAlarm(index: Int, request: TodoAlarmRequestModel){
+        
+        let id = todoData[index].todoId
+        
+        TodoService.shared.modifyTodoAlarm(id: id, request: request){ result in
+            switch result{
+            case .success:
+                self.todoData[index].targetTime = request.targetTime
+                self.todoData[index].isAlarmEnabled = true
+                self.dataArraySortByPin()
+                self.mainView.summaryTableView.reloadData()
+                self.dismiss(animated: false)
+                break
+            default:
+                break
+            }
+        }
+    }
+    
+    //TODO: 삭제 API 설계 이후 진행
+    func requestDeleteTodo(index: Int){
     }
     
     
@@ -423,7 +448,7 @@ extension SummaryBottomSheetViewController: SelectedTableViewCellDeliver{
         let currentPin = willChangeData.isPinned!
     
         if(!currentPin && pinnedCount >= 2){ //pin 상태가 아니지만, 핀 고정 개수 초과
-            let alert = ConfirmAlertViewController(title: "고정은 2개까지만 가능합니다.").show(in: self)
+            _ = ConfirmAlertViewController(title: "고정은 2개까지만 가능합니다.").show(in: self)
             return
         }
         requestPatchTodoPin(index: indexPath.row - 1)
@@ -471,10 +496,15 @@ extension SummaryBottomSheetViewController: SelectedTableViewCellDeliver{
     
     func cellWillAlarmEnabled(_ indexPath: IndexPath) {
         
-        let alert = AlarmAlertViewController()
-        alert.todoData = todoData[indexPath.row - 1]
+        let alert = AlarmAlertViewController().then{
+            let index = indexPath.row - 1
+            $0.todoData = todoData[index]
+            $0.completion = { request in
+                self.requestPatchTodoAlarm(index: index, request: request)
+            }
+        }
+//        alert.todoData = todoData[indexPath.row - 1]
         alert.modalPresentationStyle = .overFullScreen
-        
         self.present(alert, animated: false, completion: nil)
     }
 }

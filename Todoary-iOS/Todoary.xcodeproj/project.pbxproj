@@ -133,7 +133,6 @@
 		57E6516828B2F969006CB053 /* AppleLoginDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E6516728B2F969006CB053 /* AppleLoginDataManager.swift */; };
 		57E6516A28B31910006CB053 /* AppleLoginInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E6516928B31910006CB053 /* AppleLoginInput.swift */; };
 		57E75EB228E1B7D700AC24B2 /* AlarmAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E75EB128E1B7D700AC24B2 /* AlarmAlertViewController.swift */; };
-		57E75EB528E2731100AC24B2 /* TodoAlarmDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E75EB428E2731100AC24B2 /* TodoAlarmDataManager.swift */; };
 		57E75EB728E276B600AC24B2 /* TodoAlarmInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E75EB628E276B600AC24B2 /* TodoAlarmInput.swift */; };
 		57E75EB928E33AD400AC24B2 /* AddButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E75EB828E33AD400AC24B2 /* AddButtonViewController.swift */; };
 		57F97DD728D9566F00D4697C /* CancelMessageAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F97DD628D9566F00D4697C /* CancelMessageAlertViewController.swift */; };
@@ -421,7 +420,6 @@
 		57E6516728B2F969006CB053 /* AppleLoginDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginDataManager.swift; sourceTree = "<group>"; };
 		57E6516928B31910006CB053 /* AppleLoginInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginInput.swift; sourceTree = "<group>"; };
 		57E75EB128E1B7D700AC24B2 /* AlarmAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmAlertViewController.swift; sourceTree = "<group>"; };
-		57E75EB428E2731100AC24B2 /* TodoAlarmDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoAlarmDataManager.swift; sourceTree = "<group>"; };
 		57E75EB628E276B600AC24B2 /* TodoAlarmInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoAlarmInput.swift; sourceTree = "<group>"; };
 		57E75EB828E33AD400AC24B2 /* AddButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonViewController.swift; sourceTree = "<group>"; };
 		57F97DD628D9566F00D4697C /* CancelMessageAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelMessageAlertViewController.swift; sourceTree = "<group>"; };
@@ -1169,7 +1167,6 @@
 				5701EA9F2957244400F21F63 /* Category */,
 				57294AB32891162800DA2F31 /* GetTodoDataManager.swift */,
 				57294AAE2891159300DA2F31 /* TodoDeleteDataManager.swift */,
-				57E75EB428E2731100AC24B2 /* TodoAlarmDataManager.swift */,
 				57294AC32891170B00DA2F31 /* TodoCheckboxDataManager.swift */,
 				ACFBEC9B28B3DB8100B9D66F /* GetDiaryDataManager.swift */,
 				ACCD87D42897E77E00C34CE7 /* GetCalendataManager.swift */,
@@ -2152,7 +2149,6 @@
 				E0AB9EBB287B1BF40064CADA /* HomeViewController.swift in Sources */,
 				574913B7287ADF5600381BCD /* AlarmSettingViewController.swift in Sources */,
 				E0BF9629289B69D900895111 /* DiaryToolbarViewController+Layout.swift in Sources */,
-				57E75EB528E2731100AC24B2 /* TodoAlarmDataManager.swift in Sources */,
 				E0F9989D288A591D0051C7AA /* GetProfileDataManager.swift in Sources */,
 				E0C4BD672872115800FDEA0E /* UseServiceViewController.swift in Sources */,
 				57397FA0296D51810088B5F4 /* AlarmActiveStautsResultModel.swift in Sources */,
