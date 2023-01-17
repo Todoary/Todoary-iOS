@@ -61,5 +61,11 @@ class BaseBottomSheetViewController: UIViewController, UIViewControllerTransitio
     }
     
     func layout() {}
+    
+    func show(in viewController: UIViewController) -> Self{
+        self.loadViewIfNeeded()
+        viewController.present(self, animated: true)
+        return self
+    }
 
 }

@@ -11,51 +11,39 @@ class CategoryViewController: BaseViewController {
     
     //MARK: - Properties
     
-    var isCategoryAdd = false //카테고리 새로 생성했을 때, collectionView 끝으로 스크롤 위한 프로퍼티
+    private var isCategoryAdd = false
+    private var isEditingMode = false
     
-    var isEditingMode = false
-    
-    var currentCategory : CategoryButtonCollectionViewCell!
-    var currentCategoryIndex : IndexPath = [0,0]
+    let collectionViewInitialIndex: IndexPath = [0,0]
+    var selectCategoryIndex : IndexPath!
 
-    var todoData: [GetTodoInfo]! = []
-    
-    var categories : [GetCategoryResult] = []
+    var todoData = [TodoResultModel](){
+        didSet{
+            mainView.todoTableView.reloadData()
+        }
+    }
+    var categories = [CategoryModel](){
+        didSet{
+            mainView.categoryCollectionView.reloadData()
+        }
+    }
     
     let mainView = CategoryView()
     
-    //MARK: - LifeCycle
-    
+    //MARK: - Override
     override func viewWillAppear(_ animated: Bool) {
-        /*
-        CategoryService.shared.getCategories{ result in
-            switch result {
-            case .success(let data):
-                print("success")
-                break
-            default:
-                print("fail")
-                break
-            }
-        
-        }
-         */
-        GetCategoryDataManager().get(self)
+        requestGetCategories()
     }
     
     override func style() {
-        
         super.style()
-        
         setRightButtonWithImage(UIImage(named: "category_trash"))
     }
     
     override func layout() {
-        
         super.layout()
         
         self.view.addSubview(mainView)
-        
         mainView.snp.makeConstraints{
             $0.top.equalToSuperview().offset(Const.Offset.top)
             $0.leading.trailing.bottom.equalToSuperview()
@@ -63,6 +51,8 @@ class CategoryViewController: BaseViewController {
     }
     
     override func initialize() {
+        
+        selectCategoryIndex = collectionViewInitialIndex
         
         mainView.todoTableView.delegate = self
         mainView.todoTableView.dataSource = self
@@ -75,8 +65,7 @@ class CategoryViewController: BaseViewController {
     
     //MARK: - Action
     
-    @objc
-    func trashButtonDidClicked(){
+    @objc func trashButtonDidClicked(){
         
         let leading = isEditingMode ? 32 : 58
         let trailing = isEditingMode ? -30 : -4
@@ -95,19 +84,19 @@ class CategoryViewController: BaseViewController {
         isEditingMode.toggle()
     }
     
-    @objc
-    func categoryDidPressedLong(_ gesture : UILongPressGestureRecognizer){ //카테고리 수정
-        
+    @objc func categoryBottomSheetWillShowAndModifyCategory(_ gesture : UILongPressGestureRecognizer){ //카테고리 수정
         guard let index = (mainView.categoryCollectionView.indexPath(for: gesture.view! as! UICollectionViewCell)) else { return }
         
-        let vc = CategoryBottomSheetViewController()
-        vc.loadViewIfNeeded()
-        vc.categoryVC = self
-        vc.currentData = categories[index.row]
-        vc.mainView.categoryTextField.text = categories[index.row].title
-        vc.currentCategoryCount = categories.count
-        self.present(vc, animated: true)
+        let vc = CategoryBottomSheetViewController().show(in: self).then{
+            $0.currentData = categories[index.row]
+            $0.mainView.categoryTextField.text = categories[index.row].title
+            $0.currentCategoryCount = categories.count
+            $0.completion = {
+                self.requestGetCategories()
+            }
+        }
     }
+    
     
     //MARK: - Helper
     
@@ -143,7 +132,90 @@ class CategoryViewController: BaseViewController {
               toast.removeFromSuperview()
           })
     }
+}
 
+//MARK: - API
+extension CategoryViewController: CategoryTodoCellDelegate{
+
+    private func requestGetCategories(){
+        CategoryService.shared.getCategories{ result in
+            switch result {
+            case .success(let data):
+                print("[requestGetCategories] success")
+                if let data = data as? [CategoryModel]{
+                    self.categories = data
+                    self.isCategoryAdd = false
+                    self.processResponseGetCategories()
+                }
+                break
+            default:
+                print("[requestGetCategories] fail")
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+        }
+    }
+    
+    private func processResponseGetCategories(){
+        
+        if(selectCategoryIndex.row == categories.count){ //마지막에 위치한 category 삭제했을 경우, 그 이전 category를 select 상태로..
+            selectCategoryIndex = [0, categories.count - 1]
+            mainView.categoryCollectionView.reloadData()
+        }
+        
+        if(isCategoryAdd){
+            mainView.categoryCollectionView.scrollToItem(at: [0, categories.count], at: .right, animated: true)
+            isCategoryAdd = false
+        }
+
+        requestGetTodoByCategory()
+    }
+    
+    private func requestGetTodoByCategory(){
+        
+        let categoryId: Int = categories.count == 1 ? categories[0].id : categories[selectCategoryIndex.row].id
+        
+        TodoService.shared.getTodoByCategory(id: categoryId) { result in
+            switch result {
+            case .success(let data):
+                print("[getTodoByCategory] success")
+                if let data = data as? [TodoResultModel]{
+                    self.todoData = data
+                }
+                break
+            default:
+                print("[getTodoByCategory] fail")
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+        }
+    }
+    
+    func requestDeleteTodo() {
+        
+    }
+    
+    func requestPatchTodoCheckStatus(cell: CategoryTodoTableViewCell) {
+        
+        guard let index = mainView.todoTableView.indexPath(for: cell) else { return }
+        
+        todoData[index.row].isChecked.toggle()
+        let data = todoData[index.row]
+        
+        TodoService.shared.modifyTodoCheckStatus(id: data.todoId, isChecked: data.isChecked){ result in
+            switch result{
+            case .success(_):
+                print("[requestPatchTodoCheckStatus] success")
+                break
+            default:
+                print("[requestPatchTodoCheckStatus] fail")
+                self.todoData[index.row].isChecked.toggle()
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+            
+        }
+    }
 }
 
 //MARK: - TableView
@@ -165,10 +237,10 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource, Mo
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryTodoTableViewCell.cellIdentifier)
                     as? CategoryTodoTableViewCell else { fatalError() }
             
+            cell.delegate = self
+            
             let cellData = todoData[indexPath.row]
             cell.settingTodoData(cellData)
-            cell.navigation = self.navigationController
-            cell.viewController = self
             
             let leading = isEditingMode ? 58 : 32
             let trailing = isEditingMode ? -4 : -30
@@ -206,7 +278,7 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource, Mo
     
     func moveToViewController() {
         let vc = TodoSettingViewController()
-        TodoSettingViewController.selectCategory = categories[currentCategoryIndex.row].id
+        TodoSettingViewController.selectCategory = categories[selectCategoryIndex.row].id
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
@@ -225,19 +297,15 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
             
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryButtonCollectionViewCell.cellIdentifier, for: indexPath) as? CategoryButtonCollectionViewCell else { fatalError() }
             
-            cell.viewController = self
             cell.categoryData = categories[indexPath.row]
             cell.setBtnAttribute()
             
-            let longPress = UILongPressGestureRecognizer(target: self, action: #selector(categoryDidPressedLong))
+            let longPress = UILongPressGestureRecognizer(target: self, action: #selector(categoryBottomSheetWillShowAndModifyCategory))
             cell.addGestureRecognizer(longPress)
             
-            //처음 category 값 초기화용 코드
-            if(indexPath == currentCategoryIndex){
-                currentCategory = cell
+            if(indexPath == selectCategoryIndex){
                 cell.buttonIsSelected()
             }
-            
             return cell
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryPlusButtonCell.cellIdentifier, for: indexPath)
@@ -265,78 +333,45 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
             return CGSize(width: 50, height: 26)
         }
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         
         if(indexPath.row == categories.count){
-            let vc = CategoryBottomSheetViewController()
-            vc.loadViewIfNeeded()
-            vc.categoryVC = self
+            let vc = CategoryBottomSheetViewController().show(in: self)
             vc.mainView.deleteBtn.setTitle("취소", for: .normal)
-            self.present(vc, animated: true)
+            vc.completion = {
+                self.isCategoryAdd = true
+                self.requestGetCategories()
+            }
+            return false
         }
+        return true
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if(indexPath == selectCategoryIndex){
+            return
+        }
+        
+        if(indexPath != collectionViewInitialIndex && selectCategoryIndex == collectionViewInitialIndex){
+            guard let cell = mainView.categoryCollectionView.cellForItem(at: collectionViewInitialIndex) as? CategoryButtonCollectionViewCell else { return }
+            cell.buttonIsNotSelected()
+        }
+        
+        guard let cell = mainView.categoryCollectionView.cellForItem(at: indexPath) as? CategoryButtonCollectionViewCell else { return }
+        
+        cell.buttonIsSelected()
+        selectCategoryIndex = indexPath
+        requestGetTodoByCategory()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        guard let cell = mainView.categoryCollectionView.cellForItem(at: indexPath) as? CategoryButtonCollectionViewCell else { return }
+        cell.buttonIsNotSelected()
     }
 }
 
 //MARK: - API
 extension CategoryViewController{
-    
-    func checkGetCategoryApiResultCode(_ result: [GetCategoryResult]){
-        
-        self.categories = result
-        mainView.categoryCollectionView.reloadData()
-        
-        if(currentCategoryIndex.row == categories.count){
-            currentCategoryIndex = [0,categories.count - 1]
-            mainView.categoryCollectionView.reloadData()
-        }
-        
-        //TODO: - 카테고리 생성할 때만 마지막에 포커스 가도록 수정
-        if(isCategoryAdd){
-            mainView.categoryCollectionView.scrollToItem(at: [0,categories.count], at: .right, animated: true)
-            isCategoryAdd = false
-        }
-        
-        let categoryId = self.categories.count == 1 ? categories[0].id : categories[currentCategoryIndex.row].id
-
-        TodoGetByCategoryDataManager().get(viewController: self, categoryId: categoryId)
-    }
-    
-    func checkGetTodoApiResultCode(_ result: GetTodoModel){
-        switch result.code{
-        case 1000:
-            todoData = result.result
-            mainView.todoTableView.reloadData()
-            return
-        default:
-            let alert = DataBaseErrorAlert()
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
-    }
-    
-    func checkGetTodoApiResultCode(_ indexPath: IndexPath, _ result: GetTodoModel){
-        switch result.code{
-        case 1000:
-            
-            initTodoCellConstraint()
-            
-            guard let newCell = mainView.categoryCollectionView.cellForItem(at: indexPath) as? CategoryButtonCollectionViewCell else { return }
-            newCell.buttonIsSelected()
-            
-            currentCategory.buttonIsNotSelected()
-            currentCategory = newCell
-            currentCategoryIndex = indexPath
-
-            todoData = result.result
-            mainView.todoTableView.reloadData()
-            return
-        default:
-            let alert = DataBaseErrorAlert()
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
-    }
     
     func checkDeleteApiResultCode(code: Int, indexPath : IndexPath){
         switch code{

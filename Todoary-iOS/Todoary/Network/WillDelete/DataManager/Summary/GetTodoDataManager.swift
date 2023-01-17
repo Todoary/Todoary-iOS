@@ -10,9 +10,10 @@ import Alamofire
 
 class GetTodoDataManager{
     
+    /*
     func gets(_ date: String){
         
-        AF.request("https://todoary.com/todo/date/\(date)", method: .get, parameters: nil, interceptor: Interceptor()).validate().responseDecodable(of: GetTodoModel.self) { response in
+        AF.request("https://todoary.com/todo/date/\(date)", method: .get, parameters: nil, interceptor: Interceptor()).validate().responseDecodable(of: GeneralResponse<[TodoResultModel]>.self) { response in
             switch response.result {
             case .success(let result):
                 HomeViewController.bottomSheetVC.checkGetTodoApiResultCode(result)
@@ -21,6 +22,7 @@ class GetTodoDataManager{
             }
         }
     }
+     */
 }
 
 struct ConvertDate{

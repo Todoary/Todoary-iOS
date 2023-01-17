@@ -1,5 +1,5 @@
 //
-//  UserRouter.swift
+//  AlarmRouter.swift
 //  Todoary
 //
 //  Created by 박지윤 on 2023/01/10.
@@ -8,6 +8,7 @@
 import Foundation
 import Alamofire
 
+//MARK: - Enum
 enum AlarmRouter{
     case patchTodoAlarm(request: Bool)
     case patchDiaryAlarm(request: Bool)
@@ -15,9 +16,7 @@ enum AlarmRouter{
     case getAlarms
 }
 
-/*
- path 변경 사항 없음
- */
+//MARK: - Extension
 extension AlarmRouter: BaseRouter{
     
     var path: String{
@@ -57,10 +56,6 @@ extension AlarmRouter: BaseRouter{
         default:                    return .withToken
         }
     }
-}
-
-enum MarketingRouter{
-    case patchAgreement(request: Bool)
 }
 
 extension MarketingRouter: BaseRouter{

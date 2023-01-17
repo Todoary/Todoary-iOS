@@ -8,7 +8,7 @@
 import Foundation
 
 struct CategoryModel : Codable, Equatable {
-    var id : Int?
+    var id : Int! = nil
     var title : String
     var color : Int
     

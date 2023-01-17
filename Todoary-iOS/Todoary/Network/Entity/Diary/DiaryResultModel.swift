@@ -1,24 +1,17 @@
 //
-//  GetDiary.swift
+//  DiaryResultModel.swift
 //  Todoary
 //
-//  Created by 박지윤 on 2022/08/17.
+//  Created by 박지윤 on 2023/01/17.
 //
 
 import Foundation
 
-struct GetDiaryModel: Decodable{
-    let isSuccess: Bool
-    let code: Int
-    let message: String
-    let result: GetDiaryInfo?
-}
-
-struct GetDiaryInfo: Decodable{
+struct DiaryResultModel: Codable{
     let diaryId: Int
     var title: String
     var content: String
-    var created_at: String 
+    let created_at: String
     
     var content15AttributedString: NSAttributedString?{
     
@@ -53,4 +46,3 @@ struct GetDiaryInfo: Decodable{
         return changeText
     }
 }
-

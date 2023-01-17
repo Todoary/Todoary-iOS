@@ -1,5 +1,5 @@
 //
-//  DiaryTitleCell.swift
+//  DiaryInSummaryTableViewCell.swift
 //  Todoary
 //
 //  Created by 박지윤 on 2022/07/18.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DiaryTitleCell: UITableViewCell {
+class DiaryInSummaryTableViewCell: UITableViewCell {
     
     static let cellIdentifier = "diaryTitleCell"
     

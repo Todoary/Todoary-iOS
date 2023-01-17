@@ -9,6 +9,7 @@ import Foundation
 
 enum NetworkResult<T> {
     case success(T)
+    case invalidSuccess(Int)
     case requestErr(T)
     case pathErr
     case serverErr

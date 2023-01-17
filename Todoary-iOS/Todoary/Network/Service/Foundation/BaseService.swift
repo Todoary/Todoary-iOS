@@ -14,6 +14,7 @@ class BaseService {
     
     @frozen enum DecodingMode {
         case model
+        case code
         case message
         case general
     }
@@ -42,17 +43,21 @@ class BaseService {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GeneralResponse<T>.self, from: data)
         else { return .pathErr }
-        
+
         switch statusCode {
         case 200..<300:
             
             switch decodingMode {
             case .model:
-                return .success(decodedData.result ?? "None-Data")
-                
+                if(decodedData.code == 1000){
+                    return .success(decodedData.result ?? "None-Data")
+                }else{
+                    return .invalidSuccess(decodedData.code)
+                }
+            case .code:
+                return .success(decodedData.code)
             case .message:
                 return .success(decodedData.message ?? "None-Data")
-                
             case .general:
                 return .success(decodedData)
             }
@@ -65,16 +70,6 @@ class BaseService {
             
         default:
             return .networkFail
-        }
-    }
-    
-    func judgeStatusWithEmptyReponse(by statusCode: Int?) -> NetworkResult<Any> {
-        guard let statusCode = statusCode else { return .pathErr }
-        switch statusCode {
-        case 200..<300: return .success(())
-        case 400..<500: return .requestErr(())
-        case 500:       return .serverErr
-        default:        return .networkFail
         }
     }
     
@@ -96,9 +91,52 @@ class BaseService {
         }
     }
     
-    func requestObjectWithEmptyResponse(_ target: BaseRouter,completion: @escaping (NetworkResult<Any>) -> Void) {
+    func requestObjectWithEmptyResponse(_ target: BaseRouter,
+                                        decodingMode: DecodingMode = .code,
+                                   completion: @escaping (NetworkResult<Any>) -> Void) {
         AFManager.request(target).responseData { response in
-            completion(self.judgeStatusWithEmptyReponse(by: response.response?.statusCode))
+            switch response.result {
+            case .success:
+                guard let statusCode = response.response?.statusCode else { return }
+                guard let data = response.data else { return}
+                let networkResult = self.judgeStatusWithEmptyReponse(by: statusCode, data, decodingMode: decodingMode)
+                completion(networkResult)
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
+    }
+    
+    func judgeStatusWithEmptyReponse(by statusCode: Int, _ data: Data, decodingMode: DecodingMode = .general) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        guard let decodedData = try? decoder.decode(CodeResponse.self, from: data)
+        else { return .pathErr }
+
+        switch statusCode {
+        case 200..<300:
+            
+            switch decodingMode {
+            case .code, .model:
+                if(decodedData.code == 1000){
+                    return .success(())
+                }else{
+                    return .invalidSuccess(decodedData.code)
+                }
+            case .message:
+                return .success(decodedData.message ?? "None-Data")
+            case .general:
+                return .success(decodedData)
+            }
+            
+        case 400..<500:
+            return .requestErr(decodedData)
+            
+        case 500:
+            return .serverErr
+            
+        default:
+            return .networkFail
         }
     }
 

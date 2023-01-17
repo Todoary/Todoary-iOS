@@ -9,40 +9,44 @@ import Foundation
 import Alamofire
 
 enum AccountRouter{
-    /*
-     가입, 탈퇴 관리
-     */
+    case login(requeset: LoginInput)
+    case autoLogin(request: AutoLoginInput)
     case signUp(request: SignUpRequestModel)
     case signUpWithApple(request: AppleSignUpRequestModel)
     case deleteAccount
     case deleteAppleAccount(request: DeleteAppleAccountRequestModel)
+    case logout
     case emailDuplicate(request: String)
+    case patchPassword(requeset: PwFindInput)
 }
 
-/*
- path 변경 사항 없음
- 
- loginApple -> signupApple 네이밍 변경
- */
 extension AccountRouter: BaseRouter{
     
     var path: String{
         switch self{
+        case .login:                        return HTTPMethodURL.POST.login
+        case .autoLogin:                    return HTTPMethodURL.POST.autoLogin
         case .signUp:                   return HTTPMethodURL.POST.signup
-        case .signUpWithApple:          return HTTPMethodURL.POST.loginApple
+        case .signUpWithApple:          return HTTPMethodURL.POST.singupApple
         case .deleteAccount:            return HTTPMethodURL.PATCH.userDelete
         case .deleteAppleAccount:       return HTTPMethodURL.POST.revokeApple
+        case .logout:                       return HTTPMethodURL.POST.signout
         case .emailDuplicate:           return HTTPMethodURL.GET.emailDuplicate
+        case .patchPassword:                 return HTTPMethodURL.PATCH.password
         }
     }
     
     var method: HTTPMethod{
         switch self{
+        case .login:                        return .post
+        case .autoLogin:                    return .post
         case .signUp:                   return .post
         case .signUpWithApple:          return .post
         case .deleteAccount:            return .patch
         case .deleteAppleAccount:       return .post
+        case .logout:                       return .post
         case .emailDuplicate:           return .get
+        case .patchPassword:                 return .patch
         }
     }
     
@@ -55,12 +59,16 @@ extension AccountRouter: BaseRouter{
         case .emailDuplicate(let email):
             let parameter : [String:Any] = ["email" : email]
             return .query(parameter)
+        case .login:                        return .requestPlain
+        case .autoLogin(let request):       return .requestBody(request)
+        case .logout:                       return .requestPlain
+        case .patchPassword(let request):    return .requestBody(request)
         }
     }
     
     var header: HeaderType{
         switch self{
-        case .deleteAccount:        return .withToken
+        case .deleteAccount, .logout:        return .withToken
         default:                    return .default
         }
     }

@@ -7,19 +7,23 @@
 
 import UIKit
 
+protocol CategoryTodoCellDelegate{
+    func requestDeleteTodo()
+    func requestPatchTodoCheckStatus(cell: CategoryTodoTableViewCell)
+}
+
 class CategoryTodoTableViewCell: UITableViewCell {
     
     //MARK: - Properties
+    static let cellIdentifier = "CategoryTodoTableViewCell"
     
-    var todoData: GetTodoInfo!
+    var delegate: CategoryTodoCellDelegate!
+    var todoData: TodoResultModel!
     
-    //MARK: - UI
-
-    static let cellIdentifier = "todoCell"
+    //MARK: - Ui
     
-    var navigation: UINavigationController!
-    
-    var viewController: CategoryViewController!
+//    var navigation: UINavigationController!
+//    var viewController: CategoryViewController!
     
     lazy var categoryLabel = UIButton().then{
         $0.titleEdgeInsets = UIEdgeInsets(top: 4, left: 0, bottom: 3, right: 0)
@@ -32,7 +36,7 @@ class CategoryTodoTableViewCell: UITableViewCell {
     lazy var checkBox = UIButton().then{
         $0.setImage(UIImage(named: "todo_check_empty"), for: .normal)
         $0.setImage(UIImage(named: "todo_check"), for: .selected)
-        $0.addTarget(self, action: #selector(checkBoxDidClicked(_:)), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(checkBoxDidClicked), for: .touchUpInside)
     }
     
     lazy var todoTitle = UILabel().then{
@@ -129,21 +133,24 @@ class CategoryTodoTableViewCell: UITableViewCell {
     //MARK: - Action
     
     @objc
-    func checkBoxDidClicked(_ sender: UIButton){
-        let parameter = TodoCheckboxInput(todoId: todoData.todoId, isChecked: !sender.isSelected)
-        TodoCheckboxDataManager().patch(cell: self, parameter: parameter)
+    func checkBoxDidClicked(){
+        delegate.requestPatchTodoCheckStatus(cell: self)
     }
     
     @objc
     func deleteButtonDidClicked(){
+        
+        //TODO: TODO delete 삭제 서비스 추가된 후에 다시..
+        delegate.requestDeleteTodo()
+        
         guard let tableView = (self.superview as? UITableView) else{ fatalError() }
         let indexPath = tableView.indexPath(for: self)!
-        TodoDeleteDataManager().delete(viewController: self.viewController, todoId: self.todoData.todoId, indexPath: indexPath)
+//        TodoDeleteDataManager().delete(viewController: self.viewController, todoId: self.todoData.todoId, indexPath: indexPath)
     }
     
     //MARK: - Helper
     
-    func settingTodoData(_ cellData: GetTodoInfo){
+    func settingTodoData(_ cellData: TodoResultModel){
         
         self.todoData = cellData
         
@@ -159,19 +166,5 @@ class CategoryTodoTableViewCell: UITableViewCell {
         self.categoryLabel.setTitle(todoData.categoryTitle, for: .normal)
         self.categoryLabel.layer.borderColor = UIColor.categoryColor[todoData.color].cgColor
         self.categoryLabel.setTitleColor( UIColor.categoryColor[todoData.color], for: .normal)
-    }
-    
-    //MARK: - API
-    
-    func checkSendCheckboxApiResultCode(_ code: Int){
-        switch code{
-        case 1000:
-            print("성공")
-            checkBox.isSelected.toggle()
-            return
-        default:
-            let alert = DataBaseErrorAlert()
-            navigation.present(alert, animated: true, completion: nil)
-        }
     }
 }

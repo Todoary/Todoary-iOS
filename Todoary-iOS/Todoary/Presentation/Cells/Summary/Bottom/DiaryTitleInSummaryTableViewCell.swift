@@ -1,5 +1,5 @@
 //
-//  DiaryCell.swift
+//  DiaryTitleInSummaryTableViewCell.swift
 //  Todoary
 //
 //  Created by 박지윤 on 2022/07/18.
@@ -7,13 +7,13 @@
 
 import UIKit
 
-class DiaryCell: UITableViewCell {
+class DiaryTitleInSummaryTableViewCell: UITableViewCell {
     
     //MARK: - Properties
     
     static let cellIdentifier = "diaryCell"
     
-    var diaryData: GetDiaryInfo!
+    var diaryData: DiaryResultModel!
     
     //MARK: - UI
     
@@ -104,7 +104,7 @@ class DiaryCell: UITableViewCell {
         }
     }
     
-    func setUpDataBinding(_ data: GetDiaryInfo){
+    func setUpDataBinding(_ data: DiaryResultModel){
         
         self.diaryData = data
         

@@ -13,13 +13,14 @@ class AlarmAlertViewController: UIViewController {
     
     var pickTime = [0,0,0] //0: hour, 1: minute, 2: am/pm
     
-    var todoData: GetTodoInfo!{
+    var todoData: TodoResultModel!{
         didSet{
             setPickerTime()
         }
     }
     
     var targetTime: String!
+    var completion: ((TodoAlarmRequestModel)->Void)!
     
     //MARK: - UI
     
@@ -158,26 +159,11 @@ class AlarmAlertViewController: UIViewController {
         
         self.targetTime = "\(hour):\(minute)"
         
-        let parameter = TodoSettingInput(title: nil,
-                                         targetDate: todoData.targetDate,
-                                         isAlarmEnabled: true,
-                                         targetTime: targetTime,
-                                         categoryId: nil)
-
-        TodoAlarmDataManager().patch(viewController: self, todoId: todoData.todoId, parameter: parameter)
+        let parameter = TodoAlarmRequestModel(targetDate: todoData.targetDate,
+                                              isAlarmEnabled: true,
+                                              targetTime: targetTime)
+        completion(parameter)
     }
-    
-    func successApiAlarmPatch(){
-        
-        guard let index = HomeViewController.bottomSheetVC.todoDataList.firstIndex(of: todoData) else { return }
-        HomeViewController.bottomSheetVC.todoDataList[index].targetTime = self.targetTime
-        HomeViewController.bottomSheetVC.todoDataList[index].isAlarmEnabled = true
-        HomeViewController.bottomSheetVC.dataArraySortByPin()
-        HomeViewController.bottomSheetVC.mainView.summaryTableView.reloadData()
-        
-        self.dismiss(animated: false, completion: nil)
-    }
-
 }
 
 extension AlarmAlertViewController: UIPickerViewDelegate, UIPickerViewDataSource{

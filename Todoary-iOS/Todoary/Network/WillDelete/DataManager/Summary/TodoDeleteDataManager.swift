@@ -10,6 +10,7 @@ import Alamofire
 
 class TodoDeleteDataManager{
     
+    /*
     func delete(viewController: CategoryViewController, todoId: Int, indexPath: IndexPath){
         
         AF.request("https://todoary.com/todo/\(todoId)",
@@ -27,6 +28,7 @@ class TodoDeleteDataManager{
                 }
         }
     }
+     */
 
     func delete(todoId: Int, indexPath: IndexPath){
     

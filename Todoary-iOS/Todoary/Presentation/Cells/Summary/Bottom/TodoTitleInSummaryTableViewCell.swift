@@ -1,5 +1,5 @@
 //
-//  TodoListTitleCell.swift
+//  TodoTitleInSummaryTableViewCell.swift
 //  Todoary
 //
 //  Created by 박지윤 on 2022/07/18.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TodoListTitleCell: UITableViewCell {
+class TodoTitleInSummaryTableViewCell: UITableViewCell {
     
     static let cellIdentifier = "todolistTitleCell"
     

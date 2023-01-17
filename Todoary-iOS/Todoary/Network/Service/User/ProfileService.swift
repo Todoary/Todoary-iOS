@@ -31,9 +31,9 @@ extension ProfileService {
         AFManager.upload(multipartFormData: ProfileRouter.patchProfileImage(image: image).multipart, with: ProfileRouter.patchProfileImage(image: image)).responseData { response in
             switch(response.result) {
             case .success:
-                let networkResult = self.judgeStatusWithEmptyReponse(by: response.response?.statusCode)
-                completion(networkResult) 
-                
+//                let networkResult = self.judgeStatusWithEmptyReponse(by: response.response?.statusCode)
+//                completion(networkResult)
+                break
             case .failure(let err) :
                 print(err.localizedDescription)
             }

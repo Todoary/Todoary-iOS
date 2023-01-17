@@ -122,7 +122,17 @@ extension DiaryViewController{
             
             self.present(alert, animated: true, completion: nil)
         }else{
+            
+            //TODO: - trimmingCharacters로 공백 및 endline 제거 후, input에 넣기
+//            let trimmingText = mainView.textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
+        
             let text = NSAttributedString(attributedString: mainView.textView.attributedText)
+        
+            
+//            let length = mainView.textView.text.count - trimmingText.count
+//
+//            let text = NSMutableAttributedString(attributedString: mainView.textView.attributedText)
+//            text.removeAttribute(.backgroundColor, range: NSRange(location: trimmingText.count, length: length))
             
             let input = DiaryInput(title: mainView.diaryTitle.text!,
                                    content: text.attributedString2Html!)
@@ -131,7 +141,7 @@ extension DiaryViewController{
         }
     }
     
-    func setUpDiaryData(_ data: GetDiaryInfo){
+    func setUpDiaryData(_ data: DiaryResultModel){
         self.diaryData = data
         mainView.diaryTitle.text = diaryData?.title
         mainView.textView.attributedText = diaryData?.content15AttributedString

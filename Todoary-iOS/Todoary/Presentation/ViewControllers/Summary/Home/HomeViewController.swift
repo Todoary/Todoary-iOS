@@ -133,13 +133,43 @@ class HomeViewController : UIViewController {
     @objc func settingInit(){
         self.initView()
         
-        let convertDate = ConvertDate(year: self.year, month: self.month, date: String(self.today))
+        let convertDate = ConvertDate(year: self.year,
+                                      month: self.month,
+                                      date: String(self.today)).dateSendServer
         
-        GetTodoDataManager().gets(convertDate.dateSendServer)
-        DiaryDataManager().gets(convertDate.dateSendServer)
+        requestGetTodoByDate(convertDate)
+        requestGetDiary(convertDate)
     }
     
     //MARK: - API
+    
+    func requestGetTodoByDate(_ date: String){
+        TodoService.shared.getTodoByDate(date: date){ result in
+            switch result{
+            case .success(let data):
+                guard let data = data as? [TodoResultModel] else { return }
+                HomeViewController.bottomSheetVC.processResponseGetTodo(data: data)
+                break
+            case .requestErr:
+                break
+            default:
+                break
+            }
+        }
+    }
+    
+    func requestGetDiary(_ date: String){
+        DiaryService.shared.getDiary(date: date){ result in
+            switch result{
+            case .success(let data):
+                let data = data as? DiaryResultModel
+                HomeViewController.bottomSheetVC.processResponseGetDiary(data: data)
+                break
+            default:
+                break
+            }
+        }
+    }
     
     func successAPI_home(_ result : GetProfileResult) {
         mainView.nickname.text = result.nickname
@@ -187,9 +217,8 @@ class HomeViewController : UIViewController {
         
         let pickDate = HomeViewController.bottomSheetVC.todoDate.dateSendServer
         
-        GetTodoDataManager().gets(pickDate)
-        DiaryDataManager().gets(pickDate)
-        GetCategoryDataManager().getCategoryDataManager(HomeViewController.bottomSheetVC)
+        requestGetTodoByDate(pickDate)
+        requestGetDiary(pickDate)
         
         present(HomeViewController.bottomSheetVC, animated: true, completion: nil)
     }

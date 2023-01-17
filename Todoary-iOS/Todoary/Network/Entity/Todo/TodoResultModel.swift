@@ -1,34 +1,26 @@
 //
-//  TodoGetInput.swift
+//  TodoResultModel.swift
 //  Todoary
 //
-//  Created by 박지윤 on 2022/07/27.
+//  Created by 박지윤 on 2023/01/17.
 //
 
 import Foundation
-import UIKit
 
-struct GetTodoModel: Decodable{
-    let isSuccess: Bool?
-    let code: Int?
-    let message: String?
-    let result: [GetTodoInfo]?
-}
-
-struct GetTodoInfo: Decodable, Equatable{
+struct TodoResultModel: Codable, Equatable{
     let todoId: Int
-    var isPinned: Bool?
-    var isChecked: Bool?
+    var isPinned: Bool!
+    var isChecked: Bool
     var title: String
     var targetDate: String
     var isAlarmEnabled: Bool
     var targetTime: String?
-    var createdTime: String
+    let createdTime: String
     var categoryId: Int
-    var categoryTitle: String
-    var color: Int
+    let categoryTitle: String
+    let color: Int
     
-    static func ==(lhs: GetTodoInfo, rhs: GetTodoInfo) -> Bool {
+    static func ==(lhs: TodoResultModel, rhs: TodoResultModel) -> Bool {
         return lhs.todoId == rhs.todoId
     }
     

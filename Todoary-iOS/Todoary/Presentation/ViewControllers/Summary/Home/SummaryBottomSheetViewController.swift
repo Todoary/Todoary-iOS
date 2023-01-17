@@ -17,39 +17,47 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
     
     //MARK: - Properties
     
-    var todoDataList : [GetTodoInfo]! = []
+    var todoData = [TodoResultModel]()
+//    {
+//        didSet{
+//            self.mainView.summaryTableView.reloadData()
+//        }
+//    }
     
     var isDiaryExist = false //for 다이어리 작성했을 때 view 구성
-    
-    var diaryData: GetDiaryInfo?
+    var diaryData: DiaryResultModel?{
+        didSet{
+            isDiaryExist = diaryData == nil ? false : true
+        }
+    }
     
     var todoDate : ConvertDate!
     
-    var clampCell : IndexPath = [0,-1] //clamp cell default 값
+    var clampCell : IndexPath = [0,-1]
     
     var homeNavigaiton : UINavigationController!
     
-    var addButtonView: AddButtonViewController?
     
     let mainView = SummaryBottomSheetView()
+    var addButtonView: AddButtonViewController? //TODO: ViewController 말고 View 사용으로 변경
     
     //MARK: - LifeCycle
     
     override func viewDidLoad() {
     
         super.viewDidLoad()
-        
+
         style()
         layout()
         initialize()
     }
     
-    func style(){
+    private func style(){
         self.view.backgroundColor = UIColor(red: 134/255, green: 182/255, blue: 255/255, alpha: 1)
         setUpSheetVC()
     }
     
-    func layout(){
+    private func layout(){
         self.view.addSubview(mainView)
         
         mainView.snp.makeConstraints{
@@ -57,7 +65,7 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
         }
     }
     
-    func initialize(){
+    private func initialize(){
         mainView.summaryTableView.delegate = self
         mainView.summaryTableView.dataSource = self
         mainView.summaryTableView.separatorStyle = .none
@@ -68,15 +76,14 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
     
     //MARK: - Action
     
-    @objc
-    func cellWillMoveToOriginalPosition(){
-        guard let cell = mainView.summaryTableView.cellForRow(at: clampCell) as? TodoListTableViewCell else { return }
+    @objc func cellWillMoveToOriginalPosition(){
+        guard let cell = mainView.summaryTableView.cellForRow(at: clampCell) as? TodoInSummaryTableViewCell else { return }
         cell.cellWillMoveOriginalPosition()
     }
     
+    //TODO: - will delete?
     //아무런 todo 없는경우 배너 누르기-> 키보드 올리기
-    @objc
-    func tapBannerCell(){
+    @objc func tapBannerCell(){
         HomeViewController.dismissBottomSheet()
         
         let vc = TodoSettingViewController()
@@ -86,14 +93,12 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
         self.homeNavigaiton.pushViewController(vc, animated: true)
     }
     
-    @objc func diaryDeleteBtnDidClicked(){
+    @objc func deleteDiaryAlertWillShow(){
         
-        let alert = CancelAlertViewController(title: "다이어리를 삭제하시겠습니까?")
+        let alert = CancelAlertViewController(title: "다이어리를 삭제하시겠습니까?").show(in: self)
         alert.alertHandler = {
-            DiaryDataManager().delete(createdDate: self.todoDate.dateSendServer)
+            self.requestDeleteDiary()
         }
-        alert.modalPresentationStyle = .overFullScreen
-        self.present(alert, animated: false, completion: nil)
     }
     
     @objc func willMoveDiaryViewController(){
@@ -101,7 +106,7 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
         let vc = DiaryViewController()
 
         vc.pickDate = HomeViewController.bottomSheetVC.todoDate
-        vc.todoDataList = self.todoDataList
+        vc.todoDataList = self.todoData
         vc.mainView.todaysDate.text = vc.pickDate?.dateUsedDiary
 
         if(isDiaryExist){
@@ -114,22 +119,14 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
     
     //MARK: - Helper
  
-    func getPinnedCount() -> Int{
-        
-        var count : Int = 0
-        
-        todoDataList.forEach{ each in
-            if (each.isPinned!) {
-                count += 1
-            }
-        }
-        return count
+    private func getPinnedCount() -> Int{
+        todoData.filter({ $0.isPinned }).count
     }
     
     func dataArraySortByPin(){
-        todoDataList.sort(by: {$0.createdTime < $1.createdTime})
-        todoDataList.sort(by: {$0.targetTime ?? "25:00" < $1.targetTime ?? "25:00"})
-        todoDataList.sort(by: {$0.isPinned! && !$1.isPinned!})
+        todoData.sort(by: {$0.createdTime < $1.createdTime})
+        todoData.sort(by: {$0.targetTime ?? "25:00" < $1.targetTime ?? "25:00"})
+        todoData.sort(by: {$0.isPinned! && !$1.isPinned!})
     }
     
     func showDeleteCompleteToastMessage(type: DeleteType){
@@ -151,8 +148,123 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
         })
          
     }
+    
+    func getTodoDataIndex(from cell: TodoInSummaryTableViewCell) -> Int!{
+        guard let indexPath = mainView.summaryTableView.indexPath(for: cell) else { return nil }
+        return indexPath.row - 1
+    }
 }
-//MARK: - Delegate
+
+//MARK: - API
+extension SummaryBottomSheetViewController: RequestSummaryCellDelegate{
+    
+    func requestPatchTodoCheckStatus(index: Int) {
+        
+        todoData[index].isChecked.toggle()
+        mainView.summaryTableView.reloadData()
+        let data = todoData[index]
+        
+        TodoService.shared.modifyTodoCheckStatus(id: data.todoId, isChecked: data.isChecked){ result in
+            switch result{
+            case .success(_):
+                print("[requestPatchTodoCheckStatus] success")
+                break
+            default:
+                print("[requestPatchTodoCheckStatus] fail")
+                self.todoData[index].isChecked.toggle()
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+            
+        }
+    }
+    
+    private func requestDeleteDiary(){
+        DiaryService.shared.deleteDiary(date: self.todoDate.dateSendServer){ result in
+            switch result{
+            case .success:
+                self.processResponseDeleteDiary()
+                break
+            default:
+                DataBaseErrorAlert.show(in: self.homeNavigaiton)
+                break
+            }
+        }
+    }
+    
+    private func processResponseDeleteDiary(){
+        isDiaryExist = false
+        mainView.summaryTableView.reloadData()
+        showDeleteCompleteToastMessage(type: .Diary)
+        
+        //TODO: API 대체
+        GetDiaryDataManager().getDiaryDataManager(self, yearMonth: todoDate!.yearMonthSendServer)
+    }
+    
+    private func requestPatchTodoPin(index: Int){
+
+        todoData[index].isPinned.toggle()
+        self.dataArraySortByPin()
+        
+        let parameter = todoData[index]
+        
+        guard let newIndex = todoData.firstIndex(of: parameter) else{ return }
+        
+        mainView.summaryTableView.moveRow(at: [0,index], to: IndexPath(row: newIndex + 1, section: 0))
+        mainView.summaryTableView.reloadData()
+        
+        TodoService.shared.modifyTodoPinStatus(id: parameter.todoId,
+                                               isPinned: parameter.isPinned){ result in
+            switch result{
+            case .success:
+                print("[requestPatchTodoPin] success")
+                break
+            default:
+                print("[requestPatchTodoPin] fail")
+                self.todoData[index].isPinned.toggle()
+                break
+            }
+        }
+    }
+    
+    func requestPatchTodoAlarm(index: Int, request: TodoAlarmRequestModel){
+        
+        let id = todoData[index].todoId
+        
+        TodoService.shared.modifyTodoAlarm(id: id, request: request){ result in
+            switch result{
+            case .success:
+                self.todoData[index].targetTime = request.targetTime
+                self.todoData[index].isAlarmEnabled = true
+                self.dataArraySortByPin()
+                self.mainView.summaryTableView.reloadData()
+                self.dismiss(animated: false)
+                break
+            default:
+                break
+            }
+        }
+    }
+    
+    func processResponseGetTodo(data: [TodoResultModel]){
+        todoData = data
+        dataArraySortByPin()
+        mainView.summaryTableView.reloadData()
+    }
+    
+    func processResponseGetDiary(data: DiaryResultModel?){
+        diaryData = data
+        mainView.summaryTableView.reloadData()
+    }
+    
+    //TODO: 삭제 API 설계 이후 진행
+    func requestDeleteTodo(index: Int){
+    }
+    
+    
+}
+
+//MARK: - AddButtonDelegate
 extension SummaryBottomSheetViewController: MoveViewController, AddButtonClickProtocol{
     
     func moveToViewController() {
@@ -193,10 +305,10 @@ extension SummaryBottomSheetViewController: MoveViewController, AddButtonClickPr
         let vc = DiaryViewController()
 
         vc.pickDate = HomeViewController.bottomSheetVC.todoDate
-        vc.todoDataList = self.todoDataList
+        vc.todoDataList = self.todoData
         vc.mainView.todaysDate.text = vc.pickDate?.dateUsedDiary
 
-        if(isDiaryExist){
+        if(diaryData != nil){
             vc.setUpDiaryData(diaryData!)
         }
 
@@ -208,66 +320,14 @@ extension SummaryBottomSheetViewController: MoveViewController, AddButtonClickPr
 //MARK: - API
 extension SummaryBottomSheetViewController{
     
-    func checkSendCheckboxApiResultCode(indexPath: IndexPath, code: Int){
-        switch code{
-        case 1000:
-            print("체크박스 API 성공")
-            todoDataList[indexPath.row - 1].isChecked?.toggle()
-            mainView.summaryTableView.reloadData()
-            return
-        default:
-            let alert = DataBaseErrorAlert()
-            homeNavigaiton.present(alert, animated: true, completion: nil)
-        }
-    }
-    
-    func checkGetTodoApiResultCode(_ result: GetTodoModel){
-
-        switch result.code{
-        case 1000:
-            todoDataList = result.result
-            dataArraySortByPin()
-            mainView.summaryTableView.reloadData()
-            return
-        default:
-            let alert = DataBaseErrorAlert()
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
-    }
-    
-    func checkSendPinApiResultCode(_ code: Int, _ indexPath: IndexPath){
-        switch code{
-        case 1000:
-            print("핀 고정 성공")
-            //pin 고정 또는 pin 고정 아니며 핀 고정 개수 초과하지 않은 케이스
-            var willChangeData = todoDataList[indexPath.row-1]
-            
-            willChangeData.isPinned!.toggle()
-            todoDataList[indexPath.row-1].isPinned = willChangeData.isPinned
-            
-            dataArraySortByPin()
-        
-            guard let newIndex = todoDataList.firstIndex(of: willChangeData) else{ return }
-            
-            mainView.summaryTableView.moveRow(at: indexPath, to: IndexPath(row: newIndex + 1, section: 0))
-            mainView.summaryTableView.reloadData()
-            return
-            
-        default:
-            let alert = DataBaseErrorAlert()
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
-    
     func checkTodoDeleteApiResultCode(_ code: Int, _ indexPath: IndexPath){
         switch code{
         case 1000:
-            if(todoDataList.count == 1){
-                todoDataList = []
+            if(todoData.count == 1){
+                todoData = []
                 mainView.summaryTableView.reloadData()
             }else{
-                todoDataList.remove(at: indexPath.row-1)
+                todoData.remove(at: indexPath.row-1)
                 mainView.summaryTableView.deleteRows(at: [indexPath], with: .fade)
             }
             showDeleteCompleteToastMessage(type: .Todo)
@@ -281,48 +341,13 @@ extension SummaryBottomSheetViewController{
             return
         }
     }
-    
-    func checkGetDiaryApiResultCode(_ result: GetDiaryModel){
-        switch result.code{
-        case 1000:
-            isDiaryExist = true
-            diaryData = result.result
-            mainView.summaryTableView.reloadData()
-            
-            return
-        case 2402:
-            isDiaryExist = false
-            mainView.summaryTableView.reloadData()
-            return
-        default:
-            print(result.code)
-            print(result.message)
-            let alert = DataBaseErrorAlert()
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
-    
-    func checkDeleteDiaryApiResultCode(_ code: Int){
-        switch code{
-        case 1000:
-            isDiaryExist = false
-            mainView.summaryTableView.reloadData()
-            showDeleteCompleteToastMessage(type: .Diary)
-            GetDiaryDataManager().getDiaryDataManager(self, yearMonth: todoDate!.yearMonthSendServer)
-            return
-        default:
-            let alert = DataBaseErrorAlert()
-            self.homeNavigaiton.present(alert, animated: true, completion: nil)
-            return
-        }
-    }
 }
 
 //MARK: - TableView
 extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoDataList.count != 0 ? todoDataList.count + 3 : 4
+        return todoData.count != 0 ? todoData.count + 3 : 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -331,16 +356,16 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
         
         switch indexPath.row{
         case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoListTitleCell.cellIdentifier, for: indexPath)
-                    as? TodoListTitleCell else{ fatalError() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoTitleInSummaryTableViewCell.cellIdentifier, for: indexPath)
+                    as? TodoTitleInSummaryTableViewCell else{ fatalError() }
             cell.navigaiton = homeNavigaiton
             cell.delegate = self
             return cell
         case rowCount - 2:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: DiaryTitleCell.cellIdentifier, for: indexPath) as? DiaryTitleCell else{ fatalError() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: DiaryInSummaryTableViewCell.cellIdentifier, for: indexPath) as? DiaryInSummaryTableViewCell else{ fatalError() }
             if(isDiaryExist){
                 cell.deleteBtn.isHidden = false
-                cell.deleteBtn.addTarget(self, action: #selector(diaryDeleteBtnDidClicked), for: .touchUpInside)
+                cell.deleteBtn.addTarget(self, action: #selector(deleteDiaryAlertWillShow), for: .touchUpInside)
             }else{
                 cell.deleteBtn.isHidden = true
             }
@@ -349,8 +374,8 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
             
             //선택한 날짜에 다이어리 존재 여부에 따른 table cell 구성 differ
             if(isDiaryExist){
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: DiaryCell.cellIdentifier, for: indexPath)
-                        as? DiaryCell else{ fatalError()}
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: DiaryTitleInSummaryTableViewCell.cellIdentifier, for: indexPath)
+                        as? DiaryTitleInSummaryTableViewCell else{ fatalError()}
                 
                 let tapGesture = UITapGestureRecognizer(target: self, action: #selector(willMoveDiaryViewController))
                 cell.addGestureRecognizer(tapGesture)
@@ -361,24 +386,23 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
                 
                 return cell
             }else{
-                let cell = tableView.dequeueReusableCell(withIdentifier: DiaryBannerCell.cellIdentifier, for: indexPath)
+                let cell = tableView.dequeueReusableCell(withIdentifier: DiaryBannerInSummaryTableViewCell.cellIdentifier, for: indexPath)
                 return cell
             }
 
         default:
-            if(todoDataList.count != 0){
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoListTableViewCell.cellIdentifier, for: indexPath)
-                        as? TodoListTableViewCell else{ fatalError() }
-
-                cell.navigation = homeNavigaiton
+            if(todoData.count != 0){
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoInSummaryTableViewCell.cellIdentifier, for: indexPath)
+                        as? TodoInSummaryTableViewCell else{ fatalError() }
+                cell.requestDelegate = self
                 cell.delegate = self
-                cell.cellData = todoDataList[indexPath.row-1]
+                cell.cellData = todoData[indexPath.row-1]
                 cell.cellWillSettingWithData()
                 
                 return cell
             }else{
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoBannerCell.cellIdentifier, for: indexPath)
-                        as? TodoBannerCell else{ fatalError() }
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoBannerInSummaryTableViewCell.cellIdentifier, for: indexPath)
+                        as? TodoBannerInSummaryTableViewCell else{ fatalError() }
                 
                 let tapBannerCell = CellButtonTapGesture(target: self, action: #selector(tapBannerCell))
                 tapBannerCell.caller = indexPath.row
@@ -397,22 +421,15 @@ extension SummaryBottomSheetViewController: SelectedTableViewCellDeliver{
     
     func cellWillPin(_ indexPath: IndexPath){
         
-        let pinnedCount: Int = getPinnedCount()
-        
-        let willChangeData = todoDataList[indexPath.row-1]
+        let pinnedCount = getPinnedCount()
+        let willChangeData = todoData[indexPath.row-1]
         let currentPin = willChangeData.isPinned!
     
         if(!currentPin && pinnedCount >= 2){ //pin 상태가 아니지만, 핀 고정 개수 초과
-            
-            let alert = ConfirmAlertViewController(title: "고정은 2개까지만 가능합니다.")
-            alert.modalPresentationStyle = .overFullScreen
-            self.present(alert, animated: false, completion: nil)
+            _ = ConfirmAlertViewController(title: "고정은 2개까지만 가능합니다.").show(in: self)
             return
         }
-        
-        let parameter = TodoPinInput(todoId: willChangeData.todoId, isPinned: !currentPin)
-        
-        TodoPinDataManager().patch(parameter: parameter, indexPath: indexPath)
+        requestPatchTodoPin(index: indexPath.row - 1)
     }
     
     func cellWillClamp(_ indexPath: IndexPath){
@@ -423,7 +440,7 @@ extension SummaryBottomSheetViewController: SelectedTableViewCellDeliver{
         }else if(clampCell.row != -1){
         //2. -1 아닐 경우 -> 이미 고정되어 있는 cell 존재 -> 고정 풀기
             guard let cell = mainView.summaryTableView.cellForRow(at: clampCell)
-                    as? TodoListTableViewCell else{ return }
+                    as? TodoInSummaryTableViewCell else{ return }
             cell.cellWillMoveOriginalPosition()
         }
         //row 값 -1일 때와, row 값 -1 아닐 때 공통 코드(즉, 자기 자신 아닐 때만 제외)
@@ -438,12 +455,12 @@ extension SummaryBottomSheetViewController: SelectedTableViewCellDeliver{
          3. if clamp 상태 X -> todoSettingVC 이동
          */
         
-        guard let clampCell = mainView.summaryTableView.cellForRow(at: clampCell) as? TodoListTableViewCell else { return }
+        guard let clampCell = mainView.summaryTableView.cellForRow(at: clampCell) as? TodoInSummaryTableViewCell else { return }
         
         if(!clampCell.isClamp){
             HomeViewController.dismissBottomSheet()
             
-            guard let tapCell = mainView.summaryTableView.cellForRow(at: indexPath) as? TodoListTableViewCell else { return }
+            guard let tapCell = mainView.summaryTableView.cellForRow(at: indexPath) as? TodoInSummaryTableViewCell else { return }
             
             let vc = TodoSettingViewController()
             vc.todoSettingData = tapCell.cellData
@@ -457,10 +474,14 @@ extension SummaryBottomSheetViewController: SelectedTableViewCellDeliver{
     
     func cellWillAlarmEnabled(_ indexPath: IndexPath) {
         
-        let alert = AlarmAlertViewController()
-        alert.todoData = todoDataList[indexPath.row - 1]
+        let alert = AlarmAlertViewController().then{
+            let index = indexPath.row - 1
+            $0.todoData = todoData[index]
+            $0.completion = { request in
+                self.requestPatchTodoAlarm(index: index, request: request)
+            }
+        }
         alert.modalPresentationStyle = .overFullScreen
-        
         self.present(alert, animated: false, completion: nil)
     }
 }

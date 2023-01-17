@@ -17,13 +17,13 @@ enum HTTPMethodURL{
         static let profile =  "/users"
         static let alarmActivate =  "/users/alarm"
         //TODO
-        static let todoByDate = "/todo/date/:date"
-        static let todoByCategory = "/todo/category/:categoryId"
+        static let todoByDate = "/todo/date"
+        static let todoByCategory = "/todo/category"
         static let todoByYearMonth = "/todo/days/:year-month"
         //CATEGORY
         static let category = "/category"
         //DIARY
-        static let diary = "/diary?createdDate="
+        static let diary = "/diary"
         static let diaryByYearMonth = "/diary/days/:year-month"
         static let sticker = "/diary/:createdDate/sticker"
     }
@@ -35,7 +35,7 @@ enum HTTPMethodURL{
         static let token = "/auth/jwt"
         static let signup = "/auth/signup"
         static let revokeApple = "/auth/revoke/apple"
-        static let loginApple = "/auth/apple/token"
+        static let singupApple = "/auth/apple/token"
         //USER
         static let signout = "/users/signout"
         //TODO
@@ -43,7 +43,7 @@ enum HTTPMethodURL{
         //CATEGORY
         static let category = "/category"
         //DIARY
-        static let diary = "/diary/:createdDate"
+        static let diary = "/diary"
     }
     
     struct PUT{
@@ -66,7 +66,7 @@ enum HTTPMethodURL{
         static let todo = "/todo/:todoId"
         static let todoCheckbox = "/todo/check"
         static let todoPin = "/todo/pin"
-        static let todoAlarm = "/todo/:todoId/alarm"
+        static let todoAlarm = "/todo"
         //CATEGORY
         static let category = "/category"
     }
@@ -77,7 +77,7 @@ enum HTTPMethodURL{
         //CATEGORY
         static let category = "/category"
         //DIARY
-        static let diary = "/diary/:createdDate"
+        static let diary = "/diary"
     }
     
 }

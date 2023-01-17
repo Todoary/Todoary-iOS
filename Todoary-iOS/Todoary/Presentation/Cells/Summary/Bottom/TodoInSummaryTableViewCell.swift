@@ -1,5 +1,5 @@
 //
-//  TodoListTableViewCell.swift
+//  TodoInSummaryTableViewCell.swift
 //  Todoary
 //
 //  Created by 박지윤 on 2022/07/16.
@@ -14,27 +14,35 @@ enum CurrentHidden{
     case right
 }
 
-class TodoListTableViewCell: UITableViewCell {
+protocol RequestSummaryCellDelegate{
+    func requestPatchTodoCheckStatus(index: Int)
+    func requestDeleteTodo(index: Int)
+}
+
+protocol SelectedTableViewCellDeliver: AnyObject{
+    func cellDidTapped(_ indexPath: IndexPath)
+    func cellWillAlarmEnabled(_ indexPath: IndexPath)
+    func cellWillPin(_ indexPath: IndexPath)
+    func cellWillClamp(_ indexPath: IndexPath)
+}
+
+class TodoInSummaryTableViewCell: UITableViewCell {
     
     //MARK: - Properties
     
-    static let cellIdentifier = "todoListCell"
+    static let cellIdentifier = "TodoInSummaryTableViewCell"
     
+    var cellData : TodoResultModel!
+    var requestDelegate: RequestSummaryCellDelegate!
     weak var delegate : SelectedTableViewCellDeliver?
-    
-    var navigation : UINavigationController!
-    
-    var cellData : GetTodoInfo!
     
     //MARK: - Properties(for swipe)
     
-    //new ver.
     lazy var leftWidth : CGFloat = 105
     lazy var rightWidth : CGFloat = 58
     
     //hiddenView addSubView 되었는지 아닌지 확인 용도
     lazy var isViewAdd : CurrentHidden = .none
-    
     lazy var originalCenter = CGPoint()
     lazy var isClamp = false
     
@@ -43,7 +51,7 @@ class TodoListTableViewCell: UITableViewCell {
     lazy var checkBox = UIButton().then{
         $0.setImage(UIImage(named: "todo_check_empty"), for: .normal)
         $0.setImage(UIImage(named: "todo_check"), for: .selected)
-        $0.addTarget(self, action: #selector(checkBoxDidClicked(_:)), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(checkBoxDidClicked), for: .touchUpInside)
     }
     
     let titleLabel = UILabel().then{
@@ -88,12 +96,12 @@ class TodoListTableViewCell: UITableViewCell {
     }
     
     lazy var hiddenLeftView = HiddenLeftButtonView().then{
-        $0.pinButton.addTarget(self, action: #selector(pinButtonDidClicked(_:)), for: .touchUpInside)
+        $0.pinButton.addTarget(self, action: #selector(pinButtonDidClicked), for: .touchUpInside)
         $0.alarmBtn.addTarget(self, action: #selector(alarmBtnDidClicked(_:)), for: .touchUpInside)
     }
     
     lazy var hiddenRightView = HiddenRightButtonView().then{
-        $0.deleteButton.addTarget(self, action: #selector(deleteButtonDidClicked(_:)), for: .touchUpInside)
+        $0.deleteButton.addTarget(self, action: #selector(deleteButtonDidClicked), for: .touchUpInside)
     }
     
     lazy var hiddenView = UIView().then{
@@ -179,11 +187,10 @@ class TodoListTableViewCell: UITableViewCell {
 }
 
 //MARK: - Swipe Method
-extension TodoListTableViewCell{
-
-    @objc
-    func handlePan(_ recognizer: UIPanGestureRecognizer){
-
+extension TodoInSummaryTableViewCell{
+    
+    @objc func handlePan(_ recognizer: UIPanGestureRecognizer){
+        
         let translation = recognizer.translation(in: self)
         let superView = self.superview?.superview
         
@@ -194,7 +201,7 @@ extension TodoListTableViewCell{
         if (recognizer.state == .changed){
             
             center = CGPoint(x: originalCenter.x + translation.x, y: originalCenter.y)
-    
+            
             //기존: 왼: 1.5, 오: 1.2 -> new: 왼: 1.2, 오: 1.5
             if(frame.origin.x > 0){ //왼쪽 view
                 isClamp = frame.origin.x > leftWidth * 1.2 && isViewAdd != .right
@@ -218,7 +225,7 @@ extension TodoListTableViewCell{
                                         width: bounds.size.width,
                                         height: bounds.size.height)
                     superView?.bringSubviewToFront(hiddenRightView)
-//                    superView?.bringSubviewToFront(HomeViewController.bottomSheetVC.addButton)
+                    //                    superView?.bringSubviewToFront(HomeViewController.bottomSheetVC.addButton)
                     UIView.animate(withDuration: 0.4, animations: {self.frame = clampFrame})
                 }else{
                     isViewAdd = .left
@@ -233,7 +240,7 @@ extension TodoListTableViewCell{
             }
         }
     }
-
+    
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer {
             let translation = panGestureRecognizer.translation(in: superview)
@@ -290,7 +297,7 @@ extension TodoListTableViewCell{
         UIView.animate(withDuration: 0.25,
                        animations: { self.frame = originalFrame },
                        completion: { _ in
-                self.removeHiddenViews()
+            self.removeHiddenViews()
         })
         
         isClamp = false
@@ -308,8 +315,8 @@ extension TodoListTableViewCell{
         UIView.animate(withDuration: 0.25,
                        animations: { self.frame = originalFrame },
                        completion: { _ in
-                self.removeHiddenViews()
-                self.delegate?.cellWillPin(indexPath)
+            self.removeHiddenViews()
+            self.delegate?.cellWillPin(indexPath)
         })
         
         isClamp = false
@@ -317,7 +324,12 @@ extension TodoListTableViewCell{
     
 }
 
-extension TodoListTableViewCell{
+extension TodoInSummaryTableViewCell{
+    
+    var dataIndex: Int?{
+        let indexPath = (self.superview as? UITableView)?.indexPath(for: self)
+        return indexPath?.row
+    }
     
     func getCellIndexPath() -> IndexPath?{
         return (self.superview as? UITableView)?.indexPath(for: self)
@@ -356,16 +368,12 @@ extension TodoListTableViewCell{
         }
     }
     
-    @objc
-    func checkBoxDidClicked(_ sender: UIButton){
-        
-        let parameter = TodoCheckboxInput(todoId: cellData.todoId, isChecked: !sender.isSelected)
-        
-        TodoCheckboxDataManager().patch(indexPath: getCellIndexPath()!, parameter: parameter)
+    @objc func checkBoxDidClicked(){
+        guard let index = dataIndex else { return }
+        requestDelegate.requestPatchTodoCheckStatus(index: index)
     }
     
-    @objc
-    func alarmBtnDidClicked(_ sender : UIButton){
+    @objc func alarmBtnDidClicked(_ sender : UIButton){
         
         guard let indexPath = getCellIndexPath() else { return }
         
@@ -374,29 +382,25 @@ extension TodoListTableViewCell{
         cellWillMoveOriginalPosition()
     }
     
-    @objc
-    func deleteButtonDidClicked(_ sender : UIButton){
+    //TODO: 삭제 API 설계 후 진행
+    @objc func deleteButtonDidClicked(){
         
-        guard let indexPath = getCellIndexPath() else { return }
-
+        /*
+        guard let index = dataIndex else { return }
         cellWillMoveOriginalPosition()
-        
+        requestDelegate.requestDeleteTodo(index: index)
+         */
+
+
+        guard let indexPath = getCellIndexPath() else { return }
+        cellWillMoveOriginalPosition()
         TodoDeleteDataManager().delete(todoId: cellData.todoId, indexPath: indexPath)
+
     }
     
-    @objc
-    func pinButtonDidClicked(_ sender : UIButton){
-        
+    @objc func pinButtonDidClicked(){
         guard let indexPath = getCellIndexPath() else { return }
-        
         cellWillMoveOriginalPosition(indexPath)
     }
-}
-
-protocol SelectedTableViewCellDeliver: AnyObject{
-    func cellDidTapped(_ indexPath: IndexPath)
-    func cellWillAlarmEnabled(_ indexPath: IndexPath)
-    func cellWillPin(_ indexPath: IndexPath)
-    func cellWillClamp(_ indexPath: IndexPath)
 }
 
