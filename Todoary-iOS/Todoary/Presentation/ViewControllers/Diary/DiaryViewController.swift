@@ -84,7 +84,7 @@ class DiaryViewController: BaseViewController , UIGestureRecognizerDelegate{
     
     var todoDataList : [TodoResultModel]! = []
     
-    var diaryData: GetDiaryInfo?
+    var diaryData: DiaryResultModel?
     
     var pickDate: ConvertDate?
     

@@ -35,19 +35,6 @@ class DiaryDataManager {
         }
     }
     
-    func gets(_ date: String){
-        AF.request("https://todoary.com/diary", method: .get, parameters: ["createdDate":date],
-                   encoding: URLEncoding.queryString,
-                   interceptor: Interceptor()).validate().responseDecodable(of: GetDiaryModel.self) { response in
-            switch response.result {
-            case .success(let result):
-                HomeViewController.bottomSheetVC.checkGetDiaryApiResultCode(result)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
     //다이어리 스티커 생성/수정/삭제
     func diaryStickerDataManager(viewController: DiaryViewController, createdDate: String, parameter: DiaryStickerInput){
         

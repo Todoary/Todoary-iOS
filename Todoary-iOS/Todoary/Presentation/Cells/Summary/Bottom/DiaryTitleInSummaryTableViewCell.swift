@@ -13,7 +13,7 @@ class DiaryTitleInSummaryTableViewCell: UITableViewCell {
     
     static let cellIdentifier = "diaryCell"
     
-    var diaryData: GetDiaryInfo!
+    var diaryData: DiaryResultModel!
     
     //MARK: - UI
     
@@ -104,7 +104,7 @@ class DiaryTitleInSummaryTableViewCell: UITableViewCell {
         }
     }
     
-    func setUpDataBinding(_ data: GetDiaryInfo){
+    func setUpDataBinding(_ data: DiaryResultModel){
         
         self.diaryData = data
         

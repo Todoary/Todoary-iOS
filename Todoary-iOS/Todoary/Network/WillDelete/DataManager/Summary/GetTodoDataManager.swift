@@ -10,6 +10,7 @@ import Alamofire
 
 class GetTodoDataManager{
     
+    /*
     func gets(_ date: String){
         
         AF.request("https://todoary.com/todo/date/\(date)", method: .get, parameters: nil, interceptor: Interceptor()).validate().responseDecodable(of: GeneralResponse<[TodoResultModel]>.self) { response in
@@ -21,6 +22,7 @@ class GetTodoDataManager{
             }
         }
     }
+     */
 }
 
 struct ConvertDate{

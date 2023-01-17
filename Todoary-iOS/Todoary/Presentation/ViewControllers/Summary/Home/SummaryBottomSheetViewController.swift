@@ -25,7 +25,11 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
 //    }
     
     var isDiaryExist = false //for 다이어리 작성했을 때 view 구성
-    var diaryData: GetDiaryInfo?
+    var diaryData: DiaryResultModel?{
+        didSet{
+            isDiaryExist = diaryData == nil ? false : true
+        }
+    }
     
     var todoDate : ConvertDate!
     
@@ -242,6 +246,17 @@ extension SummaryBottomSheetViewController: RequestSummaryCellDelegate{
         }
     }
     
+    func processResponseGetTodo(data: [TodoResultModel]){
+        todoData = data
+        dataArraySortByPin()
+        mainView.summaryTableView.reloadData()
+    }
+    
+    func processResponseGetDiary(data: DiaryResultModel?){
+        diaryData = data
+        mainView.summaryTableView.reloadData()
+    }
+    
     //TODO: 삭제 API 설계 이후 진행
     func requestDeleteTodo(index: Int){
     }
@@ -293,7 +308,7 @@ extension SummaryBottomSheetViewController: MoveViewController, AddButtonClickPr
         vc.todoDataList = self.todoData
         vc.mainView.todaysDate.text = vc.pickDate?.dateUsedDiary
 
-        if(isDiaryExist){
+        if(diaryData != nil){
             vc.setUpDiaryData(diaryData!)
         }
 
@@ -304,21 +319,6 @@ extension SummaryBottomSheetViewController: MoveViewController, AddButtonClickPr
 
 //MARK: - API
 extension SummaryBottomSheetViewController{
-    
-    func checkGetTodoApiResultCode(_ result: GeneralResponse<[TodoResultModel]>){
-
-        switch result.code{
-        case 1000:
-            todoData = result.result ?? []
-            dataArraySortByPin()
-            mainView.summaryTableView.reloadData()
-            return
-        default:
-            let alert = DataBaseErrorAlert()
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
-    }
     
     func checkTodoDeleteApiResultCode(_ code: Int, _ indexPath: IndexPath){
         switch code{
@@ -339,26 +339,6 @@ extension SummaryBottomSheetViewController{
             let alert = DataBaseErrorAlert()
             self.present(alert, animated: true, completion: nil)
             return
-        }
-    }
-    
-    func checkGetDiaryApiResultCode(_ result: GetDiaryModel){
-        switch result.code{
-        case 1000:
-            isDiaryExist = true
-            diaryData = result.result
-            mainView.summaryTableView.reloadData()
-            
-            return
-        case 2402:
-            isDiaryExist = false
-            mainView.summaryTableView.reloadData()
-            return
-        default:
-            print(result.code)
-            print(result.message)
-            let alert = DataBaseErrorAlert()
-            self.present(alert, animated: true, completion: nil)
         }
     }
 }
@@ -503,7 +483,6 @@ extension SummaryBottomSheetViewController: SelectedTableViewCellDeliver{
                 self.requestPatchTodoAlarm(index: index, request: request)
             }
         }
-//        alert.todoData = todoData[indexPath.row - 1]
         alert.modalPresentationStyle = .overFullScreen
         self.present(alert, animated: false, completion: nil)
     }

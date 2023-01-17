@@ -141,7 +141,7 @@ extension DiaryViewController{
         }
     }
     
-    func setUpDiaryData(_ data: GetDiaryInfo){
+    func setUpDiaryData(_ data: DiaryResultModel){
         self.diaryData = data
         mainView.diaryTitle.text = diaryData?.title
         mainView.textView.attributedText = diaryData?.content15AttributedString

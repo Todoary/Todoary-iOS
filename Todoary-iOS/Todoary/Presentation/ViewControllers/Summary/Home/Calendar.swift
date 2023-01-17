@@ -157,9 +157,9 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         let convertDate = ConvertDate(year: year_component, month: month_component, date: days[indexPath.row])
         
         HomeViewController.bottomSheetVC.todoDate = convertDate
-                                                      
-        GetTodoDataManager().gets(convertDate.dateSendServer)
-        DiaryDataManager().gets(convertDate.dateSendServer)
+                                             
+        requestGetTodoByDate(convertDate.dateSendServer)
+        requestGetDiary(convertDate.dateSendServer)
         
         if self.year == year_component && self.month == month_component {
             if today == (indexPath.row - emptyDay) {
@@ -238,19 +238,17 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     
     func requestTodoFirstDayOfMonth(){
         
+        let convertDate: ConvertDate!
+        
         if self.year == year_component && self.month == month_component {
-            let convertDate = ConvertDate(year: self.year, month: self.month, date: String(self.today))
-            HomeViewController.bottomSheetVC.todoDate = convertDate
-                                                          
-            GetTodoDataManager().gets(convertDate.dateSendServer)
-            DiaryDataManager().gets(convertDate.dateSendServer)
+            convertDate = ConvertDate(year: self.year, month: self.month, date: String(self.today))
         }else {
-            let convertDate = ConvertDate(year: year_component, month: month_component, date: "1")
-            HomeViewController.bottomSheetVC.todoDate = convertDate
-                                                          
-            GetTodoDataManager().gets(convertDate.dateSendServer)
-            DiaryDataManager().gets(convertDate.dateSendServer)
+            convertDate = ConvertDate(year: year_component, month: month_component, date: "1")
         }
+        
+        HomeViewController.bottomSheetVC.todoDate = convertDate
+        requestGetTodoByDate(convertDate.dateSendServer)
+        requestGetDiary(convertDate.dateSendServer)
     }
     
     
