@@ -72,7 +72,7 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
         cell.cellWillMoveOriginalPosition()
     }
     
-    //TODO: - will delete
+    //TODO: - will delete?
     //아무런 todo 없는경우 배너 누르기-> 키보드 올리기
     @objc func tapBannerCell(){
         HomeViewController.dismissBottomSheet()
@@ -119,16 +119,8 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
     
     //MARK: - Helper
  
-    func getPinnedCount() -> Int{
-        
-        var count : Int = 0
-        
-        todoData.forEach{ each in
-            if (each.isPinned!) {
-                count += 1
-            }
-        }
-        return count
+    private func getPinnedCount() -> Int{
+        todoData.filter({ $0.isPinned }).count
     }
     
     func dataArraySortByPin(){
