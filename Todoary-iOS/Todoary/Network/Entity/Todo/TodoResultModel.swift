@@ -1,17 +1,11 @@
 //
-//  TodoModel.swift
+//  TodoResultModel.swift
 //  Todoary
 //
-//  Created by 송채영 on 2023/01/12.
+//  Created by 박지윤 on 2023/01/17.
 //
 
 import Foundation
-
-struct TodoAlarmRequestModel: Codable{
-    let targetDate: String
-    let isAlarmEnabled: Bool
-    let targetTime: String
-}
 
 struct TodoResultModel: Codable, Equatable{
     let todoId: Int

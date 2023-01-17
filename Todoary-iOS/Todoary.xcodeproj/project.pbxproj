@@ -49,8 +49,7 @@
 		57397F96296D510C0088B5F4 /* TodoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F95296D510C0088B5F4 /* TodoService.swift */; };
 		57397F98296D51170088B5F4 /* DiaryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F97296D51170088B5F4 /* DiaryRouter.swift */; };
 		57397F9A296D51210088B5F4 /* DiaryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F99296D51210088B5F4 /* DiaryService.swift */; };
-		57397F9E296D51780088B5F4 /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F9D296D51780088B5F4 /* AccountModel.swift */; };
-		57397FA0296D51810088B5F4 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F9F296D51810088B5F4 /* UserModel.swift */; };
+		57397FA0296D51810088B5F4 /* AlarmActiveStautsResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F9F296D51810088B5F4 /* AlarmActiveStautsResultModel.swift */; };
 		57468A6A289BCDE800056691 /* NoTodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57468A69289BCDE800056691 /* NoTodoTableViewCell.swift */; };
 		574913B7287ADF5600381BCD /* AlarmSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574913B6287ADF5600381BCD /* AlarmSettingViewController.swift */; };
 		574913B9287ADF6500381BCD /* AlarmSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574913B8287ADF6500381BCD /* AlarmSettingView.swift */; };
@@ -82,6 +81,16 @@
 		57556A932960030400B67369 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57556A922960030400B67369 /* BaseView.swift */; };
 		575DE94E2975124100E61B8F /* MarketingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575DE94D2975124100E61B8F /* MarketingRouter.swift */; };
 		575DE9502975125400E61B8F /* MarketingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575DE94F2975125400E61B8F /* MarketingService.swift */; };
+		575DE956297651AE00E61B8F /* DiaryRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575DE955297651AE00E61B8F /* DiaryRequestModel.swift */; };
+		575DE958297651C300E61B8F /* DiaryResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575DE957297651C300E61B8F /* DiaryResultModel.swift */; };
+		575DE95A297651D100E61B8F /* DiaryStickerPutResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575DE959297651D100E61B8F /* DiaryStickerPutResultModel.swift */; };
+		575DE95C297651E800E61B8F /* DiaryStickerResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575DE95B297651E800E61B8F /* DiaryStickerResultModel.swift */; };
+		575DE95E2976522000E61B8F /* TodoAlarmRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575DE95D2976522000E61B8F /* TodoAlarmRequestModel.swift */; };
+		575DE9602976523300E61B8F /* TodoResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575DE95F2976523300E61B8F /* TodoResultModel.swift */; };
+		575DE9622976528900E61B8F /* SignUpRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575DE9612976528900E61B8F /* SignUpRequestModel.swift */; };
+		575DE9642976529400E61B8F /* AppleSignUpRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575DE9632976529400E61B8F /* AppleSignUpRequestModel.swift */; };
+		575DE9662976529F00E61B8F /* AppleSignUpResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575DE9652976529F00E61B8F /* AppleSignUpResultModel.swift */; };
+		575DE968297652A600E61B8F /* DeleteAppleAccountRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575DE967297652A600E61B8F /* DeleteAppleAccountRequestModel.swift */; };
 		576ED6B028748FFA007389CD /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576ED6AF28748FFA007389CD /* NavigationView.swift */; };
 		576ED6B228749021007389CD /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576ED6B128749021007389CD /* String.swift */; };
 		576ED6B42874902A007389CD /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576ED6B32874902A007389CD /* UITextField.swift */; };
@@ -167,8 +176,6 @@
 		ACAE1D432898D9EC00B34DCC /* TodoModifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAE1D422898D9EC00B34DCC /* TodoModifyModel.swift */; };
 		ACBAE55E296E69B200E71CAD /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE55D296E69B200E71CAD /* ProfileRouter.swift */; };
 		ACBAE560296E69BF00E71CAD /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE55F296E69BF00E71CAD /* ProfileService.swift */; };
-		ACBAE56A29702D5300E71CAD /* TodoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE56929702D5300E71CAD /* TodoModel.swift */; };
-		ACBAE56C29702D6600E71CAD /* DiaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE56B29702D6600E71CAD /* DiaryModel.swift */; };
 		ACBAE56E29702D7700E71CAD /* ProfileGetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE56D29702D7700E71CAD /* ProfileGetModel.swift */; };
 		ACCD87B92893C43F00C34CE7 /* CategoryMakeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87B82893C43F00C34CE7 /* CategoryMakeInput.swift */; };
 		ACCD87BB2893C45400C34CE7 /* CategoryMakeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87BA2893C45400C34CE7 /* CategoryMakeModel.swift */; };
@@ -328,8 +335,7 @@
 		57397F95296D510C0088B5F4 /* TodoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoService.swift; sourceTree = "<group>"; };
 		57397F97296D51170088B5F4 /* DiaryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryRouter.swift; sourceTree = "<group>"; };
 		57397F99296D51210088B5F4 /* DiaryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryService.swift; sourceTree = "<group>"; };
-		57397F9D296D51780088B5F4 /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
-		57397F9F296D51810088B5F4 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		57397F9F296D51810088B5F4 /* AlarmActiveStautsResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmActiveStautsResultModel.swift; sourceTree = "<group>"; };
 		57468A69289BCDE800056691 /* NoTodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoTodoTableViewCell.swift; sourceTree = "<group>"; };
 		574913B6287ADF5600381BCD /* AlarmSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingViewController.swift; sourceTree = "<group>"; };
 		574913B8287ADF6500381BCD /* AlarmSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingView.swift; sourceTree = "<group>"; };
@@ -362,6 +368,16 @@
 		57556A922960030400B67369 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		575DE94D2975124100E61B8F /* MarketingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingRouter.swift; sourceTree = "<group>"; };
 		575DE94F2975125400E61B8F /* MarketingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingService.swift; sourceTree = "<group>"; };
+		575DE955297651AE00E61B8F /* DiaryRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryRequestModel.swift; sourceTree = "<group>"; };
+		575DE957297651C300E61B8F /* DiaryResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryResultModel.swift; sourceTree = "<group>"; };
+		575DE959297651D100E61B8F /* DiaryStickerPutResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryStickerPutResultModel.swift; sourceTree = "<group>"; };
+		575DE95B297651E800E61B8F /* DiaryStickerResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryStickerResultModel.swift; sourceTree = "<group>"; };
+		575DE95D2976522000E61B8F /* TodoAlarmRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoAlarmRequestModel.swift; sourceTree = "<group>"; };
+		575DE95F2976523300E61B8F /* TodoResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoResultModel.swift; sourceTree = "<group>"; };
+		575DE9612976528900E61B8F /* SignUpRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequestModel.swift; sourceTree = "<group>"; };
+		575DE9632976529400E61B8F /* AppleSignUpRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignUpRequestModel.swift; sourceTree = "<group>"; };
+		575DE9652976529F00E61B8F /* AppleSignUpResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignUpResultModel.swift; sourceTree = "<group>"; };
+		575DE967297652A600E61B8F /* DeleteAppleAccountRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAppleAccountRequestModel.swift; sourceTree = "<group>"; };
 		576ED6AF28748FFA007389CD /* NavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
 		576ED6B128749021007389CD /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		576ED6B32874902A007389CD /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
@@ -452,8 +468,6 @@
 		ACAE1D422898D9EC00B34DCC /* TodoModifyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModifyModel.swift; sourceTree = "<group>"; };
 		ACBAE55D296E69B200E71CAD /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
 		ACBAE55F296E69BF00E71CAD /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
-		ACBAE56929702D5300E71CAD /* TodoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModel.swift; sourceTree = "<group>"; };
-		ACBAE56B29702D6600E71CAD /* DiaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryModel.swift; sourceTree = "<group>"; };
 		ACBAE56D29702D7700E71CAD /* ProfileGetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileGetModel.swift; sourceTree = "<group>"; };
 		ACCD87B82893C43F00C34CE7 /* CategoryMakeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryMakeInput.swift; sourceTree = "<group>"; };
 		ACCD87BA2893C45400C34CE7 /* CategoryMakeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryMakeModel.swift; sourceTree = "<group>"; };
@@ -1744,7 +1758,10 @@
 		57C481C5296957E9008731D9 /* Diary */ = {
 			isa = PBXGroup;
 			children = (
-				ACBAE56B29702D6600E71CAD /* DiaryModel.swift */,
+				575DE955297651AE00E61B8F /* DiaryRequestModel.swift */,
+				575DE957297651C300E61B8F /* DiaryResultModel.swift */,
+				575DE959297651D100E61B8F /* DiaryStickerPutResultModel.swift */,
+				575DE95B297651E800E61B8F /* DiaryStickerResultModel.swift */,
 			);
 			path = Diary;
 			sourceTree = "<group>";
@@ -1760,7 +1777,8 @@
 		57C481C7296957ED008731D9 /* Todo */ = {
 			isa = PBXGroup;
 			children = (
-				ACBAE56929702D5300E71CAD /* TodoModel.swift */,
+				575DE95F2976523300E61B8F /* TodoResultModel.swift */,
+				575DE95D2976522000E61B8F /* TodoAlarmRequestModel.swift */,
 			);
 			path = Todo;
 			sourceTree = "<group>";
@@ -1768,7 +1786,7 @@
 		57C481C8296957EF008731D9 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				57397F9F296D51810088B5F4 /* UserModel.swift */,
+				57397F9F296D51810088B5F4 /* AlarmActiveStautsResultModel.swift */,
 				ACBAE56D29702D7700E71CAD /* ProfileGetModel.swift */,
 			);
 			path = User;
@@ -1777,7 +1795,10 @@
 		57C481C9296957F1008731D9 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				57397F9D296D51780088B5F4 /* AccountModel.swift */,
+				575DE9612976528900E61B8F /* SignUpRequestModel.swift */,
+				575DE9632976529400E61B8F /* AppleSignUpRequestModel.swift */,
+				575DE9652976529F00E61B8F /* AppleSignUpResultModel.swift */,
+				575DE967297652A600E61B8F /* DeleteAppleAccountRequestModel.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -2129,7 +2150,7 @@
 				57E75EB528E2731100AC24B2 /* TodoAlarmDataManager.swift in Sources */,
 				E0F9989D288A591D0051C7AA /* GetProfileDataManager.swift in Sources */,
 				E0C4BD672872115800FDEA0E /* UseServiceViewController.swift in Sources */,
-				57397FA0296D51810088B5F4 /* UserModel.swift in Sources */,
+				57397FA0296D51810088B5F4 /* AlarmActiveStautsResultModel.swift in Sources */,
 				5750365F288BE33F006A9070 /* CategoryViewController.swift in Sources */,
 				E0F99898288A58870051C7AA /* ProfileImgDeleteModel.swift in Sources */,
 				57294AD12894F72F00DA2F31 /* TodoPinInput.swift in Sources */,
@@ -2143,7 +2164,6 @@
 				57C481C12969537A008731D9 /* GeneralResponse.swift in Sources */,
 				E06F1AC928A605930066B824 /* AdvertiseTextSettingViewController.swift in Sources */,
 				57E6516A28B31910006CB053 /* AppleLoginInput.swift in Sources */,
-				ACBAE56C29702D6600E71CAD /* DiaryModel.swift in Sources */,
 				57294AC62891189700DA2F31 /* ApiModel.swift in Sources */,
 				AC5E27DA288EFCFE0056EC69 /* TodoCalendar.swift in Sources */,
 				ACCD87D52897E77E00C34CE7 /* GetCalendataManager.swift in Sources */,
@@ -2160,6 +2180,7 @@
 				57556A932960030400B67369 /* BaseView.swift in Sources */,
 				578B7AAB28AD116400E7B4F4 /* GetDiary.swift in Sources */,
 				AC5E27DC288FC0DA0056EC69 /* TodoAlarmBottomSheetViewController.swift in Sources */,
+				575DE95C297651E800E61B8F /* DiaryStickerResultModel.swift in Sources */,
 				570DD840295ED04B00A0D2A9 /* DiaryViewController+ToolBar.swift in Sources */,
 				574A70492885255B003C8F99 /* DiaryCell.swift in Sources */,
 				574A704528852523003C8F99 /* TodoListTitleCell.swift in Sources */,
@@ -2185,10 +2206,10 @@
 				ACACD01128749F520029D5CE /* LoginViewController.swift in Sources */,
 				57503652288A3FB7006A9070 /* LoginInput.swift in Sources */,
 				ACFBEC9728B3779700B9D66F /* FcmTokenModel.swift in Sources */,
-				57397F9E296D51780088B5F4 /* AccountModel.swift in Sources */,
 				E0F3CDC92895696E00A74AB7 /* DiaryTabelViewCell.swift in Sources */,
 				AC5E27F028914E930056EC69 /* TodoSettingInput.swift in Sources */,
 				AC5E27F228914EAE0056EC69 /* TodoSettingModel.swift in Sources */,
+				575DE95E2976522000E61B8F /* TodoAlarmRequestModel.swift in Sources */,
 				576ED6B42874902A007389CD /* UITextField.swift in Sources */,
 				57468A6A289BCDE800056691 /* NoTodoTableViewCell.swift in Sources */,
 				57B9F71328D94F7500ACEC94 /* CancelAlertViewController.swift in Sources */,
@@ -2227,10 +2248,13 @@
 				E076E9ED28703DEE001E14E1 /* AgreementViewController.swift in Sources */,
 				ACCD87CB2897BB4C00C34CE7 /* CategoryModifyInput.swift in Sources */,
 				ACFBEC9528B3777C00B9D66F /* FcmTokendataManager.swift in Sources */,
+				575DE9662976529F00E61B8F /* AppleSignUpResultModel.swift in Sources */,
 				AC9128D0287B34B30056932A /* ProfileViewController.swift in Sources */,
+				575DE9602976523300E61B8F /* TodoResultModel.swift in Sources */,
 				AC67C2DC2892904C00071763 /* SetKeboard.swift in Sources */,
 				E03856BB28914D8500CEEFBA /* ColorPickerBottomsheetCollectionViewCell.swift in Sources */,
 				E0F998C6288A6B010051C7AA /* SignoutInput.swift in Sources */,
+				575DE95A297651D100E61B8F /* DiaryStickerPutResultModel.swift in Sources */,
 				E0F99891288A58260051C7AA /* ProfileImgInput.swift in Sources */,
 				ACE7D5FC28A819C10093854A /* PinNumberSettingView.swift in Sources */,
 				57B9F70F28D94F4400ACEC94 /* BaseAlertViewController.swift in Sources */,
@@ -2260,11 +2284,11 @@
 				57294ACC28937C2C00DA2F31 /* TodoBannerCell.swift in Sources */,
 				57C481B2296952EE008731D9 /* CategoryRouter.swift in Sources */,
 				572E5ADA286EBDCC00D1FAA0 /* AppDelegate.swift in Sources */,
+				575DE958297651C300E61B8F /* DiaryResultModel.swift in Sources */,
 				E0BF9627289B69C000895111 /* DiaryToolbarView.swift in Sources */,
 				57556A8F295FC93300B67369 /* CategoryBottomSheetView.swift in Sources */,
 				ACCD87CD2897BB6500C34CE7 /* CategoryModifyModel.swift in Sources */,
 				E0AB9EC1287B1C570064CADA /* SettingAgreementViewController.swift in Sources */,
-				ACBAE56A29702D5300E71CAD /* TodoModel.swift in Sources */,
 				57E6516628B2F0E4006CB053 /* AppleLoginModel.swift in Sources */,
 				AC9859CD288505C5009FC2F8 /* WeekCell.swift in Sources */,
 				ACFBEC9E28B3DBB200B9D66F /* GetDiaryExistenceModel.swift in Sources */,
@@ -2293,6 +2317,8 @@
 				ACFBEC9928B379E000B9D66F /* FcmTokenInput.swift in Sources */,
 				57397F8C296D4F370088B5F4 /* AccountRouter.swift in Sources */,
 				57B16855295A8A2600639A15 /* SignUpView.swift in Sources */,
+				575DE9642976529400E61B8F /* AppleSignUpRequestModel.swift in Sources */,
+				575DE956297651AE00E61B8F /* DiaryRequestModel.swift in Sources */,
 				57294AAF2891159300DA2F31 /* TodoDeleteDataManager.swift in Sources */,
 				E0C4BD632872100900FDEA0E /* PrivacyTextView.swift in Sources */,
 				E0439ABD288C599A0075CBF0 /* ColorPickerView.swift in Sources */,
@@ -2313,6 +2339,7 @@
 				ACACD01628749F880029D5CE /* PwFindViewController.swift in Sources */,
 				578B7AA928AD114400E7B4F4 /* DiaryInput.swift in Sources */,
 				57DF45FD28A60DB90002D66C /* DiaryFont.swift in Sources */,
+				575DE9622976528900E61B8F /* SignUpRequestModel.swift in Sources */,
 				57C481BF29695370008731D9 /* HeaderType.swift in Sources */,
 				57B36ECA287AFA9A00378E16 /* DefaultTableViewCell.swift in Sources */,
 				E0F9989F288A592E0051C7AA /* GetProfileModel.swift in Sources */,
@@ -2322,6 +2349,7 @@
 				570DD833295EC4DB00A0D2A9 /* DiaryViewController.swift in Sources */,
 				ACBAE56E29702D7700E71CAD /* ProfileGetModel.swift in Sources */,
 				572E5B0E286EC10500D1FAA0 /* UIFont.swift in Sources */,
+				575DE968297652A600E61B8F /* DeleteAppleAccountRequestModel.swift in Sources */,
 				AC5E27CD288C38290056EC69 /* TodoWeekCell.swift in Sources */,
 				57397F88296D471B0088B5F4 /* AlarmRouter.swift in Sources */,
 				57503663288BE3A0006A9070 /* CategoryTodoTableViewCell.swift in Sources */,
