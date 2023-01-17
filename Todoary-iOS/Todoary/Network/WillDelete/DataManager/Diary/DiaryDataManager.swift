@@ -35,7 +35,7 @@ class DiaryDataManager {
         }
     }
     
-    //다이어리 삭제
+    /*//다이어리 삭제
     func delete(createdDate: String){
         
         AF.request("https://todoary.com/diary/\(createdDate)",
@@ -53,6 +53,7 @@ class DiaryDataManager {
                 }
         }
     }
+     */
     
     func gets(_ date: String){
         AF.request("https://todoary.com/diary", method: .get, parameters: ["createdDate":date],

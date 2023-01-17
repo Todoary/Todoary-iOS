@@ -72,6 +72,7 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
         cell.cellWillMoveOriginalPosition()
     }
     
+    //TODO: - will delete
     //아무런 todo 없는경우 배너 누르기-> 키보드 올리기
     @objc func tapBannerCell(){
         HomeViewController.dismissBottomSheet()
@@ -83,11 +84,20 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
         self.homeNavigaiton.pushViewController(vc, animated: true)
     }
     
-    @objc func diaryDeleteBtnDidClicked(){
+    @objc func deleteDiaryAlertWillShow(){
         
         let alert = CancelAlertViewController(title: "다이어리를 삭제하시겠습니까?").show(in: self)
         alert.alertHandler = {
-            DiaryDataManager().delete(createdDate: self.todoDate.dateSendServer)
+            DiaryService.shared.deleteDiary(date: self.todoDate.dateSendServer){ result in
+                switch result{
+                case .success:
+                    self.processResponseDeleteDiary()
+                    break
+                default:
+                    DataBaseErrorAlert.show(in: self.homeNavigaiton)
+                    break
+                }
+            }
         }
     }
     
@@ -147,6 +157,17 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
          
     }
 }
+
+//MARK: - API
+extension SummaryBottomSheetViewController{
+    func processResponseDeleteDiary(){
+        isDiaryExist = false
+        mainView.summaryTableView.reloadData()
+        showDeleteCompleteToastMessage(type: .Diary)
+        GetDiaryDataManager().getDiaryDataManager(self, yearMonth: todoDate!.yearMonthSendServer)
+    }
+}
+
 //MARK: - Delegate
 extension SummaryBottomSheetViewController: MoveViewController, AddButtonClickProtocol{
     
@@ -297,6 +318,7 @@ extension SummaryBottomSheetViewController{
         }
     }
     
+    /*
     func checkDeleteDiaryApiResultCode(_ code: Int){
         switch code{
         case 1000:
@@ -311,6 +333,7 @@ extension SummaryBottomSheetViewController{
             return
         }
     }
+     */
 }
 
 //MARK: - TableView
@@ -335,7 +358,7 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DiaryTitleCell.cellIdentifier, for: indexPath) as? DiaryTitleCell else{ fatalError() }
             if(isDiaryExist){
                 cell.deleteBtn.isHidden = false
-                cell.deleteBtn.addTarget(self, action: #selector(diaryDeleteBtnDidClicked), for: .touchUpInside)
+                cell.deleteBtn.addTarget(self, action: #selector(deleteDiaryAlertWillShow), for: .touchUpInside)
             }else{
                 cell.deleteBtn.isHidden = true
             }
