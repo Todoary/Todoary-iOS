@@ -852,17 +852,10 @@
 		5701EA572956F09D00F21F63 /* Summary */ = {
 			isa = PBXGroup;
 			children = (
+				E03856BA28914D8500CEEFBA /* ColorPickerBottomsheetCollectionViewCell.swift */,
 				5701EAA02957301400F21F63 /* Calendar */,
 				5701EA9D2957181400F21F63 /* Category */,
-				574A704E28865FEE003C8F99 /* HiddenTransparentButtonView.swift */,
-				574A6FED28826D30003C8F99 /* TodoInSummaryTableViewCell.swift */,
-				574A70372883C701003C8F99 /* TodoListTableViewCell+Layout.swift */,
-				574A704428852523003C8F99 /* TodoTitleInSummaryTableViewCell.swift */,
-				574A704628852543003C8F99 /* DiaryInSummaryTableViewCell.swift */,
-				574A70482885255B003C8F99 /* DiaryTitleInSummaryTableViewCell.swift */,
-				574A704A28852F9B003C8F99 /* DiaryBannerInSummaryTableViewCell.swift */,
-				57294ACB28937C2C00DA2F31 /* TodoBannerInSummaryTableViewCell.swift */,
-				E03856BA28914D8500CEEFBA /* ColorPickerBottomsheetCollectionViewCell.swift */,
+				575DE96929765BFE00E61B8F /* Bottom */,
 			);
 			path = Summary;
 			sourceTree = "<group>";
@@ -1669,6 +1662,21 @@
 				E06F1ACC28A61EF70066B824 /* NewAppPasswordViewController+Layout.swift */,
 			);
 			path = AppPassword;
+			sourceTree = "<group>";
+		};
+		575DE96929765BFE00E61B8F /* Bottom */ = {
+			isa = PBXGroup;
+			children = (
+				574A704E28865FEE003C8F99 /* HiddenTransparentButtonView.swift */,
+				574A6FED28826D30003C8F99 /* TodoInSummaryTableViewCell.swift */,
+				574A70372883C701003C8F99 /* TodoListTableViewCell+Layout.swift */,
+				574A704428852523003C8F99 /* TodoTitleInSummaryTableViewCell.swift */,
+				574A704628852543003C8F99 /* DiaryInSummaryTableViewCell.swift */,
+				574A70482885255B003C8F99 /* DiaryTitleInSummaryTableViewCell.swift */,
+				574A704A28852F9B003C8F99 /* DiaryBannerInSummaryTableViewCell.swift */,
+				57294ACB28937C2C00DA2F31 /* TodoBannerInSummaryTableViewCell.swift */,
+			);
+			path = Bottom;
 			sourceTree = "<group>";
 		};
 		57B9F70D28D94F0300ACEC94 /* Alert */ = {
