@@ -33,7 +33,6 @@ class TodoInSummaryTableViewCell: UITableViewCell {
     static let cellIdentifier = "TodoInSummaryTableViewCell"
     
     var cellData : TodoResultModel!
-    var navigation : UINavigationController!
     var requestDelegate: RequestSummaryCellDelegate!
     weak var delegate : SelectedTableViewCellDeliver?
     
@@ -44,7 +43,6 @@ class TodoInSummaryTableViewCell: UITableViewCell {
     
     //hiddenView addSubView 되었는지 아닌지 확인 용도
     lazy var isViewAdd : CurrentHidden = .none
-    
     lazy var originalCenter = CGPoint()
     lazy var isClamp = false
     
