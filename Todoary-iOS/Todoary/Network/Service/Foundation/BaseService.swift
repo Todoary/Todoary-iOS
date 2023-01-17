@@ -14,6 +14,7 @@ class BaseService {
     
     @frozen enum DecodingMode {
         case model
+        case code
         case message
         case general
     }
@@ -48,11 +49,16 @@ class BaseService {
             
             switch decodingMode {
             case .model:
-                return .success(decodedData.result ?? "None-Data")
-                
+                print(decodedData.code)
+                if(decodedData.code == 1000){
+                    return .success(decodedData.result ?? "None-Data")
+                }else{
+                    return .invalidSuccess(decodedData.code)
+                }
+            case .code:
+                return .success(decodedData.code)
             case .message:
                 return .success(decodedData.message ?? "None-Data")
-                
             case .general:
                 return .success(decodedData)
             }

@@ -113,11 +113,20 @@ class CategoryBottomSheetViewController : BaseBottomSheetViewController {
             let parameter = CategoryModel(title: categoryText, color: color)
             
             CategoryService.shared.generateCategory(request: parameter){ result in
+                print("응답",result)
                 switch result{
                 case .success(let data):
                     self.completion()
                     self.dismiss(animated: true)
                     break
+                case .invalidSuccess(let code):
+                    switch code{
+                    case 2104:
+                        self.showToastMessageView("같은 이름의 카테고리가 이미 존재합니다")
+                        break
+                    default:
+                        break
+                    }
                     //TODO: 1000이 아닌 경우 처리..
                     /*
                     if(data.code == 2104){
