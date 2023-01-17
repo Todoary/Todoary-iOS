@@ -169,9 +169,9 @@ class AlarmAlertViewController: UIViewController {
     
     func successApiAlarmPatch(){
         
-        guard let index = HomeViewController.bottomSheetVC.todoDataList.firstIndex(of: todoData) else { return }
-        HomeViewController.bottomSheetVC.todoDataList[index].targetTime = self.targetTime
-        HomeViewController.bottomSheetVC.todoDataList[index].isAlarmEnabled = true
+        guard let index = HomeViewController.bottomSheetVC.todoData.firstIndex(of: todoData) else { return }
+        HomeViewController.bottomSheetVC.todoData[index].targetTime = self.targetTime
+        HomeViewController.bottomSheetVC.todoData[index].isAlarmEnabled = true
         HomeViewController.bottomSheetVC.dataArraySortByPin()
         HomeViewController.bottomSheetVC.mainView.summaryTableView.reloadData()
         

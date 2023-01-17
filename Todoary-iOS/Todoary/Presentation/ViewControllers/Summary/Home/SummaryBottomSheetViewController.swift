@@ -17,10 +17,9 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
     
     //MARK: - Properties
     
-    var todoDataList : [TodoResultModel]! = []
+    var todoData = [TodoResultModel]()
     
     var isDiaryExist = false //for 다이어리 작성했을 때 view 구성
-    
     var diaryData: GetDiaryInfo?
     
     var todoDate : ConvertDate!
@@ -29,9 +28,9 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
     
     var homeNavigaiton : UINavigationController!
     
-    var addButtonView: AddButtonViewController?
     
     let mainView = SummaryBottomSheetView()
+    var addButtonView: AddButtonViewController?
     
     //MARK: - LifeCycle
     
@@ -44,12 +43,12 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
         initialize()
     }
     
-    func style(){
+    private func style(){
         self.view.backgroundColor = UIColor(red: 134/255, green: 182/255, blue: 255/255, alpha: 1)
         setUpSheetVC()
     }
     
-    func layout(){
+    private func layout(){
         self.view.addSubview(mainView)
         
         mainView.snp.makeConstraints{
@@ -57,7 +56,7 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
         }
     }
     
-    func initialize(){
+    private func initialize(){
         mainView.summaryTableView.delegate = self
         mainView.summaryTableView.dataSource = self
         mainView.summaryTableView.separatorStyle = .none
@@ -68,15 +67,13 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
     
     //MARK: - Action
     
-    @objc
-    func cellWillMoveToOriginalPosition(){
+    @objc func cellWillMoveToOriginalPosition(){
         guard let cell = mainView.summaryTableView.cellForRow(at: clampCell) as? TodoListTableViewCell else { return }
         cell.cellWillMoveOriginalPosition()
     }
     
     //아무런 todo 없는경우 배너 누르기-> 키보드 올리기
-    @objc
-    func tapBannerCell(){
+    @objc func tapBannerCell(){
         HomeViewController.dismissBottomSheet()
         
         let vc = TodoSettingViewController()
@@ -88,12 +85,10 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
     
     @objc func diaryDeleteBtnDidClicked(){
         
-        let alert = CancelAlertViewController(title: "다이어리를 삭제하시겠습니까?")
+        let alert = CancelAlertViewController(title: "다이어리를 삭제하시겠습니까?").show(in: self)
         alert.alertHandler = {
             DiaryDataManager().delete(createdDate: self.todoDate.dateSendServer)
         }
-        alert.modalPresentationStyle = .overFullScreen
-        self.present(alert, animated: false, completion: nil)
     }
     
     @objc func willMoveDiaryViewController(){
@@ -101,7 +96,7 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
         let vc = DiaryViewController()
 
         vc.pickDate = HomeViewController.bottomSheetVC.todoDate
-        vc.todoDataList = self.todoDataList
+        vc.todoDataList = self.todoData
         vc.mainView.todaysDate.text = vc.pickDate?.dateUsedDiary
 
         if(isDiaryExist){
@@ -118,7 +113,7 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
         
         var count : Int = 0
         
-        todoDataList.forEach{ each in
+        todoData.forEach{ each in
             if (each.isPinned!) {
                 count += 1
             }
@@ -127,9 +122,9 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
     }
     
     func dataArraySortByPin(){
-        todoDataList.sort(by: {$0.createdTime < $1.createdTime})
-        todoDataList.sort(by: {$0.targetTime ?? "25:00" < $1.targetTime ?? "25:00"})
-        todoDataList.sort(by: {$0.isPinned! && !$1.isPinned!})
+        todoData.sort(by: {$0.createdTime < $1.createdTime})
+        todoData.sort(by: {$0.targetTime ?? "25:00" < $1.targetTime ?? "25:00"})
+        todoData.sort(by: {$0.isPinned! && !$1.isPinned!})
     }
     
     func showDeleteCompleteToastMessage(type: DeleteType){
@@ -193,7 +188,7 @@ extension SummaryBottomSheetViewController: MoveViewController, AddButtonClickPr
         let vc = DiaryViewController()
 
         vc.pickDate = HomeViewController.bottomSheetVC.todoDate
-        vc.todoDataList = self.todoDataList
+        vc.todoDataList = self.todoData
         vc.mainView.todaysDate.text = vc.pickDate?.dateUsedDiary
 
         if(isDiaryExist){
@@ -212,7 +207,7 @@ extension SummaryBottomSheetViewController{
         switch code{
         case 1000:
             print("체크박스 API 성공")
-            todoDataList[indexPath.row - 1].isChecked.toggle()
+            todoData[indexPath.row - 1].isChecked.toggle()
             mainView.summaryTableView.reloadData()
             return
         default:
@@ -225,7 +220,7 @@ extension SummaryBottomSheetViewController{
 
         switch result.code{
         case 1000:
-            todoDataList = result.result
+            todoData = result.result ?? []
             dataArraySortByPin()
             mainView.summaryTableView.reloadData()
             return
@@ -241,14 +236,14 @@ extension SummaryBottomSheetViewController{
         case 1000:
             print("핀 고정 성공")
             //pin 고정 또는 pin 고정 아니며 핀 고정 개수 초과하지 않은 케이스
-            var willChangeData = todoDataList[indexPath.row-1]
+            var willChangeData = todoData[indexPath.row-1]
             
             willChangeData.isPinned!.toggle()
-            todoDataList[indexPath.row-1].isPinned = willChangeData.isPinned
+            todoData[indexPath.row-1].isPinned = willChangeData.isPinned
             
             dataArraySortByPin()
         
-            guard let newIndex = todoDataList.firstIndex(of: willChangeData) else{ return }
+            guard let newIndex = todoData.firstIndex(of: willChangeData) else{ return }
             
             mainView.summaryTableView.moveRow(at: indexPath, to: IndexPath(row: newIndex + 1, section: 0))
             mainView.summaryTableView.reloadData()
@@ -263,11 +258,11 @@ extension SummaryBottomSheetViewController{
     func checkTodoDeleteApiResultCode(_ code: Int, _ indexPath: IndexPath){
         switch code{
         case 1000:
-            if(todoDataList.count == 1){
-                todoDataList = []
+            if(todoData.count == 1){
+                todoData = []
                 mainView.summaryTableView.reloadData()
             }else{
-                todoDataList.remove(at: indexPath.row-1)
+                todoData.remove(at: indexPath.row-1)
                 mainView.summaryTableView.deleteRows(at: [indexPath], with: .fade)
             }
             showDeleteCompleteToastMessage(type: .Todo)
@@ -322,7 +317,7 @@ extension SummaryBottomSheetViewController{
 extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoDataList.count != 0 ? todoDataList.count + 3 : 4
+        return todoData.count != 0 ? todoData.count + 3 : 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -366,13 +361,13 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
             }
 
         default:
-            if(todoDataList.count != 0){
+            if(todoData.count != 0){
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoListTableViewCell.cellIdentifier, for: indexPath)
                         as? TodoListTableViewCell else{ fatalError() }
 
                 cell.navigation = homeNavigaiton
                 cell.delegate = self
-                cell.cellData = todoDataList[indexPath.row-1]
+                cell.cellData = todoData[indexPath.row-1]
                 cell.cellWillSettingWithData()
                 
                 return cell
@@ -399,7 +394,7 @@ extension SummaryBottomSheetViewController: SelectedTableViewCellDeliver{
         
         let pinnedCount: Int = getPinnedCount()
         
-        let willChangeData = todoDataList[indexPath.row-1]
+        let willChangeData = todoData[indexPath.row-1]
         let currentPin = willChangeData.isPinned!
     
         if(!currentPin && pinnedCount >= 2){ //pin 상태가 아니지만, 핀 고정 개수 초과
@@ -458,7 +453,7 @@ extension SummaryBottomSheetViewController: SelectedTableViewCellDeliver{
     func cellWillAlarmEnabled(_ indexPath: IndexPath) {
         
         let alert = AlarmAlertViewController()
-        alert.todoData = todoDataList[indexPath.row - 1]
+        alert.todoData = todoData[indexPath.row - 1]
         alert.modalPresentationStyle = .overFullScreen
         
         self.present(alert, animated: false, completion: nil)
