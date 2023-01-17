@@ -1,5 +1,5 @@
 //
-//  TodoListTableViewCell.swift
+//  TodoInSummaryTableViewCell.swift
 //  Todoary
 //
 //  Created by 박지윤 on 2022/07/16.
@@ -14,7 +14,7 @@ enum CurrentHidden{
     case right
 }
 
-class TodoListTableViewCell: UITableViewCell {
+class TodoInSummaryTableViewCell: UITableViewCell {
     
     //MARK: - Properties
     
@@ -179,7 +179,7 @@ class TodoListTableViewCell: UITableViewCell {
 }
 
 //MARK: - Swipe Method
-extension TodoListTableViewCell{
+extension TodoInSummaryTableViewCell{
 
     @objc
     func handlePan(_ recognizer: UIPanGestureRecognizer){
@@ -317,7 +317,7 @@ extension TodoListTableViewCell{
     
 }
 
-extension TodoListTableViewCell{
+extension TodoInSummaryTableViewCell{
     
     func getCellIndexPath() -> IndexPath?{
         return (self.superview as? UITableView)?.indexPath(for: self)

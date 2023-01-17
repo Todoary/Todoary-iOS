@@ -1,5 +1,5 @@
 //
-//  TodoBannerCell.swift
+//  TodoBannerInSummaryTableViewCell.swift
 //  Todoary
 //
 //  Created by 박지윤 on 2022/07/29.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TodoBannerCell: UITableViewCell {
+class TodoBannerInSummaryTableViewCell: UITableViewCell {
 
     static let cellIdentifier = "todoBannerCell"
     

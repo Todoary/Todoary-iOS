@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension TodoListTableViewCell{
+extension TodoInSummaryTableViewCell{
     
     func setUpView(){
         

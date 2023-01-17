@@ -1,5 +1,5 @@
 //
-//  DiaryBannerCell.swift
+//  DiaryBannerInSummaryTableViewCell.swift
 //  Todoary
 //
 //  Created by 박지윤 on 2022/07/18.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DiaryBannerCell: UITableViewCell {
+class DiaryBannerInSummaryTableViewCell: UITableViewCell {
     
     static let cellIdentifier = "diaryBannerCell"
     

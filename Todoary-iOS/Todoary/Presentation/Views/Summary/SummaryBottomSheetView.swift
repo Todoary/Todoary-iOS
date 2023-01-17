@@ -17,12 +17,12 @@ class SummaryBottomSheetView: BaseView{
     let summaryTableView = UITableView().then{
         $0.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
         
-        $0.register(TodoListTitleCell.self, forCellReuseIdentifier: TodoListTitleCell.cellIdentifier)
-        $0.register(TodoBannerCell.self, forCellReuseIdentifier: TodoBannerCell.cellIdentifier)
-        $0.register(TodoListTableViewCell.self, forCellReuseIdentifier: TodoListTableViewCell.cellIdentifier)
-        $0.register(DiaryTitleCell.self, forCellReuseIdentifier: DiaryTitleCell.cellIdentifier)
-        $0.register(DiaryCell.self, forCellReuseIdentifier: DiaryCell.cellIdentifier)
-        $0.register(DiaryBannerCell.self, forCellReuseIdentifier: DiaryBannerCell.cellIdentifier)
+        $0.register(TodoTitleInSummaryTableViewCell.self, forCellReuseIdentifier: TodoTitleInSummaryTableViewCell.cellIdentifier)
+        $0.register(TodoBannerInSummaryTableViewCell.self, forCellReuseIdentifier: TodoBannerInSummaryTableViewCell.cellIdentifier)
+        $0.register(TodoInSummaryTableViewCell.self, forCellReuseIdentifier: TodoInSummaryTableViewCell.cellIdentifier)
+        $0.register(DiaryInSummaryTableViewCell.self, forCellReuseIdentifier: DiaryInSummaryTableViewCell.cellIdentifier)
+        $0.register(DiaryTitleInSummaryTableViewCell.self, forCellReuseIdentifier: DiaryTitleInSummaryTableViewCell.cellIdentifier)
+        $0.register(DiaryBannerInSummaryTableViewCell.self, forCellReuseIdentifier: DiaryBannerInSummaryTableViewCell.cellIdentifier)
     }
     
     override func hierarchy(){

@@ -35,26 +35,6 @@ class DiaryDataManager {
         }
     }
     
-    /*//다이어리 삭제
-    func delete(createdDate: String){
-        
-        AF.request("https://todoary.com/diary/\(createdDate)",
-                   method: .delete,
-                   parameters: [:],
-                   interceptor: Interceptor())
-            .validate()
-            .responseDecodable(of: ApiModel.self) { response in
-                switch response.result {
-                case .success(let result):
-                    HomeViewController.bottomSheetVC.checkDeleteDiaryApiResultCode(result.code)
-                    return
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-        }
-    }
-     */
-    
     func gets(_ date: String){
         AF.request("https://todoary.com/diary", method: .get, parameters: ["createdDate":date],
                    encoding: URLEncoding.queryString,

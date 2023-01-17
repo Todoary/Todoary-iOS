@@ -24,13 +24,13 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
     
     var todoDate : ConvertDate!
     
-    var clampCell : IndexPath = [0,-1] //clamp cell default 값
+    var clampCell : IndexPath = [0,-1]
     
     var homeNavigaiton : UINavigationController!
     
     
     let mainView = SummaryBottomSheetView()
-    var addButtonView: AddButtonViewController?
+    var addButtonView: AddButtonViewController? //TODO: ViewController 말고 View 사용으로 변경
     
     //MARK: - LifeCycle
     
@@ -68,7 +68,7 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
     //MARK: - Action
     
     @objc func cellWillMoveToOriginalPosition(){
-        guard let cell = mainView.summaryTableView.cellForRow(at: clampCell) as? TodoListTableViewCell else { return }
+        guard let cell = mainView.summaryTableView.cellForRow(at: clampCell) as? TodoInSummaryTableViewCell else { return }
         cell.cellWillMoveOriginalPosition()
     }
     
@@ -160,7 +160,7 @@ extension SummaryBottomSheetViewController{
     }
 }
 
-//MARK: - Delegate
+//MARK: - AddButtonDelegate
 extension SummaryBottomSheetViewController: MoveViewController, AddButtonClickProtocol{
     
     func moveToViewController() {
@@ -309,23 +309,6 @@ extension SummaryBottomSheetViewController{
             self.present(alert, animated: true, completion: nil)
         }
     }
-    
-    /*
-    func checkDeleteDiaryApiResultCode(_ code: Int){
-        switch code{
-        case 1000:
-            isDiaryExist = false
-            mainView.summaryTableView.reloadData()
-            showDeleteCompleteToastMessage(type: .Diary)
-            GetDiaryDataManager().getDiaryDataManager(self, yearMonth: todoDate!.yearMonthSendServer)
-            return
-        default:
-            let alert = DataBaseErrorAlert()
-            self.homeNavigaiton.present(alert, animated: true, completion: nil)
-            return
-        }
-    }
-     */
 }
 
 //MARK: - TableView
@@ -341,13 +324,13 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
         
         switch indexPath.row{
         case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoListTitleCell.cellIdentifier, for: indexPath)
-                    as? TodoListTitleCell else{ fatalError() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoTitleInSummaryTableViewCell.cellIdentifier, for: indexPath)
+                    as? TodoTitleInSummaryTableViewCell else{ fatalError() }
             cell.navigaiton = homeNavigaiton
             cell.delegate = self
             return cell
         case rowCount - 2:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: DiaryTitleCell.cellIdentifier, for: indexPath) as? DiaryTitleCell else{ fatalError() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: DiaryInSummaryTableViewCell.cellIdentifier, for: indexPath) as? DiaryInSummaryTableViewCell else{ fatalError() }
             if(isDiaryExist){
                 cell.deleteBtn.isHidden = false
                 cell.deleteBtn.addTarget(self, action: #selector(deleteDiaryAlertWillShow), for: .touchUpInside)
@@ -359,8 +342,8 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
             
             //선택한 날짜에 다이어리 존재 여부에 따른 table cell 구성 differ
             if(isDiaryExist){
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: DiaryCell.cellIdentifier, for: indexPath)
-                        as? DiaryCell else{ fatalError()}
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: DiaryTitleInSummaryTableViewCell.cellIdentifier, for: indexPath)
+                        as? DiaryTitleInSummaryTableViewCell else{ fatalError()}
                 
                 let tapGesture = UITapGestureRecognizer(target: self, action: #selector(willMoveDiaryViewController))
                 cell.addGestureRecognizer(tapGesture)
@@ -371,14 +354,14 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
                 
                 return cell
             }else{
-                let cell = tableView.dequeueReusableCell(withIdentifier: DiaryBannerCell.cellIdentifier, for: indexPath)
+                let cell = tableView.dequeueReusableCell(withIdentifier: DiaryBannerInSummaryTableViewCell.cellIdentifier, for: indexPath)
                 return cell
             }
 
         default:
             if(todoData.count != 0){
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoListTableViewCell.cellIdentifier, for: indexPath)
-                        as? TodoListTableViewCell else{ fatalError() }
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoInSummaryTableViewCell.cellIdentifier, for: indexPath)
+                        as? TodoInSummaryTableViewCell else{ fatalError() }
 
                 cell.navigation = homeNavigaiton
                 cell.delegate = self
@@ -387,8 +370,8 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
                 
                 return cell
             }else{
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoBannerCell.cellIdentifier, for: indexPath)
-                        as? TodoBannerCell else{ fatalError() }
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoBannerInSummaryTableViewCell.cellIdentifier, for: indexPath)
+                        as? TodoBannerInSummaryTableViewCell else{ fatalError() }
                 
                 let tapBannerCell = CellButtonTapGesture(target: self, action: #selector(tapBannerCell))
                 tapBannerCell.caller = indexPath.row
@@ -433,7 +416,7 @@ extension SummaryBottomSheetViewController: SelectedTableViewCellDeliver{
         }else if(clampCell.row != -1){
         //2. -1 아닐 경우 -> 이미 고정되어 있는 cell 존재 -> 고정 풀기
             guard let cell = mainView.summaryTableView.cellForRow(at: clampCell)
-                    as? TodoListTableViewCell else{ return }
+                    as? TodoInSummaryTableViewCell else{ return }
             cell.cellWillMoveOriginalPosition()
         }
         //row 값 -1일 때와, row 값 -1 아닐 때 공통 코드(즉, 자기 자신 아닐 때만 제외)
@@ -448,12 +431,12 @@ extension SummaryBottomSheetViewController: SelectedTableViewCellDeliver{
          3. if clamp 상태 X -> todoSettingVC 이동
          */
         
-        guard let clampCell = mainView.summaryTableView.cellForRow(at: clampCell) as? TodoListTableViewCell else { return }
+        guard let clampCell = mainView.summaryTableView.cellForRow(at: clampCell) as? TodoInSummaryTableViewCell else { return }
         
         if(!clampCell.isClamp){
             HomeViewController.dismissBottomSheet()
             
-            guard let tapCell = mainView.summaryTableView.cellForRow(at: indexPath) as? TodoListTableViewCell else { return }
+            guard let tapCell = mainView.summaryTableView.cellForRow(at: indexPath) as? TodoInSummaryTableViewCell else { return }
             
             let vc = TodoSettingViewController()
             vc.todoSettingData = tapCell.cellData
