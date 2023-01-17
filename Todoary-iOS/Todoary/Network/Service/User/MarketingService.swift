@@ -15,6 +15,6 @@ class MarketingService: BaseService{
 extension MarketingService {
     
     func modifyMarketingAgreementStatus(request: Bool, completion: @escaping (NetworkResult<Any>) -> Void){
-        requestObjectWithEmptyResponse(MarketingRouter.patchAgreement(request: request), completion: completion)
+//        requestObjectWithEmptyResponse(MarketingRouter.patchAgreement(request: request), completion: completion)
     }
 }

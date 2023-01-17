@@ -46,7 +46,7 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
     override func viewDidLoad() {
     
         super.viewDidLoad()
-        
+
         style()
         layout()
         initialize()

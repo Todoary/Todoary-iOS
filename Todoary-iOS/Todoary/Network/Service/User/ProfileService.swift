@@ -19,11 +19,11 @@ extension ProfileService {
     }
     
     func modifyProfile(request: ProfileInput, completion: @escaping (NetworkResult<Any>) -> Void){
-        requestObjectWithEmptyResponse(ProfileRouter.patchProfile(requeset: request), completion: completion)
+//        requestObjectWithEmptyResponse(ProfileRouter.patchProfile(requeset: request), completion: completion)
     }
     
     func deleteProfileImage(completion: @escaping (NetworkResult<Any>) -> Void){
-        requestObjectWithEmptyResponse(ProfileRouter.deleteProfileImage, completion: completion)
+//        requestObjectWithEmptyResponse(ProfileRouter.deleteProfileImage, completion: completion)
     }
     
     func modifyProfileImage (image: UIImage, completion: @escaping (NetworkResult<Any>) -> Void) {
@@ -31,9 +31,9 @@ extension ProfileService {
         AFManager.upload(multipartFormData: ProfileRouter.patchProfileImage(image: image).multipart, with: ProfileRouter.patchProfileImage(image: image)).responseData { response in
             switch(response.result) {
             case .success:
-                let networkResult = self.judgeStatusWithEmptyReponse(by: response.response?.statusCode)
-                completion(networkResult) 
-                
+//                let networkResult = self.judgeStatusWithEmptyReponse(by: response.response?.statusCode)
+//                completion(networkResult)
+                break
             case .failure(let err) :
                 print(err.localizedDescription)
             }

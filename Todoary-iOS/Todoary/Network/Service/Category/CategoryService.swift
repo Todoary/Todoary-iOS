@@ -19,17 +19,18 @@ extension CategoryService {
     }
     
     func generateCategory(request: CategoryModel, completion: @escaping (NetworkResult<Any>) -> Void){
-        print("요청")
-        requestObject(CategoryRouter.getCategories, type: Int.self, decodingMode: .model, completion: completion)
         
-//        requestObjectWithEmptyResponse(CategoryRouter.postCategory(requeset: request), completion: completion)
+//        requestObject(CategoryRouter.postCategory(requeset: request), type: Int.self, decodingMode: .model, completion: completion)
+        
+        requestObjectWithEmptyResponse(CategoryRouter.postCategory(requeset: request), decodingMode: .code, completion: completion)
     }
-    
+
     func modifyCategory(id: Int, request: CategoryModel, completion: @escaping (NetworkResult<Any>) -> Void){
-        requestObjectWithEmptyResponse(CategoryRouter.patchCategory(id: id, request: request), completion: completion)
+//        requestObjectWithEmptyResponse(CategoryRouter.patchCategory(id: id, request: request), completion: completion)
     }
     
     func deleteCategory(id: Int, completion: @escaping (NetworkResult<Any>) -> Void){
-        requestObjectWithEmptyResponse(CategoryRouter.deleteCategory(id: id), completion: completion)
+//        requestObjectWithEmptyResponse(CategoryRouter.deleteCategory(id: id), completion: completion)
     }
+
 }

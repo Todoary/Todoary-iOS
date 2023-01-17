@@ -88,6 +88,7 @@
 		575DE9642976529400E61B8F /* AppleSignUpRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575DE9632976529400E61B8F /* AppleSignUpRequestModel.swift */; };
 		575DE9662976529F00E61B8F /* AppleSignUpResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575DE9652976529F00E61B8F /* AppleSignUpResultModel.swift */; };
 		575DE968297652A600E61B8F /* DeleteAppleAccountRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575DE967297652A600E61B8F /* DeleteAppleAccountRequestModel.swift */; };
+		575DE96B29769EBD00E61B8F /* CodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575DE96A29769EBD00E61B8F /* CodeResponse.swift */; };
 		576ED6B028748FFA007389CD /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576ED6AF28748FFA007389CD /* NavigationView.swift */; };
 		576ED6B228749021007389CD /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576ED6B128749021007389CD /* String.swift */; };
 		576ED6B42874902A007389CD /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576ED6B32874902A007389CD /* UITextField.swift */; };
@@ -369,6 +370,7 @@
 		575DE9632976529400E61B8F /* AppleSignUpRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignUpRequestModel.swift; sourceTree = "<group>"; };
 		575DE9652976529F00E61B8F /* AppleSignUpResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignUpResultModel.swift; sourceTree = "<group>"; };
 		575DE967297652A600E61B8F /* DeleteAppleAccountRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAppleAccountRequestModel.swift; sourceTree = "<group>"; };
+		575DE96A29769EBD00E61B8F /* CodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeResponse.swift; sourceTree = "<group>"; };
 		576ED6AF28748FFA007389CD /* NavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
 		576ED6B128749021007389CD /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		576ED6B32874902A007389CD /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
@@ -679,6 +681,7 @@
 		5701EA132956E59100F21F63 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				575DE96A29769EBD00E61B8F /* CodeResponse.swift */,
 				57C481C02969537A008731D9 /* GeneralResponse.swift */,
 				57C481C9296957F1008731D9 /* Auth */,
 				57C481C8296957EF008731D9 /* User */,
@@ -2188,6 +2191,7 @@
 				57E75EB228E1B7D700AC24B2 /* AlarmAlertViewController.swift in Sources */,
 				57FFEDBC28DC1C230041719B /* Const.swift in Sources */,
 				572E9ABB287BC4BD00F915DF /* ScreenSettingView.swift in Sources */,
+				575DE96B29769EBD00E61B8F /* CodeResponse.swift in Sources */,
 				ACACD01128749F520029D5CE /* LoginViewController.swift in Sources */,
 				57503652288A3FB7006A9070 /* LoginInput.swift in Sources */,
 				ACFBEC9728B3779700B9D66F /* FcmTokenModel.swift in Sources */,
