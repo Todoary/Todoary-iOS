@@ -394,8 +394,6 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
             if(todoData.count != 0){
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoInSummaryTableViewCell.cellIdentifier, for: indexPath)
                         as? TodoInSummaryTableViewCell else{ fatalError() }
-                
-                cell.navigation = homeNavigaiton
                 cell.requestDelegate = self
                 cell.delegate = self
                 cell.cellData = todoData[indexPath.row-1]
