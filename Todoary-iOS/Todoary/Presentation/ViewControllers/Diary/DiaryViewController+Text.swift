@@ -11,31 +11,30 @@ import UIKit
 extension DiaryViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ DiaryTableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoDataList.isEmpty ? 1 : todoDataList.count
+        return todoData.isEmpty ? 1 : todoData.count
     }
     
     func tableView(_ DiaryTableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = DiaryTableView.dequeueReusableCell(withIdentifier: DiaryTabelViewCell.cellIdentifier, for: indexPath) as? DiaryTabelViewCell else{
-            fatalError()
-        }
         
-        if todoDataList.isEmpty{
+        guard let cell = DiaryTableView.dequeueReusableCell(withIdentifier: TodoInDiaryTableViewCell.cellIdentifier, for: indexPath) as? TodoInDiaryTableViewCell else { return UITableViewCell() }
+        
+        if todoData.isEmpty{
             cell.titleLabel.text = "오늘은 투두가 없는 널널한 날이네요 *^^*"
             cell.titleLabel.textColor = UIColor(red: 94/255, green: 94/255, blue: 94/255, alpha: 1)
             cell.categoryButton.isHidden = true
             cell.timeLabel.isHidden = true
         }else {
-            cell.cellData = todoDataList[indexPath.row]
-            cell.navigationController = self.navigationController
-            cell.titleLabel.text = todoDataList[indexPath.row].title
-            cell.timeLabel.text = todoDataList[indexPath.row].convertTime
-            cell.checkBox.isSelected = todoDataList[indexPath.row].isChecked ?? false
+            cell.delegate = self
+            cell.cellData = todoData[indexPath.row]
+            cell.titleLabel.text = todoData[indexPath.row].title
+            cell.timeLabel.text = todoData[indexPath.row].convertTime
+            cell.checkBox.isSelected = todoData[indexPath.row].isChecked ?? false
             
-            cell.categoryButton.setTitle(todoDataList[indexPath.row].categoryTitle, for: .normal)
-            cell.categoryButton.layer.borderColor = UIColor.categoryColor[todoDataList[indexPath.row].color].cgColor
-            cell.categoryButton.setTitleColor(UIColor.categoryColor[todoDataList[indexPath.row].color], for: .normal)
+            cell.categoryButton.setTitle(todoData[indexPath.row].categoryTitle, for: .normal)
+            cell.categoryButton.layer.borderColor = UIColor.categoryColor[todoData[indexPath.row].color].cgColor
+            cell.categoryButton.setTitleColor(UIColor.categoryColor[todoData[indexPath.row].color], for: .normal)
             cell.categoryButton.snp.makeConstraints{ make in
-                let offset = todoDataList[indexPath.row].categoryTitle.count == 5 ? 12 : 24
+                let offset = todoData[indexPath.row].categoryTitle.count == 5 ? 12 : 24
                 make.width.equalTo(cell.categoryButton.titleLabel!).offset(offset)
             }
             cell.titleLabel.snp.makeConstraints{ make in
@@ -110,9 +109,36 @@ extension DiaryViewController: UITextViewDelegate {
     }
 }
 
-extension DiaryViewController{
+//MARK: - API
+extension DiaryViewController: DiaryTodoCellDelegate{
+    
+    func requestPatchTodoCheckStatus(cell: TodoInDiaryTableViewCell){
+        
+        guard let indexPath = mainView.todoTableView.indexPath(for: cell) else { return }
+        let index = indexPath.row
+        
+        todoData[index].isChecked.toggle()
+        let todo = todoData[index]
+        
+        TodoService.shared.modifyTodoCheckStatus(id: todo.todoId,
+                                                 isChecked: todo.isChecked) { result in
+            switch result{
+            case .success:
+                print("DiaryViewController modifyTodoCheckStatus success")
+                break
+            default:
+                print("DiaryViewController modifyTodoCheckStatus fail")
+                self.todoData[index].isChecked.toggle()
+                break
+            }
+            
+        }
+    }
     
     func checkTextValidationAndRequestApi(){
+        
+        rightButton.isEnabled = false
+        
         if(mainView.textView.text == DiaryView.textViewPlaceHolder || mainView.diaryTitle.text!.isEmpty){
             
             let alert = UIAlertController(title: nil, message: "다이어리 제목과 1자 이상의 내용 입력은 필수입니다.", preferredStyle: .alert)
@@ -122,29 +148,34 @@ extension DiaryViewController{
             
             self.present(alert, animated: true, completion: nil)
         }else{
-            
-            //TODO: - trimmingCharacters로 공백 및 endline 제거 후, input에 넣기
-//            let trimmingText = mainView.textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
+            requestPostDiary()
+        }
+    }
+    
+    func requestPostDiary(){
         
-            let text = NSAttributedString(attributedString: mainView.textView.attributedText)
+        let text = NSAttributedString(attributedString: mainView.textView.attributedText)
+        let parameter = DiaryRequestModel(title: mainView.diaryTitle.text!,
+                          content: text.attributedString2Html!)
         
-            
-//            let length = mainView.textView.text.count - trimmingText.count
-//
-//            let text = NSMutableAttributedString(attributedString: mainView.textView.attributedText)
-//            text.removeAttribute(.backgroundColor, range: NSRange(location: trimmingText.count, length: length))
-            
-            let input = DiaryInput(title: mainView.diaryTitle.text!,
-                                   content: text.attributedString2Html!)
-            
-            DiaryDataManager().posts(viewController: self, createdDate: self.pickDate!.dateSendServer, parameter: input)
+        DiaryService.shared.generateDiary(date: pickDate.dateSendServer, request: parameter){ result in
+            switch result{
+            case .success:
+                self.exitBtnDidTab()
+                self.navigationController?.popViewController(animated: true)
+            default:
+                DataBaseErrorAlert.show(in: self)
+                self.rightButton.isEnabled = true
+                break
+                
+            }
         }
     }
     
     func setUpDiaryData(_ data: DiaryResultModel){
-        self.diaryData = data
-        mainView.diaryTitle.text = diaryData?.title
-        mainView.textView.attributedText = diaryData?.content15AttributedString
+        self.diary = data
+        mainView.diaryTitle.text = diary?.title
+        mainView.textView.attributedText = diary?.content15AttributedString
         mainView.textView.setTextWithLineHeight(spaing: 25)
     }
     

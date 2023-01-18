@@ -9,13 +9,16 @@ import Foundation
 import SnapKit
 import UIKit
 
-class DiaryTabelViewCell: UITableViewCell {
+protocol DiaryTodoCellDelegate{
+    func requestPatchTodoCheckStatus(cell: TodoInDiaryTableViewCell)
+}
+
+class TodoInDiaryTableViewCell: UITableViewCell {
     
     static let cellIdentifier = "DiaryTabelViewCell"
     
     var cellData : TodoResultModel!
-    
-    var navigationController: UINavigationController!
+    var delegate: DiaryTodoCellDelegate!
     
     //tableCell UI
     lazy var checkBox = UIButton().then{
@@ -78,11 +81,16 @@ class DiaryTabelViewCell: UITableViewCell {
     }
     
     @objc func checkBoxBtnDidClicked(){
+        print("?")
+        delegate.requestPatchTodoCheckStatus(cell: self)
+        
+        /*
         let parameter = TodoCheckboxInput(todoId: cellData.todoId, isChecked: !self.checkBox.isSelected)
         
         TodoCheckboxDataManager().patch(cell: self, parameter: parameter)
+         */
     }
-    
+    /*
     func checkCheckBoxApiResultCode(code: Int){
         if(code == 1000){
             self.checkBox.isSelected.toggle()
@@ -91,5 +99,6 @@ class DiaryTabelViewCell: UITableViewCell {
             self.navigationController.present(alert, animated: true, completion: nil)
         }
     }
+     */
 }
 

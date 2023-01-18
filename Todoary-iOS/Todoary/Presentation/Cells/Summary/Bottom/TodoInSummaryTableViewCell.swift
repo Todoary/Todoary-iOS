@@ -127,7 +127,7 @@ class TodoInSummaryTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+
         self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
      
         setUpView()

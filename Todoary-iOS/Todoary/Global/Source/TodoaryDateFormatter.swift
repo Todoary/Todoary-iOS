@@ -1,32 +1,13 @@
 //
-//  TodoGetDataManager.swift
+//  TodoaryDateFormatter.swift
 //  Todoary
 //
-//  Created by 박지윤 on 2022/07/27.
+//  Created by 박지윤 on 2023/01/18.
 //
 
 import Foundation
-import Alamofire
-
-class GetTodoDataManager{
-    
-    /*
-    func gets(_ date: String){
-        
-        AF.request("https://todoary.com/todo/date/\(date)", method: .get, parameters: nil, interceptor: Interceptor()).validate().responseDecodable(of: GeneralResponse<[TodoResultModel]>.self) { response in
-            switch response.result {
-            case .success(let result):
-                HomeViewController.bottomSheetVC.checkGetTodoApiResultCode(result)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
-     */
-}
 
 struct ConvertDate{
-    
     var year: Int?
     var month: Int?
     var date: String?
