@@ -136,6 +136,9 @@ extension DiaryViewController: DiaryTodoCellDelegate{
     }
     
     func checkTextValidationAndRequestApi(){
+        
+        rightButton.isEnabled = false
+        
         if(mainView.textView.text == DiaryView.textViewPlaceHolder || mainView.diaryTitle.text!.isEmpty){
             
             let alert = UIAlertController(title: nil, message: "다이어리 제목과 1자 이상의 내용 입력은 필수입니다.", preferredStyle: .alert)
@@ -162,6 +165,7 @@ extension DiaryViewController: DiaryTodoCellDelegate{
                 self.navigationController?.popViewController(animated: true)
             default:
                 DataBaseErrorAlert.show(in: self)
+                self.rightButton.isEnabled = true
                 break
                 
             }
