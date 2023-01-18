@@ -6,7 +6,7 @@
 //
 
 import Foundation
-extension DiaryTabelViewCell{
+extension TodoInDiaryTableViewCell{
     
     func setUpView(){
         

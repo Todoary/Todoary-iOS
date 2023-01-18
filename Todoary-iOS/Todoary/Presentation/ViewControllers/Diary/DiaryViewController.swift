@@ -80,13 +80,10 @@ class DiaryViewController: BaseViewController , UIGestureRecognizerDelegate{
     
     //MARK: - TextProperties
     
+    var pickDate: ConvertDate!
+    var todoData = [TodoResultModel]()
+    var diary: DiaryResultModel?
     var currentFont: DiaryFont = DiaryFont(fontName: .font1)
-    
-    var todoDataList : [TodoResultModel]! = []
-    
-    var diaryData: DiaryResultModel?
-    
-    var pickDate: ConvertDate?
     
     //MARK: - Lifecycles
     

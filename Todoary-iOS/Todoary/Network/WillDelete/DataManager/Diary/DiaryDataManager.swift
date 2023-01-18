@@ -10,31 +10,6 @@ import Alamofire
 
 class DiaryDataManager {
     
-    //다이어리 생성/수정
-    func posts(viewController: DiaryViewController, createdDate: String, parameter: DiaryInput){
-        
-        AF.request("https://todoary.com/diary/\(createdDate)", method: .post, parameters: parameter, encoder: JSONParameterEncoder.default,
-                   interceptor: Interceptor()).validate().responseDecodable(of: ApiModel.self) { response in
-            switch response.result {
-            case .success(let result):
-                if(result.code == 1000){
-                    print("다이어리 생성 성공")
-                    viewController.exitBtnDidTab()
-                    viewController.navigationController?.popViewController(animated: true)
-                }else{
-                    print(result.code)
-                    print(result.messsage)
-                    viewController.exitBtnDidTab()
-                    let alert = DataBaseErrorAlert()
-                    viewController.present(alert, animated: true, completion: nil)
-                }
-            case .failure(let error):
-                print("실패")
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
     //다이어리 스티커 생성/수정/삭제
     func diaryStickerDataManager(viewController: DiaryViewController, createdDate: String, parameter: DiaryStickerInput){
         
