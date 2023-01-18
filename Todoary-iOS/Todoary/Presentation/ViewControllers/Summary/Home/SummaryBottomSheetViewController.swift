@@ -106,7 +106,7 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
         let vc = DiaryViewController()
 
         vc.pickDate = HomeViewController.bottomSheetVC.todoDate
-        vc.todoDataList = self.todoData
+        vc.todoData = self.todoData
         vc.mainView.todaysDate.text = vc.pickDate?.dateUsedDiary
 
         if(isDiaryExist){
@@ -305,7 +305,7 @@ extension SummaryBottomSheetViewController: MoveViewController, AddButtonClickPr
         let vc = DiaryViewController()
 
         vc.pickDate = HomeViewController.bottomSheetVC.todoDate
-        vc.todoDataList = self.todoData
+        vc.todoData = self.todoData
         vc.mainView.todaysDate.text = vc.pickDate?.dateUsedDiary
 
         if(diaryData != nil){
