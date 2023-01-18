@@ -15,7 +15,7 @@ extension DiaryViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ DiaryTableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = DiaryTableView.dequeueReusableCell(withIdentifier: DiaryTabelViewCell.cellIdentifier, for: indexPath) as? DiaryTabelViewCell else{
+        guard let cell = DiaryTableView.dequeueReusableCell(withIdentifier: TodoInDiaryTableViewCell.cellIdentifier, for: indexPath) as? TodoInDiaryTableViewCell else{
             fatalError()
         }
         
@@ -112,7 +112,7 @@ extension DiaryViewController: UITextViewDelegate {
 
 extension DiaryViewController: DiaryTodoCellDelegate{
     
-    func requestPatchTodoCheckStatus(cell: DiaryTabelViewCell){
+    func requestPatchTodoCheckStatus(cell: TodoInDiaryTableViewCell){
         
         guard let indexPath = mainView.todoTableView.indexPath(for: cell) else { return }
         let index = indexPath.row

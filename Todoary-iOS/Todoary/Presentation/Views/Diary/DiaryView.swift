@@ -17,7 +17,7 @@ class DiaryView: BaseView {
     
     let todoTableView = UITableView().then{
         $0.showsVerticalScrollIndicator = false
-        $0.register(DiaryTabelViewCell.self, forCellReuseIdentifier: DiaryTabelViewCell.cellIdentifier)
+        $0.register(TodoInDiaryTableViewCell.self, forCellReuseIdentifier: TodoInDiaryTableViewCell.cellIdentifier)
     }
     
     let todaysDate = UILabel().then{

@@ -10,10 +10,10 @@ import SnapKit
 import UIKit
 
 protocol DiaryTodoCellDelegate{
-    func requestPatchTodoCheckStatus(cell: DiaryTabelViewCell)
+    func requestPatchTodoCheckStatus(cell: TodoInDiaryTableViewCell)
 }
 
-class DiaryTabelViewCell: UITableViewCell {
+class TodoInDiaryTableViewCell: UITableViewCell {
     
     static let cellIdentifier = "DiaryTabelViewCell"
     
