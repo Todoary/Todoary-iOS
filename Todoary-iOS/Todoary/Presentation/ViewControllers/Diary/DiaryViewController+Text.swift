@@ -15,9 +15,8 @@ extension DiaryViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ DiaryTableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = DiaryTableView.dequeueReusableCell(withIdentifier: TodoInDiaryTableViewCell.cellIdentifier, for: indexPath) as? TodoInDiaryTableViewCell else{
-            fatalError()
-        }
+        
+        guard let cell = DiaryTableView.dequeueReusableCell(withIdentifier: TodoInDiaryTableViewCell.cellIdentifier, for: indexPath) as? TodoInDiaryTableViewCell else { return UITableViewCell() }
         
         if todoData.isEmpty{
             cell.titleLabel.text = "오늘은 투두가 없는 널널한 날이네요 *^^*"
@@ -156,7 +155,7 @@ extension DiaryViewController: DiaryTodoCellDelegate{
         let parameter = DiaryRequestModel(title: mainView.diaryTitle.text!,
                           content: text.attributedString2Html!)
         
-        DiaryService.shared.generateDiary(date: pickDate!.dateSendServer, request: parameter){ result in
+        DiaryService.shared.generateDiary(date: pickDate.dateSendServer, request: parameter){ result in
             switch result{
             case .success:
                 self.exitBtnDidTab()
