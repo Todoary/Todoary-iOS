@@ -31,6 +31,6 @@ extension DiaryService {
     }
     
     func modifyDiarySticker(id: Int, request: DiaryStickerInput, completion: @escaping (NetworkResult<Any>) -> Void){
-        requestObjectWithEmptyResponse(DiaryRouter.putDiarySticker(id: id, request: request), completion: completion)
+        requestObject(DiaryRouter.putDiarySticker(id: id, request: request), type: [Int].self, decodingMode: .model, completion: completion)
     }
 }

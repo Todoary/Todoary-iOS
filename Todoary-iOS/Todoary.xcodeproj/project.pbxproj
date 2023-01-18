@@ -80,7 +80,6 @@
 		575DE9502975125400E61B8F /* MarketingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575DE94F2975125400E61B8F /* MarketingService.swift */; };
 		575DE956297651AE00E61B8F /* DiaryRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575DE955297651AE00E61B8F /* DiaryRequestModel.swift */; };
 		575DE958297651C300E61B8F /* DiaryResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575DE957297651C300E61B8F /* DiaryResultModel.swift */; };
-		575DE95A297651D100E61B8F /* DiaryStickerPutResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575DE959297651D100E61B8F /* DiaryStickerPutResultModel.swift */; };
 		575DE95C297651E800E61B8F /* DiaryStickerResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575DE95B297651E800E61B8F /* DiaryStickerResultModel.swift */; };
 		575DE95E2976522000E61B8F /* TodoAlarmRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575DE95D2976522000E61B8F /* TodoAlarmRequestModel.swift */; };
 		575DE9602976523300E61B8F /* TodoResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575DE95F2976523300E61B8F /* TodoResultModel.swift */; };
@@ -362,7 +361,6 @@
 		575DE94F2975125400E61B8F /* MarketingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingService.swift; sourceTree = "<group>"; };
 		575DE955297651AE00E61B8F /* DiaryRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryRequestModel.swift; sourceTree = "<group>"; };
 		575DE957297651C300E61B8F /* DiaryResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryResultModel.swift; sourceTree = "<group>"; };
-		575DE959297651D100E61B8F /* DiaryStickerPutResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryStickerPutResultModel.swift; sourceTree = "<group>"; };
 		575DE95B297651E800E61B8F /* DiaryStickerResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryStickerResultModel.swift; sourceTree = "<group>"; };
 		575DE95D2976522000E61B8F /* TodoAlarmRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoAlarmRequestModel.swift; sourceTree = "<group>"; };
 		575DE95F2976523300E61B8F /* TodoResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoResultModel.swift; sourceTree = "<group>"; };
@@ -1753,7 +1751,6 @@
 			children = (
 				575DE955297651AE00E61B8F /* DiaryRequestModel.swift */,
 				575DE957297651C300E61B8F /* DiaryResultModel.swift */,
-				575DE959297651D100E61B8F /* DiaryStickerPutResultModel.swift */,
 				575DE95B297651E800E61B8F /* DiaryStickerResultModel.swift */,
 			);
 			path = Diary;
@@ -2243,7 +2240,6 @@
 				AC67C2DC2892904C00071763 /* SetKeboard.swift in Sources */,
 				E03856BB28914D8500CEEFBA /* ColorPickerBottomsheetCollectionViewCell.swift in Sources */,
 				E0F998C6288A6B010051C7AA /* SignoutInput.swift in Sources */,
-				575DE95A297651D100E61B8F /* DiaryStickerPutResultModel.swift in Sources */,
 				E0F99891288A58260051C7AA /* ProfileImgInput.swift in Sources */,
 				ACE7D5FC28A819C10093854A /* PinNumberSettingView.swift in Sources */,
 				57B9F70F28D94F4400ACEC94 /* BaseAlertViewController.swift in Sources */,
