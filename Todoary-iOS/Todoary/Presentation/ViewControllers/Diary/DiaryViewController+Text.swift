@@ -110,6 +110,7 @@ extension DiaryViewController: UITextViewDelegate {
     }
 }
 
+//MARK: - API
 extension DiaryViewController: DiaryTodoCellDelegate{
     
     func requestPatchTodoCheckStatus(cell: TodoInDiaryTableViewCell){
@@ -145,22 +146,26 @@ extension DiaryViewController: DiaryTodoCellDelegate{
             
             self.present(alert, animated: true, completion: nil)
         }else{
-            
-            //TODO: - trimmingCharacters로 공백 및 endline 제거 후, input에 넣기
-//            let trimmingText = mainView.textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
+            requestPostDiary()
+        }
+    }
+    
+    func requestPostDiary(){
         
-            let text = NSAttributedString(attributedString: mainView.textView.attributedText)
+        let text = NSAttributedString(attributedString: mainView.textView.attributedText)
+        let parameter = DiaryRequestModel(title: mainView.diaryTitle.text!,
+                          content: text.attributedString2Html!)
         
-            
-//            let length = mainView.textView.text.count - trimmingText.count
-//
-//            let text = NSMutableAttributedString(attributedString: mainView.textView.attributedText)
-//            text.removeAttribute(.backgroundColor, range: NSRange(location: trimmingText.count, length: length))
-            
-            let input = DiaryInput(title: mainView.diaryTitle.text!,
-                                   content: text.attributedString2Html!)
-            
-            DiaryDataManager().posts(viewController: self, createdDate: self.pickDate!.dateSendServer, parameter: input)
+        DiaryService.shared.generateDiary(date: pickDate!.dateSendServer, request: parameter){ result in
+            switch result{
+            case .success:
+                self.exitBtnDidTab()
+                self.navigationController?.popViewController(animated: true)
+            default:
+                DataBaseErrorAlert.show(in: self)
+                break
+                
+            }
         }
     }
     
