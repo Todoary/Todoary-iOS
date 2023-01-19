@@ -26,13 +26,13 @@ extension AccountRouter: BaseRouter{
         switch self{
         case .login:                        return HTTPMethodURL.POST.login
         case .autoLogin:                    return HTTPMethodURL.POST.autoLogin
-        case .signUp:                   return HTTPMethodURL.POST.signup
-        case .signUpWithApple:          return HTTPMethodURL.POST.singupApple
-        case .deleteAccount:            return HTTPMethodURL.PATCH.userDelete
-        case .deleteAppleAccount:       return HTTPMethodURL.POST.revokeApple
+        case .signUp:                       return HTTPMethodURL.POST.signup
+        case .signUpWithApple:              return HTTPMethodURL.POST.singupApple
+        case .deleteAccount:                return HTTPMethodURL.PATCH.userDelete
+        case .deleteAppleAccount:           return HTTPMethodURL.POST.revokeApple
         case .logout:                       return HTTPMethodURL.POST.signout
-        case .emailDuplicate:           return HTTPMethodURL.GET.emailDuplicate
-        case .patchPassword:                 return HTTPMethodURL.PATCH.password
+        case .emailDuplicate:               return HTTPMethodURL.GET.emailDuplicate
+        case .patchPassword:                return HTTPMethodURL.PATCH.password
         }
     }
     
@@ -40,13 +40,13 @@ extension AccountRouter: BaseRouter{
         switch self{
         case .login:                        return .post
         case .autoLogin:                    return .post
-        case .signUp:                   return .post
-        case .signUpWithApple:          return .post
-        case .deleteAccount:            return .patch
-        case .deleteAppleAccount:       return .post
+        case .signUp:                       return .post
+        case .signUpWithApple:              return .post
+        case .deleteAccount:                return .patch
+        case .deleteAppleAccount:           return .post
         case .logout:                       return .post
-        case .emailDuplicate:           return .get
-        case .patchPassword:                 return .patch
+        case .emailDuplicate:               return .get
+        case .patchPassword:                return .patch
         }
     }
     

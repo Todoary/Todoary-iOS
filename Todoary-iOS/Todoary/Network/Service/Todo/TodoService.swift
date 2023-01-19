@@ -41,4 +41,12 @@ extension TodoService {
     func modifyTodoAlarm(id: Int, request: TodoAlarmRequestModel, completion: @escaping (NetworkResult<Any>) -> Void) {
         requestObjectWithEmptyResponse(TodoRouter.patchAlarm(id: id, request: request), completion: completion)
     }
+    
+    func deleteTodo(id: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
+        requestObjectWithEmptyResponse(TodoRouter.deleteTodo(id: id), completion: completion)
+    }
+    
+    func getTodoByYearMonth(yearMonth: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        requestObject(TodoRouter.getTodoByYearMonth(yearMonth: yearMonth), type: [Int].self, decodingMode: .model, completion: completion)
+    }
 }

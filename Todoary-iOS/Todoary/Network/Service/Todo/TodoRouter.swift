@@ -16,19 +16,23 @@ enum TodoRouter{
     case patchCheck(id: Int, isChecked: Bool)
     case patchPin(id: Int, isPinned: Bool)
     case patchAlarm(id: Int, request: TodoAlarmRequestModel)
+    case deleteTodo(id: Int)
+    case getTodoByYearMonth(yearMonth: String)
 }
 
 extension TodoRouter: BaseRouter{
     
     var path: String{
         switch self{
-        case .postTodo:                         return HTTPMethodURL.POST.todo
-        case .patchTodo(let id, _):             return HTTPMethodURL.PATCH.todo + "/\(id)"
+        case .postTodo:                                 return HTTPMethodURL.POST.todo
+        case .patchTodo(let id, _):                     return HTTPMethodURL.PATCH.todo + "/\(id)"
         case .getTodoByDate(let date):                  return HTTPMethodURL.GET.todoByDate + "/\(date)"
         case .getTodoByCategory(let categoryId):        return HTTPMethodURL.GET.todoByCategory + "/\(categoryId)"
         case .patchCheck:                               return HTTPMethodURL.PATCH.todoCheckbox
         case .patchPin:                                 return HTTPMethodURL.PATCH.todoPin
         case .patchAlarm(let id, _):                    return HTTPMethodURL.PATCH.todoAlarm + "/\(id)/alarm"
+        case .deleteTodo(let id):                       return HTTPMethodURL.DELETE.todo + "/\(id)"
+        case .getTodoByYearMonth(let yearMonth):             return HTTPMethodURL.GET.todoByYearMonth + "/\(yearMonth)"
         }
     }
     
@@ -36,18 +40,20 @@ extension TodoRouter: BaseRouter{
         switch self{
         case .postTodo:                         return .post
         case .patchTodo:                        return .patch
-        case .getTodoByDate:             return .get
-        case .getTodoByCategory:         return .get
-        case .patchCheck:                return .patch
-        case .patchPin:                  return .patch
-        case .patchAlarm:                return .patch
+        case .getTodoByDate:                    return .get
+        case .getTodoByCategory:                return .get
+        case .patchCheck:                       return .patch
+        case .patchPin:                         return .patch
+        case .patchAlarm:                       return .patch
+        case .deleteTodo:                       return .delete
+        case .getTodoByYearMonth:               return .get
         }
     }
     
     var parameters: RequestParams {
         switch self{
-        case .postTodo(let request):            return .requestBody(request)
-        case .patchTodo(_, let request):        return .requestBody(request)
+        case .postTodo(let request):                return .requestBody(request)
+        case .patchTodo(_, let request):            return .requestBody(request)
         case .getTodoByDate:                        return .requestPlain
         case .getTodoByCategory:                    return .requestPlain
         case .patchCheck(let id, let isChecked):
@@ -57,6 +63,8 @@ extension TodoRouter: BaseRouter{
             let parameter: [String:Any] = ["todoId" : id, "isPinned" : isPinned]
                                                     return .requestBodyWithDictionary(parameter)
         case .patchAlarm(_, let request):           return .requestBody(request)
+        case .deleteTodo:                           return .requestPlain
+        case .getTodoByYearMonth:                   return .requestPlain
         }
     }
     

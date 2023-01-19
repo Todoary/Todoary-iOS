@@ -23,8 +23,7 @@ extension ProfileRouter: BaseRouter{
         case .getProfile:                           return HTTPMethodURL.GET.profile
         case .patchProfile:                         return HTTPMethodURL.PATCH.profile
         case .patchProfileImage:                    return HTTPMethodURL.PATCH.imageUpdate
-        case .deleteProfileImage:                   return HTTPMethodURL.PATCH.imageDelete
-            //이미지 delete patch 아니고 delete임!!!!
+        case .deleteProfileImage:                   return HTTPMethodURL.DELETE.imageDelete
         }
     }
     

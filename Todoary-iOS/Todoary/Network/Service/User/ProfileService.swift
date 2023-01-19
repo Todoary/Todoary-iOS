@@ -15,7 +15,7 @@ class ProfileService: BaseService{
 extension ProfileService {
     
     func getProfile(completion: @escaping (NetworkResult<Any>) -> Void){
-        requestObject(ProfileRouter.getProfile, type: [ProfileGetModel].self, decodingMode: .model, completion: completion)
+        requestObject(ProfileRouter.getProfile, type: ProfileGetModel.self, decodingMode: .model, completion: completion)
     }
     
     func modifyProfile(request: ProfileInput, completion: @escaping (NetworkResult<Any>) -> Void){
@@ -31,9 +31,10 @@ extension ProfileService {
         AFManager.upload(multipartFormData: ProfileRouter.patchProfileImage(image: image).multipart, with: ProfileRouter.patchProfileImage(image: image)).responseData { response in
             switch(response.result) {
             case .success:
-//                let networkResult = self.judgeStatusWithEmptyReponse(by: response.response?.statusCode)
-//                completion(networkResult)
-                break
+                guard let statusCode = response.response?.statusCode else { return }
+                guard let data = response.data else { return}
+                let networkResult = self.judgeStatusWithEmptyReponse(by: statusCode, data, decodingMode: .code)
+                completion(networkResult)
             case .failure(let err) :
                 print(err.localizedDescription)
             }

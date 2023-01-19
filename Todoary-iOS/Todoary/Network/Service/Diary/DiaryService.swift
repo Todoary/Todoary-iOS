@@ -26,11 +26,15 @@ extension DiaryService {
         requestObject(DiaryRouter.getDiary(date: date), type: DiaryResultModel.self, decodingMode: .model, completion: completion)
     }
     
-    func getDiarySticker(completion: @escaping (NetworkResult<Any>) -> Void){
-        requestObject(DiaryRouter.getDiarySticker, type: [DiaryStickerResultModel].self, decodingMode: .model, completion: completion)
+    func getDiaryByYearMonth(yearMonth: String, completion: @escaping (NetworkResult<Any>) -> Void){
+        requestObject(DiaryRouter.getDiaryByYearMonth(yearMonth: yearMonth), type: [Int].self, decodingMode: .model, completion: completion)
     }
     
-    func modifyDiarySticker(id: Int, request: DiaryStickerInput, completion: @escaping (NetworkResult<Any>) -> Void){
-        requestObject(DiaryRouter.putDiarySticker(id: id, request: request), type: [Int].self, decodingMode: .model, completion: completion)
+    func getDiarySticker(date: String, completion: @escaping (NetworkResult<Any>) -> Void){
+        requestObject(DiaryRouter.getDiarySticker(date: date), type: DiaryStickerResultModel.self, decodingMode: .model, completion: completion)
+    }
+    
+    func modifyDiarySticker(date: String, request: DiaryStickerInput, completion: @escaping (NetworkResult<Any>) -> Void){
+        requestObject(DiaryRouter.putDiarySticker(date: date, request: request), type: [Int].self, decodingMode: .model, completion: completion)
     }
 }

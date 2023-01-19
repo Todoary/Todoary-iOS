@@ -19,12 +19,12 @@ enum HTTPMethodURL{
         //TODO
         static let todoByDate = "/todo/date"
         static let todoByCategory = "/todo/category"
-        static let todoByYearMonth = "/todo/days/:year-month"
+        static let todoByYearMonth = "/todo/days"
         //CATEGORY
         static let category = "/category"
         //DIARY
         static let diary = "/diary"
-        static let diaryByYearMonth = "/diary/days/:year-month"
+        static let diaryByYearMonth = "/diary/days"
         static let sticker = "/diary"
     }
     
@@ -74,7 +74,7 @@ enum HTTPMethodURL{
         //USER
         static let imageDelete = "/users/profile-img"
         //TODO
-        static let todo = "/todo/:todoId"
+        static let todo = "/todo"
         //CATEGORY
         static let category = "/category"
         //DIARY
