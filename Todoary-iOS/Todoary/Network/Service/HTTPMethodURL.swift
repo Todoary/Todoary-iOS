@@ -56,6 +56,7 @@ enum HTTPMethodURL{
         //USER
         static let profile = "/users/profile"
         static let imageUpdate = "/users/profile-img"
+        static let imageDelete = "/users/profile-img/default"
         static let userDelete = "/users/status"
         static let todoAlarmActivate = "/users/alarm/todo"
         static let diaryAlarmActivate = "/users/alarm/diary"
@@ -71,8 +72,6 @@ enum HTTPMethodURL{
     }
     
     struct DELETE {
-        //USER
-        static let imageDelete = "/users/profile-img"
         //TODO
         static let todo = "/todo"
         //CATEGORY

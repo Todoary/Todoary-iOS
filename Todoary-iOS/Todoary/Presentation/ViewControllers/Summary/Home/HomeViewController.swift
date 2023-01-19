@@ -175,7 +175,7 @@ class HomeViewController : UIViewController {
             switch result{
             case .success(let data):
                 if let profileData = data as? ProfileResultModel{
-                    print("[requestGetProfile] success")
+                    print("[requestGetProfile] success in Home")
                     mainView.nickname.text = profileData.nickname
                     mainView.introduce.text = profileData.introduce
                     if (profileData.profileImgUrl != nil){

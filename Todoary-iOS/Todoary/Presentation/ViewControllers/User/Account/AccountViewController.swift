@@ -25,7 +25,7 @@ class AccountViewController : BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        GetProfileDataManager().getProfileDataManger(self)
+        requestGetProfile()
     }
     
     override func style(){
@@ -104,15 +104,27 @@ class AccountViewController : BaseViewController {
 
     }
     
-    //MARK: - Helpers
+    //MARK: - API
     
-    func successAPI_account(_ result : GetProfileResult) {
-        mainView.nickName.text = result.nickname
-        mainView.introduce.text = result.introduce
-        mainView.userAccount.text = result.email
-        if (result.profileImgUrl != nil){
-            let url = URL(string: result.profileImgUrl!)
-            mainView.profileImage.load(url: url!)
+    func requestGetProfile(){
+        ProfileService.shared.getProfile(){ [self] result in
+            switch result{
+            case .success(let data):
+                if let profileData = data as? ProfileResultModel{
+                    print("[requestGetProfile] success in Account")
+                    mainView.nickName.text = profileData.nickname
+                    mainView.introduce.text = profileData.introduce
+                    mainView.userAccount.text = profileData.email
+                    if (profileData.profileImgUrl != nil){
+                        let url = URL(string: profileData.profileImgUrl!)
+                        mainView.profileImage.load(url: url!)
+                    }
+                }
+                break
+            default:
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
         }
     }
     
@@ -130,6 +142,8 @@ class AccountViewController : BaseViewController {
         }
     }
 }
+
+//MARK: - Helpers
 
 extension AccountViewController: UITableViewDelegate, UITableViewDataSource{
     

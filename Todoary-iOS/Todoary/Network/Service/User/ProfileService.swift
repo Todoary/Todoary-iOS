@@ -29,7 +29,7 @@ extension ProfileService {
         }
     }
     
-    func modifyProfile(request: ProfileInput, completion: @escaping (NetworkResult<Any>) -> Void){
+    func modifyProfile(request: ProfileRequestModel, completion: @escaping (NetworkResult<Any>) -> Void){
         requestObjectWithEmptyResponse(ProfileRouter.patchProfile(requeset: request), completion: completion)
     }
     

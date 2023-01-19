@@ -172,6 +172,7 @@
 		ACBAE56E29702D7700E71CAD /* ProfileResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE56D29702D7700E71CAD /* ProfileResultModel.swift */; };
 		ACBAE5702979909700E71CAD /* LoginResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE56F2979909700E71CAD /* LoginResultModel.swift */; };
 		ACBAE572297990FB00E71CAD /* LoginRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE571297990FB00E71CAD /* LoginRequestModel.swift */; };
+		ACBAE5742979C9EF00E71CAD /* ProfileRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE5732979C9EF00E71CAD /* ProfileRequestModel.swift */; };
 		ACCD87B92893C43F00C34CE7 /* CategoryMakeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87B82893C43F00C34CE7 /* CategoryMakeInput.swift */; };
 		ACCD87BB2893C45400C34CE7 /* CategoryMakeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87BA2893C45400C34CE7 /* CategoryMakeModel.swift */; };
 		ACCD87BD2893C46D00C34CE7 /* CategoryMakeDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87BC2893C46D00C34CE7 /* CategoryMakeDataManager.swift */; };
@@ -457,6 +458,7 @@
 		ACBAE56D29702D7700E71CAD /* ProfileResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResultModel.swift; sourceTree = "<group>"; };
 		ACBAE56F2979909700E71CAD /* LoginResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResultModel.swift; sourceTree = "<group>"; };
 		ACBAE571297990FB00E71CAD /* LoginRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestModel.swift; sourceTree = "<group>"; };
+		ACBAE5732979C9EF00E71CAD /* ProfileRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRequestModel.swift; sourceTree = "<group>"; };
 		ACCD87B82893C43F00C34CE7 /* CategoryMakeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryMakeInput.swift; sourceTree = "<group>"; };
 		ACCD87BA2893C45400C34CE7 /* CategoryMakeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryMakeModel.swift; sourceTree = "<group>"; };
 		ACCD87BC2893C46D00C34CE7 /* CategoryMakeDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryMakeDataManager.swift; sourceTree = "<group>"; };
@@ -1773,6 +1775,7 @@
 			children = (
 				57397F9F296D51810088B5F4 /* AlarmActiveStautsResultModel.swift */,
 				ACBAE56D29702D7700E71CAD /* ProfileResultModel.swift */,
+				ACBAE5732979C9EF00E71CAD /* ProfileRequestModel.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -2320,6 +2323,7 @@
 				578B7AA928AD114400E7B4F4 /* DiaryInput.swift in Sources */,
 				57DF45FD28A60DB90002D66C /* DiaryFont.swift in Sources */,
 				575DE9622976528900E61B8F /* SignUpRequestModel.swift in Sources */,
+				ACBAE5742979C9EF00E71CAD /* ProfileRequestModel.swift in Sources */,
 				57C481BF29695370008731D9 /* HeaderType.swift in Sources */,
 				57B36ECA287AFA9A00378E16 /* DefaultTableViewCell.swift in Sources */,
 				E0F9989F288A592E0051C7AA /* GetProfileModel.swift in Sources */,
