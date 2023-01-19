@@ -26,6 +26,7 @@ class UserDeleteDataManager{
         }
     }
     
+    /*
     func postAppleUserDelete(_ viewController: AccountViewController, authorizationCode: String){
         
         guard let email = KeyChain.read(key: Const.UserDefaults.email) else { return }
@@ -55,7 +56,6 @@ class UserDeleteDataManager{
                 
                 default:
                     print(result.code)
-                    
                     let alert = DataBaseErrorAlert()
                     viewController.present(alert, animated: true, completion: nil)
                 }
@@ -64,4 +64,5 @@ class UserDeleteDataManager{
             }
         }
     }
+     */
 }
