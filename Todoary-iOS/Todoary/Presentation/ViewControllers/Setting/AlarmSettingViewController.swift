@@ -7,21 +7,29 @@
 
 import UIKit
 
+enum AlarmType: String{
+    case Todoary
+    case Diary
+    case Remind
+}
+
 class AlarmSettingViewController: BaseViewController {
     
     let mainView = AlarmSettingView()
     
     var currentInfoView: UIView?
     
-    var alarmData = GetAlarmCheckResult(isTodoAlarmChecked: true, isDiaryAlarmChecked: true, isRemindAlarmChecked: true)
+    var alarmData = AlarmActiveStautsResultModel(){
+        didSet{
+            mainView.tableView.reloadData()
+        }
+    }
     
     //MARK: - LifeCycle
 
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
-        AlarmDataManager().get(viewController: self)
+        requestGetAlarmActiveStatus()
     }
     
     override func style(){
@@ -34,7 +42,6 @@ class AlarmSettingViewController: BaseViewController {
         super.layout()
         
         self.view.addSubview(mainView)
-        
         mainView.snp.makeConstraints{
             $0.top.equalToSuperview().offset(Const.Offset.top)
             $0.leading.trailing.bottom.equalToSuperview()
@@ -99,7 +106,20 @@ class AlarmSettingViewController: BaseViewController {
         }
         
         currentInfoView = messageView
-        
+    }
+    
+    private func requestGetAlarmActiveStatus(){
+        AlarmService.shared.getUserAlarmActiveStatus{ result in
+            switch result{
+            case .success(let data):
+                guard let data = data as? AlarmActiveStautsResultModel else { return }
+                self.alarmData = data
+                break
+            default:
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+        }
     }
 }
 
@@ -119,7 +139,7 @@ extension AlarmSettingViewController: UITableViewDelegate, UITableViewDataSource
         tapGesture.caller = indexPath.row
         cell.infoBtn.addGestureRecognizer(tapGesture)
         
-        cell.navigation = self.navigationController
+//        cell.navigation = self.navigationController
         
         switch indexPath.row{
         case 0:
@@ -142,15 +162,6 @@ extension AlarmSettingViewController: UITableViewDelegate, UITableViewDataSource
         }
     }
     
-}
-
-//MARK: - API
-extension AlarmSettingViewController{
-    func successApiResult(_ resultData: GetAlarmCheckResult){
-        print("api 호출 성공")
-        self.alarmData = resultData
-        mainView.tableView.reloadData()
-    }
 }
 
 //MARK: - GestureRecognizer

@@ -18,7 +18,7 @@ class AgreementViewController : BaseViewController {
         }
     }
     
-    var appleUserInfo: AppleLoginInput?
+    var appleUserInfo: AppleSignUpRequestModel?
     
     let mainView = AgreementView()
     
@@ -160,16 +160,13 @@ class AgreementViewController : BaseViewController {
         if var appleInfo = appleUserInfo{
             //애플 소셜 회원가입 로직
             appleInfo.isTermsEnable = mainView.adCheckBtn.isSelected
-            print(appleInfo)
-            AppleLoginDataManager().post(self, parameter: appleInfo)
+            requestAppleSignUp(parameter: appleInfo)
         }else{
             //일반 회원가입 로직
             let vc = SignUpViewController()
             vc.isMarketingAgree = mainView.adCheckBtn.isSelected
             
             self.navigationController?.pushViewController(vc, animated: true)
-            
-            //            navigationController?.isNavigationBarHidden = true
         }
     }
     
@@ -180,6 +177,28 @@ class AgreementViewController : BaseViewController {
             isconfirmBtnEnabled = false
         }else{
             isconfirmBtnEnabled = true
+        }
+    }
+    
+    private func requestAppleSignUp(parameter: AppleSignUpRequestModel){
+        
+        AccountService.shared.generateAppleAccount(request: parameter){ result in
+            switch result{
+            case .success(let data):
+                guard let data = data as? AppleSignUpResultModel else { return }
+                KeyChain.create(key: Const.UserDefaults.appleIdentifier, value: parameter.userIdentifier)
+                KeyChain.create(key: Const.UserDefaults.appleRefreshToken, value: data.appleRefreshToken)
+
+                UserDefaults.standard.set(data.token.accessToken, forKey: "accessToken")
+                UserDefaults.standard.set(data.token.refreshToken, forKey: "refreshToken")
+
+                self.navigationController?.pushViewController(HomeViewController(), animated: true)
+                break
+            default:
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+            
         }
     }
     

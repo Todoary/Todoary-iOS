@@ -39,14 +39,14 @@ extension AccountService {
     }
     
     func deleteAppleAccount(request: DeleteAppleAccountRequestModel, completion: @escaping (NetworkResult<Any>) -> Void){
-//        requestObjectWithEmptyResponse(AccountRouter.deleteAppleAccount(request: request), completion: completion)
+        requestObjectWithEmptyResponse(AccountRouter.deleteAppleAccount(request: request), completion: completion)
     }
     
     func checkUserEmailDuplicate(email: String, completion: @escaping (NetworkResult<Any>) -> Void){
-//        requestObjectWithEmptyResponse(AccountRouter.emailDuplicate(request: email), completion: completion)
+        requestObjectWithEmptyResponse(AccountRouter.emailDuplicate(request: email), completion: completion)
     }
     
     func modifyPassword(request: PwFindInput, completion: @escaping (NetworkResult<Any>) -> Void){
-//        requestObjectWithEmptyResponse(AccountRouter.patchPassword(requeset: request), completion: completion)
+        requestObjectWithEmptyResponse(AccountRouter.patchPassword(requeset: request), completion: completion)
     }
 }

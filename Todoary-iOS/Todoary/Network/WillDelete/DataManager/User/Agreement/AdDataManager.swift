@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 class AdDataManager{
-    
+    /*
     func adDataManager(viewController: AdvertiseTextSettingViewController, isChecked: Bool){
         AF.request("https://todoary.com/users/service/terms",
                 method: .patch,
@@ -25,4 +25,5 @@ class AdDataManager{
              }
          }
     }
+     */
 }

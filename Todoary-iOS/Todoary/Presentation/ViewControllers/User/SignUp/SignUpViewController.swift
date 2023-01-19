@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
+//TODO: - HTTP METHOD URL EMAIL_DUPLICATE -> "/auth/email/duplication"으로 변경ㅇ
 class SignUpViewController: BaseViewController{
     
     //MARK: - Properties
@@ -21,49 +22,31 @@ class SignUpViewController: BaseViewController{
     var nickname : String = ""
     
     var isMarketingAgree : Bool! //agreemnetVC에서 마케팅 동의 여부 정보 넘겨받기
-    
     var isValidEmail = false{
         didSet { self.validateUserInput() }
     }
-    
     var isValidCertiCode = false{
         didSet{ self.validateUserInput() }
     }
-    
     var isValidPasswd = false{
         didSet{ self.validateUserInput() }
     }
-    
     var isValidPasswdCheck = false{
         didSet{ self.validateUserInput() }
     }
-    
     var isValidName = false{
         didSet{ self.validateUserInput() }
     }
-    
     var isValidNickname = false{
         didSet{ self.validateUserInput() }
     }
     
     let mainView = SignUpView()
     
-    //MARK: - LifeCycle
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-        style()
-        layout()
-        initialize()
-    }
-    
     //MARK: - Override
     
     override func style() {
-        
         super.style()
-        
         self.navigationTitle.text = "회원가입"
     }
     
@@ -72,7 +55,6 @@ class SignUpViewController: BaseViewController{
         super.layout()
         
         self.view.addSubview(mainView)
-        
         mainView.snp.makeConstraints{
             $0.top.equalToSuperview().offset(Const.Offset.top)
             $0.leading.trailing.bottom.equalToSuperview()
@@ -86,20 +68,16 @@ class SignUpViewController: BaseViewController{
         
         mainView.idCertificationButton.addTarget(self, action: #selector(certificationBtnDidClicked(_:)), for: .touchUpInside)
         mainView.certificationOkButton.addTarget(self, action: #selector(certificationOKBtnDidClicked(_:)), for: .touchUpInside)
-        mainView.nextButton.addTarget(self, action: #selector(nextButtonDidClicked(_:)), for: .touchUpInside)
+        mainView.nextButton.addTarget(self, action: #selector(requestSignUp), for: .touchUpInside)
     }
     
     func addActionToTextFieldByCase(){
         
-        let tfChangedArray = [mainView.idTextField, mainView.certificationTextField, mainView.pwCertificationTextField]
-        
-        tfChangedArray.forEach{ each in
+        [mainView.idTextField, mainView.certificationTextField, mainView.pwCertificationTextField].forEach{ each in
             each.addTarget(self, action: #selector(textFieldDidEditingChanged(_:)), for: .editingChanged)
         }
         
-        let tfEditedEndArray = [mainView.pwTextField, mainView.nameTextField, mainView.nicknameTextField]
-        
-        tfEditedEndArray.forEach{ each in
+        [mainView.pwTextField, mainView.nameTextField, mainView.nicknameTextField].forEach{ each in
             each.addTarget(self, action: #selector(textFieldDidEditingEnd(_:)), for: .editingDidEnd)
         }
         
@@ -107,9 +85,7 @@ class SignUpViewController: BaseViewController{
     }
     
     func setTextFieldDelegate(){
-        let textFields = [mainView.idTextField, mainView.certificationTextField, mainView.pwTextField, mainView.nameTextField, mainView.nicknameTextField]
-        
-        textFields.forEach{ each in
+        [mainView.idTextField, mainView.certificationTextField, mainView.pwTextField, mainView.nameTextField, mainView.nicknameTextField].forEach{ each in
             each.delegate = self
         }
     }
@@ -140,27 +116,20 @@ class SignUpViewController: BaseViewController{
         
         switch sender {
         case mainView.idTextField:
-            
             isValidEmail = text.isValidEmail()
             email = text
             return
             
         case mainView.certificationTextField:
-            
             isValidCertiCode = (text == UserDefaults.standard.string(forKey: "key"))
             return
             
         case mainView.pwCertificationTextField:
-            
             let bool = (sender.text == passwd)
             isValidPasswdCheck = bool
-            
-            if (bool){
-                mainView.pwIncorrectLabel.isHidden = true
-            }else{
-                mainView.pwIncorrectLabel.isHidden = false
-            }
+            mainView.pwIncorrectLabel.isHidden = bool ? true : false
             return
+            
         default:
             fatalError("Missing Textfield")
         }
@@ -206,12 +175,9 @@ class SignUpViewController: BaseViewController{
     @objc func certificationBtnDidClicked(_ sender: UIButton){
         
         mainView.idCanUseLabel.isHidden = false
-
+        
         if(isValidEmail){
-            //이메일 중복 여부 확인
-            SignUpDataManager().gets(self, email: self.email)
-            print("API - email 중복 검사 요청")
-
+            requestGetEmailDuplicate()
         }else{
             mainView.idCanUseLabel.text = "*이메일 형식이 올바르지 않습니다."
             mainView.idCanUseLabel.textColor = .noticeRed
@@ -222,21 +188,79 @@ class SignUpViewController: BaseViewController{
     @objc func certificationOKBtnDidClicked(_ sender: UIButton){
         
         let alertTitle : String!
-
         if isValidCertiCode{
             alertTitle = "인증이 완료되었습니다."
         }else{
             alertTitle = "인증코드가 일치하지 않습니다."
         }
         
-        let alert = ConfirmAlertViewController(title: alertTitle)
-        alert.modalPresentationStyle = .overFullScreen
-        self.present(alert, animated: false, completion: nil)
+        let alert = ConfirmAlertViewController(title: alertTitle).show(in: self)
     }
     
-    @objc func nextButtonDidClicked(_ sender: UIButton){
-        let userData = SignUpInput(email: self.email, name: self.name, nickname: self.nickname, password: self.passwd, isTermsEnable: self.isMarketingAgree)
-        SignUpDataManager().posts(self, userData)
+    //MARK: - API
+    private func requestGetEmailDuplicate(){
+        AccountService.shared.checkUserEmailDuplicate(email: self.email){ result in
+            switch result{
+            case .success:
+                self.mainView.idCanUseLabel.text = "*사용 가능한 이메일입니다."
+                self.mainView.idCanUseLabel.textColor = .todoaryGrey
+                MailSender.shared.sendEmail(email: self.email, viewController: self)
+                break
+            case .invalidSuccess(let code):
+                if(code == 2017){
+                    self.mainView.idCanUseLabel.isHidden = false
+                    self.mainView.idCanUseLabel.text = "*중복된 이메일 입니다."
+                    self.mainView.idCanUseLabel.textColor = .noticeRed
+                    self.isValidEmail = false
+                }
+                break
+            default:
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+        }
+    }
+    
+    @objc private func requestSignUp(){
+        
+        let parameter = SignUpRequestModel(email: email,
+                                           name: name,
+                                           nickname: nickname,
+                                           password: passwd,
+                                           isTermsEnable: isMarketingAgree)
+        
+        AccountService.shared.generateAccount(request: parameter){ result in
+            switch result{
+            case .success:
+                let alert = ConfirmMessageAlertViewController(title: "회원가입을 축하합니다!", message: "이제 Todoary 서비스를 자유롭게 이용해보세요.").show(in: self)
+                alert.alertHandler = {
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
+                break
+            case .invalidSuccess(let code):
+                switch code{
+                case 2017:
+                    self.mainView.nextButton.isEnabled = false
+                    self.mainView.idCanUseLabel.isHidden = false
+                    self.mainView.idCanUseLabel.text = "중복된 이메일입니다."
+                    break
+                case 2032:
+                    self.mainView.nextButton.isEnabled = false
+                    self.mainView.nicknameCanUseLabel.isHidden = false
+                    self.mainView.nicknameCanUseLabel.text = "중복된 닉네임입니다."
+                    break
+                default:
+                    self.mainView.nextButton.isEnabled = false
+                    DataBaseErrorAlert.show(in: self)
+                    break
+                }
+                break
+            default:
+                self.mainView.nextButton.isEnabled = false
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+        }
     }
 }
 
@@ -291,66 +315,4 @@ extension SignUpViewController: UITextFieldDelegate{
             }
             return true
         }
-}
-
-//MARK: - API
-extension SignUpViewController{
-    
-    func checkSignUpResultCode(_ code: Int){
-        switch(code){
-        case 1000:
-            let alert = ConfirmMessageAlertViewController(title: "회원가입을 축하합니다!", message: "이제 Todoary 서비스를 자유롭게 이용해보세요.")
-            alert.alertHandler = {
-                self.navigationController?.popToRootViewController(animated: true)
-            }
-            alert.modalPresentationStyle = .overFullScreen
-            self.present(alert, animated: false, completion: nil)
-            return
-        case 2017:
-            mainView.nextButton.isEnabled = false
-            mainView.idCanUseLabel.isHidden = false
-            mainView.idCanUseLabel.text = "중복된 이메일입니다."
-            return
-        case 2032:
-            mainView.nextButton.isEnabled = false
-            mainView.nicknameCanUseLabel.isHidden = false
-            mainView.nicknameCanUseLabel.text = "중복된 닉네임입니다."
-            return
-        default:
-            print("데이터 베이스 오류")
-            mainView.nextButton.isEnabled = false
-            //팝업 띄우기
-            let alert = DataBaseErrorAlert()
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
-    }
-    
-    func checkEmailApiResultCode(_ code: Int){
-        
-        switch code {
-        case 1000:
-            
-            mainView.idCanUseLabel.text = "*사용 가능한 이메일입니다."
-            mainView.idCanUseLabel.textColor = .todoaryGrey
-            
-            MailSender.shared.sendEmail(email: self.email, viewController: self)
-            
-            return
-            
-        case 2017:
-            mainView.idCanUseLabel.isHidden = false
-            mainView.idCanUseLabel.text = "*중복된 이메일 입니다."
-            mainView.idCanUseLabel.textColor = .noticeRed
-            isValidEmail = false
-            
-            return
-        default:
-            print("데이터베이스 오류")
-            let alert = DataBaseErrorAlert()
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
-        
-    }
 }
