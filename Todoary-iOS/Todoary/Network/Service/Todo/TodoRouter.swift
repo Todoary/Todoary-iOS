@@ -22,8 +22,7 @@ extension TodoRouter: BaseRouter{
     
     var path: String{
         switch self{
-        case .postTodo:                         return HTTPMethodURL.POST.sticker
-            //sticker 아니고 todo 따로 추가 해야함
+        case .postTodo:                         return HTTPMethodURL.POST.todo
         case .patchTodo(let id, _):             return HTTPMethodURL.PATCH.todo + "/\(id)"
         case .getTodoByDate(let date):                  return HTTPMethodURL.GET.todoByDate + "/\(date)"
         case .getTodoByCategory(let categoryId):        return HTTPMethodURL.GET.todoByCategory + "/\(categoryId)"
