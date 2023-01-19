@@ -220,14 +220,17 @@ extension LoginViewController: ASAuthorizationControllerPresentationContextProvi
                 userName = KeyChain.read(key: Const.UserDefaults.userName)
             }
             
-            let userInput = AppleLoginInput(code: authorizationCode!, idToken: identityToken, name: userName, email: email, userIdentifier: userIdentifier)
+            let userInput = AppleSignUpRequestModel(code: authorizationCode!,
+                                                    idToken: identityToken,
+                                                    name: userName,
+                                                    email: email,
+                                                    userIdentifier: userIdentifier)
             
             if KeyChain.read(key: Const.UserDefaults.appleRefreshToken) != nil {
                 //userIdentifier값 nil이 아닌 경우 -> 로그인 진행
                 KeyChain.delete(key: Const.UserDefaults.appleIdentifier)
                 KeyChain.delete(key: Const.UserDefaults.appleRefreshToken)
-                
-                AppleLoginDataManager().post(self, parameter: userInput)
+                requestLoginAppleAccount(parameter: userInput)
             }else{
                 //userIdentifier값 nil인 경우 -> 회원가입 필요
                 let vc = AgreementViewController()
@@ -244,6 +247,26 @@ extension LoginViewController: ASAuthorizationControllerPresentationContextProvi
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         // Handle error.
+    }
+    
+    func requestLoginAppleAccount(parameter: AppleSignUpRequestModel){
+        AccountService.shared.generateAppleAccount(request: parameter){ result in
+            switch result{
+            case .success(let data):
+                guard let data = data as? AppleSignUpResultModel else { return }
+                KeyChain.create(key: Const.UserDefaults.appleIdentifier, value: parameter.userIdentifier)
+                KeyChain.create(key: Const.UserDefaults.appleRefreshToken, value: data.appleRefreshToken)
+                
+                UserDefaults.standard.set(data.token.accessToken, forKey: "accessToken")
+                UserDefaults.standard.set(data.token.refreshToken, forKey: "refreshToken")
+                
+                self.navigationController?.pushViewController(HomeViewController(), animated: true)
+                break
+            default:
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+        }
     }
     
 }
