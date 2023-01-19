@@ -100,14 +100,13 @@ class HomeViewController : UIViewController {
     func apiSetting() {
         self.calculation()
         let component = cal.date(from: components)
-
-        GetCalendataManager().getCalendataManager(self, yearMonth: "\(dateFormatterYear.string(from: component!))-\(dateFormatterMonth.string(from: component!))")
-
-        GetDiaryDataManager().getDiaryDataManager(self, yearMonth: "\(dateFormatterYear.string(from: component!))-\(dateFormatterMonth.string(from: component!))")
+        
+        requestGetTodoByYearMonth(yearMonth: "\(dateFormatterYear.string(from: component!))-\(dateFormatterMonth.string(from: component!))")
+        requestGetDiaryByYearMonth(yearMonth: "\(dateFormatterYear.string(from: component!))-\(dateFormatterMonth.string(from: component!))")
 
         mainView.collectionView.reloadData()
 
-        GetProfileDataManager().getProfileDataManger(self)
+        requestGetProfile()
 
         let fcmToken = FcmTokenInput(fcm_token: UserDefaults.standard.string(forKey: "fcmToken"))
 
@@ -171,37 +170,71 @@ class HomeViewController : UIViewController {
         }
     }
     
-    func successAPI_home(_ result : GetProfileResult) {
-        mainView.nickname.text = result.nickname
-        mainView.introduce.text = result.introduce
-        if (result.profileImgUrl != nil){
-            let url = URL(string: result.profileImgUrl!)
-            mainView.profileImage.load(url: url!)
+    func requestGetProfile(){
+        ProfileService.shared.getProfile(){ [self] result in
+            switch result{
+            case .success(let data):
+                if let profileData = data as? ProfileResultModel{
+                    print("[requestGetProfile] success")
+                    mainView.nickname.text = profileData.nickname
+                    mainView.introduce.text = profileData.introduce
+                    if (profileData.profileImgUrl != nil){
+                        let url = URL(string: profileData.profileImgUrl!)
+                        mainView.profileImage.load(url: url!)
+                    }
+                }
+                break
+            default:
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+        }
+    }
+
+    func requestGetTodoByYearMonth(yearMonth: String){
+        TodoService.shared.getTodoByYearMonth(yearMonth: yearMonth){ [self] result in
+            switch result{
+            case .success(let data):
+                if let calendarData = data as? [Int]{
+                    print("[requestGetTodoByYearMonth] success")
+                    calendarRecord = [Int](repeating: 0, count: 32)
+                    
+                    if ((calendarData.isEmpty) != true){
+                        for i in 0...calendarData.count-1{
+                            calendarRecord[calendarData[i]] = calendarData[i]
+                        }
+                    }
+                    mainView.collectionView.reloadData()
+                }
+                break
+            default:
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
         }
     }
     
-    func successAPI_calendar(_ result : [Int]) {
-        
-        calendarRecord = [Int](repeating: 0, count: 32)
-        
-        if !result.isEmpty{
-            for i in 0...result.count-1{
-                calendarRecord[result[i]] = result[i]
+    func requestGetDiaryByYearMonth(yearMonth: String){
+        DiaryService.shared.getDiaryByYearMonth(yearMonth: yearMonth){ [self] result in
+            switch result{
+            case .success(let data):
+                if let diaryData = data as? [Int]{
+                    print("[requestGetDiaryByYearMonth] success")
+                    diaryRecord = [Int](repeating: 0, count: 32)
+                    
+                    if ((diaryData.isEmpty) != true){
+                        for i in 0...diaryData.count-1{
+                            diaryRecord[diaryData[i]] = diaryData[i]
+                        }
+                    }
+                    mainView.collectionView.reloadData()
+                }
+                break
+            default:
+                DataBaseErrorAlert.show(in: self)
+                break
             }
         }
-        mainView.collectionView.reloadData()
-    }
-    
-    func successAPI_diary(_ result : [Int]) {
-        
-        diaryRecord = [Int](repeating: 0, count: 32)
-        
-        if !result.isEmpty{
-            for i in 0...result.count-1{
-                diaryRecord[result[i]] = result[i]
-            }
-        }
-        mainView.collectionView.reloadData()
     }
     
     //MARK: - Helpers
@@ -212,6 +245,7 @@ class HomeViewController : UIViewController {
     
     func showBottomSheet(){
         HomeViewController.bottomSheetVC.homeNavigaiton = self.navigationController
+        HomeViewController.bottomSheetVC.homeViewController = self
         
         HomeViewController.bottomSheetVC.loadViewIfNeeded()
         

@@ -169,7 +169,9 @@
 		ACAE1D432898D9EC00B34DCC /* TodoModifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAE1D422898D9EC00B34DCC /* TodoModifyModel.swift */; };
 		ACBAE55E296E69B200E71CAD /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE55D296E69B200E71CAD /* ProfileRouter.swift */; };
 		ACBAE560296E69BF00E71CAD /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE55F296E69BF00E71CAD /* ProfileService.swift */; };
-		ACBAE56E29702D7700E71CAD /* ProfileGetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE56D29702D7700E71CAD /* ProfileGetModel.swift */; };
+		ACBAE56E29702D7700E71CAD /* ProfileResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE56D29702D7700E71CAD /* ProfileResultModel.swift */; };
+		ACBAE5702979909700E71CAD /* LoginResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE56F2979909700E71CAD /* LoginResultModel.swift */; };
+		ACBAE572297990FB00E71CAD /* LoginRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE571297990FB00E71CAD /* LoginRequestModel.swift */; };
 		ACCD87B92893C43F00C34CE7 /* CategoryMakeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87B82893C43F00C34CE7 /* CategoryMakeInput.swift */; };
 		ACCD87BB2893C45400C34CE7 /* CategoryMakeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87BA2893C45400C34CE7 /* CategoryMakeModel.swift */; };
 		ACCD87BD2893C46D00C34CE7 /* CategoryMakeDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87BC2893C46D00C34CE7 /* CategoryMakeDataManager.swift */; };
@@ -182,14 +184,12 @@
 		ACCD87CD2897BB6500C34CE7 /* CategoryModifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87CC2897BB6500C34CE7 /* CategoryModifyModel.swift */; };
 		ACCD87D02897DB8C00C34CE7 /* CategoryDeleteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87CF2897DB8C00C34CE7 /* CategoryDeleteDataManager.swift */; };
 		ACCD87D22897DB9E00C34CE7 /* CategoryDeleteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87D12897DB9E00C34CE7 /* CategoryDeleteModel.swift */; };
-		ACCD87D52897E77E00C34CE7 /* GetCalendataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87D42897E77E00C34CE7 /* GetCalendataManager.swift */; };
 		ACCD87D72897E79100C34CE7 /* GetCalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87D62897E79100C34CE7 /* GetCalendarModel.swift */; };
 		ACE7D5FA28A819A70093854A /* PinNumberSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE7D5F928A819A70093854A /* PinNumberSettingViewController.swift */; };
 		ACE7D5FC28A819C10093854A /* PinNumberSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE7D5FB28A819C10093854A /* PinNumberSettingView.swift */; };
 		ACFBEC9528B3777C00B9D66F /* FcmTokendataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFBEC9428B3777C00B9D66F /* FcmTokendataManager.swift */; };
 		ACFBEC9728B3779700B9D66F /* FcmTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFBEC9628B3779700B9D66F /* FcmTokenModel.swift */; };
 		ACFBEC9928B379E000B9D66F /* FcmTokenInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFBEC9828B379E000B9D66F /* FcmTokenInput.swift */; };
-		ACFBEC9C28B3DB8100B9D66F /* GetDiaryDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFBEC9B28B3DB8100B9D66F /* GetDiaryDataManager.swift */; };
 		ACFBEC9E28B3DBB200B9D66F /* GetDiaryExistenceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFBEC9D28B3DBB200B9D66F /* GetDiaryExistenceModel.swift */; };
 		ACFBECA128B5E05100B9D66F /* DiaryStickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFBECA028B5E05100B9D66F /* DiaryStickerModel.swift */; };
 		E015059928B3F3E500E83157 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015059828B3F3E500E83157 /* OnboardingViewController.swift */; };
@@ -454,7 +454,9 @@
 		ACAE1D422898D9EC00B34DCC /* TodoModifyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModifyModel.swift; sourceTree = "<group>"; };
 		ACBAE55D296E69B200E71CAD /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
 		ACBAE55F296E69BF00E71CAD /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
-		ACBAE56D29702D7700E71CAD /* ProfileGetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileGetModel.swift; sourceTree = "<group>"; };
+		ACBAE56D29702D7700E71CAD /* ProfileResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResultModel.swift; sourceTree = "<group>"; };
+		ACBAE56F2979909700E71CAD /* LoginResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResultModel.swift; sourceTree = "<group>"; };
+		ACBAE571297990FB00E71CAD /* LoginRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestModel.swift; sourceTree = "<group>"; };
 		ACCD87B82893C43F00C34CE7 /* CategoryMakeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryMakeInput.swift; sourceTree = "<group>"; };
 		ACCD87BA2893C45400C34CE7 /* CategoryMakeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryMakeModel.swift; sourceTree = "<group>"; };
 		ACCD87BC2893C46D00C34CE7 /* CategoryMakeDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryMakeDataManager.swift; sourceTree = "<group>"; };
@@ -467,14 +469,12 @@
 		ACCD87CC2897BB6500C34CE7 /* CategoryModifyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModifyModel.swift; sourceTree = "<group>"; };
 		ACCD87CF2897DB8C00C34CE7 /* CategoryDeleteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDeleteDataManager.swift; sourceTree = "<group>"; };
 		ACCD87D12897DB9E00C34CE7 /* CategoryDeleteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDeleteModel.swift; sourceTree = "<group>"; };
-		ACCD87D42897E77E00C34CE7 /* GetCalendataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCalendataManager.swift; sourceTree = "<group>"; };
 		ACCD87D62897E79100C34CE7 /* GetCalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCalendarModel.swift; sourceTree = "<group>"; };
 		ACE7D5F928A819A70093854A /* PinNumberSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinNumberSettingViewController.swift; sourceTree = "<group>"; };
 		ACE7D5FB28A819C10093854A /* PinNumberSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinNumberSettingView.swift; sourceTree = "<group>"; };
 		ACFBEC9428B3777C00B9D66F /* FcmTokendataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcmTokendataManager.swift; sourceTree = "<group>"; };
 		ACFBEC9628B3779700B9D66F /* FcmTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcmTokenModel.swift; sourceTree = "<group>"; };
 		ACFBEC9828B379E000B9D66F /* FcmTokenInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcmTokenInput.swift; sourceTree = "<group>"; };
-		ACFBEC9B28B3DB8100B9D66F /* GetDiaryDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDiaryDataManager.swift; sourceTree = "<group>"; };
 		ACFBEC9D28B3DBB200B9D66F /* GetDiaryExistenceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDiaryExistenceModel.swift; sourceTree = "<group>"; };
 		ACFBECA028B5E05100B9D66F /* DiaryStickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryStickerModel.swift; sourceTree = "<group>"; };
 		C3C8A11142F88041A453AA57 /* Pods-TodoaryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoaryTests.debug.xcconfig"; path = "Target Support Files/Pods-TodoaryTests/Pods-TodoaryTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1157,8 +1157,6 @@
 			children = (
 				5701EA9F2957244400F21F63 /* Category */,
 				57294AAE2891159300DA2F31 /* TodoDeleteDataManager.swift */,
-				ACFBEC9B28B3DB8100B9D66F /* GetDiaryDataManager.swift */,
-				ACCD87D42897E77E00C34CE7 /* GetCalendataManager.swift */,
 			);
 			path = Summary;
 			sourceTree = "<group>";
@@ -1774,7 +1772,7 @@
 			isa = PBXGroup;
 			children = (
 				57397F9F296D51810088B5F4 /* AlarmActiveStautsResultModel.swift */,
-				ACBAE56D29702D7700E71CAD /* ProfileGetModel.swift */,
+				ACBAE56D29702D7700E71CAD /* ProfileResultModel.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1786,6 +1784,8 @@
 				575DE9632976529400E61B8F /* AppleSignUpRequestModel.swift */,
 				575DE9652976529F00E61B8F /* AppleSignUpResultModel.swift */,
 				575DE967297652A600E61B8F /* DeleteAppleAccountRequestModel.swift */,
+				ACBAE56F2979909700E71CAD /* LoginResultModel.swift */,
+				ACBAE571297990FB00E71CAD /* LoginRequestModel.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -2149,7 +2149,6 @@
 				57294AC62891189700DA2F31 /* ApiModel.swift in Sources */,
 				5799DB732977A2D9001137EA /* TodoaryDateFormatter.swift in Sources */,
 				AC5E27DA288EFCFE0056EC69 /* TodoCalendar.swift in Sources */,
-				ACCD87D52897E77E00C34CE7 /* GetCalendataManager.swift in Sources */,
 				57503656288A3FD4006A9070 /* LoginDataManager.swift in Sources */,
 				E0F9988A288A57D60051C7AA /* ProfileInput.swift in Sources */,
 				57E75EB928E33AD400AC24B2 /* AddButtonViewController.swift in Sources */,
@@ -2167,6 +2166,7 @@
 				574A70492885255B003C8F99 /* DiaryTitleInSummaryTableViewCell.swift in Sources */,
 				574A704528852523003C8F99 /* TodoTitleInSummaryTableViewCell.swift in Sources */,
 				ACCD87BD2893C46D00C34CE7 /* CategoryMakeDataManager.swift in Sources */,
+				ACBAE572297990FB00E71CAD /* LoginRequestModel.swift in Sources */,
 				E0F9988C288A57EB0051C7AA /* ProfileModel.swift in Sources */,
 				AC9128D2287B34C80056932A /* ProfileView.swift in Sources */,
 				ACCD87BB2893C45400C34CE7 /* CategoryMakeModel.swift in Sources */,
@@ -2180,7 +2180,6 @@
 				570DD837295EC53D00A0D2A9 /* DiaryViewController+Sticker.swift in Sources */,
 				AC9859CB288334AC009FC2F8 /* CalendarCell.swift in Sources */,
 				57503654288A3FC9006A9070 /* LoginModel.swift in Sources */,
-				ACFBEC9C28B3DB8100B9D66F /* GetDiaryDataManager.swift in Sources */,
 				57E75EB228E1B7D700AC24B2 /* AlarmAlertViewController.swift in Sources */,
 				57FFEDBC28DC1C230041719B /* Const.swift in Sources */,
 				572E9ABB287BC4BD00F915DF /* ScreenSettingView.swift in Sources */,
@@ -2308,6 +2307,7 @@
 				ACCD87D02897DB8C00C34CE7 /* CategoryDeleteDataManager.swift in Sources */,
 				574A704728852544003C8F99 /* DiaryInSummaryTableViewCell.swift in Sources */,
 				576ED6B228749021007389CD /* String.swift in Sources */,
+				ACBAE5702979909700E71CAD /* LoginResultModel.swift in Sources */,
 				5750365C288A4007006A9070 /* AutoLoginDataManager.swift in Sources */,
 				ACCD87C92897BB3800C34CE7 /* CategoryModifyDataManager.swift in Sources */,
 				57D5B60F29580F8400216C94 /* BaseProtocol.swift in Sources */,
@@ -2327,7 +2327,7 @@
 				ACCD87C42895932500C34CE7 /* GetCategoryModel.swift in Sources */,
 				57556A91295FDCBE00B67369 /* BaseBottomSheetViewController.swift in Sources */,
 				570DD833295EC4DB00A0D2A9 /* DiaryViewController.swift in Sources */,
-				ACBAE56E29702D7700E71CAD /* ProfileGetModel.swift in Sources */,
+				ACBAE56E29702D7700E71CAD /* ProfileResultModel.swift in Sources */,
 				572E5B0E286EC10500D1FAA0 /* UIFont.swift in Sources */,
 				575DE968297652A600E61B8F /* DeleteAppleAccountRequestModel.swift in Sources */,
 				AC5E27CD288C38290056EC69 /* TodoWeekCell.swift in Sources */,

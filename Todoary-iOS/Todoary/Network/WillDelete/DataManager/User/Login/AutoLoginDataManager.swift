@@ -20,7 +20,8 @@ class AutoLoginDataManager {
             switch response.result {
             case .success(let result) :
                 switch result.code {
-                case 1000 : UserDefaults.standard.set(result.result?.token?.accessToken, forKey: "accessToken")
+                case 1000 :
+                    UserDefaults.standard.set(result.result?.token?.accessToken, forKey: "accessToken")
                     UserDefaults.standard.set(result.result?.token?.refreshToken, forKey: "refreshToken")
                     print(UserDefaults.standard.string(forKey: "refreshToken"))
                     print("자동로그인 성공")

@@ -9,8 +9,8 @@ import Foundation
 import Alamofire
 
 enum AccountRouter{
-    case login(requeset: LoginInput)
-    case autoLogin(request: AutoLoginInput)
+    case login(request: LoginRequestModel)
+    case autoLogin(request: LoginRequestModel)
     case signUp(request: SignUpRequestModel)
     case signUpWithApple(request: AppleSignUpRequestModel)
     case deleteAccount
@@ -59,10 +59,10 @@ extension AccountRouter: BaseRouter{
         case .emailDuplicate(let email):
             let parameter : [String:Any] = ["email" : email]
             return .query(parameter)
-        case .login:                        return .requestPlain
-        case .autoLogin(let request):       return .requestBody(request)
-        case .logout:                       return .requestPlain
-        case .patchPassword(let request):    return .requestBody(request)
+        case .login(let request):                       return .requestBody(request)
+        case .autoLogin(let request):                   return .requestBody(request)
+        case .logout:                                   return .requestPlain
+        case .patchPassword(let request):               return .requestBody(request)
         }
     }
     

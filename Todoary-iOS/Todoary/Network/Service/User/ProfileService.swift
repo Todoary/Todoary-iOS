@@ -15,7 +15,18 @@ class ProfileService: BaseService{
 extension ProfileService {
     
     func getProfile(completion: @escaping (NetworkResult<Any>) -> Void){
-        requestObject(ProfileRouter.getProfile, type: ProfileGetModel.self, decodingMode: .model, completion: completion)
+        AFManager.request(ProfileRouter.getProfile, interceptor: Interceptor()).responseData { response in
+            switch response.result {
+            case .success:
+                guard let statusCode = response.response?.statusCode else { return }
+                guard let data = response.data else { return}
+                let networkResult = self.judgeStatus(by: statusCode, data, type: ProfileResultModel.self, decodingMode: .model)
+                completion(networkResult)
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
     }
     
     func modifyProfile(request: ProfileInput, completion: @escaping (NetworkResult<Any>) -> Void){
@@ -32,7 +43,7 @@ extension ProfileService {
             switch(response.result) {
             case .success:
                 guard let statusCode = response.response?.statusCode else { return }
-                guard let data = response.data else { return}
+                guard let data = response.data else { return }
                 let networkResult = self.judgeStatusWithEmptyReponse(by: statusCode, data, decodingMode: .code)
                 completion(networkResult)
             case .failure(let err) :

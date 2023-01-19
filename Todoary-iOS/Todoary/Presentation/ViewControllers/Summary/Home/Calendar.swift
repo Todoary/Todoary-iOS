@@ -24,8 +24,8 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
 
         self.calculation()
         
-        GetCalendataManager().getCalendataManager(self, yearMonth: "\(dateFormatterYear.string(from: now))-\(dateFormatterMonth.string(from: now))")
-        GetDiaryDataManager().getDiaryDataManager(self, yearMonth: "\(dateFormatterYear.string(from: now))-\(dateFormatterMonth.string(from: now))")
+        requestGetTodoByYearMonth(yearMonth: "\(dateFormatterYear.string(from: now))-\(dateFormatterMonth.string(from: now))")
+        requestGetDiaryByYearMonth(yearMonth: "\(dateFormatterYear.string(from: now))-\(dateFormatterMonth.string(from: now))")
         
         HomeViewController.bottomSheetVC.todoDate = ConvertDate(year: self.year, month: self.month, date: String(self.today))
     }
@@ -214,8 +214,9 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         let date = cal.date(from: components)
         calendarRecord = [Int](repeating: 0, count: 32)
         diaryRecord = [Int](repeating: 0, count: 32)
-        GetCalendataManager().getCalendataManager(self, yearMonth: "\(dateFormatterYear.string(from: date!))-\(dateFormatterMonth.string(from: date!))")
-        GetDiaryDataManager().getDiaryDataManager(self, yearMonth: "\(dateFormatterYear.string(from: date!))-\(dateFormatterMonth.string(from: date!))")
+        
+        requestGetTodoByYearMonth(yearMonth: "\(dateFormatterYear.string(from: date!))-\(dateFormatterMonth.string(from: date!))")
+        requestGetDiaryByYearMonth(yearMonth: "\(dateFormatterYear.string(from: date!))-\(dateFormatterMonth.string(from: date!))")
         mainView.collectionView.reloadData()
         
         requestTodoFirstDayOfMonth()
@@ -229,8 +230,8 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         let date = cal.date(from: components)
         calendarRecord = [Int](repeating: 0, count: 32)
         diaryRecord = [Int](repeating: 0, count: 32)
-        GetCalendataManager().getCalendataManager(self, yearMonth: "\(dateFormatterYear.string(from: date!))-\(dateFormatterMonth.string(from: date!))")
-        GetDiaryDataManager().getDiaryDataManager(self, yearMonth: "\(dateFormatterYear.string(from: date!))-\(dateFormatterMonth.string(from: date!))")
+        requestGetTodoByYearMonth(yearMonth: "\(dateFormatterYear.string(from: date!))-\(dateFormatterMonth.string(from: date!))")
+        requestGetDiaryByYearMonth(yearMonth: "\(dateFormatterYear.string(from: date!))-\(dateFormatterMonth.string(from: date!))")
         mainView.collectionView.reloadData()
         
         requestTodoFirstDayOfMonth()
