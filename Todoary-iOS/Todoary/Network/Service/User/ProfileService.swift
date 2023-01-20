@@ -14,7 +14,7 @@ class ProfileService: BaseService{
 
 extension ProfileService {
     
-    func getProfile(viewcontroller: UIViewController, completion: @escaping (NetworkResult<Any>) -> Void){
+    func getProfile(viewcontroller: HomeViewController, completion: @escaping (NetworkResult<Any>) -> Void){
         AFManager.request(ProfileRouter.getProfile, interceptor: Interceptor()).responseData { response in
             switch response.result {
             case .success:
@@ -22,6 +22,8 @@ extension ProfileService {
                 guard let data = response.data else { return}
                 let networkResult = self.judgeStatus(by: statusCode, data, type: ProfileResultModel.self, decodingMode: .model)
                 completion(networkResult)
+                
+                viewcontroller.refreshView()
                 
             case .failure(let err):
                 print(err.localizedDescription)

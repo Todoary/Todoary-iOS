@@ -116,6 +116,20 @@ class HomeViewController : UIViewController {
         
     }
     
+    func refreshView(){
+        mainView.nickname.text = profileData.nickname
+        mainView.introduce.text = profileData.introduce
+        if (profileData.profileImgUrl != nil){
+            let url = URL(string: profileData.profileImgUrl!)
+            mainView.profileImage.load(url: url!)
+        }
+        
+        let component = cal.date(from: components)
+        
+        requestGetTodoByYearMonth(yearMonth: "\(dateFormatterYear.string(from: component!))-\(dateFormatterMonth.string(from: component!))")
+        requestGetDiaryByYearMonth(yearMonth: "\(dateFormatterYear.string(from: component!))-\(dateFormatterMonth.string(from: component!))")
+    }
+    
     //MARK: - Actions
     
     @objc func settingBtnDidTap(_ sender: UIButton){
@@ -241,14 +255,6 @@ class HomeViewController : UIViewController {
     }
     
     //MARK: - Helpers
-    func refreshView(){
-        mainView.nickname.text = profileData.nickname
-        mainView.introduce.text = profileData.introduce
-        if (profileData.profileImgUrl != nil){
-            let url = URL(string: profileData.profileImgUrl!)
-            mainView.profileImage.load(url: url!)
-        }
-    }
     
     static func dismissBottomSheet(){
         HomeViewController.bottomSheetVC.dismiss(animated: true, completion: nil)
