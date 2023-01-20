@@ -7,14 +7,7 @@
 
 import Foundation
 
-struct DiaryStickerResultModel : Codable {
-    var isSuccess : Bool
-    var code : Int
-    var message : String
-    var result : [DiaryStickerList]
-}
-
-struct DiaryStickerList: Codable{
+struct DiaryStickerResultModel: Codable{
     let id : Int
     let diaryId : Int
     let stickerId: Int

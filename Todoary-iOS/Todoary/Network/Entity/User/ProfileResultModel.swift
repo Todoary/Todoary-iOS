@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ProfileGetModel : Codable, Equatable {
+struct ProfileResultModel : Codable {
     
     var profileImgUrl : String?
     var nickname : String?

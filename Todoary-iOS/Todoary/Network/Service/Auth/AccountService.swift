@@ -14,12 +14,12 @@ class AccountService: BaseService{
 
 extension AccountService {
     
-    func login(request: LoginInput, completion: @escaping (NetworkResult<Any>) -> Void){
-        requestObjectWithEmptyResponse(AccountRouter.login(requeset: request), completion: completion)
+    func login(request: LoginRequestModel, completion: @escaping (NetworkResult<Any>) -> Void){
+        requestObject(AccountRouter.login(request: request), type: LoginResultModel.self, decodingMode: .model, completion: completion)
     }
     
-    func autoLogin(request: AutoLoginInput, completion: @escaping (NetworkResult<Any>) -> Void){
-        requestObjectWithEmptyResponse(AccountRouter.autoLogin(request: request), completion: completion)
+    func autoLogin(request: LoginRequestModel, completion: @escaping (NetworkResult<Any>) -> Void){
+        requestObject(AccountRouter.autoLogin(request: request), type: LoginResultModel.self, decodingMode: .model, completion: completion)
     }
     
     func logout(request: SignoutInput, completion: @escaping (NetworkResult<Any>) -> Void){

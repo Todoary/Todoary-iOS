@@ -15,8 +15,3 @@ struct LoginModel : Decodable {
 struct LoginResult : Decodable {
     var token : Token?
 }
-
-struct Token : Codable {
-    var accessToken : String?
-    var refreshToken : String?
-}

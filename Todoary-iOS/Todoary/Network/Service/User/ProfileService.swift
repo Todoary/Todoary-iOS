@@ -15,10 +15,21 @@ class ProfileService: BaseService{
 extension ProfileService {
     
     func getProfile(completion: @escaping (NetworkResult<Any>) -> Void){
-        requestObject(ProfileRouter.getProfile, type: [ProfileGetModel].self, decodingMode: .model, completion: completion)
+        AFManager.request(ProfileRouter.getProfile, interceptor: Interceptor()).responseData { response in
+            switch response.result {
+            case .success:
+                guard let statusCode = response.response?.statusCode else { return }
+                guard let data = response.data else { return}
+                let networkResult = self.judgeStatus(by: statusCode, data, type: ProfileResultModel.self, decodingMode: .model)
+                completion(networkResult)
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
     }
     
-    func modifyProfile(request: ProfileInput, completion: @escaping (NetworkResult<Any>) -> Void){
+    func modifyProfile(request: ProfileRequestModel, completion: @escaping (NetworkResult<Any>) -> Void){
         requestObjectWithEmptyResponse(ProfileRouter.patchProfile(requeset: request), completion: completion)
     }
     
@@ -31,9 +42,10 @@ extension ProfileService {
         AFManager.upload(multipartFormData: ProfileRouter.patchProfileImage(image: image).multipart, with: ProfileRouter.patchProfileImage(image: image)).responseData { response in
             switch(response.result) {
             case .success:
-//                let networkResult = self.judgeStatusWithEmptyReponse(by: response.response?.statusCode)
-//                completion(networkResult)
-                break
+                guard let statusCode = response.response?.statusCode else { return }
+                guard let data = response.data else { return }
+                let networkResult = self.judgeStatusWithEmptyReponse(by: statusCode, data, decodingMode: .code)
+                completion(networkResult)
             case .failure(let err) :
                 print(err.localizedDescription)
             }

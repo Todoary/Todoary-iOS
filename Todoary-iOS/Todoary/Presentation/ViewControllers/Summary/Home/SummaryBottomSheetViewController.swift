@@ -16,6 +16,7 @@ enum DeleteType: String{
 class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
     
     //MARK: - Properties
+    var homeViewController: HomeViewController!
     
     var todoData = [TodoResultModel]()
 //    {
@@ -198,7 +199,7 @@ extension SummaryBottomSheetViewController: RequestSummaryCellDelegate{
         showDeleteCompleteToastMessage(type: .Diary)
         
         //TODO: API 대체
-        GetDiaryDataManager().getDiaryDataManager(self, yearMonth: todoDate!.yearMonthSendServer)
+        homeViewController.requestGetDiaryByYearMonth(yearMonth: todoDate!.yearMonthSendServer)
     }
     
     private func requestPatchTodoPin(index: Int){
@@ -332,7 +333,10 @@ extension SummaryBottomSheetViewController{
             }
             showDeleteCompleteToastMessage(type: .Todo)
             
-            GetCalendataManager().getCalendataManager(self, yearMonth: todoDate!.yearMonthSendServer)
+
+            homeViewController.requestGetTodoByYearMonth(yearMonth: todoDate!.yearMonthSendServer)
+            
+//            GetCalendataManager().getCalendataManager(self, yearMonth: todoDate!.yearMonthSendServer)
             
             return
         default:

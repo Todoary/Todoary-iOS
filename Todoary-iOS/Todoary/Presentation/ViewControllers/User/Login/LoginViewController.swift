@@ -19,6 +19,8 @@ class LoginViewController: UIViewController {
     
     var validateAutoLogin = false
     
+    var loginData: LoginResultModel!
+    
     //MARK: - Lifecycles
     
     override func viewDidLoad() {
@@ -124,12 +126,13 @@ class LoginViewController: UIViewController {
     
     @objc func loginButtonDidTab() {
         if validateAutoLogin == false {
-            let loginInput = LoginInput(email: mainView.idTextField.text, password: mainView.pwTextField.text)
-            LoginDataManager().loginDataManager(self,loginInput)
+            let loginRequest = LoginRequestModel(email: mainView.idTextField.text, password: mainView.pwTextField.text)
+            requestLogin(parameter: loginRequest)
+            
         } else {
             // 자동로그인을 눌렀을 때
-            let autoLoginInput = AutoLoginInput(email: mainView.idTextField.text, password: mainView.pwTextField.text)
-            AutoLoginDataManager().autologin(self,autoLoginInput)
+            let autoLoginRequest = LoginRequestModel(email: mainView.idTextField.text, password: mainView.pwTextField.text)
+            requestAutoLogin(parameter: autoLoginRequest)
         }
         
         UIView.animate(withDuration: 0.3){
@@ -150,7 +153,101 @@ class LoginViewController: UIViewController {
         authorizationController.performRequests()
         
     }
+    
+    //MARk: - API
+    
+    private func requestLogin(parameter: LoginRequestModel){
+        AccountService.shared.login(request: parameter){ result in
+            switch result {
+            case .success(let data):
+                print("[requestLogin] success")
+                let data = data as? LoginResultModel
+                UserDefaults.standard.set(data?.token?.accessToken , forKey: "accessToken")
+                if UserDefaults.standard.bool(forKey: "appPasswordCheck") == true {
+                    let appPasswordViewController = AppPasswordViewController()
+                    self.navigationController?.pushViewController(appPasswordViewController, animated: true)
+                    self.navigationController?.isNavigationBarHidden = true
+                }else {
+                    let homeViewController = HomeViewController()
+                    self.navigationController?.pushViewController(homeViewController, animated: true)
+                    self.navigationController?.isNavigationBarHidden = true
+                }
+                break
+            case .invalidSuccess(let code):
+                switch code{
+                case 2011:
+                    let alert = ConfirmAlertViewController(title: "회원정보가 존재하지 않습니다.")
+                    alert.modalPresentationStyle = .overFullScreen
+                    self.present(alert, animated: false, completion: nil)
+                    break
+                case 2012:
+                    let alert = ConfirmAlertViewController(title: "회원정보가 존재하지 않습니다.")
+                    alert.modalPresentationStyle = .overFullScreen
+                    self.present(alert, animated: false, completion: nil)
+                    break
+                case 2112:
+                    let alert = ConfirmAlertViewController(title: "로그인 정보가 일치하지 않습니다.")
+                    alert.modalPresentationStyle = .overFullScreen
+                    self.present(alert, animated: false, completion: nil)
+                    break
+                default:
+                    break
+                }
+            default:
+                print("[requestLogin] fail")
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+        }
+    }
+    
+    private func requestAutoLogin(parameter: LoginRequestModel){
+        AccountService.shared.autoLogin(request: parameter){ result in
+            switch result {
+            case .success(let data):
+                print("[requestAutoLogin] success")
+                let data = data as? LoginResultModel
+                UserDefaults.standard.set(data?.token?.accessToken, forKey: "accessToken")
+                UserDefaults.standard.set(data?.token?.refreshToken, forKey: "refreshToken")
+                if UserDefaults.standard.bool(forKey: "appPasswordCheck") == true {
+                    let appPasswordViewController = AppPasswordViewController()
+                    self.navigationController?.pushViewController(appPasswordViewController, animated: true)
+                    self.navigationController?.isNavigationBarHidden = true
+                }else {
+                    let homeViewController = HomeViewController()
+                    self.navigationController?.pushViewController(homeViewController, animated: true)
+                    self.navigationController?.isNavigationBarHidden = true
+                }
+                break
+            case .invalidSuccess(let code):
+                switch code{
+                case 2011:
+                    let alert = ConfirmAlertViewController(title: "회원정보가 존재하지 않습니다.")
+                    alert.modalPresentationStyle = .overFullScreen
+                    self.present(alert, animated: false, completion: nil)
+                    break
+                case 2012:
+                    let alert = ConfirmAlertViewController(title: "회원정보가 존재하지 않습니다.")
+                    alert.modalPresentationStyle = .overFullScreen
+                    self.present(alert, animated: false, completion: nil)
+                    break
+                case 2112:
+                    let alert = ConfirmAlertViewController(title: "로그인 정보가 일치하지 않습니다.")
+                    alert.modalPresentationStyle = .overFullScreen
+                    self.present(alert, animated: false, completion: nil)
+                    break
+                default:
+                    break
+                }
+            default:
+                print("[requestLogin] fail")
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+        }
+    }
 }
+
 
 //MARK: - Keyboard
 

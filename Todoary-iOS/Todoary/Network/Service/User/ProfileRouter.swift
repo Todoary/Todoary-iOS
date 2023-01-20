@@ -10,7 +10,7 @@ import Alamofire
 
 enum ProfileRouter{
     case getProfile
-    case patchProfile(requeset: ProfileInput)
+    case patchProfile(requeset: ProfileRequestModel)
     case patchProfileImage(image: UIImage)
     case deleteProfileImage
 }
@@ -24,7 +24,6 @@ extension ProfileRouter: BaseRouter{
         case .patchProfile:                         return HTTPMethodURL.PATCH.profile
         case .patchProfileImage:                    return HTTPMethodURL.PATCH.imageUpdate
         case .deleteProfileImage:                   return HTTPMethodURL.PATCH.imageDelete
-            //이미지 delete patch 아니고 delete임!!!!
         }
     }
     
@@ -33,7 +32,7 @@ extension ProfileRouter: BaseRouter{
         case .getProfile:                           return .get
         case .patchProfile:                         return .patch
         case .patchProfileImage:                    return .patch
-        case .deleteProfileImage:                   return .delete
+        case .deleteProfileImage:                   return .patch
         }
     }
     

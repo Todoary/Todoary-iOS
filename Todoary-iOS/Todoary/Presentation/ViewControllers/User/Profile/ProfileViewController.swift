@@ -12,7 +12,7 @@ import Photos
 
 class ProfileViewController : BaseViewController {
     
-    //MARK: - Properties
+//MARK: - Properties
     
     let imagePickerController = UIImagePickerController()
     
@@ -22,14 +22,14 @@ class ProfileViewController : BaseViewController {
     
 
     
-    //MARK: - Lifecycles
+//MARK: - Lifecycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = .white
         
-        GetProfileDataManager().getProfileDataManger(self)
+        requestGetProfile()
         
         //닉네임 textfield 10자 글자수제한 + observer
         NotificationCenter.default.addObserver(self,
@@ -70,7 +70,7 @@ class ProfileViewController : BaseViewController {
     
     
     
-    //MARK: - Actions
+//MARK: - Actions
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -90,6 +90,7 @@ class ProfileViewController : BaseViewController {
         let removeAction = UIAlertAction(title: "현재 사진 삭제", style: .default, handler:
                                             {(UIAlertAction) in
             self.mainView.profileImage.image = UIImage(named: "profile")
+            self.requestDeleteProfileImage()
         })
         
         let albumSelectAction = UIAlertAction(title: "갤러리에서 선택", style: .default, handler: { [self](UIAlertAction) in
@@ -117,13 +118,12 @@ class ProfileViewController : BaseViewController {
     }
     
     @objc func confirmBtnDidTab() {
-        let profileInput = ProfileInput(nickname: mainView.nickNameTf.text, introduce: mainView.introduceTf.text)
-        ProfileDataManager().profileDataManager(self,profileInput)
-        
-        profileImgDataManager().profileImgData(self, mainView.profileImage.image!)
+        let profileRequestModel = ProfileRequestModel(nickname: mainView.nickNameTf.text, introduce: mainView.introduceTf.text)
+        requestModifyProfile(parameter: profileRequestModel)
+        requestModifyProfileImage(parameter: mainView.profileImage.image!)
     }
     
-    //MARK: - Helpers
+//MARK: - Keyboard
     
     @objc func textFieldDidChange(_ notification: Notification) {
         if let textField = notification.object as? UITextField {
@@ -175,6 +175,87 @@ class ProfileViewController : BaseViewController {
     
 }
 
+//MARK: - API
+extension ProfileViewController {
+    // 프로필 조회
+    func requestGetProfile(){
+        ProfileService.shared.getProfile(){ [self] result in
+            switch result{
+            case .success(let data):
+                if let profileData = data as? ProfileResultModel{
+                    print("[requestGetProfile] success in Account")
+                    mainView.nickNameTf.text = profileData.nickname
+                    mainView.introduceTf.text = profileData.introduce
+                    mainView.nickNameCount.text = "\(profileData.nickname!.count)/10"
+                    if ((profileData.introduce != nil)){
+                        mainView.introduceCount.text = "\(profileData.introduce!.count)/30"
+                    }
+                    if (profileData.profileImgUrl != nil){
+                        let url = URL(string: profileData.profileImgUrl!)
+                        mainView.profileImage.load(url: url!)
+                    }
+                }
+                break
+            default:
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+        }
+    }
+    
+    func requestModifyProfile(parameter: ProfileRequestModel){
+        ProfileService.shared.modifyProfile(request: parameter){ result in
+            switch result{
+            case .success:
+                print("[requestModifyProfile] success")
+                self.mainView.nickNameNotice.isHidden = true
+                self.navigationController?.popViewController(animated: true)
+                break
+            case .invalidSuccess(let code):
+                switch code{
+                case 2032:
+                    print("중복된 닉네임입니다")
+                    self.mainView.nickNameNotice.isHidden = false
+                    break
+                default:
+                    break
+                }
+            default:
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+        }
+    }
+    
+    func requestModifyProfileImage(parameter: UIImage){
+        ProfileService.shared.modifyProfileImage(image: parameter){ [self] result in
+            switch result{
+            case .success:
+                print("[requestModifyProfileImage] success")
+                break
+            default:
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+        }
+    }
+    
+    func requestDeleteProfileImage(){
+        ProfileService.shared.deleteProfileImage(){ [self] result in
+            switch result{
+            case .success:
+                print("[requestDeleteProfileImage] success")
+                break
+            default:
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+        }
+    }
+    
+}
+
+//MARK: - Image권한
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -218,7 +299,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         let message = "\(AppName)이(가) \(AuthString)에 접근할 수 없습니다.\r\n 설정화면으로 가시겠습니까?"
         
         let alert = CancelMessageAlertViewController(title: "권한 설정하기", message: message)
-        alert.alertHandler = { 
+        alert.alertHandler = {
             UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)}
         
         alert.modalPresentationStyle = .overFullScreen
@@ -227,21 +308,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     }
 }
 
-extension ProfileViewController {
-    // 프로필 조회 성공시에 불리는 함수
-    func successAPI_profile(_ result : GetProfileResult) {
-        mainView.nickNameTf.text = result.nickname
-        mainView.introduceTf.text = result.introduce
-        mainView.nickNameCount.text = "\(result.nickname!.count)/10"
-        if ((result.introduce != nil)){
-            mainView.introduceCount.text = "\(result.introduce!.count)/30"
-        }
-        if (result.profileImgUrl != nil){
-            let url = URL(string: result.profileImgUrl!)
-            mainView.profileImage.load(url: url!)
-        }
-    }
-}
+//MARK: - Helpers
 
 //텍스트뷰에 패딩 넣기
 extension UITextView {
