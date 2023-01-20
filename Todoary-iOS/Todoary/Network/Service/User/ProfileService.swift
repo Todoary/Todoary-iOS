@@ -14,7 +14,7 @@ class ProfileService: BaseService{
 
 extension ProfileService {
     
-    func getProfile(completion: @escaping (NetworkResult<Any>) -> Void){
+    func getProfile(viewcontroller: UIViewController, completion: @escaping (NetworkResult<Any>) -> Void){
         AFManager.request(ProfileRouter.getProfile, interceptor: Interceptor()).responseData { response in
             switch response.result {
             case .success:

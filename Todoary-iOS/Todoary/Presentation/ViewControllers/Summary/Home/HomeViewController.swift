@@ -46,6 +46,8 @@ class HomeViewController : UIViewController {
     
     let mainView = HomeView()
     
+    var profileData: ProfileResultModel!
+    
 //MARK: - Lifecycles
 
     override func viewDidLoad() {
@@ -171,11 +173,12 @@ class HomeViewController : UIViewController {
     }
     
     func requestGetProfile(){
-        ProfileService.shared.getProfile(){ [self] result in
+        ProfileService.shared.getProfile(viewcontroller: self){ [self] result in
             switch result{
             case .success(let data):
-                if let profileData = data as? ProfileResultModel{
+                if let data = data as? ProfileResultModel{
                     print("[requestGetProfile] success in Home")
+                    profileData = data
                     mainView.nickname.text = profileData.nickname
                     mainView.introduce.text = profileData.introduce
                     if (profileData.profileImgUrl != nil){
@@ -238,6 +241,14 @@ class HomeViewController : UIViewController {
     }
     
     //MARK: - Helpers
+    func refreshView(){
+        mainView.nickname.text = profileData.nickname
+        mainView.introduce.text = profileData.introduce
+        if (profileData.profileImgUrl != nil){
+            let url = URL(string: profileData.profileImgUrl!)
+            mainView.profileImage.load(url: url!)
+        }
+    }
     
     static func dismissBottomSheet(){
         HomeViewController.bottomSheetVC.dismiss(animated: true, completion: nil)
