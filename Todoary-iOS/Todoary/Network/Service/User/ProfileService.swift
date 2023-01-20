@@ -22,9 +22,9 @@ extension ProfileService {
                 guard let data = response.data else { return}
                 let networkResult = self.judgeStatus(by: statusCode, data, type: ProfileResultModel.self, decodingMode: .model)
                 completion(networkResult)
-                
-                viewcontroller.refreshView()
-                
+                if viewcontroller != nil {
+                    viewcontroller.refreshView()
+                }
             case .failure(let err):
                 print(err.localizedDescription)
             }

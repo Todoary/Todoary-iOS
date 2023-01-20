@@ -107,7 +107,7 @@ class AccountViewController : BaseViewController {
     //MARK: - API
     
     func requestGetProfile(){
-        ProfileService.shared.getProfile(){ [self] result in
+        ProfileService.shared.getProfile(viewcontroller: HomeViewController()){ [self] result in
             switch result{
             case .success(let data):
                 if let profileData = data as? ProfileResultModel{
