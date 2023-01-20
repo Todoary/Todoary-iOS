@@ -14,28 +14,41 @@ import AuthenticationServices
 
 //@main
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate  {
 
     var window: UIWindow?
     var navigationController : UINavigationController?
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        sleep(2)
-        // Override point for customization after application launch.
+    var delay = 2
+    
+    
+    public func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        let firebaseToken = fcmToken ?? ""
+        UserDefaults.standard.set(firebaseToken, forKey: "fcmToken")
+    }
+    
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
-        if (UserDefaults.standard.string(forKey: "refreshToken") != nil){
-            self.window = UIWindow(frame: UIScreen.main.bounds)
+//        UserDefaults.standard.set("dddddddddd", forKey: "accessToken")
+//        UserDefaults.standard.set("dddddddddddd", forKey: "refreshToken")
+        return true
+    }
+    
+    
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        self.navigationController = UINavigationController(rootViewController: UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()!)
+        self.navigationController?.navigationBar.isHidden = true
+        self.window?.rootViewController = self.navigationController
+        self.window?.makeKeyAndVisible()
+        
+        if (UserDefaults.standard.string(forKey: "refreshToken") == nil){
+            self.moveLoginViewController()
             
-            if UserDefaults.standard.bool(forKey: "appPasswordCheck") == true {
-                navigationController = UINavigationController(rootViewController: AppPasswordViewController())
-                self.window?.rootViewController = navigationController
-                self.window?.makeKeyAndVisible()
-            }else {
-                moveHomeViewController()
-            }
-            self.window?.backgroundColor = .white
         }else {
-            moveLoginViewController()
+            let fcmToken = FcmTokenInput(fcm_token: UserDefaults.standard.string(forKey: "fcmToken"))
+            FcmTokendataManager().fcmTokendataManager(fcmToken)
         }
         
         if #available(iOS 12.0, *) {
@@ -53,28 +66,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Messaging.messaging().delegate = self
         
         application.registerForRemoteNotifications()
-        
         return true
     }
     
+    func successAPI(){
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.7) {
+            if UserDefaults.standard.bool(forKey: "appPasswordCheck") == true {
+                self.navigationController = UINavigationController(rootViewController: AppPasswordViewController())
+                self.navigationController?.navigationBar.isHidden = true
+                self.window?.rootViewController = self.navigationController
+                self.window?.makeKeyAndVisible()
+            }else {
+                self.moveHomeViewController()
+            }
+        }
+    }
+    
     func moveHomeViewController(){
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        navigationController = UINavigationController(rootViewController: HomeViewController())
-        self.window?.rootViewController = navigationController
-        self.window?.makeKeyAndVisible()
-        self.window?.backgroundColor = .white
+        navigationController?.pushViewController(HomeViewController(), animated: false)
+        navigationController?.navigationBar.isHidden = true
     }
     
     func moveLoginViewController(){
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        navigationController = UINavigationController(rootViewController: LoginViewController())
-        self.window?.rootViewController = navigationController
-        self.window?.makeKeyAndVisible()
+        navigationController?.pushViewController(LoginViewController(), animated: false)
+        navigationController?.navigationBar.isHidden = true
     }
     
-    func homeToLoginViewController(){
-        HomeViewController.dismissBottomSheet()
-        navigationController?.pushViewController(LoginViewController(), animated: false)
+    func backToLoginViewController(){
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.7) {
+            self.navigationController?.pushViewController(LoginViewController(), animated: false)
+        }
     }
     
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
@@ -83,13 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-extension AppDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
-    
-    public func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        let firebaseToken = fcmToken ?? ""
-        print("firebase token: \(firebaseToken)")
-        UserDefaults.standard.set(firebaseToken, forKey: "fcmToken")
-    }
+extension AppDelegate: UNUserNotificationCenterDelegate{
     
     public func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .badge, .sound])

@@ -53,7 +53,9 @@ enum HTTPMethodURL{
     struct PATCH {
         //AUTH
         static let password = "/auth/password"
+        
         //USER
+        static let fcmToken = "/users/fcm_token"
         static let profile = "/users/profile"
         static let imageUpdate = "/users/profile-img"
         static let imageDelete = "/users/profile-img/default"

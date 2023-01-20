@@ -179,7 +179,7 @@ class ProfileViewController : BaseViewController {
 extension ProfileViewController {
     // 프로필 조회
     func requestGetProfile(){
-        ProfileService.shared.getProfile(viewcontroller: self){ [self] result in
+        ProfileService.shared.getProfile(){ [self] result in
             switch result{
             case .success(let data):
                 if let profileData = data as? ProfileResultModel{
