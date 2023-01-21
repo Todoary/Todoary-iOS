@@ -17,7 +17,8 @@ enum AccountRouter{
     case deleteAppleAccount(request: DeleteAppleAccountRequestModel)
     case logout
     case emailDuplicate(request: String)
-    case patchPassword(requeset: PwFindInput)
+    case emailExistence(request: String)
+    case patchPassword(request: PasswordRequestModel)
 }
 
 extension AccountRouter: BaseRouter{
@@ -32,6 +33,7 @@ extension AccountRouter: BaseRouter{
         case .deleteAppleAccount:           return HTTPMethodURL.POST.revokeApple
         case .logout:                       return HTTPMethodURL.POST.signout
         case .emailDuplicate:               return HTTPMethodURL.GET.emailDuplicate
+        case .emailExistence:               return HTTPMethodURL.GET.emailExist
         case .patchPassword:                return HTTPMethodURL.PATCH.password
         }
     }
@@ -46,6 +48,7 @@ extension AccountRouter: BaseRouter{
         case .deleteAppleAccount:           return .post
         case .logout:                       return .post
         case .emailDuplicate:               return .get
+        case .emailExistence:               return .get
         case .patchPassword:                return .patch
         }
     }
@@ -57,6 +60,9 @@ extension AccountRouter: BaseRouter{
         case .deleteAccount:                            return .requestPlain
         case .deleteAppleAccount(let request):          return .requestBody(request)
         case .emailDuplicate(let email):
+            let parameter : [String:Any] = ["email" : email]
+            return .query(parameter)
+        case .emailExistence(let email):
             let parameter : [String:Any] = ["email" : email]
             return .query(parameter)
         case .login(let request):                       return .requestBody(request)

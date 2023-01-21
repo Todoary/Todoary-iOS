@@ -27,9 +27,9 @@ final class Interceptor: RequestInterceptor {
         }
         
         if (UserDefaults.standard.string(forKey: "refreshToken") != nil){
-            let authJwt = AuthJwtInput(refreshToken: UserDefaults.standard.string(forKey: "refreshToken"))
+            let authJwt = AuthJwtRequestModel(refreshToken: UserDefaults.standard.string(forKey: "refreshToken"))
             
-            AF.request("https://todoary.com/auth/jwt", method: .post, parameters: authJwt, encoder: JSONParameterEncoder.default, headers: nil).validate().responseDecodable(of: AuthJwtModel.self) { response in
+            AF.request("https://todoary.com/auth/jwt", method: .post, parameters: authJwt, encoder: JSONParameterEncoder.default, headers: nil).validate().responseDecodable(of: AuthJwtResultModel.self) { response in
                 
                 switch response.result{
                 case .success(let result):
