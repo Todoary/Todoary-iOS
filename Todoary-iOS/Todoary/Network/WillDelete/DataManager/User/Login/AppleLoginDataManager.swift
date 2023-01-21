@@ -11,6 +11,7 @@ import UIKit
 
 class AppleLoginDataManager{
     
+    /*
     func post(_ viewController: UIViewController, parameter: AppleLoginInput){
         
             AF.request("https://todoary.com/auth/apple/token", method: .post, parameters: parameter, encoder: JSONParameterEncoder.default).validate().responseDecodable(of: AppleLoginModel.self) { response in
@@ -37,5 +38,6 @@ class AppleLoginDataManager{
                 }
             }
         }
+     */
 
 }

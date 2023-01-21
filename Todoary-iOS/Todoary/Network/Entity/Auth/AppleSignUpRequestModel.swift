@@ -12,6 +12,7 @@ struct AppleSignUpRequestModel: Codable{
     let idToken: String
     let name: String
     let email: String
-    let isTermsEnable: Bool
+    var isTermsEnable: Bool!
     let userIdentifier: String
 }
+

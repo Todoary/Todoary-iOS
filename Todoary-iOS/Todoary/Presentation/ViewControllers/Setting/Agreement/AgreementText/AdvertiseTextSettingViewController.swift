@@ -32,25 +32,22 @@ class AdvertiseTextSettingViewController : BaseViewController {
     }
     
     override func initialize() {
-        mainView.adCheckBtn.addTarget(self, action: #selector(advertiseButtonDidChecked), for: .touchUpInside)
+        mainView.adCheckBtn.addTarget(self, action: #selector(requestPatchAdvertiseAgreement), for: .touchUpInside)
     }
     
-    @objc func advertiseButtonDidChecked() {
-        AdDataManager().adDataManager(viewController: self, isChecked: mainView.adCheckBtn.isSelected == true)
-        if mainView.adCheckBtn.isSelected { mainView.adCheckBtn.isSelected = false
-        }else{ mainView.adCheckBtn.isSelected = true}
-    }
-    
-    func checkAdagreement(_ code: Int){
-        switch code{
-        case 1000:
-            print("광고성 동의 체크")
-            return
-        default:
-            let alert = DataBaseErrorAlert()
-            self.present(alert, animated: true, completion: {
-                self.mainView.adCheckBtn.isSelected = (!self.mainView.adCheckBtn.isSelected == true)
-            })
+    @objc func requestPatchAdvertiseAgreement() {
+        
+        mainView.adCheckBtn.isSelected.toggle()
+        
+        MarketingService.shared.modifyMarketingAgreementStatus(request: mainView.adCheckBtn.isSelected){ result in
+            switch result{
+            case .success:
+                break
+            default:
+                self.mainView.adCheckBtn.isSelected.toggle()
+                break
+            }
         }
+                                                
     }
 }
