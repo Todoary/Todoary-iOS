@@ -86,8 +86,6 @@
 		576ED6B42874902A007389CD /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576ED6B32874902A007389CD /* UITextField.swift */; };
 		577A01BC28A4E1A9004B2575 /* ToastMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577A01BB28A4E1A9004B2575 /* ToastMessageView.swift */; };
 		578B7AA428ACCA0C00E7B4F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 578B7AA328ACCA0C00E7B4F4 /* GoogleService-Info.plist */; };
-		578B7AA728AD112400E7B4F4 /* DiaryDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578B7AA628AD112400E7B4F4 /* DiaryDataManager.swift */; };
-		578B7AA928AD114400E7B4F4 /* DiaryInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578B7AA828AD114400E7B4F4 /* DiaryInput.swift */; };
 		5799DB732977A2D9001137EA /* TodoaryDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5799DB722977A2D9001137EA /* TodoaryDateFormatter.swift */; };
 		57B16855295A8A2600639A15 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B16854295A8A2600639A15 /* SignUpView.swift */; };
 		57B16857295ABAF900639A15 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B16856295ABAF900639A15 /* CategoryView.swift */; };
@@ -171,7 +169,6 @@
 		ACE7D5FA28A819A70093854A /* PinNumberSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE7D5F928A819A70093854A /* PinNumberSettingViewController.swift */; };
 		ACE7D5FC28A819C10093854A /* PinNumberSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE7D5FB28A819C10093854A /* PinNumberSettingView.swift */; };
 		ACFBEC9E28B3DBB200B9D66F /* GetDiaryExistenceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFBEC9D28B3DBB200B9D66F /* GetDiaryExistenceModel.swift */; };
-		ACFBECA128B5E05100B9D66F /* DiaryStickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFBECA028B5E05100B9D66F /* DiaryStickerModel.swift */; };
 		E015059928B3F3E500E83157 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015059828B3F3E500E83157 /* OnboardingViewController.swift */; };
 		E0218B1E28A4D5EA00E48618 /* DiaryStickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0218B1D28A4D5EA00E48618 /* DiaryStickerCollectionViewCell.swift */; };
 		E0218B2528A4E99600E48618 /* DiaryStickerViewController + Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0218B2428A4E99600E48618 /* DiaryStickerViewController + Layout.swift */; };
@@ -330,8 +327,6 @@
 		577A01BD28A4EB21004B2575 /* ToolBarText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarText.swift; sourceTree = "<group>"; };
 		578B7AA228ACC75600E7B4F4 /* Todoary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Todoary.entitlements; sourceTree = "<group>"; };
 		578B7AA328ACCA0C00E7B4F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		578B7AA628AD112400E7B4F4 /* DiaryDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDataManager.swift; sourceTree = "<group>"; };
-		578B7AA828AD114400E7B4F4 /* DiaryInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryInput.swift; sourceTree = "<group>"; };
 		5799DB722977A2D9001137EA /* TodoaryDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoaryDateFormatter.swift; sourceTree = "<group>"; };
 		57B16854295A8A2600639A15 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		57B16856295ABAF900639A15 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
@@ -418,7 +413,6 @@
 		ACE7D5F928A819A70093854A /* PinNumberSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinNumberSettingViewController.swift; sourceTree = "<group>"; };
 		ACE7D5FB28A819C10093854A /* PinNumberSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinNumberSettingView.swift; sourceTree = "<group>"; };
 		ACFBEC9D28B3DBB200B9D66F /* GetDiaryExistenceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDiaryExistenceModel.swift; sourceTree = "<group>"; };
-		ACFBECA028B5E05100B9D66F /* DiaryStickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryStickerModel.swift; sourceTree = "<group>"; };
 		C3C8A11142F88041A453AA57 /* Pods-TodoaryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoaryTests.debug.xcconfig"; path = "Target Support Files/Pods-TodoaryTests/Pods-TodoaryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D54D487D3B3177B28D4A4FBE /* Pods-Todoary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todoary.release.xcconfig"; path = "Target Support Files/Pods-Todoary/Pods-Todoary.release.xcconfig"; sourceTree = "<group>"; };
 		E005DE79287019BD00814C79 /* AgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewController.swift; sourceTree = "<group>"; };
@@ -1056,13 +1050,6 @@
 			path = Agreement;
 			sourceTree = "<group>";
 		};
-		5701EA7A29570DC600F21F63 /* Todo */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Todo;
-			sourceTree = "<group>";
-		};
 		5701EA7B29570DC800F21F63 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -1074,18 +1061,9 @@
 		5701EA7C29570DC900F21F63 /* Summary */ = {
 			isa = PBXGroup;
 			children = (
-				5701EA9F2957244400F21F63 /* Category */,
 				57294AAE2891159300DA2F31 /* TodoDeleteDataManager.swift */,
 			);
 			path = Summary;
-			sourceTree = "<group>";
-		};
-		5701EA7D29570DCB00F21F63 /* Diary */ = {
-			isa = PBXGroup;
-			children = (
-				578B7AA628AD112400E7B4F4 /* DiaryDataManager.swift */,
-			);
-			path = Diary;
 			sourceTree = "<group>";
 		};
 		5701EA7E29570DCD00F21F63 /* User */ = {
@@ -1095,24 +1073,8 @@
 				5701EA7929570DC400F21F63 /* Agreement */,
 				5701EA8229570E1600F21F63 /* Login */,
 				5701EA8129570E1400F21F63 /* SignUp */,
-				5701EA8029570E1200F21F63 /* Password */,
-				5701EA7F29570E1000F21F63 /* Profile */,
 			);
 			path = User;
-			sourceTree = "<group>";
-		};
-		5701EA7F29570E1000F21F63 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
-		5701EA8029570E1200F21F63 /* Password */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Password;
 			sourceTree = "<group>";
 		};
 		5701EA8129570E1400F21F63 /* SignUp */ = {
@@ -1136,10 +1098,8 @@
 			children = (
 				5701EA7E29570DCD00F21F63 /* User */,
 				5701EA9A295717F300F21F63 /* Category */,
-				5701EA7D29570DCB00F21F63 /* Diary */,
 				5701EA7C29570DC900F21F63 /* Summary */,
 				5701EA7B29570DC800F21F63 /* Setting */,
-				5701EA7A29570DC600F21F63 /* Todo */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -1149,26 +1109,11 @@
 			children = (
 				57294AC52891189700DA2F31 /* ApiModel.swift */,
 				5701EA8B29570E7B00F21F63 /* User */,
-				5701EA8A29570E7900F21F63 /* Diary */,
 				5701EA8929570E7800F21F63 /* Summary */,
 				5701EA8829570E7600F21F63 /* Setting */,
 				5701EA8729570E7400F21F63 /* Todo */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		5701EA8529570E7000F21F63 /* Password */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Password;
-			sourceTree = "<group>";
-		};
-		5701EA8629570E7200F21F63 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Profile;
 			sourceTree = "<group>";
 		};
 		5701EA8729570E7400F21F63 /* Todo */ = {
@@ -1195,15 +1140,6 @@
 			path = Summary;
 			sourceTree = "<group>";
 		};
-		5701EA8A29570E7900F21F63 /* Diary */ = {
-			isa = PBXGroup;
-			children = (
-				578B7AA828AD114400E7B4F4 /* DiaryInput.swift */,
-				ACFBECA028B5E05100B9D66F /* DiaryStickerModel.swift */,
-			);
-			path = Diary;
-			sourceTree = "<group>";
-		};
 		5701EA8B29570E7B00F21F63 /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -1211,8 +1147,6 @@
 				5701EA8E29570EA100F21F63 /* Agreement */,
 				5701EA8D29570E9F00F21F63 /* Login */,
 				5701EA8C29570E9D00F21F63 /* SignUp */,
-				5701EA8529570E7000F21F63 /* Password */,
-				5701EA8629570E7200F21F63 /* Profile */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1245,33 +1179,9 @@
 		5701EA8F29570EA200F21F63 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				5701EA9229570FE400F21F63 /* Auth */,
 				5701EA982957148B00F21F63 /* Delete */,
-				5701EA9029570FB900F21F63 /* FCM */,
-				5701EA9129570FC200F21F63 /* SignOut */,
 			);
 			path = Account;
-			sourceTree = "<group>";
-		};
-		5701EA9029570FB900F21F63 /* FCM */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = FCM;
-			sourceTree = "<group>";
-		};
-		5701EA9129570FC200F21F63 /* SignOut */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SignOut;
-			sourceTree = "<group>";
-		};
-		5701EA9229570FE400F21F63 /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Auth;
 			sourceTree = "<group>";
 		};
 		5701EA932957102C00F21F63 /* Apple */ = {
@@ -1318,13 +1228,6 @@
 				57D5D10328975CE8004A16DA /* CategoryTodoTableViewCell+Layout.swift */,
 				57503662288BE3A0006A9070 /* CategoryTodoTableViewCell.swift */,
 				57503660288BE380006A9070 /* CategoryButtonCollectionViewCell.swift */,
-			);
-			path = Category;
-			sourceTree = "<group>";
-		};
-		5701EA9F2957244400F21F63 /* Category */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -2014,12 +1917,10 @@
 				AC9128D2287B34C80056932A /* ProfileView.swift in Sources */,
 				AC5E27CB288C38130056EC69 /* TodoCalendarCell.swift in Sources */,
 				ACBAE578297ADFC900E71CAD /* FcmTokenRouter.swift in Sources */,
-				578B7AA728AD112400E7B4F4 /* DiaryDataManager.swift in Sources */,
 				576ED6B028748FFA007389CD /* NavigationView.swift in Sources */,
 				AC5E27E52890211C0056EC69 /* AuthJwtResultModel.swift in Sources */,
 				574A6FF028826EB5003C8F99 /* SummaryBottomSheetViewController.swift in Sources */,
 				573844BA288CF01D009529CD /* NewTodoAddBtnTableViewCell.swift in Sources */,
-				ACFBECA128B5E05100B9D66F /* DiaryStickerModel.swift in Sources */,
 				570DD837295EC53D00A0D2A9 /* DiaryViewController+Sticker.swift in Sources */,
 				AC9859CB288334AC009FC2F8 /* CalendarCell.swift in Sources */,
 				57E75EB228E1B7D700AC24B2 /* AlarmAlertViewController.swift in Sources */,
@@ -2131,7 +2032,6 @@
 				57FFEDBA28DAD9BE0041719B /* ConfirmMessageAlertViewController.swift in Sources */,
 				572E9AB9287BC4AC00F915DF /* ScreenSettingViewController.swift in Sources */,
 				ACACD01628749F880029D5CE /* PasswordFindViewController.swift in Sources */,
-				578B7AA928AD114400E7B4F4 /* DiaryInput.swift in Sources */,
 				AC3A6694297C3B7E00EF42BE /* TodoRequestModel.swift in Sources */,
 				57DF45FD28A60DB90002D66C /* DiaryFont.swift in Sources */,
 				575DE9622976528900E61B8F /* SignUpRequestModel.swift in Sources */,
