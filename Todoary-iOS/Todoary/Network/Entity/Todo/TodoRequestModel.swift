@@ -1,11 +1,12 @@
 //
-//  TodoModifyInput.swift
+//  TodoRequestModel.swift
 //  Todoary
 //
-//  Created by 송채영 on 2022/08/02.
+//  Created by 송채영 on 2023/01/22.
 //
 
-struct TodoModifyInput : Encodable {
+import Foundation
+struct TodoRequestModel : Codable {
     var title : String
     var targetDate : String
     var isAlarmEnabled : Bool

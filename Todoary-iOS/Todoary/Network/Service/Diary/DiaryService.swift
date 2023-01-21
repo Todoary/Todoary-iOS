@@ -34,7 +34,7 @@ extension DiaryService {
         requestObject(DiaryRouter.getDiarySticker(date: date), type: DiaryStickerResultModel.self, decodingMode: .model, completion: completion)
     }
     
-    func modifyDiarySticker(date: String, request: DiaryStickerInput, completion: @escaping (NetworkResult<Any>) -> Void){
+    func modifyDiarySticker(date: String, request: DiaryStickerRequestModel, completion: @escaping (NetworkResult<Any>) -> Void){
         requestObject(DiaryRouter.putDiarySticker(date: date, request: request), type: [Int].self, decodingMode: .model, completion: completion)
     }
 }

@@ -28,12 +28,21 @@ class ColorPickerView: BaseView {
         $0.layer.borderColor = UIColor.silver_217.cgColor
     }
     
-    
+    let confirmBtn = UIButton().then{
+        $0.setTitle("완료", for: .normal)
+        $0.backgroundColor = .white
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = UIFont.nbFont(type: .button1)
+        $0.layer.borderColor = UIColor.silver_217.cgColor
+        $0.layer.borderWidth = 1
+        $0.layer.cornerRadius = 15
+    }
 
     
     override func hierarchy(){
         self.addSubview(categoryTitle)
         self.addSubview(colorview)
+        self.addSubview(confirmBtn)
     }
     
     
@@ -53,6 +62,13 @@ class ColorPickerView: BaseView {
             make.width.equalTo(326)
             make.height.equalTo(196)
             make.centerX.equalToSuperview()
+        }
+        
+        //button
+        confirmBtn.snp.makeConstraints{ make in
+            make.top.equalTo(colorview.snp.bottom).offset(20)
+            make.leading.trailing.equalTo(colorview)
+            make.height.equalTo(52)
         }
         
     }

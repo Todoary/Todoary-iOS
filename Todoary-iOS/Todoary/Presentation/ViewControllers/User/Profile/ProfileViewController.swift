@@ -20,6 +20,8 @@ class ProfileViewController : BaseViewController {
     
     let mainView = ProfileView()
     
+    var delete = false
+    
 
     
 //MARK: - Lifecycles
@@ -91,9 +93,12 @@ class ProfileViewController : BaseViewController {
                                             {(UIAlertAction) in
             self.mainView.profileImage.image = UIImage(named: "profile")
             self.requestDeleteProfileImage()
+            self.delete = true
         })
         
         let albumSelectAction = UIAlertAction(title: "갤러리에서 선택", style: .default, handler: { [self](UIAlertAction) in
+            
+            self.delete = false
             
             //접근권한 있는지 없는지 체크
             isPhoto = PhotoAuth()
@@ -120,7 +125,9 @@ class ProfileViewController : BaseViewController {
     @objc func confirmBtnDidTab() {
         let profileRequestModel = ProfileRequestModel(nickname: mainView.nickNameTf.text, introduce: mainView.introduceTf.text)
         requestModifyProfile(parameter: profileRequestModel)
-        requestModifyProfileImage(parameter: mainView.profileImage.image!)
+        if self.delete == false {
+            requestModifyProfileImage(parameter: mainView.profileImage.image!)
+        }
     }
     
 //MARK: - Keyboard

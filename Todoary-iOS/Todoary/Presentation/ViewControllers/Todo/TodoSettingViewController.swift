@@ -55,7 +55,7 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        GetCategoryDataManager().getCategoryDataManager(self)
+        requestGetCategory()
     }
     
     override func style(){
@@ -154,13 +154,12 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
             }else{
 
                 todoSettingData.title = mainView.todo.text!
-                let todoModifyInput = TodoModifyInput(title: todoSettingData.title,
+                let todoRequest = TodoRequestModel(title: todoSettingData.title,
                                                       targetDate: todoSettingData.targetDate,
                                                       isAlarmEnabled: todoSettingData.isAlarmEnabled,
                                                       targetTime: todoSettingData.targetTime ?? "",
                                                       categoryId: TodoSettingViewController.selectCategory)
-                
-                TodoModifyDataManager().todoModifyDataManager(self, todoModifyInput, todoId: todoSettingData.todoId)
+                requestModifyTodo(id: todoSettingData.todoId, parameter: todoRequest)
             }
 
             
@@ -180,12 +179,12 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
             }else{
                 todoSettingData.title = mainView.todo.text!
                 
-                let todoSettingInput = TodoSettingInput(title: todoSettingData.title,
+                let todoRequest = TodoRequestModel(title: todoSettingData.title,
                                                         targetDate: todoSettingData.targetDate,
                                                         isAlarmEnabled: todoSettingData.isAlarmEnabled,
                                                         targetTime: todoSettingData.targetTime ?? "",
                                                         categoryId: TodoSettingViewController.selectCategory)
-                TodoSettingDataManager().todoSettingDataManager(self, todoSettingInput)
+                requestGenerateTodo(parameter: todoRequest)
             }
         }
     }
@@ -193,6 +192,8 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
     //카테고리 플러스 버튼 누르기 -> 카테고리 생성 화면
     @objc func plusBtnDidTap() {
         let colorPickerViewController = ColorPickerViewController(rightButtonTitle: "완료")
+        
+        colorPickerViewController.mainView.confirmBtn.isHidden = true
         
         self.navigationController?.pushViewController(colorPickerViewController, animated: true)
         self.navigationController?.isNavigationBarHidden = true
@@ -214,6 +215,35 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
             mainView.time.isHidden = true
             todoSettingData.targetTime = ""
             todoSettingData.isAlarmEnabled = false
+        }
+    }
+    
+    //길게 누르기 제스쳐 -> 카테고리 수정화면
+    func setupLongGestureRecognizerOnCollection() {
+        let longPressedGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(gestureRecognizer:)))
+        longPressedGesture.minimumPressDuration = 0.5
+        longPressedGesture.delegate = self
+        longPressedGesture.delaysTouchesBegan = true
+        mainView.collectionView.addGestureRecognizer(longPressedGesture)
+    }
+    
+    @objc func handleLongPress(gestureRecognizer: UILongPressGestureRecognizer) {
+        if (gestureRecognizer.state != .began) {
+            return
+        }
+        
+        let p = gestureRecognizer.location(in: mainView.collectionView)
+        
+        if let indexPath = mainView.collectionView.indexPathForItem(at: p) {
+            
+            let colorPickerViewController = ColorPickerViewController(rightButtonImage: UIImage(named: "category_trash"))
+            
+            colorPickerViewController.currentCategoryCount = categoryData.count
+            
+            colorPickerViewController.categoryData = CategoryData(id: categoryData[indexPath.row].id, title: categoryData[indexPath.row].title, color: categoryData[indexPath.row].color)
+            
+            self.navigationController?.pushViewController(colorPickerViewController, animated: true)
+            self.navigationController?.isNavigationBarHidden = true
         }
     }
     
@@ -296,20 +326,6 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
         }
     }
     
-    //카테고리 조회 api 성공
-    func successAPI_category(_ result : [CategoryModel]) {
-        if(result.isEmpty){
-        }else {
-            print("카테고리 목록", result)
-            categoryData = result
-            //카테고리 초기값 설정
-            if TodoSettingViewController.selectCategory == -1{
-                TodoSettingViewController.selectCategory = categoryData[0].id
-            }
-            mainView.collectionView.reloadData()
-        }
-    }
-    
     //알람 시간 받아오기
     func alarmComplete(time: String, time_api: String) {
         self.mainView.time.setTitle(time, for: .normal)
@@ -322,32 +338,57 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
         self.todoSettingData.targetDate = date_api
     }
     
-    //길게 누르기 제스쳐 -> 카테고리 수정화면
-    func setupLongGestureRecognizerOnCollection() {
-        let longPressedGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(gestureRecognizer:)))
-        longPressedGesture.minimumPressDuration = 0.5
-        longPressedGesture.delegate = self
-        longPressedGesture.delaysTouchesBegan = true
-        mainView.collectionView.addGestureRecognizer(longPressedGesture)
+    //MARK: - API
+    
+    func requestGetCategory(){
+        CategoryService.shared.getCategories(){ [self] result in
+            switch result{
+            case .success(let data):
+                if let categorydata = data as? [CategoryModel]{
+                    print("[requestGetCategory] success")
+                    if(categorydata.isEmpty){
+                    }else {
+                        categoryData = categorydata
+                        //카테고리 초기값 설정
+                        if TodoSettingViewController.selectCategory == -1{
+                            TodoSettingViewController.selectCategory = categoryData[0].id
+                        }
+                        mainView.collectionView.reloadData()
+                    }
+                }
+                break
+            default:
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+        }
     }
     
-    @objc func handleLongPress(gestureRecognizer: UILongPressGestureRecognizer) {
-        if (gestureRecognizer.state != .began) {
-            return
+    func requestGenerateTodo(parameter: TodoRequestModel){
+        TodoService.shared.generateTodo(request: parameter){ [self] result in
+            switch result{
+            case .success:
+                print("[requestGenerateTodo] success")
+                self.navigationController?.popViewController(animated: true)
+                break
+            default:
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
         }
-        
-        let p = gestureRecognizer.location(in: mainView.collectionView)
-        
-        if let indexPath = mainView.collectionView.indexPathForItem(at: p) {
-            
-            let colorPickerViewController = ColorPickerViewController(rightButtonImage: UIImage(named: "category_trash"))
-            
-            colorPickerViewController.currentCategoryCount = categoryData.count
-            
-            colorPickerViewController.categoryData = CategoryData(id: categoryData[indexPath.row].id, title: categoryData[indexPath.row].title, color: categoryData[indexPath.row].color)
-            
-            self.navigationController?.pushViewController(colorPickerViewController, animated: true)
-            self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    func requestModifyTodo(id: Int, parameter: TodoRequestModel){
+        TodoService.shared.modifyTodo(id: id, request: parameter){ [self] result in
+            switch result{
+            case .success:
+                print("[requestModifyTodo] success")
+                self.navigationController?.popViewController(animated: true)
+                break
+            default:
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
         }
     }
     

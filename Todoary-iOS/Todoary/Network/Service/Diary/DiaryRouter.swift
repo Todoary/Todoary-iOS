@@ -14,7 +14,7 @@ enum DiaryRouter{
     case getDiary(date: String)
     case getDiaryByYearMonth(yearMonth: String)
     case getDiarySticker(date: String)
-    case putDiarySticker(date: String, request: DiaryStickerInput)
+    case putDiarySticker(date: String, request: DiaryStickerRequestModel)
 }
 
 extension DiaryRouter: BaseRouter{

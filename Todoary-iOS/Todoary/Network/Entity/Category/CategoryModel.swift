@@ -16,3 +16,7 @@ struct CategoryModel : Codable, Equatable {
         return lhs.id == rhs.id
     }
 }
+
+struct CategoryResultModel : Codable {
+    var categoryId : Int?
+}

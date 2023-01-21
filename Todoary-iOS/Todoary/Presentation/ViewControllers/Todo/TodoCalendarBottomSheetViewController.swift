@@ -98,7 +98,7 @@ class TodoCalendarBottomSheetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpView()
+        hierarchy()
         setupGestureRecognizer()
         
         self.initView()
@@ -115,7 +115,7 @@ class TodoCalendarBottomSheetViewController: UIViewController {
 
 
     // MARK: - @Functions
-    private func setUpView() {
+    private func hierarchy() {
         view.addSubview(dimmedBackView)
         view.addSubview(bottomSheetView)
         bottomSheetView.addSubview(collectionView)
@@ -125,11 +125,11 @@ class TodoCalendarBottomSheetViewController: UIViewController {
         
             
         dimmedBackView.alpha = 0.0
-        setUpConstraint()
+        layout()
     }
 
     // 레이아웃 세팅
-    private func setUpConstraint() {
+    private func layout() {
         dimmedBackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             dimmedBackView.topAnchor.constraint(equalTo: view.topAnchor),
