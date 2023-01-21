@@ -77,7 +77,7 @@ class BaseService {
                                    type: T.Type,
                                    decodingMode: DecodingMode,
                                    completion: @escaping (NetworkResult<Any>) -> Void) {
-        AFManager.request(target).responseData { response in
+        AFManager.request(target, interceptor: Interceptor()).responseData { response in
             switch response.result {
             case .success:
                 guard let statusCode = response.response?.statusCode else { return }
@@ -94,7 +94,7 @@ class BaseService {
     func requestObjectWithEmptyResponse(_ target: BaseRouter,
                                         decodingMode: DecodingMode = .code,
                                    completion: @escaping (NetworkResult<Any>) -> Void) {
-        AFManager.request(target).responseData { response in
+        AFManager.request(target, interceptor: Interceptor()).responseData { response in
             switch response.result {
             case .success:
                 guard let statusCode = response.response?.statusCode else { return }

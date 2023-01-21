@@ -9,17 +9,22 @@ import Alamofire
 
 class FcmTokendataManager {
     
-    func fcmTokendataManager( _ viewController : HomeViewController , _ parameter: FcmTokenInput) {
+    func fcmTokendataManager(_ parameter: FcmTokenInput) {
         AF.request("https://todoary.com/users/fcm_token", method: .patch, parameters: parameter,  encoder: JSONParameterEncoder.default , interceptor: Interceptor()).validate().responseDecodable(of: FcmTokenModel.self) { response in
             switch response.result {
             case .success(let result):
                 switch result.code {
                 case 1000:
                     print("fcm 수정성공")
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    appDelegate.successAPI()
                 case 4015:
                     print("fcm 수정실패")
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    appDelegate.backToLoginViewController()
                 default:
-                    print(result.message)
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    appDelegate.backToLoginViewController()
                 }
 
             case .failure(let error):

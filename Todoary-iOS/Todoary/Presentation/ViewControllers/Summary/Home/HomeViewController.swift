@@ -13,7 +13,7 @@ import Then
 class HomeViewController : UIViewController {
     
     
-    //MARK: - Properties
+//MARK: - Properties
     
     static var check : Int!
     
@@ -69,7 +69,7 @@ class HomeViewController : UIViewController {
         
     }
     
-    //MARK: - BaseProtocol
+//MARK: - BaseProtocol
     
     func style() {
     }
@@ -109,28 +109,13 @@ class HomeViewController : UIViewController {
         mainView.collectionView.reloadData()
 
         requestGetProfile()
-
-        let fcmToken = FcmTokenInput(fcm_token: UserDefaults.standard.string(forKey: "fcmToken"))
-
-        FcmTokendataManager().fcmTokendataManager(self, fcmToken)
+        
+        let fcmToken = FcmTokenRequestModel(fcm_token: UserDefaults.standard.string(forKey: "fcmToken"))
+        requestModifyFcmToken(parameter: fcmToken)
         
     }
     
-    func refreshView(){
-        mainView.nickname.text = profileData.nickname
-        mainView.introduce.text = profileData.introduce
-        if (profileData.profileImgUrl != nil){
-            let url = URL(string: profileData.profileImgUrl!)
-            mainView.profileImage.load(url: url!)
-        }
-        
-        let component = cal.date(from: components)
-        
-        requestGetTodoByYearMonth(yearMonth: "\(dateFormatterYear.string(from: component!))-\(dateFormatterMonth.string(from: component!))")
-        requestGetDiaryByYearMonth(yearMonth: "\(dateFormatterYear.string(from: component!))-\(dateFormatterMonth.string(from: component!))")
-    }
-    
-    //MARK: - Actions
+//MARK: - Actions
     
     @objc func settingBtnDidTap(_ sender: UIButton){
         HomeViewController.dismissBottomSheet()
@@ -187,11 +172,11 @@ class HomeViewController : UIViewController {
     }
     
     func requestGetProfile(){
-        ProfileService.shared.getProfile(viewcontroller: self){ [self] result in
+        ProfileService.shared.getProfile(){ [self] result in
             switch result{
             case .success(let data):
                 if let data = data as? ProfileResultModel{
-                    print("[requestGetProfile] success in Home")
+                    print("Log: [requestGetProfile] success in Home")
                     profileData = data
                     mainView.nickname.text = profileData.nickname
                     mainView.introduce.text = profileData.introduce
@@ -213,7 +198,7 @@ class HomeViewController : UIViewController {
             switch result{
             case .success(let data):
                 if let calendarData = data as? [Int]{
-                    print("[requestGetTodoByYearMonth] success")
+                    print("Log: [requestGetTodoByYearMonth] success")
                     calendarRecord = [Int](repeating: 0, count: 32)
                     
                     if ((calendarData.isEmpty) != true){
@@ -236,7 +221,7 @@ class HomeViewController : UIViewController {
             switch result{
             case .success(let data):
                 if let diaryData = data as? [Int]{
-                    print("[requestGetDiaryByYearMonth] success")
+                    print("Log: [requestGetDiaryByYearMonth] success")
                     diaryRecord = [Int](repeating: 0, count: 32)
                     
                     if ((diaryData.isEmpty) != true){
@@ -254,7 +239,20 @@ class HomeViewController : UIViewController {
         }
     }
     
-    //MARK: - Helpers
+    func requestModifyFcmToken(parameter: FcmTokenRequestModel){
+        FcmTokenService.shared.modifyFcmToken(request: parameter){ result in
+            switch result{
+            case .success:
+                print("Log: [requestModifyFcmToken] success")
+                break
+            default:
+                print("Log: [requestModifyFcmToken] fail")
+                break
+            }
+        }
+    }
+    
+//MARK: - Helpers
     
     static func dismissBottomSheet(){
         HomeViewController.bottomSheetVC.dismiss(animated: true, completion: nil)

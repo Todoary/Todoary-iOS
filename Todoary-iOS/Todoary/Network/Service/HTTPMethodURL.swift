@@ -11,8 +11,8 @@ enum HTTPMethodURL{
     
     struct GET {
         //AUTH
-        static let emailDuplicate = "/auth/email/duplication?email="
-        static let emailExist =  "/auth/email/existence?email="
+        static let emailDuplicate = "/auth/email/duplication"
+        static let emailExist =  "/auth/email/existence"
         //USER
         static let profile =  "/users"
         static let alarmActivate =  "/users/alarm"
@@ -53,7 +53,9 @@ enum HTTPMethodURL{
     struct PATCH {
         //AUTH
         static let password = "/auth/password"
+        
         //USER
+        static let fcmToken = "/users/fcm_token"
         static let profile = "/users/profile"
         static let imageUpdate = "/users/profile-img"
         static let imageDelete = "/users/profile-img/default"
