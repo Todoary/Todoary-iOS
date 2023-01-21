@@ -134,6 +134,8 @@
 		57FFEDBA28DAD9BE0041719B /* ConfirmMessageAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FFEDB928DAD9BE0041719B /* ConfirmMessageAlertViewController.swift */; };
 		57FFEDBC28DC1C230041719B /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FFEDBB28DC1C230041719B /* Const.swift */; };
 		653C013BA7F152A065BBDC7B /* Pods_TodoaryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6E8C0E6CB0EA8691D12EEB0 /* Pods_TodoaryTests.framework */; };
+		AC3A668C297BC7D100EF42BE /* NetworkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3A668B297BC7D100EF42BE /* NetworkCheck.swift */; };
+		AC3A668E297BC82100EF42BE /* NetworkCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3A668D297BC82100EF42BE /* NetworkCheckModel.swift */; };
 		AC5E27C7288C37C80056EC69 /* TodoSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27C6288C37C80056EC69 /* TodoSettingViewController.swift */; };
 		AC5E27C9288C37E60056EC69 /* TodoSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27C8288C37E60056EC69 /* TodoSettingView.swift */; };
 		AC5E27CB288C38130056EC69 /* TodoCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27CA288C38130056EC69 /* TodoCalendarCell.swift */; };
@@ -423,6 +425,8 @@
 		9B6204C3C47428F7085399D8 /* Pods-Todoary-TodoaryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todoary-TodoaryUITests.release.xcconfig"; path = "Target Support Files/Pods-Todoary-TodoaryUITests/Pods-Todoary-TodoaryUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9FB0EF046833AE19A057D847 /* Pods-TodoaryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoaryTests.release.xcconfig"; path = "Target Support Files/Pods-TodoaryTests/Pods-TodoaryTests.release.xcconfig"; sourceTree = "<group>"; };
 		AA1B412CC301CC2E570F1921 /* Pods_Todoary_TodoaryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Todoary_TodoaryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC3A668B297BC7D100EF42BE /* NetworkCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCheck.swift; sourceTree = "<group>"; };
+		AC3A668D297BC82100EF42BE /* NetworkCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCheckModel.swift; sourceTree = "<group>"; };
 		AC5E27C6288C37C80056EC69 /* TodoSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoSettingViewController.swift; sourceTree = "<group>"; };
 		AC5E27C8288C37E60056EC69 /* TodoSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoSettingView.swift; sourceTree = "<group>"; };
 		AC5E27CA288C38130056EC69 /* TodoCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCalendarCell.swift; sourceTree = "<group>"; };
@@ -1385,7 +1389,6 @@
 		5701EA9229570FE400F21F63 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				AC5E27DE28901EEF0056EC69 /* AuthInterceptor.swift */,
 				AC5E27E0289020350056EC69 /* AuthJwtInput.swift */,
 				AC5E27E42890211C0056EC69 /* AuthJwtModel.swift */,
 			);
@@ -1725,8 +1728,10 @@
 		57C481B0296952A8008731D9 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				AC5E27DE28901EEF0056EC69 /* AuthInterceptor.swift */,
 				57397F8B296D4F370088B5F4 /* AccountRouter.swift */,
 				57397F8D296D4F570088B5F4 /* AccountService.swift */,
+				AC3A668B297BC7D100EF42BE /* NetworkCheck.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -1798,6 +1803,7 @@
 				575DE967297652A600E61B8F /* DeleteAppleAccountRequestModel.swift */,
 				ACBAE56F2979909700E71CAD /* LoginResultModel.swift */,
 				ACBAE571297990FB00E71CAD /* LoginRequestModel.swift */,
+				AC3A668D297BC82100EF42BE /* NetworkCheckModel.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -2253,6 +2259,7 @@
 				ACE7D5FC28A819C10093854A /* PinNumberSettingView.swift in Sources */,
 				57B9F70F28D94F4400ACEC94 /* BaseAlertViewController.swift in Sources */,
 				AC5E27C9288C37E60056EC69 /* TodoSettingView.swift in Sources */,
+				AC3A668E297BC82100EF42BE /* NetworkCheckModel.swift in Sources */,
 				AC5E27E1289020350056EC69 /* AuthJwtInput.swift in Sources */,
 				ACCD87C02895930500C34CE7 /* GetCategoryDataManager.swift in Sources */,
 				5750364A288A3EB0006A9070 /* SignUpInput.swift in Sources */,
@@ -2344,6 +2351,7 @@
 				57556A91295FDCBE00B67369 /* BaseBottomSheetViewController.swift in Sources */,
 				570DD833295EC4DB00A0D2A9 /* DiaryViewController.swift in Sources */,
 				ACBAE56E29702D7700E71CAD /* ProfileResultModel.swift in Sources */,
+				AC3A668C297BC7D100EF42BE /* NetworkCheck.swift in Sources */,
 				572E5B0E286EC10500D1FAA0 /* UIFont.swift in Sources */,
 				575DE968297652A600E61B8F /* DeleteAppleAccountRequestModel.swift in Sources */,
 				AC5E27CD288C38290056EC69 /* TodoWeekCell.swift in Sources */,

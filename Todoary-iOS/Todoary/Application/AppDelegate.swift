@@ -27,13 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate  {
     }
     
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        
-//        UserDefaults.standard.set("dddddddddd", forKey: "accessToken")
+//        UserDefaults.standard.set("ㅇㅇㅇㅇㅇㅇ", forKey: "accessToken")
 //        UserDefaults.standard.set("dddddddddddd", forKey: "refreshToken")
         return true
     }
-    
-    
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -47,8 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate  {
             self.moveLoginViewController()
             
         }else {
-            let fcmToken = FcmTokenInput(fcm_token: UserDefaults.standard.string(forKey: "fcmToken"))
-            FcmTokendataManager().fcmTokendataManager(fcmToken)
+            NetworkCheck().networkCheck()
         }
         
         if #available(iOS 12.0, *) {
@@ -70,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate  {
     }
     
     func successAPI(){
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.7) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
             if UserDefaults.standard.bool(forKey: "appPasswordCheck") == true {
                 self.navigationController = UINavigationController(rootViewController: AppPasswordViewController())
                 self.navigationController?.navigationBar.isHidden = true
@@ -93,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate  {
     }
     
     func backToLoginViewController(){
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.7) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
             self.navigationController?.pushViewController(LoginViewController(), animated: false)
         }
     }

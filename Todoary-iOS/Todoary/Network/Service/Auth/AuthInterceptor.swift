@@ -12,7 +12,9 @@ final class Interceptor: RequestInterceptor {
 
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
         var urlRequest = urlRequest
-        urlRequest.headers.add(.authorization(UserDefaults.standard.string(forKey: "accessToken")!))
+        if UserDefaults.standard.string(forKey: "accessToken") != nil {
+            urlRequest.headers.add(.authorization(UserDefaults.standard.string(forKey: "accessToken")!))
+        }
 
         print("adapt")
         completion(.success(urlRequest))

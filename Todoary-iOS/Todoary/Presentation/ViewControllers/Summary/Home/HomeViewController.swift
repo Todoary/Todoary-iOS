@@ -13,7 +13,7 @@ import Then
 class HomeViewController : UIViewController {
     
     
-    //MARK: - Properties
+//MARK: - Properties
     
     static var check : Int!
     
@@ -69,7 +69,7 @@ class HomeViewController : UIViewController {
         
     }
     
-    //MARK: - BaseProtocol
+//MARK: - BaseProtocol
     
     func style() {
     }
@@ -115,7 +115,7 @@ class HomeViewController : UIViewController {
         
     }
     
-    //MARK: - Actions
+//MARK: - Actions
     
     @objc func settingBtnDidTap(_ sender: UIButton){
         HomeViewController.dismissBottomSheet()
@@ -252,7 +252,7 @@ class HomeViewController : UIViewController {
         }
     }
     
-    //MARK: - Helpers
+//MARK: - Helpers
     
     static func dismissBottomSheet(){
         HomeViewController.bottomSheetVC.dismiss(animated: true, completion: nil)

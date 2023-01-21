@@ -11,8 +11,8 @@ enum HTTPMethodURL{
     
     struct GET {
         //AUTH
-        static let emailDuplicate = "/auth/email/duplication?email="
-        static let emailExist =  "/auth/email/existence?email="
+        static let emailDuplicate = "/auth/email/duplication"
+        static let emailExist =  "/auth/email/existence"
         //USER
         static let profile =  "/users"
         static let alarmActivate =  "/users/alarm"
