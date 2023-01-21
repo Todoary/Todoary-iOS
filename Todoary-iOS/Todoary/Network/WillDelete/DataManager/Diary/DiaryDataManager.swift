@@ -43,7 +43,6 @@ class DiaryDataManager {
                 switch result.code {
                 case 1000:
                     print("다이어리스티커조회 성공")
-                    viewController.successAPI_sticker(result.result) 
                 case 2005:
                     print("유효하지 않은 회원정보입니다")
                 case 2402:

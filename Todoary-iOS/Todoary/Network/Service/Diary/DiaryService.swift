@@ -31,10 +31,10 @@ extension DiaryService {
     }
     
     func getDiarySticker(date: String, completion: @escaping (NetworkResult<Any>) -> Void){
-        requestObject(DiaryRouter.getDiarySticker(date: date), type: DiaryStickerResultModel.self, decodingMode: .model, completion: completion)
+        requestObject(DiaryRouter.getDiarySticker(date: date), type: [DiaryStickerResultModel].self, decodingMode: .model, completion: completion)
     }
     
     func modifyDiarySticker(date: String, request: DiaryStickerRequestModel, completion: @escaping (NetworkResult<Any>) -> Void){
-        requestObject(DiaryRouter.putDiarySticker(date: date, request: request), type: [Int].self, decodingMode: .model, completion: completion)
+        requestObjectWithEmptyResponse(DiaryRouter.putDiarySticker(date: date, request: request), completion: completion)
     }
 }

@@ -20,7 +20,7 @@ extension DiaryViewController{
         if create.isEmpty == false {
             for i in 0...create.count - 1 {
                 
-                let new = CreatedDiarySticker(stickerId: create[i].stickerType, locationX: Double(create[i].sticker.center.x), locationY: Double(create[i].sticker.center.y), width: create[i].sticker.contentView.frame.height, height: create[i].sticker.contentView.frame.height, rotation: atan2(create[i].sticker.transform.b,create[i].sticker.transform.a) , flipped: create[i].flip)
+                let new = CreatedDiaryStickerRequestModel(stickerId: create[i].stickerType, locationX: Double(create[i].sticker.center.x), locationY: Double(create[i].sticker.center.y), width: create[i].sticker.contentView.frame.height, height: create[i].sticker.contentView.frame.height, rotation: atan2(create[i].sticker.transform.b,create[i].sticker.transform.a) , flipped: create[i].flip)
                 
                 createdApi.append(new)
             }
@@ -29,45 +29,77 @@ extension DiaryViewController{
         if modify.isEmpty == false {
             for i in 0...modify.count - 1 {
                 
-                let old = ModifiedDiarySticker(id:modify[i].sticker.tag ,stickerId: modify[i].stickerType, locationX: Double(modify[i].sticker.center.x), locationY: Double(modify[i].sticker.center.y), width: modify[i].sticker.contentView.frame.height, height: modify[i].sticker.contentView.frame.height, rotation: atan2(modify[i].sticker.transform.b,modify[i].sticker.transform.a) , flipped: modify[i].flip)
+                let old = ModifiedDiaryStickerRequestModel(id:modify[i].sticker.tag ,stickerId: modify[i].stickerType, locationX: Double(modify[i].sticker.center.x), locationY: Double(modify[i].sticker.center.y), width: modify[i].sticker.contentView.frame.height, height: modify[i].sticker.contentView.frame.height, rotation: atan2(modify[i].sticker.transform.b,modify[i].sticker.transform.a) , flipped: modify[i].flip)
                 
                 modifiedApi.append(old)
             }
         }
         
-        let diaryStickerInput = DiaryStickerInput(created: createdApi, modified: modifiedApi, deleted: delete)
+        let diaryStickerRequest = DiaryStickerRequestModel(created: createdApi, modified: modifiedApi, deleted: delete)
         
-        DiaryDataManager().diaryStickerDataManager(viewController: self, createdDate: self.pickDate!.dateSendServer, parameter: diaryStickerInput)
+        requestModifyDiarySticker(date: self.pickDate!.dateSendServer, parameter: diaryStickerRequest)
     }
     
-    func successAPI_sticker(_ result : [DiarySticker]) {
-        
-        if result.isEmpty == false {
-            for i in 0...result.count - 1 {
-                
-                let image = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: result[i].width, height: result[i].height))
-                image.image = DiaryViewController.stickerData[result[i].stickerId]
-                image.contentMode = .scaleAspectFit
-                
-                if result[i].flipped == true {
-                    image.transform = image.transform.scaledBy(x: -1, y: 1)
+    func requestGetDiarySticker(parameter: String){
+        DiaryService.shared.getDiarySticker(date: parameter){ [self] result in
+            switch result{
+            case .success(let data):
+                if let diaryStickerData = data as? [DiaryStickerResultModel]{
+                    print("[requestGetDiarySticker] success")
+                    if diaryStickerData.isEmpty == false {
+                        for i in 0...diaryStickerData.count - 1 {
+                            
+                            let image = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: diaryStickerData[i].width, height: diaryStickerData[i].height))
+                            image.image = DiaryViewController.stickerData[diaryStickerData[i].stickerId]
+                            image.contentMode = .scaleAspectFit
+                            
+                            if diaryStickerData[i].flipped == true {
+                                image.transform = image.transform.scaledBy(x: -1, y: 1)
+                            }
+                            
+                            let sticker = StickerView.init(contentView: image)
+                            sticker.center = CGPoint.init(x: diaryStickerData[i].locationX, y: diaryStickerData[i].locationY)
+                            sticker.transform = sticker.transform.rotated(by: diaryStickerData[i].rotation)
+                            sticker.delegate = self
+                            sticker.setImage(UIImage.init(named: "close")!, forHandler: StickerViewHandler.close)
+                            sticker.setImage(UIImage.init(named: "rotate")!, forHandler: StickerViewHandler.rotate)
+                            sticker.setImage(UIImage.init(named: "flip")!, forHandler: StickerViewHandler.flip)
+                            sticker.showEditingHandlers = false
+                            sticker.tag = diaryStickerData[i].id
+                            self.mainView.textView.addSubview(sticker)
+                            
+                            let stickerInfo = Sticker(stickerType: diaryStickerData[i].stickerId, sticker: sticker, flip: diaryStickerData[i].flipped)
+                            
+                            modify.append(stickerInfo)
+                            
+                        }
+                    }
                 }
-                
-                let sticker = StickerView.init(contentView: image)
-                sticker.center = CGPoint.init(x: result[i].locationX, y: result[i].locationY)
-                sticker.transform = sticker.transform.rotated(by: result[i].rotation)
-                sticker.delegate = self
-                sticker.setImage(UIImage.init(named: "close")!, forHandler: StickerViewHandler.close)
-                sticker.setImage(UIImage.init(named: "rotate")!, forHandler: StickerViewHandler.rotate)
-                sticker.setImage(UIImage.init(named: "flip")!, forHandler: StickerViewHandler.flip)
-                sticker.showEditingHandlers = false
-                sticker.tag = result[i].id
-                self.mainView.textView.addSubview(sticker)
-                
-                let stickerInfo = Sticker(stickerType: result[i].stickerId, sticker: sticker, flip: result[i].flipped)
-                
-                modify.append(stickerInfo)
-                
+                break
+            case .invalidSuccess(let code):
+                switch code{
+                case 2402:
+                    print("해당날짜에 일기존재X")
+                    break
+                default:
+                    break
+                }
+            default:
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+        }
+    }
+    
+    func requestModifyDiarySticker(date: String, parameter: DiaryStickerRequestModel){
+        DiaryService.shared.modifyDiarySticker(date: date, request: parameter){ [self] result in
+            switch result{
+            case .success:
+                print("[requestModifyDiarySticker] success")
+                break
+            default:
+                DataBaseErrorAlert.show(in: self)
+                break
             }
         }
     }
