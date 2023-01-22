@@ -9,8 +9,8 @@ import Foundation
 import Alamofire
 
 enum TodoRouter{
-    case postTodo(requeset: TodoSettingInput)
-    case patchTodo(id: Int, request: TodoModifyInput)
+    case postTodo(request: TodoRequestModel)
+    case patchTodo(id: Int, request: TodoRequestModel)
     case getTodoByDate(date: String)
     case getTodoByCategory(id: Int)
     case patchCheck(id: Int, isChecked: Bool)

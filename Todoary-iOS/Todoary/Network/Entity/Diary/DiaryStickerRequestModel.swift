@@ -1,24 +1,19 @@
 //
-//  DiaryInput.swift
+//  DiaryStickerRequestModel.swift
 //  Todoary
 //
-//  Created by 박지윤 on 2022/08/17.
+//  Created by 송채영 on 2023/01/22.
 //
 
 import Foundation
 
-struct DiaryInput: Encodable{
-    let title: String
-    let content: String
-}
-
-struct DiaryStickerInput: Encodable{
-    let created: [CreatedDiarySticker]
-    let modified: [ModifiedDiarySticker]
+struct DiaryStickerRequestModel: Encodable{
+    let created: [CreatedDiaryStickerRequestModel]
+    let modified: [ModifiedDiaryStickerRequestModel]
     let deleted: [Int]
 }
 
-struct CreatedDiarySticker: Encodable{
+struct CreatedDiaryStickerRequestModel: Encodable{
     let stickerId: Int
     let locationX: Double
     let locationY: Double
@@ -28,7 +23,7 @@ struct CreatedDiarySticker: Encodable{
     let flipped: Bool
 }
 
-struct ModifiedDiarySticker: Encodable{
+struct ModifiedDiaryStickerRequestModel: Encodable{
     let id: Int
     let stickerId: Int
     let locationX: Double
@@ -38,5 +33,3 @@ struct ModifiedDiarySticker: Encodable{
     let rotation: Double
     let flipped: Bool
 }
-
-

@@ -1,5 +1,5 @@
 //
-//  PwFindViewController.swift
+//  PasswordFindViewController.swift
 //  Todoary
 //
 //  Created by 송채영 on 2022/07/02.
@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class PwFindViewController: BaseViewController, UITextFieldDelegate {
+class PasswordFindViewController: BaseViewController, UITextFieldDelegate {
     //MARK: - Properties
     
     var password: String = ""
@@ -131,16 +131,13 @@ class PwFindViewController: BaseViewController, UITextFieldDelegate {
 
     @objc func idCertificationBtnDidTap() {
         self.email = mainView.idTf.text!
-        EmailCheckDataManager().emailCheckDataManager(self, email: self.email)
-        print(self.email)
-        print("버튼")
+        requestCheckUserEmailExistence(parameter: self.email)
     }
     
     @objc func passWordChangeBtnDidTap(){
         
-        let pwInput = PwFindInput(email:mainView.idTf.text!, newPassword: self.password)
-        
-        PwFindDataManager().pwFindDataManager(self, pwInput)
+        let newPassword = PasswordRequestModel(email:mainView.idTf.text!, newPassword: self.password)
+        requestModifyPassword(parameter: newPassword)
 
     }
     
@@ -166,6 +163,74 @@ class PwFindViewController: BaseViewController, UITextFieldDelegate {
         
     }
     
+    //MARK: - API
+    func requestCheckUserEmailExistence(parameter: String){
+        AccountService.shared.checkUserEmailExistence(email: parameter){ [self] result in
+            switch result{
+            case .success:
+                print("Log: [requestCheckUserEmailExistence] success in Home")
+                emailCheck = true
+                mainView.idNoticeLb.text = "*유효한 이메일입니다."
+                mainView.idNoticeLb.textColor = .todoaryGrey
+                MailSender.shared.sendEmail(email: self.email, viewController: self)
+
+                break
+            case .invalidSuccess(let code):
+                switch code{
+                case 2017:
+                    mainView.idNoticeLb.text = "*유효하지 않은 이메일입니다. 다시 입력해 주세요."
+                    mainView.idNoticeLb.textColor = .noticeRed
+                    emailCheck = false
+                default:
+                    emailCheck = false
+                }
+                
+            default:
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+        }
+    }
+    
+    func requestModifyPassword(parameter: PasswordRequestModel){
+        AccountService.shared.modifyPassword(request: parameter){ [self] result in
+            switch result{
+            case .success:
+                print("Log: [requestModifyPassword] success")
+                if (UserDefaults.standard.string(forKey: "accessToken") != nil) {
+                    requestLogout()
+                }else {
+                    let loginViewController = LoginViewController()
+                    self.navigationController?.pushViewController(loginViewController, animated: true)
+                    self.navigationController?.isNavigationBarHidden = true
+                }
+                break
+            default:
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+        }
+    }
+    
+    func requestLogout(){
+        AccountService.shared.logout(){ [self] result in
+            switch result{
+            case .success:
+                print("Log: [requestLogout] success")
+                UserDefaults.standard.removeObject(forKey: "accessToken")
+                UserDefaults.standard.removeObject(forKey: "refreshToken")
+                let loginViewController = LoginViewController()
+                self.navigationController?.pushViewController(loginViewController, animated: true)
+                self.navigationController?.isNavigationBarHidden = true
+                break
+            default:
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+        }
+    }
+    
+    
     //MARK: - Helpers
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -189,28 +254,6 @@ class PwFindViewController: BaseViewController, UITextFieldDelegate {
             mainView.confirmBtn.isEnabled = true
         }else{
             mainView.confirmBtn.isEnabled = false
-        }
-    }
-    
-
-    func checkEmail(_ code: Int){
-        
-        if(code == 1000) { //사용가능 이메일 점검 조건문 추가
-            
-            emailCheck = true
-            
-            mainView.idNoticeLb.text = "*유효한 이메일입니다."
-            mainView.idNoticeLb.textColor = .todoaryGrey
-        
-            MailSender.shared.sendEmail(email: self.email, viewController: self)
-            
-        }else if(code == 2017){
-            mainView.idNoticeLb.text = "*유효하지 않은 이메일입니다. 다시 입력해 주세요."
-            mainView.idNoticeLb.textColor = .noticeRed
-            emailCheck = false
-        }else{
-            emailCheck = false
-
         }
     }
 }

@@ -42,8 +42,8 @@ class DiaryViewController: BaseViewController , UIGestureRecognizerDelegate{
     var create : [Sticker] = []
     var modify : [Sticker] = []
     var delete : [Int] = []
-    var createdApi : [CreatedDiarySticker] = []
-    var modifiedApi : [ModifiedDiarySticker] = []
+    var createdApi : [CreatedDiaryStickerRequestModel] = []
+    var modifiedApi : [ModifiedDiaryStickerRequestModel] = []
     var tag = 3000
     
     var isEnterPressed = false
@@ -91,7 +91,7 @@ class DiaryViewController: BaseViewController , UIGestureRecognizerDelegate{
         
         super.viewDidLoad()
         
-        DiaryDataManager().getDiarySticker(viewController: self, createdDate: self.pickDate!.dateSendServer)
+        requestGetDiarySticker(parameter: self.pickDate!.dateSendServer)
     }
     
     override func style(){
@@ -135,6 +135,8 @@ class DiaryViewController: BaseViewController , UIGestureRecognizerDelegate{
         
         setTextToolBarAction()
     }
+    
+    //MARK: - Helpers
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)

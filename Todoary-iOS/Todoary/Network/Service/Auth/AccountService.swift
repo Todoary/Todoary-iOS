@@ -22,7 +22,7 @@ extension AccountService {
         requestObject(AccountRouter.autoLogin(request: request), type: LoginResultModel.self, decodingMode: .model, completion: completion)
     }
     
-    func logout(request: SignoutInput, completion: @escaping (NetworkResult<Any>) -> Void){
+    func logout(completion: @escaping (NetworkResult<Any>) -> Void){
         requestObjectWithEmptyResponse(AccountRouter.logout, completion: completion)
     }
     
@@ -46,7 +46,12 @@ extension AccountService {
         requestObjectWithEmptyResponse(AccountRouter.emailDuplicate(request: email), completion: completion)
     }
     
-    func modifyPassword(request: PwFindInput, completion: @escaping (NetworkResult<Any>) -> Void){
-        requestObjectWithEmptyResponse(AccountRouter.patchPassword(requeset: request), completion: completion)
+    func checkUserEmailExistence(email: String, completion: @escaping (NetworkResult<Any>) -> Void){
+        requestObjectWithEmptyResponse(AccountRouter.emailExistence(request: email), completion: completion)
+    }
+    
+    func modifyPassword(request: PasswordRequestModel, completion: @escaping (NetworkResult<Any>) -> Void){
+        requestObjectWithEmptyResponse(AccountRouter.patchPassword(request: request), completion: completion)
+
     }
 }

@@ -63,8 +63,8 @@ class AccountViewController : BaseViewController {
                 }
     
     @objc func pwFindCellDidTab() {
-        let pwFindViewController = PwFindViewController()
-        navigationController?.pushViewController(pwFindViewController, animated: true)
+        let passwordFindViewController = PasswordFindViewController()
+        navigationController?.pushViewController(passwordFindViewController, animated: true)
         navigationController?.isNavigationBarHidden = true
                 }
     
@@ -72,7 +72,7 @@ class AccountViewController : BaseViewController {
         
         let alert = CancelAlertViewController(title: "로그아웃 하시겠습니까?")
         alert.alertHandler = {
-            SignoutDataManager().signout(self)
+            self.requestLogout()
         }
         alert.modalPresentationStyle = .overFullScreen
         self.present(alert, animated: false, completion: nil)
@@ -120,6 +120,24 @@ class AccountViewController : BaseViewController {
                         mainView.profileImage.load(url: url!)
                     }
                 }
+                break
+            default:
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+        }
+    }
+    
+    func requestLogout(){
+        AccountService.shared.logout(){ [self] result in
+            switch result{
+            case .success:
+                print("Log: [requestLogout] success")
+                UserDefaults.standard.removeObject(forKey: "accessToken")
+                UserDefaults.standard.removeObject(forKey: "refreshToken")
+                let loginViewController = LoginViewController()
+                self.navigationController?.pushViewController(loginViewController, animated: true)
+                self.navigationController?.isNavigationBarHidden = true
                 break
             default:
                 DataBaseErrorAlert.show(in: self)

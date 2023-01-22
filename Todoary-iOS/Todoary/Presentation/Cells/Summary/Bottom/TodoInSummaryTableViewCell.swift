@@ -328,7 +328,7 @@ extension TodoInSummaryTableViewCell{
     
     var dataIndex: Int?{
         let indexPath = (self.superview as? UITableView)?.indexPath(for: self)
-        return indexPath?.row
+        return indexPath!.row - 1
     }
     
     func getCellIndexPath() -> IndexPath?{

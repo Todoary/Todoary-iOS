@@ -14,11 +14,11 @@ class TodoService: BaseService{
 
 extension TodoService {
     
-    func generateTodo(request: TodoSettingInput, completion: @escaping (NetworkResult<Any>) -> Void){
-        requestObjectWithEmptyResponse(TodoRouter.postTodo(requeset: request), completion: completion)
+    func generateTodo(request: TodoRequestModel, completion: @escaping (NetworkResult<Any>) -> Void){
+        requestObjectWithEmptyResponse(TodoRouter.postTodo(request: request), completion: completion)
     }
     
-    func modifyTodo(id: Int, request: TodoModifyInput, completion: @escaping (NetworkResult<Any>) -> Void){
+    func modifyTodo(id: Int, request: TodoRequestModel, completion: @escaping (NetworkResult<Any>) -> Void){
         requestObjectWithEmptyResponse(TodoRouter.patchTodo(id: id, request: request), completion: completion)
     }
     

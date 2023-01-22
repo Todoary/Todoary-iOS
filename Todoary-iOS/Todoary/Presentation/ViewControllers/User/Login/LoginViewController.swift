@@ -108,8 +108,8 @@ class LoginViewController: UIViewController {
     }
     @objc func pwSearchButtonDidTab() {
         
-        let pwFindViewController = PwFindViewController()
-        navigationController?.pushViewController(pwFindViewController, animated: true)
+        let passwordFindViewController = PasswordFindViewController()
+        navigationController?.pushViewController(passwordFindViewController, animated: true)
         navigationController?.isNavigationBarHidden = true
                 }
     

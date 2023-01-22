@@ -62,11 +62,6 @@
 		5750364A288A3EB0006A9070 /* SignUpInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57503649288A3EB0006A9070 /* SignUpInput.swift */; };
 		5750364C288A3EC0006A9070 /* SignUpDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5750364B288A3EC0006A9070 /* SignUpDataManager.swift */; };
 		5750364E288A3ECE006A9070 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5750364D288A3ECE006A9070 /* SignUpModel.swift */; };
-		57503652288A3FB7006A9070 /* LoginInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57503651288A3FB7006A9070 /* LoginInput.swift */; };
-		57503654288A3FC9006A9070 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57503653288A3FC9006A9070 /* LoginModel.swift */; };
-		57503656288A3FD4006A9070 /* LoginDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57503655288A3FD4006A9070 /* LoginDataManager.swift */; };
-		5750365A288A3FF8006A9070 /* AutoLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57503659288A3FF8006A9070 /* AutoLoginModel.swift */; };
-		5750365C288A4007006A9070 /* AutoLoginDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5750365B288A4007006A9070 /* AutoLoginDataManager.swift */; };
 		5750365F288BE33F006A9070 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5750365E288BE33F006A9070 /* CategoryViewController.swift */; };
 		57503661288BE380006A9070 /* CategoryButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57503660288BE380006A9070 /* CategoryButtonCollectionViewCell.swift */; };
 		57503663288BE3A0006A9070 /* CategoryTodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57503662288BE3A0006A9070 /* CategoryTodoTableViewCell.swift */; };
@@ -91,8 +86,6 @@
 		576ED6B42874902A007389CD /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576ED6B32874902A007389CD /* UITextField.swift */; };
 		577A01BC28A4E1A9004B2575 /* ToastMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577A01BB28A4E1A9004B2575 /* ToastMessageView.swift */; };
 		578B7AA428ACCA0C00E7B4F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 578B7AA328ACCA0C00E7B4F4 /* GoogleService-Info.plist */; };
-		578B7AA728AD112400E7B4F4 /* DiaryDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578B7AA628AD112400E7B4F4 /* DiaryDataManager.swift */; };
-		578B7AA928AD114400E7B4F4 /* DiaryInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578B7AA828AD114400E7B4F4 /* DiaryInput.swift */; };
 		5799DB732977A2D9001137EA /* TodoaryDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5799DB722977A2D9001137EA /* TodoaryDateFormatter.swift */; };
 		57B16855295A8A2600639A15 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B16854295A8A2600639A15 /* SignUpView.swift */; };
 		57B16857295ABAF900639A15 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B16856295ABAF900639A15 /* CategoryView.swift */; };
@@ -136,22 +129,19 @@
 		653C013BA7F152A065BBDC7B /* Pods_TodoaryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6E8C0E6CB0EA8691D12EEB0 /* Pods_TodoaryTests.framework */; };
 		AC3A668C297BC7D100EF42BE /* NetworkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3A668B297BC7D100EF42BE /* NetworkCheck.swift */; };
 		AC3A668E297BC82100EF42BE /* NetworkCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3A668D297BC82100EF42BE /* NetworkCheckModel.swift */; };
+		AC3A6690297BD69D00EF42BE /* AuthJwtRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3A668F297BD69D00EF42BE /* AuthJwtRequestModel.swift */; };
+		AC3A6692297BDCCA00EF42BE /* PasswordRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3A6691297BDCCA00EF42BE /* PasswordRequestModel.swift */; };
+		AC3A6694297C3B7E00EF42BE /* TodoRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3A6693297C3B7E00EF42BE /* TodoRequestModel.swift */; };
+		AC3A6696297C534400EF42BE /* DiaryStickerRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3A6695297C534400EF42BE /* DiaryStickerRequestModel.swift */; };
 		AC5E27C7288C37C80056EC69 /* TodoSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27C6288C37C80056EC69 /* TodoSettingViewController.swift */; };
 		AC5E27C9288C37E60056EC69 /* TodoSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27C8288C37E60056EC69 /* TodoSettingView.swift */; };
 		AC5E27CB288C38130056EC69 /* TodoCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27CA288C38130056EC69 /* TodoCalendarCell.swift */; };
 		AC5E27CD288C38290056EC69 /* TodoWeekCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27CC288C38290056EC69 /* TodoWeekCell.swift */; };
 		AC5E27D3288C39090056EC69 /* TodoCalendarBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27D2288C39090056EC69 /* TodoCalendarBottomSheetViewController.swift */; };
-		AC5E27D5288C68920056EC69 /* EmailCheckDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27D4288C68920056EC69 /* EmailCheckDataManager.swift */; };
-		AC5E27D8288C68DB0056EC69 /* EmailCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27D7288C68DB0056EC69 /* EmailCheckModel.swift */; };
 		AC5E27DA288EFCFE0056EC69 /* TodoCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27D9288EFCFE0056EC69 /* TodoCalendar.swift */; };
 		AC5E27DC288FC0DA0056EC69 /* TodoAlarmBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27DB288FC0DA0056EC69 /* TodoAlarmBottomSheetViewController.swift */; };
 		AC5E27DF28901EEF0056EC69 /* AuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27DE28901EEF0056EC69 /* AuthInterceptor.swift */; };
-		AC5E27E1289020350056EC69 /* AuthJwtInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27E0289020350056EC69 /* AuthJwtInput.swift */; };
-		AC5E27E3289020D70056EC69 /* AuthJwtDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27E2289020D70056EC69 /* AuthJwtDataManager.swift */; };
-		AC5E27E52890211C0056EC69 /* AuthJwtModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27E42890211C0056EC69 /* AuthJwtModel.swift */; };
-		AC5E27EE28914E810056EC69 /* TodoSettingDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27ED28914E810056EC69 /* TodoSettingDataManager.swift */; };
-		AC5E27F028914E930056EC69 /* TodoSettingInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27EF28914E930056EC69 /* TodoSettingInput.swift */; };
-		AC5E27F228914EAE0056EC69 /* TodoSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27F128914EAE0056EC69 /* TodoSettingModel.swift */; };
+		AC5E27E52890211C0056EC69 /* AuthJwtResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27E42890211C0056EC69 /* AuthJwtResultModel.swift */; };
 		AC67C2DC2892904C00071763 /* SetKeboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC67C2DB2892904C00071763 /* SetKeboard.swift */; };
 		AC9128C9287AD5A80056932A /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9128C8287AD5A80056932A /* AccountViewController.swift */; };
 		AC9128CB287AD5D20056932A /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9128CA287AD5D20056932A /* AccountView.swift */; };
@@ -164,11 +154,8 @@
 		AC9859CD288505C5009FC2F8 /* WeekCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9859CC288505C5009FC2F8 /* WeekCell.swift */; };
 		ACACD01128749F520029D5CE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACD00F28749F520029D5CE /* LoginViewController.swift */; };
 		ACACD01228749F520029D5CE /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACD01028749F520029D5CE /* LoginView.swift */; };
-		ACACD01628749F880029D5CE /* PwFindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACD01428749F880029D5CE /* PwFindViewController.swift */; };
+		ACACD01628749F880029D5CE /* PasswordFindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACD01428749F880029D5CE /* PasswordFindViewController.swift */; };
 		ACACD01728749F880029D5CE /* PwFindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACD01528749F880029D5CE /* PwFindView.swift */; };
-		ACAE1D3F2898D9CD00B34DCC /* TodoModifyDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAE1D3E2898D9CD00B34DCC /* TodoModifyDataManager.swift */; };
-		ACAE1D412898D9DD00B34DCC /* TodoModifyInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAE1D402898D9DD00B34DCC /* TodoModifyInput.swift */; };
-		ACAE1D432898D9EC00B34DCC /* TodoModifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAE1D422898D9EC00B34DCC /* TodoModifyModel.swift */; };
 		ACBAE55E296E69B200E71CAD /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE55D296E69B200E71CAD /* ProfileRouter.swift */; };
 		ACBAE560296E69BF00E71CAD /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE55F296E69BF00E71CAD /* ProfileService.swift */; };
 		ACBAE56E29702D7700E71CAD /* ProfileResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE56D29702D7700E71CAD /* ProfileResultModel.swift */; };
@@ -178,26 +165,10 @@
 		ACBAE578297ADFC900E71CAD /* FcmTokenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE577297ADFC900E71CAD /* FcmTokenRouter.swift */; };
 		ACBAE57A297ADFD600E71CAD /* FcmTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE579297ADFD600E71CAD /* FcmTokenService.swift */; };
 		ACBAE57C297AE8B500E71CAD /* FcmTokenRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBAE57B297AE8B500E71CAD /* FcmTokenRequestModel.swift */; };
-		ACCD87B92893C43F00C34CE7 /* CategoryMakeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87B82893C43F00C34CE7 /* CategoryMakeInput.swift */; };
-		ACCD87BB2893C45400C34CE7 /* CategoryMakeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87BA2893C45400C34CE7 /* CategoryMakeModel.swift */; };
-		ACCD87BD2893C46D00C34CE7 /* CategoryMakeDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87BC2893C46D00C34CE7 /* CategoryMakeDataManager.swift */; };
-		ACCD87C02895930500C34CE7 /* GetCategoryDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87BF2895930500C34CE7 /* GetCategoryDataManager.swift */; };
-		ACCD87C22895931600C34CE7 /* GetCategoryInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87C12895931600C34CE7 /* GetCategoryInput.swift */; };
-		ACCD87C42895932500C34CE7 /* GetCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87C32895932500C34CE7 /* GetCategoryModel.swift */; };
 		ACCD87C628965B7700C34CE7 /* TodoCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87C528965B7700C34CE7 /* TodoCategoryCell.swift */; };
-		ACCD87C92897BB3800C34CE7 /* CategoryModifyDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87C82897BB3800C34CE7 /* CategoryModifyDataManager.swift */; };
-		ACCD87CB2897BB4C00C34CE7 /* CategoryModifyInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87CA2897BB4C00C34CE7 /* CategoryModifyInput.swift */; };
-		ACCD87CD2897BB6500C34CE7 /* CategoryModifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87CC2897BB6500C34CE7 /* CategoryModifyModel.swift */; };
-		ACCD87D02897DB8C00C34CE7 /* CategoryDeleteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87CF2897DB8C00C34CE7 /* CategoryDeleteDataManager.swift */; };
-		ACCD87D22897DB9E00C34CE7 /* CategoryDeleteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87D12897DB9E00C34CE7 /* CategoryDeleteModel.swift */; };
-		ACCD87D72897E79100C34CE7 /* GetCalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87D62897E79100C34CE7 /* GetCalendarModel.swift */; };
 		ACE7D5FA28A819A70093854A /* PinNumberSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE7D5F928A819A70093854A /* PinNumberSettingViewController.swift */; };
 		ACE7D5FC28A819C10093854A /* PinNumberSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE7D5FB28A819C10093854A /* PinNumberSettingView.swift */; };
-		ACFBEC9528B3777C00B9D66F /* FcmTokendataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFBEC9428B3777C00B9D66F /* FcmTokendataManager.swift */; };
-		ACFBEC9728B3779700B9D66F /* FcmTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFBEC9628B3779700B9D66F /* FcmTokenModel.swift */; };
-		ACFBEC9928B379E000B9D66F /* FcmTokenInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFBEC9828B379E000B9D66F /* FcmTokenInput.swift */; };
 		ACFBEC9E28B3DBB200B9D66F /* GetDiaryExistenceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFBEC9D28B3DBB200B9D66F /* GetDiaryExistenceModel.swift */; };
-		ACFBECA128B5E05100B9D66F /* DiaryStickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFBECA028B5E05100B9D66F /* DiaryStickerModel.swift */; };
 		E015059928B3F3E500E83157 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015059828B3F3E500E83157 /* OnboardingViewController.swift */; };
 		E0218B1E28A4D5EA00E48618 /* DiaryStickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0218B1D28A4D5EA00E48618 /* DiaryStickerCollectionViewCell.swift */; };
 		E0218B2528A4E99600E48618 /* DiaryStickerViewController + Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0218B2428A4E99600E48618 /* DiaryStickerViewController + Layout.swift */; };
@@ -209,7 +180,6 @@
 		E02E7FA828747F1D0006F6FA /* UniStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E02E7FA728747F1D0006F6FA /* UniStoryboard.storyboard */; };
 		E03856B928913D3E00CEEFBA /* CategoryBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03856B828913D3E00CEEFBA /* CategoryBottomSheetViewController.swift */; };
 		E03856BB28914D8500CEEFBA /* ColorPickerBottomsheetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03856BA28914D8500CEEFBA /* ColorPickerBottomsheetCollectionViewCell.swift */; };
-		E03DCC4C28929D0F00532180 /* AutoLoginInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03DCC4B28929D0F00532180 /* AutoLoginInput.swift */; };
 		E0439ABB288C598A0075CBF0 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0439ABA288C598A0075CBF0 /* ColorPickerViewController.swift */; };
 		E0439ABD288C599A0075CBF0 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0439ABC288C599A0075CBF0 /* ColorPickerView.swift */; };
 		E0439AC0288C5B0F0075CBF0 /* ColorPickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0439ABE288C5B0F0075CBF0 /* ColorPickerCollectionViewCell.swift */; };
@@ -240,27 +210,10 @@
 		E0C4BD6B2872128500FDEA0E /* AdvertiseTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C4BD6A2872128500FDEA0E /* AdvertiseTextViewController.swift */; };
 		E0F3CDC92895696E00A74AB7 /* TodoInDiaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F3CDC82895696E00A74AB7 /* TodoInDiaryTableViewCell.swift */; };
 		E0F3CDCB2895698400A74AB7 /* DiaryTabelViewCell+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F3CDCA2895698400A74AB7 /* DiaryTabelViewCell+Layout.swift */; };
-		E0F99881288A57640051C7AA /* PwFindModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F99880288A57640051C7AA /* PwFindModel.swift */; };
-		E0F99883288A57760051C7AA /* PwFindInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F99882288A57760051C7AA /* PwFindInput.swift */; };
-		E0F99885288A57850051C7AA /* PwFindDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F99884288A57850051C7AA /* PwFindDataManager.swift */; };
-		E0F99888288A57C70051C7AA /* ProfileDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F99887288A57C70051C7AA /* ProfileDataManager.swift */; };
-		E0F9988A288A57D60051C7AA /* ProfileInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F99889288A57D60051C7AA /* ProfileInput.swift */; };
-		E0F9988C288A57EB0051C7AA /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9988B288A57EB0051C7AA /* ProfileModel.swift */; };
-		E0F9988F288A58160051C7AA /* ProfileImgDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9988E288A58160051C7AA /* ProfileImgDataManager.swift */; };
-		E0F99891288A58260051C7AA /* ProfileImgInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F99890288A58260051C7AA /* ProfileImgInput.swift */; };
-		E0F99893288A58320051C7AA /* ProfileImgModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F99892288A58320051C7AA /* ProfileImgModel.swift */; };
-		E0F99896288A58650051C7AA /* ProfileImgDeleteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F99895288A58650051C7AA /* ProfileImgDeleteDataManager.swift */; };
-		E0F99898288A58870051C7AA /* ProfileImgDeleteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F99897288A58870051C7AA /* ProfileImgDeleteModel.swift */; };
-		E0F9989A288A589A0051C7AA /* ProfileImgDeleteInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F99899288A589A0051C7AA /* ProfileImgDeleteInput.swift */; };
-		E0F9989D288A591D0051C7AA /* GetProfileDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9989C288A591D0051C7AA /* GetProfileDataManager.swift */; };
-		E0F9989F288A592E0051C7AA /* GetProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9989E288A592E0051C7AA /* GetProfileModel.swift */; };
 		E0F998A4288A59A80051C7AA /* UserDeleteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998A3288A59A80051C7AA /* UserDeleteDataManager.swift */; };
 		E0F998A6288A59B70051C7AA /* UserDeleteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998A5288A59B70051C7AA /* UserDeleteModel.swift */; };
 		E0F998A8288A683E0051C7AA /* UserDeleteInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998A7288A683E0051C7AA /* UserDeleteInput.swift */; };
 		E0F998AB288A69100051C7AA /* AlarmDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998AA288A69100051C7AA /* AlarmDataManager.swift */; };
-		E0F998C2288A6AD60051C7AA /* SignoutDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998C1288A6AD60051C7AA /* SignoutDataManager.swift */; };
-		E0F998C4288A6AF80051C7AA /* SignoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998C3288A6AF80051C7AA /* SignoutModel.swift */; };
-		E0F998C6288A6B010051C7AA /* SignoutInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998C5288A6B010051C7AA /* SignoutInput.swift */; };
 		E0F998C9288A6B310051C7AA /* AdDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998C8288A6B310051C7AA /* AdDataManager.swift */; };
 		E0F998CB288A6B460051C7AA /* AdModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998CA288A6B460051C7AA /* AdModel.swift */; };
 		E54C4D9FA6602FAE88B10C99 /* Pods_Todoary_TodoaryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA1B412CC301CC2E570F1921 /* Pods_Todoary_TodoaryUITests.framework */; };
@@ -348,11 +301,6 @@
 		57503649288A3EB0006A9070 /* SignUpInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInput.swift; sourceTree = "<group>"; };
 		5750364B288A3EC0006A9070 /* SignUpDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDataManager.swift; sourceTree = "<group>"; };
 		5750364D288A3ECE006A9070 /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
-		57503651288A3FB7006A9070 /* LoginInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInput.swift; sourceTree = "<group>"; };
-		57503653288A3FC9006A9070 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
-		57503655288A3FD4006A9070 /* LoginDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataManager.swift; sourceTree = "<group>"; };
-		57503659288A3FF8006A9070 /* AutoLoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLoginModel.swift; sourceTree = "<group>"; };
-		5750365B288A4007006A9070 /* AutoLoginDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLoginDataManager.swift; sourceTree = "<group>"; };
 		5750365E288BE33F006A9070 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		57503660288BE380006A9070 /* CategoryButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButtonCollectionViewCell.swift; sourceTree = "<group>"; };
 		57503662288BE3A0006A9070 /* CategoryTodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTodoTableViewCell.swift; sourceTree = "<group>"; };
@@ -379,8 +327,6 @@
 		577A01BD28A4EB21004B2575 /* ToolBarText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarText.swift; sourceTree = "<group>"; };
 		578B7AA228ACC75600E7B4F4 /* Todoary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Todoary.entitlements; sourceTree = "<group>"; };
 		578B7AA328ACCA0C00E7B4F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		578B7AA628AD112400E7B4F4 /* DiaryDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDataManager.swift; sourceTree = "<group>"; };
-		578B7AA828AD114400E7B4F4 /* DiaryInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryInput.swift; sourceTree = "<group>"; };
 		5799DB722977A2D9001137EA /* TodoaryDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoaryDateFormatter.swift; sourceTree = "<group>"; };
 		57B16854295A8A2600639A15 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		57B16856295ABAF900639A15 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
@@ -427,22 +373,19 @@
 		AA1B412CC301CC2E570F1921 /* Pods_Todoary_TodoaryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Todoary_TodoaryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC3A668B297BC7D100EF42BE /* NetworkCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCheck.swift; sourceTree = "<group>"; };
 		AC3A668D297BC82100EF42BE /* NetworkCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCheckModel.swift; sourceTree = "<group>"; };
+		AC3A668F297BD69D00EF42BE /* AuthJwtRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthJwtRequestModel.swift; sourceTree = "<group>"; };
+		AC3A6691297BDCCA00EF42BE /* PasswordRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRequestModel.swift; sourceTree = "<group>"; };
+		AC3A6693297C3B7E00EF42BE /* TodoRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRequestModel.swift; sourceTree = "<group>"; };
+		AC3A6695297C534400EF42BE /* DiaryStickerRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryStickerRequestModel.swift; sourceTree = "<group>"; };
 		AC5E27C6288C37C80056EC69 /* TodoSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoSettingViewController.swift; sourceTree = "<group>"; };
 		AC5E27C8288C37E60056EC69 /* TodoSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoSettingView.swift; sourceTree = "<group>"; };
 		AC5E27CA288C38130056EC69 /* TodoCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCalendarCell.swift; sourceTree = "<group>"; };
 		AC5E27CC288C38290056EC69 /* TodoWeekCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoWeekCell.swift; sourceTree = "<group>"; };
 		AC5E27D2288C39090056EC69 /* TodoCalendarBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCalendarBottomSheetViewController.swift; sourceTree = "<group>"; };
-		AC5E27D4288C68920056EC69 /* EmailCheckDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCheckDataManager.swift; sourceTree = "<group>"; };
-		AC5E27D7288C68DB0056EC69 /* EmailCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCheckModel.swift; sourceTree = "<group>"; };
 		AC5E27D9288EFCFE0056EC69 /* TodoCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCalendar.swift; sourceTree = "<group>"; };
 		AC5E27DB288FC0DA0056EC69 /* TodoAlarmBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoAlarmBottomSheetViewController.swift; sourceTree = "<group>"; };
 		AC5E27DE28901EEF0056EC69 /* AuthInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInterceptor.swift; sourceTree = "<group>"; };
-		AC5E27E0289020350056EC69 /* AuthJwtInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthJwtInput.swift; sourceTree = "<group>"; };
-		AC5E27E2289020D70056EC69 /* AuthJwtDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthJwtDataManager.swift; sourceTree = "<group>"; };
-		AC5E27E42890211C0056EC69 /* AuthJwtModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthJwtModel.swift; sourceTree = "<group>"; };
-		AC5E27ED28914E810056EC69 /* TodoSettingDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoSettingDataManager.swift; sourceTree = "<group>"; };
-		AC5E27EF28914E930056EC69 /* TodoSettingInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoSettingInput.swift; sourceTree = "<group>"; };
-		AC5E27F128914EAE0056EC69 /* TodoSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoSettingModel.swift; sourceTree = "<group>"; };
+		AC5E27E42890211C0056EC69 /* AuthJwtResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthJwtResultModel.swift; sourceTree = "<group>"; };
 		AC67C2DB2892904C00071763 /* SetKeboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetKeboard.swift; sourceTree = "<group>"; };
 		AC9128C8287AD5A80056932A /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		AC9128CA287AD5D20056932A /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
@@ -455,11 +398,8 @@
 		AC9859CC288505C5009FC2F8 /* WeekCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekCell.swift; sourceTree = "<group>"; };
 		ACACD00F28749F520029D5CE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		ACACD01028749F520029D5CE /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		ACACD01428749F880029D5CE /* PwFindViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PwFindViewController.swift; sourceTree = "<group>"; };
+		ACACD01428749F880029D5CE /* PasswordFindViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordFindViewController.swift; sourceTree = "<group>"; };
 		ACACD01528749F880029D5CE /* PwFindView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PwFindView.swift; sourceTree = "<group>"; };
-		ACAE1D3E2898D9CD00B34DCC /* TodoModifyDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModifyDataManager.swift; sourceTree = "<group>"; };
-		ACAE1D402898D9DD00B34DCC /* TodoModifyInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModifyInput.swift; sourceTree = "<group>"; };
-		ACAE1D422898D9EC00B34DCC /* TodoModifyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModifyModel.swift; sourceTree = "<group>"; };
 		ACBAE55D296E69B200E71CAD /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
 		ACBAE55F296E69BF00E71CAD /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		ACBAE56D29702D7700E71CAD /* ProfileResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResultModel.swift; sourceTree = "<group>"; };
@@ -469,26 +409,10 @@
 		ACBAE577297ADFC900E71CAD /* FcmTokenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcmTokenRouter.swift; sourceTree = "<group>"; };
 		ACBAE579297ADFD600E71CAD /* FcmTokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcmTokenService.swift; sourceTree = "<group>"; };
 		ACBAE57B297AE8B500E71CAD /* FcmTokenRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcmTokenRequestModel.swift; sourceTree = "<group>"; };
-		ACCD87B82893C43F00C34CE7 /* CategoryMakeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryMakeInput.swift; sourceTree = "<group>"; };
-		ACCD87BA2893C45400C34CE7 /* CategoryMakeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryMakeModel.swift; sourceTree = "<group>"; };
-		ACCD87BC2893C46D00C34CE7 /* CategoryMakeDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryMakeDataManager.swift; sourceTree = "<group>"; };
-		ACCD87BF2895930500C34CE7 /* GetCategoryDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCategoryDataManager.swift; sourceTree = "<group>"; };
-		ACCD87C12895931600C34CE7 /* GetCategoryInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCategoryInput.swift; sourceTree = "<group>"; };
-		ACCD87C32895932500C34CE7 /* GetCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCategoryModel.swift; sourceTree = "<group>"; };
 		ACCD87C528965B7700C34CE7 /* TodoCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCategoryCell.swift; sourceTree = "<group>"; };
-		ACCD87C82897BB3800C34CE7 /* CategoryModifyDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModifyDataManager.swift; sourceTree = "<group>"; };
-		ACCD87CA2897BB4C00C34CE7 /* CategoryModifyInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModifyInput.swift; sourceTree = "<group>"; };
-		ACCD87CC2897BB6500C34CE7 /* CategoryModifyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModifyModel.swift; sourceTree = "<group>"; };
-		ACCD87CF2897DB8C00C34CE7 /* CategoryDeleteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDeleteDataManager.swift; sourceTree = "<group>"; };
-		ACCD87D12897DB9E00C34CE7 /* CategoryDeleteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDeleteModel.swift; sourceTree = "<group>"; };
-		ACCD87D62897E79100C34CE7 /* GetCalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCalendarModel.swift; sourceTree = "<group>"; };
 		ACE7D5F928A819A70093854A /* PinNumberSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinNumberSettingViewController.swift; sourceTree = "<group>"; };
 		ACE7D5FB28A819C10093854A /* PinNumberSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinNumberSettingView.swift; sourceTree = "<group>"; };
-		ACFBEC9428B3777C00B9D66F /* FcmTokendataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcmTokendataManager.swift; sourceTree = "<group>"; };
-		ACFBEC9628B3779700B9D66F /* FcmTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcmTokenModel.swift; sourceTree = "<group>"; };
-		ACFBEC9828B379E000B9D66F /* FcmTokenInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcmTokenInput.swift; sourceTree = "<group>"; };
 		ACFBEC9D28B3DBB200B9D66F /* GetDiaryExistenceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDiaryExistenceModel.swift; sourceTree = "<group>"; };
-		ACFBECA028B5E05100B9D66F /* DiaryStickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryStickerModel.swift; sourceTree = "<group>"; };
 		C3C8A11142F88041A453AA57 /* Pods-TodoaryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoaryTests.debug.xcconfig"; path = "Target Support Files/Pods-TodoaryTests/Pods-TodoaryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D54D487D3B3177B28D4A4FBE /* Pods-Todoary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todoary.release.xcconfig"; path = "Target Support Files/Pods-Todoary/Pods-Todoary.release.xcconfig"; sourceTree = "<group>"; };
 		E005DE79287019BD00814C79 /* AgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewController.swift; sourceTree = "<group>"; };
@@ -504,7 +428,6 @@
 		E02E7FA728747F1D0006F6FA /* UniStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UniStoryboard.storyboard; sourceTree = "<group>"; };
 		E03856B828913D3E00CEEFBA /* CategoryBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryBottomSheetViewController.swift; sourceTree = "<group>"; };
 		E03856BA28914D8500CEEFBA /* ColorPickerBottomsheetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerBottomsheetCollectionViewCell.swift; sourceTree = "<group>"; };
-		E03DCC4B28929D0F00532180 /* AutoLoginInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLoginInput.swift; sourceTree = "<group>"; };
 		E0439ABA288C598A0075CBF0 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		E0439ABC288C599A0075CBF0 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		E0439ABE288C5B0F0075CBF0 /* ColorPickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -533,27 +456,10 @@
 		E0C4BD6A2872128500FDEA0E /* AdvertiseTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertiseTextViewController.swift; sourceTree = "<group>"; };
 		E0F3CDC82895696E00A74AB7 /* TodoInDiaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoInDiaryTableViewCell.swift; sourceTree = "<group>"; };
 		E0F3CDCA2895698400A74AB7 /* DiaryTabelViewCell+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiaryTabelViewCell+Layout.swift"; sourceTree = "<group>"; };
-		E0F99880288A57640051C7AA /* PwFindModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PwFindModel.swift; sourceTree = "<group>"; };
-		E0F99882288A57760051C7AA /* PwFindInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PwFindInput.swift; sourceTree = "<group>"; };
-		E0F99884288A57850051C7AA /* PwFindDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PwFindDataManager.swift; sourceTree = "<group>"; };
-		E0F99887288A57C70051C7AA /* ProfileDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataManager.swift; sourceTree = "<group>"; };
-		E0F99889288A57D60051C7AA /* ProfileInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInput.swift; sourceTree = "<group>"; };
-		E0F9988B288A57EB0051C7AA /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
-		E0F9988E288A58160051C7AA /* ProfileImgDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImgDataManager.swift; sourceTree = "<group>"; };
-		E0F99890288A58260051C7AA /* ProfileImgInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImgInput.swift; sourceTree = "<group>"; };
-		E0F99892288A58320051C7AA /* ProfileImgModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImgModel.swift; sourceTree = "<group>"; };
-		E0F99895288A58650051C7AA /* ProfileImgDeleteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImgDeleteDataManager.swift; sourceTree = "<group>"; };
-		E0F99897288A58870051C7AA /* ProfileImgDeleteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImgDeleteModel.swift; sourceTree = "<group>"; };
-		E0F99899288A589A0051C7AA /* ProfileImgDeleteInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImgDeleteInput.swift; sourceTree = "<group>"; };
-		E0F9989C288A591D0051C7AA /* GetProfileDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetProfileDataManager.swift; sourceTree = "<group>"; };
-		E0F9989E288A592E0051C7AA /* GetProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetProfileModel.swift; sourceTree = "<group>"; };
 		E0F998A3288A59A80051C7AA /* UserDeleteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeleteDataManager.swift; sourceTree = "<group>"; };
 		E0F998A5288A59B70051C7AA /* UserDeleteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeleteModel.swift; sourceTree = "<group>"; };
 		E0F998A7288A683E0051C7AA /* UserDeleteInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeleteInput.swift; sourceTree = "<group>"; };
 		E0F998AA288A69100051C7AA /* AlarmDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmDataManager.swift; sourceTree = "<group>"; };
-		E0F998C1288A6AD60051C7AA /* SignoutDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignoutDataManager.swift; sourceTree = "<group>"; };
-		E0F998C3288A6AF80051C7AA /* SignoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignoutModel.swift; sourceTree = "<group>"; };
-		E0F998C5288A6B010051C7AA /* SignoutInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignoutInput.swift; sourceTree = "<group>"; };
 		E0F998C8288A6B310051C7AA /* AdDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdDataManager.swift; sourceTree = "<group>"; };
 		E0F998CA288A6B460051C7AA /* AdModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdModel.swift; sourceTree = "<group>"; };
 		E6E8C0E6CB0EA8691D12EEB0 /* Pods_TodoaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -999,7 +905,7 @@
 			isa = PBXGroup;
 			children = (
 				AC9859C5287DC219009FC2F8 /* MailSender.swift */,
-				ACACD01428749F880029D5CE /* PwFindViewController.swift */,
+				ACACD01428749F880029D5CE /* PasswordFindViewController.swift */,
 			);
 			path = Password;
 			sourceTree = "<group>";
@@ -1131,9 +1037,6 @@
 		5701EA7829570DC200F21F63 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				AC5E27E2289020D70056EC69 /* AuthJwtDataManager.swift */,
-				ACFBEC9428B3777C00B9D66F /* FcmTokendataManager.swift */,
-				E0F998C1288A6AD60051C7AA /* SignoutDataManager.swift */,
 				E0F998A3288A59A80051C7AA /* UserDeleteDataManager.swift */,
 			);
 			path = Account;
@@ -1147,15 +1050,6 @@
 			path = Agreement;
 			sourceTree = "<group>";
 		};
-		5701EA7A29570DC600F21F63 /* Todo */ = {
-			isa = PBXGroup;
-			children = (
-				AC5E27ED28914E810056EC69 /* TodoSettingDataManager.swift */,
-				ACAE1D3E2898D9CD00B34DCC /* TodoModifyDataManager.swift */,
-			);
-			path = Todo;
-			sourceTree = "<group>";
-		};
 		5701EA7B29570DC800F21F63 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -1167,18 +1061,9 @@
 		5701EA7C29570DC900F21F63 /* Summary */ = {
 			isa = PBXGroup;
 			children = (
-				5701EA9F2957244400F21F63 /* Category */,
 				57294AAE2891159300DA2F31 /* TodoDeleteDataManager.swift */,
 			);
 			path = Summary;
-			sourceTree = "<group>";
-		};
-		5701EA7D29570DCB00F21F63 /* Diary */ = {
-			isa = PBXGroup;
-			children = (
-				578B7AA628AD112400E7B4F4 /* DiaryDataManager.swift */,
-			);
-			path = Diary;
 			sourceTree = "<group>";
 		};
 		5701EA7E29570DCD00F21F63 /* User */ = {
@@ -1188,30 +1073,8 @@
 				5701EA7929570DC400F21F63 /* Agreement */,
 				5701EA8229570E1600F21F63 /* Login */,
 				5701EA8129570E1400F21F63 /* SignUp */,
-				5701EA8029570E1200F21F63 /* Password */,
-				5701EA7F29570E1000F21F63 /* Profile */,
 			);
 			path = User;
-			sourceTree = "<group>";
-		};
-		5701EA7F29570E1000F21F63 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				E0F9989C288A591D0051C7AA /* GetProfileDataManager.swift */,
-				E0F99895288A58650051C7AA /* ProfileImgDeleteDataManager.swift */,
-				E0F9988E288A58160051C7AA /* ProfileImgDataManager.swift */,
-				E0F99887288A57C70051C7AA /* ProfileDataManager.swift */,
-			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
-		5701EA8029570E1200F21F63 /* Password */ = {
-			isa = PBXGroup;
-			children = (
-				AC5E27D4288C68920056EC69 /* EmailCheckDataManager.swift */,
-				E0F99884288A57850051C7AA /* PwFindDataManager.swift */,
-			);
-			path = Password;
 			sourceTree = "<group>";
 		};
 		5701EA8129570E1400F21F63 /* SignUp */ = {
@@ -1225,9 +1088,7 @@
 		5701EA8229570E1600F21F63 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				57503655288A3FD4006A9070 /* LoginDataManager.swift */,
 				57E6516728B2F969006CB053 /* AppleLoginDataManager.swift */,
-				5750365B288A4007006A9070 /* AutoLoginDataManager.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1237,10 +1098,8 @@
 			children = (
 				5701EA7E29570DCD00F21F63 /* User */,
 				5701EA9A295717F300F21F63 /* Category */,
-				5701EA7D29570DCB00F21F63 /* Diary */,
 				5701EA7C29570DC900F21F63 /* Summary */,
 				5701EA7B29570DC800F21F63 /* Setting */,
-				5701EA7A29570DC600F21F63 /* Todo */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -1250,7 +1109,6 @@
 			children = (
 				57294AC52891189700DA2F31 /* ApiModel.swift */,
 				5701EA8B29570E7B00F21F63 /* User */,
-				5701EA8A29570E7900F21F63 /* Diary */,
 				5701EA8929570E7800F21F63 /* Summary */,
 				5701EA8829570E7600F21F63 /* Setting */,
 				5701EA8729570E7400F21F63 /* Todo */,
@@ -1258,32 +1116,9 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		5701EA8529570E7000F21F63 /* Password */ = {
-			isa = PBXGroup;
-			children = (
-				AC5E27D7288C68DB0056EC69 /* EmailCheckModel.swift */,
-				E0F99880288A57640051C7AA /* PwFindModel.swift */,
-				E0F99882288A57760051C7AA /* PwFindInput.swift */,
-			);
-			path = Password;
-			sourceTree = "<group>";
-		};
-		5701EA8629570E7200F21F63 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				5701EA972957141100F21F63 /* Input */,
-				5701EA962957140F00F21F63 /* Model */,
-			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
 		5701EA8729570E7400F21F63 /* Todo */ = {
 			isa = PBXGroup;
 			children = (
-				ACAE1D402898D9DD00B34DCC /* TodoModifyInput.swift */,
-				ACAE1D422898D9EC00B34DCC /* TodoModifyModel.swift */,
-				AC5E27EF28914E930056EC69 /* TodoSettingInput.swift */,
-				AC5E27F128914EAE0056EC69 /* TodoSettingModel.swift */,
 			);
 			path = Todo;
 			sourceTree = "<group>";
@@ -1299,21 +1134,10 @@
 		5701EA8929570E7800F21F63 /* Summary */ = {
 			isa = PBXGroup;
 			children = (
-				5701EA9E2957243C00F21F63 /* Category */,
 				57294ABF289116F500DA2F31 /* TodoCheckboxInput.swift */,
 				ACFBEC9D28B3DBB200B9D66F /* GetDiaryExistenceModel.swift */,
-				ACCD87D62897E79100C34CE7 /* GetCalendarModel.swift */,
 			);
 			path = Summary;
-			sourceTree = "<group>";
-		};
-		5701EA8A29570E7900F21F63 /* Diary */ = {
-			isa = PBXGroup;
-			children = (
-				578B7AA828AD114400E7B4F4 /* DiaryInput.swift */,
-				ACFBECA028B5E05100B9D66F /* DiaryStickerModel.swift */,
-			);
-			path = Diary;
 			sourceTree = "<group>";
 		};
 		5701EA8B29570E7B00F21F63 /* User */ = {
@@ -1323,8 +1147,6 @@
 				5701EA8E29570EA100F21F63 /* Agreement */,
 				5701EA8D29570E9F00F21F63 /* Login */,
 				5701EA8C29570E9D00F21F63 /* SignUp */,
-				5701EA8529570E7000F21F63 /* Password */,
-				5701EA8629570E7200F21F63 /* Profile */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1341,10 +1163,7 @@
 		5701EA8D29570E9F00F21F63 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				5701EA942957106300F21F63 /* Auto */,
 				5701EA932957102C00F21F63 /* Apple */,
-				57503651288A3FB7006A9070 /* LoginInput.swift */,
-				57503653288A3FC9006A9070 /* LoginModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1360,39 +1179,9 @@
 		5701EA8F29570EA200F21F63 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				5701EA9229570FE400F21F63 /* Auth */,
 				5701EA982957148B00F21F63 /* Delete */,
-				5701EA9029570FB900F21F63 /* FCM */,
-				5701EA9129570FC200F21F63 /* SignOut */,
 			);
 			path = Account;
-			sourceTree = "<group>";
-		};
-		5701EA9029570FB900F21F63 /* FCM */ = {
-			isa = PBXGroup;
-			children = (
-				ACFBEC9828B379E000B9D66F /* FcmTokenInput.swift */,
-				ACFBEC9628B3779700B9D66F /* FcmTokenModel.swift */,
-			);
-			path = FCM;
-			sourceTree = "<group>";
-		};
-		5701EA9129570FC200F21F63 /* SignOut */ = {
-			isa = PBXGroup;
-			children = (
-				E0F998C3288A6AF80051C7AA /* SignoutModel.swift */,
-				E0F998C5288A6B010051C7AA /* SignoutInput.swift */,
-			);
-			path = SignOut;
-			sourceTree = "<group>";
-		};
-		5701EA9229570FE400F21F63 /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-				AC5E27E0289020350056EC69 /* AuthJwtInput.swift */,
-				AC5E27E42890211C0056EC69 /* AuthJwtModel.swift */,
-			);
-			path = Auth;
 			sourceTree = "<group>";
 		};
 		5701EA932957102C00F21F63 /* Apple */ = {
@@ -1402,36 +1191,6 @@
 				57E6516528B2F0E4006CB053 /* AppleLoginModel.swift */,
 			);
 			path = Apple;
-			sourceTree = "<group>";
-		};
-		5701EA942957106300F21F63 /* Auto */ = {
-			isa = PBXGroup;
-			children = (
-				57503659288A3FF8006A9070 /* AutoLoginModel.swift */,
-				E03DCC4B28929D0F00532180 /* AutoLoginInput.swift */,
-			);
-			path = Auto;
-			sourceTree = "<group>";
-		};
-		5701EA962957140F00F21F63 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				E0F99897288A58870051C7AA /* ProfileImgDeleteModel.swift */,
-				E0F99892288A58320051C7AA /* ProfileImgModel.swift */,
-				E0F9989E288A592E0051C7AA /* GetProfileModel.swift */,
-				E0F9988B288A57EB0051C7AA /* ProfileModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		5701EA972957141100F21F63 /* Input */ = {
-			isa = PBXGroup;
-			children = (
-				E0F99899288A589A0051C7AA /* ProfileImgDeleteInput.swift */,
-				E0F99890288A58260051C7AA /* ProfileImgInput.swift */,
-				E0F99889288A57D60051C7AA /* ProfileInput.swift */,
-			);
-			path = Input;
 			sourceTree = "<group>";
 		};
 		5701EA982957148B00F21F63 /* Delete */ = {
@@ -1469,31 +1228,6 @@
 				57D5D10328975CE8004A16DA /* CategoryTodoTableViewCell+Layout.swift */,
 				57503662288BE3A0006A9070 /* CategoryTodoTableViewCell.swift */,
 				57503660288BE380006A9070 /* CategoryButtonCollectionViewCell.swift */,
-			);
-			path = Category;
-			sourceTree = "<group>";
-		};
-		5701EA9E2957243C00F21F63 /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				ACCD87D12897DB9E00C34CE7 /* CategoryDeleteModel.swift */,
-				ACCD87CA2897BB4C00C34CE7 /* CategoryModifyInput.swift */,
-				ACCD87CC2897BB6500C34CE7 /* CategoryModifyModel.swift */,
-				ACCD87C12895931600C34CE7 /* GetCategoryInput.swift */,
-				ACCD87C32895932500C34CE7 /* GetCategoryModel.swift */,
-				ACCD87B82893C43F00C34CE7 /* CategoryMakeInput.swift */,
-				ACCD87BA2893C45400C34CE7 /* CategoryMakeModel.swift */,
-			);
-			path = Category;
-			sourceTree = "<group>";
-		};
-		5701EA9F2957244400F21F63 /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				ACCD87CF2897DB8C00C34CE7 /* CategoryDeleteDataManager.swift */,
-				ACCD87C82897BB3800C34CE7 /* CategoryModifyDataManager.swift */,
-				ACCD87BF2895930500C34CE7 /* GetCategoryDataManager.swift */,
-				ACCD87BC2893C46D00C34CE7 /* CategoryMakeDataManager.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1762,6 +1496,7 @@
 				575DE955297651AE00E61B8F /* DiaryRequestModel.swift */,
 				575DE957297651C300E61B8F /* DiaryResultModel.swift */,
 				575DE95B297651E800E61B8F /* DiaryStickerResultModel.swift */,
+				AC3A6695297C534400EF42BE /* DiaryStickerRequestModel.swift */,
 			);
 			path = Diary;
 			sourceTree = "<group>";
@@ -1779,6 +1514,7 @@
 			children = (
 				575DE95F2976523300E61B8F /* TodoResultModel.swift */,
 				575DE95D2976522000E61B8F /* TodoAlarmRequestModel.swift */,
+				AC3A6693297C3B7E00EF42BE /* TodoRequestModel.swift */,
 			);
 			path = Todo;
 			sourceTree = "<group>";
@@ -1804,6 +1540,9 @@
 				ACBAE56F2979909700E71CAD /* LoginResultModel.swift */,
 				ACBAE571297990FB00E71CAD /* LoginRequestModel.swift */,
 				AC3A668D297BC82100EF42BE /* NetworkCheckModel.swift */,
+				AC5E27E42890211C0056EC69 /* AuthJwtResultModel.swift */,
+				AC3A668F297BD69D00EF42BE /* AuthJwtRequestModel.swift */,
+				AC3A6691297BDCCA00EF42BE /* PasswordRequestModel.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -2130,19 +1869,12 @@
 				57397F94296D50FF0088B5F4 /* TodoRouter.swift in Sources */,
 				57294AC0289116F500DA2F31 /* TodoCheckboxInput.swift in Sources */,
 				E0218B2928A54C0700E48618 /* AdvertiseTextSettingView.swift in Sources */,
-				5750365A288A3FF8006A9070 /* AutoLoginModel.swift in Sources */,
-				ACAE1D432898D9EC00B34DCC /* TodoModifyModel.swift in Sources */,
-				AC5E27EE28914E810056EC69 /* TodoSettingDataManager.swift in Sources */,
-				AC5E27D5288C68920056EC69 /* EmailCheckDataManager.swift in Sources */,
 				57503661288BE380006A9070 /* CategoryButtonCollectionViewCell.swift in Sources */,
 				574A704F28865FEE003C8F99 /* HiddenTransparentButtonView.swift in Sources */,
 				E0F3CDCB2895698400A74AB7 /* DiaryTabelViewCell+Layout.swift in Sources */,
 				574A704B28852F9B003C8F99 /* DiaryBannerInSummaryTableViewCell.swift in Sources */,
-				AC5E27E3289020D70056EC69 /* AuthJwtDataManager.swift in Sources */,
-				E0F99881288A57640051C7AA /* PwFindModel.swift in Sources */,
 				E0218B2528A4E99600E48618 /* DiaryStickerViewController + Layout.swift in Sources */,
-				ACCD87B92893C43F00C34CE7 /* CategoryMakeInput.swift in Sources */,
-				E0F99893288A58320051C7AA /* ProfileImgModel.swift in Sources */,
+				AC3A6690297BD69D00EF42BE /* AuthJwtRequestModel.swift in Sources */,
 				572E5B12286EC3C800D1FAA0 /* SignUpViewController.swift in Sources */,
 				57B16857295ABAF900639A15 /* CategoryView.swift in Sources */,
 				574913B9287ADF6500381BCD /* AlarmSettingView.swift in Sources */,
@@ -2150,11 +1882,9 @@
 				E0AB9EBB287B1BF40064CADA /* HomeViewController.swift in Sources */,
 				574913B7287ADF5600381BCD /* AlarmSettingViewController.swift in Sources */,
 				E0BF9629289B69D900895111 /* DiaryToolbarViewController+Layout.swift in Sources */,
-				E0F9989D288A591D0051C7AA /* GetProfileDataManager.swift in Sources */,
 				E0C4BD672872115800FDEA0E /* UseServiceViewController.swift in Sources */,
 				57397FA0296D51810088B5F4 /* AlarmActiveStautsResultModel.swift in Sources */,
 				5750365F288BE33F006A9070 /* CategoryViewController.swift in Sources */,
-				E0F99898288A58870051C7AA /* ProfileImgDeleteModel.swift in Sources */,
 				577A01BC28A4E1A9004B2575 /* ToastMessageView.swift in Sources */,
 				57397F9A296D51210088B5F4 /* DiaryService.swift in Sources */,
 				57C481B929695334008731D9 /* BaseRouter.swift in Sources */,
@@ -2166,9 +1896,8 @@
 				57E6516A28B31910006CB053 /* AppleLoginInput.swift in Sources */,
 				57294AC62891189700DA2F31 /* ApiModel.swift in Sources */,
 				5799DB732977A2D9001137EA /* TodoaryDateFormatter.swift in Sources */,
+				AC3A6696297C534400EF42BE /* DiaryStickerRequestModel.swift in Sources */,
 				AC5E27DA288EFCFE0056EC69 /* TodoCalendar.swift in Sources */,
-				57503656288A3FD4006A9070 /* LoginDataManager.swift in Sources */,
-				E0F9988A288A57D60051C7AA /* ProfileInput.swift in Sources */,
 				57E75EB928E33AD400AC24B2 /* AddButtonViewController.swift in Sources */,
 				ACBAE55E296E69B200E71CAD /* ProfileRouter.swift in Sources */,
 				E0AB9EB7287B1B8E0064CADA /* SettingViewController.swift in Sources */,
@@ -2184,37 +1913,26 @@
 				570DD840295ED04B00A0D2A9 /* DiaryViewController+ToolBar.swift in Sources */,
 				574A70492885255B003C8F99 /* DiaryTitleInSummaryTableViewCell.swift in Sources */,
 				574A704528852523003C8F99 /* TodoTitleInSummaryTableViewCell.swift in Sources */,
-				ACCD87BD2893C46D00C34CE7 /* CategoryMakeDataManager.swift in Sources */,
 				ACBAE572297990FB00E71CAD /* LoginRequestModel.swift in Sources */,
-				E0F9988C288A57EB0051C7AA /* ProfileModel.swift in Sources */,
 				AC9128D2287B34C80056932A /* ProfileView.swift in Sources */,
-				ACCD87BB2893C45400C34CE7 /* CategoryMakeModel.swift in Sources */,
 				AC5E27CB288C38130056EC69 /* TodoCalendarCell.swift in Sources */,
 				ACBAE578297ADFC900E71CAD /* FcmTokenRouter.swift in Sources */,
-				578B7AA728AD112400E7B4F4 /* DiaryDataManager.swift in Sources */,
 				576ED6B028748FFA007389CD /* NavigationView.swift in Sources */,
-				AC5E27E52890211C0056EC69 /* AuthJwtModel.swift in Sources */,
+				AC5E27E52890211C0056EC69 /* AuthJwtResultModel.swift in Sources */,
 				574A6FF028826EB5003C8F99 /* SummaryBottomSheetViewController.swift in Sources */,
 				573844BA288CF01D009529CD /* NewTodoAddBtnTableViewCell.swift in Sources */,
-				ACFBECA128B5E05100B9D66F /* DiaryStickerModel.swift in Sources */,
 				570DD837295EC53D00A0D2A9 /* DiaryViewController+Sticker.swift in Sources */,
 				AC9859CB288334AC009FC2F8 /* CalendarCell.swift in Sources */,
-				57503654288A3FC9006A9070 /* LoginModel.swift in Sources */,
 				57E75EB228E1B7D700AC24B2 /* AlarmAlertViewController.swift in Sources */,
 				57FFEDBC28DC1C230041719B /* Const.swift in Sources */,
 				572E9ABB287BC4BD00F915DF /* ScreenSettingView.swift in Sources */,
 				575DE96B29769EBD00E61B8F /* CodeResponse.swift in Sources */,
 				ACACD01128749F520029D5CE /* LoginViewController.swift in Sources */,
-				57503652288A3FB7006A9070 /* LoginInput.swift in Sources */,
-				ACFBEC9728B3779700B9D66F /* FcmTokenModel.swift in Sources */,
 				E0F3CDC92895696E00A74AB7 /* TodoInDiaryTableViewCell.swift in Sources */,
-				AC5E27F028914E930056EC69 /* TodoSettingInput.swift in Sources */,
-				AC5E27F228914EAE0056EC69 /* TodoSettingModel.swift in Sources */,
 				575DE95E2976522000E61B8F /* TodoAlarmRequestModel.swift in Sources */,
 				576ED6B42874902A007389CD /* UITextField.swift in Sources */,
 				57468A6A289BCDE800056691 /* NoTodoTableViewCell.swift in Sources */,
 				57B9F71328D94F7500ACEC94 /* CancelAlertViewController.swift in Sources */,
-				E0F99896288A58650051C7AA /* ProfileImgDeleteDataManager.swift in Sources */,
 				ACCD87C628965B7700C34CE7 /* TodoCategoryCell.swift in Sources */,
 				572E9AC1287BC90A00F915DF /* FontSettingTableViewCell.swift in Sources */,
 				57E6516828B2F969006CB053 /* AppleLoginDataManager.swift in Sources */,
@@ -2224,8 +1942,6 @@
 				ACBAE560296E69BF00E71CAD /* ProfileService.swift in Sources */,
 				E0439ABB288C598A0075CBF0 /* ColorPickerViewController.swift in Sources */,
 				5750364C288A3EC0006A9070 /* SignUpDataManager.swift in Sources */,
-				E03DCC4C28929D0F00532180 /* AutoLoginInput.swift in Sources */,
-				ACCD87C22895931600C34CE7 /* GetCategoryInput.swift in Sources */,
 				E076E9EE28703EA1001E14E1 /* AppPasswordViewController+Layout.swift in Sources */,
 				57502F47287EA29100C36804 /* UITextView.swift in Sources */,
 				572E9AC3287C643000F915DF /* InfoMessageView.swift in Sources */,
@@ -2238,35 +1954,24 @@
 				575DE94E2975124100E61B8F /* MarketingRouter.swift in Sources */,
 				ACE7D5FA28A819A70093854A /* PinNumberSettingViewController.swift in Sources */,
 				AC9128C9287AD5A80056932A /* AccountViewController.swift in Sources */,
-				E0F99883288A57760051C7AA /* PwFindInput.swift in Sources */,
 				ACACD01728749F880029D5CE /* PwFindView.swift in Sources */,
 				E0AB9EC3287B1C670064CADA /* SettingAgreementView.swift in Sources */,
 				57C481C4296957DB008731D9 /* CategoryModel.swift in Sources */,
-				ACAE1D3F2898D9CD00B34DCC /* TodoModifyDataManager.swift in Sources */,
 				572E9AB7287BC07A00F915DF /* AskView.swift in Sources */,
 				AC9128CB287AD5D20056932A /* AccountView.swift in Sources */,
-				E0F998C4288A6AF80051C7AA /* SignoutModel.swift in Sources */,
 				E076E9ED28703DEE001E14E1 /* AgreementViewController.swift in Sources */,
-				ACCD87CB2897BB4C00C34CE7 /* CategoryModifyInput.swift in Sources */,
-				ACFBEC9528B3777C00B9D66F /* FcmTokendataManager.swift in Sources */,
 				575DE9662976529F00E61B8F /* AppleSignUpResultModel.swift in Sources */,
 				AC9128D0287B34B30056932A /* ProfileViewController.swift in Sources */,
 				575DE9602976523300E61B8F /* TodoResultModel.swift in Sources */,
 				AC67C2DC2892904C00071763 /* SetKeboard.swift in Sources */,
 				E03856BB28914D8500CEEFBA /* ColorPickerBottomsheetCollectionViewCell.swift in Sources */,
-				E0F998C6288A6B010051C7AA /* SignoutInput.swift in Sources */,
-				E0F99891288A58260051C7AA /* ProfileImgInput.swift in Sources */,
 				ACE7D5FC28A819C10093854A /* PinNumberSettingView.swift in Sources */,
 				57B9F70F28D94F4400ACEC94 /* BaseAlertViewController.swift in Sources */,
 				AC5E27C9288C37E60056EC69 /* TodoSettingView.swift in Sources */,
 				AC3A668E297BC82100EF42BE /* NetworkCheckModel.swift in Sources */,
-				AC5E27E1289020350056EC69 /* AuthJwtInput.swift in Sources */,
-				ACCD87C02895930500C34CE7 /* GetCategoryDataManager.swift in Sources */,
 				5750364A288A3EB0006A9070 /* SignUpInput.swift in Sources */,
-				ACAE1D412898D9DD00B34DCC /* TodoModifyInput.swift in Sources */,
 				AC5E27DF28901EEF0056EC69 /* AuthInterceptor.swift in Sources */,
 				57F97DD728D9566F00D4697C /* CancelMessageAlertViewController.swift in Sources */,
-				E0F9989A288A589A0051C7AA /* ProfileImgDeleteInput.swift in Sources */,
 				E0F998AB288A69100051C7AA /* AlarmDataManager.swift in Sources */,
 				57D5B60B29580F4400216C94 /* BaseTableViewCell.swift in Sources */,
 				57D5D10428975CE8004A16DA /* CategoryTodoTableViewCell+Layout.swift in Sources */,
@@ -2279,28 +1984,23 @@
 				57397F8E296D4F570088B5F4 /* AccountService.swift in Sources */,
 				E0218B3028A5503000E48618 /* LoadingScreenViewController.swift in Sources */,
 				AC9128CD287AFE620056932A /* AccountTableViewCell.swift in Sources */,
-				E0F998C2288A6AD60051C7AA /* SignoutDataManager.swift in Sources */,
 				E0C4BD6B2872128500FDEA0E /* AdvertiseTextViewController.swift in Sources */,
-				E0F9988F288A58160051C7AA /* ProfileImgDataManager.swift in Sources */,
 				57294ACC28937C2C00DA2F31 /* TodoBannerInSummaryTableViewCell.swift in Sources */,
 				57C481B2296952EE008731D9 /* CategoryRouter.swift in Sources */,
 				572E5ADA286EBDCC00D1FAA0 /* AppDelegate.swift in Sources */,
 				575DE958297651C300E61B8F /* DiaryResultModel.swift in Sources */,
 				E0BF9627289B69C000895111 /* DiaryToolbarView.swift in Sources */,
 				57556A8F295FC93300B67369 /* CategoryBottomSheetView.swift in Sources */,
-				ACCD87CD2897BB6500C34CE7 /* CategoryModifyModel.swift in Sources */,
 				E0AB9EC1287B1C570064CADA /* SettingAgreementViewController.swift in Sources */,
 				57E6516628B2F0E4006CB053 /* AppleLoginModel.swift in Sources */,
 				AC9859CD288505C5009FC2F8 /* WeekCell.swift in Sources */,
 				ACFBEC9E28B3DBB200B9D66F /* GetDiaryExistenceModel.swift in Sources */,
-				E0F99885288A57850051C7AA /* PwFindDataManager.swift in Sources */,
 				E0C4BD692872127C00FDEA0E /* AdvertiseTextView.swift in Sources */,
 				57B36ECD287AFAD400378E16 /* AskViewController.swift in Sources */,
 				E06F1ACB28A61E710066B824 /* NewAppPasswordViewController.swift in Sources */,
 				57C481B4296952F7008731D9 /* CategoryService.swift in Sources */,
 				574913BB287ADF8E00381BCD /* AlarmSettingTableViewCell.swift in Sources */,
 				ACBAE57A297ADFD600E71CAD /* FcmTokenService.swift in Sources */,
-				ACCD87D22897DB9E00C34CE7 /* CategoryDeleteModel.swift in Sources */,
 				E0AB9EC8287B44C90064CADA /* SettingTableViewCell.swift in Sources */,
 				57397F8A296D472C0088B5F4 /* AlarmService.swift in Sources */,
 				E02E7FA42874631D0006F6FA /* UILabel.swift in Sources */,
@@ -2308,7 +2008,6 @@
 				AC9859C9288290C8009FC2F8 /* Calendar.swift in Sources */,
 				57B9F71128D94F6700ACEC94 /* ConfirmAlertViewController.swift in Sources */,
 				AC5E27C7288C37C80056EC69 /* TodoSettingViewController.swift in Sources */,
-				ACCD87D72897E79100C34CE7 /* GetCalendarModel.swift in Sources */,
 				57D5D108289924AC004A16DA /* SummaryBottomSheetView.swift in Sources */,
 				E0C4BD6128720FBA00FDEA0E /* PrivacyTextViewController.swift in Sources */,
 				E0AB9EBD287B1C070064CADA /* HomeView.swift in Sources */,
@@ -2316,7 +2015,6 @@
 				57397F96296D510C0088B5F4 /* TodoService.swift in Sources */,
 				E045C670287BDB8B00D89D62 /* SettingAgreementViewCell.swift in Sources */,
 				E03856B928913D3E00CEEFBA /* CategoryBottomSheetViewController.swift in Sources */,
-				ACFBEC9928B379E000B9D66F /* FcmTokenInput.swift in Sources */,
 				57397F8C296D4F370088B5F4 /* AccountRouter.swift in Sources */,
 				57B16855295A8A2600639A15 /* SignUpView.swift in Sources */,
 				575DE9642976529400E61B8F /* AppleSignUpRequestModel.swift in Sources */,
@@ -2325,32 +2023,26 @@
 				E0C4BD632872100900FDEA0E /* PrivacyTextView.swift in Sources */,
 				E0439ABD288C599A0075CBF0 /* ColorPickerView.swift in Sources */,
 				E076E9EB28703CAF001E14E1 /* AgreementView.swift in Sources */,
-				E0F99888288A57C70051C7AA /* ProfileDataManager.swift in Sources */,
-				ACCD87D02897DB8C00C34CE7 /* CategoryDeleteDataManager.swift in Sources */,
 				574A704728852544003C8F99 /* DiaryInSummaryTableViewCell.swift in Sources */,
 				576ED6B228749021007389CD /* String.swift in Sources */,
 				ACBAE5702979909700E71CAD /* LoginResultModel.swift in Sources */,
-				5750365C288A4007006A9070 /* AutoLoginDataManager.swift in Sources */,
-				ACCD87C92897BB3800C34CE7 /* CategoryModifyDataManager.swift in Sources */,
 				57D5B60F29580F8400216C94 /* BaseProtocol.swift in Sources */,
 				E0F998CB288A6B460051C7AA /* AdModel.swift in Sources */,
 				E0439AC0288C5B0F0075CBF0 /* ColorPickerCollectionViewCell.swift in Sources */,
 				57FFEDBA28DAD9BE0041719B /* ConfirmMessageAlertViewController.swift in Sources */,
 				572E9AB9287BC4AC00F915DF /* ScreenSettingViewController.swift in Sources */,
-				AC5E27D8288C68DB0056EC69 /* EmailCheckModel.swift in Sources */,
-				ACACD01628749F880029D5CE /* PwFindViewController.swift in Sources */,
-				578B7AA928AD114400E7B4F4 /* DiaryInput.swift in Sources */,
+				ACACD01628749F880029D5CE /* PasswordFindViewController.swift in Sources */,
+				AC3A6694297C3B7E00EF42BE /* TodoRequestModel.swift in Sources */,
 				57DF45FD28A60DB90002D66C /* DiaryFont.swift in Sources */,
 				575DE9622976528900E61B8F /* SignUpRequestModel.swift in Sources */,
 				ACBAE5742979C9EF00E71CAD /* ProfileRequestModel.swift in Sources */,
 				57C481BF29695370008731D9 /* HeaderType.swift in Sources */,
 				57B36ECA287AFA9A00378E16 /* DefaultTableViewCell.swift in Sources */,
-				E0F9989F288A592E0051C7AA /* GetProfileModel.swift in Sources */,
 				E0F998A8288A683E0051C7AA /* UserDeleteInput.swift in Sources */,
-				ACCD87C42895932500C34CE7 /* GetCategoryModel.swift in Sources */,
 				57556A91295FDCBE00B67369 /* BaseBottomSheetViewController.swift in Sources */,
 				570DD833295EC4DB00A0D2A9 /* DiaryViewController.swift in Sources */,
 				ACBAE56E29702D7700E71CAD /* ProfileResultModel.swift in Sources */,
+				AC3A6692297BDCCA00EF42BE /* PasswordRequestModel.swift in Sources */,
 				AC3A668C297BC7D100EF42BE /* NetworkCheck.swift in Sources */,
 				572E5B0E286EC10500D1FAA0 /* UIFont.swift in Sources */,
 				575DE968297652A600E61B8F /* DeleteAppleAccountRequestModel.swift in Sources */,

@@ -92,65 +92,67 @@ class ColorPickerViewController : BaseViewController {
         setupCollectionView()
         categoryReceive()
         
-//        .addTarget(self, action: #selector(deleteBtnDidTap), for: .touchUpInside)
         rightButton.addTarget(self, action: #selector(completeBtnDidTap), for: .touchUpInside)
+        mainView.confirmBtn.addTarget(self, action: #selector(confirmBtnDidTap), for: .touchUpInside)
     }
     
     //MARK: - Actions
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     //완료버튼 누르기 -> 뒤로가기, api 호출
     @objc private func completeBtnDidTap() {
         
-        //데이터가 없는 경우, 있는 경우에 따라 생성, 수정 api로 변경
+        //데이터가 없는 경우 생성 api
         //제목이나 컬러값을 유저가 넣지 않았을때 팝업 띄우기
-        if categoryData != nil {
+        
+        if(selectColor == nil){
             
-            //수정본
-            if(mainView.categoryTitle.text == "" ){
-                let alert = ConfirmAlertViewController(title: "제목을 넣어주세요")
-                alert.modalPresentationStyle = .overFullScreen
-                self.present(alert, animated: false, completion: nil)
-                
-            }else if(mainView.categoryTitle.text!.count > 5){
-                
-                let alert = ConfirmAlertViewController(title: "카테고리명을 5글자 이하로 설정해주세요.")
-                alert.modalPresentationStyle = .overFullScreen
-                self.present(alert, animated: false, completion: nil)
-                
-            }else{
-                print(selectColor!)
-                let categoryModifyInput = CategoryModifyInput(title: mainView.categoryTitle.text!, color: selectColor)
-                CategoryModifyDataManager().categoryModifyDataManager(self,categoryModifyInput,categoryId: categoryId)
-                
-            }
+            let alert = ConfirmAlertViewController(title: "색상을 선택해주세요")
+            alert.modalPresentationStyle = .overFullScreen
+            self.present(alert, animated: false, completion: nil)
             
+        }else if(mainView.categoryTitle.text == ""){
             
-        }else {
-
-            if(selectColor == nil){
-                
-                let alert = ConfirmAlertViewController(title: "색상을 선택해주세요")
-                alert.modalPresentationStyle = .overFullScreen
-                self.present(alert, animated: false, completion: nil)
-                
-            }else if(mainView.categoryTitle.text == ""){
-                
-                let alert = ConfirmAlertViewController(title: "제목을 넣어주세요")
-                alert.modalPresentationStyle = .overFullScreen
-                self.present(alert, animated: false, completion: nil)
-                
-            }else if(mainView.categoryTitle.text!.count > 5){
-                let alert = ConfirmAlertViewController(title: "카테고리명을 5글자 이하로 설정해주세요")
-                alert.modalPresentationStyle = .overFullScreen
-                self.present(alert, animated: false, completion: nil)
-                
-            }else{
-                print(selectColor!)
-                let categoryMakeInput = CategoryMakeInput(title: mainView.categoryTitle.text!, color: selectColor)
-                CategoryMakeDataManager().categoryMakeDataManager(self,categoryMakeInput)
-            }
+            let alert = ConfirmAlertViewController(title: "제목을 넣어주세요")
+            alert.modalPresentationStyle = .overFullScreen
+            self.present(alert, animated: false, completion: nil)
             
-
+        }else if(mainView.categoryTitle.text!.count > 5){
+            let alert = ConfirmAlertViewController(title: "카테고리명을 5글자 이하로 설정해주세요")
+            alert.modalPresentationStyle = .overFullScreen
+            self.present(alert, animated: false, completion: nil)
+            
+        }else{
+            print(selectColor!)
+            let categoryRequest = CategoryModel(title: mainView.categoryTitle.text!, color: selectColor)
+            requestGenerateCategory(parameter: categoryRequest)
+        }
+        
+    }
+    
+    //밑에 위치한 완료버튼을 눌렀을 경우
+    @objc private func confirmBtnDidTap() {
+        
+        //데이터가 있는 경우 수정 api
+        //제목이나 컬러값을 유저가 넣지 않았을때 팝업 띄우기
+        if(mainView.categoryTitle.text == "" ){
+            let alert = ConfirmAlertViewController(title: "제목을 넣어주세요")
+            alert.modalPresentationStyle = .overFullScreen
+            self.present(alert, animated: false, completion: nil)
+            
+        }else if(mainView.categoryTitle.text!.count > 5){
+            
+            let alert = ConfirmAlertViewController(title: "카테고리명을 5글자 이하로 설정해주세요.")
+            alert.modalPresentationStyle = .overFullScreen
+            self.present(alert, animated: false, completion: nil)
+            
+        }else{
+            print(selectColor!)
+            let categoryRequest = CategoryModel(title: mainView.categoryTitle.text!, color: selectColor)
+            requestModifyCategory(id: categoryId, parameter: categoryRequest)
         }
     }
     
@@ -164,7 +166,75 @@ class ColorPickerViewController : BaseViewController {
             self.present(alert, animated: false, completion: nil)
             
         }else{
-            CategoryDeleteDataManager().categoryDeleteDataManager(self, categoryId: categoryId)
+            requestDeleteCategory(id: categoryId)
+        }
+    }
+    
+    //MARK: - API
+    func requestGenerateCategory(parameter: CategoryModel){
+        CategoryService.shared.generateCategory(request: parameter){ [self] result in
+            switch result{
+            case .success(let data):
+                print("[requestGenerateCategory] success")
+                if let categorydata = data as? CategoryResultModel{
+                    self.navigationController?.popViewController(animated: true)
+                    TodoSettingViewController.selectCategory = (categorydata.categoryId)!
+                }
+                
+                break
+            case .invalidSuccess(let code):
+                switch code{
+                case 2011:
+                    let alert = ConfirmAlertViewController(title: "같은 이름의 카테고리가 이미 존재합니다.")
+                    alert.modalPresentationStyle = .overFullScreen
+                    self.present(alert, animated: false, completion: nil)
+                    break
+                default:
+                    break
+                }
+            default:
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+        }
+    }
+    
+    func requestModifyCategory(id: Int, parameter: CategoryModel){
+        CategoryService.shared.modifyCategory(id: id , request: parameter){ [self] result in
+            switch result{
+            case .success:
+                print("[requestModifyCategory] success")
+                self.navigationController?.popViewController(animated: true)
+                break
+            case .invalidSuccess(let code):
+                switch code{
+                case 2011:
+                    let alert = ConfirmAlertViewController(title: "같은 이름의 카테고리가 이미 존재합니다.")
+                    alert.modalPresentationStyle = .overFullScreen
+                    self.present(alert, animated: false, completion: nil)
+                    break
+                default:
+                    break
+                }
+            default:
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+        }
+    }
+    
+    func requestDeleteCategory(id: Int){
+        CategoryService.shared.deleteCategory(id: id){ [self] result in
+            switch result{
+            case .success:
+                print("[requestDeleteCategory] success")
+                TodoSettingViewController.selectCategory = -1
+                self.navigationController?.popViewController(animated: true)
+                break
+            default:
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
         }
     }
     
