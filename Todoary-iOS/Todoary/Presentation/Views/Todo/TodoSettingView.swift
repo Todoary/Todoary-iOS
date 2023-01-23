@@ -19,6 +19,8 @@ class TodoSettingView: BaseView {
         $0.placeholder = "투두이름"
         $0.font = UIFont.nbFont(type: .body2)
         $0.setPlaceholderColor(.todoaryGrey)
+        $0.returnKeyType = .done
+        $0.enablesReturnKeyAutomatically = true
     }
     
     let todoBorderLine = UIView().then{

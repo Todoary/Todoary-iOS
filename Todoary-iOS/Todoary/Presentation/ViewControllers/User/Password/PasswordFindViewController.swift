@@ -39,7 +39,7 @@ class PasswordFindViewController: BaseViewController, UITextFieldDelegate {
         }
     }
     
-    let mainView = PwFindView()
+    let mainView = PasswordFindView()
     
     
     //MARK: - Lifecycles
@@ -91,10 +91,6 @@ class PasswordFindViewController: BaseViewController, UITextFieldDelegate {
             self.view.window?.frame.origin.y = 0
         }
     }
-    
-    @objc func backBtnDidTab() {
-        self.navigationController?.popViewController(animated: true)
-        }
     
     @objc func tfDidChange(_ sender: UITextField) {
         let text = sender.text ?? ""

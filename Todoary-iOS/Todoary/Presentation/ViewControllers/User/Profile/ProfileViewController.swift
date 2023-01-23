@@ -10,7 +10,7 @@ import SnapKit
 import Then
 import Photos
 
-class ProfileViewController : BaseViewController {
+class ProfileViewController : BaseViewController , UITextFieldDelegate{
     
 //MARK: - Properties
     
@@ -67,6 +67,9 @@ class ProfileViewController : BaseViewController {
         
         mainView.imagePicker.addTarget(self, action: #selector(imagePickerDidTab), for: .touchUpInside)
         mainView.confirmBtn.addTarget(self, action: #selector(confirmBtnDidTab), for: .touchUpInside)
+        
+        mainView.nickNameTf.delegate = self
+//        mainView.introduceTf.delegate = self
         
     }
     
@@ -132,6 +135,13 @@ class ProfileViewController : BaseViewController {
     
 //MARK: - Keyboard
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        mainView.nickNameTf.resignFirstResponder()
+        
+        return true
+    }
+    
     @objc func textFieldDidChange(_ notification: Notification) {
         if let textField = notification.object as? UITextField {
             switch textField {
@@ -161,7 +171,16 @@ class ProfileViewController : BaseViewController {
             switch textView {
             case mainView.introduceTf:
                 if let text = mainView.introduceTf.text {
-                    
+                
+                    if(text.count>1){
+                        if (textView.text as NSString).substring(from: textView.text.count - 1) == "\n" {
+                            mainView.introduceTf.text = text.trimmingCharacters(in: ["\n"])
+                            self.view.endEditing(true)
+                            UIView.animate(withDuration: 1){
+                                self.view.window?.frame.origin.y = 0
+                            }
+                        }
+                    }
                     if mainView.introduceTf.text!.count < 31 {
                         mainView.introduceCount.text = "\(text.count)/30"
                     }
@@ -173,7 +192,11 @@ class ProfileViewController : BaseViewController {
                         let newString = text.substring(to: maxIndex)
                         mainView.introduceTf.text = newString
                     }
+                    
+                    
+                    
                 }
+                
             default:
                 return
             }
@@ -226,6 +249,7 @@ extension ProfileViewController {
                     self.mainView.nickNameNotice.isHidden = false
                     break
                 default:
+                    print("로그: " , code)
                     break
                 }
             default:

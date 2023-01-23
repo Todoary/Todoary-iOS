@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-class ColorPickerViewController : BaseViewController {
+class ColorPickerViewController : BaseViewController, UITextFieldDelegate{
     
     //MARK: - Properties
     
@@ -87,6 +87,8 @@ class ColorPickerViewController : BaseViewController {
     }
     
     override func initialize() {
+        
+        mainView.categoryTitle.delegate = self
         
         configure()
         setupCollectionView()
@@ -281,6 +283,14 @@ class ColorPickerViewController : BaseViewController {
         
         ColorPickerCollectionView.register(ColorPickerCollectionViewCell.self, forCellWithReuseIdentifier: ColorPickerCollectionViewCellid)
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+
+        textField.resignFirstResponder()
+        print("돼 안돼")
+        return true
+    }
+    
 }
 
 

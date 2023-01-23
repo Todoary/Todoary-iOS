@@ -19,7 +19,7 @@ import Then
  */
 
     
-class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarComplete , UIGestureRecognizerDelegate{
+class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarComplete , UIGestureRecognizerDelegate, UITextFieldDelegate{
     
     //카테고리 정보 받아오는 struct
     var categoryData : [CategoryModel]! = []
@@ -76,6 +76,7 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
     }
     
     override func initialize() {
+        mainView.todo.delegate = self
         
         setupLongGestureRecognizerOnCollection()
         getTodoData()
@@ -336,6 +337,13 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
     func calendarComplete(date: String, date_api: String) {
         self.mainView.date.setTitle(date, for: .normal)
         self.todoSettingData.targetDate = date_api
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+  
+        textField.resignFirstResponder()
+        
+        return true
     }
     
     //MARK: - API
