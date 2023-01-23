@@ -226,11 +226,9 @@ extension AccountViewController: ASAuthorizationControllerPresentationContextPro
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         switch authorization.credential {
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
-            
             let authorizationCode = String(data: appleIDCredential.authorizationCode!, encoding: .utf8)!
-            
-            UserDeleteDataManager().postAppleUserDelete(self, authorizationCode: authorizationCode)
-            
+            requestDeleteAppleAccount(code: authorizationCode)
+//            UserDeleteDataManager().postAppleUserDelete(self, authorizationCode: authorizationCode)
         default:
             break
         }
@@ -238,6 +236,37 @@ extension AccountViewController: ASAuthorizationControllerPresentationContextPro
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         // Handle error.
+    }
+    
+    func requestDeleteAppleAccount(code: String){
+        guard let email = KeyChain.read(key: Const.UserDefaults.email) else { return }
+        let parameter = DeleteAppleAccountRequestModel(email: email,
+                                                       code: code)
+        AccountService.shared.deleteAppleAccount(request: parameter){ result in
+            switch result{
+            case .success:
+                self.processResponseDeleteAppleAccount()
+                break
+            default:
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+        }
+    }
+    
+    func processResponseDeleteAppleAccount(){
+        KeyChain.delete(key: Const.UserDefaults.appleIdentifier)
+        KeyChain.delete(key: Const.UserDefaults.appleRefreshToken)
+        KeyChain.delete(key: Const.UserDefaults.email)
+        KeyChain.delete(key: Const.UserDefaults.userName)
+        
+        UserDefaults.standard.removeObject(forKey: "accessToken")
+        UserDefaults.standard.removeObject(forKey: "refreshToken")
+
+        let alert = ConfirmAlertViewController(title: "계정이 삭제되었습니다.").show(in: self)
+        alert.alertHandler = {
+            self.navigationController?.pushViewController(LoginViewController(), animated: false)
+        }
     }
     
 }

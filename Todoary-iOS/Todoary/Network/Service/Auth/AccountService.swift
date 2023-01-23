@@ -39,11 +39,11 @@ extension AccountService {
     }
     
     func deleteAppleAccount(request: DeleteAppleAccountRequestModel, completion: @escaping (NetworkResult<Any>) -> Void){
-//        requestObjectWithEmptyResponse(AccountRouter.deleteAppleAccount(request: request), completion: completion)
+        requestObjectWithEmptyResponse(AccountRouter.deleteAppleAccount(request: request), completion: completion)
     }
     
     func checkUserEmailDuplicate(email: String, completion: @escaping (NetworkResult<Any>) -> Void){
-//        requestObjectWithEmptyResponse(AccountRouter.emailDuplicate(request: email), completion: completion)
+        requestObjectWithEmptyResponse(AccountRouter.emailDuplicate(request: email), completion: completion)
     }
     
     func checkUserEmailExistence(email: String, completion: @escaping (NetworkResult<Any>) -> Void){
@@ -52,5 +52,6 @@ extension AccountService {
     
     func modifyPassword(request: PasswordRequestModel, completion: @escaping (NetworkResult<Any>) -> Void){
         requestObjectWithEmptyResponse(AccountRouter.patchPassword(request: request), completion: completion)
+
     }
 }
