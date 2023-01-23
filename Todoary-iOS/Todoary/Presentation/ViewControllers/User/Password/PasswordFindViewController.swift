@@ -168,7 +168,7 @@ class PasswordFindViewController: BaseViewController, UITextFieldDelegate {
         AccountService.shared.checkUserEmailExistence(email: parameter){ [self] result in
             switch result{
             case .success:
-                print("Log: [requestCheckUserEmailExistence] success in Home")
+                print("로그: [requestCheckUserEmailExistence] success")
                 emailCheck = true
                 mainView.idNoticeLb.text = "*유효한 이메일입니다."
                 mainView.idNoticeLb.textColor = .todoaryGrey
@@ -186,6 +186,7 @@ class PasswordFindViewController: BaseViewController, UITextFieldDelegate {
                 }
                 
             default:
+                print("로그: [requestCheckUserEmailExistence] fail")
                 DataBaseErrorAlert.show(in: self)
                 break
             }
@@ -196,7 +197,7 @@ class PasswordFindViewController: BaseViewController, UITextFieldDelegate {
         AccountService.shared.modifyPassword(request: parameter){ [self] result in
             switch result{
             case .success:
-                print("Log: [requestModifyPassword] success")
+                print("로그: [requestModifyPassword] success")
                 if (UserDefaults.standard.string(forKey: "accessToken") != nil) {
                     requestLogout()
                 }else {
@@ -206,6 +207,7 @@ class PasswordFindViewController: BaseViewController, UITextFieldDelegate {
                 }
                 break
             default:
+                print("로그: [requestModifyPassword] fail")
                 DataBaseErrorAlert.show(in: self)
                 break
             }
@@ -216,7 +218,7 @@ class PasswordFindViewController: BaseViewController, UITextFieldDelegate {
         AccountService.shared.logout(){ [self] result in
             switch result{
             case .success:
-                print("Log: [requestLogout] success")
+                print("로그: [requestLogout] success")
                 UserDefaults.standard.removeObject(forKey: "accessToken")
                 UserDefaults.standard.removeObject(forKey: "refreshToken")
                 let loginViewController = LoginViewController()
@@ -224,6 +226,7 @@ class PasswordFindViewController: BaseViewController, UITextFieldDelegate {
                 self.navigationController?.isNavigationBarHidden = true
                 break
             default:
+                print("로그: [requestLogout] fail")
                 DataBaseErrorAlert.show(in: self)
                 break
             }

@@ -190,7 +190,7 @@ extension ProfileViewController {
             switch result{
             case .success(let data):
                 if let profileData = data as? ProfileResultModel{
-                    print("[requestGetProfile] success in Account")
+                    print("로그: [requestGetProfile] success in Profile")
                     mainView.nickNameTf.text = profileData.nickname
                     mainView.introduceTf.text = profileData.introduce
                     mainView.nickNameCount.text = "\(profileData.nickname!.count)/10"
@@ -204,6 +204,7 @@ extension ProfileViewController {
                 }
                 break
             default:
+                print("로그: [requestGetProfile] success in fail")
                 DataBaseErrorAlert.show(in: self)
                 break
             }
@@ -214,20 +215,21 @@ extension ProfileViewController {
         ProfileService.shared.modifyProfile(request: parameter){ result in
             switch result{
             case .success:
-                print("[requestModifyProfile] success")
+                print("로그: [requestModifyProfile] success")
                 self.mainView.nickNameNotice.isHidden = true
                 self.navigationController?.popViewController(animated: true)
                 break
             case .invalidSuccess(let code):
                 switch code{
                 case 2032:
-                    print("중복된 닉네임입니다")
+                    print("로그: 중복된 닉네임입니다")
                     self.mainView.nickNameNotice.isHidden = false
                     break
                 default:
                     break
                 }
             default:
+                print("로그: [requestModifyProfile] fail")
                 DataBaseErrorAlert.show(in: self)
                 break
             }
@@ -238,9 +240,10 @@ extension ProfileViewController {
         ProfileService.shared.modifyProfileImage(image: parameter){ [self] result in
             switch result{
             case .success:
-                print("[requestModifyProfileImage] success")
+                print("로그: [requestModifyProfileImage] success")
                 break
             default:
+                print("로그: [requestModifyProfileImage] fail")
                 DataBaseErrorAlert.show(in: self)
                 break
             }
@@ -251,9 +254,10 @@ extension ProfileViewController {
         ProfileService.shared.deleteProfileImage(){ [self] result in
             switch result{
             case .success:
-                print("[requestDeleteProfileImage] success")
+                print("로그: [requestDeleteProfileImage] success")
                 break
             default:
+                print("로그: [requestDeleteProfileImage] fail")
                 DataBaseErrorAlert.show(in: self)
                 break
             }

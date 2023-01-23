@@ -111,7 +111,7 @@ class AccountViewController : BaseViewController {
             switch result{
             case .success(let data):
                 if let profileData = data as? ProfileResultModel{
-                    print("[requestGetProfile] success in Account")
+                    print("로그: [requestGetProfile] success in Account")
                     mainView.nickName.text = profileData.nickname
                     mainView.introduce.text = profileData.introduce
                     mainView.userAccount.text = profileData.email
@@ -122,6 +122,7 @@ class AccountViewController : BaseViewController {
                 }
                 break
             default:
+                print("로그: [requestGetProfile] fail in Account")
                 DataBaseErrorAlert.show(in: self)
                 break
             }
@@ -132,7 +133,7 @@ class AccountViewController : BaseViewController {
         AccountService.shared.logout(){ [self] result in
             switch result{
             case .success:
-                print("Log: [requestLogout] success")
+                print("로그: [requestLogout] success")
                 UserDefaults.standard.removeObject(forKey: "accessToken")
                 UserDefaults.standard.removeObject(forKey: "refreshToken")
                 let loginViewController = LoginViewController()
@@ -140,6 +141,7 @@ class AccountViewController : BaseViewController {
                 self.navigationController?.isNavigationBarHidden = true
                 break
             default:
+                print("로그: [requestLogout] fail")
                 DataBaseErrorAlert.show(in: self)
                 break
             }

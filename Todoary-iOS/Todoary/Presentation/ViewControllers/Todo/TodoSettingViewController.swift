@@ -345,7 +345,7 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
             switch result{
             case .success(let data):
                 if let categorydata = data as? [CategoryModel]{
-                    print("[requestGetCategory] success")
+                    print("로그: [requestGetCategory] success")
                     if(categorydata.isEmpty){
                     }else {
                         categoryData = categorydata
@@ -358,6 +358,7 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
                 }
                 break
             default:
+                print("로그: [requestGetCategory] fail")
                 DataBaseErrorAlert.show(in: self)
                 break
             }
@@ -368,10 +369,11 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
         TodoService.shared.generateTodo(request: parameter){ [self] result in
             switch result{
             case .success:
-                print("[requestGenerateTodo] success")
+                print("로그: [requestGenerateTodo] success")
                 self.navigationController?.popViewController(animated: true)
                 break
             default:
+                print("로그: [requestGenerateTodo] fail")
                 DataBaseErrorAlert.show(in: self)
                 break
             }
@@ -382,10 +384,11 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
         TodoService.shared.modifyTodo(id: id, request: parameter){ [self] result in
             switch result{
             case .success:
-                print("[requestModifyTodo] success")
+                print("로그: [requestModifyTodo] success")
                 self.navigationController?.popViewController(animated: true)
                 break
             default:
+                print("로그: [requestModifyTodo] fail")
                 DataBaseErrorAlert.show(in: self)
                 break
             }

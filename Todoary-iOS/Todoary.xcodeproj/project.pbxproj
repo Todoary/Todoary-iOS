@@ -186,10 +186,10 @@
 		E045C670287BDB8B00D89D62 /* SettingAgreementViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E045C66F287BDB8B00D89D62 /* SettingAgreementViewCell.swift */; };
 		E06F1AC928A605930066B824 /* AdvertiseTextSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06F1AC828A605930066B824 /* AdvertiseTextSettingViewController.swift */; };
 		E06F1ACB28A61E710066B824 /* NewAppPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06F1ACA28A61E710066B824 /* NewAppPasswordViewController.swift */; };
-		E06F1ACD28A61EF70066B824 /* NewAppPasswordViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06F1ACC28A61EF70066B824 /* NewAppPasswordViewController+Layout.swift */; };
+		E06F1ACD28A61EF70066B824 /* NewAppPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06F1ACC28A61EF70066B824 /* NewAppPasswordView.swift */; };
 		E076E9EB28703CAF001E14E1 /* AgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076E9E9287032C5001E14E1 /* AgreementView.swift */; };
 		E076E9ED28703DEE001E14E1 /* AgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005DE79287019BD00814C79 /* AgreementViewController.swift */; };
-		E076E9EE28703EA1001E14E1 /* AppPasswordViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005DE7A287019F900814C79 /* AppPasswordViewController+Layout.swift */; };
+		E076E9EE28703EA1001E14E1 /* AppPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005DE7A287019F900814C79 /* AppPasswordView.swift */; };
 		E076E9F028703ECE001E14E1 /* AppPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076E9EF28703ECE001E14E1 /* AppPasswordViewController.swift */; };
 		E0AB9EB7287B1B8E0064CADA /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AB9EB6287B1B8E0064CADA /* SettingViewController.swift */; };
 		E0AB9EB9287B1BA00064CADA /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AB9EB8287B1BA00064CADA /* SettingView.swift */; };
@@ -416,7 +416,7 @@
 		C3C8A11142F88041A453AA57 /* Pods-TodoaryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoaryTests.debug.xcconfig"; path = "Target Support Files/Pods-TodoaryTests/Pods-TodoaryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D54D487D3B3177B28D4A4FBE /* Pods-Todoary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todoary.release.xcconfig"; path = "Target Support Files/Pods-Todoary/Pods-Todoary.release.xcconfig"; sourceTree = "<group>"; };
 		E005DE79287019BD00814C79 /* AgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewController.swift; sourceTree = "<group>"; };
-		E005DE7A287019F900814C79 /* AppPasswordViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppPasswordViewController+Layout.swift"; sourceTree = "<group>"; };
+		E005DE7A287019F900814C79 /* AppPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPasswordView.swift; sourceTree = "<group>"; };
 		E015059828B3F3E500E83157 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		E0218B1D28A4D5EA00E48618 /* DiaryStickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryStickerCollectionViewCell.swift; sourceTree = "<group>"; };
 		E0218B2428A4E99600E48618 /* DiaryStickerViewController + Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiaryStickerViewController + Layout.swift"; sourceTree = "<group>"; };
@@ -434,7 +434,7 @@
 		E045C66F287BDB8B00D89D62 /* SettingAgreementViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAgreementViewCell.swift; sourceTree = "<group>"; };
 		E06F1AC828A605930066B824 /* AdvertiseTextSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertiseTextSettingViewController.swift; sourceTree = "<group>"; };
 		E06F1ACA28A61E710066B824 /* NewAppPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAppPasswordViewController.swift; sourceTree = "<group>"; };
-		E06F1ACC28A61EF70066B824 /* NewAppPasswordViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewAppPasswordViewController+Layout.swift"; sourceTree = "<group>"; };
+		E06F1ACC28A61EF70066B824 /* NewAppPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAppPasswordView.swift; sourceTree = "<group>"; };
 		E076E9E9287032C5001E14E1 /* AgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementView.swift; sourceTree = "<group>"; };
 		E076E9EF28703ECE001E14E1 /* AppPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPasswordViewController.swift; sourceTree = "<group>"; };
 		E0AB9EB6287B1B8E0064CADA /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
@@ -1381,8 +1381,8 @@
 			isa = PBXGroup;
 			children = (
 				ACE7D5FB28A819C10093854A /* PinNumberSettingView.swift */,
-				E005DE7A287019F900814C79 /* AppPasswordViewController+Layout.swift */,
-				E06F1ACC28A61EF70066B824 /* NewAppPasswordViewController+Layout.swift */,
+				E005DE7A287019F900814C79 /* AppPasswordView.swift */,
+				E06F1ACC28A61EF70066B824 /* NewAppPasswordView.swift */,
 			);
 			path = AppPassword;
 			sourceTree = "<group>";
@@ -1889,7 +1889,7 @@
 				57397F9A296D51210088B5F4 /* DiaryService.swift in Sources */,
 				57C481B929695334008731D9 /* BaseRouter.swift in Sources */,
 				570DD835295EC4F700A0D2A9 /* DiaryViewController+Text.swift in Sources */,
-				E06F1ACD28A61EF70066B824 /* NewAppPasswordViewController+Layout.swift in Sources */,
+				E06F1ACD28A61EF70066B824 /* NewAppPasswordView.swift in Sources */,
 				E0218B3228A5504300E48618 /* LoadingScreenViewController+Layout.swift in Sources */,
 				57C481C12969537A008731D9 /* GeneralResponse.swift in Sources */,
 				E06F1AC928A605930066B824 /* AdvertiseTextSettingViewController.swift in Sources */,
@@ -1942,7 +1942,7 @@
 				ACBAE560296E69BF00E71CAD /* ProfileService.swift in Sources */,
 				E0439ABB288C598A0075CBF0 /* ColorPickerViewController.swift in Sources */,
 				5750364C288A3EC0006A9070 /* SignUpDataManager.swift in Sources */,
-				E076E9EE28703EA1001E14E1 /* AppPasswordViewController+Layout.swift in Sources */,
+				E076E9EE28703EA1001E14E1 /* AppPasswordView.swift in Sources */,
 				57502F47287EA29100C36804 /* UITextView.swift in Sources */,
 				572E9AC3287C643000F915DF /* InfoMessageView.swift in Sources */,
 				E015059928B3F3E500E83157 /* OnboardingViewController.swift in Sources */,
