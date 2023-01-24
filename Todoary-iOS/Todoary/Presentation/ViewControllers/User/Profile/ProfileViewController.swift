@@ -10,7 +10,7 @@ import SnapKit
 import Then
 import Photos
 
-class ProfileViewController : BaseViewController {
+class ProfileViewController : BaseViewController , UITextFieldDelegate{
     
 //MARK: - Properties
     
@@ -67,6 +67,9 @@ class ProfileViewController : BaseViewController {
         
         mainView.imagePicker.addTarget(self, action: #selector(imagePickerDidTab), for: .touchUpInside)
         mainView.confirmBtn.addTarget(self, action: #selector(confirmBtnDidTab), for: .touchUpInside)
+        
+        mainView.nickNameTf.delegate = self
+//        mainView.introduceTf.delegate = self
         
     }
     
@@ -132,6 +135,13 @@ class ProfileViewController : BaseViewController {
     
 //MARK: - Keyboard
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        mainView.nickNameTf.resignFirstResponder()
+        
+        return true
+    }
+    
     @objc func textFieldDidChange(_ notification: Notification) {
         if let textField = notification.object as? UITextField {
             switch textField {
@@ -161,7 +171,16 @@ class ProfileViewController : BaseViewController {
             switch textView {
             case mainView.introduceTf:
                 if let text = mainView.introduceTf.text {
-                    
+                
+                    if(text.count>1){
+                        if (textView.text as NSString).substring(from: textView.text.count - 1) == "\n" {
+                            mainView.introduceTf.text = text.trimmingCharacters(in: ["\n"])
+                            self.view.endEditing(true)
+                            UIView.animate(withDuration: 1){
+                                self.view.window?.frame.origin.y = 0
+                            }
+                        }
+                    }
                     if mainView.introduceTf.text!.count < 31 {
                         mainView.introduceCount.text = "\(text.count)/30"
                     }
@@ -173,7 +192,11 @@ class ProfileViewController : BaseViewController {
                         let newString = text.substring(to: maxIndex)
                         mainView.introduceTf.text = newString
                     }
+                    
+                    
+                    
                 }
+                
             default:
                 return
             }
@@ -190,7 +213,7 @@ extension ProfileViewController {
             switch result{
             case .success(let data):
                 if let profileData = data as? ProfileResultModel{
-                    print("[requestGetProfile] success in Account")
+                    print("로그: [requestGetProfile] success in Profile")
                     mainView.nickNameTf.text = profileData.nickname
                     mainView.introduceTf.text = profileData.introduce
                     mainView.nickNameCount.text = "\(profileData.nickname!.count)/10"
@@ -204,6 +227,7 @@ extension ProfileViewController {
                 }
                 break
             default:
+                print("로그: [requestGetProfile] success in fail")
                 DataBaseErrorAlert.show(in: self)
                 break
             }
@@ -214,20 +238,22 @@ extension ProfileViewController {
         ProfileService.shared.modifyProfile(request: parameter){ result in
             switch result{
             case .success:
-                print("[requestModifyProfile] success")
+                print("로그: [requestModifyProfile] success")
                 self.mainView.nickNameNotice.isHidden = true
                 self.navigationController?.popViewController(animated: true)
                 break
             case .invalidSuccess(let code):
                 switch code{
                 case 2032:
-                    print("중복된 닉네임입니다")
+                    print("로그: 중복된 닉네임입니다")
                     self.mainView.nickNameNotice.isHidden = false
                     break
                 default:
+                    print("로그: " , code)
                     break
                 }
             default:
+                print("로그: [requestModifyProfile] fail")
                 DataBaseErrorAlert.show(in: self)
                 break
             }
@@ -238,9 +264,10 @@ extension ProfileViewController {
         ProfileService.shared.modifyProfileImage(image: parameter){ [self] result in
             switch result{
             case .success:
-                print("[requestModifyProfileImage] success")
+                print("로그: [requestModifyProfileImage] success")
                 break
             default:
+                print("로그: [requestModifyProfileImage] fail")
                 DataBaseErrorAlert.show(in: self)
                 break
             }
@@ -251,9 +278,10 @@ extension ProfileViewController {
         ProfileService.shared.deleteProfileImage(){ [self] result in
             switch result{
             case .success:
-                print("[requestDeleteProfileImage] success")
+                print("로그: [requestDeleteProfileImage] success")
                 break
             default:
+                print("로그: [requestDeleteProfileImage] fail")
                 DataBaseErrorAlert.show(in: self)
                 break
             }

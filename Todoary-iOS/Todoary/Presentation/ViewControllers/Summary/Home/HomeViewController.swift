@@ -176,7 +176,7 @@ class HomeViewController : UIViewController {
             switch result{
             case .success(let data):
                 if let data = data as? ProfileResultModel{
-                    print("Log: [requestGetProfile] success in Home")
+                    print("로그: [requestGetProfile] success in Home")
                     profileData = data
                     mainView.nickname.text = profileData.nickname
                     mainView.introduce.text = profileData.introduce
@@ -187,6 +187,7 @@ class HomeViewController : UIViewController {
                 }
                 break
             default:
+                print("로그: [requestGetProfile] fail in Home")
                 DataBaseErrorAlert.show(in: self)
                 break
             }
@@ -198,7 +199,7 @@ class HomeViewController : UIViewController {
             switch result{
             case .success(let data):
                 if let calendarData = data as? [Int]{
-                    print("Log: [requestGetTodoByYearMonth] success")
+                    print("로그: [requestGetTodoByYearMonth] success")
                     calendarRecord = [Int](repeating: 0, count: 32)
                     
                     if ((calendarData.isEmpty) != true){
@@ -210,6 +211,7 @@ class HomeViewController : UIViewController {
                 }
                 break
             default:
+                print("로그: [requestGetTodoByYearMonth] fail")
                 DataBaseErrorAlert.show(in: self)
                 break
             }
@@ -221,7 +223,7 @@ class HomeViewController : UIViewController {
             switch result{
             case .success(let data):
                 if let diaryData = data as? [Int]{
-                    print("Log: [requestGetDiaryByYearMonth] success")
+                    print("로그: [requestGetDiaryByYearMonth] success")
                     diaryRecord = [Int](repeating: 0, count: 32)
                     
                     if ((diaryData.isEmpty) != true){
@@ -233,6 +235,7 @@ class HomeViewController : UIViewController {
                 }
                 break
             default:
+                print("로그: [requestGetDiaryByYearMonth] fail")
                 DataBaseErrorAlert.show(in: self)
                 break
             }
@@ -243,10 +246,10 @@ class HomeViewController : UIViewController {
         FcmTokenService.shared.modifyFcmToken(request: parameter){ result in
             switch result{
             case .success:
-                print("Log: [requestModifyFcmToken] success")
+                print("로그: [requestModifyFcmToken] success")
                 break
             default:
-                print("Log: [requestModifyFcmToken] fail")
+                print("로그: [requestModifyFcmToken] fail")
                 break
             }
         }
