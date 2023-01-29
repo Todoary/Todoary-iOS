@@ -375,8 +375,7 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
             if(isDiaryExist){
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: DiaryTitleInSummaryTableViewCell.cellIdentifier, for: indexPath)
                         as? DiaryTitleInSummaryTableViewCell else{ fatalError()}
-                
-//                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(willMoveDiaryViewController))
+
                 cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(willMoveDiaryViewController)))
                 
                 if let diaryData = self.diaryData {
@@ -448,28 +447,23 @@ extension SummaryBottomSheetViewController: SelectedTableViewCellDeliver{
     }
     
     func cellDidTapped(_ indexPath: IndexPath) {
-
-        /*
-         1. clampCell indexPath 통해 셀 clamp 여부 점검
-         2. if clamp 상태 -> originalPosition
-         3. if clamp 상태 X -> todoSettingVC 이동
-         */
         
-        guard let clampCell = mainView.summaryTableView.cellForRow(at: clampCell) as? TodoInSummaryTableViewCell else { return }
-        
-        if(!clampCell.isClamp){
-            HomeViewController.dismissBottomSheet()
-            
-            guard let tapCell = mainView.summaryTableView.cellForRow(at: indexPath) as? TodoInSummaryTableViewCell else { return }
-            
-            let vc = TodoSettingViewController()
-            vc.todoSettingData = tapCell.cellData
-            TodoSettingViewController.selectCategory = tapCell.cellData.categoryId
-            
-            self.homeNavigaiton.pushViewController(vc, animated: true)
-        }else{
-            clampCell.cellWillMoveOriginalPosition()
+        if let clampCell = mainView.summaryTableView.cellForRow(at: clampCell) as? TodoInSummaryTableViewCell {
+            if(clampCell.isClamp){
+                clampCell.cellWillMoveOriginalPosition()
+                return
+            }
         }
+        
+        HomeViewController.dismissBottomSheet()
+        
+        guard let tapCell = mainView.summaryTableView.cellForRow(at: indexPath) as? TodoInSummaryTableViewCell else { return }
+
+        let vc = TodoSettingViewController()
+        vc.todoSettingData = tapCell.cellData
+        TodoSettingViewController.selectCategory = tapCell.cellData.categoryId
+        
+        self.homeNavigaiton.pushViewController(vc, animated: true)
     }
     
     func cellWillAlarmEnabled(_ indexPath: IndexPath) {
