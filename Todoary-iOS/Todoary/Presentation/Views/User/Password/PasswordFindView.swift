@@ -6,7 +6,7 @@
 //
 import UIKit
 
-class PwFindView: BaseView {
+class PasswordFindView: BaseView {
 
     //MARK: - UIComponenets
     

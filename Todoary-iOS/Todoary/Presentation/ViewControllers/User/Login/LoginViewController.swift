@@ -160,7 +160,7 @@ class LoginViewController: UIViewController {
         AccountService.shared.login(request: parameter){ result in
             switch result {
             case .success(let data):
-                print("[requestLogin] success")
+                print("로그: [requestLogin] success")
                 let data = data as? LoginResultModel
                 UserDefaults.standard.set(data?.token?.accessToken , forKey: "accessToken")
                 if UserDefaults.standard.bool(forKey: "appPasswordCheck") == true {
@@ -194,7 +194,7 @@ class LoginViewController: UIViewController {
                     break
                 }
             default:
-                print("[requestLogin] fail")
+                print("로그: [requestLogin] fail")
                 DataBaseErrorAlert.show(in: self)
                 break
             }
@@ -205,7 +205,7 @@ class LoginViewController: UIViewController {
         AccountService.shared.autoLogin(request: parameter){ result in
             switch result {
             case .success(let data):
-                print("[requestAutoLogin] success")
+                print("로그: [requestAutoLogin] success")
                 let data = data as? LoginResultModel
                 UserDefaults.standard.set(data?.token?.accessToken, forKey: "accessToken")
                 UserDefaults.standard.set(data?.token?.refreshToken, forKey: "refreshToken")
@@ -240,7 +240,7 @@ class LoginViewController: UIViewController {
                     break
                 }
             default:
-                print("[requestLogin] fail")
+                print("로그: [requestLogin] fail")
                 DataBaseErrorAlert.show(in: self)
                 break
             }

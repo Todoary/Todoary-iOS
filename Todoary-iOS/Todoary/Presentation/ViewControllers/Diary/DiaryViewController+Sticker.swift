@@ -45,7 +45,7 @@ extension DiaryViewController{
             switch result{
             case .success(let data):
                 if let diaryStickerData = data as? [DiaryStickerResultModel]{
-                    print("[requestGetDiarySticker] success")
+                    print("로그: [requestGetDiarySticker] success")
                     if diaryStickerData.isEmpty == false {
                         for i in 0...diaryStickerData.count - 1 {
                             
@@ -79,12 +79,13 @@ extension DiaryViewController{
             case .invalidSuccess(let code):
                 switch code{
                 case 2402:
-                    print("해당날짜에 일기존재X")
+                    print("로그:[requestGetDiarySticker] 해당날짜에 일기가 존재하지 않습니다.")
                     break
                 default:
                     break
                 }
             default:
+                print("로그: [requestGetDiarySticker] fail")
                 DataBaseErrorAlert.show(in: self)
                 break
             }
@@ -95,9 +96,10 @@ extension DiaryViewController{
         DiaryService.shared.modifyDiarySticker(date: date, request: parameter){ [self] result in
             switch result{
             case .success:
-                print("[requestModifyDiarySticker] success")
+                print("로그: [requestModifyDiarySticker] success")
                 break
             default:
+                print("로그: [requestModifyDiarySticker] fail")
                 DataBaseErrorAlert.show(in: self)
                 break
             }

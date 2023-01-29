@@ -45,6 +45,8 @@ class ProfileView: BaseView {
         $0.addLeftPadding()
         $0.addLetterSpacing(spacing: 0.28)
         $0.layer.borderWidth = 1
+        $0.returnKeyType = .done
+        $0.enablesReturnKeyAutomatically = true
         $0.layer.borderColor = UIColor.silver_217.cgColor
         $0.layer.cornerRadius = 10
     }

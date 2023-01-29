@@ -9,59 +9,258 @@ import Foundation
 import UIKit
 import SnapKit
 
-extension NewAppPasswordViewController {
+class NewAppPasswordView: BaseView {
     
-    func setUpView(){
+    let appPwTitle = UILabel().then{
+        $0.text = "암호 입력"
+        $0.textColor = .headline
+        $0.font = UIFont.nbFont(type: .header)
+    }
+    
+    let newAppPwtext = UILabel().then{
+        $0.text = "새로운 암호를 입력해 주세요"
+        $0.textColor = .headline
+        $0.font = UIFont.nbFont(type: .body1)
+        $0.isHidden = false
+    }
+    
+    let newAppPwtext2 = UILabel().then {
+        $0.text = "한 번 더 입력해 주세요"
+        $0.textColor = .headline
+        $0.font = UIFont.nbFont(type: .body1)
+        $0.isHidden = true
+    }
+    
+    let pwnotcorrect = UILabel().then {
+        $0.text = "다시 입력해 주세요"
+        $0.textColor = .headline
+        $0.font = UIFont.nbFont(type: .body1)
+        $0.isHidden = true
+    }
+    
+    //MARK: - input not password
+    
+    let inputNotPw = UIStackView().then{
+        $0.axis = .horizontal
+    }
+    
+    let inputNotPw1 = UIImageView().then{
+        $0.image = UIImage(named: "inputNotPassword")
+    }
+    
+    let inputNotPw2 = UIImageView().then{
+        $0.image = UIImage(named: "inputNotPassword")
+    }
+    
+    let inputNotPw3 = UIImageView().then{
+        $0.image = UIImage(named: "inputNotPassword")
+    }
+    
+    let inputNotPw4 = UIImageView().then{
+        $0.image = UIImage(named: "inputNotPassword")
+    }
+    
+    //MARK: - input password
+    
+    let inputPw = UIStackView().then{
+        $0.axis = .horizontal
+    }
+    
+    let inputPw1 = UIImageView().then{
+        $0.image = UIImage(named: "password1")
+        $0.isHidden = true
+    }
+    
+    let inputPw2 = UIImageView().then{
+        $0.image = UIImage(named: "password2")
+        $0.isHidden = true
+    }
+    
+    let inputPw3 = UIImageView().then{
+        $0.image = UIImage(named: "password3")
+        $0.isHidden = true
+    }
+    
+    let inputPw4 = UIImageView().then{
+        $0.image = UIImage(named: "password4")
+        $0.isHidden = true
+    }
+    
+    //MARK: - numbutton
+    
+    let numbutton = UIStackView().then{
+        $0.axis = .vertical
+        $0.spacing = 39
+    }
+    
+    let numbuttonStackView1 = UIStackView().then{
+        $0.axis = .horizontal
+        $0.spacing = 60
+    }
+    
+    let numbuttonStackView2 = UIStackView().then{
+        $0.axis = .horizontal
+        $0.spacing = 60
+    }
+    
+    let numbuttonStackView3 = UIStackView().then{
+        $0.axis = .horizontal
+        $0.spacing = 60
+    }
+    
+    let numbuttonStackView4 = UIStackView().then{
+        $0.axis = .horizontal
+        $0.spacing = 60
+    }
+    
+    //button
+    
+    let numBtn1 =  UIButton().then{
+        $0.setTitle( "1", for: .normal)
+        $0.backgroundColor = .numberBtnColor
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = UIFont.nbFont(type: .numberBtn)
+        $0.setBackgroundImage(UIImage(named: "home_profile"), for: UIControl.State.highlighted)
+    }
+    
+    let numBtn2 =  UIButton().then{
+        $0.setTitle( "2", for: .normal)
+        $0.backgroundColor = .numberBtnColor
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = UIFont.nbFont(type: .numberBtn)
+        $0.setBackgroundImage(UIImage(named: "home_profile"), for: UIControl.State.highlighted)
         
-        self.view.addSubview(navigatonView)
         
-        self.view.addSubview(appPwTitle)
-        self.view.addSubview(newAppPwtext)
-        self.view.addSubview(newAppPwtext2)
-        self.view.addSubview(pwnotcorrect)
+
+    }
+    
         
-        self.view.addSubview(inputNotPw)
-        self.view.addSubview(inputNotPw1)
-        self.view.addSubview(inputNotPw2)
-        self.view.addSubview(inputNotPw3)
-        self.view.addSubview(inputNotPw4)
+    let numBtn3 =  UIButton().then{
+        $0.setTitle( "3", for: .normal)
+        $0.backgroundColor = .numberBtnColor
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = UIFont.nbFont(type: .numberBtn)
+        $0.setBackgroundImage(UIImage(named: "home_profile"), for: UIControl.State.highlighted)
+
+    }
         
-        self.view.addSubview(inputPw)
-        self.view.addSubview(inputPw1)
-        self.view.addSubview(inputPw2)
-        self.view.addSubview(inputPw3)
-        self.view.addSubview(inputPw4)
+    let numBtn4 =  UIButton().then{
+        $0.setTitle( "4", for: .normal)
+        $0.backgroundColor = .numberBtnColor
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = UIFont.nbFont(type: .numberBtn)
+        $0.setBackgroundImage(UIImage(named: "home_profile"), for: UIControl.State.highlighted)
+    }
+
+    let numBtn5 =  UIButton().then{
+        $0.setTitle( "5", for: .normal)
+        $0.backgroundColor = .numberBtnColor
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = UIFont.nbFont(type: .numberBtn)
+        $0.setBackgroundImage(UIImage(named: "home_profile"), for: UIControl.State.highlighted)
+    }
+    
+    let numBtn6 =  UIButton().then{
+        $0.setTitle( "6", for: .normal)
+        $0.backgroundColor = .numberBtnColor
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = UIFont.nbFont(type: .numberBtn)
+        $0.setBackgroundImage(UIImage(named: "home_profile"), for: UIControl.State.highlighted)
+    }
+    
+    let numBtn7 =  UIButton().then{
+        $0.setTitle( "7", for: .normal)
+        $0.backgroundColor = .numberBtnColor
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = UIFont.nbFont(type: .numberBtn)
+        $0.setBackgroundImage(UIImage(named: "home_profile"), for: UIControl.State.highlighted)
+    }
+    
+    let numBtn8 =  UIButton().then{
+        $0.setTitle( "8", for: .normal)
+        $0.backgroundColor = .numberBtnColor
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = UIFont.nbFont(type: .numberBtn)
+        $0.setBackgroundImage(UIImage(named: "home_profile"), for: UIControl.State.highlighted)
+    }
+    
+    let numBtn9 =  UIButton().then{
+        $0.setTitle( "9", for: .normal)
+        $0.backgroundColor = .numberBtnColor
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = UIFont.nbFont(type: .numberBtn)
+        $0.setBackgroundImage(UIImage(named: "home_profile"), for: UIControl.State.highlighted)
+    }
+    
+    let numBtn0 =  UIButton().then{
+        $0.setTitle( "0", for: .normal)
+        $0.backgroundColor = .numberBtnColor
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = UIFont.nbFont(type: .numberBtn)
+        $0.setBackgroundImage(UIImage(named: "home_profile"), for: UIControl.State.highlighted)
+    }
+    
+    let blueCharacterView = UIView().then{
+        $0.backgroundColor = nil
+    }
+    
+    let blueCharacter = UIImageView().then{
+        $0.image = UIImage(named: "password5")
+    }
+
+ 
+    //MARK: - UIComponenets_deletBtn
+    let deletBtn = UIButton().then{
+        $0.setImage(UIImage(named: "backspace"), for: .normal)
+        $0.tintColor = .black
+        $0.contentMode = .scaleToFill
+    }
+    
+    override func hierarchy(){
         
-        self.view.addSubview(numbutton) //StackView
+        self.addSubview(appPwTitle)
+        self.addSubview(newAppPwtext)
+        self.addSubview(newAppPwtext2)
+        self.addSubview(pwnotcorrect)
+        
+        self.addSubview(inputNotPw)
+        self.addSubview(inputNotPw1)
+        self.addSubview(inputNotPw2)
+        self.addSubview(inputNotPw3)
+        self.addSubview(inputNotPw4)
+        
+        self.addSubview(inputPw)
+        self.addSubview(inputPw1)
+        self.addSubview(inputPw2)
+        self.addSubview(inputPw3)
+        self.addSubview(inputPw4)
+        
+        self.addSubview(numbutton) //StackView
         numbutton.addArrangedSubview(numbuttonStackView1)
         numbutton.addArrangedSubview(numbuttonStackView2)
         numbutton.addArrangedSubview(numbuttonStackView3)
         numbutton.addArrangedSubview(numbuttonStackView4)
         
-        self.view.addSubview(numBtn1)
-        self.view.addSubview(numBtn2)
-        self.view.addSubview(numBtn3)
-        self.view.addSubview(numBtn4)
-        self.view.addSubview(numBtn5)
-        self.view.addSubview(numBtn6)
-        self.view.addSubview(numBtn7)
-        self.view.addSubview(numBtn8)
-        self.view.addSubview(numBtn9)
-        self.view.addSubview(numBtn0)
-        self.view.addSubview(blueCharacter)
-        self.view.addSubview(deletBtn)
+        self.addSubview(numBtn1)
+        self.addSubview(numBtn2)
+        self.addSubview(numBtn3)
+        self.addSubview(numBtn4)
+        self.addSubview(numBtn5)
+        self.addSubview(numBtn6)
+        self.addSubview(numBtn7)
+        self.addSubview(numBtn8)
+        self.addSubview(numBtn9)
+        self.addSubview(numBtn0)
+        self.addSubview(blueCharacter)
+        self.addSubview(deletBtn)
         
     }
 
-    func setUpConstraint(){
-        
-        navigatonView.snp.makeConstraints{ make in
-            make.top.leading.trailing.equalToSuperview()
-        }
+    override func layout(){
         
         //text
         appPwTitle.snp.makeConstraints{ make in
-            make.top.equalToSuperview().offset(140)
+            make.top.equalToSuperview().offset(76)
             make.centerX.equalToSuperview()
         }
         
@@ -223,8 +422,6 @@ extension NewAppPasswordViewController {
             }
             
             numbuttonStackView3.snp.makeConstraints{ make in
-//                make.width.equalTo(249)
-//                make.height.equalTo(44)
                 make.centerX.equalToSuperview()
             }
             
@@ -245,8 +442,6 @@ extension NewAppPasswordViewController {
             }
             
             numbuttonStackView4.snp.makeConstraints{ make in
-//                make.width.equalTo(249)
-//                make.height.equalTo(43)
                 make.centerX.equalToSuperview()
             }
             

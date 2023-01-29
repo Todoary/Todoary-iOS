@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-class ColorPickerViewController : BaseViewController {
+class ColorPickerViewController : BaseViewController, UITextFieldDelegate{
     
     //MARK: - Properties
     
@@ -87,6 +87,8 @@ class ColorPickerViewController : BaseViewController {
     }
     
     override func initialize() {
+        
+        mainView.categoryTitle.delegate = self
         
         configure()
         setupCollectionView()
@@ -175,7 +177,7 @@ class ColorPickerViewController : BaseViewController {
         CategoryService.shared.generateCategory(request: parameter){ [self] result in
             switch result{
             case .success(let data):
-                print("[requestGenerateCategory] success")
+                print("로그: [requestGenerateCategory] success")
                 if let categorydata = data as? CategoryResultModel{
                     self.navigationController?.popViewController(animated: true)
                     TodoSettingViewController.selectCategory = (categorydata.categoryId)!
@@ -193,6 +195,7 @@ class ColorPickerViewController : BaseViewController {
                     break
                 }
             default:
+                print("로그: [requestGenerateCategory] fail")
                 DataBaseErrorAlert.show(in: self)
                 break
             }
@@ -203,12 +206,13 @@ class ColorPickerViewController : BaseViewController {
         CategoryService.shared.modifyCategory(id: id , request: parameter){ [self] result in
             switch result{
             case .success:
-                print("[requestModifyCategory] success")
+                print("로그: [requestModifyCategory] success")
                 self.navigationController?.popViewController(animated: true)
                 break
             case .invalidSuccess(let code):
                 switch code{
                 case 2011:
+                    print("로그: [requestModifyCategory] 같은이름의 카테고리가 존재합니다. ")
                     let alert = ConfirmAlertViewController(title: "같은 이름의 카테고리가 이미 존재합니다.")
                     alert.modalPresentationStyle = .overFullScreen
                     self.present(alert, animated: false, completion: nil)
@@ -217,6 +221,7 @@ class ColorPickerViewController : BaseViewController {
                     break
                 }
             default:
+                print("로그: [requestModifyCategory] fail")
                 DataBaseErrorAlert.show(in: self)
                 break
             }
@@ -227,11 +232,12 @@ class ColorPickerViewController : BaseViewController {
         CategoryService.shared.deleteCategory(id: id){ [self] result in
             switch result{
             case .success:
-                print("[requestDeleteCategory] success")
+                print("로그: [requestDeleteCategory] success")
                 TodoSettingViewController.selectCategory = -1
                 self.navigationController?.popViewController(animated: true)
                 break
             default:
+                print("로그: [requestDeleteCategory] fail")
                 DataBaseErrorAlert.show(in: self)
                 break
             }
@@ -277,6 +283,14 @@ class ColorPickerViewController : BaseViewController {
         
         ColorPickerCollectionView.register(ColorPickerCollectionViewCell.self, forCellWithReuseIdentifier: ColorPickerCollectionViewCellid)
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+
+        textField.resignFirstResponder()
+        print("돼 안돼")
+        return true
+    }
+    
 }
 
 

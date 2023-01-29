@@ -20,6 +20,8 @@ class ColorPickerView: BaseView {
         $0.layer.borderColor = UIColor.silver_217.cgColor
         $0.layer.cornerRadius = 10
         $0.setPlaceholderColor(.todoaryGrey)
+        $0.returnKeyType = .done
+        $0.enablesReturnKeyAutomatically = true
     }
     
     let colorview = UIView().then{
