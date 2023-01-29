@@ -67,6 +67,7 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
     }
     
     private func initialize(){
+
         mainView.summaryTableView.delegate = self
         mainView.summaryTableView.dataSource = self
         mainView.summaryTableView.separatorStyle = .none
@@ -477,5 +478,18 @@ extension SummaryBottomSheetViewController: SelectedTableViewCellDeliver{
         }
         alert.modalPresentationStyle = .overFullScreen
         self.present(alert, animated: false, completion: nil)
+    }
+}
+
+//MARK: - BottomSheet Swipe Delegate
+extension SummaryBottomSheetViewController: UISheetPresentationControllerDelegate{
+    func sheetPresentationControllerDidChangeSelectedDetentIdentifier(_ sheetPresentationController: UISheetPresentationController) {
+        
+        if let clampCell = mainView.summaryTableView.cellForRow(at: clampCell) as? TodoInSummaryTableViewCell {
+            if(clampCell.isClamp){
+                clampCell.cellWillMoveOriginalPosition()
+                return
+            }
+        }
     }
 }
