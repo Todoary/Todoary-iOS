@@ -156,6 +156,8 @@ class TodoInSummaryTableViewCell: UITableViewCell {
         
         titleLabel.snp.removeConstraints()
         categoryButton.snp.removeConstraints()
+        removeHiddenViews()
+        isClamp = false
     }
     
     //MARK: - Method
