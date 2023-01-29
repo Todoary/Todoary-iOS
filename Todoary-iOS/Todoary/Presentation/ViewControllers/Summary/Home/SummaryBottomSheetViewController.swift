@@ -155,6 +155,13 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
         guard let indexPath = mainView.summaryTableView.indexPath(for: cell) else { return nil }
         return indexPath.row - 1
     }
+    
+    func initializeTableView(){
+        if let clampCell = mainView.summaryTableView.cellForRow(at: clampCell) as? TodoInSummaryTableViewCell{
+            clampCell.removeHiddenViews()
+            clampCell.isClamp = false
+        }
+    }
 }
 
 //MARK: - API
@@ -251,6 +258,7 @@ extension SummaryBottomSheetViewController: RequestSummaryCellDelegate{
     func processResponseGetTodo(data: [TodoResultModel]){
         todoData = data
         dataArraySortByPin()
+        initializeTableView()
         mainView.summaryTableView.reloadData()
     }
     
