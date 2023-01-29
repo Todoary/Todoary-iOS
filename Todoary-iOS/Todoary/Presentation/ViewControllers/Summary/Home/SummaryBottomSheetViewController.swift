@@ -332,12 +332,7 @@ extension SummaryBottomSheetViewController{
                 mainView.summaryTableView.deleteRows(at: [indexPath], with: .fade)
             }
             showDeleteCompleteToastMessage(type: .Todo)
-            
-
             homeViewController.requestGetTodoByYearMonth(yearMonth: todoDate!.yearMonthSendServer)
-            
-//            GetCalendataManager().getCalendataManager(self, yearMonth: todoDate!.yearMonthSendServer)
-            
             return
         default:
             let alert = DataBaseErrorAlert()
@@ -381,8 +376,8 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: DiaryTitleInSummaryTableViewCell.cellIdentifier, for: indexPath)
                         as? DiaryTitleInSummaryTableViewCell else{ fatalError()}
                 
-                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(willMoveDiaryViewController))
-                cell.addGestureRecognizer(tapGesture)
+//                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(willMoveDiaryViewController))
+                cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(willMoveDiaryViewController)))
                 
                 if let diaryData = self.diaryData {
                     cell.setUpDataBinding(diaryData)
@@ -391,6 +386,7 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
                 return cell
             }else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: DiaryBannerInSummaryTableViewCell.cellIdentifier, for: indexPath)
+                cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(willMoveDiaryViewController)))
                 return cell
             }
 

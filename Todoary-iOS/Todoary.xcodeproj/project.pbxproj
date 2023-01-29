@@ -2231,9 +2231,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Todoary/Todoary.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 65XRT42S6C;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 65XRT42S6C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Todoary/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Todoary가 사진에 접근하려고 합니다. 허용하지 않아도 Todoary를 사용할 수 있지만, 선택하신 기능을 사용할 수 없습니다.";
@@ -2253,6 +2255,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.todoary.ms.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Todoary Development";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Todoary Development";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Todoary/Resource/Sheet/Todoary-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
