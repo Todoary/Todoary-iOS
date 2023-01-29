@@ -19,11 +19,6 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
     var homeViewController: HomeViewController!
     
     var todoData = [TodoResultModel]()
-//    {
-//        didSet{
-//            self.mainView.summaryTableView.reloadData()
-//        }
-//    }
     
     var isDiaryExist = false //for 다이어리 작성했을 때 view 구성
     var diaryData: DiaryResultModel?{

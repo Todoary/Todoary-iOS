@@ -207,6 +207,7 @@ class NewAppPasswordViewController : BaseViewController {
                 //비밀번호 4자리 모두 입려했을 때, 처음 비밀번호 설정(passwordArr)과 확인 비밀번호 설정(passwordArr2)이 같은지 확인
                 if passwordArr == passwordArr2 {
                     defaults.set(passwordArr2, forKey: "newPasswordArr")
+                    UserDefaults.standard.set(true, forKey: "appPasswordCheck")
 //                    defaults.object(forKey: "newPasswordArr")
                     print(UserDefaults.standard.stringArray(forKey: "newPasswordArr"))
                     
