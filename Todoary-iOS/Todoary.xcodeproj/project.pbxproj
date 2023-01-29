@@ -217,6 +217,8 @@
 		E0F998C9288A6B310051C7AA /* AdDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998C8288A6B310051C7AA /* AdDataManager.swift */; };
 		E0F998CB288A6B460051C7AA /* AdModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998CA288A6B460051C7AA /* AdModel.swift */; };
 		E54C4D9FA6602FAE88B10C99 /* Pods_Todoary_TodoaryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA1B412CC301CC2E570F1921 /* Pods_Todoary_TodoaryUITests.framework */; };
+		EED1B34E298656E600F14CAC /* TypoDesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED1B34D298656E600F14CAC /* TypoDesignSystem.swift */; };
+		EED1B350298656FD00F14CAC /* CategoryDesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED1B34F298656FD00F14CAC /* CategoryDesignSystem.swift */; };
 		FE8D4ADF330D2D49EAEDF342 /* Pods_Todoary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C3B169714F99FD99E7D25E7 /* Pods_Todoary.framework */; };
 /* End PBXBuildFile section */
 
@@ -463,6 +465,8 @@
 		E0F998C8288A6B310051C7AA /* AdDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdDataManager.swift; sourceTree = "<group>"; };
 		E0F998CA288A6B460051C7AA /* AdModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdModel.swift; sourceTree = "<group>"; };
 		E6E8C0E6CB0EA8691D12EEB0 /* Pods_TodoaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EED1B34D298656E600F14CAC /* TypoDesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypoDesignSystem.swift; sourceTree = "<group>"; };
+		EED1B34F298656FD00F14CAC /* CategoryDesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDesignSystem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1268,6 +1272,7 @@
 			isa = PBXGroup;
 			children = (
 				576ED6AF28748FFA007389CD /* NavigationView.swift */,
+				EED1B34C298656D700F14CAC /* DesignSystem */,
 				E02E7FA2287462ED0006F6FA /* Extensions */,
 			);
 			path = Resource;
@@ -1604,6 +1609,15 @@
 				E06F1AC828A605930066B824 /* AdvertiseTextSettingViewController.swift */,
 			);
 			path = AgreementText;
+			sourceTree = "<group>";
+		};
+		EED1B34C298656D700F14CAC /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				EED1B34D298656E600F14CAC /* TypoDesignSystem.swift */,
+				EED1B34F298656FD00F14CAC /* CategoryDesignSystem.swift */,
+			);
+			path = DesignSystem;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1955,6 +1969,7 @@
 				ACE7D5FA28A819A70093854A /* PinNumberSettingViewController.swift in Sources */,
 				AC9128C9287AD5A80056932A /* AccountViewController.swift in Sources */,
 				ACACD01728749F880029D5CE /* PasswordFindView.swift in Sources */,
+				EED1B350298656FD00F14CAC /* CategoryDesignSystem.swift in Sources */,
 				E0AB9EC3287B1C670064CADA /* SettingAgreementView.swift in Sources */,
 				57C481C4296957DB008731D9 /* CategoryModel.swift in Sources */,
 				572E9AB7287BC07A00F915DF /* AskView.swift in Sources */,
@@ -2008,6 +2023,7 @@
 				AC9859C9288290C8009FC2F8 /* Calendar.swift in Sources */,
 				57B9F71128D94F6700ACEC94 /* ConfirmAlertViewController.swift in Sources */,
 				AC5E27C7288C37C80056EC69 /* TodoSettingViewController.swift in Sources */,
+				EED1B34E298656E600F14CAC /* TypoDesignSystem.swift in Sources */,
 				57D5D108289924AC004A16DA /* SummaryBottomSheetView.swift in Sources */,
 				E0C4BD6128720FBA00FDEA0E /* PrivacyTextViewController.swift in Sources */,
 				E0AB9EBD287B1C070064CADA /* HomeView.swift in Sources */,
