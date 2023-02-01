@@ -98,6 +98,8 @@ class CategoryTag: BaseView{
         titleLabel.snp.makeConstraints{
             $0.height.equalTo(type.height)
         }
+        
+        setPadding()
     }
 
     private func setPadding(){
@@ -119,17 +121,18 @@ class CategoryTag: BaseView{
     func bindingData(title: String, color: Int){
         
         self.color = UIColor.categoryColor[color]
-        
         titleLabel.text = title
-        titleLabel.textColor = self.color
-        self.layer.borderColor = self.color.cgColor
         
-        setSelectState()
+        setDeselectState()
+        
+        if(type == .mainTodo){
+            setPadding()
+        }
     }
     
     func setSelectState(){
-        titleLabel.textColor = color
-        self.backgroundColor = .white
+        titleLabel.textColor = .white
+        self.backgroundColor = color
     }
     
     func setDeselectState(){
@@ -137,8 +140,6 @@ class CategoryTag: BaseView{
         self.backgroundColor = .white
         self.layer.borderColor = color.cgColor
     }
-    
-    
 }
 
 //MARK: - UILabel Typo method
