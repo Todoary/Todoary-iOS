@@ -46,6 +46,16 @@ class CategoryTag{
     static func generateForDefault() -> DefaultCategoryTag{
         return DefaultCategoryTag()
     }
+    
+    static func estimatedSize(_ title: String) -> CGSize{
+        let label = DefaultCategoryTag().then{
+            $0.setTitle(title, for: .normal)
+        }
+        let width = (label.titleLabel?.intrinsicContentSize.width)! + (label.padding.left + label.padding.right)
+        let height = (label.titleLabel?.intrinsicContentSize.height)! + (label.padding.top
+                                                          + label.padding.bottom)
+        return CGSize(width: width, height: height)
+    }
 }
 
 extension CategoryTag{
@@ -135,10 +145,18 @@ extension CategoryTag{
             self.layer.borderColor = color.cgColor
         }
         
+        func initialize(){
+            self.setTitle("", for: .normal)
+            self.setTitleColor(.transparent, for: .normal)
+            self.layer.borderColor = UIColor.transparent.cgColor
+            self.backgroundColor = .transparent
+        }
+        
         override func bindingData(title: String, color: Int) {
             super.bindingData(title: title, color: color)
             setDeselectState()
         }
+    
     }
 }
 
@@ -204,7 +222,6 @@ class CategoryTagView: UIButton{
         self.setTitleColor(self.color, for: .normal)
         self.layer.borderColor = self.color.cgColor
     }
-    
 }
 
 //MARK: - UILabel Typo method
