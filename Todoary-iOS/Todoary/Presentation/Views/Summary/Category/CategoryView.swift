@@ -19,8 +19,8 @@ class CategoryView: BaseView {
         $0.collectionViewLayout = flowLayout
         $0.contentInset = UIEdgeInsets(top: 0, left: 42, bottom: 0, right: 0)
 
-        $0.register(CategoryPlusButtonCell.self, forCellWithReuseIdentifier: CategoryPlusButtonCell.cellIdentifier)
-        $0.register(CategoryButtonCollectionViewCell.self, forCellWithReuseIdentifier: CategoryButtonCollectionViewCell.cellIdentifier)
+        $0.register(CategoryAddCollectionViewCell.self, forCellWithReuseIdentifier: CategoryAddCollectionViewCell.cellIdentifier)
+        $0.register(CategoryTagCollectionViewCell.self, forCellWithReuseIdentifier: CategoryTagCollectionViewCell.cellIdentifier)
     }
 
     let todoTableView = UITableView().then{
