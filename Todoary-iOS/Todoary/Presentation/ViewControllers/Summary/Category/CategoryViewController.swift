@@ -295,21 +295,21 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         
         if(indexPath.row != categories.count){
             
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryButtonCollectionViewCell.cellIdentifier, for: indexPath) as? CategoryButtonCollectionViewCell else { fatalError() }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryTagCollectionViewCell.cellIdentifier, for: indexPath) as? CategoryTagCollectionViewCell else { fatalError() }
             
-            cell.categoryData = categories[indexPath.row]
-
             let data = categories[indexPath.row]
-            cell.categoryButton.bindingData(title: data.title, color: data.color)
-            let longPress = UILongPressGestureRecognizer(target: self, action: #selector(categoryBottomSheetWillShowAndModifyCategory))
-            cell.addGestureRecognizer(longPress)
+            cell.bindingData(title: data.title, color: data.color)
+
+            cell.addGestureRecognizer(UILongPressGestureRecognizer(target: self,
+                                                                   action: #selector(categoryBottomSheetWillShowAndModifyCategory)))
             
             if(indexPath == selectCategoryIndex){
-                cell.categoryButton.setSelectState()
+                cell.setSelectState()
             }
+            
             return cell
         }else{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryPlusButtonCell.cellIdentifier, for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryAddCollectionViewCell.cellIdentifier, for: indexPath)
             return cell
         }
     }
@@ -344,25 +344,20 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         }
         
         if(indexPath != collectionViewInitialIndex && selectCategoryIndex == collectionViewInitialIndex){
-            guard let cell = mainView.categoryCollectionView.cellForItem(at: collectionViewInitialIndex) as? CategoryButtonCollectionViewCell else { return }
-            cell.categoryButton.setDeselectState()
-//            cell.buttonIsNotSelected()
+            guard let cell = mainView.categoryCollectionView.cellForItem(at: collectionViewInitialIndex) as? CategoryTagCollectionViewCell else { return }
+            cell.setDeselectState()
         }
         
-        guard let cell = mainView.categoryCollectionView.cellForItem(at: indexPath) as? CategoryButtonCollectionViewCell else { return }
-        
-        cell.categoryButton.setSelectState()
+        guard let cell = mainView.categoryCollectionView.cellForItem(at: indexPath) as? CategoryTagCollectionViewCell else { return }
+        cell.setSelectState()
+
         selectCategoryIndex = indexPath
         requestGetTodoByCategory()
-        /*
-        cell.buttonIsSelected()
-         */
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        guard let cell = mainView.categoryCollectionView.cellForItem(at: indexPath) as? CategoryButtonCollectionViewCell else { return }
-//        cell.buttonIsNotSelected()
-        cell.categoryButton.setDeselectState()
+        guard let cell = mainView.categoryCollectionView.cellForItem(at: indexPath) as? CategoryTagCollectionViewCell else { return }
+        cell.setDeselectState()
     }
 }
 

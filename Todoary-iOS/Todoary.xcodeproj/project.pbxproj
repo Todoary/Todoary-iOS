@@ -63,7 +63,7 @@
 		5750364C288A3EC0006A9070 /* SignUpDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5750364B288A3EC0006A9070 /* SignUpDataManager.swift */; };
 		5750364E288A3ECE006A9070 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5750364D288A3ECE006A9070 /* SignUpModel.swift */; };
 		5750365F288BE33F006A9070 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5750365E288BE33F006A9070 /* CategoryViewController.swift */; };
-		57503661288BE380006A9070 /* CategoryButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57503660288BE380006A9070 /* CategoryButtonCollectionViewCell.swift */; };
+		57503661288BE380006A9070 /* CategoryTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57503660288BE380006A9070 /* CategoryTagCollectionViewCell.swift */; };
 		57503663288BE3A0006A9070 /* CategoryTodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57503662288BE3A0006A9070 /* CategoryTodoTableViewCell.swift */; };
 		57503665288BE42C006A9070 /* CategoryColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57503664288BE42C006A9070 /* CategoryColor.swift */; };
 		57556A8F295FC93300B67369 /* CategoryBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57556A8E295FC93300B67369 /* CategoryBottomSheetView.swift */; };
@@ -217,6 +217,7 @@
 		E0F998C9288A6B310051C7AA /* AdDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998C8288A6B310051C7AA /* AdDataManager.swift */; };
 		E0F998CB288A6B460051C7AA /* AdModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998CA288A6B460051C7AA /* AdModel.swift */; };
 		E54C4D9FA6602FAE88B10C99 /* Pods_Todoary_TodoaryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA1B412CC301CC2E570F1921 /* Pods_Todoary_TodoaryUITests.framework */; };
+		EE135A89298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE135A88298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift */; };
 		EED1B34E298656E600F14CAC /* TypoDesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED1B34D298656E600F14CAC /* TypoDesignSystem.swift */; };
 		EED1B350298656FD00F14CAC /* CategoryDesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED1B34F298656FD00F14CAC /* CategoryDesignSystem.swift */; };
 		FE8D4ADF330D2D49EAEDF342 /* Pods_Todoary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C3B169714F99FD99E7D25E7 /* Pods_Todoary.framework */; };
@@ -304,7 +305,7 @@
 		5750364B288A3EC0006A9070 /* SignUpDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDataManager.swift; sourceTree = "<group>"; };
 		5750364D288A3ECE006A9070 /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		5750365E288BE33F006A9070 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
-		57503660288BE380006A9070 /* CategoryButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButtonCollectionViewCell.swift; sourceTree = "<group>"; };
+		57503660288BE380006A9070 /* CategoryTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		57503662288BE3A0006A9070 /* CategoryTodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTodoTableViewCell.swift; sourceTree = "<group>"; };
 		57503664288BE42C006A9070 /* CategoryColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryColor.swift; sourceTree = "<group>"; };
 		57556A8E295FC93300B67369 /* CategoryBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryBottomSheetView.swift; sourceTree = "<group>"; };
@@ -465,6 +466,7 @@
 		E0F998C8288A6B310051C7AA /* AdDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdDataManager.swift; sourceTree = "<group>"; };
 		E0F998CA288A6B460051C7AA /* AdModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdModel.swift; sourceTree = "<group>"; };
 		E6E8C0E6CB0EA8691D12EEB0 /* Pods_TodoaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE135A88298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAddCollectionViewCell.swift; sourceTree = "<group>"; };
 		EED1B34D298656E600F14CAC /* TypoDesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypoDesignSystem.swift; sourceTree = "<group>"; };
 		EED1B34F298656FD00F14CAC /* CategoryDesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDesignSystem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1231,7 +1233,8 @@
 				573844B9288CF01D009529CD /* NewTodoAddBtnTableViewCell.swift */,
 				57D5D10328975CE8004A16DA /* CategoryTodoTableViewCell+Layout.swift */,
 				57503662288BE3A0006A9070 /* CategoryTodoTableViewCell.swift */,
-				57503660288BE380006A9070 /* CategoryButtonCollectionViewCell.swift */,
+				57503660288BE380006A9070 /* CategoryTagCollectionViewCell.swift */,
+				EE135A88298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1883,7 +1886,7 @@
 				57397F94296D50FF0088B5F4 /* TodoRouter.swift in Sources */,
 				57294AC0289116F500DA2F31 /* TodoCheckboxInput.swift in Sources */,
 				E0218B2928A54C0700E48618 /* AdvertiseTextSettingView.swift in Sources */,
-				57503661288BE380006A9070 /* CategoryButtonCollectionViewCell.swift in Sources */,
+				57503661288BE380006A9070 /* CategoryTagCollectionViewCell.swift in Sources */,
 				574A704F28865FEE003C8F99 /* HiddenTransparentButtonView.swift in Sources */,
 				E0F3CDCB2895698400A74AB7 /* DiaryTabelViewCell+Layout.swift in Sources */,
 				574A704B28852F9B003C8F99 /* DiaryBannerInSummaryTableViewCell.swift in Sources */,
@@ -2017,6 +2020,7 @@
 				574913BB287ADF8E00381BCD /* AlarmSettingTableViewCell.swift in Sources */,
 				ACBAE57A297ADFD600E71CAD /* FcmTokenService.swift in Sources */,
 				E0AB9EC8287B44C90064CADA /* SettingTableViewCell.swift in Sources */,
+				EE135A89298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift in Sources */,
 				57397F8A296D472C0088B5F4 /* AlarmService.swift in Sources */,
 				E02E7FA42874631D0006F6FA /* UILabel.swift in Sources */,
 				57C481B72969531C008731D9 /* BaseService.swift in Sources */,
