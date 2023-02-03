@@ -177,10 +177,6 @@ class TodoInSummaryTableViewCell: UITableViewCell {
         
         categoryButton.bindingData(title: cellData.categoryTitle, color: cellData.color)
         
-//        self.categoryButton.setTitle(cellData.categoryTitle, for: .normal)
-//        self.categoryButton.layer.borderColor = UIColor.categoryColor[cellData.color].cgColor
-//        self.categoryButton.setTitleColor(UIColor.categoryColor[cellData.color], for: .normal)
-        
         hiddenLeftView.pinButton.isSelected = cellData.isPinned! ? true : false
         hiddenLeftView.alarmBtn.isSelected = cellData.isAlarmEnabled ? true : false
         

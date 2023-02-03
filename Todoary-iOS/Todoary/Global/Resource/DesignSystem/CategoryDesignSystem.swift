@@ -207,60 +207,6 @@ class CategoryTagView: UIButton{
     
 }
 
-
-/*
-class CategoryTagView: BaseView{
-    
-    var color: UIColor!
-    private let type: CategoryType
-    let titleLabel = UILabel().then{
-        $0.textAlignment = .center
-    }
-    
-    init(type: CategoryType){
-        self.type = type
-        super.init(frame: .zero)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func style() {
-        self.backgroundColor = .white
-        self.layer.cornerRadius = type.height / 2
-        self.layer.borderWidth = 1
-        
-        self.titleLabel.setTypoStyleWithSingleLine(typoStyle: type.typo)
-    }
-    
-    override func hierarchy() {
-        self.addSubview(titleLabel)
-    }
-    
-    override func layout() {
-        
-        self.snp.makeConstraints{
-            $0.height.equalTo(type.height)
-        }
-        
-        titleLabel.snp.makeConstraints{
-            $0.centerX.centerY.equalToSuperview()
-        }
-    }
-    
-    func bindingData(title: String, color: Int){
-        
-        self.titleLabel.text = title
-        self.color = UIColor.categoryColor[color]
-        
-        self.titleLabel.textColor = self.color
-        self.layer.borderColor = self.color.cgColor
-    }
-    
-}
- */
-
 //MARK: - UILabel Typo method
 extension UILabel {
     

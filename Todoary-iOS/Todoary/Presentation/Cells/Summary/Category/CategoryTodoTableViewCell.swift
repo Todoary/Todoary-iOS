@@ -21,17 +21,8 @@ class CategoryTodoTableViewCell: UITableViewCell {
     var todoData: TodoResultModel!
     
     //MARK: - Ui
-    
-//    var navigation: UINavigationController!
-//    var viewController: CategoryViewController!
-    
-    lazy var categoryLabel = UIButton().then{
-        $0.titleEdgeInsets = UIEdgeInsets(top: 4, left: 0, bottom: 3, right: 0)
-        $0.titleLabel?.textAlignment = .center
-        $0.layer.borderWidth = 1
-        $0.titleLabel?.font = UIFont.nbFont(ofSize: 12, weight: .bold)
-        $0.layer.cornerRadius = 21/2
-    }
+
+    let categoryLabel = CategoryTag.generateForCategoryTodo()
     
     lazy var checkBox = UIButton().then{
         $0.setImage(UIImage(named: "todo_check_empty"), for: .normal)
@@ -158,13 +149,14 @@ class CategoryTodoTableViewCell: UITableViewCell {
         self.dateLabel.text = cellData.convertDate
         self.timeLabel.text = cellData.convertTime ?? ""
         self.checkBox.isSelected = cellData.isChecked ?? false
+        self.categoryLabel.bindingData(title: cellData.categoryTitle, color: cellData.color)
         self.setUpTimeStack()
-        self.setCategoryData()
+//        self.setCategoryData()
     }
     
-    func setCategoryData(){
-        self.categoryLabel.setTitle(todoData.categoryTitle, for: .normal)
-        self.categoryLabel.layer.borderColor = UIColor.categoryColor[todoData.color].cgColor
-        self.categoryLabel.setTitleColor( UIColor.categoryColor[todoData.color], for: .normal)
-    }
+//    func setCategoryData(){
+//        self.categoryLabel.setTitle(todoData.categoryTitle, for: .normal)
+//        self.categoryLabel.layer.borderColor = UIColor.categoryColor[todoData.color].cgColor
+//        self.categoryLabel.setTitleColor( UIColor.categoryColor[todoData.color], for: .normal)
+//    }
 }
