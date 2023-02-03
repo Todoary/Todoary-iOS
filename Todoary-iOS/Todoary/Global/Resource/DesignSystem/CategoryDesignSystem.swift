@@ -35,6 +35,7 @@ extension CategoryType{
 }
 
 class CategoryTag{
+    
     static func generateForMainTodo() -> MainTodoCategoryTag{
         return MainTodoCategoryTag()
     }
@@ -135,12 +136,12 @@ extension CategoryTag{
         }
         
         func setSelectState(){
-            titleLabel?.textColor = .white
+            self.setTitleColor(.white, for: .normal)
             self.backgroundColor = color
         }
         
         func setDeselectState(){
-            titleLabel?.textColor = color
+            self.setTitleColor(color, for: .normal)
             self.backgroundColor = .white
             self.layer.borderColor = color.cgColor
         }
