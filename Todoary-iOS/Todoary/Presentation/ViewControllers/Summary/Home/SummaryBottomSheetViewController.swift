@@ -400,7 +400,7 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
                 cell.requestDelegate = self
                 cell.delegate = self
                 cell.cellData = todoData[indexPath.row-1]
-                cell.cellWillSettingWithData()
+//                cell.bindingData()
                 
                 return cell
             }else{

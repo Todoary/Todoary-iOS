@@ -75,7 +75,7 @@ extension CategoryTag{
         }
         
         private func setPadding() {
-            switch self.titleLabel.text?.count{
+            switch self.titleLabel?.text?.count{
             case 1:
                 padding = CategoryPadding(left: 7, right: 7, top: 4, bottom: 3)
             case 2:
@@ -90,12 +90,7 @@ extension CategoryTag{
                 padding = CategoryPadding(left: 0, right: 0, top: 0, bottom: 0)
             }
             
-            titleLabel.snp.makeConstraints{
-                $0.top.equalToSuperview().offset(padding.top)
-                $0.leading.equalToSuperview().offset(padding.left)
-                $0.trailing.equalToSuperview().offset(padding.right)
-                $0.bottom.equalToSuperview().offset(padding.bottom)
-            }
+            setContentInset()
         }
         
         
@@ -107,15 +102,11 @@ extension CategoryTag{
         
         internal required init() {
             super.init(type: .categoryTodo)
+            setContentInset()
         }
         
         required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
-        }
-        
-        override func layout() {
-            super.layout()
-            setPadding()
         }
         
     }
@@ -126,24 +117,20 @@ extension CategoryTag{
         
         internal required init() {
             super.init(type: .default)
+            setContentInset()
         }
         
         required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
         
-        override func layout() {
-            super.layout()
-            setPadding()
-        }
-        
         func setSelectState(){
-            titleLabel.textColor = .white
+            titleLabel?.textColor = .white
             self.backgroundColor = color
         }
         
         func setDeselectState(){
-            titleLabel.textColor = color
+            titleLabel?.textColor = color
             self.backgroundColor = .white
             self.layer.borderColor = color.cgColor
         }
@@ -161,22 +148,74 @@ protocol CustomCategoryTag{
 }
 
 extension CustomCategoryTag where Self: CategoryTagView{
-    func setPadding(){
-        titleLabel.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(padding.top)
-            $0.leading.equalToSuperview().offset(padding.left)
-            $0.trailing.equalToSuperview().offset(padding.right)
-            $0.bottom.equalToSuperview().offset(padding.bottom)
+    
+    func setContentInset(){
+        
+        self.snp.makeConstraints{
+            $0.width.equalTo(self.titleLabel!).offset(padding.left + padding.right)
+            $0.height.equalTo(self.titleLabel!).offset(padding.top + padding.bottom)
         }
+        
+        self.contentEdgeInsets = UIEdgeInsets(top: padding.top,
+                                              left: padding.left,
+                                              bottom: padding.bottom,
+                                              right: padding.right)
+        
+        /*
+        self.configuration?.contentInsets = NSDirectionalEdgeInsets(top: padding.top,
+                                                                    leading: padding.left,
+                                                                    bottom: padding.bottom,
+                                                                    trailing: padding.right)
+         */
     }
 }
 
+class CategoryTagView: UIButton{
+    
+    var color: UIColor!
+    private let type: CategoryType
+    
+    init(type: CategoryType){
+        self.type = type
+        super.init(frame: .zero)
+        style()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func style(){
+        self.titleLabel?.textAlignment = .center
+        self.backgroundColor = .white
+        self.layer.cornerRadius = type.height / 2
+        self.layer.borderWidth = 1
+        
+        self.titleLabel?.setTypoStyleWithSingleLine(typoStyle: type.typo)
+    
+        self.isUserInteractionEnabled = false
+    }
+    
+    func bindingData(title: String, color: Int){
+        
+        self.setTitle(title, for: .normal)
+        self.color = UIColor.categoryColor[color]
+        
+        self.setTitleColor(self.color, for: .normal)
+        self.layer.borderColor = self.color.cgColor
+    }
+    
+}
 
+
+/*
 class CategoryTagView: BaseView{
     
     var color: UIColor!
     private let type: CategoryType
-    let titleLabel = UILabel()
+    let titleLabel = UILabel().then{
+        $0.textAlignment = .center
+    }
     
     init(type: CategoryType){
         self.type = type
@@ -188,9 +227,9 @@ class CategoryTagView: BaseView{
     }
     
     override func style() {
+        self.backgroundColor = .white
         self.layer.cornerRadius = type.height / 2
         self.layer.borderWidth = 1
-        self.layer.borderColor = color.cgColor
         
         self.titleLabel.setTypoStyleWithSingleLine(typoStyle: type.typo)
     }
@@ -200,17 +239,27 @@ class CategoryTagView: BaseView{
     }
     
     override func layout() {
-        titleLabel.snp.makeConstraints{
+        
+        self.snp.makeConstraints{
             $0.height.equalTo(type.height)
+        }
+        
+        titleLabel.snp.makeConstraints{
+            $0.centerX.centerY.equalToSuperview()
         }
     }
     
     func bindingData(title: String, color: Int){
+        
         self.titleLabel.text = title
-        self.titleLabel.textColor = UIColor.categoryColor[color]
+        self.color = UIColor.categoryColor[color]
+        
+        self.titleLabel.textColor = self.color
+        self.layer.borderColor = self.color.cgColor
     }
     
 }
+ */
 
 //MARK: - UILabel Typo method
 extension UILabel {
