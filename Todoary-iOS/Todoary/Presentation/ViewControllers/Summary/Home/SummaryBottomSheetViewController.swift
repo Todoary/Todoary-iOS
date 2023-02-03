@@ -487,7 +487,6 @@ extension SummaryBottomSheetViewController: SelectedTableViewCellDeliver{
 //MARK: - BottomSheet Swipe Delegate
 extension SummaryBottomSheetViewController: UISheetPresentationControllerDelegate{
     func sheetPresentationControllerDidChangeSelectedDetentIdentifier(_ sheetPresentationController: UISheetPresentationController) {
-        
         if let clampCell = mainView.summaryTableView.cellForRow(at: clampCell) as? TodoInSummaryTableViewCell {
             if(clampCell.isClamp){
                 clampCell.cellWillMoveOriginalPosition()
