@@ -32,7 +32,11 @@ class TodoInSummaryTableViewCell: UITableViewCell {
     
     static let cellIdentifier = "TodoInSummaryTableViewCell"
     
-    var cellData : TodoResultModel!
+    var cellData: TodoResultModel!{
+        didSet{
+            bindingData()
+        }
+    }
     var requestDelegate: RequestSummaryCellDelegate!
     weak var delegate : SelectedTableViewCellDeliver?
     
@@ -61,6 +65,8 @@ class TodoInSummaryTableViewCell: UITableViewCell {
         $0.addLetterSpacing(spacing: 0.3)
     }
     
+    let categoryButton = CategoryTag.generateForMainTodo()
+    /*
     lazy var categoryButton = UIButton().then{
         $0.titleLabel?.font = UIFont.nbFont(ofSize: 12, weight: .bold)
         $0.addLetterSpacing(spacing: 0.24)
@@ -70,6 +76,7 @@ class TodoInSummaryTableViewCell: UITableViewCell {
         $0.titleLabel?.textAlignment = .center
         $0.isEnabled = false
     }
+     */
     
     lazy var pinImage = UIImageView().then{
         $0.image = UIImage(named: "push_pin")
@@ -156,19 +163,19 @@ class TodoInSummaryTableViewCell: UITableViewCell {
         
         titleLabel.snp.removeConstraints()
         categoryButton.snp.removeConstraints()
+        removeHiddenViews()
+        isClamp = false
     }
     
     //MARK: - Method
     
-    func cellWillSettingWithData(){
+    func bindingData(){
         
         titleLabel.text = cellData.title
         timeLabel.text = cellData.convertTime
         checkBox.isSelected = cellData.isChecked ?? false
         
-        self.categoryButton.setTitle(cellData.categoryTitle, for: .normal)
-        self.categoryButton.layer.borderColor = UIColor.categoryColor[cellData.color].cgColor
-        self.categoryButton.setTitleColor(UIColor.categoryColor[cellData.color], for: .normal)
+        categoryButton.bindingData(title: cellData.categoryTitle, color: cellData.color)
         
         hiddenLeftView.pinButton.isSelected = cellData.isPinned! ? true : false
         hiddenLeftView.alarmBtn.isSelected = cellData.isAlarmEnabled ? true : false
