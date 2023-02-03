@@ -72,7 +72,6 @@ class PinNumberSettingViewController : BaseViewController {
                 self.navigationController?.pushViewController(newAppPasswordViewController, animated: true)
                 self.navigationController?.isNavigationBarHidden = true
             }
-            UserDefaults.standard.set(true, forKey: "appPasswordCheck")
         }else {
             UserDefaults.standard.set(false,forKey: "appPasswordCheck")
         }

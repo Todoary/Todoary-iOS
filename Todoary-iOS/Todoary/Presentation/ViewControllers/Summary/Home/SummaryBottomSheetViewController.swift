@@ -19,11 +19,6 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
     var homeViewController: HomeViewController!
     
     var todoData = [TodoResultModel]()
-//    {
-//        didSet{
-//            self.mainView.summaryTableView.reloadData()
-//        }
-//    }
     
     var isDiaryExist = false //for 다이어리 작성했을 때 view 구성
     var diaryData: DiaryResultModel?{
@@ -67,6 +62,7 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
     }
     
     private func initialize(){
+
         mainView.summaryTableView.delegate = self
         mainView.summaryTableView.dataSource = self
         mainView.summaryTableView.separatorStyle = .none
@@ -153,6 +149,13 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
     func getTodoDataIndex(from cell: TodoInSummaryTableViewCell) -> Int!{
         guard let indexPath = mainView.summaryTableView.indexPath(for: cell) else { return nil }
         return indexPath.row - 1
+    }
+    
+    func initializeTableView(){
+        if let clampCell = mainView.summaryTableView.cellForRow(at: clampCell) as? TodoInSummaryTableViewCell{
+            clampCell.removeHiddenViews()
+            clampCell.isClamp = false
+        }
     }
 }
 
@@ -250,6 +253,7 @@ extension SummaryBottomSheetViewController: RequestSummaryCellDelegate{
     func processResponseGetTodo(data: [TodoResultModel]){
         todoData = data
         dataArraySortByPin()
+        initializeTableView()
         mainView.summaryTableView.reloadData()
     }
     
@@ -332,12 +336,7 @@ extension SummaryBottomSheetViewController{
                 mainView.summaryTableView.deleteRows(at: [indexPath], with: .fade)
             }
             showDeleteCompleteToastMessage(type: .Todo)
-            
-
             homeViewController.requestGetTodoByYearMonth(yearMonth: todoDate!.yearMonthSendServer)
-            
-//            GetCalendataManager().getCalendataManager(self, yearMonth: todoDate!.yearMonthSendServer)
-            
             return
         default:
             let alert = DataBaseErrorAlert()
@@ -380,9 +379,8 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
             if(isDiaryExist){
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: DiaryTitleInSummaryTableViewCell.cellIdentifier, for: indexPath)
                         as? DiaryTitleInSummaryTableViewCell else{ fatalError()}
-                
-                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(willMoveDiaryViewController))
-                cell.addGestureRecognizer(tapGesture)
+
+                cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(willMoveDiaryViewController)))
                 
                 if let diaryData = self.diaryData {
                     cell.setUpDataBinding(diaryData)
@@ -391,6 +389,7 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
                 return cell
             }else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: DiaryBannerInSummaryTableViewCell.cellIdentifier, for: indexPath)
+                cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(willMoveDiaryViewController)))
                 return cell
             }
 
@@ -401,7 +400,7 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
                 cell.requestDelegate = self
                 cell.delegate = self
                 cell.cellData = todoData[indexPath.row-1]
-                cell.cellWillSettingWithData()
+//                cell.bindingData()
                 
                 return cell
             }else{
@@ -452,28 +451,23 @@ extension SummaryBottomSheetViewController: SelectedTableViewCellDeliver{
     }
     
     func cellDidTapped(_ indexPath: IndexPath) {
-
-        /*
-         1. clampCell indexPath 통해 셀 clamp 여부 점검
-         2. if clamp 상태 -> originalPosition
-         3. if clamp 상태 X -> todoSettingVC 이동
-         */
         
-        guard let clampCell = mainView.summaryTableView.cellForRow(at: clampCell) as? TodoInSummaryTableViewCell else { return }
-        
-        if(!clampCell.isClamp){
-            HomeViewController.dismissBottomSheet()
-            
-            guard let tapCell = mainView.summaryTableView.cellForRow(at: indexPath) as? TodoInSummaryTableViewCell else { return }
-            
-            let vc = TodoSettingViewController()
-            vc.todoSettingData = tapCell.cellData
-            TodoSettingViewController.selectCategory = tapCell.cellData.categoryId
-            
-            self.homeNavigaiton.pushViewController(vc, animated: true)
-        }else{
-            clampCell.cellWillMoveOriginalPosition()
+        if let clampCell = mainView.summaryTableView.cellForRow(at: clampCell) as? TodoInSummaryTableViewCell {
+            if(clampCell.isClamp){
+                clampCell.cellWillMoveOriginalPosition()
+                return
+            }
         }
+        
+        HomeViewController.dismissBottomSheet()
+        
+        guard let tapCell = mainView.summaryTableView.cellForRow(at: indexPath) as? TodoInSummaryTableViewCell else { return }
+
+        let vc = TodoSettingViewController()
+        vc.todoSettingData = tapCell.cellData
+        TodoSettingViewController.selectCategory = tapCell.cellData.categoryId
+        
+        self.homeNavigaiton.pushViewController(vc, animated: true)
     }
     
     func cellWillAlarmEnabled(_ indexPath: IndexPath) {
@@ -487,5 +481,17 @@ extension SummaryBottomSheetViewController: SelectedTableViewCellDeliver{
         }
         alert.modalPresentationStyle = .overFullScreen
         self.present(alert, animated: false, completion: nil)
+    }
+}
+
+//MARK: - BottomSheet Swipe Delegate
+extension SummaryBottomSheetViewController: UISheetPresentationControllerDelegate{
+    func sheetPresentationControllerDidChangeSelectedDetentIdentifier(_ sheetPresentationController: UISheetPresentationController) {
+        if let clampCell = mainView.summaryTableView.cellForRow(at: clampCell) as? TodoInSummaryTableViewCell {
+            if(clampCell.isClamp){
+                clampCell.cellWillMoveOriginalPosition()
+                return
+            }
+        }
     }
 }

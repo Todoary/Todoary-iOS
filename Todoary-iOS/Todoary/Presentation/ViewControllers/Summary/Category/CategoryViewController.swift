@@ -295,44 +295,35 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         
         if(indexPath.row != categories.count){
             
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryButtonCollectionViewCell.cellIdentifier, for: indexPath) as? CategoryButtonCollectionViewCell else { fatalError() }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryTagCollectionViewCell.cellIdentifier, for: indexPath) as? CategoryTagCollectionViewCell else { fatalError() }
             
-            cell.categoryData = categories[indexPath.row]
-            cell.setBtnAttribute()
-            
-            let longPress = UILongPressGestureRecognizer(target: self, action: #selector(categoryBottomSheetWillShowAndModifyCategory))
-            cell.addGestureRecognizer(longPress)
+            let data = categories[indexPath.row]
+            cell.bindingData(title: data.title, color: data.color)
+
+            cell.addGestureRecognizer(UILongPressGestureRecognizer(target: self,
+                                                                   action: #selector(categoryBottomSheetWillShowAndModifyCategory)))
             
             if(indexPath == selectCategoryIndex){
-                cell.buttonIsSelected()
+                cell.setSelectState()
             }
+            
             return cell
         }else{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryPlusButtonCell.cellIdentifier, for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryAddCollectionViewCell.cellIdentifier, for: indexPath)
             return cell
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        if(indexPath.row != categories.count){
-            
-            switch categories[indexPath.row].title.count {
-            case 2:
-                return CGSize(width: 57, height: 26)
-            case 3:
-                return CGSize(width: 69, height: 26)
-            case 4:
-                return CGSize(width: 82, height: 26)
-            case 5:
-                return CGSize(width: 92, height: 26)
-            default:
-                return CGSize(width: 40, height: 26)
-            }
-        }else{
+        if(indexPath.row == categories.count){
             return CGSize(width: 50, height: 26)
         }
+        
+        let title = categories[indexPath.row].title
+        return CategoryTag.estimatedSize(title)
     }
+    
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         
         if(indexPath.row == categories.count){
@@ -353,20 +344,20 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         }
         
         if(indexPath != collectionViewInitialIndex && selectCategoryIndex == collectionViewInitialIndex){
-            guard let cell = mainView.categoryCollectionView.cellForItem(at: collectionViewInitialIndex) as? CategoryButtonCollectionViewCell else { return }
-            cell.buttonIsNotSelected()
+            guard let cell = mainView.categoryCollectionView.cellForItem(at: collectionViewInitialIndex) as? CategoryTagCollectionViewCell else { return }
+            cell.setDeselectState()
         }
         
-        guard let cell = mainView.categoryCollectionView.cellForItem(at: indexPath) as? CategoryButtonCollectionViewCell else { return }
-        
-        cell.buttonIsSelected()
+        guard let cell = mainView.categoryCollectionView.cellForItem(at: indexPath) as? CategoryTagCollectionViewCell else { return }
+        cell.setSelectState()
+
         selectCategoryIndex = indexPath
         requestGetTodoByCategory()
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        guard let cell = mainView.categoryCollectionView.cellForItem(at: indexPath) as? CategoryButtonCollectionViewCell else { return }
-        cell.buttonIsNotSelected()
+        guard let cell = mainView.categoryCollectionView.cellForItem(at: indexPath) as? CategoryTagCollectionViewCell else { return }
+        cell.setDeselectState()
     }
 }
 
