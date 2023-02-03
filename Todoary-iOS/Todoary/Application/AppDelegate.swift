@@ -29,16 +29,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate  {
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
 //        UserDefaults.standard.set("ㅇㅇㅇㅇㅇㅇ", forKey: "accessToken")
 //        UserDefaults.standard.set("dddddddddddd", forKey: "refreshToken")
-        return true
-    }
-    
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         self.navigationController = UINavigationController(rootViewController: UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()!)
         self.navigationController?.navigationBar.isHidden = true
         self.window?.rootViewController = self.navigationController
         self.window?.makeKeyAndVisible()
+        return true
+    }
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
         
         if (UserDefaults.standard.string(forKey: "refreshToken") == nil){
             self.moveLoginViewController()
