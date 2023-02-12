@@ -81,7 +81,11 @@ class DiaryViewController: BaseViewController , UIGestureRecognizerDelegate{
     //MARK: - TextProperties
     
     var pickDate: ConvertDate!
-    var todoData = [TodoResultModel]()
+    var todoData = [TodoResultModel](){
+        didSet{
+            mainView.todoTableView.reloadData()
+        }
+    }
     var diary: DiaryResultModel?
     var currentFont: DiaryFont = DiaryFont(fontName: .font1)
     
