@@ -51,6 +51,7 @@ extension DiaryViewController: UITableViewDelegate, UITableViewDataSource{
 extension DiaryViewController: UITextViewDelegate {
 
     func textViewDidBeginEditing(_ textView: UITextView) {
+        isKeyboardShow = true
         self.selectedStickerView = nil
         if textView.text == DiaryView.textViewPlaceHolder {
             textView.text = nil
@@ -76,7 +77,7 @@ extension DiaryViewController: UITextViewDelegate {
         UIView.animate(withDuration: 0.3){
             self.view.window?.frame.origin.y = 0
         }
-        
+        isKeyboardShow = false
         mainView.diaryLine.isHidden = false
     }
     
