@@ -27,9 +27,9 @@ extension CategoryType{
     var typo: TypoStyle{
         switch self{
         case .mainTodo, .categoryTodo:
-            return .main_category
+            return .bold12
         default:
-            return .todo_category
+            return .bold14
         }
     }
 }
