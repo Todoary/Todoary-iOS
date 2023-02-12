@@ -23,8 +23,10 @@ extension DiaryViewController: UITableViewDelegate, UITableViewDataSource{
             cell.titleLabel.textColor = UIColor(red: 94/255, green: 94/255, blue: 94/255, alpha: 1)
             cell.categoryButton.isHidden = true
             cell.timeLabel.isHidden = true
+            cell.checkBox.isEnabled = false
         }else {
             cell.delegate = self
+            cell.checkBox.isEnabled = true
             cell.cellData = todoData[indexPath.row]
             cell.titleLabel.text = todoData[indexPath.row].title
             cell.timeLabel.text = todoData[indexPath.row].convertTime
