@@ -21,8 +21,7 @@ class DiaryBannerInSummaryTableViewCell: UITableViewCell {
     
     let writeDiaryBanner = UILabel().then{
         $0.text = "오늘의 일기를 작성해주세요!"
-        $0.font = UIFont.nbFont(ofSize: 13, weight: .extraBold)
-        $0.addLetterSpacing(spacing: 0.26)
+        $0.setTypoStyleWithSingleLine(typoStyle: .extrabold13)
     }
     
     let titleBackgroundView = UIView().then{

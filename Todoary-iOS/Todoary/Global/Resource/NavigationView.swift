@@ -17,7 +17,7 @@ class NavigationView: UIView {
     }
     
     let navigationTitle = UILabel().then{
-        $0.font = UIFont.nbFont(type: .header)
+        $0.setTypoStyleWithSingleLine(typoStyle: .bold18)
         $0.textColor = .black
     }
     

@@ -22,12 +22,13 @@ class AdvertiseTextSettingView: BaseView {
         $0.numberOfLines = 0
         $0.textAlignment = .left
         $0.textColor = .headline
-        $0.labelTypeSetting(type: .acceptTerm)
+        $0.setTypoStyleWithSingleLine(typoStyle: .medium14_21)
     }
     
     let adTitle = UIButton().then{
         $0.setTitle("동의 (선택)", for: .normal)
         $0.setTitleColor(.headline, for: .normal)
+        $0.titleLabel?.setTypoStyleWithSingleLine(typoStyle: .medium14_16)
         $0.titleLabel?.font = UIFont.nbFont(type: .body1)
         $0.titleLabel?.textAlignment = .left
         $0.setUnderline()

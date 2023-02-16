@@ -12,18 +12,18 @@ class BaseViewController: UIViewController {
     private let navigationView = UIView()
     
     final lazy var backBtn = UIButton().then{
-        $0.setImage(UIImage(named: "back_arrow"), for: .normal)
+        $0.setImage(Image.backArrow, for: .normal)
         $0.addTarget(self, action: #selector(backButtonDidClicked(_:)), for: .touchUpInside)
     }
     
     final let navigationTitle = UILabel().then{
-        $0.font = UIFont.nbFont(type: .header)
+        $0.setTypoStyleWithSingleLine(typoStyle: .semibold18)
         $0.textColor = .black
     }
     
     lazy var rightButton = UIButton().then{
         $0.setTitleColor(.black, for: .normal)
-        $0.titleLabel?.font = UIFont.nbFont(type: .header)
+        $0.titleLabel?.setTypoStyleWithSingleLine(typoStyle: .semibold18)
     }
 
     override func viewDidLoad() {

@@ -45,8 +45,7 @@ class TodoAlarmBottomSheetViewController: UIViewController {
         $0.setTitle("완료", for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.textAlignment = .center
-        $0.titleLabel?.font = UIFont.nbFont(ofSize: 16, weight: .semibold )
-        $0.addLetterSpacing(spacing: 0.28)
+        $0.titleLabel?.setTypoStyleWithSingleLine(typoStyle: .semibold17)
         $0.addTarget(self, action: #selector(timecompleteBtnDidTap), for: .touchUpInside)
     }
     

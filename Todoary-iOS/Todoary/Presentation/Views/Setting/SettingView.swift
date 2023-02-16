@@ -24,13 +24,13 @@ class SettingView: BaseView{
     let versionText = UILabel().then{
         $0.text = "버전"
         $0.textColor = .headline
-        $0.font = UIFont.nbFont(type: .tableCell)
+        $0.setTypoStyleWithSingleLine(typoStyle: .medium16)
     }
     
     let versionNum = UILabel().then{
         $0.text = "1.0"
         $0.textColor = .headline
-        $0.font = UIFont.nbFont(type: .tableCell)
+        $0.setTypoStyleWithSingleLine(typoStyle: .medium16)
     }
     
     let versionBorderLine2 = UIView().then{

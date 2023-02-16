@@ -29,14 +29,12 @@ class TodoInDiaryTableViewCell: UITableViewCell {
     
     let titleLabel = UILabel().then{
         $0.textColor = .black
-        $0.font = UIFont.nbFont(ofSize: 15, weight: .bold)
-        $0.addLetterSpacing(spacing: 0.3)
+        $0.setTypoStyleWithSingleLine(typoStyle: .bold15_18)
     }
     
     lazy var categoryButton = UIButton().then{
-        $0.titleLabel?.font = UIFont.nbFont(ofSize: 12, weight: .bold)
+        $0.titleLabel?.setTypoStyleWithSingleLine(typoStyle: .bold12)
         $0.titleLabel?.textAlignment = .center
-        $0.addLetterSpacing(spacing: 0.24)
         $0.layer.borderWidth = 1
         $0.layer.cornerRadius = 21/2
         $0.titleEdgeInsets = UIEdgeInsets(top: 5, left: 13, bottom: 3, right: 11)
@@ -50,8 +48,7 @@ class TodoInDiaryTableViewCell: UITableViewCell {
     let timeLabel = UILabel().then{
         $0.text = "AM 7:00"
         $0.textColor = .timeColor
-        $0.font = UIFont.nbFont(ofSize: 13, weight: .medium)
-        $0.addLetterSpacing(spacing: -0.26)
+        $0.setTypoStyleWithSingleLine(typoStyle: .medium13)
     }
     
     let backView = UIView().then{
@@ -81,7 +78,6 @@ class TodoInDiaryTableViewCell: UITableViewCell {
     }
     
     @objc func checkBoxBtnDidClicked(){
-        print("?")
         delegate.requestPatchTodoCheckStatus(cell: self)
         
         /*

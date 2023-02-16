@@ -28,8 +28,7 @@ class CategoryBottomSheetView: BaseView {
         $0.backgroundColor = .white
         $0.setTitle("완료", for: .normal)
         $0.setTitleColor(.black, for: .normal)
-        $0.addLetterSpacing(spacing: 0.3)
-        $0.titleLabel?.font = UIFont.nbFont(ofSize: 15, weight: .bold)
+        $0.titleLabel?.setTypoStyleWithSingleLine(typoStyle: .bold15_18)
         $0.layer.cornerRadius = 20
         $0.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
         $0.layer.shadowRadius = 10.0
@@ -42,8 +41,7 @@ class CategoryBottomSheetView: BaseView {
         $0.backgroundColor = .white
         $0.setTitle("삭제", for: .normal)
         $0.setTitleColor(.black, for: .normal)
-        $0.addLetterSpacing(spacing: 0.3)
-        $0.titleLabel?.font = UIFont.nbFont(ofSize: 15, weight: .bold)
+        $0.titleLabel?.setTypoStyleWithSingleLine(typoStyle: .bold15_18)
         $0.layer.cornerRadius = 20
         $0.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
         $0.layer.shadowRadius = 10.0

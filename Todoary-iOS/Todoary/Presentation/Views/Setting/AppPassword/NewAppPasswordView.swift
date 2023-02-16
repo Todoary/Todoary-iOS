@@ -14,27 +14,27 @@ class NewAppPasswordView: BaseView {
     let appPwTitle = UILabel().then{
         $0.text = "암호 입력"
         $0.textColor = .headline
-        $0.font = UIFont.nbFont(type: .header)
+        $0.setTypoStyleWithSingleLine(typoStyle: .semibold18)
     }
     
     let newAppPwtext = UILabel().then{
         $0.text = "새로운 암호를 입력해 주세요"
         $0.textColor = .headline
-        $0.font = UIFont.nbFont(type: .body1)
+        $0.setTypoStyleWithSingleLine(typoStyle: .medium14_16)
         $0.isHidden = false
     }
     
     let newAppPwtext2 = UILabel().then {
         $0.text = "한 번 더 입력해 주세요"
         $0.textColor = .headline
-        $0.font = UIFont.nbFont(type: .body1)
+        $0.setTypoStyleWithSingleLine(typoStyle: .medium14_16)
         $0.isHidden = true
     }
     
     let pwnotcorrect = UILabel().then {
         $0.text = "다시 입력해 주세요"
         $0.textColor = .headline
-        $0.font = UIFont.nbFont(type: .body1)
+        $0.setTypoStyleWithSingleLine(typoStyle: .medium14_16)
         $0.isHidden = true
     }
     

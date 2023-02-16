@@ -14,7 +14,7 @@ class CancelAlertViewController: BaseAlertViewController {
         $0.setTitle("아니오", for: .normal)
         $0.layer.cornerRadius = 11
         $0.setTitleColor(UIColor(red: 20/255, green: 37/255, blue: 83/255, alpha: 1), for: .normal)
-        $0.titleLabel?.font = UIFont.nbFont(ofSize: 17, weight: .semibold, type: .apple)
+        $0.titleLabel?.setTypoStyleWithSingleLine(typoStyle: .semibold17)
         $0.titleEdgeInsets = UIEdgeInsets(top: 9, left: 0, bottom: 8, right: 0)
         $0.titleLabel?.textAlignment = .center
         $0.addTarget(self, action: #selector(cancelBtnDidClicked), for: .touchUpInside)

@@ -32,10 +32,9 @@ class DiaryTitleInSummaryTableViewCell: UITableViewCell {
     }
     
     let diaryTitle = UILabel().then{
-        $0.font = UIFont.nbFont(ofSize: 13, weight: .extraBold)
+        $0.setTypoStyleWithSingleLine(typoStyle: .extrabold13)
         $0.textColor = .black
         $0.numberOfLines = 1
-        $0.labelAttributeSetting(letterSpacing: 0.26, lineHeight: 15.6)
     }
     
     let diaryTextView = UILabel().then{

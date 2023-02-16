@@ -364,6 +364,7 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
             cell.navigaiton = homeNavigaiton
             cell.delegate = self
             return cell
+//            return UITableViewCell()
         case rowCount - 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DiaryInSummaryTableViewCell.cellIdentifier, for: indexPath) as? DiaryInSummaryTableViewCell else{ fatalError() }
             if(isDiaryExist){

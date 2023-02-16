@@ -15,10 +15,9 @@ class ConfirmMessageAlertViewController: ConfirmAlertViewController {
     }
     
     let messageLabel = UILabel().then{
-        $0.font = UIFont.nbFont(ofSize: 12, weight: .regular, type: .apple)
+        $0.setTypoStyleWithMultiLine(typoStyle: .regualar12)
         $0.textAlignment = .center
         $0.numberOfLines = 0
-        $0.labelAttributeSetting(letterSpacing: -0.08, lineHeight: 16)
     }
     
     override func viewDidLoad() {
@@ -31,7 +30,6 @@ class ConfirmMessageAlertViewController: ConfirmAlertViewController {
 
     override func setUpView() {
         super.setUpView()
-        
         self.containerView.addSubview(messageLabel)
     }
     

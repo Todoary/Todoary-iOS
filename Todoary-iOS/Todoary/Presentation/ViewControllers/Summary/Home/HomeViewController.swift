@@ -272,6 +272,14 @@ class HomeViewController : UIViewController {
         requestGetTodoByDate(pickDate)
         requestGetDiary(pickDate)
         
+        for family in UIFont.familyNames {
+        print("\(family)");
+                    
+        for names in UIFont.fontNames(forFamilyName: family) {
+        print("== \(names)");
+        }
+        }
+        
         present(HomeViewController.bottomSheetVC, animated: true, completion: nil)
     }
 }
