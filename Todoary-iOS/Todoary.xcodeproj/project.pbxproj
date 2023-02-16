@@ -85,7 +85,6 @@
 		576ED6B228749021007389CD /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576ED6B128749021007389CD /* String.swift */; };
 		576ED6B42874902A007389CD /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576ED6B32874902A007389CD /* UITextField.swift */; };
 		577A01BC28A4E1A9004B2575 /* ToastMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577A01BB28A4E1A9004B2575 /* ToastMessageView.swift */; };
-		578B7AA428ACCA0C00E7B4F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 578B7AA328ACCA0C00E7B4F4 /* GoogleService-Info.plist */; };
 		5799DB732977A2D9001137EA /* TodoaryDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5799DB722977A2D9001137EA /* TodoaryDateFormatter.swift */; };
 		57B16855295A8A2600639A15 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B16854295A8A2600639A15 /* SignUpView.swift */; };
 		57B16857295ABAF900639A15 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B16856295ABAF900639A15 /* CategoryView.swift */; };
@@ -168,6 +167,7 @@
 		ACCD87C628965B7700C34CE7 /* TodoCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCD87C528965B7700C34CE7 /* TodoCategoryCell.swift */; };
 		ACE7D5FA28A819A70093854A /* PinNumberSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE7D5F928A819A70093854A /* PinNumberSettingViewController.swift */; };
 		ACE7D5FC28A819C10093854A /* PinNumberSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE7D5FB28A819C10093854A /* PinNumberSettingView.swift */; };
+		ACF46D85298D2A73005B9DFE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACF46D84298D2A73005B9DFE /* GoogleService-Info.plist */; };
 		ACFBEC9E28B3DBB200B9D66F /* GetDiaryExistenceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFBEC9D28B3DBB200B9D66F /* GetDiaryExistenceModel.swift */; };
 		E015059928B3F3E500E83157 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015059828B3F3E500E83157 /* OnboardingViewController.swift */; };
 		E0218B1E28A4D5EA00E48618 /* DiaryStickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0218B1D28A4D5EA00E48618 /* DiaryStickerCollectionViewCell.swift */; };
@@ -329,7 +329,6 @@
 		577A01BB28A4E1A9004B2575 /* ToastMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessageView.swift; sourceTree = "<group>"; };
 		577A01BD28A4EB21004B2575 /* ToolBarText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarText.swift; sourceTree = "<group>"; };
 		578B7AA228ACC75600E7B4F4 /* Todoary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Todoary.entitlements; sourceTree = "<group>"; };
-		578B7AA328ACCA0C00E7B4F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5799DB722977A2D9001137EA /* TodoaryDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoaryDateFormatter.swift; sourceTree = "<group>"; };
 		57B16854295A8A2600639A15 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		57B16856295ABAF900639A15 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
@@ -415,6 +414,7 @@
 		ACCD87C528965B7700C34CE7 /* TodoCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCategoryCell.swift; sourceTree = "<group>"; };
 		ACE7D5F928A819A70093854A /* PinNumberSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinNumberSettingViewController.swift; sourceTree = "<group>"; };
 		ACE7D5FB28A819C10093854A /* PinNumberSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinNumberSettingView.swift; sourceTree = "<group>"; };
+		ACF46D84298D2A73005B9DFE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ACFBEC9D28B3DBB200B9D66F /* GetDiaryExistenceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDiaryExistenceModel.swift; sourceTree = "<group>"; };
 		C3C8A11142F88041A453AA57 /* Pods-TodoaryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoaryTests.debug.xcconfig"; path = "Target Support Files/Pods-TodoaryTests/Pods-TodoaryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D54D487D3B3177B28D4A4FBE /* Pods-Todoary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todoary.release.xcconfig"; path = "Target Support Files/Pods-Todoary/Pods-Todoary.release.xcconfig"; sourceTree = "<group>"; };
@@ -585,7 +585,7 @@
 			isa = PBXGroup;
 			children = (
 				572E5AE4286EBDCE00D1FAA0 /* LaunchScreen.storyboard */,
-				578B7AA328ACCA0C00E7B4F4 /* GoogleService-Info.plist */,
+				ACF46D84298D2A73005B9DFE /* GoogleService-Info.plist */,
 				572E5AE7286EBDCE00D1FAA0 /* Info.plist */,
 			);
 			path = SupportingFiles;
@@ -1746,7 +1746,7 @@
 				E0BAB97B28748FA50055BA67 /* HolaStoryboard.storyboard in Resources */,
 				572E5AE3286EBDCE00D1FAA0 /* Assets.xcassets in Resources */,
 				57DF460528A64AA60002D66C /* IBMPlexSansKR-Medium.otf in Resources */,
-				578B7AA428ACCA0C00E7B4F4 /* GoogleService-Info.plist in Resources */,
+				ACF46D85298D2A73005B9DFE /* GoogleService-Info.plist in Resources */,
 				572E5AE1286EBDCC00D1FAA0 /* Main.storyboard in Resources */,
 				57DF45FA28A60B310002D66C /* GangwonEduAll-Bold.ttf in Resources */,
 				E0BAB97D28748FBF0055BA67 /* SsoyaStoryboard.storyboard in Resources */,

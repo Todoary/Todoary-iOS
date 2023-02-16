@@ -3,23 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>666947728476-7d1qb2mlg0f7gnids3ibt211073d4o71.apps.googleusercontent.com</string>
+	<string>635795718795-7fpb55r1sve4ilfmmcv1cp58k30hi8mh.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.666947728476-7d1qb2mlg0f7gnids3ibt211073d4o71</string>
-	<key>ANDROID_CLIENT_ID</key>
-	<string>666947728476-40dfmp62tj34jbk87kcsm3gko1bsqcgt.apps.googleusercontent.com</string>
+	<string>com.googleusercontent.apps.635795718795-7fpb55r1sve4ilfmmcv1cp58k30hi8mh</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAFm4T3NPICBeNZF6FR5IfTzcrlILKpuw0</string>
+	<string>AIzaSyDZLT40lrlN6shsj-5TUZjLfSVlbZwtGSk</string>
 	<key>GCM_SENDER_ID</key>
-	<string>666947728476</string>
+	<string>635795718795</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.todoary.ms.app</string>
 	<key>PROJECT_ID</key>
-	<string>todoary-1304d</string>
+	<string>todoary-cec3a</string>
 	<key>STORAGE_BUCKET</key>
-	<string>todoary-1304d.appspot.com</string>
+	<string>todoary-cec3a.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:666947728476:ios:12d5e63d1273e376486299</string>
+	<string>1:635795718795:ios:76286d5b0989183cb48a8e</string>
 </dict>
 </plist>

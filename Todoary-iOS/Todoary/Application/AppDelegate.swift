@@ -27,8 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate  {
     }
     
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-//        UserDefaults.standard.set("ㅇㅇㅇㅇㅇㅇ", forKey: "accessToken")
-//        UserDefaults.standard.set("dddddddddddd", forKey: "refreshToken")
         
         window = UIWindow(frame: UIScreen.main.bounds)
         self.navigationController = UINavigationController(rootViewController: UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()!)
