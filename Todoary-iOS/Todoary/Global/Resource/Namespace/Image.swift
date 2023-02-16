@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Asset{
+enum Image{
 
     static let account = UIImage(named: "account")!
     static let backArrow = UIImage(named: "back_arrow")!
