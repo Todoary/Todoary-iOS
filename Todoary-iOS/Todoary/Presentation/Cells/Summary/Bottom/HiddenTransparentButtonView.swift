@@ -8,19 +8,10 @@
 import UIKit
 
 class HiddenRightButtonView: UIView {
-    
-//    lazy var settingButton = UIButton().then{
-//        $0.setImage(UIImage(named: "settings"), for: .normal)
-//    }
-    
+
     lazy var deleteButton = UIButton().then{
-        $0.setImage(UIImage(named: "trash"), for: .normal)
+        $0.setImage(Image.trash, for: .normal)
     }
-    
-//    let borderLine = UIView().then{
-//        $0.backgroundColor = UIColor(red: 191/255, green: 191/255, blue: 191/255, alpha: 1)
-//    }
-    
     let transparentView = UIView().then{
         $0.backgroundColor = .transparent
     }
@@ -37,13 +28,8 @@ class HiddenRightButtonView: UIView {
     }
 
     func setUpView(){
-        
         self.addSubview(transparentView)
-    
-//        transparentView.addSubview(settingButton)
         transparentView.addSubview(deleteButton)
-//        transparentView.addSubview(borderLine)
-        
     }
     
     func setUpConstraint(){
@@ -57,25 +43,11 @@ class HiddenRightButtonView: UIView {
             make.top.bottom.leading.trailing.equalToSuperview()
         }
         
-//        settingButton.snp.makeConstraints{ make in
-//            make.width.height.equalTo(28)
-//            make.trailing.equalTo(borderLine.snp.leading).offset(-11)
-//            make.centerY.equalToSuperview()
-//        }
-        
         deleteButton.snp.makeConstraints{ make in
             make.width.height.equalTo(30)
             make.trailing.equalToSuperview().offset(-14)
             make.centerY.equalToSuperview()
         }
-        
-//        borderLine.snp.makeConstraints{ make in
-//            make.width.height.equalTo(1)
-//            make.top.equalToSuperview().offset(17)
-//            make.bottom.equalToSuperview().offset(-15)
-//            make.trailing.equalTo(deleteButton.snp.leading).offset(-10)
-//        }
-        
     }
 }
 
@@ -83,13 +55,13 @@ class HiddenRightButtonView: UIView {
 class HiddenLeftButtonView: UIView{
     
     lazy var pinButton = UIButton().then{
-        $0.setImage(UIImage(named: "push_pin_big"), for: .normal)
-        $0.setImage(UIImage(named: "push_pin_big_fill"), for: .selected)
+        $0.setImage(Image.pushPinBig, for: .normal)
+        $0.setImage(Image.pushPinBigFill, for: .selected)
     }
     
     lazy var alarmBtn = UIButton().then{
-        $0.setImage(UIImage(named: "alarm"), for: .normal)
-        $0.setImage(UIImage(named: "alarm_activate"), for: .selected)
+        $0.setImage(Image.alarm, for: .normal)
+        $0.setImage(Image.alarmActivate, for: .selected)
     }
     
     let borderLine = UIView().then{

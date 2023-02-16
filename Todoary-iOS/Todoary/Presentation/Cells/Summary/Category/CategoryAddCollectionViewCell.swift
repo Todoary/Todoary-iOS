@@ -12,7 +12,7 @@ class CategoryAddCollectionViewCell: UICollectionViewCell{
     static let cellIdentifier = "CategoryPlusButtonCell"
     
     let plusImage = UIImageView().then{
-        $0.image = UIImage(named: "category_plus")
+        $0.image = Image.categoryPlus
     }
     
     override init(frame: CGRect) {

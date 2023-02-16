@@ -16,7 +16,7 @@ class DefaultTableViewCell: UITableViewCell {
     }
     
     let arrowImage = UIImageView().then{
-        $0.image = UIImage(named: "next_btn")
+        $0.image = Image.nextBtn
     }
     
     let separatorLine = UIView().then{

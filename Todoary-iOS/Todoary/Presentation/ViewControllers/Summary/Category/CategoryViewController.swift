@@ -37,7 +37,7 @@ class CategoryViewController: BaseViewController {
     
     override func style() {
         super.style()
-        setRightButtonWithImage(UIImage(named: "category_trash"))
+        setRightButtonWithImage(Image.categoryTrash)
     }
     
     override func layout() {

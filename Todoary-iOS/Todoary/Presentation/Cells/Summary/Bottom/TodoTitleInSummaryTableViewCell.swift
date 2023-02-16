@@ -41,12 +41,12 @@ class TodoTitleInSummaryTableViewCell: UITableViewCell {
     }
     
     let addPlanButton = UIButton().then{
-        $0.setImage(UIImage(named: "todo_plus"), for: .normal)
+        $0.setImage(Image.todoPlus, for: .normal)
         $0.addTarget(self, action: #selector(addPlanButtonDidClicked(_:)), for: .touchUpInside)
     }
     
     let moveCategoryButton = UIButton().then{
-        $0.setImage(UIImage(named: "category"), for: .normal)
+        $0.setImage(Image.category, for: .normal)
         $0.addTarget(self, action: #selector(moveCategoryButtonDidClicked(_:)), for: .touchUpInside)
     }
     

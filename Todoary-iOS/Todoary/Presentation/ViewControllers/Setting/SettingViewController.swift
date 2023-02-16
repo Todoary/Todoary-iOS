@@ -81,35 +81,35 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource{
         switch indexPath.row{
         case 0:
             cell.title.text = "알림"
-            cell.img.image = UIImage(named: "settingAlarm")
+            cell.img.image = Image.settingAlarm
             return cell
         case 1:
             cell.title.text = "화면"
-            cell.img.image = UIImage(named: "screen")
+            cell.img.image = Image.screen
             return cell
         case 2:
             cell.title.text = "계정"
-            cell.img.image = UIImage(named: "account")
+            cell.img.image = Image.account
             return cell
         case 3:
             cell.title.text = "암호"
-            cell.img.image = UIImage(named: "lock")
+            cell.img.image = Image.lock
             return cell
         case 4:
             cell.title.text = "Todoary 가이드"
-            cell.img.image = UIImage(named: "help")
+            cell.img.image = Image.help
             return cell
         case 5:
             cell.title.text = "약관 및 정책"
-            cell.img.image = UIImage(named: "document")
+            cell.img.image = Image.document
             return cell
         case 6:
             cell.title.text = "문의하기"
-            cell.img.image = UIImage(named: "feedback")
+            cell.img.image = Image.feedback
             return cell
         case 7:
             cell.title.text = "리뷰 남기기"
-            cell.img.image = UIImage(named: "review")
+            cell.img.image = Image.review
             return cell
         default:
             fatalError("TableViewCell Error")

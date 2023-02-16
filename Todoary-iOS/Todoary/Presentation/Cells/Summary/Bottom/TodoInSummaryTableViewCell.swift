@@ -53,8 +53,8 @@ class TodoInSummaryTableViewCell: UITableViewCell {
     //MARK: - UI
     
     lazy var checkBox = UIButton().then{
-        $0.setImage(UIImage(named: "todo_check_empty"), for: .normal)
-        $0.setImage(UIImage(named: "todo_check"), for: .selected)
+        $0.setImage(Image.todoCheckEmpty, for: .normal)
+        $0.setImage(Image.todoCheck, for: .selected)
         $0.addTarget(self, action: #selector(checkBoxDidClicked), for: .touchUpInside)
     }
     
@@ -66,24 +66,13 @@ class TodoInSummaryTableViewCell: UITableViewCell {
     }
     
     let categoryButton = CategoryTag.generateForMainTodo()
-    /*
-    lazy var categoryButton = UIButton().then{
-        $0.titleLabel?.font = UIFont.nbFont(ofSize: 12, weight: .bold)
-        $0.addLetterSpacing(spacing: 0.24)
-        $0.layer.borderWidth = 1
-        $0.layer.cornerRadius = 21/2
-        $0.titleEdgeInsets = UIEdgeInsets(top: 5, left: 1, bottom: 3, right: 0)
-        $0.titleLabel?.textAlignment = .center
-        $0.isEnabled = false
-    }
-     */
     
     lazy var pinImage = UIImageView().then{
-        $0.image = UIImage(named: "push_pin")
+        $0.image = Image.pushPin
     }
     
     lazy var alarmImage = UIImageView().then{
-        $0.image = UIImage(named: "notifications")
+        $0.image = Image.notifications
     }
     
     let timeLabel = UILabel().then{

@@ -25,8 +25,8 @@ class CategoryTodoTableViewCell: UITableViewCell {
     let categoryLabel = CategoryTag.generateForCategoryTodo()
     
     lazy var checkBox = UIButton().then{
-        $0.setImage(UIImage(named: "todo_check_empty"), for: .normal)
-        $0.setImage(UIImage(named: "todo_check"), for: .selected)
+        $0.setImage(Image.todoCheckEmpty, for: .normal)
+        $0.setImage(Image.todoCheck, for: .selected)
         $0.addTarget(self, action: #selector(checkBoxDidClicked), for: .touchUpInside)
     }
     
@@ -53,7 +53,7 @@ class CategoryTodoTableViewCell: UITableViewCell {
     }
     
     lazy var alarmImage = UIImageView().then{
-        $0.image = UIImage(named: "notifications")
+        $0.image = Image.notifications
         $0.contentMode = .scaleAspectFit
     }
     
@@ -84,7 +84,7 @@ class CategoryTodoTableViewCell: UITableViewCell {
     }
 
     lazy var deleteButton = UIButton().then{
-        $0.setImage(UIImage(named: "minus"), for: .normal)
+        $0.setImage(Image.minus, for: .normal)
         $0.isHidden = true
         $0.addTarget(self, action: #selector(deleteButtonDidClicked), for: .touchUpInside)
     }

@@ -52,23 +52,23 @@ class AgreementView: BaseView {
     //MARK: - 약관 체크버튼 (필수 동의를 해야만 확인버튼을 누를수 있음)
     
     let allCheckBtn = UIButton().then{
-        $0.setImage(UIImage(named: "check_box"), for: .selected)
-        $0.setImage(UIImage(named: "check_box_outline_blank"), for: .normal)
+        $0.setImage(Image.blackCheckBoxFill, for: .selected)
+        $0.setImage(Image.blackCheckBoxBlank, for: .normal)
     }
     
     let privacyCheckBtn = UIButton().then{
-        $0.setImage(UIImage(named: "check_box"), for: .selected)
-        $0.setImage(UIImage(named: "check_box_outline_blank"), for: .normal)
+        $0.setImage(Image.blackCheckBoxFill, for: .selected)
+        $0.setImage(Image.blackCheckBoxBlank, for: .normal)
     }
     
     let useServiceCheckBtn = UIButton().then{
-        $0.setImage(UIImage(named: "check_box"), for: .selected)
-        $0.setImage(UIImage(named: "check_box_outline_blank"), for: .normal)
+        $0.setImage(Image.blackCheckBoxFill, for: .selected)
+        $0.setImage(Image.blackCheckBoxBlank, for: .normal)
     }
     
     let adCheckBtn = UIButton().then{
-        $0.setImage(UIImage(named: "check_box"), for: .selected)
-        $0.setImage(UIImage(named: "check_box_outline_blank"), for: .normal)
+        $0.setImage(Image.blackCheckBoxFill, for: .selected)
+        $0.setImage(Image.blackCheckBoxBlank, for: .normal)
     }
 
     //MARK: - BorderLine
