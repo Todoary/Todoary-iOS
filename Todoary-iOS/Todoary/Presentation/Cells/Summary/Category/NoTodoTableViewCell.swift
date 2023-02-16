@@ -12,15 +12,13 @@ class NoTodoTableViewCell: UITableViewCell {
     static let cellIdentifier = "noTodoCell"
     
     lazy var checkBox = UIButton().then{
-        $0.setImage(UIImage(named: "todo_check_empty"), for: .normal)
+        $0.setImage(Image.todoCheckEmpty, for: .normal)
     }
     
     let titleLabel = UILabel().then{
         $0.text  = "카테고리에 새로운 투두를 추가해보세요"
         $0.numberOfLines = 1
-        $0.font = UIFont.nbFont(ofSize: 15, weight: .bold)
-        $0.addLetterSpacing(spacing: 0.3)
-        $0.setTextWithLineHeight(lineHeight: 22)
+        $0.setTypoStyleWithSingleLine(typoStyle: .bold15_18)
         $0.textColor = .black
     }
     
@@ -83,8 +81,9 @@ class NoTodoTableViewCell: UITableViewCell {
         }
         
         titleLabel.snp.makeConstraints{ make in
-            make.top.equalTo(checkBox).offset(-3)
-            make.bottom.equalToSuperview().offset(-33)
+            make.centerY.equalToSuperview()
+//            make.top.equalTo(checkBox).offset(-3)
+//            make.bottom.equalToSuperview().offset(-33)
             make.leading.equalTo(checkBox.snp.trailing).offset(9)
             make.trailing.equalToSuperview().offset(-18)
         }

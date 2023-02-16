@@ -21,9 +21,8 @@ class DiaryInSummaryTableViewCell: UITableViewCell {
     
     let diaryTitle = UILabel().then{
         $0.text = "DIARY"
-        $0.font = UIFont.nbFont(ofSize: 12, weight: .extraBold)
+        $0.setTypoStyleWithSingleLine(typoStyle: .extrabold12)
         $0.textColor = .summaryTitle
-        $0.addLetterSpacing(spacing: 0.24)
     }
     
     let titleBackgroundView = UIView().then{
@@ -37,7 +36,7 @@ class DiaryInSummaryTableViewCell: UITableViewCell {
     }
     
     lazy var deleteBtn = UIButton().then{
-        $0.setImage(UIImage(named: "summery_trash"), for: .normal)
+        $0.setImage(Image.summeryTrash, for: .normal)
     }
     
 

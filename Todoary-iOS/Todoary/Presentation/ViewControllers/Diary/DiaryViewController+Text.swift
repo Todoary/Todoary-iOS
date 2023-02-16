@@ -23,8 +23,10 @@ extension DiaryViewController: UITableViewDelegate, UITableViewDataSource{
             cell.titleLabel.textColor = UIColor(red: 94/255, green: 94/255, blue: 94/255, alpha: 1)
             cell.categoryButton.isHidden = true
             cell.timeLabel.isHidden = true
+            cell.checkBox.isEnabled = false
         }else {
             cell.delegate = self
+            cell.checkBox.isEnabled = true
             cell.cellData = todoData[indexPath.row]
             cell.titleLabel.text = todoData[indexPath.row].title
             cell.timeLabel.text = todoData[indexPath.row].convertTime
@@ -51,6 +53,7 @@ extension DiaryViewController: UITableViewDelegate, UITableViewDataSource{
 extension DiaryViewController: UITextViewDelegate {
 
     func textViewDidBeginEditing(_ textView: UITextView) {
+        isKeyboardShow = true
         self.selectedStickerView = nil
         if textView.text == DiaryView.textViewPlaceHolder {
             textView.text = nil
@@ -76,7 +79,7 @@ extension DiaryViewController: UITextViewDelegate {
         UIView.animate(withDuration: 0.3){
             self.view.window?.frame.origin.y = 0
         }
-        
+        isKeyboardShow = false
         mainView.diaryLine.isHidden = false
     }
     

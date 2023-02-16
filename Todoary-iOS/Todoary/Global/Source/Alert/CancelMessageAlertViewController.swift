@@ -14,29 +14,23 @@ class CancelMessageAlertViewController: CancelAlertViewController {
         super.init(title: title)
     }
     
-    //MARK: - UI
-    
-    let messageLabel = UILabel().then{
-        $0.font = UIFont.nbFont(ofSize: 12, weight: .regular, type: .apple)
-        $0.textAlignment = .center
-        $0.numberOfLines = 0
-        $0.labelAttributeSetting(letterSpacing: -0.08, lineHeight: 16)
-    }
-    
-    //MARK: - Propertie
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - UI
+    
+    let messageLabel = UILabel().then{
+        $0.setTypoStyleWithMultiLine(typoStyle: .regualar12)
+        $0.textAlignment = .center
+        $0.numberOfLines = 0
+    }
+    
+    //MARK: - Propertie
+    
     override func setUpView() {
         super.setUpView()
-        
-        self.containerView.addSubview(messageLabel)
+        containerView.addSubview(messageLabel)
     }
     
     override func setUpConstraint() {

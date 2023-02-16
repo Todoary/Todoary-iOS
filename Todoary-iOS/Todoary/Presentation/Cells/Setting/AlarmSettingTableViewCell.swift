@@ -24,7 +24,7 @@ class AlarmSettingTableViewCell: UITableViewCell {
     }
     
     let infoBtn = UIButton().then{
-        $0.setImage(UIImage(named: "help"), for: .normal)
+        $0.setImage(Image.help, for: .normal)
     }
     let separatorLine = UIView().then{
         $0.backgroundColor = .silver_225

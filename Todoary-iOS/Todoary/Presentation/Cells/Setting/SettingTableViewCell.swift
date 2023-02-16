@@ -16,17 +16,17 @@ class SettingTableViewCell: UITableViewCell {
     }
     
     let img = UIImageView().then{
-        $0.image = UIImage(named: "lock")
+        $0.image = Image.lock
     }
     
     let title = UILabel().then{
         $0.text = "알림"
         $0.textColor = .black
-        $0.font = UIFont.nbFont(type: .tableCell)
+        $0.setTypoStyleWithSingleLine(typoStyle: .medium16)
     }
     
     let nextBtn = UIButton().then{
-        $0.setImage(UIImage(named: "next_btn"), for: .normal)
+        $0.setImage(Image.nextBtn, for: .normal)
     }
     
     let borderLine = UIView().then{

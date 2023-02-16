@@ -18,11 +18,11 @@ class SettingAgreementViewCell: UITableViewCell {
     let title = UILabel().then{
         $0.text = "개인 정보 취급방침"
         $0.textColor = .black
-        $0.font = UIFont.nbFont(type: .tableCell)
+        $0.setTypoStyleWithSingleLine(typoStyle: .medium16)
     }
     
     let nextBtn = UIButton().then{
-        $0.setImage(UIImage(named: "next_btn"), for: .normal)
+        $0.setImage(Image.nextBtn, for: .normal)
     }
     
     let borderLine = UIView().then{

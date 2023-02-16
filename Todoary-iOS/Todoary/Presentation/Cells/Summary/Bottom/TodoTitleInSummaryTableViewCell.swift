@@ -25,9 +25,8 @@ class TodoTitleInSummaryTableViewCell: UITableViewCell {
 
     let todoListTitle = UILabel().then{
         $0.text = "TODO LIST"
-        $0.font = UIFont.nbFont(ofSize: 12, weight: .extraBold)
+        $0.setTypoStyleWithSingleLine(typoStyle: .extrabold12)
         $0.textColor = .summaryTitle
-        $0.addLetterSpacing(spacing: 0.24)
     }
     
     let titleBackgroundView = UIView().then{
@@ -41,12 +40,12 @@ class TodoTitleInSummaryTableViewCell: UITableViewCell {
     }
     
     let addPlanButton = UIButton().then{
-        $0.setImage(UIImage(named: "todo_plus"), for: .normal)
+        $0.setImage(Image.todoPlus, for: .normal)
         $0.addTarget(self, action: #selector(addPlanButtonDidClicked(_:)), for: .touchUpInside)
     }
     
     let moveCategoryButton = UIButton().then{
-        $0.setImage(UIImage(named: "category"), for: .normal)
+        $0.setImage(Image.category, for: .normal)
         $0.addTarget(self, action: #selector(moveCategoryButtonDidClicked(_:)), for: .touchUpInside)
     }
     
@@ -69,13 +68,11 @@ class TodoTitleInSummaryTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc
-    func addPlanButtonDidClicked(_ sender: UIButton){
+    @objc func addPlanButtonDidClicked(_ sender: UIButton){
         delegate?.moveToViewController()
     }
     
-    @objc
-    func moveCategoryButtonDidClicked(_ sender: UIButton){
+    @objc func moveCategoryButtonDidClicked(_ sender: UIButton){
         
         HomeViewController.dismissBottomSheet()
     
@@ -86,24 +83,25 @@ class TodoTitleInSummaryTableViewCell: UITableViewCell {
         
         self.contentView.addSubview(backView)
         
-        buttonStackView.addArrangedSubview(addPlanButton)
-        buttonStackView.addArrangedSubview(moveCategoryButton)
-        
         backView.addSubview(titleBackgroundView)
         titleBackgroundView.addSubview(todoListTitle)
         backView.addSubview(buttonStackView)
+        
+        buttonStackView.addArrangedSubview(addPlanButton)
+        buttonStackView.addArrangedSubview(moveCategoryButton)
         
     }
     
     func setUpConstraint(){
         
-        self.contentView.snp.makeConstraints{ make in
-            make.height.equalTo(59)
-            make.width.equalToSuperview()
-        }
+//        self.contentView.snp.makeConstraints{ make in
+//            make.height.equalTo(59)
+//            make.width.equalToSuperview()
+//        }
         
         backView.snp.makeConstraints{ make in
             make.leading.trailing.top.bottom.equalToSuperview()
+            make.height.equalTo(59)
         }
         
         todoListTitle.snp.makeConstraints{ make in

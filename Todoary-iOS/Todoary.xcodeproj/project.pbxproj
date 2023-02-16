@@ -220,6 +220,7 @@
 		EE135A89298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE135A88298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift */; };
 		EED1B34E298656E600F14CAC /* TypoDesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED1B34D298656E600F14CAC /* TypoDesignSystem.swift */; };
 		EED1B350298656FD00F14CAC /* CategoryDesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED1B34F298656FD00F14CAC /* CategoryDesignSystem.swift */; };
+		EEE326A52998AEB50017DF46 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE326A42998AEB50017DF46 /* Image.swift */; };
 		FE8D4ADF330D2D49EAEDF342 /* Pods_Todoary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C3B169714F99FD99E7D25E7 /* Pods_Todoary.framework */; };
 /* End PBXBuildFile section */
 
@@ -469,6 +470,7 @@
 		EE135A88298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAddCollectionViewCell.swift; sourceTree = "<group>"; };
 		EED1B34D298656E600F14CAC /* TypoDesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypoDesignSystem.swift; sourceTree = "<group>"; };
 		EED1B34F298656FD00F14CAC /* CategoryDesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDesignSystem.swift; sourceTree = "<group>"; };
+		EEE326A42998AEB50017DF46 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1276,6 +1278,7 @@
 			children = (
 				576ED6AF28748FFA007389CD /* NavigationView.swift */,
 				EED1B34C298656D700F14CAC /* DesignSystem */,
+				EEE326A32998AEA90017DF46 /* Namespace */,
 				E02E7FA2287462ED0006F6FA /* Extensions */,
 			);
 			path = Resource;
@@ -1621,6 +1624,14 @@
 				EED1B34F298656FD00F14CAC /* CategoryDesignSystem.swift */,
 			);
 			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		EEE326A32998AEA90017DF46 /* Namespace */ = {
+			isa = PBXGroup;
+			children = (
+				EEE326A42998AEB50017DF46 /* Image.swift */,
+			);
+			path = Namespace;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2047,6 +2058,7 @@
 				576ED6B228749021007389CD /* String.swift in Sources */,
 				ACBAE5702979909700E71CAD /* LoginResultModel.swift in Sources */,
 				57D5B60F29580F8400216C94 /* BaseProtocol.swift in Sources */,
+				EEE326A52998AEB50017DF46 /* Image.swift in Sources */,
 				E0F998CB288A6B460051C7AA /* AdModel.swift in Sources */,
 				E0439AC0288C5B0F0075CBF0 /* ColorPickerCollectionViewCell.swift in Sources */,
 				57FFEDBA28DAD9BE0041719B /* ConfirmMessageAlertViewController.swift in Sources */,
