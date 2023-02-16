@@ -16,8 +16,8 @@ class FontSettingTableViewCell: UITableViewCell {
     }
     
     let radioButton = UIButton().then{
-        $0.setImage(UIImage(named: "check_circle_blank"), for: .normal)
-        $0.setImage(UIImage(named: "check_circle"), for: .selected)
+        $0.setImage(Image.radioButtonBlack, for: .normal)
+        $0.setImage(Image.radioButtonFill, for: .selected)
     }
     
     let separatorLine = UIView().then{

@@ -12,7 +12,7 @@ class NoTodoTableViewCell: UITableViewCell {
     static let cellIdentifier = "noTodoCell"
     
     lazy var checkBox = UIButton().then{
-        $0.setImage(UIImage(named: "todo_check_empty"), for: .normal)
+        $0.setImage(Image.todoCheckEmpty, for: .normal)
     }
     
     let titleLabel = UILabel().then{

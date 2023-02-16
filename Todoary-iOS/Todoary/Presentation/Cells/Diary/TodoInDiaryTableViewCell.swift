@@ -22,8 +22,8 @@ class TodoInDiaryTableViewCell: UITableViewCell {
     
     //tableCell UI
     lazy var checkBox = UIButton().then{
-        $0.setImage(UIImage(named: "todo_check_empty"), for: .normal)
-        $0.setImage(UIImage(named: "todo_check"), for: .selected)
+        $0.setImage(Image.todoCheckEmpty, for: .normal)
+        $0.setImage(Image.todoCheck, for: .selected)
         $0.addTarget(self, action: #selector(checkBoxBtnDidClicked), for: .touchUpInside)
     }
     
@@ -44,7 +44,7 @@ class TodoInDiaryTableViewCell: UITableViewCell {
     }
     
     lazy var alarmImage = UIImageView().then{
-        $0.image = UIImage(named: "notifications")
+        $0.image = Image.notifications
     }
     
     let timeLabel = UILabel().then{

@@ -23,28 +23,28 @@ class DiaryToolbar : UIView {
     }
     
     let cameraBtn = UIButton().then{
-        $0.setImage(UIImage(named: "camera"), for: .normal)
+        $0.setImage(Image.camera, for: .normal)
         $0.addTarget(self, action: #selector(cameraBtnDidTab), for: .touchUpInside)
     }
     
     let textBtn = UIButton().then{
-        $0.setImage(UIImage(named: "type"), for: .normal)
+        $0.setImage(Image.type, for: .normal)
         $0.addTarget(self, action: #selector(textBtnDidTab), for: .touchUpInside)
         $0.addTarget(self, action: #selector(fontBtnDidTab), for: .touchUpInside)
     }
     
     let stickerBtn = UIButton().then{
-        $0.setImage(UIImage(named: "smile"), for: .normal)
+        $0.setImage(Image.smile, for: .normal)
     }
     
     let highlightBtn = UIButton().then{
-        $0.setImage(UIImage(named: "edit"), for: .normal)
+        $0.setImage(Image.edit, for: .normal)
         $0.addTarget(self, action: #selector(highlightBtnDidTab), for: .touchUpInside)
         $0.addTarget(self, action: #selector(fontBtnDidTab), for: .touchUpInside)
     }
     
     let exitBtn = UIButton().then{
-        $0.setImage(UIImage(named: "x"), for: .normal)
+        $0.setImage(Image.x, for: .normal)
     }
     
     let firstStackView = UIStackView().then{
@@ -147,32 +147,32 @@ class DiaryToolbar : UIView {
     //MARK: - UIComponenets_textToolbar
     
     let alignLeftBtn = UIButton().then{
-        $0.setImage(UIImage(named: "align-left"), for: .normal)
+        $0.setImage(Image.alignLeft, for: .normal)
     }
     
     let ailgnCenterBtn = UIButton().then{
-        $0.setImage(UIImage(named: "align-center"), for: .normal)
+        $0.setImage(Image.alignCenter, for: .normal)
     }
     
     let alignRightBtn = UIButton().then{
-        $0.setImage(UIImage(named: "align-right"), for: .normal)
+        $0.setImage(Image.alignRight, for: .normal)
     }
     
     let fontBtn = UIButton().then{
-        $0.setImage(UIImage(named: "ga"), for: .normal)
+        $0.setImage(Image.ga, for: .normal)
         $0.addTarget(self, action: #selector(fontBtnDidTab), for: .touchUpInside)
     }
     
     let strikeLineBtn = UIButton().then{
-        $0.setImage(UIImage(named: "T"), for: .normal)
+        $0.setImage(Image.centerLine, for: .normal)
     }
     
     let underLineBtn = UIButton().then{
-        $0.setImage(UIImage(named: "U"), for: .normal)
+        $0.setImage(Image.underLine, for: .normal)
     }
     
     let boldBtn = UIButton().then{
-        $0.setImage(UIImage(named: "B"), for: .normal)
+        $0.setImage(Image.bold, for: .normal)
     }
     
     let textStackView = UIStackView().then{
@@ -191,23 +191,23 @@ class DiaryToolbar : UIView {
     //MARK: - UIComponenets_fontToolbar
     
     let fontBtn1 = UIButton().then{
-        $0.setImage(UIImage(named: "abcd1"), for: .normal)
+        $0.setImage(Image.abcd1, for: .normal)
     }
     
     let fontBtn2 = UIButton().then{
-        $0.setImage(UIImage(named: "abcd2"), for: .normal)
+        $0.setImage(Image.abcd2, for: .normal)
     }
     
     let fontBtn3 = UIButton().then{
-        $0.setImage(UIImage(named: "abcd3"), for: .normal)
+        $0.setImage(Image.abcd3, for: .normal)
     }
     
     let fontBtn4 = UIButton().then{
-        $0.setImage(UIImage(named: "abcd4"), for: .normal)
+        $0.setImage(Image.abcd4, for: .normal)
     }
     
     let fontBtn5 = UIButton().then{
-        $0.setImage(UIImage(named: "abcd5"), for: .normal)
+        $0.setImage(Image.abcd5, for: .normal)
     }
     
     let fontStackView = UIStackView().then{

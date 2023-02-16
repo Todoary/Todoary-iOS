@@ -29,7 +29,7 @@ class NewTodoAddBtnTableViewCell: UITableViewCell {
     }
     
     let addImage = UIImageView().then{
-        $0.image = UIImage(named: "category_plus")
+        $0.image = Image.categoryPlus
     }
     
     let selectedView = UIView().then{

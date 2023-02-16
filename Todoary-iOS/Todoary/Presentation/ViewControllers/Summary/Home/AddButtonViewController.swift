@@ -32,12 +32,12 @@ class AddButtonViewController: UIViewController{
     }
     
     lazy var addTodoBtn = UIButton().then{
-        $0.setImage(UIImage(named: "add_todo"), for: .normal)
+        $0.setImage(Image.addTodo, for: .normal)
         $0.addTarget(self, action: #selector(addTodoBtnDidClicked), for: .touchUpInside)
     }
     
     lazy var addDiaryBtn = UIButton().then{
-        $0.setImage(UIImage(named: "add_diary"), for: .normal)
+        $0.setImage(Image.addDiary, for: .normal)
         $0.addTarget(self, action: #selector(addDiaryBtnDidClicked), for: .touchUpInside)
     }
     

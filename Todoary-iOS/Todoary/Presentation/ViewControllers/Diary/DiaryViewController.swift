@@ -47,7 +47,7 @@ class DiaryViewController: BaseViewController , UIGestureRecognizerDelegate{
     var tag = 3000
     
     var isEnterPressed = false
-    
+    var isKeyboardShow = false
     var _selectedStickerView:StickerView?
         var selectedStickerView:StickerView? {
             get {
@@ -81,7 +81,11 @@ class DiaryViewController: BaseViewController , UIGestureRecognizerDelegate{
     //MARK: - TextProperties
     
     var pickDate: ConvertDate!
-    var todoData = [TodoResultModel]()
+    var todoData = [TodoResultModel](){
+        didSet{
+            mainView.todoTableView.reloadData()
+        }
+    }
     var diary: DiaryResultModel?
     var currentFont: DiaryFont = DiaryFont(fontName: .font1)
     
@@ -131,6 +135,10 @@ class DiaryViewController: BaseViewController , UIGestureRecognizerDelegate{
         mainView.todoTableView.dataSource = self
         mainView.todoTableView.separatorStyle = .none
         
+        let textViewGesture = UITapGestureRecognizer(target: self, action: #selector(keyboardWillDisappear)).then{
+            $0.delegate = self
+        }
+        mainView.textView.addGestureRecognizer(textViewGesture)
         mainView.textView.delegate = self
         
         setTextToolBarAction()
@@ -138,9 +146,13 @@ class DiaryViewController: BaseViewController , UIGestureRecognizerDelegate{
     
     //MARK: - Helpers
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    @objc private func keyboardWillDisappear(){
         self.view.endEditing(true)
         self.selectedStickerView = nil
+    }
+
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return isKeyboardShow ? true : false
     }
     
     @objc func registerBtnDidClicked(){

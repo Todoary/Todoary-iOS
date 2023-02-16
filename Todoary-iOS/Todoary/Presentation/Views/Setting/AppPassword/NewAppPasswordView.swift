@@ -45,19 +45,19 @@ class NewAppPasswordView: BaseView {
     }
     
     let inputNotPw1 = UIImageView().then{
-        $0.image = UIImage(named: "inputNotPassword")
+        $0.image = Image.inputNotPassword
     }
     
     let inputNotPw2 = UIImageView().then{
-        $0.image = UIImage(named: "inputNotPassword")
+        $0.image = Image.inputNotPassword
     }
     
     let inputNotPw3 = UIImageView().then{
-        $0.image = UIImage(named: "inputNotPassword")
+        $0.image = Image.inputNotPassword
     }
     
     let inputNotPw4 = UIImageView().then{
-        $0.image = UIImage(named: "inputNotPassword")
+        $0.image = Image.inputNotPassword
     }
     
     //MARK: - input password
@@ -67,22 +67,22 @@ class NewAppPasswordView: BaseView {
     }
     
     let inputPw1 = UIImageView().then{
-        $0.image = UIImage(named: "password1")
+        $0.image = Image.password1
         $0.isHidden = true
     }
     
     let inputPw2 = UIImageView().then{
-        $0.image = UIImage(named: "password2")
+        $0.image = Image.password2
         $0.isHidden = true
     }
     
     let inputPw3 = UIImageView().then{
-        $0.image = UIImage(named: "password3")
+        $0.image = Image.password3
         $0.isHidden = true
     }
     
     let inputPw4 = UIImageView().then{
-        $0.image = UIImage(named: "password4")
+        $0.image = Image.password4
         $0.isHidden = true
     }
     
@@ -114,13 +114,12 @@ class NewAppPasswordView: BaseView {
     }
     
     //button
-    
     let numBtn1 =  UIButton().then{
         $0.setTitle( "1", for: .normal)
         $0.backgroundColor = .numberBtnColor
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont.nbFont(type: .numberBtn)
-        $0.setBackgroundImage(UIImage(named: "home_profile"), for: UIControl.State.highlighted)
+        $0.setBackgroundImage(Image.homeProfile, for: UIControl.State.highlighted)
     }
     
     let numBtn2 =  UIButton().then{
@@ -128,10 +127,7 @@ class NewAppPasswordView: BaseView {
         $0.backgroundColor = .numberBtnColor
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont.nbFont(type: .numberBtn)
-        $0.setBackgroundImage(UIImage(named: "home_profile"), for: UIControl.State.highlighted)
-        
-        
-
+        $0.setBackgroundImage(Image.homeProfile, for: UIControl.State.highlighted)
     }
     
         
@@ -140,8 +136,7 @@ class NewAppPasswordView: BaseView {
         $0.backgroundColor = .numberBtnColor
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont.nbFont(type: .numberBtn)
-        $0.setBackgroundImage(UIImage(named: "home_profile"), for: UIControl.State.highlighted)
-
+        $0.setBackgroundImage(Image.homeProfile, for: UIControl.State.highlighted)
     }
         
     let numBtn4 =  UIButton().then{
@@ -149,7 +144,7 @@ class NewAppPasswordView: BaseView {
         $0.backgroundColor = .numberBtnColor
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont.nbFont(type: .numberBtn)
-        $0.setBackgroundImage(UIImage(named: "home_profile"), for: UIControl.State.highlighted)
+        $0.setBackgroundImage(Image.homeProfile, for: UIControl.State.highlighted)
     }
 
     let numBtn5 =  UIButton().then{
@@ -157,7 +152,7 @@ class NewAppPasswordView: BaseView {
         $0.backgroundColor = .numberBtnColor
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont.nbFont(type: .numberBtn)
-        $0.setBackgroundImage(UIImage(named: "home_profile"), for: UIControl.State.highlighted)
+        $0.setBackgroundImage(Image.homeProfile, for: UIControl.State.highlighted)
     }
     
     let numBtn6 =  UIButton().then{
@@ -165,7 +160,7 @@ class NewAppPasswordView: BaseView {
         $0.backgroundColor = .numberBtnColor
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont.nbFont(type: .numberBtn)
-        $0.setBackgroundImage(UIImage(named: "home_profile"), for: UIControl.State.highlighted)
+        $0.setBackgroundImage(Image.homeProfile, for: UIControl.State.highlighted)
     }
     
     let numBtn7 =  UIButton().then{
@@ -173,7 +168,7 @@ class NewAppPasswordView: BaseView {
         $0.backgroundColor = .numberBtnColor
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont.nbFont(type: .numberBtn)
-        $0.setBackgroundImage(UIImage(named: "home_profile"), for: UIControl.State.highlighted)
+        $0.setBackgroundImage(Image.homeProfile, for: UIControl.State.highlighted)
     }
     
     let numBtn8 =  UIButton().then{
@@ -181,7 +176,7 @@ class NewAppPasswordView: BaseView {
         $0.backgroundColor = .numberBtnColor
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont.nbFont(type: .numberBtn)
-        $0.setBackgroundImage(UIImage(named: "home_profile"), for: UIControl.State.highlighted)
+        $0.setBackgroundImage(Image.homeProfile, for: UIControl.State.highlighted)
     }
     
     let numBtn9 =  UIButton().then{
@@ -189,7 +184,7 @@ class NewAppPasswordView: BaseView {
         $0.backgroundColor = .numberBtnColor
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont.nbFont(type: .numberBtn)
-        $0.setBackgroundImage(UIImage(named: "home_profile"), for: UIControl.State.highlighted)
+        $0.setBackgroundImage(Image.homeProfile, for: UIControl.State.highlighted)
     }
     
     let numBtn0 =  UIButton().then{
@@ -197,7 +192,7 @@ class NewAppPasswordView: BaseView {
         $0.backgroundColor = .numberBtnColor
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont.nbFont(type: .numberBtn)
-        $0.setBackgroundImage(UIImage(named: "home_profile"), for: UIControl.State.highlighted)
+        $0.setBackgroundImage(Image.homeProfile, for: UIControl.State.highlighted)
     }
     
     let blueCharacterView = UIView().then{
@@ -205,13 +200,13 @@ class NewAppPasswordView: BaseView {
     }
     
     let blueCharacter = UIImageView().then{
-        $0.image = UIImage(named: "password5")
+        $0.image = Image.password5
     }
 
  
     //MARK: - UIComponenets_deletBtn
     let deletBtn = UIButton().then{
-        $0.setImage(UIImage(named: "backspace"), for: .normal)
+        $0.setImage(Image.backspace, for: .normal)
         $0.tintColor = .black
         $0.contentMode = .scaleToFill
     }

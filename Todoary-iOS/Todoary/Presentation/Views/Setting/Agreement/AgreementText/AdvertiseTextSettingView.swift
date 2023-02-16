@@ -34,8 +34,8 @@ class AdvertiseTextSettingView: BaseView {
     }
     
     let adCheckBtn = UIButton().then{
-        $0.setImage(UIImage(named: "check_box"), for: .selected)
-        $0.setImage(UIImage(named: "check_box_outline_blank"), for: .normal)
+        $0.setImage(Image.blackCheckBoxFill, for: .selected)
+        $0.setImage(Image.blackCheckBoxBlank, for: .normal)
     }
     
     override func hierarchy(){

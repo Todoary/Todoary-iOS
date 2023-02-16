@@ -30,7 +30,7 @@ class BaseAlertViewController: UIViewController {
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColor = UIColor(red: 20/255, green: 37/255, blue: 83/255, alpha: 1)
         $0.titleLabel?.font = UIFont.nbFont(ofSize: 17, weight: .semibold, type: .apple)
-        $0.titleEdgeInsets = UIEdgeInsets(top: 9, left: 0, bottom: 8, right: 0)
+//        $0.titleEdgeInsets = UIEdgeInsets(top: 9, left: 0, bottom: 8, right: 0)
         $0.titleLabel?.textAlignment = .center
         $0.addTarget(self, action: #selector(confirmBtnDidClicked), for: .touchUpInside)
     }
@@ -117,7 +117,11 @@ class BaseAlertViewController: UIViewController {
             $0.leading.equalToSuperview().offset(17)
             $0.trailing.equalToSuperview().offset(-17)
             $0.bottom.equalToSuperview().offset(-10)
-            $0.height.equalTo(39)
+        }
+        
+        confirmBtn.snp.makeConstraints{
+            $0.top.bottom.equalToSuperview()
+            $0.height.equalTo(confirmBtn.titleLabel!).offset(18)
         }
         
     }

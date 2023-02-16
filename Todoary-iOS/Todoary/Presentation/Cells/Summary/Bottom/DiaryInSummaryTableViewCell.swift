@@ -37,7 +37,7 @@ class DiaryInSummaryTableViewCell: UITableViewCell {
     }
     
     lazy var deleteBtn = UIButton().then{
-        $0.setImage(UIImage(named: "summery_trash"), for: .normal)
+        $0.setImage(Image.summeryTrash, for: .normal)
     }
     
 

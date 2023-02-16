@@ -16,7 +16,7 @@ class SettingTableViewCell: UITableViewCell {
     }
     
     let img = UIImageView().then{
-        $0.image = UIImage(named: "lock")
+        $0.image = Image.lock
     }
     
     let title = UILabel().then{
@@ -26,7 +26,7 @@ class SettingTableViewCell: UITableViewCell {
     }
     
     let nextBtn = UIButton().then{
-        $0.setImage(UIImage(named: "next_btn"), for: .normal)
+        $0.setImage(Image.nextBtn, for: .normal)
     }
     
     let borderLine = UIView().then{
