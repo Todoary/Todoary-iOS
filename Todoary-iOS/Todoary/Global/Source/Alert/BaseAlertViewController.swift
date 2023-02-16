@@ -19,18 +19,16 @@ class BaseAlertViewController: UIViewController {
     //MARK: - UI
     
     let titleLabel = UILabel().then{
-        $0.font = UIFont.nbFont(ofSize: 17, weight: .bold, type: .apple)
+        $0.setTypoStyleWithSingleLine(typoStyle: .bold17)
         $0.textAlignment = .center
         $0.numberOfLines = 0
-        $0.labelAttributeSetting(letterSpacing: -0.41, lineHeight: 22)
     }
     
     lazy var confirmBtn = UIButton().then{
         $0.layer.cornerRadius = 11
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColor = UIColor(red: 20/255, green: 37/255, blue: 83/255, alpha: 1)
-        $0.titleLabel?.font = UIFont.nbFont(ofSize: 17, weight: .semibold, type: .apple)
-//        $0.titleEdgeInsets = UIEdgeInsets(top: 9, left: 0, bottom: 8, right: 0)
+        $0.titleLabel?.setTypoStyleWithSingleLine(typoStyle: .semibold17)
         $0.titleLabel?.textAlignment = .center
         $0.addTarget(self, action: #selector(confirmBtnDidClicked), for: .touchUpInside)
     }

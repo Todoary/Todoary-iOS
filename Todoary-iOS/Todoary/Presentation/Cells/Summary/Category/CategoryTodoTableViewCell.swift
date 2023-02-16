@@ -33,23 +33,21 @@ class CategoryTodoTableViewCell: UITableViewCell {
     lazy var todoTitle = UILabel().then{
         $0.text  = "운동"
         $0.numberOfLines = 0
-        $0.font = UIFont.nbFont(ofSize: 15, weight: .bold)
-        $0.addLetterSpacing(spacing: 0.3)
-        $0.setTextWithLineHeight(lineHeight: 22)
+        $0.setTypoStyleWithMultiLine(typoStyle: .bold15_22)
         $0.textColor = .black
         
     }
     
     let dateLabel = UILabel().then{
         $0.textAlignment = .right
-        $0.font = UIFont.nbFont(ofSize: 13, weight: .medium)
+        $0.setTypoStyleWithSingleLine(typoStyle: .medium13)
         $0.textColor = .timeColor
     }
     
     lazy var timeLabel = UILabel().then{
         $0.textAlignment = .center
         $0.textColor = .timeColor
-        $0.font = UIFont.nbFont(ofSize: 13, weight: .medium)
+        $0.setTypoStyleWithSingleLine(typoStyle: .medium13)
     }
     
     lazy var alarmImage = UIImageView().then{

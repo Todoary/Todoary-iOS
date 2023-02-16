@@ -25,8 +25,7 @@ class PrivacyTextView: BaseView {
         $0.numberOfLines = 0
         $0.textAlignment = .left
         $0.textColor = .headline
-       // $0.font = UIFont.nbFont(type: .body1)
-        $0.labelTypeSetting(type: .acceptTerm)
+        $0.setTypoStyleWithMultiLine(typoStyle: .medium14_21)
     }
     
     override func hierarchy(){

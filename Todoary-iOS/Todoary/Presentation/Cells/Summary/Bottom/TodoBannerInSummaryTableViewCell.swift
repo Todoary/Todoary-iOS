@@ -24,8 +24,7 @@ class TodoBannerInSummaryTableViewCell: UITableViewCell {
     let titleLabel = UILabel().then{
         $0.text = "오늘의 할 일은 무엇인가요?"
         $0.textColor = .black
-        $0.font = UIFont.nbFont(ofSize: 15, weight: .bold)
-        $0.addLetterSpacing(spacing: 0.3)
+        $0.setTypoStyleWithSingleLine(typoStyle: .bold15_18)
     }
     
     let backView = UIView().then{
@@ -37,10 +36,6 @@ class TodoBannerInSummaryTableViewCell: UITableViewCell {
         $0.layer.shadowOpacity = 1
         $0.layer.masksToBounds = false
     }
-    
-
-    
-
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         

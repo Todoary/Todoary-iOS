@@ -61,8 +61,7 @@ class TodoInSummaryTableViewCell: UITableViewCell {
     let titleLabel = UILabel().then{
         $0.numberOfLines = 1
         $0.textColor = .black
-        $0.font = UIFont.nbFont(ofSize: 15, weight: .bold)
-        $0.addLetterSpacing(spacing: 0.3)
+        $0.setTypoStyleWithSingleLine(typoStyle: .bold15_18)
     }
     
     let categoryButton = CategoryTag.generateForMainTodo()
@@ -77,8 +76,7 @@ class TodoInSummaryTableViewCell: UITableViewCell {
     
     let timeLabel = UILabel().then{
         $0.textColor = .timeColor
-        $0.font = UIFont.nbFont(ofSize: 13, weight: .medium)
-        $0.addLetterSpacing(spacing: -0.26)
+        $0.setTypoStyleWithSingleLine(typoStyle: .medium13)
     }
     
     let backView = UIView().then{

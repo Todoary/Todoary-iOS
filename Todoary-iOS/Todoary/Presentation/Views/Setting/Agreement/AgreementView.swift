@@ -16,13 +16,13 @@ class AgreementView: BaseView {
     let agreeTitle = UILabel().then{
         $0.text = "Todoary 서비스 이용약관에 동의해 주세요."
         $0.textColor = .headline
-        $0.font = UIFont.nbFont(type: .subtitle)
+        $0.setTypoStyleWithSingleLine(typoStyle: .bold16_19)
     }
     
     let allCheckText = UILabel().then{
         $0.text = "전체동의"
         $0.textColor = .headline
-        $0.font = UIFont.nbFont(type: .subtitle)
+        $0.setTypoStyleWithSingleLine(typoStyle: .bold16_19)
     }
     
     //MARK: - 약관 제목버튼(약관 내용페이지로 연결)
@@ -30,21 +30,21 @@ class AgreementView: BaseView {
     let privacyTitle = UIButton().then{
         $0.setTitle("개인 정보 취급방침 동의 (필수)", for: .normal)
         $0.setTitleColor(.headline, for: .normal)
-        $0.titleLabel?.font = UIFont.nbFont(type: .body1)
+        $0.titleLabel?.setTypoStyleWithSingleLine(typoStyle: .medium14_16)
         $0.setUnderline()
     }
     
     let useServiceTitle = UIButton().then{
         $0.setTitle("서비스 이용약관 동의 (필수)", for: .normal)
         $0.setTitleColor(.headline, for: .normal)
-        $0.titleLabel?.font = UIFont.nbFont(type: .body1)
+        $0.titleLabel?.setTypoStyleWithSingleLine(typoStyle: .medium14_16)
         $0.setUnderline()
     }
     
     let adTitle = UIButton().then{
         $0.setTitle("광고성 정보 수신 동의 (선택)", for: .normal)
         $0.setTitleColor(.headline, for: .normal)
-        $0.titleLabel?.font = UIFont.nbFont(type: .body1)
+        $0.titleLabel?.setTypoStyleWithSingleLine(typoStyle: .medium14_16)
         $0.titleLabel?.textAlignment = .left
         $0.setUnderline()
     }
@@ -100,7 +100,7 @@ class AgreementView: BaseView {
         $0.setTitle("확인", for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColor = .buttonColor
-        $0.titleLabel?.font = UIFont.nbFont(type: .button1)
+        $0.titleLabel?.setTypoStyleWithSingleLine(typoStyle: .semibold18)
         $0.layer.cornerRadius = 52/2
     }
 

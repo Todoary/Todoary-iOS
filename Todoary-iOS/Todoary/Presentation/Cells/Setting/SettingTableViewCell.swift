@@ -22,7 +22,7 @@ class SettingTableViewCell: UITableViewCell {
     let title = UILabel().then{
         $0.text = "알림"
         $0.textColor = .black
-        $0.font = UIFont.nbFont(type: .tableCell)
+        $0.setTypoStyleWithSingleLine(typoStyle: .medium16)
     }
     
     let nextBtn = UIButton().then{
