@@ -125,7 +125,7 @@ extension TypoStyle {
 extension TypoStyle {
     var font: UIFont {
         let dash = self.fontDescription.font == .ExtraBold ? "AppleSDGothicNeo" : "AppleSDGothicNeo-"
-        guard let font = UIFont(name: dash + "\(fontDescription.font)", size: fontDescription.size) else {
+        guard let font = UIFont(name: dash + "\(fontDescription.font.rawValue)", size: fontDescription.size) else {
             return UIFont()
         }
         return font
