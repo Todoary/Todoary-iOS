@@ -57,7 +57,7 @@ class DiaryInSummaryTableViewCell: BaseTableViewCell {
         }
     }
     
-    func setUpDataBinding(_ diary: DiaryResultModel){
+    func bindingDiaryData(_ diary: DiaryResultModel){
         self.diaryTitle.text = diary.title
         self.diaryTextView.attributedText = diary.content12AttributedString ?? NSAttributedString(string: "")
         self.diaryTextView.labelAttributeSetting(letterSpacing: 0.24, lineHeight: 14.4)
