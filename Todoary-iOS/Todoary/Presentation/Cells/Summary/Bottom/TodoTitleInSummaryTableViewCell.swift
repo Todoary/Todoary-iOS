@@ -16,17 +16,13 @@ final class TodoTitleInSummaryTableViewCell: BaseTableViewCell {
 
     var delegate: SummaryViewControllerDelegate!
     
-    let selectedBackView = UIView().then{
-        $0.backgroundColor = .transparent
-    }
-
-    let todoListTitle = UILabel().then{
+    private let todoListTitle = UILabel().then{
         $0.text = "TODO LIST"
         $0.setTypoStyleWithSingleLine(typoStyle: .extrabold12)
         $0.textColor = .summaryTitle
     }
     
-    let titleBackgroundView = UIView().then{
+    private let titleBackgroundView = UIView().then{
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 24/2
         $0.layer.shadowRadius = 10.0
@@ -36,97 +32,89 @@ final class TodoTitleInSummaryTableViewCell: BaseTableViewCell {
         $0.layer.masksToBounds = false
     }
     
-    let addPlanButton = UIButton().then{
-        $0.setImage(Image.todoPlus, for: .normal)
-        $0.addTarget(self, action: #selector(addPlanButtonDidClicked(_:)), for: .touchUpInside)
-    }
-    
-    let moveCategoryButton = UIButton().then{
-        $0.setImage(Image.category, for: .normal)
-        $0.addTarget(self, action: #selector(moveCategoryButtonDidClicked(_:)), for: .touchUpInside)
-    }
-    
-    let buttonStackView = UIStackView().then{
+    private let buttonStackView = UIStackView().then{
         $0.axis = .horizontal
         $0.spacing = 0
+    }
+    private let addPlanButton = UIButton().then{
+        $0.setImage(Image.todoPlus, for: .normal)
+    }
+    
+    private let moveCategoryButton = UIButton().then{
+        $0.setImage(Image.category, for: .normal)
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        self.backgroundColor = .transparent
-        self.selectedBackgroundView = selectedBackView
-        
-        setUpView()
-        setUpConstraint()
+        initialize()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc func addPlanButtonDidClicked(_ sender: UIButton){
-        delegate?.moveToViewController()
+    override func style() {
+        super.style()
+        self.backgroundColor = .transparent
+        self.selectedBackgroundView?.backgroundColor = .transparent
     }
     
-    @objc func moveCategoryButtonDidClicked(_ sender: UIButton){
+    override func hierarchy() {
         
-        HomeViewController.dismissBottomSheet()
-    
-        navigaiton.pushViewController(CategoryViewController(), animated: true)
-    }
-    
-    func setUpView(){
+        super.hierarchy()
         
-        self.contentView.addSubview(backView)
+        baseView.addSubview(titleBackgroundView)
+        baseView.addSubview(buttonStackView)
         
-        backView.addSubview(titleBackgroundView)
         titleBackgroundView.addSubview(todoListTitle)
-        backView.addSubview(buttonStackView)
         
         buttonStackView.addArrangedSubview(addPlanButton)
         buttonStackView.addArrangedSubview(moveCategoryButton)
-        
     }
     
-    func setUpConstraint(){
+    override func layout() {
         
-//        self.contentView.snp.makeConstraints{ make in
-//            make.height.equalTo(59)
-//            make.width.equalToSuperview()
-//        }
+        super.layout()
         
-        backView.snp.makeConstraints{ make in
-            make.leading.trailing.top.bottom.equalToSuperview()
-            make.height.equalTo(59)
+        baseView.snp.makeConstraints{
+            $0.height.equalTo(59)
         }
         
-        todoListTitle.snp.makeConstraints{ make in
-            make.leading.equalToSuperview().offset(12)
-            make.trailing.equalToSuperview().offset(-12)
-            make.centerY.equalToSuperview()
+        todoListTitle.snp.makeConstraints{
+            $0.centerY.equalToSuperview()
+            $0.centerX.equalToSuperview()
+        }
+        titleBackgroundView.snp.makeConstraints{
+            $0.leading.equalToSuperview().offset(32)
+            $0.bottom.equalToSuperview().offset(-16)
+            $0.width.equalTo(todoListTitle).offset(24)
+            $0.height.equalTo(24)
         }
         
-        titleBackgroundView.snp.makeConstraints{ make in
-            make.leading.equalToSuperview().offset(32)
-            make.bottom.equalToSuperview().offset(-16)
-            make.width.equalTo(todoListTitle).offset(24)
-            make.height.equalTo(24)
+        buttonStackView.snp.makeConstraints{
+            $0.trailing.equalToSuperview().offset(-23)
+            $0.top.bottom.equalToSuperview()
         }
-        
-        buttonStackView.snp.makeConstraints{ make in
-            make.trailing.equalToSuperview().offset(-23)
-            make.top.bottom.equalToSuperview()
+        addPlanButton.snp.makeConstraints{
+            $0.width.equalTo(43)
+            $0.height.equalTo(59)
         }
-        
-        addPlanButton.snp.makeConstraints{ make in
-            make.width.equalTo(43)
-            make.height.equalTo(59)
+        moveCategoryButton.snp.makeConstraints{
+            $0.width.equalTo(43)
+            $0.height.equalTo(59)
         }
-        
-        moveCategoryButton.snp.makeConstraints{ make in
-            make.width.equalTo(43)
-            make.height.equalTo(59)
-        }
+    }
+    
+    private func initialize(){
+        addPlanButton.addTarget(self, action: #selector(addTodoOrDiaryButtonDidTapped), for: .touchUpInside)
+        moveCategoryButton.addTarget(self, action: #selector(moveCategoryButtonDidClicked), for: .touchUpInside)
+    }
+    
+    @objc private func addTodoOrDiaryButtonDidTapped(){
+        delegate?.willShowAddTodoOrDiaryButton()
+    }
+    
+    @objc private func moveCategoryButtonDidClicked(){
+        delegate?.willMoveCategoryViewController()
     }
 }

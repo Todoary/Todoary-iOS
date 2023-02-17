@@ -359,16 +359,10 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
         
         switch indexPath.row{
         case 0:
-//            if let cell = tableView.dequeueReusableCell(for: indexPath, cellType: TodoTitleInSummaryTableViewCell.self){
-//                return cell
-//            }
-            
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoTitleInSummaryTableViewCell.cellIdentifier, for: indexPath)
-                    as? TodoTitleInSummaryTableViewCell else{ fatalError() }
-            cell.navigaiton = homeNavigaiton
-            cell.delegate = self
+            let cell = tableView.dequeueReusableCell(for: indexPath, cellType: TodoTitleInSummaryTableViewCell.self).then{
+                $0.delegate = self
+            }
             return cell
-//            return UITableViewCell()
         case rowCount - 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DiaryInSummaryTableViewCell.cellIdentifier, for: indexPath) as? DiaryInSummaryTableViewCell else{ fatalError() }
             if(isDiaryExist){
@@ -499,4 +493,31 @@ extension SummaryBottomSheetViewController: UISheetPresentationControllerDelegat
             }
         }
     }
+}
+
+extension SummaryBottomSheetViewController: SummaryViewControllerDelegate{
+    
+    func willShowAddTodoOrDiaryButton() {
+        addButtonView = AddButtonViewController().then{
+            $0.delegate = self
+            $0.modalPresentationStyle = .overFullScreen
+        }
+        
+        guard let addButtonView = addButtonView else { return }
+        
+        if(self.sheetPresentationController?.selectedDetentIdentifier == nil || self.sheetPresentationController?.selectedDetentIdentifier?.rawValue == "Test1"){
+            addButtonView.detent = .low
+        }else{
+            addButtonView.detent = .high
+        }
+        
+        self.present(addButtonView, animated: false, completion: nil)
+    }
+    
+    func willMoveCategoryViewController() {
+        HomeViewController.dismissBottomSheet()
+        homeNavigaiton.pushViewController(CategoryViewController(), animated: true)
+    }
+    
+    
 }
