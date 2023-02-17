@@ -230,7 +230,7 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource, Mo
         if(indexPath.row != tableView.numberOfRows(inSection: 0)-1){
             
             if(todoData.count == 0){
-                let cell = tableView.dequeueReusableCell(withIdentifier: NoTodoTableViewCell.cellIdentifier, for: indexPath)
+                let cell = tableView.dequeueReusableCell(withIdentifier: NoTodoInCategoryTableViewCell.cellIdentifier, for: indexPath)
                 return cell
             }
             
@@ -255,10 +255,10 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource, Mo
             return cell
             
         }else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: NewTodoAddBtnTableViewCell.cellIdentifier)
-                    as? NewTodoAddBtnTableViewCell else { fatalError() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: AddTodoInCategoryTableViewCell.cellIdentifier)
+                    as? AddTodoInCategoryTableViewCell else { fatalError() }
             
-            cell.delegate = self
+//            cell.delegate = self
             
             return cell
         }

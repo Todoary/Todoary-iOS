@@ -20,8 +20,8 @@ class SummaryBottomSheetView: BaseView{
         $0.register(TodoTitleInSummaryTableViewCell.self, forCellReuseIdentifier: TodoTitleInSummaryTableViewCell.cellIdentifier)
         $0.register(TodoBannerInSummaryTableViewCell.self, forCellReuseIdentifier: TodoBannerInSummaryTableViewCell.cellIdentifier)
         $0.register(TodoInSummaryTableViewCell.self, forCellReuseIdentifier: TodoInSummaryTableViewCell.cellIdentifier)
-        $0.register(DiaryInSummaryTableViewCell.self, forCellReuseIdentifier: DiaryInSummaryTableViewCell.cellIdentifier)
         $0.register(DiaryTitleInSummaryTableViewCell.self, forCellReuseIdentifier: DiaryTitleInSummaryTableViewCell.cellIdentifier)
+        $0.register(DiaryInSummaryTableViewCell.self, forCellReuseIdentifier: DiaryInSummaryTableViewCell.cellIdentifier)
         $0.register(DiaryBannerInSummaryTableViewCell.self, forCellReuseIdentifier: DiaryBannerInSummaryTableViewCell.cellIdentifier)
     }
     

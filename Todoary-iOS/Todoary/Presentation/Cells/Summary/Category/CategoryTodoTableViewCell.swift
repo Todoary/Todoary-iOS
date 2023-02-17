@@ -94,6 +94,7 @@ class CategoryTodoTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.selectedBackgroundView = selectedView
+        self.backgroundColor = .transparent
         
         setUpView()
         setUpConstraint()

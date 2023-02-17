@@ -160,7 +160,7 @@ class TodoInSummaryTableViewCell: UITableViewCell {
         
         titleLabel.text = cellData.title
         timeLabel.text = cellData.convertTime
-        checkBox.isSelected = cellData.isChecked ?? false
+        checkBox.isSelected = cellData.isChecked
         
         categoryButton.bindingData(title: cellData.categoryTitle, color: cellData.color)
         
@@ -205,7 +205,7 @@ extension TodoInSummaryTableViewCell{
         }
         if recognizer.state == .ended {
             if !isClamp {
-                cellWillMoveOriginalPosition()
+                willMoveOriginalPosition()
             }else{
                 guard let indexPath = getCellIndexPath() else { fatalError("indexPath casting error") }
                 
@@ -280,7 +280,7 @@ extension TodoInSummaryTableViewCell{
      
      @indexPath : pin button 클릭한 경우에만 indexPath 전달 통해 animation 종료 후 delegate 실행 되도록 함
      */
-    func cellWillMoveOriginalPosition(){
+    func willMoveOriginalPosition(){
         
         let originalFrame = CGRect(x: 0,
                                    y: frame.origin.y,
@@ -373,7 +373,7 @@ extension TodoInSummaryTableViewCell{
         
         delegate?.cellWillAlarmEnabled(indexPath)
         
-        cellWillMoveOriginalPosition()
+        willMoveOriginalPosition()
     }
     
     //TODO: 삭제 API 설계 후 진행
@@ -387,7 +387,7 @@ extension TodoInSummaryTableViewCell{
 
 
         guard let indexPath = getCellIndexPath() else { return }
-        cellWillMoveOriginalPosition()
+        willMoveOriginalPosition()
         TodoDeleteDataManager().delete(todoId: cellData.todoId, indexPath: indexPath)
 
     }

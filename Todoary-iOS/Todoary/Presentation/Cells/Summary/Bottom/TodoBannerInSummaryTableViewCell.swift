@@ -7,89 +7,53 @@
 
 import UIKit
 
-class TodoBannerInSummaryTableViewCell: UITableViewCell {
-
-    static let cellIdentifier = "todoBannerCell"
+class TodoBannerInSummaryTableViewCell: BaseTableViewCell {
     
-    var navigation : UINavigationController!
-    
-    let selectedBackView = UIView().then{
-        $0.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
-    }
-
-    lazy var checkBox = UIButton().then{
+    private let backgroundWhiteView = ShadowView(cornerRadius: 20)
+    private lazy var checkBox = UIButton().then{
         $0.setImage(Image.todoCheckEmpty, for: .normal)
     }
-    
-    let titleLabel = UILabel().then{
+    private let titleLabel = UILabel().then{
         $0.text = "오늘의 할 일은 무엇인가요?"
         $0.textColor = .black
         $0.setTypoStyleWithSingleLine(typoStyle: .bold15_18)
     }
     
-    let backView = UIView().then{
-        $0.layer.cornerRadius = 20
-        $0.backgroundColor = .white
-        $0.layer.shadowRadius = 10.0
-        $0.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        $0.layer.shadowOffset = CGSize(width: 0, height: 2)
-        $0.layer.shadowOpacity = 1
-        $0.layer.masksToBounds = false
-    }
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+    override func style() {
+        super.style()
         self.backgroundColor = .transparent
-     
-        setUpView()
-        setUpConstraint()
-        
+        self.selectedBackgroundView?.backgroundColor = .transparent
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func hierarchy() {
+        super.hierarchy()
+        baseView.addSubview(backgroundWhiteView)
+        backgroundWhiteView.addSubview(checkBox)
+        backgroundWhiteView.addSubview(titleLabel)
     }
     
-    func setUpView(){
+    override func layout() {
         
-        self.contentView.addSubview(backView)
-        self.backView.addSubview(checkBox)
-        self.backView.addSubview(titleLabel)
+        super.layout()
         
-        self.selectedBackgroundView = selectedBackView
-        
-    }
-    
-    func setUpConstraint(){
-        
-        self.contentView.snp.makeConstraints{ make in
-            make.leading.equalToSuperview().offset(32)
-            make.trailing.equalToSuperview().offset(-30)
-            make.height.equalTo(75)
-            make.top.equalToSuperview().offset(7.5)
-            make.bottom.equalToSuperview().offset(-7.5)
+        baseView.snp.makeConstraints{
+            $0.height.equalTo(75)
+        }
+        backgroundWhiteView.snp.makeConstraints{
+            $0.leading.equalToSuperview().offset(32)
+            $0.trailing.equalToSuperview().offset(-30)
+            $0.bottom.equalToSuperview().offset(-15)
         }
         
-        backView.snp.makeConstraints{ make in
-            make.leading.trailing.top.bottom.equalToSuperview()
+        checkBox.snp.makeConstraints{
+            $0.width.height.equalTo(24)
+            $0.top.equalToSuperview().offset(18)
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().offset(19)
         }
-        
-        checkBox.snp.makeConstraints{ make in
-            make.width.height.equalTo(24)
-            make.leading.equalToSuperview().offset(19)
-            make.top.equalToSuperview().offset(18)
-            make.bottom.equalToSuperview().offset(-18)
+        titleLabel.snp.makeConstraints{
+            $0.leading.equalTo(checkBox.snp.trailing).offset(13)
+            $0.centerY.equalTo(checkBox)
         }
-        
-        titleLabel.snp.makeConstraints{ make in
-            make.leading.equalTo(checkBox.snp.trailing).offset(13)
-            make.centerY.equalTo(checkBox)
-            make.width.equalTo(170)
-        }
-        
-
-    
     }
 }

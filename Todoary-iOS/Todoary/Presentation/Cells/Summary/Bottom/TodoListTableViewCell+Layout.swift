@@ -26,8 +26,8 @@ extension TodoInSummaryTableViewCell{
             make.leading.equalToSuperview().offset(32)
             make.trailing.equalToSuperview().offset(-30)
             make.height.equalTo(75)
-            make.top.equalToSuperview().offset(7.5)
-            make.bottom.equalToSuperview().offset(-7.5)
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-15)
         }
         
         backView.snp.makeConstraints{ make in
