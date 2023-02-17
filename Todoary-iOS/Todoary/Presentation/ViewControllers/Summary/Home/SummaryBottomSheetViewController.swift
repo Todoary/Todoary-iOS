@@ -78,14 +78,6 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
         self.homeNavigaiton.pushViewController(vc, animated: true)
     }
     
-    @objc func deleteDiaryAlertWillShow(){
-        
-        let alert = CancelAlertViewController(title: "다이어리를 삭제하시겠습니까?").show(in: self)
-        alert.alertHandler = {
-            self.requestDeleteDiary()
-        }
-    }
-    
     @objc func willMoveDiaryViewController(){
 
         let vc = DiaryViewController()
@@ -189,7 +181,6 @@ extension SummaryBottomSheetViewController: RequestSummaryCellDelegate{
         mainView.summaryTableView.reloadData()
         showDeleteCompleteToastMessage(type: .Diary)
         
-        //TODO: API 대체
         homeViewController.requestGetDiaryByYearMonth(yearMonth: todoDate!.yearMonthSendServer)
     }
     
@@ -352,12 +343,9 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
             }
             return cell
         case rowCount - 2:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: DiaryTitleInSummaryTableViewCell.cellIdentifier, for: indexPath) as? DiaryTitleInSummaryTableViewCell else{ fatalError() }
-            if(isDiaryExist){
-                cell.deleteBtn.isHidden = false
-                cell.deleteBtn.addTarget(self, action: #selector(deleteDiaryAlertWillShow), for: .touchUpInside)
-            }else{
-                cell.deleteBtn.isHidden = true
+            let cell = tableView.dequeueReusableCell(for: indexPath, cellType: DiaryTitleInSummaryTableViewCell.self).then{
+                $0.delegate = self
+                $0.isDiaryExist = isDiaryExist ? true : false
             }
             return cell
         case rowCount - 1:
@@ -381,7 +369,6 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
                 cell.delegate = self
                 cell.cellData = todoData[indexPath.row-1]
 //                cell.bindingData()
-                
                 return cell
             }else{
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoBannerInSummaryTableViewCell.cellIdentifier, for: indexPath)
@@ -522,5 +509,11 @@ extension SummaryBottomSheetViewController: SummaryViewControllerDelegate{
         homeNavigaiton.pushViewController(CategoryViewController(), animated: true)
     }
     
-    
+    func willShowDiaryDeleteAlert() {
+        let alert = CancelAlertViewController(title: "다이어리를 삭제하시겠습니까?").show(in: self).then{
+            $0.alertHandler = {
+                self.requestDeleteDiary()
+            }
+        }
+    }
 }

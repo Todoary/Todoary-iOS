@@ -10,6 +10,7 @@ import UIKit
 protocol SummaryViewControllerDelegate{
     func willShowAddTodoOrDiaryButton()
     func willMoveCategoryViewController()
+    func willShowDiaryDeleteAlert()
 }
 
 final class TodoTitleInSummaryTableViewCell: BaseTableViewCell {
