@@ -65,18 +65,6 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
         mainView.summaryTableView.dataSource = self
         mainView.summaryTableView.separatorStyle = .none
     }
-
-    //TODO: - will delete?
-    //아무런 todo 없는경우 배너 누르기-> 키보드 올리기
-    @objc func tapBannerCell(){
-        HomeViewController.dismissBottomSheet()
-        
-        let vc = TodoSettingViewController()
-        vc.mainView.date.setTitle(todoDate.dateUsedTodo, for: .normal)
-        vc.todoDate = todoDate
-        
-        self.homeNavigaiton.pushViewController(vc, animated: true)
-    }
     
     @objc func willMoveDiaryViewController(){
 
@@ -349,7 +337,6 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
             }
             return cell
         case rowCount - 1:
-            
             //선택한 날짜에 다이어리 존재 여부에 따른 table cell 구성 differ
             if(isDiaryExist){
                 let cell =  tableView.dequeueReusableCell(for: indexPath, cellType: DiaryInSummaryTableViewCell.self)
@@ -358,7 +345,7 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
                 }
                 return cell
             }else{
-                return tableView.dequeueReusableCell(withIdentifier: DiaryBannerInSummaryTableViewCell.cellIdentifier, for: indexPath)
+                return tableView.dequeueReusableCell(for: indexPath, cellType: DiaryBannerInSummaryTableViewCell.self)
             }
 
         default:
@@ -371,15 +358,7 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
 //                cell.bindingData()
                 return cell
             }else{
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoBannerInSummaryTableViewCell.cellIdentifier, for: indexPath)
-                        as? TodoBannerInSummaryTableViewCell else{ fatalError() }
-                
-                let tapBannerCell = CellButtonTapGesture(target: self, action: #selector(tapBannerCell))
-                tapBannerCell.caller = indexPath.row
-                
-                cell.navigation = homeNavigaiton
-                cell.contentView.addGestureRecognizer(tapBannerCell)
-                return cell
+                return tableView.dequeueReusableCell(for: indexPath, cellType: TodoBannerInSummaryTableViewCell.self)
             }
         }
     }
@@ -392,7 +371,9 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
         }
 
         let rowCount = tableView.numberOfRows(inSection: 0)
-        if(indexPath.row == rowCount - 1){
+        if(indexPath.row == 1 && todoData.isEmpty){
+            willMoveToAddTodo()
+        }else if(indexPath.row == rowCount - 1){
             willMoveDiaryViewController()
         }
     }
@@ -403,6 +384,16 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
                 closure(cell)
             }
         }
+    }
+    
+    @objc private func willMoveToAddTodo(){
+        HomeViewController.dismissBottomSheet()
+        
+        let vc = TodoSettingViewController()
+        vc.mainView.date.setTitle(todoDate.dateUsedTodo, for: .normal)
+        vc.todoDate = todoDate
+        
+        self.homeNavigaiton.pushViewController(vc, animated: true)
     }
 }
 
@@ -510,7 +501,7 @@ extension SummaryBottomSheetViewController: SummaryCellDelegate{
     }
     
     func willShowDiaryDeleteAlert() {
-        let alert = CancelAlertViewController(title: "다이어리를 삭제하시겠습니까?").show(in: self).then{
+        _ = CancelAlertViewController(title: "다이어리를 삭제하시겠습니까?").show(in: self).then{
             $0.alertHandler = {
                 self.requestDeleteDiary()
             }
