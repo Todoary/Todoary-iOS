@@ -34,8 +34,9 @@ extension CategoryTodoTableViewCell{
         
         backView.snp.makeConstraints{ make in
             make.leading.trailing.equalToSuperview()
-            make.top.equalToSuperview().offset(10)
-            make.bottom.equalToSuperview().offset(-10)
+            make.top.equalToSuperview()
+//                .offset(10)
+            make.bottom.equalToSuperview().offset(-20)
         }
         
         categoryLabel.snp.makeConstraints{ make in

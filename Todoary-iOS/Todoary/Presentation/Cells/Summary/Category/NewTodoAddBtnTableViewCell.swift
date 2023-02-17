@@ -7,78 +7,35 @@
 
 import UIKit
 
-class NewTodoAddBtnTableViewCell: UITableViewCell {
+class NewTodoAddBtnTableViewCell: BaseTableViewCell {
     
-    static let cellIdentifier = "addBtnCell"
+    private let backgroundShadowView = ShadowView(cornerRadius: 20)
     
-    var delegate: MoveViewController?
-    
-    let backView = UIView().then{
-        $0.backgroundColor = .white
-        $0.layer.cornerRadius = 20
-        $0.layer.shadowRadius = 7.0
-        $0.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        $0.layer.shadowOffset = CGSize(width: 0, height: 2)
-        $0.layer.shadowOpacity = 1
-        $0.layer.masksToBounds = false
-    }
-    
-    lazy var addBtn = UIButton().then{
-        $0.backgroundColor = .transparent
-        $0.addTarget(self, action: #selector(addBtnDidClicked), for: .touchUpInside)
-    }
-    
-    let addImage = UIImageView().then{
+    private let addImage = UIImageView().then{
         $0.image = Image.categoryPlus
     }
     
-    let selectedView = UIView().then{
-        $0.backgroundColor = .white
-    }
-
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        self.contentView.addSubview(backView)
-        self.selectedBackgroundView = selectedView
-        
-        backView.addSubview(addImage)
-        backView.addSubview(addBtn)
-        
-        self.contentView.snp.makeConstraints{ make in
-            make.height.equalTo(47+20)
-            make.top.bottom.equalToSuperview()
-            make.leading.equalToSuperview().offset(32)
-            make.trailing.equalToSuperview().offset(-30)
-        }
-        
-        backView.snp.makeConstraints{ make in
-            make.leading.trailing.equalToSuperview()
-            make.top.equalToSuperview().offset(10)
-            make.bottom.equalToSuperview().offset(-10)
-        }
-        
-        addBtn.snp.makeConstraints{ make in
-            make.top.bottom.leading.trailing.equalToSuperview()
-        }
-        
-        addImage.snp.makeConstraints{ make in
-            make.width.height.equalTo(25)
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-        }
+    override func hierarchy() {
+        super.hierarchy()
+        baseView.addSubview(backgroundShadowView)
+        backgroundShadowView.addSubview(addImage)
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func layout() {
+        
+        super.layout()
+        baseView.snp.updateConstraints{
+            $0.leading.trailing.equalToSuperview().inset(31)
+        }
+        backgroundShadowView.snp.makeConstraints{
+            $0.height.equalTo(47)
+            $0.top.bottom.leading.trailing.equalToSuperview()
+        }
+        addImage.snp.makeConstraints{
+            $0.width.height.equalTo(25)
+            $0.centerY.centerX.equalToSuperview()
+        }
     }
-    
-    @objc
-    func addBtnDidClicked(){
-        delegate?.moveToViewController()
-    }
-    
 }
 
 protocol MoveViewController{
