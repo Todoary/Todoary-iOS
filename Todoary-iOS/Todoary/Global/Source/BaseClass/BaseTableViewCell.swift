@@ -23,6 +23,7 @@ class BaseTableViewCell: UITableViewCell, CellReuseProtocol {
     }
     
     func style() {
+        self.backgroundColor = .transparent
         self.selectedBackgroundView = UIView()
     }
     
