@@ -22,7 +22,9 @@ class BaseTableViewCell: UITableViewCell, CellReuseProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func style() { }
+    func style() {
+        self.selectedBackgroundView = UIView()
+    }
     
     func hierarchy(){
         self.contentView.addSubview(baseView)
