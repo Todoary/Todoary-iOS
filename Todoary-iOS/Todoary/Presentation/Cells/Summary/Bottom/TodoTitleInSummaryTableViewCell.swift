@@ -7,17 +7,14 @@
 
 import UIKit
 
-class TodoTitleInSummaryTableViewCell: UITableViewCell {
-    
-    static let cellIdentifier = "todolistTitleCell"
-    
-    var navigaiton : UINavigationController!
-    
-    var delegate: MoveViewController?
-    
-    let backView = UIView().then{
-        $0.backgroundColor = .transparent
-    }
+protocol SummaryViewControllerDelegate{
+    func willShowAddTodoOrDiaryButton()
+    func willMoveCategoryViewController()
+}
+
+final class TodoTitleInSummaryTableViewCell: BaseTableViewCell {
+
+    var delegate: SummaryViewControllerDelegate!
     
     let selectedBackView = UIView().then{
         $0.backgroundColor = .transparent
