@@ -14,7 +14,7 @@ class DiaryTitleInSummaryTableViewCell: BaseTableViewCell {
             deleteBtn.isHidden = isDiaryExist ? false : true
         }
     }
-    var delegate: SummaryViewControllerDelegate?
+    var delegate: SummaryCellDelegate?
     
     private let titleBackgroundView = ShadowView(cornerRadius: 24/2)
     private let diaryTitle = UILabel().then{

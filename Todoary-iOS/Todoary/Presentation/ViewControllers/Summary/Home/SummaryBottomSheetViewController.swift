@@ -485,7 +485,7 @@ extension SummaryBottomSheetViewController: UISheetPresentationControllerDelegat
     }
 }
 
-extension SummaryBottomSheetViewController: SummaryViewControllerDelegate{
+extension SummaryBottomSheetViewController: SummaryCellDelegate{
     
     func willShowAddTodoOrDiaryButton() {
         addButtonView = AddButtonViewController().then{

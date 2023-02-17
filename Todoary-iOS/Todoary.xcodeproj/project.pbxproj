@@ -221,6 +221,7 @@
 		EE8BCEF6299F2836004EA821 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BCEF5299F2836004EA821 /* UITableView.swift */; };
 		EE8BCEF8299F2842004EA821 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BCEF7299F2842004EA821 /* UICollectionView.swift */; };
 		EE8BCEFA299F3AF9004EA821 /* ShadowDesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BCEF9299F3AF9004EA821 /* ShadowDesignSystem.swift */; };
+		EE8BCEFC299F4F48004EA821 /* SummaryCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BCEFB299F4F48004EA821 /* SummaryCellDelegate.swift */; };
 		EED1B34E298656E600F14CAC /* TypoDesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED1B34D298656E600F14CAC /* TypoDesignSystem.swift */; };
 		EED1B350298656FD00F14CAC /* CategoryDesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED1B34F298656FD00F14CAC /* CategoryDesignSystem.swift */; };
 		EEE326A52998AEB50017DF46 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE326A42998AEB50017DF46 /* Image.swift */; };
@@ -474,6 +475,7 @@
 		EE8BCEF5299F2836004EA821 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		EE8BCEF7299F2842004EA821 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		EE8BCEF9299F3AF9004EA821 /* ShadowDesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowDesignSystem.swift; sourceTree = "<group>"; };
+		EE8BCEFB299F4F48004EA821 /* SummaryCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCellDelegate.swift; sourceTree = "<group>"; };
 		EED1B34D298656E600F14CAC /* TypoDesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypoDesignSystem.swift; sourceTree = "<group>"; };
 		EED1B34F298656FD00F14CAC /* CategoryDesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDesignSystem.swift; sourceTree = "<group>"; };
 		EEE326A42998AEB50017DF46 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
@@ -1568,6 +1570,7 @@
 			isa = PBXGroup;
 			children = (
 				57D5B60E29580F8400216C94 /* BaseProtocol.swift */,
+				EE8BCEFB299F4F48004EA821 /* SummaryCellDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -2073,6 +2076,7 @@
 				E0F998CB288A6B460051C7AA /* AdModel.swift in Sources */,
 				E0439AC0288C5B0F0075CBF0 /* ColorPickerCollectionViewCell.swift in Sources */,
 				57FFEDBA28DAD9BE0041719B /* ConfirmMessageAlertViewController.swift in Sources */,
+				EE8BCEFC299F4F48004EA821 /* SummaryCellDelegate.swift in Sources */,
 				572E9AB9287BC4AC00F915DF /* ScreenSettingViewController.swift in Sources */,
 				ACACD01628749F880029D5CE /* PasswordFindViewController.swift in Sources */,
 				AC3A6694297C3B7E00EF42BE /* TodoRequestModel.swift in Sources */,

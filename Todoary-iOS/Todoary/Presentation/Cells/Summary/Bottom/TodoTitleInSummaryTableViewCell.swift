@@ -7,15 +7,9 @@
 
 import UIKit
 
-protocol SummaryViewControllerDelegate{
-    func willShowAddTodoOrDiaryButton()
-    func willMoveCategoryViewController()
-    func willShowDiaryDeleteAlert()
-}
-
 final class TodoTitleInSummaryTableViewCell: BaseTableViewCell {
 
-    var delegate: SummaryViewControllerDelegate!
+    var delegate: SummaryCellDelegate!
     
     private let todoListTitle = UILabel().then{
         $0.text = "TODO LIST"
