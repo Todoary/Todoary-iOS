@@ -113,7 +113,7 @@ class TodoTitleInSummaryTableViewCell: UITableViewCell {
         titleBackgroundView.snp.makeConstraints{ make in
             make.leading.equalToSuperview().offset(32)
             make.bottom.equalToSuperview().offset(-16)
-            make.width.equalTo(84)
+            make.width.equalTo(todoListTitle).offset(24)
             make.height.equalTo(24)
         }
         
