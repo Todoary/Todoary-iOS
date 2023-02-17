@@ -1,5 +1,5 @@
 //
-//  DiaryInSummaryTableViewCell.swift
+//  DiaryTitleInSummaryTableViewCell.swift
 //  Todoary
 //
 //  Created by 박지윤 on 2022/07/18.
@@ -7,86 +7,59 @@
 
 import UIKit
 
-class DiaryInSummaryTableViewCell: UITableViewCell {
+class DiaryInSummaryTableViewCell: BaseTableViewCell {
     
-    static let cellIdentifier = "diaryTitleCell"
-    
-    let backView = UIView().then{
-        $0.backgroundColor = .transparent
+    private let backgroundWhiteView = ShadowView(cornerRadius: 20)
+    private let diaryTitle = UILabel().then{
+        $0.textColor = .black
+        $0.numberOfLines = 1
+        $0.setTypoStyleWithSingleLine(typoStyle: .extrabold13)
+    }
+    private let diaryTextView = UILabel().then{
+        $0.numberOfLines = 0
     }
     
-    let selectedBackView = UIView().then{
-        $0.backgroundColor = .transparent
-    }
-    
-    let diaryTitle = UILabel().then{
-        $0.text = "DIARY"
-        $0.setTypoStyleWithSingleLine(typoStyle: .extrabold12)
-        $0.textColor = .summaryTitle
-    }
-    
-    let titleBackgroundView = UIView().then{
-        $0.backgroundColor = .white
-        $0.layer.cornerRadius = 24/2
-        $0.layer.shadowRadius = 10.0
-        $0.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        $0.layer.shadowOffset = CGSize(width: 0, height: 2)
-        $0.layer.shadowOpacity = 1
-        $0.layer.masksToBounds = false
-    }
-    
-    lazy var deleteBtn = UIButton().then{
-        $0.setImage(Image.summeryTrash, for: .normal)
-    }
-    
-
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+    override func style() {
+        super.style()
         self.backgroundColor = .transparent
-        self.selectedBackgroundView = selectedBackView
+        self.selectedBackgroundView?.backgroundColor = .transparent
+    }
+    
+    override func hierarchy() {
+        super.hierarchy()
+        baseView.addSubview(backgroundWhiteView)
+        backgroundWhiteView.addSubview(diaryTitle)
+        backgroundWhiteView.addSubview(diaryTextView)
+    }
+    
+    override func layout() {
         
-        //set view
-        self.contentView.addSubview(backView)
+        super.layout()
         
-        backView.addSubview(titleBackgroundView)
-        backView.addSubview(deleteBtn)
-        
-        titleBackgroundView.addSubview(diaryTitle)
-        
-        //set constraint
-        self.contentView.snp.makeConstraints{ make in
-            make.height.equalTo(73.5) //60.5
-            make.leading.trailing.top.bottom.equalToSuperview()
+        backgroundWhiteView.snp.makeConstraints{
+            $0.bottom.equalToSuperview()
+            $0.top.equalToSuperview().offset(3)
+            $0.leading.equalToSuperview().offset(32)
+            $0.trailing.equalToSuperview().offset(-30)
+            $0.height.equalTo(diaryTextView.snp.height).offset(63)
         }
-        
-        backView.snp.makeConstraints{ make in
-            make.leading.trailing.top.bottom.equalToSuperview()
+        diaryTitle.snp.makeConstraints{
+            $0.top.equalToSuperview().offset(12)
+            $0.leading.equalToSuperview().offset(19)
+            $0.trailing.equalToSuperview().offset(-25)
+            $0.height.equalTo(23)
         }
-        
-        titleBackgroundView.snp.makeConstraints{ make in
-            make.leading.equalToSuperview().offset(35)
-            make.bottom.equalToSuperview().offset(-13)
-            make.width.equalTo(60)
-            make.height.equalTo(24)
-        }
-        
-        diaryTitle.snp.makeConstraints{ make in
-            make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().offset(12)
-            make.trailing.equalToSuperview().offset(-12)
-        }
-        
-        deleteBtn.snp.makeConstraints{ make in
-            make.trailing.equalToSuperview().offset(-27)
-            make.width.equalTo(54)
-            make.height.equalTo(52)
-            make.bottom.equalToSuperview()
+        diaryTextView.snp.makeConstraints{
+            $0.leading.equalToSuperview().offset(19)
+            $0.trailing.equalToSuperview().offset(-20)
+            $0.top.equalTo(diaryTitle.snp.bottom).offset(5)
+            $0.bottom.equalToSuperview().offset(-23)
         }
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func setUpDataBinding(_ diary: DiaryResultModel){
+        self.diaryTitle.text = diary.title
+        self.diaryTextView.attributedText = diary.content12AttributedString ?? NSAttributedString(string: "")
+        self.diaryTextView.labelAttributeSetting(letterSpacing: 0.24, lineHeight: 14.4)
     }
 }
