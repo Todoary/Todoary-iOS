@@ -46,7 +46,7 @@ class DiaryTitleInSummaryTableViewCell: BaseTableViewCell {
         super.layout()
         
         baseView.snp.makeConstraints{
-            $0.height.equalTo(73.5)
+            $0.height.equalTo(66)
         }
         
         titleBackgroundView.snp.makeConstraints{ make in
