@@ -45,7 +45,7 @@
 		57397F98296D51170088B5F4 /* DiaryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F97296D51170088B5F4 /* DiaryRouter.swift */; };
 		57397F9A296D51210088B5F4 /* DiaryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F99296D51210088B5F4 /* DiaryService.swift */; };
 		57397FA0296D51810088B5F4 /* AlarmActiveStautsResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F9F296D51810088B5F4 /* AlarmActiveStautsResultModel.swift */; };
-		57468A6A289BCDE800056691 /* NoTodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57468A69289BCDE800056691 /* NoTodoTableViewCell.swift */; };
+		57468A6A289BCDE800056691 /* NoTodoInCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57468A69289BCDE800056691 /* NoTodoInCategoryTableViewCell.swift */; };
 		574913B7287ADF5600381BCD /* AlarmSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574913B6287ADF5600381BCD /* AlarmSettingViewController.swift */; };
 		574913B9287ADF6500381BCD /* AlarmSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574913B8287ADF6500381BCD /* AlarmSettingView.swift */; };
 		574913BB287ADF8E00381BCD /* AlarmSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574913BA287ADF8E00381BCD /* AlarmSettingTableViewCell.swift */; };
@@ -291,7 +291,7 @@
 		57397F97296D51170088B5F4 /* DiaryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryRouter.swift; sourceTree = "<group>"; };
 		57397F99296D51210088B5F4 /* DiaryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryService.swift; sourceTree = "<group>"; };
 		57397F9F296D51810088B5F4 /* AlarmActiveStautsResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmActiveStautsResultModel.swift; sourceTree = "<group>"; };
-		57468A69289BCDE800056691 /* NoTodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoTodoTableViewCell.swift; sourceTree = "<group>"; };
+		57468A69289BCDE800056691 /* NoTodoInCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoTodoInCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		574913B6287ADF5600381BCD /* AlarmSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingViewController.swift; sourceTree = "<group>"; };
 		574913B8287ADF6500381BCD /* AlarmSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingView.swift; sourceTree = "<group>"; };
 		574913BA287ADF8E00381BCD /* AlarmSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingTableViewCell.swift; sourceTree = "<group>"; };
@@ -1239,7 +1239,7 @@
 		5701EA9D2957181400F21F63 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				57468A69289BCDE800056691 /* NoTodoTableViewCell.swift */,
+				57468A69289BCDE800056691 /* NoTodoInCategoryTableViewCell.swift */,
 				573844B9288CF01D009529CD /* NewTodoAddBtnTableViewCell.swift */,
 				57D5D10328975CE8004A16DA /* CategoryTodoTableViewCell+Layout.swift */,
 				57503662288BE3A0006A9070 /* CategoryTodoTableViewCell.swift */,
@@ -1973,7 +1973,7 @@
 				E0F3CDC92895696E00A74AB7 /* TodoInDiaryTableViewCell.swift in Sources */,
 				575DE95E2976522000E61B8F /* TodoAlarmRequestModel.swift in Sources */,
 				576ED6B42874902A007389CD /* UITextField.swift in Sources */,
-				57468A6A289BCDE800056691 /* NoTodoTableViewCell.swift in Sources */,
+				57468A6A289BCDE800056691 /* NoTodoInCategoryTableViewCell.swift in Sources */,
 				57B9F71328D94F7500ACEC94 /* CancelAlertViewController.swift in Sources */,
 				ACCD87C628965B7700C34CE7 /* TodoCategoryCell.swift in Sources */,
 				572E9AC1287BC90A00F915DF /* FontSettingTableViewCell.swift in Sources */,

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NoTodoTableViewCell: UITableViewCell {
+class NoTodoInCategoryTableViewCell: UITableViewCell {
     
     static let cellIdentifier = "noTodoCell"
     

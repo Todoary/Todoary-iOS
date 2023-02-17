@@ -230,7 +230,7 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource, Mo
         if(indexPath.row != tableView.numberOfRows(inSection: 0)-1){
             
             if(todoData.count == 0){
-                let cell = tableView.dequeueReusableCell(withIdentifier: NoTodoTableViewCell.cellIdentifier, for: indexPath)
+                let cell = tableView.dequeueReusableCell(withIdentifier: NoTodoInCategoryTableViewCell.cellIdentifier, for: indexPath)
                 return cell
             }
             

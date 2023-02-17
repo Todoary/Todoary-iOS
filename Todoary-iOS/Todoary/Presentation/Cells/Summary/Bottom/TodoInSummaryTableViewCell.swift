@@ -160,7 +160,7 @@ class TodoInSummaryTableViewCell: UITableViewCell {
         
         titleLabel.text = cellData.title
         timeLabel.text = cellData.convertTime
-        checkBox.isSelected = cellData.isChecked ?? false
+        checkBox.isSelected = cellData.isChecked
         
         categoryButton.bindingData(title: cellData.categoryTitle, color: cellData.color)
         
