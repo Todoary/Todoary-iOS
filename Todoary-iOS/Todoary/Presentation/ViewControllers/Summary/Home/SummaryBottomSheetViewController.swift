@@ -359,6 +359,10 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
         
         switch indexPath.row{
         case 0:
+//            if let cell = tableView.dequeueReusableCell(for: indexPath, cellType: TodoTitleInSummaryTableViewCell.self){
+//                return cell
+//            }
+            
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoTitleInSummaryTableViewCell.cellIdentifier, for: indexPath)
                     as? TodoTitleInSummaryTableViewCell else{ fatalError() }
             cell.navigaiton = homeNavigaiton
