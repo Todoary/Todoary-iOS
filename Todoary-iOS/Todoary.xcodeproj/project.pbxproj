@@ -54,8 +54,8 @@
 		574A70382883C701003C8F99 /* TodoListTableViewCell+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A70372883C701003C8F99 /* TodoListTableViewCell+Layout.swift */; };
 		574A703A2883FF10003C8F99 /* AppleSDGothicNeoEB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 574A70392883FF10003C8F99 /* AppleSDGothicNeoEB.ttf */; };
 		574A704528852523003C8F99 /* TodoTitleInSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A704428852523003C8F99 /* TodoTitleInSummaryTableViewCell.swift */; };
-		574A704728852544003C8F99 /* DiaryInSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A704628852543003C8F99 /* DiaryInSummaryTableViewCell.swift */; };
-		574A70492885255B003C8F99 /* DiaryTitleInSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A70482885255B003C8F99 /* DiaryTitleInSummaryTableViewCell.swift */; };
+		574A704728852544003C8F99 /* DiaryTitleInSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A704628852543003C8F99 /* DiaryTitleInSummaryTableViewCell.swift */; };
+		574A70492885255B003C8F99 /* DiaryInSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A70482885255B003C8F99 /* DiaryInSummaryTableViewCell.swift */; };
 		574A704B28852F9B003C8F99 /* DiaryBannerInSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A704A28852F9B003C8F99 /* DiaryBannerInSummaryTableViewCell.swift */; };
 		574A704F28865FEE003C8F99 /* HiddenTransparentButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A704E28865FEE003C8F99 /* HiddenTransparentButtonView.swift */; };
 		57502F47287EA29100C36804 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57502F46287EA29100C36804 /* UITextView.swift */; };
@@ -220,6 +220,7 @@
 		EE135A89298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE135A88298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift */; };
 		EE8BCEF6299F2836004EA821 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BCEF5299F2836004EA821 /* UITableView.swift */; };
 		EE8BCEF8299F2842004EA821 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BCEF7299F2842004EA821 /* UICollectionView.swift */; };
+		EE8BCEFA299F3AF9004EA821 /* ShadowDesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BCEF9299F3AF9004EA821 /* ShadowDesignSystem.swift */; };
 		EED1B34E298656E600F14CAC /* TypoDesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED1B34D298656E600F14CAC /* TypoDesignSystem.swift */; };
 		EED1B350298656FD00F14CAC /* CategoryDesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED1B34F298656FD00F14CAC /* CategoryDesignSystem.swift */; };
 		EEE326A52998AEB50017DF46 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE326A42998AEB50017DF46 /* Image.swift */; };
@@ -298,8 +299,8 @@
 		574A70372883C701003C8F99 /* TodoListTableViewCell+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoListTableViewCell+Layout.swift"; sourceTree = "<group>"; };
 		574A70392883FF10003C8F99 /* AppleSDGothicNeoEB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AppleSDGothicNeoEB.ttf; sourceTree = "<group>"; };
 		574A704428852523003C8F99 /* TodoTitleInSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTitleInSummaryTableViewCell.swift; sourceTree = "<group>"; };
-		574A704628852543003C8F99 /* DiaryInSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryInSummaryTableViewCell.swift; sourceTree = "<group>"; };
-		574A70482885255B003C8F99 /* DiaryTitleInSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTitleInSummaryTableViewCell.swift; sourceTree = "<group>"; };
+		574A704628852543003C8F99 /* DiaryTitleInSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTitleInSummaryTableViewCell.swift; sourceTree = "<group>"; };
+		574A70482885255B003C8F99 /* DiaryInSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryInSummaryTableViewCell.swift; sourceTree = "<group>"; };
 		574A704A28852F9B003C8F99 /* DiaryBannerInSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryBannerInSummaryTableViewCell.swift; sourceTree = "<group>"; };
 		574A704C28853C36003C8F99 /* UISheetPresentationControllerDetent+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UISheetPresentationControllerDetent+Private.h"; sourceTree = "<group>"; };
 		574A704E28865FEE003C8F99 /* HiddenTransparentButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenTransparentButtonView.swift; sourceTree = "<group>"; };
@@ -472,6 +473,7 @@
 		EE135A88298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAddCollectionViewCell.swift; sourceTree = "<group>"; };
 		EE8BCEF5299F2836004EA821 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		EE8BCEF7299F2842004EA821 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
+		EE8BCEF9299F3AF9004EA821 /* ShadowDesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowDesignSystem.swift; sourceTree = "<group>"; };
 		EED1B34D298656E600F14CAC /* TypoDesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypoDesignSystem.swift; sourceTree = "<group>"; };
 		EED1B34F298656FD00F14CAC /* CategoryDesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDesignSystem.swift; sourceTree = "<group>"; };
 		EEE326A42998AEB50017DF46 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
@@ -1409,8 +1411,8 @@
 				574A6FED28826D30003C8F99 /* TodoInSummaryTableViewCell.swift */,
 				574A70372883C701003C8F99 /* TodoListTableViewCell+Layout.swift */,
 				574A704428852523003C8F99 /* TodoTitleInSummaryTableViewCell.swift */,
-				574A704628852543003C8F99 /* DiaryInSummaryTableViewCell.swift */,
-				574A70482885255B003C8F99 /* DiaryTitleInSummaryTableViewCell.swift */,
+				574A704628852543003C8F99 /* DiaryTitleInSummaryTableViewCell.swift */,
+				574A70482885255B003C8F99 /* DiaryInSummaryTableViewCell.swift */,
 				574A704A28852F9B003C8F99 /* DiaryBannerInSummaryTableViewCell.swift */,
 				57294ACB28937C2C00DA2F31 /* TodoBannerInSummaryTableViewCell.swift */,
 			);
@@ -1628,6 +1630,7 @@
 			children = (
 				EED1B34D298656E600F14CAC /* TypoDesignSystem.swift */,
 				EED1B34F298656FD00F14CAC /* CategoryDesignSystem.swift */,
+				EE8BCEF9299F3AF9004EA821 /* ShadowDesignSystem.swift */,
 			);
 			path = DesignSystem;
 			sourceTree = "<group>";
@@ -1946,7 +1949,7 @@
 				AC5E27DC288FC0DA0056EC69 /* TodoAlarmBottomSheetViewController.swift in Sources */,
 				575DE95C297651E800E61B8F /* DiaryStickerResultModel.swift in Sources */,
 				570DD840295ED04B00A0D2A9 /* DiaryViewController+ToolBar.swift in Sources */,
-				574A70492885255B003C8F99 /* DiaryTitleInSummaryTableViewCell.swift in Sources */,
+				574A70492885255B003C8F99 /* DiaryInSummaryTableViewCell.swift in Sources */,
 				574A704528852523003C8F99 /* TodoTitleInSummaryTableViewCell.swift in Sources */,
 				ACBAE572297990FB00E71CAD /* LoginRequestModel.swift in Sources */,
 				AC9128D2287B34C80056932A /* ProfileView.swift in Sources */,
@@ -2062,7 +2065,7 @@
 				E0C4BD632872100900FDEA0E /* PrivacyTextView.swift in Sources */,
 				E0439ABD288C599A0075CBF0 /* ColorPickerView.swift in Sources */,
 				E076E9EB28703CAF001E14E1 /* AgreementView.swift in Sources */,
-				574A704728852544003C8F99 /* DiaryInSummaryTableViewCell.swift in Sources */,
+				574A704728852544003C8F99 /* DiaryTitleInSummaryTableViewCell.swift in Sources */,
 				576ED6B228749021007389CD /* String.swift in Sources */,
 				ACBAE5702979909700E71CAD /* LoginResultModel.swift in Sources */,
 				57D5B60F29580F8400216C94 /* BaseProtocol.swift in Sources */,
@@ -2089,6 +2092,7 @@
 				AC5E27CD288C38290056EC69 /* TodoWeekCell.swift in Sources */,
 				57397F88296D471B0088B5F4 /* AlarmRouter.swift in Sources */,
 				57503663288BE3A0006A9070 /* CategoryTodoTableViewCell.swift in Sources */,
+				EE8BCEFA299F3AF9004EA821 /* ShadowDesignSystem.swift in Sources */,
 				572E9ABD287BC4DD00F915DF /* FontSettingViewController.swift in Sources */,
 				AC9859C6287DC219009FC2F8 /* MailSender.swift in Sources */,
 				574A6FEE28826D30003C8F99 /* TodoInSummaryTableViewCell.swift in Sources */,

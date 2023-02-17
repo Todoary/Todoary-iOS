@@ -55,29 +55,17 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
     
     private func layout(){
         self.view.addSubview(mainView)
-        
         mainView.snp.makeConstraints{
             $0.top.leading.trailing.bottom.equalToSuperview()
         }
     }
     
     private func initialize(){
-
         mainView.summaryTableView.delegate = self
         mainView.summaryTableView.dataSource = self
         mainView.summaryTableView.separatorStyle = .none
-        
-        mainView.summaryTableView.addGestureRecognizer(UITapGestureRecognizer(target: self,
-                                                                              action: #selector(cellWillMoveToOriginalPosition)))
     }
-    
-    //MARK: - Action
-    
-    @objc func cellWillMoveToOriginalPosition(){
-        guard let cell = mainView.summaryTableView.cellForRow(at: clampCell) as? TodoInSummaryTableViewCell else { return }
-        cell.cellWillMoveOriginalPosition()
-    }
-    
+
     //TODO: - will delete?
     //아무런 todo 없는경우 배너 누르기-> 키보드 올리기
     @objc func tapBannerCell(){
@@ -364,7 +352,7 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
             }
             return cell
         case rowCount - 2:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: DiaryInSummaryTableViewCell.cellIdentifier, for: indexPath) as? DiaryInSummaryTableViewCell else{ fatalError() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: DiaryTitleInSummaryTableViewCell.cellIdentifier, for: indexPath) as? DiaryTitleInSummaryTableViewCell else{ fatalError() }
             if(isDiaryExist){
                 cell.deleteBtn.isHidden = false
                 cell.deleteBtn.addTarget(self, action: #selector(deleteDiaryAlertWillShow), for: .touchUpInside)
@@ -376,20 +364,13 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
             
             //선택한 날짜에 다이어리 존재 여부에 따른 table cell 구성 differ
             if(isDiaryExist){
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: DiaryTitleInSummaryTableViewCell.cellIdentifier, for: indexPath)
-                        as? DiaryTitleInSummaryTableViewCell else{ fatalError()}
-
-                cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(willMoveDiaryViewController)))
-                
+                let cell =  tableView.dequeueReusableCell(for: indexPath, cellType: DiaryInSummaryTableViewCell.self)
                 if let diaryData = self.diaryData {
-                    cell.setUpDataBinding(diaryData)
+                    cell.bindingDiaryData(diaryData)
                 }
-                
                 return cell
             }else{
-                let cell = tableView.dequeueReusableCell(withIdentifier: DiaryBannerInSummaryTableViewCell.cellIdentifier, for: indexPath)
-                cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(willMoveDiaryViewController)))
-                return cell
+                return tableView.dequeueReusableCell(withIdentifier: DiaryBannerInSummaryTableViewCell.cellIdentifier, for: indexPath)
             }
 
         default:
@@ -415,8 +396,30 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
             }
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        isClampCellExist { cell in
+            cell.willMoveOriginalPosition()
+            return
+        }
 
+        let rowCount = tableView.numberOfRows(inSection: 0)
+        if(indexPath.row == rowCount - 1){
+            willMoveDiaryViewController()
+        }
+    }
+    
+    private func isClampCellExist(closure: (TodoInSummaryTableViewCell) -> Void){
+        if let cell = mainView.summaryTableView.cellForRow(at: clampCell) as? TodoInSummaryTableViewCell{
+            if(cell.isClamp){
+                closure(cell)
+            }
+        }
+    }
 }
+
+
 
 //MARK: - TableViewCell Delegate
 extension SummaryBottomSheetViewController: SelectedTableViewCellDeliver{
@@ -443,7 +446,7 @@ extension SummaryBottomSheetViewController: SelectedTableViewCellDeliver{
         //2. -1 아닐 경우 -> 이미 고정되어 있는 cell 존재 -> 고정 풀기
             guard let cell = mainView.summaryTableView.cellForRow(at: clampCell)
                     as? TodoInSummaryTableViewCell else{ return }
-            cell.cellWillMoveOriginalPosition()
+            cell.willMoveOriginalPosition()
         }
         //row 값 -1일 때와, row 값 -1 아닐 때 공통 코드(즉, 자기 자신 아닐 때만 제외)
         clampCell = indexPath
@@ -453,7 +456,7 @@ extension SummaryBottomSheetViewController: SelectedTableViewCellDeliver{
         
         if let clampCell = mainView.summaryTableView.cellForRow(at: clampCell) as? TodoInSummaryTableViewCell {
             if(clampCell.isClamp){
-                clampCell.cellWillMoveOriginalPosition()
+                clampCell.willMoveOriginalPosition()
                 return
             }
         }
@@ -488,7 +491,7 @@ extension SummaryBottomSheetViewController: UISheetPresentationControllerDelegat
     func sheetPresentationControllerDidChangeSelectedDetentIdentifier(_ sheetPresentationController: UISheetPresentationController) {
         if let clampCell = mainView.summaryTableView.cellForRow(at: clampCell) as? TodoInSummaryTableViewCell {
             if(clampCell.isClamp){
-                clampCell.cellWillMoveOriginalPosition()
+                clampCell.willMoveOriginalPosition()
                 return
             }
         }
