@@ -218,6 +218,8 @@
 		E0F998CB288A6B460051C7AA /* AdModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998CA288A6B460051C7AA /* AdModel.swift */; };
 		E54C4D9FA6602FAE88B10C99 /* Pods_Todoary_TodoaryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA1B412CC301CC2E570F1921 /* Pods_Todoary_TodoaryUITests.framework */; };
 		EE135A89298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE135A88298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift */; };
+		EE8BCEF6299F2836004EA821 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BCEF5299F2836004EA821 /* UITableView.swift */; };
+		EE8BCEF8299F2842004EA821 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BCEF7299F2842004EA821 /* UICollectionView.swift */; };
 		EED1B34E298656E600F14CAC /* TypoDesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED1B34D298656E600F14CAC /* TypoDesignSystem.swift */; };
 		EED1B350298656FD00F14CAC /* CategoryDesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED1B34F298656FD00F14CAC /* CategoryDesignSystem.swift */; };
 		EEE326A52998AEB50017DF46 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE326A42998AEB50017DF46 /* Image.swift */; };
@@ -468,6 +470,8 @@
 		E0F998CA288A6B460051C7AA /* AdModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdModel.swift; sourceTree = "<group>"; };
 		E6E8C0E6CB0EA8691D12EEB0 /* Pods_TodoaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE135A88298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAddCollectionViewCell.swift; sourceTree = "<group>"; };
+		EE8BCEF5299F2836004EA821 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
+		EE8BCEF7299F2842004EA821 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		EED1B34D298656E600F14CAC /* TypoDesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypoDesignSystem.swift; sourceTree = "<group>"; };
 		EED1B34F298656FD00F14CAC /* CategoryDesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDesignSystem.swift; sourceTree = "<group>"; };
 		EEE326A42998AEB50017DF46 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
@@ -1602,6 +1606,8 @@
 				572E5B0D286EC10500D1FAA0 /* UIFont.swift */,
 				57DF45FC28A60DB90002D66C /* DiaryFont.swift */,
 				57503664288BE42C006A9070 /* CategoryColor.swift */,
+				EE8BCEF5299F2836004EA821 /* UITableView.swift */,
+				EE8BCEF7299F2842004EA821 /* UICollectionView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1936,6 +1942,7 @@
 				57294AAA2890D87E00DA2F31 /* DataBaseErrorAlert.swift in Sources */,
 				E0F998A6288A59B70051C7AA /* UserDeleteModel.swift in Sources */,
 				57556A932960030400B67369 /* BaseView.swift in Sources */,
+				EE8BCEF8299F2842004EA821 /* UICollectionView.swift in Sources */,
 				AC5E27DC288FC0DA0056EC69 /* TodoAlarmBottomSheetViewController.swift in Sources */,
 				575DE95C297651E800E61B8F /* DiaryStickerResultModel.swift in Sources */,
 				570DD840295ED04B00A0D2A9 /* DiaryViewController+ToolBar.swift in Sources */,
@@ -1952,6 +1959,7 @@
 				570DD837295EC53D00A0D2A9 /* DiaryViewController+Sticker.swift in Sources */,
 				AC9859CB288334AC009FC2F8 /* CalendarCell.swift in Sources */,
 				57E75EB228E1B7D700AC24B2 /* AlarmAlertViewController.swift in Sources */,
+				EE8BCEF6299F2836004EA821 /* UITableView.swift in Sources */,
 				57FFEDBC28DC1C230041719B /* Const.swift in Sources */,
 				572E9ABB287BC4BD00F915DF /* ScreenSettingView.swift in Sources */,
 				575DE96B29769EBD00E61B8F /* CodeResponse.swift in Sources */,
