@@ -21,16 +21,7 @@ final class TodoTitleInSummaryTableViewCell: BaseTableViewCell {
         $0.setTypoStyleWithSingleLine(typoStyle: .extrabold12)
         $0.textColor = .summaryTitle
     }
-    
-    private let titleBackgroundView = UIView().then{
-        $0.backgroundColor = .white
-        $0.layer.cornerRadius = 24/2
-        $0.layer.shadowRadius = 10.0
-        $0.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        $0.layer.shadowOffset = CGSize(width: 0, height: 2)
-        $0.layer.shadowOpacity = 1
-        $0.layer.masksToBounds = false
-    }
+    private let titleBackgroundView = ShadowView(cornerRadius: 24/2)
     
     private let buttonStackView = UIStackView().then{
         $0.axis = .horizontal
@@ -39,7 +30,6 @@ final class TodoTitleInSummaryTableViewCell: BaseTableViewCell {
     private let addPlanButton = UIButton().then{
         $0.setImage(Image.todoPlus, for: .normal)
     }
-    
     private let moveCategoryButton = UIButton().then{
         $0.setImage(Image.category, for: .normal)
     }
@@ -48,7 +38,6 @@ final class TodoTitleInSummaryTableViewCell: BaseTableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         initialize()
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
