@@ -27,6 +27,7 @@ class CategoryView: BaseView {
         
         $0.separatorStyle = .none
         $0.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        $0.contentInset = UIEdgeInsets(top: 22, left: 0, bottom: 0, right: 0)
         
         $0.register(CategoryTodoTableViewCell.self, forCellReuseIdentifier: CategoryTodoTableViewCell.cellIdentifier)
         $0.register(NoTodoInCategoryTableViewCell.self, forCellReuseIdentifier: NoTodoInCategoryTableViewCell.cellIdentifier)
@@ -48,7 +49,8 @@ class CategoryView: BaseView {
         }
         
         todoTableView.snp.makeConstraints{ make in
-            make.top.equalTo(categoryCollectionView.snp.bottom).offset(20)
+            make.top.equalTo(categoryCollectionView.snp.bottom)
+//                .offset(20)
             make.leading.trailing.bottom.equalToSuperview()
         }
     }
