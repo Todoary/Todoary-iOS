@@ -31,7 +31,7 @@ class CategoryView: BaseView {
         
         $0.register(CategoryTodoTableViewCell.self, forCellReuseIdentifier: CategoryTodoTableViewCell.cellIdentifier)
         $0.register(NoTodoInCategoryTableViewCell.self, forCellReuseIdentifier: NoTodoInCategoryTableViewCell.cellIdentifier)
-        $0.register(NewTodoAddBtnTableViewCell.self, forCellReuseIdentifier: NewTodoAddBtnTableViewCell.cellIdentifier)
+        $0.register(AddTodoInCategoryTableViewCell.self, forCellReuseIdentifier: AddTodoInCategoryTableViewCell.cellIdentifier)
         
     }
     

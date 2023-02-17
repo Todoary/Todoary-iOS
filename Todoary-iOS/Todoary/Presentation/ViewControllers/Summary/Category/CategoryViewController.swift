@@ -255,8 +255,8 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource, Mo
             return cell
             
         }else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: NewTodoAddBtnTableViewCell.cellIdentifier)
-                    as? NewTodoAddBtnTableViewCell else { fatalError() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: AddTodoInCategoryTableViewCell.cellIdentifier)
+                    as? AddTodoInCategoryTableViewCell else { fatalError() }
             
 //            cell.delegate = self
             

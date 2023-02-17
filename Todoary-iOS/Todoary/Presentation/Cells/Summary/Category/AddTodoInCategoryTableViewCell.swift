@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewTodoAddBtnTableViewCell: BaseTableViewCell {
+class AddTodoInCategoryTableViewCell: BaseTableViewCell {
     
     private let backgroundShadowView = ShadowView(cornerRadius: 20)
     

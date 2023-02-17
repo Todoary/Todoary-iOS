@@ -35,7 +35,7 @@
 		572E9ABF287BC4E600F915DF /* FontSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E9ABE287BC4E600F915DF /* FontSettingView.swift */; };
 		572E9AC1287BC90A00F915DF /* FontSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E9AC0287BC90A00F915DF /* FontSettingTableViewCell.swift */; };
 		572E9AC3287C643000F915DF /* InfoMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E9AC2287C643000F915DF /* InfoMessageView.swift */; };
-		573844BA288CF01D009529CD /* NewTodoAddBtnTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573844B9288CF01D009529CD /* NewTodoAddBtnTableViewCell.swift */; };
+		573844BA288CF01D009529CD /* AddTodoInCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573844B9288CF01D009529CD /* AddTodoInCategoryTableViewCell.swift */; };
 		57397F88296D471B0088B5F4 /* AlarmRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F87296D471B0088B5F4 /* AlarmRouter.swift */; };
 		57397F8A296D472C0088B5F4 /* AlarmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F89296D472C0088B5F4 /* AlarmService.swift */; };
 		57397F8C296D4F370088B5F4 /* AccountRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F8B296D4F370088B5F4 /* AccountRouter.swift */; };
@@ -281,7 +281,7 @@
 		572E9ABE287BC4E600F915DF /* FontSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSettingView.swift; sourceTree = "<group>"; };
 		572E9AC0287BC90A00F915DF /* FontSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSettingTableViewCell.swift; sourceTree = "<group>"; };
 		572E9AC2287C643000F915DF /* InfoMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoMessageView.swift; sourceTree = "<group>"; };
-		573844B9288CF01D009529CD /* NewTodoAddBtnTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTodoAddBtnTableViewCell.swift; sourceTree = "<group>"; };
+		573844B9288CF01D009529CD /* AddTodoInCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoInCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		57397F87296D471B0088B5F4 /* AlarmRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmRouter.swift; sourceTree = "<group>"; };
 		57397F89296D472C0088B5F4 /* AlarmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmService.swift; sourceTree = "<group>"; };
 		57397F8B296D4F370088B5F4 /* AccountRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRouter.swift; sourceTree = "<group>"; };
@@ -1240,7 +1240,7 @@
 			isa = PBXGroup;
 			children = (
 				57468A69289BCDE800056691 /* NoTodoInCategoryTableViewCell.swift */,
-				573844B9288CF01D009529CD /* NewTodoAddBtnTableViewCell.swift */,
+				573844B9288CF01D009529CD /* AddTodoInCategoryTableViewCell.swift */,
 				57D5D10328975CE8004A16DA /* CategoryTodoTableViewCell+Layout.swift */,
 				57503662288BE3A0006A9070 /* CategoryTodoTableViewCell.swift */,
 				57503660288BE380006A9070 /* CategoryTagCollectionViewCell.swift */,
@@ -1961,7 +1961,7 @@
 				576ED6B028748FFA007389CD /* NavigationView.swift in Sources */,
 				AC5E27E52890211C0056EC69 /* AuthJwtResultModel.swift in Sources */,
 				574A6FF028826EB5003C8F99 /* SummaryBottomSheetViewController.swift in Sources */,
-				573844BA288CF01D009529CD /* NewTodoAddBtnTableViewCell.swift in Sources */,
+				573844BA288CF01D009529CD /* AddTodoInCategoryTableViewCell.swift in Sources */,
 				570DD837295EC53D00A0D2A9 /* DiaryViewController+Sticker.swift in Sources */,
 				AC9859CB288334AC009FC2F8 /* CalendarCell.swift in Sources */,
 				57E75EB228E1B7D700AC24B2 /* AlarmAlertViewController.swift in Sources */,
