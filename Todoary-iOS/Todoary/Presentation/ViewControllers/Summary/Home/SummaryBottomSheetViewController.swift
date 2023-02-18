@@ -278,7 +278,8 @@ extension SummaryBottomSheetViewController: MoveViewController, AddButtonClickPr
         
         guard let addButtonView = addButtonView else { return }
         
-        if(self.sheetPresentationController?.selectedDetentIdentifier == nil || self.sheetPresentationController?.selectedDetentIdentifier?.rawValue == "Test1"){
+        if(self.sheetPresentationController?.selectedDetentIdentifier == nil
+           || self.sheetPresentationController?.selectedDetentIdentifier?.rawValue == "Test1"){
             addButtonView.detent = .low
         }else{
             addButtonView.detent = .high
@@ -355,17 +356,17 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
             }
 
         default:
-            if(todoData.count != 0){
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoInSummaryTableViewCell.cellIdentifier, for: indexPath)
-                        as? TodoInSummaryTableViewCell else{ fatalError() }
-                cell.requestDelegate = self
-                cell.delegate = self
-                let todo = todoData[indexPath.row-1]
-                cell.bindingData(todo)
-                return cell
-            }else{
+            if(todoData.isEmpty){
                 return tableView.dequeueReusableCell(for: indexPath, cellType: TodoBannerInSummaryTableViewCell.self)
             }
+        
+            let todo = todoData[indexPath.row-1]
+            let cell = tableView.dequeueReusableCell(for: indexPath, cellType: TodoInSummaryTableViewCell.self).then{
+                $0.requestDelegate = self
+                $0.delegate = self
+                $0.bindingData(todo)
+            }
+            return cell
         }
     }
     
