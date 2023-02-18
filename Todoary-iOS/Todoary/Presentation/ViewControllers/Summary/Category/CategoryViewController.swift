@@ -305,7 +305,7 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource{
             vc.todoSettingData = todoData[indexPath.row]
             self.navigationController?.pushViewController(vc, animated: true)
         }
-    }     
+    }
 }
 
 //MARK: - CollectionView
@@ -341,7 +341,7 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         if(indexPath.row == categories.count){
-            return CGSize(width: 50, height: 26)
+            return CategoryAddCollectionViewCell.cellSize
         }
         
         let title = categories[indexPath.row].title
