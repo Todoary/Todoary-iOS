@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HiddenRightButtonView: UIView {
+class HiddenRightButtonView: BaseView {
 
     lazy var deleteButton = UIButton().then{
         $0.setImage(Image.trash, for: .normal)
@@ -16,37 +16,26 @@ class HiddenRightButtonView: UIView {
         $0.backgroundColor = .transparent
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        setUpView()
-        setUpConstraint()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    func setUpView(){
+    override func hierarchy() {
         self.addSubview(transparentView)
         transparentView.addSubview(deleteButton)
     }
     
-    func setUpConstraint(){
+    override func layout() {
 
-        self.snp.makeConstraints{ make in
-            make.height.equalTo(60)
-            make.width.equalTo(58) //105
+        self.snp.makeConstraints{
+            $0.height.equalTo(60)
+            $0.width.equalTo(58) //105
         }
 
-        transparentView.snp.makeConstraints{ make in
-            make.top.bottom.leading.trailing.equalToSuperview()
+        transparentView.snp.makeConstraints{
+            $0.top.bottom.leading.trailing.equalToSuperview()
         }
         
-        deleteButton.snp.makeConstraints{ make in
-            make.width.height.equalTo(30)
-            make.trailing.equalToSuperview().offset(-14)
-            make.centerY.equalToSuperview()
+        deleteButton.snp.makeConstraints{
+            $0.width.height.equalTo(30)
+            $0.trailing.equalToSuperview().offset(-14)
+            $0.centerY.equalToSuperview()
         }
     }
 }
