@@ -79,22 +79,6 @@ class TodoInDiaryTableViewCell: UITableViewCell {
     
     @objc func checkBoxBtnDidClicked(){
         delegate.requestPatchTodoCheckStatus(cell: self)
-        
-        /*
-        let parameter = TodoCheckboxInput(todoId: cellData.todoId, isChecked: !self.checkBox.isSelected)
-        
-        TodoCheckboxDataManager().patch(cell: self, parameter: parameter)
-         */
     }
-    /*
-    func checkCheckBoxApiResultCode(code: Int){
-        if(code == 1000){
-            self.checkBox.isSelected.toggle()
-        }else{
-            let alert = DataBaseErrorAlert()
-            self.navigationController.present(alert, animated: true, completion: nil)
-        }
-    }
-     */
 }
 
