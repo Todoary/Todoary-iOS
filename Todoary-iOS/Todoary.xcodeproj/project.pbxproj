@@ -14,7 +14,6 @@
 		570DD840295ED04B00A0D2A9 /* DiaryViewController+ToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570DD83F295ED04B00A0D2A9 /* DiaryViewController+ToolBar.swift */; };
 		5722461228C1A223009B7C78 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5722461128C1A223009B7C78 /* BaseViewController.swift */; };
 		57294AAA2890D87E00DA2F31 /* DataBaseErrorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57294AA92890D87E00DA2F31 /* DataBaseErrorAlert.swift */; };
-		57294AAF2891159300DA2F31 /* TodoDeleteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57294AAE2891159300DA2F31 /* TodoDeleteDataManager.swift */; };
 		57294ACC28937C2C00DA2F31 /* TodoBannerInSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57294ACB28937C2C00DA2F31 /* TodoBannerInSummaryTableViewCell.swift */; };
 		572E5ADA286EBDCC00D1FAA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E5AD9286EBDCC00D1FAA0 /* AppDelegate.swift */; };
 		572E5AE1286EBDCC00D1FAA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 572E5ADF286EBDCC00D1FAA0 /* Main.storyboard */; };
@@ -239,7 +238,6 @@
 		570DD83F295ED04B00A0D2A9 /* DiaryViewController+ToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiaryViewController+ToolBar.swift"; sourceTree = "<group>"; };
 		5722461128C1A223009B7C78 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		57294AA92890D87E00DA2F31 /* DataBaseErrorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseErrorAlert.swift; sourceTree = "<group>"; };
-		57294AAE2891159300DA2F31 /* TodoDeleteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDeleteDataManager.swift; sourceTree = "<group>"; };
 		57294ACB28937C2C00DA2F31 /* TodoBannerInSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoBannerInSummaryTableViewCell.swift; sourceTree = "<group>"; };
 		572E5AD6286EBDCC00D1FAA0 /* Todoary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todoary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		572E5AD9286EBDCC00D1FAA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -1024,14 +1022,6 @@
 			path = Account;
 			sourceTree = "<group>";
 		};
-		5701EA7C29570DC900F21F63 /* Summary */ = {
-			isa = PBXGroup;
-			children = (
-				57294AAE2891159300DA2F31 /* TodoDeleteDataManager.swift */,
-			);
-			path = Summary;
-			sourceTree = "<group>";
-		};
 		5701EA7E29570DCD00F21F63 /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -1044,7 +1034,6 @@
 			isa = PBXGroup;
 			children = (
 				5701EA7E29570DCD00F21F63 /* User */,
-				5701EA7C29570DC900F21F63 /* Summary */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -1870,7 +1859,6 @@
 				57B16855295A8A2600639A15 /* SignUpView.swift in Sources */,
 				575DE9642976529400E61B8F /* AppleSignUpRequestModel.swift in Sources */,
 				575DE956297651AE00E61B8F /* DiaryRequestModel.swift in Sources */,
-				57294AAF2891159300DA2F31 /* TodoDeleteDataManager.swift in Sources */,
 				E0C4BD632872100900FDEA0E /* PrivacyTextView.swift in Sources */,
 				E0439ABD288C599A0075CBF0 /* ColorPickerView.swift in Sources */,
 				E076E9EB28703CAF001E14E1 /* AgreementView.swift in Sources */,

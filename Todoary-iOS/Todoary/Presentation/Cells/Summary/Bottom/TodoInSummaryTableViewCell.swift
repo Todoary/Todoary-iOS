@@ -16,7 +16,7 @@ enum CurrentHidden{
 
 protocol RequestSummaryCellDelegate{
     func requestPatchTodoCheckStatus(index: Int)
-    func requestDeleteTodo(index: Int)
+    func requestDeleteTodo(cell: TodoInSummaryTableViewCell)
 }
 
 protocol SelectedTableViewCellDeliver: AnyObject{
@@ -29,18 +29,14 @@ protocol SelectedTableViewCellDeliver: AnyObject{
 class TodoInSummaryTableViewCell: BaseTableViewCell {
     
     //MARK: - Properties
-    var cellData: TodoResultModel!{
-        didSet{
-            bindingData()
-        }
-    }
+    var todo: TodoResultModel!
     var requestDelegate: RequestSummaryCellDelegate!
     weak var delegate : SelectedTableViewCellDeliver?
     
     //MARK: - Properties(for swipe)
     
-    lazy var leftWidth : CGFloat = 105
-    lazy var rightWidth : CGFloat = 58
+    private let leftWidth : CGFloat = 105
+    private let rightWidth : CGFloat = 58
     
     //hiddenView addSubView 되었는지 아닌지 확인 용도
     lazy var isViewAdd : CurrentHidden = .none
@@ -49,50 +45,36 @@ class TodoInSummaryTableViewCell: BaseTableViewCell {
     
     //MARK: - UI
     
-    lazy var checkBox = UIButton().then{
+    private let backgroundShadowView = ShadowView(cornerRadius: 20)
+    private lazy var checkBox = UIButton().then{
         $0.setImage(Image.todoCheckEmpty, for: .normal)
         $0.setImage(Image.todoCheck, for: .selected)
-        $0.addTarget(self, action: #selector(checkBoxDidClicked), for: .touchUpInside)
     }
     
-    let titleLabel = UILabel().then{
+    private let titleLabel = UILabel().then{
         $0.numberOfLines = 1
         $0.textColor = .black
         $0.setTypoStyleWithSingleLine(typoStyle: .bold15_18)
     }
     
-    let categoryButton = CategoryTag.generateForMainTodo()
+    private let categoryButton = CategoryTag.generateForMainTodo()
     
-    lazy var pinImage = UIImageView().then{
+    private lazy var pinImage = UIImageView().then{
         $0.image = Image.pushPin
     }
     
-    lazy var alarmImage = UIImageView().then{
+    private lazy var alarmImage = UIImageView().then{
         $0.image = Image.notifications
     }
     
-    let timeLabel = UILabel().then{
+    private let timeLabel = UILabel().then{
         $0.textColor = .timeColor
         $0.setTypoStyleWithSingleLine(typoStyle: .medium13)
     }
     
-    let backgroundShadowView = ShadowView(cornerRadius: 20)
-    
-    lazy var hiddenLeftView = HiddenLeftButtonView().then{
-        $0.pinButton.addTarget(self, action: #selector(pinButtonDidClicked), for: .touchUpInside)
-        $0.alarmBtn.addTarget(self, action: #selector(alarmBtnDidClicked(_:)), for: .touchUpInside)
-    }
-    
-    lazy var hiddenRightView = HiddenRightButtonView().then{
-        $0.deleteButton.addTarget(self, action: #selector(deleteButtonDidClicked), for: .touchUpInside)
-    }
-    
-    lazy var hiddenView = ShadowView(cornerRadius: 20)
-//        .then{
-//        $0.snp.makeConstraints{ make in
-//            make.height.equalTo(60)
-//        }
-//    }
+    private lazy var hiddenView = ShadowView(cornerRadius: 20)
+    private lazy var hiddenLeftView = HiddenLeftButtonView()
+    private lazy var hiddenRightView = HiddenRightButtonView()
     
     //MARK: - LifeCycle
 
@@ -124,6 +106,7 @@ class TodoInSummaryTableViewCell: BaseTableViewCell {
     }
     
     override func hierarchy() {
+        
         super.hierarchy()
         
         baseView.addSubview(backgroundShadowView)
@@ -140,14 +123,12 @@ class TodoInSummaryTableViewCell: BaseTableViewCell {
         baseView.snp.makeConstraints{ make in
             make.height.equalTo(75)
         }
-        
         backgroundShadowView.snp.makeConstraints{ make in
             make.leading.equalToSuperview().offset(32)
             make.trailing.equalToSuperview().offset(-30)
             make.top.equalToSuperview()
             make.bottom.equalToSuperview().offset(-15)
         }
-        
         checkBox.snp.makeConstraints{ make in
             make.width.height.equalTo(24)
             make.leading.equalToSuperview().offset(19)
@@ -157,6 +138,21 @@ class TodoInSummaryTableViewCell: BaseTableViewCell {
     }
     
     private func initialize(){
+        initializeGesture()
+        initializeButtonInteraction()
+    }
+    
+    private func initializeButtonInteraction(){
+        
+        checkBox.addTarget(self, action: #selector(checkBoxDidClicked), for: .touchUpInside)
+        
+        hiddenLeftView.pinButton.addTarget(self, action: #selector(pinButtonDidClicked), for: .touchUpInside)
+        hiddenLeftView.alarmBtn.addTarget(self, action: #selector(alarmBtnDidClicked(_:)), for: .touchUpInside)
+        
+        hiddenRightView.deleteButton.addTarget(self, action: #selector(deleteButtonDidClicked), for: .touchUpInside)
+    }
+    
+    private func initializeGesture(){
         let swipeGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:))).then{
             $0.delegate = self
         }
@@ -169,25 +165,25 @@ class TodoInSummaryTableViewCell: BaseTableViewCell {
     
     //MARK: - Method
     
-    func bindingData(){
+    func bindingData(_ todo: TodoResultModel){
         
-        titleLabel.text = cellData.title
-        timeLabel.text = cellData.convertTime
-        checkBox.isSelected = cellData.isChecked
+        self.todo = todo
         
-        categoryButton.bindingData(title: cellData.categoryTitle, color: cellData.color)
+        titleLabel.text = todo.title
+        timeLabel.text = todo.convertTime
+        checkBox.isSelected = todo.isChecked
         
-        hiddenLeftView.pinButton.isSelected = cellData.isPinned! ? true : false
-        hiddenLeftView.alarmBtn.isSelected = cellData.isAlarmEnabled ? true : false
+        categoryButton.bindingData(title: todo.categoryTitle, color: todo.color)
+        
+        hiddenLeftView.pinButton.isSelected = todo.isPinned! ? true : false
+        hiddenLeftView.alarmBtn.isSelected = todo.isAlarmEnabled ? true : false
         
         setUpViewByCase()
         
     }
     
     @objc func cellDidTapped(){
-        
         guard let indexPath = getCellIndexPath() else { fatalError("indexPath casting error") }
-        
         delegate?.cellDidTapped(indexPath)
     }
     
@@ -257,7 +253,7 @@ extension TodoInSummaryTableViewCell{
             return false
         }
         
-        if let tapGesture = gestureRecognizer as? UITapGestureRecognizer{
+        if gestureRecognizer is UITapGestureRecognizer{
             return true
         }
         return false
@@ -390,20 +386,9 @@ extension TodoInSummaryTableViewCell{
         willMoveOriginalPosition()
     }
     
-    //TODO: 삭제 API 설계 후 진행
     @objc func deleteButtonDidClicked(){
-        
-        /*
-        guard let index = dataIndex else { return }
-        cellWillMoveOriginalPosition()
-        requestDelegate.requestDeleteTodo(index: index)
-         */
-
-
-        guard let indexPath = getCellIndexPath() else { return }
         willMoveOriginalPosition()
-        TodoDeleteDataManager().delete(todoId: cellData.todoId, indexPath: indexPath)
-
+        requestDelegate.requestDeleteTodo(cell: self)
     }
     
     @objc func pinButtonDidClicked(){
@@ -422,14 +407,14 @@ extension TodoInSummaryTableViewCell{
         }
 
         categoryButton.snp.makeConstraints{ make in
-            make.width.equalTo(cellData.categoryWidth)
+            make.width.equalTo(todo.categoryWidth)
             make.height.equalTo(21)
             make.centerY.equalToSuperview().offset(1)
         }
         
-        let titleTrailing: Int = cellData.categoryWidth + 6
+        let titleTrailing: Int = todo.categoryWidth + 6
         
-        if(cellData.isAlarmEnabled){
+        if(todo.isAlarmEnabled){
             
             self.backgroundShadowView.addSubview(timeLabel)
             
@@ -442,7 +427,7 @@ extension TodoInSummaryTableViewCell{
             alarmImageConstraint()
             
             
-            if(cellData.isPinned!){
+            if(todo.isPinned!){
                 
                 alarmImage.snp.makeConstraints{ make in
                     make.trailing.equalTo(timeLabel.snp.leading).offset(-2)
@@ -479,7 +464,7 @@ extension TodoInSummaryTableViewCell{
                 }
             }
         }else{
-            if(cellData.isPinned!){
+            if(todo.isPinned!){
                 
                 pinImageConstraint()
                 

@@ -229,8 +229,33 @@ extension SummaryBottomSheetViewController: RequestSummaryCellDelegate{
         mainView.summaryTableView.reloadData()
     }
     
-    //TODO: 삭제 API 설계 이후 진행
-    func requestDeleteTodo(index: Int){
+    func requestDeleteTodo(cell: TodoInSummaryTableViewCell){
+        
+        guard let indexPath = mainView.summaryTableView.indexPath(for: cell) else { return }
+        let dataIndex = indexPath.row - 1
+        let todo = todoData[dataIndex]
+        
+        TodoService.shared.deleteTodo(id: todo.todoId){ result in
+            switch result{
+            case .success:
+                print("LOG: SUCCESS requestDeleteTodo")
+                if(self.todoData.count == 1){
+                    self.todoData = []
+                    self.mainView.summaryTableView.reloadData()
+                }else{
+                    self.todoData.remove(at: dataIndex)
+                    self.mainView.summaryTableView.deleteRows(at: [indexPath], with: .fade)
+                }
+                self.showDeleteCompleteToastMessage(type: .Todo)
+                self.homeViewController.requestGetTodoByYearMonth(yearMonth: self.todoDate!.yearMonthSendServer)
+                break
+            default:
+                print("LOG: FAIL requestDeleteTodo")
+                let alert = DataBaseErrorAlert()
+                self.present(alert, animated: true, completion: nil)
+                break
+            }
+        }
     }
     
     
@@ -294,30 +319,6 @@ extension SummaryBottomSheetViewController: MoveViewController, AddButtonClickPr
     }
 }
 
-//MARK: - API
-extension SummaryBottomSheetViewController{
-    
-    func checkTodoDeleteApiResultCode(_ code: Int, _ indexPath: IndexPath){
-        switch code{
-        case 1000:
-            if(todoData.count == 1){
-                todoData = []
-                mainView.summaryTableView.reloadData()
-            }else{
-                todoData.remove(at: indexPath.row-1)
-                mainView.summaryTableView.deleteRows(at: [indexPath], with: .fade)
-            }
-            showDeleteCompleteToastMessage(type: .Todo)
-            homeViewController.requestGetTodoByYearMonth(yearMonth: todoDate!.yearMonthSendServer)
-            return
-        default:
-            let alert = DataBaseErrorAlert()
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
-    }
-}
-
 //MARK: - TableView
 extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewDataSource{
     
@@ -359,8 +360,8 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
                         as? TodoInSummaryTableViewCell else{ fatalError() }
                 cell.requestDelegate = self
                 cell.delegate = self
-                cell.cellData = todoData[indexPath.row-1]
-//                cell.bindingData()
+                let todo = todoData[indexPath.row-1]
+                cell.bindingData(todo)
                 return cell
             }else{
                 return tableView.dequeueReusableCell(for: indexPath, cellType: TodoBannerInSummaryTableViewCell.self)
@@ -449,8 +450,8 @@ extension SummaryBottomSheetViewController: SelectedTableViewCellDeliver{
         guard let tapCell = mainView.summaryTableView.cellForRow(at: indexPath) as? TodoInSummaryTableViewCell else { return }
 
         let vc = TodoSettingViewController()
-        vc.todoSettingData = tapCell.cellData
-        TodoSettingViewController.selectCategory = tapCell.cellData.categoryId
+        vc.todoSettingData = tapCell.todo
+        TodoSettingViewController.selectCategory = tapCell.todo.categoryId
         
         self.homeNavigaiton.pushViewController(vc, animated: true)
     }
