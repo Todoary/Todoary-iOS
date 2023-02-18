@@ -26,12 +26,9 @@ protocol SelectedTableViewCellDeliver: AnyObject{
     func cellWillClamp(_ indexPath: IndexPath)
 }
 
-class TodoInSummaryTableViewCell: UITableViewCell {
+class TodoInSummaryTableViewCell: BaseTableViewCell {
     
     //MARK: - Properties
-    
-    static let cellIdentifier = "TodoInSummaryTableViewCell"
-    
     var cellData: TodoResultModel!{
         didSet{
             bindingData()
@@ -79,15 +76,7 @@ class TodoInSummaryTableViewCell: UITableViewCell {
         $0.setTypoStyleWithSingleLine(typoStyle: .medium13)
     }
     
-    let backView = UIView().then{
-        $0.layer.cornerRadius = 20
-        $0.backgroundColor = .white
-        $0.layer.shadowRadius = 10.0
-        $0.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        $0.layer.shadowOffset = CGSize(width: 0, height: 2)
-        $0.layer.shadowOpacity = 1
-        $0.layer.masksToBounds = false
-    }
+    let backgroundShadowView = ShadowView(cornerRadius: 20)
     
     lazy var hiddenLeftView = HiddenLeftButtonView().then{
         $0.pinButton.addTarget(self, action: #selector(pinButtonDidClicked), for: .touchUpInside)
@@ -98,43 +87,18 @@ class TodoInSummaryTableViewCell: UITableViewCell {
         $0.deleteButton.addTarget(self, action: #selector(deleteButtonDidClicked), for: .touchUpInside)
     }
     
-    lazy var hiddenView = UIView().then{
-        $0.backgroundColor = .white
-        $0.layer.cornerRadius = 20
-        $0.layer.shadowRadius = 10.0
-        $0.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        $0.layer.shadowOffset = CGSize(width: 0, height: 2)
-        $0.layer.shadowOpacity = 1
-        $0.layer.masksToBounds = false
-        
-        $0.snp.makeConstraints{ make in
-            make.height.equalTo(60)
-        }
-    }
-    
-    let selectedBackView = UIView().then{
-        $0.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
-    }
+    lazy var hiddenView = ShadowView(cornerRadius: 20)
+//        .then{
+//        $0.snp.makeConstraints{ make in
+//            make.height.equalTo(60)
+//        }
+//    }
     
     //MARK: - LifeCycle
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
-        self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
-     
-        setUpView()
-        setUpConstraint()
-        
-        let swipeGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
-        
-        swipeGesture.delegate = self
-        backView.addGestureRecognizer(swipeGesture)
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(cellDidTapped))
-        tapGesture.delegate = self
-        backView.addGestureRecognizer(tapGesture)
+        initialize()
     }
     
     required init?(coder: NSCoder) {
@@ -152,6 +116,55 @@ class TodoInSummaryTableViewCell: UITableViewCell {
         categoryButton.snp.removeConstraints()
         removeHiddenViews()
         isClamp = false
+    }
+    
+    override func style() {
+        super.style()
+        baseView.backgroundColor = .transparent
+    }
+    
+    override func hierarchy() {
+        super.hierarchy()
+        
+        baseView.addSubview(backgroundShadowView)
+        
+        self.backgroundShadowView.addSubview(checkBox)
+        self.backgroundShadowView.addSubview(titleLabel)
+        self.backgroundShadowView.addSubview(categoryButton)
+    }
+    
+    override func layout() {
+        
+        super.layout()
+        
+        baseView.snp.makeConstraints{ make in
+            make.height.equalTo(75)
+        }
+        
+        backgroundShadowView.snp.makeConstraints{ make in
+            make.leading.equalToSuperview().offset(32)
+            make.trailing.equalToSuperview().offset(-30)
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-15)
+        }
+        
+        checkBox.snp.makeConstraints{ make in
+            make.width.height.equalTo(24)
+            make.leading.equalToSuperview().offset(19)
+            make.top.equalToSuperview().offset(18)
+            make.bottom.equalToSuperview().offset(-18)
+        }
+    }
+    
+    private func initialize(){
+        let swipeGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:))).then{
+            $0.delegate = self
+        }
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(cellDidTapped)).then{
+            $0.delegate = self
+        }
+        backgroundShadowView.addGestureRecognizer(swipeGesture)
+        backgroundShadowView.addGestureRecognizer(tapGesture)
     }
     
     //MARK: - Method
@@ -251,7 +264,7 @@ extension TodoInSummaryTableViewCell{
     }
     
     override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        if touch.view?.isDescendant(of: self.backView) == true {
+        if touch.view?.isDescendant(of: self.backgroundShadowView) == true {
             return true
         }
         return false
@@ -344,20 +357,21 @@ extension TodoInSummaryTableViewCell{
             hiddenView.snp.makeConstraints{ make in
                 make.leading.equalToSuperview().offset(32)
                 make.trailing.equalToSuperview().offset(-30)
-                make.top.equalTo(self.contentView)
-                make.bottom.equalTo(self.contentView)
+                make.height.equalTo(60)
+                make.top.equalTo(backgroundShadowView)
+                make.bottom.equalTo(backgroundShadowView)
             }
             
             hiddenRightView.snp.makeConstraints{ make in
                 make.trailing.equalToSuperview().offset(-30)
-                make.top.equalTo(self.contentView)
-                make.bottom.equalTo(self.contentView)
+                make.top.equalTo(backgroundShadowView)
+                make.bottom.equalTo(backgroundShadowView)
             }
             
             hiddenLeftView.snp.makeConstraints{ make in
                 make.leading.equalToSuperview().offset(32)
-                make.top.equalTo(self.contentView)
-                make.bottom.equalTo(self.contentView)
+                make.top.equalTo(backgroundShadowView)
+                make.bottom.equalTo(backgroundShadowView)
             }
         }
     }
@@ -398,3 +412,117 @@ extension TodoInSummaryTableViewCell{
     }
 }
 
+extension TodoInSummaryTableViewCell{
+    
+    func setUpViewByCase(){
+        
+        titleLabel.snp.makeConstraints{ make in
+            make.leading.equalTo(checkBox.snp.trailing).offset(13)
+            make.centerY.equalToSuperview().offset(1.4)
+        }
+
+        categoryButton.snp.makeConstraints{ make in
+            make.width.equalTo(cellData.categoryWidth)
+            make.height.equalTo(21)
+            make.centerY.equalToSuperview().offset(1)
+        }
+        
+        let titleTrailing: Int = cellData.categoryWidth + 6
+        
+        if(cellData.isAlarmEnabled){
+            
+            self.backgroundShadowView.addSubview(timeLabel)
+            
+            timeLabel.snp.makeConstraints{ make in
+                make.trailing.equalToSuperview().offset(-18)
+                make.centerY.equalToSuperview().offset(2)
+                make.height.equalTo(15)
+            }
+            
+            alarmImageConstraint()
+            
+            
+            if(cellData.isPinned!){
+                
+                alarmImage.snp.makeConstraints{ make in
+                    make.trailing.equalTo(timeLabel.snp.leading).offset(-2)
+                }
+                
+                pinImageConstraint()
+                
+                pinImage.snp.makeConstraints{ make in
+                    make.trailing.equalTo(alarmImage.snp.leading).offset(-2)
+                }
+                categoryButton.snp.makeConstraints{ make in
+                    make.trailing.equalTo(pinImage.snp.leading).offset(-3)
+                }
+ 
+                titleLabel.snp.updateConstraints{ make in
+                    make.leading.equalTo(checkBox.snp.trailing).offset(7)
+                }
+                
+                titleLabel.snp.makeConstraints{ make in
+                    make.trailing.equalToSuperview().offset( -(titleTrailing + 100))
+                }
+            }else{
+                
+                alarmImage.snp.makeConstraints{ make in
+                    make.trailing.equalTo(timeLabel.snp.leading).offset(-4)
+                }
+                
+                categoryButton.snp.makeConstraints{ make in
+                    make.trailing.equalTo(alarmImage.snp.leading).offset(-7)
+                }
+                
+                titleLabel.snp.makeConstraints{ make in
+                    make.trailing.equalToSuperview().offset(-(titleTrailing + 90)) //160
+                }
+            }
+        }else{
+            if(cellData.isPinned!){
+                
+                pinImageConstraint()
+                
+                pinImage.snp.makeConstraints{ make in
+                    make.trailing.equalToSuperview().offset(-18)
+                }
+                categoryButton.snp.makeConstraints{ make in
+                    make.trailing.equalTo(pinImage.snp.leading).offset(-7)
+                }
+                titleLabel.snp.makeConstraints{ make in
+                    make.trailing.equalToSuperview().offset(-(titleTrailing + 34))
+                }
+            }else{
+                categoryButton.snp.makeConstraints{ make in
+                    make.trailing.equalToSuperview().offset(-18)
+                }
+                titleLabel.snp.makeConstraints{ make in
+                    make.trailing.equalToSuperview().offset(-(titleTrailing + 18))
+                }
+            }
+        }
+    }
+    
+    func pinImageConstraint(){
+        
+        self.backgroundShadowView.addSubview(pinImage)
+        
+        pinImage.snp.makeConstraints{ make in
+            make.width.equalTo(14)
+            make.height.equalTo(13.2)
+            make.centerY.equalToSuperview().offset(1)
+        }
+    }
+    
+    func alarmImageConstraint(){
+        
+        self.backgroundShadowView.addSubview(alarmImage)
+        
+        alarmImage.snp.makeConstraints{ make in
+            make.width.equalTo(14)
+            make.height.equalTo(13.2)
+            make.centerY.equalToSuperview().offset(0.6)
+        }
+    }
+
+}
