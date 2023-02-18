@@ -10,7 +10,6 @@ import UIKit
 class AddTodoInCategoryTableViewCell: BaseTableViewCell {
     
     private let backgroundShadowView = ShadowView(cornerRadius: 20)
-    
     private let addImage = UIImageView().then{
         $0.image = Image.categoryPlus
     }
@@ -36,8 +35,4 @@ class AddTodoInCategoryTableViewCell: BaseTableViewCell {
             $0.centerY.centerX.equalToSuperview()
         }
     }
-}
-
-protocol MoveViewController{
-    func moveToViewController()
 }

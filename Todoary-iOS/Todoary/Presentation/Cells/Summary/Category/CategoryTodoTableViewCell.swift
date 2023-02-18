@@ -8,100 +8,65 @@
 import UIKit
 
 protocol CategoryTodoCellDelegate{
-    func requestDeleteTodo()
+    func requestDeleteTodo(cell: CategoryTodoTableViewCell)
     func requestPatchTodoCheckStatus(cell: CategoryTodoTableViewCell)
 }
 
-class CategoryTodoTableViewCell: UITableViewCell {
+class CategoryTodoTableViewCell: BaseTableViewCell {
     
-    //MARK: - Properties
-    static let cellIdentifier = "CategoryTodoTableViewCell"
+    var delegate: CategoryTodoCellDelegate?
     
-    var delegate: CategoryTodoCellDelegate!
-    var todoData: TodoResultModel!
+    //MARK: - UI
     
-    //MARK: - Ui
-
-    let categoryLabel = CategoryTag.generateForCategoryTodo()
+    let backgroundShadowView = ShadowView(cornerRadius: 20)
+    private let categoryLabel = CategoryTag.generateForCategoryTodo()
     
-    lazy var checkBox = UIButton().then{
+    private lazy var checkBox = UIButton().then{
         $0.setImage(Image.todoCheckEmpty, for: .normal)
         $0.setImage(Image.todoCheck, for: .selected)
-        $0.addTarget(self, action: #selector(checkBoxDidClicked), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(willChangeCheckBoxState), for: .touchUpInside)
     }
     
-    lazy var todoTitle = UILabel().then{
+    private lazy var todoTitle = UILabel().then{
         $0.text  = "운동"
         $0.numberOfLines = 0
         $0.setTypoStyleWithMultiLine(typoStyle: .bold15_22)
         $0.textColor = .black
-        
     }
     
-    let dateLabel = UILabel().then{
+    private let dateLabel = UILabel().then{
         $0.textAlignment = .right
         $0.setTypoStyleWithSingleLine(typoStyle: .medium13)
         $0.textColor = .timeColor
     }
     
-    lazy var timeLabel = UILabel().then{
+    private lazy var timeLabel = UILabel().then{
         $0.textAlignment = .center
         $0.textColor = .timeColor
         $0.setTypoStyleWithSingleLine(typoStyle: .medium13)
     }
     
-    lazy var alarmImage = UIImageView().then{
+    private lazy var alarmImage = UIImageView().then{
         $0.image = Image.notifications
         $0.contentMode = .scaleAspectFit
     }
     
-    let timeView = UIStackView().then{
+    private let timeView = UIStackView().then{
         $0.spacing = 4
         $0.axis = .horizontal
         $0.alignment = .top
     }
     
-    let timeStack = UIStackView().then{
+    private let timeStack = UIStackView().then{
         $0.axis = .vertical
         $0.spacing = 7.86
         $0.alignment = .trailing
-    }
-    
-    let backView = UIView().then{
-        $0.backgroundColor = .white
-        $0.layer.cornerRadius = 20
-        $0.layer.shadowRadius = 7.0
-        $0.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        $0.layer.shadowOffset = CGSize(width: 0, height: 2)
-        $0.layer.shadowOpacity = 1
-        $0.layer.masksToBounds = false
-    }
-    
-    let selectedView = UIView().then{
-        $0.backgroundColor = .white
     }
 
     lazy var deleteButton = UIButton().then{
         $0.setImage(Image.minus, for: .normal)
         $0.isHidden = true
-        $0.addTarget(self, action: #selector(deleteButtonDidClicked), for: .touchUpInside)
-    }
-    
-    //MARK: - LifeCycle
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
-        
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        self.selectedBackgroundView = selectedView
-        self.backgroundColor = .transparent
-        
-        setUpView()
-        setUpConstraint()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        $0.addTarget(self, action: #selector(deleteButtonDidTapped), for: .touchUpInside)
     }
     
     override func prepareForReuse() {
@@ -120,42 +85,101 @@ class CategoryTodoTableViewCell: UITableViewCell {
         categoryLabel.layer.borderColor = UIColor.white.cgColor
     }
     
+    override func hierarchy() {
+        
+        super.hierarchy()
+        
+        self.addSubview(deleteButton)
+        baseView.addSubview(backgroundShadowView)
+        
+        backgroundShadowView.addSubview(categoryLabel)
+        backgroundShadowView.addSubview(checkBox)
+        backgroundShadowView.addSubview(todoTitle)
+        backgroundShadowView.addSubview(timeStack)
+        
+        timeStack.addArrangedSubview(dateLabel)
+    }
+    
+    override func layout() {
+
+        contentView.snp.makeConstraints{
+            $0.leading.trailing.top.bottom.equalToSuperview()
+        }
+        
+        baseView.snp.makeConstraints{
+            $0.leading.trailing.top.bottom.equalToSuperview()
+            $0.height.equalTo(backgroundShadowView).offset(20)
+        }
+        backgroundShadowView.snp.makeConstraints{
+            $0.top.bottom.leading.trailing.equalToSuperview()
+            $0.height.equalTo(todoTitle).offset(68)
+        }
+        
+        categoryLabel.snp.makeConstraints{
+            $0.leading.equalToSuperview().offset(19)
+            $0.top.equalToSuperview().offset(14)
+            $0.height.equalTo(21)
+            $0.width.equalTo(categoryLabel.titleLabel!).offset(22)
+        }
+        
+        checkBox.snp.makeConstraints{
+            $0.width.height.equalTo(22)
+            $0.top.equalToSuperview().offset(44.36)
+            $0.leading.equalToSuperview().offset(19)
+        }
+        
+        todoTitle.snp.makeConstraints{
+            $0.trailing.equalToSuperview().offset(-101)
+            $0.centerY.equalTo(checkBox)
+            $0.leading.equalTo(checkBox.snp.trailing).offset(9)
+        }
+        
+        
+        timeStack.snp.makeConstraints{
+            $0.trailing.equalToSuperview().offset(-18)
+            $0.bottom.equalToSuperview().offset(-23)
+        }
+        
+        dateLabel.snp.makeConstraints{
+            $0.width.equalTo(71)
+            $0.height.equalTo(14.14)
+        }
+        
+        deleteButton.snp.makeConstraints{
+            $0.width.height.equalTo(22)
+            $0.leading.equalToSuperview().offset(17)
+            $0.centerY.equalTo(backgroundShadowView)
+        }
+    }
+    
     //MARK: - Action
     
-    @objc
-    func checkBoxDidClicked(){
-        delegate.requestPatchTodoCheckStatus(cell: self)
+    @objc private func willChangeCheckBoxState(){
+        delegate?.requestPatchTodoCheckStatus(cell: self)
     }
     
-    @objc
-    func deleteButtonDidClicked(){
-        
-        //TODO: TODO delete 삭제 서비스 추가된 후에 다시..
-        delegate.requestDeleteTodo()
-        
-        guard let tableView = (self.superview as? UITableView) else{ fatalError() }
-        let indexPath = tableView.indexPath(for: self)!
-//        TodoDeleteDataManager().delete(viewController: self.viewController, todoId: self.todoData.todoId, indexPath: indexPath)
+    @objc private func deleteButtonDidTapped(){
+        delegate?.requestDeleteTodo(cell: self)
+    }
+
+    func bindingData(_ todo: TodoResultModel){
+        todoTitle.text = todo.title
+        dateLabel.text = todo.convertDate
+        timeLabel.text = todo.convertTime ?? ""
+        checkBox.isSelected = todo.isChecked
+        categoryLabel.bindingData(title: todo.categoryTitle, color: todo.color)
+        if(todo.isAlarmEnabled){
+            setUpTimeStack()
+        }
     }
     
-    //MARK: - Helper
-    
-    func settingTodoData(_ cellData: TodoResultModel){
+    private func setUpTimeStack(){
+        timeStack.addArrangedSubview(timeView)
+        timeView.addArrangedSubview(alarmImage)
+        timeView.addArrangedSubview(timeLabel)
         
-        self.todoData = cellData
-        
-        self.todoTitle.text = self.todoData.title
-        self.dateLabel.text = cellData.convertDate
-        self.timeLabel.text = cellData.convertTime ?? ""
-        self.checkBox.isSelected = cellData.isChecked ?? false
-        self.categoryLabel.bindingData(title: cellData.categoryTitle, color: cellData.color)
-        self.setUpTimeStack()
-//        self.setCategoryData()
+        alarmImage.snp.makeConstraints{ make in
+            make.width.equalTo(14)
+        }
     }
-    
-//    func setCategoryData(){
-//        self.categoryLabel.setTitle(todoData.categoryTitle, for: .normal)
-//        self.categoryLabel.layer.borderColor = UIColor.categoryColor[todoData.color].cgColor
-//        self.categoryLabel.setTitleColor( UIColor.categoryColor[todoData.color], for: .normal)
-//    }
 }
