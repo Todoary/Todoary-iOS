@@ -106,7 +106,6 @@
 		57D5B60B29580F4400216C94 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D5B60A29580F4400216C94 /* BaseTableViewCell.swift */; };
 		57D5B60D29580F6600216C94 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D5B60C29580F6600216C94 /* BaseCollectionViewCell.swift */; };
 		57D5B60F29580F8400216C94 /* BaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D5B60E29580F8400216C94 /* BaseProtocol.swift */; };
-		57D5D10428975CE8004A16DA /* CategoryTodoTableViewCell+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D5D10328975CE8004A16DA /* CategoryTodoTableViewCell+Layout.swift */; };
 		57D5D1062898D185004A16DA /* GetAlarmCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D5D1052898D185004A16DA /* GetAlarmCheckModel.swift */; };
 		57D5D108289924AC004A16DA /* SummaryBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D5D107289924AC004A16DA /* SummaryBottomSheetView.swift */; };
 		57DF45F428A60B310002D66C /* IM_Hyemin-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57DF45EC28A60B2F0002D66C /* IM_Hyemin-Regular.ttf */; };
@@ -355,7 +354,6 @@
 		57D5B60A29580F4400216C94 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		57D5B60C29580F6600216C94 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		57D5B60E29580F8400216C94 /* BaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProtocol.swift; sourceTree = "<group>"; };
-		57D5D10328975CE8004A16DA /* CategoryTodoTableViewCell+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryTodoTableViewCell+Layout.swift"; sourceTree = "<group>"; };
 		57D5D1052898D185004A16DA /* GetAlarmCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAlarmCheckModel.swift; sourceTree = "<group>"; };
 		57D5D107289924AC004A16DA /* SummaryBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryBottomSheetView.swift; sourceTree = "<group>"; };
 		57DF45EC28A60B2F0002D66C /* IM_Hyemin-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IM_Hyemin-Regular.ttf"; sourceTree = "<group>"; };
@@ -1241,7 +1239,6 @@
 			children = (
 				57468A69289BCDE800056691 /* NoTodoInCategoryTableViewCell.swift */,
 				573844B9288CF01D009529CD /* AddTodoInCategoryTableViewCell.swift */,
-				57D5D10328975CE8004A16DA /* CategoryTodoTableViewCell+Layout.swift */,
 				57503662288BE3A0006A9070 /* CategoryTodoTableViewCell.swift */,
 				57503660288BE380006A9070 /* CategoryTagCollectionViewCell.swift */,
 				EE135A88298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift */,
@@ -2017,7 +2014,6 @@
 				57F97DD728D9566F00D4697C /* CancelMessageAlertViewController.swift in Sources */,
 				E0F998AB288A69100051C7AA /* AlarmDataManager.swift in Sources */,
 				57D5B60B29580F4400216C94 /* BaseTableViewCell.swift in Sources */,
-				57D5D10428975CE8004A16DA /* CategoryTodoTableViewCell+Layout.swift in Sources */,
 				57D5D1062898D185004A16DA /* GetAlarmCheckModel.swift in Sources */,
 				E0AB9EB9287B1BA00064CADA /* SettingView.swift in Sources */,
 				574A70382883C701003C8F99 /* TodoListTableViewCell+Layout.swift in Sources */,
