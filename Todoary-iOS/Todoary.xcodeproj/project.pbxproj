@@ -196,7 +196,6 @@
 		E0C4BD692872127C00FDEA0E /* AdvertiseTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C4BD682872127C00FDEA0E /* AdvertiseTextView.swift */; };
 		E0C4BD6B2872128500FDEA0E /* AdvertiseTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C4BD6A2872128500FDEA0E /* AdvertiseTextViewController.swift */; };
 		E0F3CDC92895696E00A74AB7 /* TodoInDiaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F3CDC82895696E00A74AB7 /* TodoInDiaryTableViewCell.swift */; };
-		E0F3CDCB2895698400A74AB7 /* DiaryTabelViewCell+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F3CDCA2895698400A74AB7 /* DiaryTabelViewCell+Layout.swift */; };
 		E0F998A4288A59A80051C7AA /* UserDeleteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998A3288A59A80051C7AA /* UserDeleteDataManager.swift */; };
 		E54C4D9FA6602FAE88B10C99 /* Pods_Todoary_TodoaryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA1B412CC301CC2E570F1921 /* Pods_Todoary_TodoaryUITests.framework */; };
 		EE135A89298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE135A88298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift */; };
@@ -432,7 +431,6 @@
 		E0C4BD682872127C00FDEA0E /* AdvertiseTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertiseTextView.swift; sourceTree = "<group>"; };
 		E0C4BD6A2872128500FDEA0E /* AdvertiseTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertiseTextViewController.swift; sourceTree = "<group>"; };
 		E0F3CDC82895696E00A74AB7 /* TodoInDiaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoInDiaryTableViewCell.swift; sourceTree = "<group>"; };
-		E0F3CDCA2895698400A74AB7 /* DiaryTabelViewCell+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiaryTabelViewCell+Layout.swift"; sourceTree = "<group>"; };
 		E0F998A3288A59A80051C7AA /* UserDeleteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeleteDataManager.swift; sourceTree = "<group>"; };
 		E6E8C0E6CB0EA8691D12EEB0 /* Pods_TodoaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE135A88298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAddCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -728,7 +726,6 @@
 			isa = PBXGroup;
 			children = (
 				E0F3CDC82895696E00A74AB7 /* TodoInDiaryTableViewCell.swift */,
-				E0F3CDCA2895698400A74AB7 /* DiaryTabelViewCell+Layout.swift */,
 				E0218B1D28A4D5EA00E48618 /* DiaryStickerCollectionViewCell.swift */,
 			);
 			path = Diary;
@@ -1719,7 +1716,6 @@
 				E0218B2928A54C0700E48618 /* AdvertiseTextSettingView.swift in Sources */,
 				57503661288BE380006A9070 /* CategoryTagCollectionViewCell.swift in Sources */,
 				574A704F28865FEE003C8F99 /* HiddenTransparentButtonView.swift in Sources */,
-				E0F3CDCB2895698400A74AB7 /* DiaryTabelViewCell+Layout.swift in Sources */,
 				574A704B28852F9B003C8F99 /* DiaryBannerInSummaryTableViewCell.swift in Sources */,
 				E0218B2528A4E99600E48618 /* DiaryStickerViewController + Layout.swift in Sources */,
 				AC3A6690297BD69D00EF42BE /* AuthJwtRequestModel.swift in Sources */,
