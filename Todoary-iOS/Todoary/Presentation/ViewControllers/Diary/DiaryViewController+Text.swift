@@ -17,36 +17,21 @@ extension DiaryViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoInDiaryTableViewCell.cellIdentifier, for: indexPath) as? TodoInDiaryTableViewCell else { return UITableViewCell() }
-        
         if todoData.isEmpty{
             return tableView.dequeueReusableCell(for: indexPath, cellType: NoTodoInDiaryTableViewCell.self)
-        }else {
-            cell.delegate = self
-            cell.checkBox.isEnabled = true
-            cell.cellData = todoData[indexPath.row]
-            cell.titleLabel.text = todoData[indexPath.row].title
-            cell.timeLabel.text = todoData[indexPath.row].convertTime
-            cell.checkBox.isSelected = todoData[indexPath.row].isChecked
-            
-            cell.categoryButton.setTitle(todoData[indexPath.row].categoryTitle, for: .normal)
-            cell.categoryButton.layer.borderColor = UIColor.categoryColor[todoData[indexPath.row].color].cgColor
-            cell.categoryButton.setTitleColor(UIColor.categoryColor[todoData[indexPath.row].color], for: .normal)
-            cell.categoryButton.snp.makeConstraints{ make in
-                let offset = todoData[indexPath.row].categoryTitle.count == 5 ? 12 : 24
-                make.width.equalTo(cell.categoryButton.titleLabel!).offset(offset)
-            }
-            cell.titleLabel.snp.makeConstraints{ make in
-                make.trailing.equalToSuperview().offset(-145)
-            }
         }
         
-        
+        let todo = todoData[indexPath.row]
+        let cell = tableView.dequeueReusableCell(for: indexPath, cellType: TodoInDiaryTableViewCell.self).then{
+            $0.delegate = self
+            $0.bindingData(todo)
+        }
         return cell
     }
 }
 
 //MARK: - UITextViewDelegate
+
 extension DiaryViewController: UITextViewDelegate {
 
     func textViewDidBeginEditing(_ textView: UITextView) {

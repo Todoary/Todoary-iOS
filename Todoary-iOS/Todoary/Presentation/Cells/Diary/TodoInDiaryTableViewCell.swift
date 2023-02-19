@@ -84,6 +84,9 @@ class TodoInDiaryTableViewCell: BaseTableViewCell {
     }
     
     func bindingData(_ todo: TodoResultModel){
-        
+        titleLabel.text = todo.title
+        timeLabel.text = todo.convertTime
+        checkBox.isSelected = todo.isChecked
+        categoryButton.bindingData(title: todo.categoryTitle, color: todo.color)
     }
 }
