@@ -103,6 +103,22 @@ extension DiaryViewController: UITextViewDelegate {
 //MARK: - API
 extension DiaryViewController: DiaryTodoCellDelegate{
     
+    func checkTextValidationAndRequestApi(){
+        
+        rightButton.isEnabled = false
+        
+        if(mainView.textView.text == DiaryView.textViewPlaceHolder || mainView.diaryTitle.text!.isEmpty){
+            let alert = UIAlertController(title: nil, message: "다이어리 제목과 1자 이상의 내용 입력은 필수입니다.", preferredStyle: .alert)
+            let okBtn = UIAlertAction(title: "확인", style: .cancel, handler: nil)
+            
+            alert.addAction(okBtn)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+            
+        requestPostDiary()
+    }
+    
     func requestPatchTodoCheckStatus(cell: TodoInDiaryTableViewCell){
         
         guard let indexPath = mainView.todoTableView.indexPath(for: cell) else { return }
@@ -126,23 +142,6 @@ extension DiaryViewController: DiaryTodoCellDelegate{
         }
     }
     
-    func checkTextValidationAndRequestApi(){
-        
-        rightButton.isEnabled = false
-        
-        if(mainView.textView.text == DiaryView.textViewPlaceHolder || mainView.diaryTitle.text!.isEmpty){
-            
-            let alert = UIAlertController(title: nil, message: "다이어리 제목과 1자 이상의 내용 입력은 필수입니다.", preferredStyle: .alert)
-            let okBtn = UIAlertAction(title: "확인", style: .cancel, handler: nil)
-            
-            alert.addAction(okBtn)
-            
-            self.present(alert, animated: true, completion: nil)
-        }else{
-            requestPostDiary()
-        }
-    }
-    
     private func requestPostDiary(){
         
         let text = NSAttributedString(attributedString: mainView.textView.attributedText)
@@ -161,41 +160,5 @@ extension DiaryViewController: DiaryTodoCellDelegate{
                 
             }
         }
-    }
-}
-
-extension DiaryViewController{
-    
-    @objc func colorHighlightButtonDidTapped(_ sender: UIButton){
-        
-        let selectedRange = mainView.textView.selectedRange
-        if(selectedRange.length == 0){ //글자 드래그로 선택안했을 때 커스텀 불가능 설정
-            return
-        }
-        
-        let selectedTextRange = mainView.textView.selectedTextRange
-        let start = selectedRange.lowerBound
-        let attribute = mainView.textView.attributedText.attribute(.backgroundColor,
-                                                                at: start,
-                                                                   effectiveRange: &mainView.textView.selectedRange)
-
-        let attributedString = NSMutableAttributedString(attributedString: mainView.textView.attributedText)
-        let color = sender.backgroundColor!.withAlphaComponent(0.5)
-
-        if let change = attribute as? UIColor{
-            attributedString.removeAttribute(.backgroundColor, range: selectedRange)
-            if(change != color){
-                attributedString.addAttribute(.backgroundColor,
-                                              value: color,
-                                              range: selectedRange)
-            }
-        }else{
-            attributedString.addAttribute(.backgroundColor,
-                                          value: color,
-                                          range: selectedRange)
-        }
-        
-        mainView.textView.attributedText = attributedString
-        moveCursorEndOfSelection(selectedTextRange)
     }
 }
