@@ -8,29 +8,26 @@
 import UIKit
 
 //MARK: - UITableViewDelegate
+
 extension DiaryViewController: UITableViewDelegate, UITableViewDataSource{
     
-    func tableView(_ DiaryTableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todoData.isEmpty ? 1 : todoData.count
     }
     
-    func tableView(_ DiaryTableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = DiaryTableView.dequeueReusableCell(withIdentifier: TodoInDiaryTableViewCell.cellIdentifier, for: indexPath) as? TodoInDiaryTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoInDiaryTableViewCell.cellIdentifier, for: indexPath) as? TodoInDiaryTableViewCell else { return UITableViewCell() }
         
         if todoData.isEmpty{
-            cell.titleLabel.text = "오늘은 투두가 없는 널널한 날이네요"
-            cell.titleLabel.textColor = UIColor(red: 94/255, green: 94/255, blue: 94/255, alpha: 1)
-            cell.categoryButton.isHidden = true
-            cell.timeLabel.isHidden = true
-            cell.checkBox.isEnabled = false
+            return tableView.dequeueReusableCell(for: indexPath, cellType: NoTodoInDiaryTableViewCell.self)
         }else {
             cell.delegate = self
             cell.checkBox.isEnabled = true
             cell.cellData = todoData[indexPath.row]
             cell.titleLabel.text = todoData[indexPath.row].title
             cell.timeLabel.text = todoData[indexPath.row].convertTime
-            cell.checkBox.isSelected = todoData[indexPath.row].isChecked ?? false
+            cell.checkBox.isSelected = todoData[indexPath.row].isChecked
             
             cell.categoryButton.setTitle(todoData[indexPath.row].categoryTitle, for: .normal)
             cell.categoryButton.layer.borderColor = UIColor.categoryColor[todoData[indexPath.row].color].cgColor
