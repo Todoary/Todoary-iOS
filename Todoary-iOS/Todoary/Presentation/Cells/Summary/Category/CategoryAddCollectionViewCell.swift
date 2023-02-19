@@ -7,28 +7,24 @@
 
 import Foundation
 
-class CategoryAddCollectionViewCell: UICollectionViewCell{
+class CategoryAddCollectionViewCell: BaseCollectionViewCell{
     
-    static let cellIdentifier = "CategoryPlusButtonCell"
+    static let cellSize = CGSize(width: 25.91, height: 25.91)
     
-    let plusImage = UIImageView().then{
+    private let plusImage = UIImageView().then{
         $0.image = Image.categoryPlus
     }
     
-    override init(frame: CGRect) {
-        
-        super.init(frame: frame)
-        
-        self.contentView.addSubview(plusImage)
-        
-        plusImage.snp.makeConstraints{ make in
-            make.width.height.equalTo(25.91)
-            make.leading.top.bottom.equalToSuperview()
-        }
-    
+    override func hierarchy() {
+        super.hierarchy()
+        baseView.addSubview(plusImage)
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func layout() {
+        super.layout()
+        plusImage.snp.makeConstraints{
+            $0.width.height.equalTo(CategoryAddCollectionViewCell.cellSize.width)
+            $0.top.bottom.leading.trailing.equalToSuperview()
+        }
     }
 }

@@ -135,6 +135,7 @@ class BaseAlertViewController: UIViewController {
         self.dismiss(animated: false, completion: nil)
     }
     
+    @discardableResult
     func show(in viewController: UIViewController) -> Self{
         self.modalPresentationStyle = .overFullScreen
         viewController.present(self, animated: false)

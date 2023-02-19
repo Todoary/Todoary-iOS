@@ -13,12 +13,20 @@ class CategoryViewController: BaseViewController {
     
     private var isCategoryAdd = false
     private var isEditingMode = false
+    private var willDelete = false
     
     let collectionViewInitialIndex: IndexPath = [0,0]
-    var selectCategoryIndex : IndexPath!
+    var selectCategoryIndex : IndexPath!{
+        didSet{
+            isEditingMode = false
+        }
+    }
 
     var todoData = [TodoResultModel](){
         didSet{
+            if(willDelete){
+                return
+            }
             mainView.todoTableView.reloadData()
         }
     }
@@ -191,8 +199,38 @@ extension CategoryViewController: CategoryTodoCellDelegate{
         }
     }
     
-    func requestDeleteTodo() {
+    func requestDeleteTodo(cell: CategoryTodoTableViewCell) {
+        guard let indexPath = mainView.todoTableView.indexPath(for: cell) else { return }
+        let todo = todoData[indexPath.row]
         
+        TodoService.shared.deleteTodo(id: todo.todoId){ result in
+            switch result{
+            case .success:
+                print("LOG: SUCCESS requestDeleteTodo")
+                self.processResponseDeleteTodo(indexPath: indexPath)
+                break
+            default:
+                print("LOG: fail requestDeleteTodo")
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+            
+        }
+    }
+    
+    private func processResponseDeleteTodo(indexPath: IndexPath){
+        willDelete = true
+        todoData.remove(at: indexPath.row)
+        
+        if(todoData.count == 0){
+            isEditingMode = false
+            mainView.todoTableView.reloadData()
+        }else{
+            mainView.todoTableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        
+        showDeleteCompleteToastMessage()
+        willDelete = false
     }
     
     func requestPatchTodoCheckStatus(cell: CategoryTodoTableViewCell) {
@@ -219,7 +257,7 @@ extension CategoryViewController: CategoryTodoCellDelegate{
 }
 
 //MARK: - TableView
-extension CategoryViewController: UITableViewDelegate, UITableViewDataSource, MoveViewController{
+extension CategoryViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todoData.count != 0 ? todoData.count + 1 : 2
@@ -227,61 +265,47 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource, Mo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if(indexPath.row != tableView.numberOfRows(inSection: 0)-1){
-            
-            if(todoData.count == 0){
-                let cell = tableView.dequeueReusableCell(withIdentifier: NoTodoTableViewCell.cellIdentifier, for: indexPath)
-                return cell
-            }
-            
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryTodoTableViewCell.cellIdentifier)
-                    as? CategoryTodoTableViewCell else { fatalError() }
-            
-            cell.delegate = self
-            
-            let cellData = todoData[indexPath.row]
-            cell.settingTodoData(cellData)
-            
-            let leading = isEditingMode ? 58 : 32
-            let trailing = isEditingMode ? -4 : -30
-            let buttonHidden = isEditingMode ? false : true
-            
-            cell.contentView.snp.updateConstraints{ make in
-                make.leading.equalToSuperview().offset(leading)
-                make.trailing.equalToSuperview().offset(trailing)
-            }
-            cell.deleteButton.isHidden = buttonHidden
-            
-            return cell
-            
-        }else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: NewTodoAddBtnTableViewCell.cellIdentifier)
-                    as? NewTodoAddBtnTableViewCell else { fatalError() }
-            
-            cell.delegate = self
-            
-            return cell
+        if(indexPath.row ==  tableView.numberOfRows(inSection: 0) - 1){
+            return tableView.dequeueReusableCell(for: indexPath, cellType: AddTodoInCategoryTableViewCell.self)
         }
+            
+        if(todoData.count == 0){
+            return tableView.dequeueReusableCell(withIdentifier: NoTodoInCategoryTableViewCell.cellIdentifier, for: indexPath)
+        }
+        
+        let cell = tableView.dequeueReusableCell(for: indexPath, cellType: CategoryTodoTableViewCell.self)
+        
+        cell.delegate = self
+        
+        let todo = todoData[indexPath.row]
+        cell.bindingData(todo)
+        
+        let leading = isEditingMode ? 58 : 32
+        let trailing = isEditingMode ? -4 : -30
+        
+        cell.contentView.snp.updateConstraints{
+            $0.leading.equalToSuperview().offset(leading)
+            $0.trailing.equalToSuperview().offset(trailing)
+        }
+        
+        cell.deleteButton.isHidden = !isEditingMode
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if(indexPath.row == tableView.numberOfRows(inSection: 0) - 1){
+            let vc = TodoSettingViewController()
+            TodoSettingViewController.selectCategory = categories[selectCategoryIndex.row].id
+            self.navigationController?.pushViewController(vc, animated: true)
+            return
+        }
         if(!todoData.isEmpty && indexPath.row != tableView.numberOfRows(inSection: 0) - 1){
             let vc = TodoSettingViewController()
             vc.todoSettingData = todoData[indexPath.row]
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return indexPath.row == todoData.count ? false : true
-    }
-    
-    func moveToViewController() {
-        let vc = TodoSettingViewController()
-        TodoSettingViewController.selectCategory = categories[selectCategoryIndex.row].id
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-
 }
 
 //MARK: - CollectionView
@@ -317,7 +341,7 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         if(indexPath.row == categories.count){
-            return CGSize(width: 50, height: 26)
+            return CategoryAddCollectionViewCell.cellSize
         }
         
         let title = categories[indexPath.row].title
@@ -358,25 +382,5 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard let cell = mainView.categoryCollectionView.cellForItem(at: indexPath) as? CategoryTagCollectionViewCell else { return }
         cell.setDeselectState()
-    }
-}
-
-//MARK: - API
-extension CategoryViewController{
-    
-    func checkDeleteApiResultCode(code: Int, indexPath : IndexPath){
-        switch code{
-        case 1000:
-            todoData.remove(at: indexPath.row)
-            mainView.todoTableView.reloadData()
-            if(todoData.count == 0){
-                isEditingMode = false
-            }
-            showDeleteCompleteToastMessage()
-            return
-        default:
-            let alert = DataBaseErrorAlert()
-            self.present(alert, animated: true, completion: nil)
-        }
     }
 }

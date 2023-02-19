@@ -14,9 +14,6 @@
 		570DD840295ED04B00A0D2A9 /* DiaryViewController+ToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570DD83F295ED04B00A0D2A9 /* DiaryViewController+ToolBar.swift */; };
 		5722461228C1A223009B7C78 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5722461128C1A223009B7C78 /* BaseViewController.swift */; };
 		57294AAA2890D87E00DA2F31 /* DataBaseErrorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57294AA92890D87E00DA2F31 /* DataBaseErrorAlert.swift */; };
-		57294AAF2891159300DA2F31 /* TodoDeleteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57294AAE2891159300DA2F31 /* TodoDeleteDataManager.swift */; };
-		57294AC0289116F500DA2F31 /* TodoCheckboxInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57294ABF289116F500DA2F31 /* TodoCheckboxInput.swift */; };
-		57294AC62891189700DA2F31 /* ApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57294AC52891189700DA2F31 /* ApiModel.swift */; };
 		57294ACC28937C2C00DA2F31 /* TodoBannerInSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57294ACB28937C2C00DA2F31 /* TodoBannerInSummaryTableViewCell.swift */; };
 		572E5ADA286EBDCC00D1FAA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E5AD9286EBDCC00D1FAA0 /* AppDelegate.swift */; };
 		572E5AE1286EBDCC00D1FAA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 572E5ADF286EBDCC00D1FAA0 /* Main.storyboard */; };
@@ -35,7 +32,7 @@
 		572E9ABF287BC4E600F915DF /* FontSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E9ABE287BC4E600F915DF /* FontSettingView.swift */; };
 		572E9AC1287BC90A00F915DF /* FontSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E9AC0287BC90A00F915DF /* FontSettingTableViewCell.swift */; };
 		572E9AC3287C643000F915DF /* InfoMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E9AC2287C643000F915DF /* InfoMessageView.swift */; };
-		573844BA288CF01D009529CD /* NewTodoAddBtnTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573844B9288CF01D009529CD /* NewTodoAddBtnTableViewCell.swift */; };
+		573844BA288CF01D009529CD /* AddTodoInCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573844B9288CF01D009529CD /* AddTodoInCategoryTableViewCell.swift */; };
 		57397F88296D471B0088B5F4 /* AlarmRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F87296D471B0088B5F4 /* AlarmRouter.swift */; };
 		57397F8A296D472C0088B5F4 /* AlarmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F89296D472C0088B5F4 /* AlarmService.swift */; };
 		57397F8C296D4F370088B5F4 /* AccountRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F8B296D4F370088B5F4 /* AccountRouter.swift */; };
@@ -45,23 +42,19 @@
 		57397F98296D51170088B5F4 /* DiaryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F97296D51170088B5F4 /* DiaryRouter.swift */; };
 		57397F9A296D51210088B5F4 /* DiaryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F99296D51210088B5F4 /* DiaryService.swift */; };
 		57397FA0296D51810088B5F4 /* AlarmActiveStautsResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57397F9F296D51810088B5F4 /* AlarmActiveStautsResultModel.swift */; };
-		57468A6A289BCDE800056691 /* NoTodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57468A69289BCDE800056691 /* NoTodoTableViewCell.swift */; };
+		57468A6A289BCDE800056691 /* NoTodoInCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57468A69289BCDE800056691 /* NoTodoInCategoryTableViewCell.swift */; };
 		574913B7287ADF5600381BCD /* AlarmSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574913B6287ADF5600381BCD /* AlarmSettingViewController.swift */; };
 		574913B9287ADF6500381BCD /* AlarmSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574913B8287ADF6500381BCD /* AlarmSettingView.swift */; };
 		574913BB287ADF8E00381BCD /* AlarmSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574913BA287ADF8E00381BCD /* AlarmSettingTableViewCell.swift */; };
 		574A6FEE28826D30003C8F99 /* TodoInSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A6FED28826D30003C8F99 /* TodoInSummaryTableViewCell.swift */; };
 		574A6FF028826EB5003C8F99 /* SummaryBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A6FEF28826EB5003C8F99 /* SummaryBottomSheetViewController.swift */; };
-		574A70382883C701003C8F99 /* TodoListTableViewCell+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A70372883C701003C8F99 /* TodoListTableViewCell+Layout.swift */; };
 		574A703A2883FF10003C8F99 /* AppleSDGothicNeoEB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 574A70392883FF10003C8F99 /* AppleSDGothicNeoEB.ttf */; };
 		574A704528852523003C8F99 /* TodoTitleInSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A704428852523003C8F99 /* TodoTitleInSummaryTableViewCell.swift */; };
-		574A704728852544003C8F99 /* DiaryInSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A704628852543003C8F99 /* DiaryInSummaryTableViewCell.swift */; };
-		574A70492885255B003C8F99 /* DiaryTitleInSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A70482885255B003C8F99 /* DiaryTitleInSummaryTableViewCell.swift */; };
+		574A704728852544003C8F99 /* DiaryTitleInSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A704628852543003C8F99 /* DiaryTitleInSummaryTableViewCell.swift */; };
+		574A70492885255B003C8F99 /* DiaryInSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A70482885255B003C8F99 /* DiaryInSummaryTableViewCell.swift */; };
 		574A704B28852F9B003C8F99 /* DiaryBannerInSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A704A28852F9B003C8F99 /* DiaryBannerInSummaryTableViewCell.swift */; };
 		574A704F28865FEE003C8F99 /* HiddenTransparentButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A704E28865FEE003C8F99 /* HiddenTransparentButtonView.swift */; };
 		57502F47287EA29100C36804 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57502F46287EA29100C36804 /* UITextView.swift */; };
-		5750364A288A3EB0006A9070 /* SignUpInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57503649288A3EB0006A9070 /* SignUpInput.swift */; };
-		5750364C288A3EC0006A9070 /* SignUpDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5750364B288A3EC0006A9070 /* SignUpDataManager.swift */; };
-		5750364E288A3ECE006A9070 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5750364D288A3ECE006A9070 /* SignUpModel.swift */; };
 		5750365F288BE33F006A9070 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5750365E288BE33F006A9070 /* CategoryViewController.swift */; };
 		57503661288BE380006A9070 /* CategoryTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57503660288BE380006A9070 /* CategoryTagCollectionViewCell.swift */; };
 		57503663288BE3A0006A9070 /* CategoryTodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57503662288BE3A0006A9070 /* CategoryTodoTableViewCell.swift */; };
@@ -105,8 +98,6 @@
 		57D5B60B29580F4400216C94 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D5B60A29580F4400216C94 /* BaseTableViewCell.swift */; };
 		57D5B60D29580F6600216C94 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D5B60C29580F6600216C94 /* BaseCollectionViewCell.swift */; };
 		57D5B60F29580F8400216C94 /* BaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D5B60E29580F8400216C94 /* BaseProtocol.swift */; };
-		57D5D10428975CE8004A16DA /* CategoryTodoTableViewCell+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D5D10328975CE8004A16DA /* CategoryTodoTableViewCell+Layout.swift */; };
-		57D5D1062898D185004A16DA /* GetAlarmCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D5D1052898D185004A16DA /* GetAlarmCheckModel.swift */; };
 		57D5D108289924AC004A16DA /* SummaryBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D5D107289924AC004A16DA /* SummaryBottomSheetView.swift */; };
 		57DF45F428A60B310002D66C /* IM_Hyemin-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57DF45EC28A60B2F0002D66C /* IM_Hyemin-Regular.ttf */; };
 		57DF45F628A60B310002D66C /* NotoSerifKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57DF45EE28A60B300002D66C /* NotoSerifKR-Regular.otf */; };
@@ -117,9 +108,6 @@
 		57DF45FD28A60DB90002D66C /* DiaryFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DF45FC28A60DB90002D66C /* DiaryFont.swift */; };
 		57DF460328A64A9E0002D66C /* IBMPlexSansKR-Text.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57DF460228A64A9E0002D66C /* IBMPlexSansKR-Text.otf */; };
 		57DF460528A64AA60002D66C /* IBMPlexSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57DF460428A64AA60002D66C /* IBMPlexSansKR-Medium.otf */; };
-		57E6516628B2F0E4006CB053 /* AppleLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E6516528B2F0E4006CB053 /* AppleLoginModel.swift */; };
-		57E6516828B2F969006CB053 /* AppleLoginDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E6516728B2F969006CB053 /* AppleLoginDataManager.swift */; };
-		57E6516A28B31910006CB053 /* AppleLoginInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E6516928B31910006CB053 /* AppleLoginInput.swift */; };
 		57E75EB228E1B7D700AC24B2 /* AlarmAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E75EB128E1B7D700AC24B2 /* AlarmAlertViewController.swift */; };
 		57E75EB928E33AD400AC24B2 /* AddButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E75EB828E33AD400AC24B2 /* AddButtonViewController.swift */; };
 		57F97DD728D9566F00D4697C /* CancelMessageAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F97DD628D9566F00D4697C /* CancelMessageAlertViewController.swift */; };
@@ -209,15 +197,14 @@
 		E0C4BD692872127C00FDEA0E /* AdvertiseTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C4BD682872127C00FDEA0E /* AdvertiseTextView.swift */; };
 		E0C4BD6B2872128500FDEA0E /* AdvertiseTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C4BD6A2872128500FDEA0E /* AdvertiseTextViewController.swift */; };
 		E0F3CDC92895696E00A74AB7 /* TodoInDiaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F3CDC82895696E00A74AB7 /* TodoInDiaryTableViewCell.swift */; };
-		E0F3CDCB2895698400A74AB7 /* DiaryTabelViewCell+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F3CDCA2895698400A74AB7 /* DiaryTabelViewCell+Layout.swift */; };
 		E0F998A4288A59A80051C7AA /* UserDeleteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998A3288A59A80051C7AA /* UserDeleteDataManager.swift */; };
-		E0F998A6288A59B70051C7AA /* UserDeleteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998A5288A59B70051C7AA /* UserDeleteModel.swift */; };
-		E0F998A8288A683E0051C7AA /* UserDeleteInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998A7288A683E0051C7AA /* UserDeleteInput.swift */; };
-		E0F998AB288A69100051C7AA /* AlarmDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998AA288A69100051C7AA /* AlarmDataManager.swift */; };
-		E0F998C9288A6B310051C7AA /* AdDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998C8288A6B310051C7AA /* AdDataManager.swift */; };
-		E0F998CB288A6B460051C7AA /* AdModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998CA288A6B460051C7AA /* AdModel.swift */; };
 		E54C4D9FA6602FAE88B10C99 /* Pods_Todoary_TodoaryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA1B412CC301CC2E570F1921 /* Pods_Todoary_TodoaryUITests.framework */; };
+		EE12A17A29A1D6FA009A9750 /* NoTodoInDiaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE12A17929A1D6FA009A9750 /* NoTodoInDiaryTableViewCell.swift */; };
 		EE135A89298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE135A88298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift */; };
+		EE8BCEF6299F2836004EA821 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BCEF5299F2836004EA821 /* UITableView.swift */; };
+		EE8BCEF8299F2842004EA821 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BCEF7299F2842004EA821 /* UICollectionView.swift */; };
+		EE8BCEFA299F3AF9004EA821 /* ShadowDesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BCEF9299F3AF9004EA821 /* ShadowDesignSystem.swift */; };
+		EE8BCEFC299F4F48004EA821 /* SummaryCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BCEFB299F4F48004EA821 /* SummaryCellDelegate.swift */; };
 		EED1B34E298656E600F14CAC /* TypoDesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED1B34D298656E600F14CAC /* TypoDesignSystem.swift */; };
 		EED1B350298656FD00F14CAC /* CategoryDesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED1B34F298656FD00F14CAC /* CategoryDesignSystem.swift */; };
 		EEE326A52998AEB50017DF46 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE326A42998AEB50017DF46 /* Image.swift */; };
@@ -252,9 +239,6 @@
 		570DD83F295ED04B00A0D2A9 /* DiaryViewController+ToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiaryViewController+ToolBar.swift"; sourceTree = "<group>"; };
 		5722461128C1A223009B7C78 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		57294AA92890D87E00DA2F31 /* DataBaseErrorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseErrorAlert.swift; sourceTree = "<group>"; };
-		57294AAE2891159300DA2F31 /* TodoDeleteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDeleteDataManager.swift; sourceTree = "<group>"; };
-		57294ABF289116F500DA2F31 /* TodoCheckboxInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCheckboxInput.swift; sourceTree = "<group>"; };
-		57294AC52891189700DA2F31 /* ApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiModel.swift; sourceTree = "<group>"; };
 		57294ACB28937C2C00DA2F31 /* TodoBannerInSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoBannerInSummaryTableViewCell.swift; sourceTree = "<group>"; };
 		572E5AD6286EBDCC00D1FAA0 /* Todoary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todoary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		572E5AD9286EBDCC00D1FAA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -277,7 +261,7 @@
 		572E9ABE287BC4E600F915DF /* FontSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSettingView.swift; sourceTree = "<group>"; };
 		572E9AC0287BC90A00F915DF /* FontSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSettingTableViewCell.swift; sourceTree = "<group>"; };
 		572E9AC2287C643000F915DF /* InfoMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoMessageView.swift; sourceTree = "<group>"; };
-		573844B9288CF01D009529CD /* NewTodoAddBtnTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTodoAddBtnTableViewCell.swift; sourceTree = "<group>"; };
+		573844B9288CF01D009529CD /* AddTodoInCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoInCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		57397F87296D471B0088B5F4 /* AlarmRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmRouter.swift; sourceTree = "<group>"; };
 		57397F89296D472C0088B5F4 /* AlarmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmService.swift; sourceTree = "<group>"; };
 		57397F8B296D4F370088B5F4 /* AccountRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRouter.swift; sourceTree = "<group>"; };
@@ -287,24 +271,20 @@
 		57397F97296D51170088B5F4 /* DiaryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryRouter.swift; sourceTree = "<group>"; };
 		57397F99296D51210088B5F4 /* DiaryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryService.swift; sourceTree = "<group>"; };
 		57397F9F296D51810088B5F4 /* AlarmActiveStautsResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmActiveStautsResultModel.swift; sourceTree = "<group>"; };
-		57468A69289BCDE800056691 /* NoTodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoTodoTableViewCell.swift; sourceTree = "<group>"; };
+		57468A69289BCDE800056691 /* NoTodoInCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoTodoInCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		574913B6287ADF5600381BCD /* AlarmSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingViewController.swift; sourceTree = "<group>"; };
 		574913B8287ADF6500381BCD /* AlarmSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingView.swift; sourceTree = "<group>"; };
 		574913BA287ADF8E00381BCD /* AlarmSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingTableViewCell.swift; sourceTree = "<group>"; };
 		574A6FED28826D30003C8F99 /* TodoInSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoInSummaryTableViewCell.swift; sourceTree = "<group>"; };
 		574A6FEF28826EB5003C8F99 /* SummaryBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryBottomSheetViewController.swift; sourceTree = "<group>"; };
-		574A70372883C701003C8F99 /* TodoListTableViewCell+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoListTableViewCell+Layout.swift"; sourceTree = "<group>"; };
 		574A70392883FF10003C8F99 /* AppleSDGothicNeoEB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AppleSDGothicNeoEB.ttf; sourceTree = "<group>"; };
 		574A704428852523003C8F99 /* TodoTitleInSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTitleInSummaryTableViewCell.swift; sourceTree = "<group>"; };
-		574A704628852543003C8F99 /* DiaryInSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryInSummaryTableViewCell.swift; sourceTree = "<group>"; };
-		574A70482885255B003C8F99 /* DiaryTitleInSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTitleInSummaryTableViewCell.swift; sourceTree = "<group>"; };
+		574A704628852543003C8F99 /* DiaryTitleInSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTitleInSummaryTableViewCell.swift; sourceTree = "<group>"; };
+		574A70482885255B003C8F99 /* DiaryInSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryInSummaryTableViewCell.swift; sourceTree = "<group>"; };
 		574A704A28852F9B003C8F99 /* DiaryBannerInSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryBannerInSummaryTableViewCell.swift; sourceTree = "<group>"; };
 		574A704C28853C36003C8F99 /* UISheetPresentationControllerDetent+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UISheetPresentationControllerDetent+Private.h"; sourceTree = "<group>"; };
 		574A704E28865FEE003C8F99 /* HiddenTransparentButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenTransparentButtonView.swift; sourceTree = "<group>"; };
 		57502F46287EA29100C36804 /* UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
-		57503649288A3EB0006A9070 /* SignUpInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInput.swift; sourceTree = "<group>"; };
-		5750364B288A3EC0006A9070 /* SignUpDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDataManager.swift; sourceTree = "<group>"; };
-		5750364D288A3ECE006A9070 /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		5750365E288BE33F006A9070 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		57503660288BE380006A9070 /* CategoryTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		57503662288BE3A0006A9070 /* CategoryTodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTodoTableViewCell.swift; sourceTree = "<group>"; };
@@ -350,8 +330,6 @@
 		57D5B60A29580F4400216C94 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		57D5B60C29580F6600216C94 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		57D5B60E29580F8400216C94 /* BaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProtocol.swift; sourceTree = "<group>"; };
-		57D5D10328975CE8004A16DA /* CategoryTodoTableViewCell+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryTodoTableViewCell+Layout.swift"; sourceTree = "<group>"; };
-		57D5D1052898D185004A16DA /* GetAlarmCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAlarmCheckModel.swift; sourceTree = "<group>"; };
 		57D5D107289924AC004A16DA /* SummaryBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryBottomSheetView.swift; sourceTree = "<group>"; };
 		57DF45EC28A60B2F0002D66C /* IM_Hyemin-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IM_Hyemin-Regular.ttf"; sourceTree = "<group>"; };
 		57DF45EE28A60B300002D66C /* NotoSerifKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSerifKR-Regular.otf"; sourceTree = "<group>"; };
@@ -362,9 +340,6 @@
 		57DF45FC28A60DB90002D66C /* DiaryFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryFont.swift; sourceTree = "<group>"; };
 		57DF460228A64A9E0002D66C /* IBMPlexSansKR-Text.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSansKR-Text.otf"; sourceTree = "<group>"; };
 		57DF460428A64AA60002D66C /* IBMPlexSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSansKR-Medium.otf"; sourceTree = "<group>"; };
-		57E6516528B2F0E4006CB053 /* AppleLoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginModel.swift; sourceTree = "<group>"; };
-		57E6516728B2F969006CB053 /* AppleLoginDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginDataManager.swift; sourceTree = "<group>"; };
-		57E6516928B31910006CB053 /* AppleLoginInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginInput.swift; sourceTree = "<group>"; };
 		57E75EB128E1B7D700AC24B2 /* AlarmAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmAlertViewController.swift; sourceTree = "<group>"; };
 		57E75EB828E33AD400AC24B2 /* AddButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonViewController.swift; sourceTree = "<group>"; };
 		57F97DD628D9566F00D4697C /* CancelMessageAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelMessageAlertViewController.swift; sourceTree = "<group>"; };
@@ -459,15 +434,14 @@
 		E0C4BD682872127C00FDEA0E /* AdvertiseTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertiseTextView.swift; sourceTree = "<group>"; };
 		E0C4BD6A2872128500FDEA0E /* AdvertiseTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertiseTextViewController.swift; sourceTree = "<group>"; };
 		E0F3CDC82895696E00A74AB7 /* TodoInDiaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoInDiaryTableViewCell.swift; sourceTree = "<group>"; };
-		E0F3CDCA2895698400A74AB7 /* DiaryTabelViewCell+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiaryTabelViewCell+Layout.swift"; sourceTree = "<group>"; };
 		E0F998A3288A59A80051C7AA /* UserDeleteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeleteDataManager.swift; sourceTree = "<group>"; };
-		E0F998A5288A59B70051C7AA /* UserDeleteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeleteModel.swift; sourceTree = "<group>"; };
-		E0F998A7288A683E0051C7AA /* UserDeleteInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeleteInput.swift; sourceTree = "<group>"; };
-		E0F998AA288A69100051C7AA /* AlarmDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmDataManager.swift; sourceTree = "<group>"; };
-		E0F998C8288A6B310051C7AA /* AdDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdDataManager.swift; sourceTree = "<group>"; };
-		E0F998CA288A6B460051C7AA /* AdModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdModel.swift; sourceTree = "<group>"; };
 		E6E8C0E6CB0EA8691D12EEB0 /* Pods_TodoaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE12A17929A1D6FA009A9750 /* NoTodoInDiaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoTodoInDiaryTableViewCell.swift; sourceTree = "<group>"; };
 		EE135A88298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAddCollectionViewCell.swift; sourceTree = "<group>"; };
+		EE8BCEF5299F2836004EA821 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
+		EE8BCEF7299F2842004EA821 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
+		EE8BCEF9299F3AF9004EA821 /* ShadowDesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowDesignSystem.swift; sourceTree = "<group>"; };
+		EE8BCEFB299F4F48004EA821 /* SummaryCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCellDelegate.swift; sourceTree = "<group>"; };
 		EED1B34D298656E600F14CAC /* TypoDesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypoDesignSystem.swift; sourceTree = "<group>"; };
 		EED1B34F298656FD00F14CAC /* CategoryDesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDesignSystem.swift; sourceTree = "<group>"; };
 		EEE326A42998AEB50017DF46 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
@@ -756,7 +730,7 @@
 			isa = PBXGroup;
 			children = (
 				E0F3CDC82895696E00A74AB7 /* TodoInDiaryTableViewCell.swift */,
-				E0F3CDCA2895698400A74AB7 /* DiaryTabelViewCell+Layout.swift */,
+				EE12A17929A1D6FA009A9750 /* NoTodoInDiaryTableViewCell.swift */,
 				E0218B1D28A4D5EA00E48618 /* DiaryStickerCollectionViewCell.swift */,
 			);
 			path = Diary;
@@ -1050,164 +1024,20 @@
 			path = Account;
 			sourceTree = "<group>";
 		};
-		5701EA7929570DC400F21F63 /* Agreement */ = {
-			isa = PBXGroup;
-			children = (
-				E0F998C8288A6B310051C7AA /* AdDataManager.swift */,
-			);
-			path = Agreement;
-			sourceTree = "<group>";
-		};
-		5701EA7B29570DC800F21F63 /* Setting */ = {
-			isa = PBXGroup;
-			children = (
-				E0F998AA288A69100051C7AA /* AlarmDataManager.swift */,
-			);
-			path = Setting;
-			sourceTree = "<group>";
-		};
-		5701EA7C29570DC900F21F63 /* Summary */ = {
-			isa = PBXGroup;
-			children = (
-				57294AAE2891159300DA2F31 /* TodoDeleteDataManager.swift */,
-			);
-			path = Summary;
-			sourceTree = "<group>";
-		};
 		5701EA7E29570DCD00F21F63 /* User */ = {
 			isa = PBXGroup;
 			children = (
 				5701EA7829570DC200F21F63 /* Account */,
-				5701EA7929570DC400F21F63 /* Agreement */,
-				5701EA8229570E1600F21F63 /* Login */,
-				5701EA8129570E1400F21F63 /* SignUp */,
 			);
 			path = User;
-			sourceTree = "<group>";
-		};
-		5701EA8129570E1400F21F63 /* SignUp */ = {
-			isa = PBXGroup;
-			children = (
-				5750364B288A3EC0006A9070 /* SignUpDataManager.swift */,
-			);
-			path = SignUp;
-			sourceTree = "<group>";
-		};
-		5701EA8229570E1600F21F63 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				57E6516728B2F969006CB053 /* AppleLoginDataManager.swift */,
-			);
-			path = Login;
 			sourceTree = "<group>";
 		};
 		5701EA8329570E5700F21F63 /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
 				5701EA7E29570DCD00F21F63 /* User */,
-				5701EA9A295717F300F21F63 /* Category */,
-				5701EA7C29570DC900F21F63 /* Summary */,
-				5701EA7B29570DC800F21F63 /* Setting */,
 			);
 			path = DataManager;
-			sourceTree = "<group>";
-		};
-		5701EA8429570E6A00F21F63 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				57294AC52891189700DA2F31 /* ApiModel.swift */,
-				5701EA8B29570E7B00F21F63 /* User */,
-				5701EA8929570E7800F21F63 /* Summary */,
-				5701EA8829570E7600F21F63 /* Setting */,
-				5701EA8729570E7400F21F63 /* Todo */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		5701EA8729570E7400F21F63 /* Todo */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Todo;
-			sourceTree = "<group>";
-		};
-		5701EA8829570E7600F21F63 /* Setting */ = {
-			isa = PBXGroup;
-			children = (
-				57D5D1052898D185004A16DA /* GetAlarmCheckModel.swift */,
-			);
-			path = Setting;
-			sourceTree = "<group>";
-		};
-		5701EA8929570E7800F21F63 /* Summary */ = {
-			isa = PBXGroup;
-			children = (
-				57294ABF289116F500DA2F31 /* TodoCheckboxInput.swift */,
-				ACFBEC9D28B3DBB200B9D66F /* GetDiaryExistenceModel.swift */,
-			);
-			path = Summary;
-			sourceTree = "<group>";
-		};
-		5701EA8B29570E7B00F21F63 /* User */ = {
-			isa = PBXGroup;
-			children = (
-				5701EA8F29570EA200F21F63 /* Account */,
-				5701EA8E29570EA100F21F63 /* Agreement */,
-				5701EA8D29570E9F00F21F63 /* Login */,
-				5701EA8C29570E9D00F21F63 /* SignUp */,
-			);
-			path = User;
-			sourceTree = "<group>";
-		};
-		5701EA8C29570E9D00F21F63 /* SignUp */ = {
-			isa = PBXGroup;
-			children = (
-				57503649288A3EB0006A9070 /* SignUpInput.swift */,
-				5750364D288A3ECE006A9070 /* SignUpModel.swift */,
-			);
-			path = SignUp;
-			sourceTree = "<group>";
-		};
-		5701EA8D29570E9F00F21F63 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				5701EA932957102C00F21F63 /* Apple */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		5701EA8E29570EA100F21F63 /* Agreement */ = {
-			isa = PBXGroup;
-			children = (
-				E0F998CA288A6B460051C7AA /* AdModel.swift */,
-			);
-			path = Agreement;
-			sourceTree = "<group>";
-		};
-		5701EA8F29570EA200F21F63 /* Account */ = {
-			isa = PBXGroup;
-			children = (
-				5701EA982957148B00F21F63 /* Delete */,
-			);
-			path = Account;
-			sourceTree = "<group>";
-		};
-		5701EA932957102C00F21F63 /* Apple */ = {
-			isa = PBXGroup;
-			children = (
-				57E6516928B31910006CB053 /* AppleLoginInput.swift */,
-				57E6516528B2F0E4006CB053 /* AppleLoginModel.swift */,
-			);
-			path = Apple;
-			sourceTree = "<group>";
-		};
-		5701EA982957148B00F21F63 /* Delete */ = {
-			isa = PBXGroup;
-			children = (
-				E0F998A7288A683E0051C7AA /* UserDeleteInput.swift */,
-				E0F998A5288A59B70051C7AA /* UserDeleteModel.swift */,
-			);
-			path = Delete;
 			sourceTree = "<group>";
 		};
 		5701EA992957154000F21F63 /* Todo */ = {
@@ -1221,19 +1051,11 @@
 			path = Todo;
 			sourceTree = "<group>";
 		};
-		5701EA9A295717F300F21F63 /* Category */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Category;
-			sourceTree = "<group>";
-		};
 		5701EA9D2957181400F21F63 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				57468A69289BCDE800056691 /* NoTodoTableViewCell.swift */,
-				573844B9288CF01D009529CD /* NewTodoAddBtnTableViewCell.swift */,
-				57D5D10328975CE8004A16DA /* CategoryTodoTableViewCell+Layout.swift */,
+				57468A69289BCDE800056691 /* NoTodoInCategoryTableViewCell.swift */,
+				573844B9288CF01D009529CD /* AddTodoInCategoryTableViewCell.swift */,
 				57503662288BE3A0006A9070 /* CategoryTodoTableViewCell.swift */,
 				57503660288BE380006A9070 /* CategoryTagCollectionViewCell.swift */,
 				EE135A88298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift */,
@@ -1403,10 +1225,9 @@
 			children = (
 				574A704E28865FEE003C8F99 /* HiddenTransparentButtonView.swift */,
 				574A6FED28826D30003C8F99 /* TodoInSummaryTableViewCell.swift */,
-				574A70372883C701003C8F99 /* TodoListTableViewCell+Layout.swift */,
 				574A704428852523003C8F99 /* TodoTitleInSummaryTableViewCell.swift */,
-				574A704628852543003C8F99 /* DiaryInSummaryTableViewCell.swift */,
-				574A70482885255B003C8F99 /* DiaryTitleInSummaryTableViewCell.swift */,
+				574A704628852543003C8F99 /* DiaryTitleInSummaryTableViewCell.swift */,
+				574A70482885255B003C8F99 /* DiaryInSummaryTableViewCell.swift */,
 				574A704A28852F9B003C8F99 /* DiaryBannerInSummaryTableViewCell.swift */,
 				57294ACB28937C2C00DA2F31 /* TodoBannerInSummaryTableViewCell.swift */,
 			);
@@ -1495,7 +1316,6 @@
 		57C481C2296954FB008731D9 /* WillDelete */ = {
 			isa = PBXGroup;
 			children = (
-				5701EA8429570E6A00F21F63 /* Model */,
 				5701EA8329570E5700F21F63 /* DataManager */,
 			);
 			path = WillDelete;
@@ -1562,6 +1382,7 @@
 			isa = PBXGroup;
 			children = (
 				57D5B60E29580F8400216C94 /* BaseProtocol.swift */,
+				EE8BCEFB299F4F48004EA821 /* SummaryCellDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1602,6 +1423,8 @@
 				572E5B0D286EC10500D1FAA0 /* UIFont.swift */,
 				57DF45FC28A60DB90002D66C /* DiaryFont.swift */,
 				57503664288BE42C006A9070 /* CategoryColor.swift */,
+				EE8BCEF5299F2836004EA821 /* UITableView.swift */,
+				EE8BCEF7299F2842004EA821 /* UICollectionView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1622,6 +1445,7 @@
 			children = (
 				EED1B34D298656E600F14CAC /* TypoDesignSystem.swift */,
 				EED1B34F298656FD00F14CAC /* CategoryDesignSystem.swift */,
+				EE8BCEF9299F3AF9004EA821 /* ShadowDesignSystem.swift */,
 			);
 			path = DesignSystem;
 			sourceTree = "<group>";
@@ -1893,13 +1717,10 @@
 			files = (
 				E0218B1E28A4D5EA00E48618 /* DiaryStickerCollectionViewCell.swift in Sources */,
 				ACACD01228749F520029D5CE /* LoginView.swift in Sources */,
-				E0F998C9288A6B310051C7AA /* AdDataManager.swift in Sources */,
 				57397F94296D50FF0088B5F4 /* TodoRouter.swift in Sources */,
-				57294AC0289116F500DA2F31 /* TodoCheckboxInput.swift in Sources */,
 				E0218B2928A54C0700E48618 /* AdvertiseTextSettingView.swift in Sources */,
 				57503661288BE380006A9070 /* CategoryTagCollectionViewCell.swift in Sources */,
 				574A704F28865FEE003C8F99 /* HiddenTransparentButtonView.swift in Sources */,
-				E0F3CDCB2895698400A74AB7 /* DiaryTabelViewCell+Layout.swift in Sources */,
 				574A704B28852F9B003C8F99 /* DiaryBannerInSummaryTableViewCell.swift in Sources */,
 				E0218B2528A4E99600E48618 /* DiaryStickerViewController + Layout.swift in Sources */,
 				AC3A6690297BD69D00EF42BE /* AuthJwtRequestModel.swift in Sources */,
@@ -1921,8 +1742,6 @@
 				E0218B3228A5504300E48618 /* LoadingScreenViewController+Layout.swift in Sources */,
 				57C481C12969537A008731D9 /* GeneralResponse.swift in Sources */,
 				E06F1AC928A605930066B824 /* AdvertiseTextSettingViewController.swift in Sources */,
-				57E6516A28B31910006CB053 /* AppleLoginInput.swift in Sources */,
-				57294AC62891189700DA2F31 /* ApiModel.swift in Sources */,
 				5799DB732977A2D9001137EA /* TodoaryDateFormatter.swift in Sources */,
 				AC3A6696297C534400EF42BE /* DiaryStickerRequestModel.swift in Sources */,
 				AC5E27DA288EFCFE0056EC69 /* TodoCalendar.swift in Sources */,
@@ -1934,12 +1753,12 @@
 				ACBAE57C297AE8B500E71CAD /* FcmTokenRequestModel.swift in Sources */,
 				57503665288BE42C006A9070 /* CategoryColor.swift in Sources */,
 				57294AAA2890D87E00DA2F31 /* DataBaseErrorAlert.swift in Sources */,
-				E0F998A6288A59B70051C7AA /* UserDeleteModel.swift in Sources */,
 				57556A932960030400B67369 /* BaseView.swift in Sources */,
+				EE8BCEF8299F2842004EA821 /* UICollectionView.swift in Sources */,
 				AC5E27DC288FC0DA0056EC69 /* TodoAlarmBottomSheetViewController.swift in Sources */,
 				575DE95C297651E800E61B8F /* DiaryStickerResultModel.swift in Sources */,
 				570DD840295ED04B00A0D2A9 /* DiaryViewController+ToolBar.swift in Sources */,
-				574A70492885255B003C8F99 /* DiaryTitleInSummaryTableViewCell.swift in Sources */,
+				574A70492885255B003C8F99 /* DiaryInSummaryTableViewCell.swift in Sources */,
 				574A704528852523003C8F99 /* TodoTitleInSummaryTableViewCell.swift in Sources */,
 				ACBAE572297990FB00E71CAD /* LoginRequestModel.swift in Sources */,
 				AC9128D2287B34C80056932A /* ProfileView.swift in Sources */,
@@ -1948,10 +1767,11 @@
 				576ED6B028748FFA007389CD /* NavigationView.swift in Sources */,
 				AC5E27E52890211C0056EC69 /* AuthJwtResultModel.swift in Sources */,
 				574A6FF028826EB5003C8F99 /* SummaryBottomSheetViewController.swift in Sources */,
-				573844BA288CF01D009529CD /* NewTodoAddBtnTableViewCell.swift in Sources */,
+				573844BA288CF01D009529CD /* AddTodoInCategoryTableViewCell.swift in Sources */,
 				570DD837295EC53D00A0D2A9 /* DiaryViewController+Sticker.swift in Sources */,
 				AC9859CB288334AC009FC2F8 /* CalendarCell.swift in Sources */,
 				57E75EB228E1B7D700AC24B2 /* AlarmAlertViewController.swift in Sources */,
+				EE8BCEF6299F2836004EA821 /* UITableView.swift in Sources */,
 				57FFEDBC28DC1C230041719B /* Const.swift in Sources */,
 				572E9ABB287BC4BD00F915DF /* ScreenSettingView.swift in Sources */,
 				575DE96B29769EBD00E61B8F /* CodeResponse.swift in Sources */,
@@ -1959,23 +1779,21 @@
 				E0F3CDC92895696E00A74AB7 /* TodoInDiaryTableViewCell.swift in Sources */,
 				575DE95E2976522000E61B8F /* TodoAlarmRequestModel.swift in Sources */,
 				576ED6B42874902A007389CD /* UITextField.swift in Sources */,
-				57468A6A289BCDE800056691 /* NoTodoTableViewCell.swift in Sources */,
+				57468A6A289BCDE800056691 /* NoTodoInCategoryTableViewCell.swift in Sources */,
 				57B9F71328D94F7500ACEC94 /* CancelAlertViewController.swift in Sources */,
 				ACCD87C628965B7700C34CE7 /* TodoCategoryCell.swift in Sources */,
 				572E9AC1287BC90A00F915DF /* FontSettingTableViewCell.swift in Sources */,
-				57E6516828B2F969006CB053 /* AppleLoginDataManager.swift in Sources */,
-				5750364E288A3ECE006A9070 /* SignUpModel.swift in Sources */,
 				E076E9F028703ECE001E14E1 /* AppPasswordViewController.swift in Sources */,
 				575DE9502975125400E61B8F /* MarketingService.swift in Sources */,
 				ACBAE560296E69BF00E71CAD /* ProfileService.swift in Sources */,
 				E0439ABB288C598A0075CBF0 /* ColorPickerViewController.swift in Sources */,
-				5750364C288A3EC0006A9070 /* SignUpDataManager.swift in Sources */,
 				E076E9EE28703EA1001E14E1 /* AppPasswordView.swift in Sources */,
 				57502F47287EA29100C36804 /* UITextView.swift in Sources */,
 				572E9AC3287C643000F915DF /* InfoMessageView.swift in Sources */,
 				E015059928B3F3E500E83157 /* OnboardingViewController.swift in Sources */,
 				570DD83A295EC56500A0D2A9 /* DiaryView.swift in Sources */,
 				57C481BB29695344008731D9 /* HTTPMethodURL.swift in Sources */,
+				EE12A17A29A1D6FA009A9750 /* NoTodoInDiaryTableViewCell.swift in Sources */,
 				57D5B60D29580F6600216C94 /* BaseCollectionViewCell.swift in Sources */,
 				572E9ABF287BC4E600F915DF /* FontSettingView.swift in Sources */,
 				57397F98296D51170088B5F4 /* DiaryRouter.swift in Sources */,
@@ -1998,15 +1816,10 @@
 				57B9F70F28D94F4400ACEC94 /* BaseAlertViewController.swift in Sources */,
 				AC5E27C9288C37E60056EC69 /* TodoSettingView.swift in Sources */,
 				AC3A668E297BC82100EF42BE /* NetworkCheckModel.swift in Sources */,
-				5750364A288A3EB0006A9070 /* SignUpInput.swift in Sources */,
 				AC5E27DF28901EEF0056EC69 /* AuthInterceptor.swift in Sources */,
 				57F97DD728D9566F00D4697C /* CancelMessageAlertViewController.swift in Sources */,
-				E0F998AB288A69100051C7AA /* AlarmDataManager.swift in Sources */,
 				57D5B60B29580F4400216C94 /* BaseTableViewCell.swift in Sources */,
-				57D5D10428975CE8004A16DA /* CategoryTodoTableViewCell+Layout.swift in Sources */,
-				57D5D1062898D185004A16DA /* GetAlarmCheckModel.swift in Sources */,
 				E0AB9EB9287B1BA00064CADA /* SettingView.swift in Sources */,
-				574A70382883C701003C8F99 /* TodoListTableViewCell+Layout.swift in Sources */,
 				E0C4BD652872114B00FDEA0E /* UseServiceView.swift in Sources */,
 				AC5E27D3288C39090056EC69 /* TodoCalendarBottomSheetViewController.swift in Sources */,
 				572E5B0B286EC06100D1FAA0 /* UIColor.swift in Sources */,
@@ -2021,9 +1834,7 @@
 				E0BF9627289B69C000895111 /* DiaryToolbarView.swift in Sources */,
 				57556A8F295FC93300B67369 /* CategoryBottomSheetView.swift in Sources */,
 				E0AB9EC1287B1C570064CADA /* SettingAgreementViewController.swift in Sources */,
-				57E6516628B2F0E4006CB053 /* AppleLoginModel.swift in Sources */,
 				AC9859CD288505C5009FC2F8 /* WeekCell.swift in Sources */,
-				ACFBEC9E28B3DBB200B9D66F /* GetDiaryExistenceModel.swift in Sources */,
 				E0C4BD692872127C00FDEA0E /* AdvertiseTextView.swift in Sources */,
 				57B36ECD287AFAD400378E16 /* AskViewController.swift in Sources */,
 				E06F1ACB28A61E710066B824 /* NewAppPasswordViewController.swift in Sources */,
@@ -2050,18 +1861,17 @@
 				57B16855295A8A2600639A15 /* SignUpView.swift in Sources */,
 				575DE9642976529400E61B8F /* AppleSignUpRequestModel.swift in Sources */,
 				575DE956297651AE00E61B8F /* DiaryRequestModel.swift in Sources */,
-				57294AAF2891159300DA2F31 /* TodoDeleteDataManager.swift in Sources */,
 				E0C4BD632872100900FDEA0E /* PrivacyTextView.swift in Sources */,
 				E0439ABD288C599A0075CBF0 /* ColorPickerView.swift in Sources */,
 				E076E9EB28703CAF001E14E1 /* AgreementView.swift in Sources */,
-				574A704728852544003C8F99 /* DiaryInSummaryTableViewCell.swift in Sources */,
+				574A704728852544003C8F99 /* DiaryTitleInSummaryTableViewCell.swift in Sources */,
 				576ED6B228749021007389CD /* String.swift in Sources */,
 				ACBAE5702979909700E71CAD /* LoginResultModel.swift in Sources */,
 				57D5B60F29580F8400216C94 /* BaseProtocol.swift in Sources */,
 				EEE326A52998AEB50017DF46 /* Image.swift in Sources */,
-				E0F998CB288A6B460051C7AA /* AdModel.swift in Sources */,
 				E0439AC0288C5B0F0075CBF0 /* ColorPickerCollectionViewCell.swift in Sources */,
 				57FFEDBA28DAD9BE0041719B /* ConfirmMessageAlertViewController.swift in Sources */,
+				EE8BCEFC299F4F48004EA821 /* SummaryCellDelegate.swift in Sources */,
 				572E9AB9287BC4AC00F915DF /* ScreenSettingViewController.swift in Sources */,
 				ACACD01628749F880029D5CE /* PasswordFindViewController.swift in Sources */,
 				AC3A6694297C3B7E00EF42BE /* TodoRequestModel.swift in Sources */,
@@ -2070,7 +1880,6 @@
 				ACBAE5742979C9EF00E71CAD /* ProfileRequestModel.swift in Sources */,
 				57C481BF29695370008731D9 /* HeaderType.swift in Sources */,
 				57B36ECA287AFA9A00378E16 /* DefaultTableViewCell.swift in Sources */,
-				E0F998A8288A683E0051C7AA /* UserDeleteInput.swift in Sources */,
 				57556A91295FDCBE00B67369 /* BaseBottomSheetViewController.swift in Sources */,
 				570DD833295EC4DB00A0D2A9 /* DiaryViewController.swift in Sources */,
 				ACBAE56E29702D7700E71CAD /* ProfileResultModel.swift in Sources */,
@@ -2081,6 +1890,7 @@
 				AC5E27CD288C38290056EC69 /* TodoWeekCell.swift in Sources */,
 				57397F88296D471B0088B5F4 /* AlarmRouter.swift in Sources */,
 				57503663288BE3A0006A9070 /* CategoryTodoTableViewCell.swift in Sources */,
+				EE8BCEFA299F3AF9004EA821 /* ShadowDesignSystem.swift in Sources */,
 				572E9ABD287BC4DD00F915DF /* FontSettingViewController.swift in Sources */,
 				AC9859C6287DC219009FC2F8 /* MailSender.swift in Sources */,
 				574A6FEE28826D30003C8F99 /* TodoInSummaryTableViewCell.swift in Sources */,

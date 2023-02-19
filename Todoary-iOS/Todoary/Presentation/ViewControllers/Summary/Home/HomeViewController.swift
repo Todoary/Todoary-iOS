@@ -166,6 +166,7 @@ class HomeViewController : UIViewController {
                 HomeViewController.bottomSheetVC.processResponseGetDiary(data: data)
                 break
             default:
+                HomeViewController.bottomSheetVC.processResponseGetDiary(data: nil)
                 break
             }
         }
