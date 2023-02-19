@@ -21,7 +21,6 @@ class TodoBannerInSummaryTableViewCell: BaseTableViewCell {
     
     override func style() {
         super.style()
-        self.backgroundColor = .transparent
         self.selectedBackgroundView?.backgroundColor = .transparent
     }
     
