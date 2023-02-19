@@ -137,11 +137,11 @@ extension DiaryViewController: DiaryTodoCellDelegate{
         }
     }
     
-    func requestPostDiary(){
+    private func requestPostDiary(){
         
         let text = NSAttributedString(attributedString: mainView.textView.attributedText)
         let parameter = DiaryRequestModel(title: mainView.diaryTitle.text!,
-                          content: text.attributedString2Html!)
+                                          content: text.attributedString2Html!)
         
         DiaryService.shared.generateDiary(date: pickDate.dateSendServer, request: parameter){ result in
             switch result{
@@ -156,6 +156,9 @@ extension DiaryViewController: DiaryTodoCellDelegate{
             }
         }
     }
+}
+
+extension DiaryViewController{
     
     func setUpDiaryData(_ data: DiaryResultModel){
         self.diary = data
@@ -176,9 +179,6 @@ extension DiaryViewController: DiaryTodoCellDelegate{
         let selectedTextRange = mainView.textView.selectedTextRange
 
         let start = selectedRange.lowerBound
-        
-        let text = mainView.textView.text
-
 
         let attribute = mainView.textView.attributedText.attribute(.backgroundColor,
                                                           at: start,
@@ -197,12 +197,6 @@ extension DiaryViewController: DiaryTodoCellDelegate{
                                               value: UIColor.yellowHighlight,
                                               range: selectedRange)
             }
-        }
-        
-        if let value = attribute as? UIColor{
-            if(value == UIColor.yellowHighlight) {
-                attributedString.removeAttribute(.backgroundColor, range: selectedRange)
-            }
         }else{
             attributedString.addAttribute(.backgroundColor,
                                           value: UIColor.yellowHighlight,
@@ -210,7 +204,6 @@ extension DiaryViewController: DiaryTodoCellDelegate{
         }
         
         mainView.textView.attributedText = attributedString
-
         moveCursorEndOfSelection(selectedTextRange)
     }
     
@@ -244,18 +237,12 @@ extension DiaryViewController: DiaryTodoCellDelegate{
                                               value: UIColor.orangeHighlight,
                                               range: selectedRange)
             }
-        }
-        
-        if let value = attribute as? UIColor{
-            if(value == UIColor.orangeHighlight){
-                attributedString.removeAttribute(.backgroundColor, range: selectedRange)
-            }
         }else{
             attributedString.addAttribute(.backgroundColor,
                                           value: UIColor.orangeHighlight,
                                           range: selectedRange)
         }
-        
+
         mainView.textView.attributedText = attributedString
 
         moveCursorEndOfSelection(selectedTextRange)
@@ -291,12 +278,6 @@ extension DiaryViewController: DiaryTodoCellDelegate{
                 attributedString.addAttribute(.backgroundColor,
                                               value: UIColor.redHighlight,
                                               range: selectedRange)
-            }
-        }
-
-        if let value = attribute as? UIColor{
-            if(value == UIColor.redHighlight){
-                attributedString.removeAttribute(.backgroundColor, range: selectedRange)
             }
         }else{
             attributedString.addAttribute(.backgroundColor,
@@ -339,13 +320,6 @@ extension DiaryViewController: DiaryTodoCellDelegate{
                                               value: UIColor.greenHighlight,
                                               range: selectedRange)
             }
-        }
-
-
-        if let value = attribute as? UIColor{
-            if(value ==  UIColor.greenHighlight){
-                attributedString.removeAttribute(.backgroundColor, range: selectedRange)
-            }
         }else{
             attributedString.addAttribute(.backgroundColor,
                                           value: UIColor.greenHighlight,
@@ -386,12 +360,6 @@ extension DiaryViewController: DiaryTodoCellDelegate{
                 attributedString.addAttribute(.backgroundColor,
                                               value: UIColor.blueHighlight,
                                               range: selectedRange)
-            }
-        }
-
-        if let value = attribute as? UIColor{
-            if(value == UIColor.blueHighlight){
-                attributedString.removeAttribute(.backgroundColor, range: selectedRange)
             }
         }else{
             attributedString.addAttribute(.backgroundColor,
@@ -434,17 +402,10 @@ extension DiaryViewController: DiaryTodoCellDelegate{
                                               value: UIColor.grayHighlight,
                                               range: selectedRange)
             }
-        }
-
-        if let value = attribute as? UIColor{
-            if(value == UIColor.grayHighlight){
-                attributedString.removeAttribute(.backgroundColor, range: selectedRange)
-            }
         }else{
             attributedString.addAttribute(.backgroundColor,
                                           value: UIColor.grayHighlight,
                                           range: selectedRange)
-
         }
         
         mainView.textView.attributedText = attributedString
