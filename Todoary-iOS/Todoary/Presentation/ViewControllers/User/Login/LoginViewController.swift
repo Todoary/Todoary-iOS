@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import Then
 import AuthenticationServices
+import Firebase
 
 class LoginViewController: UIViewController {
     
@@ -206,6 +207,15 @@ class LoginViewController: UIViewController {
             switch result {
             case .success(let data):
                 print("로그: [requestAutoLogin] success")
+                let event = "autoLoginSuccess"
+                  let parameters = [
+                    "file": "loginviewcontroller",
+                    "function": "requestAutoLogin"
+                  ]
+                Analytics.setUserID("userID = \(12)")
+                Analytics.setUserProperty("ko", forName: "country")
+                Analytics.logEvent(event, parameters: parameters)
+                
                 let data = data as? LoginResultModel
                 UserDefaults.standard.set(data?.token?.accessToken, forKey: "accessToken")
                 UserDefaults.standard.set(data?.token?.refreshToken, forKey: "refreshToken")
