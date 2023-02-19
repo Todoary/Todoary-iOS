@@ -9,16 +9,14 @@ import UIKit
 
 class DiaryBannerInSummaryTableViewCell: BaseTableViewCell {
     
+    private let titleBackgroundView = ShadowView(cornerRadius: 20)
     private let bannerTitle = UILabel().then{
         $0.text = "오늘의 일기를 작성해주세요!"
         $0.setTypoStyleWithSingleLine(typoStyle: .extrabold13)
     }
-    
-    private let titleBackgroundView = ShadowView(cornerRadius: 20)
 
     override func style() {
         super.style()
-        self.backgroundColor = .transparent
         self.selectedBackgroundView?.backgroundColor = .transparent
     }
     

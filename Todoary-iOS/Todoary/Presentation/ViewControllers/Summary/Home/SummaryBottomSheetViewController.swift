@@ -75,7 +75,7 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
         vc.mainView.todaysDate.text = vc.pickDate?.dateUsedDiary
 
         if(isDiaryExist){
-            vc.setUpDiaryData(diaryData!)
+            vc.bindingData(diaryData!)
         }
 
         HomeViewController.dismissBottomSheet()
@@ -229,11 +229,41 @@ extension SummaryBottomSheetViewController: RequestSummaryCellDelegate{
         mainView.summaryTableView.reloadData()
     }
     
-    //TODO: 삭제 API 설계 이후 진행
-    func requestDeleteTodo(index: Int){
+    func requestDeleteTodo(cell: TodoInSummaryTableViewCell){
+        
+        guard let indexPath = mainView.summaryTableView.indexPath(for: cell) else { return }
+        let dataIndex = indexPath.row - 1
+        let todo = todoData[dataIndex]
+        
+        TodoService.shared.deleteTodo(id: todo.todoId){ result in
+            switch result{
+            case .success:
+                print("LOG: SUCCESS requestDeleteTodo")
+                if(self.todoData.count == 1){
+                    self.todoData = []
+                    self.mainView.summaryTableView.reloadData()
+                }else{
+                    self.todoData.remove(at: dataIndex)
+                    self.mainView.summaryTableView.deleteRows(at: [indexPath], with: .fade)
+                }
+                self.showDeleteCompleteToastMessage(type: .Todo)
+                self.homeViewController.requestGetTodoByYearMonth(yearMonth: self.todoDate!.yearMonthSendServer)
+                break
+            default:
+                print("LOG: FAIL requestDeleteTodo")
+                let alert = DataBaseErrorAlert()
+                self.present(alert, animated: true, completion: nil)
+                break
+            }
+        }
     }
     
     
+}
+
+//TODO: DELETE
+protocol MoveViewController{
+    func moveToViewController()
 }
 
 //MARK: - AddButtonDelegate
@@ -248,7 +278,8 @@ extension SummaryBottomSheetViewController: MoveViewController, AddButtonClickPr
         
         guard let addButtonView = addButtonView else { return }
         
-        if(self.sheetPresentationController?.selectedDetentIdentifier == nil || self.sheetPresentationController?.selectedDetentIdentifier?.rawValue == "Test1"){
+        if(self.sheetPresentationController?.selectedDetentIdentifier == nil
+           || self.sheetPresentationController?.selectedDetentIdentifier?.rawValue == "Test1"){
             addButtonView.detent = .low
         }else{
             addButtonView.detent = .high
@@ -281,35 +312,11 @@ extension SummaryBottomSheetViewController: MoveViewController, AddButtonClickPr
         vc.mainView.todaysDate.text = vc.pickDate?.dateUsedDiary
 
         if(diaryData != nil){
-            vc.setUpDiaryData(diaryData!)
+            vc.bindingData(diaryData!)
         }
 
         HomeViewController.dismissBottomSheet()
         self.homeNavigaiton.pushViewController(vc, animated: true)
-    }
-}
-
-//MARK: - API
-extension SummaryBottomSheetViewController{
-    
-    func checkTodoDeleteApiResultCode(_ code: Int, _ indexPath: IndexPath){
-        switch code{
-        case 1000:
-            if(todoData.count == 1){
-                todoData = []
-                mainView.summaryTableView.reloadData()
-            }else{
-                todoData.remove(at: indexPath.row-1)
-                mainView.summaryTableView.deleteRows(at: [indexPath], with: .fade)
-            }
-            showDeleteCompleteToastMessage(type: .Todo)
-            homeViewController.requestGetTodoByYearMonth(yearMonth: todoDate!.yearMonthSendServer)
-            return
-        default:
-            let alert = DataBaseErrorAlert()
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
     }
 }
 
@@ -349,17 +356,17 @@ extension SummaryBottomSheetViewController: UITableViewDelegate, UITableViewData
             }
 
         default:
-            if(todoData.count != 0){
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoInSummaryTableViewCell.cellIdentifier, for: indexPath)
-                        as? TodoInSummaryTableViewCell else{ fatalError() }
-                cell.requestDelegate = self
-                cell.delegate = self
-                cell.cellData = todoData[indexPath.row-1]
-//                cell.bindingData()
-                return cell
-            }else{
+            if(todoData.isEmpty){
                 return tableView.dequeueReusableCell(for: indexPath, cellType: TodoBannerInSummaryTableViewCell.self)
             }
+        
+            let todo = todoData[indexPath.row-1]
+            let cell = tableView.dequeueReusableCell(for: indexPath, cellType: TodoInSummaryTableViewCell.self).then{
+                $0.requestDelegate = self
+                $0.delegate = self
+                $0.bindingData(todo)
+            }
+            return cell
         }
     }
     
@@ -444,8 +451,8 @@ extension SummaryBottomSheetViewController: SelectedTableViewCellDeliver{
         guard let tapCell = mainView.summaryTableView.cellForRow(at: indexPath) as? TodoInSummaryTableViewCell else { return }
 
         let vc = TodoSettingViewController()
-        vc.todoSettingData = tapCell.cellData
-        TodoSettingViewController.selectCategory = tapCell.cellData.categoryId
+        vc.todoSettingData = tapCell.todo
+        TodoSettingViewController.selectCategory = tapCell.todo.categoryId
         
         self.homeNavigaiton.pushViewController(vc, animated: true)
     }

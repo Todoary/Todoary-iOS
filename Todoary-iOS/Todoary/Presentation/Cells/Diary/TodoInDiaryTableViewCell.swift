@@ -13,88 +13,80 @@ protocol DiaryTodoCellDelegate{
     func requestPatchTodoCheckStatus(cell: TodoInDiaryTableViewCell)
 }
 
-class TodoInDiaryTableViewCell: UITableViewCell {
+class TodoInDiaryTableViewCell: BaseTableViewCell {
     
-    static let cellIdentifier = "DiaryTabelViewCell"
+    var delegate: DiaryTodoCellDelegate?
     
-    var cellData : TodoResultModel!
-    var delegate: DiaryTodoCellDelegate!
-    
-    //tableCell UI
-    lazy var checkBox = UIButton().then{
+    private let backgroundShadowView = ShadowView(cornerRadius: 20)
+    private lazy var checkBox = UIButton().then{
         $0.setImage(Image.todoCheckEmpty, for: .normal)
         $0.setImage(Image.todoCheck, for: .selected)
         $0.addTarget(self, action: #selector(checkBoxBtnDidClicked), for: .touchUpInside)
     }
-    
-    let titleLabel = UILabel().then{
+    private let titleLabel = UILabel().then{
         $0.textColor = .black
         $0.setTypoStyleWithSingleLine(typoStyle: .bold15_18)
     }
-    
-    lazy var categoryButton = UIButton().then{
-        $0.titleLabel?.setTypoStyleWithSingleLine(typoStyle: .bold12)
-        $0.titleLabel?.textAlignment = .center
-        $0.layer.borderWidth = 1
-        $0.layer.cornerRadius = 21/2
-        $0.titleEdgeInsets = UIEdgeInsets(top: 5, left: 13, bottom: 3, right: 11)
-        $0.isEnabled = false
-    }
-    
-    lazy var alarmImage = UIImageView().then{
-        $0.image = Image.notifications
-    }
-    
-    let timeLabel = UILabel().then{
-        $0.text = "AM 7:00"
+    private lazy var categoryButton = CategoryTag.generateForCategoryTodo()
+    private let timeLabel = UILabel().then{
         $0.textColor = .timeColor
         $0.setTypoStyleWithSingleLine(typoStyle: .medium13)
     }
-    
-    let backView = UIView().then{
-        $0.layer.cornerRadius = 20
-        $0.backgroundColor = .white
-        $0.layer.shadowRadius = 5.0
-        $0.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        $0.layer.shadowOffset = CGSize(width: 0, height: 1)
-        $0.layer.shadowOpacity = 1
-        $0.layer.masksToBounds = false
+
+    override func hierarchy() {
+        
+        super.hierarchy()
+        
+        baseView.addSubview(backgroundShadowView)
+        
+        backgroundShadowView.addSubview(checkBox)
+        backgroundShadowView.addSubview(titleLabel)
+        backgroundShadowView.addSubview(timeLabel)
+        backgroundShadowView.addSubview(categoryButton)
     }
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    override func layout() {
         
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        super.layout()
         
-        self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
-        self.selectionStyle = .none
+        baseView.snp.makeConstraints{
+            $0.height.equalTo(75)
+        }
+        backgroundShadowView.snp.makeConstraints{
+            $0.top.bottom.equalToSuperview().inset(7.5)
+            $0.leading.trailing.equalToSuperview().inset(31)
+        }
         
-        setUpView()
-        setUpConstraint()
-        
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    @objc func checkBoxBtnDidClicked(){
-        delegate.requestPatchTodoCheckStatus(cell: self)
-        
-        /*
-        let parameter = TodoCheckboxInput(todoId: cellData.todoId, isChecked: !self.checkBox.isSelected)
-        
-        TodoCheckboxDataManager().patch(cell: self, parameter: parameter)
-         */
-    }
-    /*
-    func checkCheckBoxApiResultCode(code: Int){
-        if(code == 1000){
-            self.checkBox.isSelected.toggle()
-        }else{
-            let alert = DataBaseErrorAlert()
-            self.navigationController.present(alert, animated: true, completion: nil)
+        checkBox.snp.makeConstraints{ make in
+            make.width.height.equalTo(24)
+            make.leading.equalToSuperview().offset(19)
+            make.top.equalToSuperview().offset(18)
+            make.bottom.equalToSuperview().offset(-18)
+        }
+        titleLabel.snp.makeConstraints{ make in
+            make.leading.equalTo(checkBox.snp.trailing).offset(13)
+            make.centerY.equalTo(checkBox)
+            make.trailing.equalToSuperview().inset(145)
+        }
+        timeLabel.snp.makeConstraints{ make in
+            make.trailing.equalToSuperview().offset(-18)
+            make.top.equalToSuperview().offset(23.4)
+            make.bottom.equalToSuperview().offset(-22.46)
+        }
+        categoryButton.snp.makeConstraints{ make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalTo(timeLabel.snp.leading).offset(-7)
         }
     }
-     */
+    
+    @objc private func checkBoxBtnDidClicked(){
+        delegate?.requestPatchTodoCheckStatus(cell: self)
+    }
+    
+    func bindingData(_ todo: TodoResultModel){
+        titleLabel.text = todo.title
+        timeLabel.text = todo.convertTime
+        checkBox.isSelected = todo.isChecked
+        categoryButton.bindingData(title: todo.categoryTitle, color: todo.color)
+    }
 }
-

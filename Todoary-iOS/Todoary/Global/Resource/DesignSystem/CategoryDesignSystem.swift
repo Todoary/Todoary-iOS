@@ -53,8 +53,7 @@ class CategoryTag{
             $0.setTitle(title, for: .normal)
         }
         let width = (label.titleLabel?.intrinsicContentSize.width)! + (label.padding.left + label.padding.right)
-        let height = (label.titleLabel?.intrinsicContentSize.height)! + (label.padding.top
-                                                          + label.padding.bottom)
+        let height = (label.titleLabel?.intrinsicContentSize.height)! + (label.padding.top + label.padding.bottom)
         return CGSize(width: width, height: height)
     }
 }
@@ -222,81 +221,5 @@ class CategoryTagView: UIButton{
         
         self.setTitleColor(self.color, for: .normal)
         self.layer.borderColor = self.color.cgColor
-    }
-}
-
-//MARK: - UILabel Typo method
-extension UILabel {
-    
-    func setTypoStyle(font: UIFont, kernValue: Double, lineSpacing: CGFloat) {
-        if let labelText = text, labelText.count > 0, let attributedText = self.attributedText {
-
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.maximumLineHeight = lineSpacing
-            paragraphStyle.minimumLineHeight = lineSpacing
-            
-            
-             let attributedString = NSMutableAttributedString(attributedString: attributedText)
-            
-            attributedString.addAttributes([.font:font,
-                                                .kern:kernValue,
-                                                .paragraphStyle: paragraphStyle,
-                                                .baselineOffset: (lineSpacing - font.lineHeight) / 4
-            ], range: NSRange(location: 0,
-                              length: attributedString.length))
-            
-            self.attributedText = attributedString
-        }
-    }
-    
-    func setTypoStyleWithSingleLine(typoStyle: TypoStyle) {
-        
-        if(self.text == nil){
-            self.text = " "
-        }
-        
-        let font = typoStyle.font
-        let kernValue = typoStyle.labelDescription.kern
-
-        if let labelText = text, labelText.count > 0, let attributedText = self.attributedText {
-            
-             let attributedString = NSMutableAttributedString(attributedString: attributedText)
-            
-            attributedString.addAttributes([.font:font,
-                                            .kern:kernValue],
-                                           range: NSRange(location: 0,
-                                                          length: attributedString.length))
-            
-            self.attributedText = attributedString
-        }
-    }
-    
-    func setTypoStyleWithMultiLine(typoStyle: TypoStyle) {
-        
-        if(self.text == nil){
-            self.text = " "
-        }
-        
-        let font = typoStyle.font
-        let kernValue = typoStyle.labelDescription.kern
-        let lineSpacing = typoStyle.labelDescription.lineHeight
-
-        if let labelText = text, labelText.count > 0, let attributedText = self.attributedText {
-
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.maximumLineHeight = lineSpacing
-            paragraphStyle.minimumLineHeight = lineSpacing
-            
-             let attributedString = NSMutableAttributedString(attributedString: attributedText)
-            
-            attributedString.addAttributes([.font:font,
-                                            .kern:kernValue,
-                                            .paragraphStyle: paragraphStyle,
-                                            .baselineOffset: (lineSpacing - font.lineHeight) / 4
-            ], range: NSRange(location: 0,
-                              length: attributedString.length))
-            
-            self.attributedText = attributedString
-        }
     }
 }

@@ -15,15 +15,18 @@ class DiaryView: BaseView {
         $0.frame = CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.width, height: 92.0)
     }
     
+    let todaysDate = UILabel().then{
+        $0.setTypoStyleWithSingleLine(typoStyle: .bold16_19)
+        $0.textColor = .black
+    }
     let todoTableView = UITableView().then{
         $0.showsVerticalScrollIndicator = false
-        $0.register(TodoInDiaryTableViewCell.self, forCellReuseIdentifier: TodoInDiaryTableViewCell.cellIdentifier)
+        $0.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+        $0.register(cellType: TodoInDiaryTableViewCell.self)
+        $0.register(cellType: NoTodoInDiaryTableViewCell.self)
     }
-    
-    let todaysDate = UILabel().then{
-        $0.font = UIFont.nbFont(ofSize: 16, weight: .bold)
-        $0.addLetterSpacing(spacing: 0.32)
-        $0.textColor = .black
+    let borderLine =  UIView().then{
+        $0.backgroundColor = .silver_225
     }
     
     let diaryTitle = UITextField().then{
@@ -34,12 +37,6 @@ class DiaryView: BaseView {
         $0.addLetterSpacing(spacing: 0.32)
         $0.borderStyle = .none
     }
-    
-    
-    let diaryLine =  UIView().then{
-        $0.backgroundColor = .silver_225
-    }
-    
     let textView = UITextView().then{
         $0.text = DiaryView.textViewPlaceHolder
         $0.setTextWithLineHeight(spaing: 25)
@@ -52,53 +49,42 @@ class DiaryView: BaseView {
     }
     
     override func hierarchy() {
-        
         self.addSubview(todoTableView)
-        
         self.addSubview(todaysDate)
-        
-        self.addSubview(diaryLine)
+        self.addSubview(borderLine)
         self.addSubview(diaryTitle)
         self.addSubview(textView)
     }
     
     override func layout() {
-
-        todoTableView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(44)
-                make.leading.equalToSuperview()
-                make.width.equalToSuperview()
-                make.height.equalTo(161)
-                make.centerX.equalToSuperview()
-           }
         
-        todaysDate.snp.makeConstraints{ make in
-            make.top.equalToSuperview().offset(6)
-            make.leading.equalToSuperview().offset(32)
-            make.width.equalTo(84)
-            make.height.equalTo(19)
+        todaysDate.snp.makeConstraints{
+            $0.top.equalToSuperview().offset(6)
+            $0.leading.equalToSuperview().offset(32)
+        }
+        todoTableView.snp.makeConstraints {
+            $0.top.equalTo(todaysDate.snp.bottom).offset(9)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(167)
         }
         
-        diaryLine.snp.makeConstraints{ make in
-            make.top.equalTo(todaysDate.snp.bottom).offset(176)
-            make.leading.equalToSuperview().offset(31)
-            make.centerX.equalToSuperview()
-            make.width.equalTo(328)
-            make.height.equalTo(1)
-            
+        borderLine.snp.makeConstraints{
+            $0.leading.equalToSuperview().offset(32)
+            $0.trailing.equalToSuperview().offset(-31)
+            $0.bottom.equalTo(todoTableView)
+            $0.height.equalTo(1)
         }
         
-        diaryTitle.snp.makeConstraints{ make in
-            make.top.equalTo(diaryLine.snp.bottom).offset(25)
-            make.leading.equalToSuperview().offset(29)
+        diaryTitle.snp.makeConstraints{
+            $0.top.equalTo(borderLine.snp.bottom).offset(25)
+            $0.leading.equalToSuperview().offset(29)
         }
         
-        //diaryText
-        textView.snp.makeConstraints{ make in
-            make.top.equalTo(diaryTitle.snp.bottom).offset(17)
-            make.leading.equalToSuperview().offset(29)
-            make.trailing.equalToSuperview().offset(-29)
-            make.bottom.equalToSuperview().offset(-10)
+        textView.snp.makeConstraints{
+            $0.top.equalTo(diaryTitle.snp.bottom).offset(17)
+            $0.leading.equalToSuperview().offset(32)
+            $0.trailing.equalToSuperview().offset(-30)
+            $0.bottom.equalToSuperview().offset(-28)
         }
     }
 

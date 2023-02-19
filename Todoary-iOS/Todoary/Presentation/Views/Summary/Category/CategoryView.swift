@@ -17,7 +17,7 @@ class CategoryView: BaseView {
         
         $0.showsHorizontalScrollIndicator = false
         $0.collectionViewLayout = flowLayout
-        $0.contentInset = UIEdgeInsets(top: 0, left: 42, bottom: 0, right: 0)
+        $0.contentInset = UIEdgeInsets(top: 0, left: 42, bottom: 0, right: 24)
 
         $0.register(CategoryAddCollectionViewCell.self, forCellWithReuseIdentifier: CategoryAddCollectionViewCell.cellIdentifier)
         $0.register(CategoryTagCollectionViewCell.self, forCellWithReuseIdentifier: CategoryTagCollectionViewCell.cellIdentifier)
