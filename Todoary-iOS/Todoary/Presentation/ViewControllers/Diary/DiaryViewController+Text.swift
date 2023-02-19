@@ -65,7 +65,7 @@ extension DiaryViewController: UITextViewDelegate {
             self.view.window?.frame.origin.y -= 275
         }
         
-        mainView.diaryLine.isHidden = true
+        mainView.borderLine.isHidden = true
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -80,7 +80,7 @@ extension DiaryViewController: UITextViewDelegate {
             self.view.window?.frame.origin.y = 0
         }
         isKeyboardShow = false
-        mainView.diaryLine.isHidden = false
+        mainView.borderLine.isHidden = false
     }
     
     //엔터키 클릭시 하이라이트 취소 설정 메서드

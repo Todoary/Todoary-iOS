@@ -24,7 +24,7 @@ class DiaryView: BaseView {
         $0.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         $0.register(cellType: TodoInDiaryTableViewCell.self)
     }
-    private let borderLine =  UIView().then{
+    let borderLine =  UIView().then{
         $0.backgroundColor = .silver_225
     }
     
