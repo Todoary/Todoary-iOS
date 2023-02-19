@@ -15,58 +15,46 @@ protocol DiaryTodoCellDelegate{
 
 class TodoInDiaryTableViewCell: BaseTableViewCell {
     
-    var cellData : TodoResultModel!
     var delegate: DiaryTodoCellDelegate?
     
     private let backgroundShadowView = ShadowView(cornerRadius: 20)
-    lazy var checkBox = UIButton().then{
+    private lazy var checkBox = UIButton().then{
         $0.setImage(Image.todoCheckEmpty, for: .normal)
         $0.setImage(Image.todoCheck, for: .selected)
         $0.addTarget(self, action: #selector(checkBoxBtnDidClicked), for: .touchUpInside)
     }
-    
-    let titleLabel = UILabel().then{
+    private let titleLabel = UILabel().then{
         $0.textColor = .black
         $0.setTypoStyleWithSingleLine(typoStyle: .bold15_18)
     }
-    
-    lazy var categoryButton = CategoryTag.generateForCategoryTodo()
-    
-    lazy var alarmImage = UIImageView().then{
-        $0.image = Image.notifications
-    }
-    
-    let timeLabel = UILabel().then{
+    private lazy var categoryButton = CategoryTag.generateForCategoryTodo()
+    private let timeLabel = UILabel().then{
         $0.textColor = .timeColor
         $0.setTypoStyleWithSingleLine(typoStyle: .medium13)
     }
 
     override func hierarchy() {
+        
         super.hierarchy()
         
-        self.contentView.addSubview(backgroundShadowView)
+        baseView.addSubview(backgroundShadowView)
         
-        self.backgroundShadowView.addSubview(checkBox)
-        self.backgroundShadowView.addSubview(titleLabel)
-        self.backgroundShadowView.addSubview(timeLabel)
-        self.backgroundShadowView.addSubview(categoryButton)
-   
+        backgroundShadowView.addSubview(checkBox)
+        backgroundShadowView.addSubview(titleLabel)
+        backgroundShadowView.addSubview(timeLabel)
+        backgroundShadowView.addSubview(categoryButton)
     }
     
     override func layout() {
         
         super.layout()
         
-        self.contentView.snp.makeConstraints{ make in
-            make.leading.equalToSuperview().offset(31)
-            make.trailing.equalToSuperview().offset(-31)
-            make.height.equalTo(75)
-            make.top.equalToSuperview().offset(7.5)
-            make.bottom.equalToSuperview().offset(-7.5)
+        baseView.snp.makeConstraints{
+            $0.height.equalTo(75)
         }
-        
-        backgroundShadowView.snp.makeConstraints{ make in
-            make.leading.trailing.top.bottom.equalToSuperview()
+        backgroundShadowView.snp.makeConstraints{
+            $0.top.bottom.equalToSuperview().inset(7.5)
+            $0.leading.trailing.equalToSuperview().inset(31)
         }
         
         checkBox.snp.makeConstraints{ make in
@@ -75,39 +63,19 @@ class TodoInDiaryTableViewCell: BaseTableViewCell {
             make.top.equalToSuperview().offset(18)
             make.bottom.equalToSuperview().offset(-18)
         }
-        
         titleLabel.snp.makeConstraints{ make in
             make.leading.equalTo(checkBox.snp.trailing).offset(13)
             make.centerY.equalTo(checkBox)
+            make.trailing.equalToSuperview().inset(145)
         }
-        
         timeLabel.snp.makeConstraints{ make in
             make.trailing.equalToSuperview().offset(-18)
             make.top.equalToSuperview().offset(23.4)
             make.bottom.equalToSuperview().offset(-22.46)
-            //            make.lastBaseline.equalTo(alarmImage)
         }
-        
         categoryButton.snp.makeConstraints{ make in
             make.centerY.equalToSuperview()
             make.trailing.equalTo(timeLabel.snp.leading).offset(-7)
-        }
-    }
-    
-    private func setUpViewByCase(){
-        
-        if(cellData.isAlarmEnabled){
-            
-            self.backgroundShadowView.addSubview(alarmImage)
-            alarmImage.snp.makeConstraints{ make in
-                make.width.equalTo(14)
-                make.height.equalTo(13.2)
-                make.trailing.equalTo(timeLabel.snp.leading).offset(-5)
-                make.centerY.equalToSuperview()
-                make.top.equalToSuperview().offset(23.4)
-                make.bottom.equalToSuperview().offset(-23.4)
-                make.lastBaseline.equalTo(timeLabel)
-            }
         }
     }
     
