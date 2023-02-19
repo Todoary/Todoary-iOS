@@ -15,7 +15,7 @@ class NoTodoInDiaryTableViewCell: BaseTableViewCell {
     }
     private let titleLabel = UILabel().then{
         $0.text = "오늘은 투두가 없는 널널한 날이네요"
-        $0.textColor = .black
+        $0.textColor = UIColor(red: 94/255, green: 94/255, blue: 94/255, alpha: 1)
         $0.setTypoStyleWithSingleLine(typoStyle: .bold15_18)
     }
 
