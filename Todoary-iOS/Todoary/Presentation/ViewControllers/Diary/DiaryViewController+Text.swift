@@ -166,249 +166,36 @@ extension DiaryViewController: DiaryTodoCellDelegate{
 
 extension DiaryViewController{
     
-    //TODO: 메서드 하나로 통일
-    @objc func yellowBtnDidClicked(){
-
-        let selectedRange = mainView.textView.selectedRange
+    @objc func colorHighlightButtonDidTapped(_ sender: UIButton){
         
+        let selectedRange = mainView.textView.selectedRange
         if(selectedRange.length == 0){ //글자 드래그로 선택안했을 때 커스텀 불가능 설정
             return
         }
         
         let selectedTextRange = mainView.textView.selectedTextRange
-
         let start = selectedRange.lowerBound
-
         let attribute = mainView.textView.attributedText.attribute(.backgroundColor,
-                                                          at: start,
-                                                          effectiveRange: &mainView.textView.selectedRange)
-
+                                                                at: start,
+                                                                   effectiveRange: &mainView.textView.selectedRange)
 
         let attributedString = NSMutableAttributedString(attributedString: mainView.textView.attributedText)
+        let color = sender.backgroundColor!.withAlphaComponent(0.5)
 
         if let change = attribute as? UIColor{
-            
-            if(change == UIColor.yellowHighlight){
-                attributedString.removeAttribute(.backgroundColor, range: selectedRange)
-            }else{
-                attributedString.removeAttribute(.backgroundColor, range: selectedRange)
+            attributedString.removeAttribute(.backgroundColor, range: selectedRange)
+            if(change != color){
                 attributedString.addAttribute(.backgroundColor,
-                                              value: UIColor.yellowHighlight,
+                                              value: color,
                                               range: selectedRange)
             }
         }else{
             attributedString.addAttribute(.backgroundColor,
-                                          value: UIColor.yellowHighlight,
+                                          value: color,
                                           range: selectedRange)
         }
         
         mainView.textView.attributedText = attributedString
-        moveCursorEndOfSelection(selectedTextRange)
-    }
-    
-    @objc func orangeBtnDidClicked(){
-
-        let selectedRange = mainView.textView.selectedRange
-        
-        if(selectedRange.length == 0){ //글자 드래그로 선택안했을 때 커스텀 불가능 설정
-            return
-        }
-        
-        let selectedTextRange = mainView.textView.selectedTextRange
-
-        let start = selectedRange.lowerBound
-
-
-        let attribute = mainView.textView.attributedText.attribute(.backgroundColor,
-                                                          at: start,
-                                                          effectiveRange: &mainView.textView.selectedRange)
-
-
-        let attributedString = NSMutableAttributedString(attributedString: mainView.textView.attributedText)
-
-        if let change = attribute as? UIColor{
-            
-            if(change == UIColor.orangeHighlight){
-                attributedString.removeAttribute(.backgroundColor, range: selectedRange)
-            }else{
-                attributedString.removeAttribute(.backgroundColor, range: selectedRange)
-                attributedString.addAttribute(.backgroundColor,
-                                              value: UIColor.orangeHighlight,
-                                              range: selectedRange)
-            }
-        }else{
-            attributedString.addAttribute(.backgroundColor,
-                                          value: UIColor.orangeHighlight,
-                                          range: selectedRange)
-        }
-
-        mainView.textView.attributedText = attributedString
-
-        moveCursorEndOfSelection(selectedTextRange)
-    }
-    
-    @objc func redBtnDidClicked(){
-
-        let selectedRange = mainView.textView.selectedRange
-        
-        if(selectedRange.length == 0){ //글자 드래그로 선택안했을 때 커스텀 불가능 설정
-            return
-        }
-        
-        let selectedTextRange = mainView.textView.selectedTextRange
-
-        let start = selectedRange.lowerBound
-
-
-        let attribute = mainView.textView.attributedText.attribute(.backgroundColor,
-                                                          at: start,
-                                                          effectiveRange: &mainView.textView.selectedRange)
-
-
-        let attributedString = NSMutableAttributedString(attributedString: mainView.textView.attributedText)
-        
-        
-        if let change = attribute as? UIColor{
-            
-            if(change == UIColor.redHighlight){
-                attributedString.removeAttribute(.backgroundColor, range: selectedRange)
-            }else{
-                attributedString.removeAttribute(.backgroundColor, range: selectedRange)
-                attributedString.addAttribute(.backgroundColor,
-                                              value: UIColor.redHighlight,
-                                              range: selectedRange)
-            }
-        }else{
-            attributedString.addAttribute(.backgroundColor,
-                                          value: UIColor.redHighlight,
-                                          range: selectedRange)
-        }
-        
-        mainView.textView.attributedText = attributedString
-
-        moveCursorEndOfSelection(selectedTextRange)
-    }
-    
-    @objc func greenBtnDidClicked(){
-
-        let selectedRange = mainView.textView.selectedRange
-        
-        if(selectedRange.length == 0){ //글자 드래그로 선택안했을 때 커스텀 불가능 설정
-            return
-        }
-        
-        let selectedTextRange = mainView.textView.selectedTextRange
-
-        let start = selectedRange.lowerBound
-
-
-        let attribute = mainView.textView.attributedText.attribute(.backgroundColor,
-                                                          at: start,
-                                                          effectiveRange: &mainView.textView.selectedRange)
-
-
-        let attributedString = NSMutableAttributedString(attributedString: mainView.textView.attributedText)
-        
-        if let change = attribute as? UIColor{
-            
-            if(change == UIColor.greenHighlight){
-                attributedString.removeAttribute(.backgroundColor, range: selectedRange)
-            }else{
-                attributedString.removeAttribute(.backgroundColor, range: selectedRange)
-                attributedString.addAttribute(.backgroundColor,
-                                              value: UIColor.greenHighlight,
-                                              range: selectedRange)
-            }
-        }else{
-            attributedString.addAttribute(.backgroundColor,
-                                          value: UIColor.greenHighlight,
-                                          range: selectedRange)
-        }
-        
-        mainView.textView.attributedText = attributedString
-
-        moveCursorEndOfSelection(selectedTextRange)
-    }
-    
-    @objc func blueBtnDidClicked(){
-
-        let selectedRange = mainView.textView.selectedRange
-        
-        if(selectedRange.length == 0){ //글자 드래그로 선택안했을 때 커스텀 불가능 설정
-            return
-        }
-        
-        let selectedTextRange = mainView.textView.selectedTextRange
-
-        let start = selectedRange.lowerBound
-
-
-        let attribute = mainView.textView.attributedText.attribute(.backgroundColor,
-                                                          at: start,
-                                                          effectiveRange: &mainView.textView.selectedRange)
-
-
-        let attributedString = NSMutableAttributedString(attributedString: mainView.textView.attributedText)
-        
-        if let change = attribute as? UIColor{
-            
-            if(change == UIColor.blueHighlight){
-                attributedString.removeAttribute(.backgroundColor, range: selectedRange)
-            }else{
-                attributedString.removeAttribute(.backgroundColor, range: selectedRange)
-                attributedString.addAttribute(.backgroundColor,
-                                              value: UIColor.blueHighlight,
-                                              range: selectedRange)
-            }
-        }else{
-            attributedString.addAttribute(.backgroundColor,
-                                          value: UIColor.blueHighlight,
-                                          range: selectedRange)
-        }
-        
-        mainView.textView.attributedText = attributedString
-
-        moveCursorEndOfSelection(selectedTextRange)
-    }
-    
-    @objc func grayBtnDidClicked(){
-
-        let selectedRange = mainView.textView.selectedRange
-        
-        if(selectedRange.length == 0){ //글자 드래그로 선택안했을 때 커스텀 불가능 설정
-            return
-        }
-        
-        let selectedTextRange = mainView.textView.selectedTextRange
-
-        let start = selectedRange.lowerBound
-
-
-        let attribute = mainView.textView.attributedText.attribute(.backgroundColor,
-                                                          at: start,
-                                                          effectiveRange: &mainView.textView.selectedRange)
-
-
-        let attributedString = NSMutableAttributedString(attributedString: mainView.textView.attributedText)
-        
-        if let change = attribute as? UIColor{
-            
-            if(change == UIColor.grayHighlight){
-                attributedString.removeAttribute(.backgroundColor, range: selectedRange)
-            }else{
-                attributedString.removeAttribute(.backgroundColor, range: selectedRange)
-                attributedString.addAttribute(.backgroundColor,
-                                              value: UIColor.grayHighlight,
-                                              range: selectedRange)
-            }
-        }else{
-            attributedString.addAttribute(.backgroundColor,
-                                          value: UIColor.grayHighlight,
-                                          range: selectedRange)
-        }
-        
-        mainView.textView.attributedText = attributedString
-
         moveCursorEndOfSelection(selectedTextRange)
     }
 }

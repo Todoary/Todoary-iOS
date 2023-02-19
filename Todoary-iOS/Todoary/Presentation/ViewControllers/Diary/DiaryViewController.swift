@@ -123,12 +123,12 @@ class DiaryViewController: BaseViewController , UIGestureRecognizerDelegate{
         mainView.toolbar.highlightBtn.addTarget(self, action: #selector(highlightBtnTab), for: .touchUpInside)
         mainView.toolbar.exitBtn.addTarget(self, action: #selector(exitBtnDidTab), for: .touchUpInside)
         
-        mainView.toolbar.yellowBtn.addTarget(self, action: #selector(yellowBtnDidClicked), for: .touchUpInside)
-        mainView.toolbar.orangeBtn.addTarget(self, action: #selector(orangeBtnDidClicked), for: .touchUpInside)
-        mainView.toolbar.redBtn.addTarget(self, action: #selector(redBtnDidClicked), for: .touchUpInside)
-        mainView.toolbar.greenBtn.addTarget(self, action: #selector(greenBtnDidClicked), for: .touchUpInside)
-        mainView.toolbar.blueBtn.addTarget(self, action: #selector(blueBtnDidClicked), for: .touchUpInside)
-        mainView.toolbar.grayBtn.addTarget(self, action: #selector(grayBtnDidClicked), for: .touchUpInside)
+        mainView.toolbar.yellowBtn.addTarget(self, action: #selector(colorHighlightButtonDidTapped), for: .touchUpInside)
+        mainView.toolbar.orangeBtn.addTarget(self, action: #selector(colorHighlightButtonDidTapped), for: .touchUpInside)
+        mainView.toolbar.redBtn.addTarget(self, action: #selector(colorHighlightButtonDidTapped), for: .touchUpInside)
+        mainView.toolbar.greenBtn.addTarget(self, action: #selector(colorHighlightButtonDidTapped), for: .touchUpInside)
+        mainView.toolbar.blueBtn.addTarget(self, action: #selector(colorHighlightButtonDidTapped), for: .touchUpInside)
+        mainView.toolbar.grayBtn.addTarget(self, action: #selector(colorHighlightButtonDidTapped), for: .touchUpInside)
         
         mainView.todoTableView.delegate = self
         mainView.todoTableView.dataSource = self
