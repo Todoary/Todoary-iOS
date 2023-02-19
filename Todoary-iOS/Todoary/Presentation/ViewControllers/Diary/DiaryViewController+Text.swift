@@ -11,6 +11,12 @@ import UIKit
 
 extension DiaryViewController: UITableViewDelegate, UITableViewDataSource{
     
+    func bindingData(_ diary: DiaryResultModel){
+        mainView.diaryTitle.text = diary.title
+        mainView.textView.attributedText = diary.content15AttributedString
+        mainView.textView.setTextWithLineHeight(spaing: 25)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todoData.isEmpty ? 1 : todoData.count
     }
@@ -159,13 +165,6 @@ extension DiaryViewController: DiaryTodoCellDelegate{
 }
 
 extension DiaryViewController{
-    
-    func setUpDiaryData(_ data: DiaryResultModel){
-        self.diary = data
-        mainView.diaryTitle.text = diary?.title
-        mainView.textView.attributedText = diary?.content15AttributedString
-        mainView.textView.setTextWithLineHeight(spaing: 25)
-    }
     
     //TODO: 메서드 하나로 통일
     @objc func yellowBtnDidClicked(){

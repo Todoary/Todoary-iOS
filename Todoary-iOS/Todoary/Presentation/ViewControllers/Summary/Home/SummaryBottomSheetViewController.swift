@@ -75,7 +75,7 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
         vc.mainView.todaysDate.text = vc.pickDate?.dateUsedDiary
 
         if(isDiaryExist){
-            vc.setUpDiaryData(diaryData!)
+            vc.bindingData(diaryData!)
         }
 
         HomeViewController.dismissBottomSheet()
@@ -312,7 +312,7 @@ extension SummaryBottomSheetViewController: MoveViewController, AddButtonClickPr
         vc.mainView.todaysDate.text = vc.pickDate?.dateUsedDiary
 
         if(diaryData != nil){
-            vc.setUpDiaryData(diaryData!)
+            vc.bindingData(diaryData!)
         }
 
         HomeViewController.dismissBottomSheet()
