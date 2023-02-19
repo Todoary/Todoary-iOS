@@ -23,6 +23,7 @@ class DiaryView: BaseView {
         $0.showsVerticalScrollIndicator = false
         $0.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         $0.register(cellType: TodoInDiaryTableViewCell.self)
+        $0.register(cellType: NoTodoInDiaryTableViewCell.self)
     }
     let borderLine =  UIView().then{
         $0.backgroundColor = .silver_225
