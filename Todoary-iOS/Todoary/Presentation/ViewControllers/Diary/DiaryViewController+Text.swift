@@ -19,7 +19,7 @@ extension DiaryViewController: UITableViewDelegate, UITableViewDataSource{
         guard let cell = DiaryTableView.dequeueReusableCell(withIdentifier: TodoInDiaryTableViewCell.cellIdentifier, for: indexPath) as? TodoInDiaryTableViewCell else { return UITableViewCell() }
         
         if todoData.isEmpty{
-            cell.titleLabel.text = "오늘은 투두가 없는 널널한 날이네요 *^^*"
+            cell.titleLabel.text = "오늘은 투두가 없는 널널한 날이네요"
             cell.titleLabel.textColor = UIColor(red: 94/255, green: 94/255, blue: 94/255, alpha: 1)
             cell.categoryButton.isHidden = true
             cell.timeLabel.isHidden = true

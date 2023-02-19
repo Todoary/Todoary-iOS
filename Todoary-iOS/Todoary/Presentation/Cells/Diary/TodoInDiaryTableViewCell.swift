@@ -13,14 +13,12 @@ protocol DiaryTodoCellDelegate{
     func requestPatchTodoCheckStatus(cell: TodoInDiaryTableViewCell)
 }
 
-class TodoInDiaryTableViewCell: UITableViewCell {
-    
-    static let cellIdentifier = "DiaryTabelViewCell"
+class TodoInDiaryTableViewCell: BaseTableViewCell {
     
     var cellData : TodoResultModel!
-    var delegate: DiaryTodoCellDelegate!
+    var delegate: DiaryTodoCellDelegate?
     
-    //tableCell UI
+    private let backgroundShadowView = ShadowView(cornerRadius: 20)
     lazy var checkBox = UIButton().then{
         $0.setImage(Image.todoCheckEmpty, for: .normal)
         $0.setImage(Image.todoCheck, for: .selected)
@@ -32,53 +30,92 @@ class TodoInDiaryTableViewCell: UITableViewCell {
         $0.setTypoStyleWithSingleLine(typoStyle: .bold15_18)
     }
     
-    lazy var categoryButton = UIButton().then{
-        $0.titleLabel?.setTypoStyleWithSingleLine(typoStyle: .bold12)
-        $0.titleLabel?.textAlignment = .center
-        $0.layer.borderWidth = 1
-        $0.layer.cornerRadius = 21/2
-        $0.titleEdgeInsets = UIEdgeInsets(top: 5, left: 13, bottom: 3, right: 11)
-        $0.isEnabled = false
-    }
+    lazy var categoryButton = CategoryTag.generateForCategoryTodo()
     
     lazy var alarmImage = UIImageView().then{
         $0.image = Image.notifications
     }
     
     let timeLabel = UILabel().then{
-        $0.text = "AM 7:00"
         $0.textColor = .timeColor
         $0.setTypoStyleWithSingleLine(typoStyle: .medium13)
     }
-    
-    let backView = UIView().then{
-        $0.layer.cornerRadius = 20
-        $0.backgroundColor = .white
-        $0.layer.shadowRadius = 5.0
-        $0.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        $0.layer.shadowOffset = CGSize(width: 0, height: 1)
-        $0.layer.shadowOpacity = 1
-        $0.layer.masksToBounds = false
+
+    override func hierarchy() {
+        super.hierarchy()
+        
+        self.contentView.addSubview(backgroundShadowView)
+        
+        self.backgroundShadowView.addSubview(checkBox)
+        self.backgroundShadowView.addSubview(titleLabel)
+        self.backgroundShadowView.addSubview(timeLabel)
+        self.backgroundShadowView.addSubview(categoryButton)
+   
     }
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    override func layout() {
         
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        super.layout()
         
-        self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
-        self.selectionStyle = .none
+        self.contentView.snp.makeConstraints{ make in
+            make.leading.equalToSuperview().offset(31)
+            make.trailing.equalToSuperview().offset(-31)
+            make.height.equalTo(75)
+            make.top.equalToSuperview().offset(7.5)
+            make.bottom.equalToSuperview().offset(-7.5)
+        }
         
-        setUpView()
-        setUpConstraint()
+        backgroundShadowView.snp.makeConstraints{ make in
+            make.leading.trailing.top.bottom.equalToSuperview()
+        }
         
+        checkBox.snp.makeConstraints{ make in
+            make.width.height.equalTo(24)
+            make.leading.equalToSuperview().offset(19)
+            make.top.equalToSuperview().offset(18)
+            make.bottom.equalToSuperview().offset(-18)
+        }
+        
+        titleLabel.snp.makeConstraints{ make in
+            make.leading.equalTo(checkBox.snp.trailing).offset(13)
+            make.centerY.equalTo(checkBox)
+        }
+        
+        timeLabel.snp.makeConstraints{ make in
+            make.trailing.equalToSuperview().offset(-18)
+            make.top.equalToSuperview().offset(23.4)
+            make.bottom.equalToSuperview().offset(-22.46)
+            //            make.lastBaseline.equalTo(alarmImage)
+        }
+        
+        categoryButton.snp.makeConstraints{ make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalTo(timeLabel.snp.leading).offset(-7)
+        }
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    private func setUpViewByCase(){
+        
+        if(cellData.isAlarmEnabled){
+            
+            self.backgroundShadowView.addSubview(alarmImage)
+            alarmImage.snp.makeConstraints{ make in
+                make.width.equalTo(14)
+                make.height.equalTo(13.2)
+                make.trailing.equalTo(timeLabel.snp.leading).offset(-5)
+                make.centerY.equalToSuperview()
+                make.top.equalToSuperview().offset(23.4)
+                make.bottom.equalToSuperview().offset(-23.4)
+                make.lastBaseline.equalTo(timeLabel)
+            }
+        }
     }
     
-    @objc func checkBoxBtnDidClicked(){
-        delegate.requestPatchTodoCheckStatus(cell: self)
+    @objc private func checkBoxBtnDidClicked(){
+        delegate?.requestPatchTodoCheckStatus(cell: self)
+    }
+    
+    func bindingData(_ todo: TodoResultModel){
+        
     }
 }
-
