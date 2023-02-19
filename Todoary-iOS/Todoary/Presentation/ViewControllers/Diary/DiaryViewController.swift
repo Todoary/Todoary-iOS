@@ -86,7 +86,6 @@ class DiaryViewController: BaseViewController , UIGestureRecognizerDelegate{
             mainView.todoTableView.reloadData()
         }
     }
-    var diary: DiaryResultModel?
     var currentFont: DiaryFont = DiaryFont(fontName: .font1)
     
     //MARK: - Lifecycles
