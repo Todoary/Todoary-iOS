@@ -53,8 +53,7 @@ class CategoryTag{
             $0.setTitle(title, for: .normal)
         }
         let width = (label.titleLabel?.intrinsicContentSize.width)! + (label.padding.left + label.padding.right)
-        let height = (label.titleLabel?.intrinsicContentSize.height)! + (label.padding.top
-                                                          + label.padding.bottom)
+        let height = (label.titleLabel?.intrinsicContentSize.height)! + (label.padding.top + label.padding.bottom)
         return CGSize(width: width, height: height)
     }
 }

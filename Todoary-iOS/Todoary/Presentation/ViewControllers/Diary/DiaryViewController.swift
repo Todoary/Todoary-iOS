@@ -138,7 +138,7 @@ class DiaryViewController: BaseViewController , UIGestureRecognizerDelegate{
         let textViewGesture = UITapGestureRecognizer(target: self, action: #selector(keyboardWillDisappear)).then{
             $0.delegate = self
         }
-        mainView.textView.addGestureRecognizer(textViewGesture)
+//        mainView.textView.addGestureRecognizer(textViewGesture)
         mainView.textView.delegate = self
         
         setTextToolBarAction()
