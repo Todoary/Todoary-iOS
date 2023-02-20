@@ -323,7 +323,6 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
             
             let data = categories[indexPath.row]
             cell.bindingData(title: data.title, color: data.color)
-
             cell.addGestureRecognizer(UILongPressGestureRecognizer(target: self,
                                                                    action: #selector(categoryBottomSheetWillShowAndModifyCategory)))
             
