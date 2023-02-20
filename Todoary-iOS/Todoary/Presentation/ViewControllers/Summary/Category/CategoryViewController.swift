@@ -12,7 +12,11 @@ class CategoryViewController: BaseViewController {
     //MARK: - Properties
     
     private var isCategoryAdd = false
-    private var isEditingMode = false
+    private var isEditingMode = false{
+        didSet{
+            mainView.todoTableView.reloadData()
+        }
+    }
     private var willDelete = false
     
     let collectionViewInitialIndex: IndexPath = [0,0]
@@ -73,22 +77,7 @@ class CategoryViewController: BaseViewController {
     
     //MARK: - Action
     
-    @objc func trashButtonDidClicked(){
-        
-        let leading = isEditingMode ? 32 : 58
-        let trailing = isEditingMode ? -30 : -4
-        
-        for i in 0..<todoData.count{
-            guard let cell = mainView.todoTableView.cellForRow(at: [0,i]) as? CategoryTodoTableViewCell else { fatalError() }
-            
-            cell.contentView.snp.updateConstraints{ make in
-                make.leading.equalToSuperview().offset(leading)
-                make.trailing.equalToSuperview().offset(trailing)
-            }
-            
-            cell.deleteButton.isHidden.toggle()
-        }
-        
+    @objc private func trashButtonDidClicked(){
         isEditingMode.toggle()
     }
     
@@ -101,23 +90,6 @@ class CategoryViewController: BaseViewController {
             $0.currentCategoryCount = categories.count
             $0.completion = {
                 self.requestGetCategories()
-            }
-        }
-    }
-    
-    
-    //MARK: - Helper
-    
-    func initTodoCellConstraint(){
-        
-        isEditingMode = false
-        
-        for i in 0..<mainView.todoTableView.numberOfRows(inSection: 0)-1{
-            guard let cell = mainView.todoTableView.cellForRow(at: [0,i]) as? CategoryTodoTableViewCell else { return }
-            cell.contentView.snp.updateConstraints{ make in
-                make.leading.equalToSuperview().offset(32)
-                make.trailing.equalToSuperview().offset(-30)
-                cell.deleteButton.isHidden = true
             }
         }
     }
