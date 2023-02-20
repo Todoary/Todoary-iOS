@@ -114,6 +114,7 @@
 		57FFEDBA28DAD9BE0041719B /* ConfirmMessageAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FFEDB928DAD9BE0041719B /* ConfirmMessageAlertViewController.swift */; };
 		57FFEDBC28DC1C230041719B /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FFEDBB28DC1C230041719B /* Const.swift */; };
 		653C013BA7F152A065BBDC7B /* Pods_TodoaryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6E8C0E6CB0EA8691D12EEB0 /* Pods_TodoaryTests.framework */; };
+		AC1DFDC529A3D2480011EF87 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1DFDC429A3D2480011EF87 /* OnboardingView.swift */; };
 		AC3A668C297BC7D100EF42BE /* NetworkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3A668B297BC7D100EF42BE /* NetworkCheck.swift */; };
 		AC3A668E297BC82100EF42BE /* NetworkCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3A668D297BC82100EF42BE /* NetworkCheckModel.swift */; };
 		AC3A6690297BD69D00EF42BE /* AuthJwtRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3A668F297BD69D00EF42BE /* AuthJwtRequestModel.swift */; };
@@ -156,7 +157,6 @@
 		ACE7D5FA28A819A70093854A /* PinNumberSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE7D5F928A819A70093854A /* PinNumberSettingViewController.swift */; };
 		ACE7D5FC28A819C10093854A /* PinNumberSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE7D5FB28A819C10093854A /* PinNumberSettingView.swift */; };
 		ACF46D85298D2A73005B9DFE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACF46D84298D2A73005B9DFE /* GoogleService-Info.plist */; };
-		ACFBEC9E28B3DBB200B9D66F /* GetDiaryExistenceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFBEC9D28B3DBB200B9D66F /* GetDiaryExistenceModel.swift */; };
 		E015059928B3F3E500E83157 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E015059828B3F3E500E83157 /* OnboardingViewController.swift */; };
 		E0218B1E28A4D5EA00E48618 /* DiaryStickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0218B1D28A4D5EA00E48618 /* DiaryStickerCollectionViewCell.swift */; };
 		E0218B2528A4E99600E48618 /* DiaryStickerViewController + Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0218B2428A4E99600E48618 /* DiaryStickerViewController + Layout.swift */; };
@@ -353,6 +353,7 @@
 		9B6204C3C47428F7085399D8 /* Pods-Todoary-TodoaryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todoary-TodoaryUITests.release.xcconfig"; path = "Target Support Files/Pods-Todoary-TodoaryUITests/Pods-Todoary-TodoaryUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9FB0EF046833AE19A057D847 /* Pods-TodoaryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoaryTests.release.xcconfig"; path = "Target Support Files/Pods-TodoaryTests/Pods-TodoaryTests.release.xcconfig"; sourceTree = "<group>"; };
 		AA1B412CC301CC2E570F1921 /* Pods_Todoary_TodoaryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Todoary_TodoaryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC1DFDC429A3D2480011EF87 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		AC3A668B297BC7D100EF42BE /* NetworkCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCheck.swift; sourceTree = "<group>"; };
 		AC3A668D297BC82100EF42BE /* NetworkCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCheckModel.swift; sourceTree = "<group>"; };
 		AC3A668F297BD69D00EF42BE /* AuthJwtRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthJwtRequestModel.swift; sourceTree = "<group>"; };
@@ -395,7 +396,6 @@
 		ACE7D5F928A819A70093854A /* PinNumberSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinNumberSettingViewController.swift; sourceTree = "<group>"; };
 		ACE7D5FB28A819C10093854A /* PinNumberSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinNumberSettingView.swift; sourceTree = "<group>"; };
 		ACF46D84298D2A73005B9DFE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		ACFBEC9D28B3DBB200B9D66F /* GetDiaryExistenceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDiaryExistenceModel.swift; sourceTree = "<group>"; };
 		C3C8A11142F88041A453AA57 /* Pods-TodoaryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoaryTests.debug.xcconfig"; path = "Target Support Files/Pods-TodoaryTests/Pods-TodoaryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D54D487D3B3177B28D4A4FBE /* Pods-Todoary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todoary.release.xcconfig"; path = "Target Support Files/Pods-Todoary/Pods-Todoary.release.xcconfig"; sourceTree = "<group>"; };
 		E005DE79287019BD00814C79 /* AgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewController.swift; sourceTree = "<group>"; };
@@ -840,6 +840,7 @@
 			children = (
 				575DE94C2974FB3F00E61B8F /* AppPassword */,
 				5701EA702956F1D200F21F63 /* Agreement */,
+				AC1DFDC429A3D2480011EF87 /* OnboardingView.swift */,
 				572E9AC2287C643000F915DF /* InfoMessageView.swift */,
 				E0AB9EC2287B1C670064CADA /* SettingAgreementView.swift */,
 				574913B8287ADF6500381BCD /* AlarmSettingView.swift */,
@@ -1756,6 +1757,7 @@
 				57397FA0296D51810088B5F4 /* AlarmActiveStautsResultModel.swift in Sources */,
 				5750365F288BE33F006A9070 /* CategoryViewController.swift in Sources */,
 				577A01BC28A4E1A9004B2575 /* ToastMessageView.swift in Sources */,
+				AC1DFDC529A3D2480011EF87 /* OnboardingView.swift in Sources */,
 				57397F9A296D51210088B5F4 /* DiaryService.swift in Sources */,
 				57C481B929695334008731D9 /* BaseRouter.swift in Sources */,
 				570DD835295EC4F700A0D2A9 /* DiaryViewController+Text.swift in Sources */,

@@ -38,13 +38,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate  {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        
-        if (UserDefaults.standard.string(forKey: "refreshToken") == nil){
-            self.moveLoginViewController()
-            
-        }else {
-            NetworkCheck().networkCheck()
+        if (UserDefaults.standard.string(forKey: "isFirstTime") == nil){
+            self.moveOnboardingViewController()
+        }else{
+            if (UserDefaults.standard.string(forKey: "refreshToken") == nil){
+                self.moveLoginViewController()
+                
+            }else {
+                NetworkCheck().networkCheck()
+            }
         }
+        return true
         
         if #available(iOS 12.0, *) {
             UNUserNotificationCenter.current().requestAuthorization(
@@ -61,8 +65,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate  {
         Messaging.messaging().delegate = self
         
         application.registerForRemoteNotifications()
-        return true
+        
+        
     }
+        
     
     func successAPI(){
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
@@ -91,6 +97,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate  {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
             self.navigationController?.pushViewController(LoginViewController(), animated: false)
         }
+    }
+    
+    func moveOnboardingViewController(){
+        navigationController?.pushViewController(OnboardingViewController(), animated: false)
+        navigationController?.navigationBar.isHidden = true
     }
     
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {

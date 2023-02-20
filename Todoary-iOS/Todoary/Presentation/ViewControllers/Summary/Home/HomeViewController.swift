@@ -121,7 +121,7 @@ class HomeViewController : UIViewController {
         
         
         mainView.scrollView.delegate = self
-        mainView.scrollView.showsHorizontalScrollIndicator = true
+        mainView.scrollView.showsHorizontalScrollIndicator = false
         
         mainView.weekCollectionView.do {
             $0.delegate = self
