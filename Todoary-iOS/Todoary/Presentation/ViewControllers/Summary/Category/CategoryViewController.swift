@@ -7,18 +7,33 @@
 
 import UIKit
 
-class CategoryViewController: BaseViewController {
+class CategoryViewController: BaseViewController, Pageable {
     
     //MARK: - Properties
     
+    var page: Int = 0{
+        didSet{
+            if(page == 0){
+                hasNextPage = false
+            }
+        }
+    }
+    var isPaging: Bool = false
+    var hasNextPage: Bool = false
+    
     private var isCategoryAdd = false
-    private var isEditingMode = false
+    private var isEditingMode = false{
+        didSet{
+            mainView.todoTableView.reloadData()
+        }
+    }
     private var willDelete = false
     
     let collectionViewInitialIndex: IndexPath = [0,0]
     var selectCategoryIndex : IndexPath!{
         didSet{
             isEditingMode = false
+            page = 0
         }
     }
 
@@ -73,22 +88,7 @@ class CategoryViewController: BaseViewController {
     
     //MARK: - Action
     
-    @objc func trashButtonDidClicked(){
-        
-        let leading = isEditingMode ? 32 : 58
-        let trailing = isEditingMode ? -30 : -4
-        
-        for i in 0..<todoData.count{
-            guard let cell = mainView.todoTableView.cellForRow(at: [0,i]) as? CategoryTodoTableViewCell else { fatalError() }
-            
-            cell.contentView.snp.updateConstraints{ make in
-                make.leading.equalToSuperview().offset(leading)
-                make.trailing.equalToSuperview().offset(trailing)
-            }
-            
-            cell.deleteButton.isHidden.toggle()
-        }
-        
+    @objc private func trashButtonDidClicked(){
         isEditingMode.toggle()
     }
     
@@ -101,23 +101,6 @@ class CategoryViewController: BaseViewController {
             $0.currentCategoryCount = categories.count
             $0.completion = {
                 self.requestGetCategories()
-            }
-        }
-    }
-    
-    
-    //MARK: - Helper
-    
-    func initTodoCellConstraint(){
-        
-        isEditingMode = false
-        
-        for i in 0..<mainView.todoTableView.numberOfRows(inSection: 0)-1{
-            guard let cell = mainView.todoTableView.cellForRow(at: [0,i]) as? CategoryTodoTableViewCell else { return }
-            cell.contentView.snp.updateConstraints{ make in
-                make.leading.equalToSuperview().offset(32)
-                make.trailing.equalToSuperview().offset(-30)
-                cell.deleteButton.isHidden = true
             }
         }
     }
@@ -183,20 +166,43 @@ extension CategoryViewController: CategoryTodoCellDelegate{
         
         let categoryId: Int = categories.count == 1 ? categories[0].id : categories[selectCategoryIndex.row].id
         
-        TodoService.shared.getTodoByCategory(id: categoryId) { result in
+        TodoService.shared.getTodoByCategory(id: categoryId, page: page) { result in
             switch result {
             case .success(let data):
                 print("[getTodoByCategory] success")
                 if let data = data as? [TodoResultModel]{
                     self.todoData = data
                 }
+//                if let data = data as? PageableResponseModel{
+//                    self.processResponseGetTodo(data: data)
+//                }
                 break
             default:
-                print("[getTodoByCategory] fail")
+                print("[getTodoByCategory] fail", result)
                 DataBaseErrorAlert.show(in: self)
                 break
             }
         }
+    }
+    
+    private func processResponseGetTodo(data: PageableResponseModel){
+        
+        hasNextPage = !data.isLast
+        
+        if(page == 0){
+            todoData = data.contents
+        }else{
+            todoData.append(contentsOf: data.contents)
+        }
+        
+        if(data.isEmpty){
+            todoRequestIsEmpty()
+        }
+    }
+    
+    func todoRequestIsEmpty() {
+        isPaging = false
+        mainView.todoTableView.reloadSections(IndexSet(integer: 1), with: .none)
     }
     
     func requestDeleteTodo(cell: CategoryTodoTableViewCell) {
@@ -260,10 +266,23 @@ extension CategoryViewController: CategoryTodoCellDelegate{
 extension CategoryViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoData.count != 0 ? todoData.count + 1 : 2
+        if(section == 0){
+            return todoData.count != 0 ? todoData.count + 1 : 2
+        }else if(section == 1 && isPaging && hasNextPage){
+            return 1
+        }else{
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if(indexPath.section == 1){
+            let cell = tableView.dequeueReusableCell(for: indexPath, cellType: LoadingTableViewCell.self).then{
+                $0.startLoading()
+            }
+            return cell
+        }
         
         if(indexPath.row ==  tableView.numberOfRows(inSection: 0) - 1){
             return tableView.dequeueReusableCell(for: indexPath, cellType: AddTodoInCategoryTableViewCell.self)
@@ -317,25 +336,20 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if(indexPath.row != categories.count){
-            
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryTagCollectionViewCell.cellIdentifier, for: indexPath) as? CategoryTagCollectionViewCell else { fatalError() }
-            
-            let data = categories[indexPath.row]
-            cell.bindingData(title: data.title, color: data.color)
-
-            cell.addGestureRecognizer(UILongPressGestureRecognizer(target: self,
-                                                                   action: #selector(categoryBottomSheetWillShowAndModifyCategory)))
-            
-            if(indexPath == selectCategoryIndex){
-                cell.setSelectState()
-            }
-            
-            return cell
-        }else{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryAddCollectionViewCell.cellIdentifier, for: indexPath)
-            return cell
+        if(indexPath.row == categories.count){
+            return collectionView.dequeueReusableCell(for: indexPath, cellType: CategoryAddCollectionViewCell.self)
         }
+
+        let data = categories[indexPath.row]
+        let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: CategoryTagCollectionViewCell.self).then{
+            $0.bindingData(title: data.title, color: data.color)
+            $0.addGestureRecognizer(UILongPressGestureRecognizer(target: self,
+                                                                 action: #selector(categoryBottomSheetWillShowAndModifyCategory)))
+            if(indexPath == selectCategoryIndex){
+                $0.setSelectState()
+            }
+        }
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -384,3 +398,35 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         cell.setDeselectState()
     }
 }
+
+//MARK: - Pageable
+
+ extension CategoryViewController{
+ 
+     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+         let offsetY = scrollView.contentOffset.y
+         let contentHeight = scrollView.contentSize.height
+         let height = scrollView.frame.height
+         
+         // 스크롤이 테이블 뷰 Offset의 끝에 가게 되면 다음 페이지를 호출
+         if offsetY > (contentHeight - height) {
+             if isPaging == false && hasNextPage {
+                 beginPaging()
+             }
+         }
+     }
+     
+     func beginPaging(){
+         isPaging = true
+         page = page + 1
+
+         DispatchQueue.main.async { [self] in
+             mainView.todoTableView.reloadSections(IndexSet(integer: 1), with: .none)
+         }
+
+         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+             self.requestGetTodoByCategory()
+         }
+     }
+ }
+ 

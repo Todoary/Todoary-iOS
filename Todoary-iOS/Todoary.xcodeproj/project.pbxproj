@@ -198,6 +198,10 @@
 		E0F3CDC92895696E00A74AB7 /* TodoInDiaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F3CDC82895696E00A74AB7 /* TodoInDiaryTableViewCell.swift */; };
 		E0F998A4288A59A80051C7AA /* UserDeleteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998A3288A59A80051C7AA /* UserDeleteDataManager.swift */; };
 		E54C4D9FA6602FAE88B10C99 /* Pods_Todoary_TodoaryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA1B412CC301CC2E570F1921 /* Pods_Todoary_TodoaryUITests.framework */; };
+		EE06312E29A35326002830FB /* JpaRouter+Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06312D29A35326002830FB /* JpaRouter+Service.swift */; };
+		EE06313029A362C2002830FB /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06312F29A362C2002830FB /* LoadingTableViewCell.swift */; };
+		EE06313229A362D6002830FB /* Pageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06313129A362D6002830FB /* Pageable.swift */; };
+		EE06313429A36304002830FB /* PageableResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06313329A36304002830FB /* PageableResponseModel.swift */; };
 		EE12A17A29A1D6FA009A9750 /* NoTodoInDiaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE12A17929A1D6FA009A9750 /* NoTodoInDiaryTableViewCell.swift */; };
 		EE135A89298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE135A88298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift */; };
 		EE8BCEF6299F2836004EA821 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BCEF5299F2836004EA821 /* UITableView.swift */; };
@@ -434,6 +438,10 @@
 		E0F3CDC82895696E00A74AB7 /* TodoInDiaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoInDiaryTableViewCell.swift; sourceTree = "<group>"; };
 		E0F998A3288A59A80051C7AA /* UserDeleteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeleteDataManager.swift; sourceTree = "<group>"; };
 		E6E8C0E6CB0EA8691D12EEB0 /* Pods_TodoaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE06312D29A35326002830FB /* JpaRouter+Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JpaRouter+Service.swift"; sourceTree = "<group>"; };
+		EE06312F29A362C2002830FB /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
+		EE06313129A362D6002830FB /* Pageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pageable.swift; sourceTree = "<group>"; };
+		EE06313329A36304002830FB /* PageableResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageableResponseModel.swift; sourceTree = "<group>"; };
 		EE12A17929A1D6FA009A9750 /* NoTodoInDiaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoTodoInDiaryTableViewCell.swift; sourceTree = "<group>"; };
 		EE135A88298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAddCollectionViewCell.swift; sourceTree = "<group>"; };
 		EE8BCEF5299F2836004EA821 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
@@ -590,6 +598,7 @@
 			isa = PBXGroup;
 			children = (
 				57C481BA29695344008731D9 /* HTTPMethodURL.swift */,
+				EE06312C29A3530A002830FB /* JPA_Test */,
 				57C481B5296952FF008731D9 /* Foundation */,
 				57C481B0296952A8008731D9 /* Auth */,
 				57C481AF296952A6008731D9 /* User */,
@@ -1057,6 +1066,7 @@
 				57503662288BE3A0006A9070 /* CategoryTodoTableViewCell.swift */,
 				57503660288BE380006A9070 /* CategoryTagCollectionViewCell.swift */,
 				EE135A88298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift */,
+				EE06312F29A362C2002830FB /* LoadingTableViewCell.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1344,6 +1354,7 @@
 				575DE95F2976523300E61B8F /* TodoResultModel.swift */,
 				575DE95D2976522000E61B8F /* TodoAlarmRequestModel.swift */,
 				AC3A6693297C3B7E00EF42BE /* TodoRequestModel.swift */,
+				EE06313329A36304002830FB /* PageableResponseModel.swift */,
 			);
 			path = Todo;
 			sourceTree = "<group>";
@@ -1381,6 +1392,7 @@
 			children = (
 				57D5B60E29580F8400216C94 /* BaseProtocol.swift */,
 				EE8BCEFB299F4F48004EA821 /* SummaryCellDelegate.swift */,
+				EE06313129A362D6002830FB /* Pageable.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1436,6 +1448,14 @@
 				E06F1AC828A605930066B824 /* AdvertiseTextSettingViewController.swift */,
 			);
 			path = AgreementText;
+			sourceTree = "<group>";
+		};
+		EE06312C29A3530A002830FB /* JPA_Test */ = {
+			isa = PBXGroup;
+			children = (
+				EE06312D29A35326002830FB /* JpaRouter+Service.swift */,
+			);
+			path = JPA_Test;
 			sourceTree = "<group>";
 		};
 		EED1B34C298656D700F14CAC /* DesignSystem */ = {
@@ -1718,6 +1738,7 @@
 				57397F94296D50FF0088B5F4 /* TodoRouter.swift in Sources */,
 				E0218B2928A54C0700E48618 /* AdvertiseTextSettingView.swift in Sources */,
 				57503661288BE380006A9070 /* CategoryTagCollectionViewCell.swift in Sources */,
+				EE06313429A36304002830FB /* PageableResponseModel.swift in Sources */,
 				574A704F28865FEE003C8F99 /* HiddenTransparentButtonView.swift in Sources */,
 				574A704B28852F9B003C8F99 /* DiaryBannerInSummaryTableViewCell.swift in Sources */,
 				E0218B2528A4E99600E48618 /* DiaryStickerViewController + Layout.swift in Sources */,
@@ -1803,6 +1824,7 @@
 				E0AB9EC3287B1C670064CADA /* SettingAgreementView.swift in Sources */,
 				57C481C4296957DB008731D9 /* CategoryModel.swift in Sources */,
 				572E9AB7287BC07A00F915DF /* AskView.swift in Sources */,
+				EE06313029A362C2002830FB /* LoadingTableViewCell.swift in Sources */,
 				AC9128CB287AD5D20056932A /* AccountView.swift in Sources */,
 				E076E9ED28703DEE001E14E1 /* AgreementViewController.swift in Sources */,
 				575DE9662976529F00E61B8F /* AppleSignUpResultModel.swift in Sources */,
@@ -1815,6 +1837,7 @@
 				AC5E27C9288C37E60056EC69 /* TodoSettingView.swift in Sources */,
 				AC3A668E297BC82100EF42BE /* NetworkCheckModel.swift in Sources */,
 				AC5E27DF28901EEF0056EC69 /* AuthInterceptor.swift in Sources */,
+				EE06312E29A35326002830FB /* JpaRouter+Service.swift in Sources */,
 				57F97DD728D9566F00D4697C /* CancelMessageAlertViewController.swift in Sources */,
 				57D5B60B29580F4400216C94 /* BaseTableViewCell.swift in Sources */,
 				E0AB9EB9287B1BA00064CADA /* SettingView.swift in Sources */,
@@ -1839,6 +1862,7 @@
 				57C481B4296952F7008731D9 /* CategoryService.swift in Sources */,
 				574913BB287ADF8E00381BCD /* AlarmSettingTableViewCell.swift in Sources */,
 				ACBAE57A297ADFD600E71CAD /* FcmTokenService.swift in Sources */,
+				EE06313229A362D6002830FB /* Pageable.swift in Sources */,
 				E0AB9EC8287B44C90064CADA /* SettingTableViewCell.swift in Sources */,
 				EE135A89298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift in Sources */,
 				57397F8A296D472C0088B5F4 /* AlarmService.swift in Sources */,

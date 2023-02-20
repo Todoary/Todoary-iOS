@@ -26,8 +26,8 @@ extension TodoService {
         requestObject(TodoRouter.getTodoByDate(date: date), type: [TodoResultModel].self, decodingMode: .model, completion: completion)
     }
     
-    func getTodoByCategory(id: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
-        requestObject(TodoRouter.getTodoByCategory(id: id), type: [TodoResultModel].self, decodingMode: .model, completion: completion)
+    func getTodoByCategory(id: Int, page: Int, completion: @escaping (NetworkResult<Any>) -> Void) { //PageableResponseModel [TodoResultModel]
+        requestObject(TodoRouter.getTodoByCategory(id: id, page: page), type: [TodoResultModel].self, decodingMode: .model, completion: completion)
     }
     
     func modifyTodoCheckStatus(id: Int, isChecked: Bool, completion: @escaping (NetworkResult<Any>) -> Void) {

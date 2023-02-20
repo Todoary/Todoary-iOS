@@ -82,6 +82,7 @@ extension CategoryTag{
         override func bindingData(title: String, color: Int) {
             super.bindingData(title: title, color: color)
             setPadding()
+            sizeToFit()
         }
         
         private func setPadding() {
