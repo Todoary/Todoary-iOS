@@ -412,7 +412,7 @@ extension TodoInSummaryTableViewCell{
             make.centerY.equalToSuperview().offset(1)
         }
         
-        let titleTrailing: Int = todo.categoryWidth + 6
+        let titleTrailing: CGFloat = categoryButton.bounds.width + 6
         
         if(todo.isAlarmEnabled){
             
