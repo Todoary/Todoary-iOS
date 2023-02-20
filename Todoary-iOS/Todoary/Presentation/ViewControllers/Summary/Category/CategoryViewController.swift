@@ -289,24 +289,20 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if(indexPath.row != categories.count){
-            
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryTagCollectionViewCell.cellIdentifier, for: indexPath) as? CategoryTagCollectionViewCell else { fatalError() }
-            
-            let data = categories[indexPath.row]
-            cell.bindingData(title: data.title, color: data.color)
-            cell.addGestureRecognizer(UILongPressGestureRecognizer(target: self,
-                                                                   action: #selector(categoryBottomSheetWillShowAndModifyCategory)))
-            
-            if(indexPath == selectCategoryIndex){
-                cell.setSelectState()
-            }
-            
-            return cell
-        }else{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryAddCollectionViewCell.cellIdentifier, for: indexPath)
-            return cell
+        if(indexPath.row == categories.count){
+            return collectionView.dequeueReusableCell(for: indexPath, cellType: CategoryAddCollectionViewCell.self)
         }
+
+        let data = categories[indexPath.row]
+        let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: CategoryTagCollectionViewCell.self).then{
+            $0.bindingData(title: data.title, color: data.color)
+            $0.addGestureRecognizer(UILongPressGestureRecognizer(target: self,
+                                                                 action: #selector(categoryBottomSheetWillShowAndModifyCategory)))
+            if(indexPath == selectCategoryIndex){
+                $0.setSelectState()
+            }
+        }
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
