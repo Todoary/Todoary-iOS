@@ -57,7 +57,7 @@ class TodoInSummaryTableViewCell: BaseTableViewCell {
         $0.setTypoStyleWithSingleLine(typoStyle: .bold15_18)
     }
     
-    private let categoryButton = CategoryTag.generateForMainTodo()
+    private let categoryTag = CategoryTag.generateForMainTodo()
     
     private lazy var pinImage = UIImageView().then{
         $0.image = Image.pushPin
@@ -95,7 +95,7 @@ class TodoInSummaryTableViewCell: BaseTableViewCell {
         checkBox.isSelected = false
         
         titleLabel.snp.removeConstraints()
-        categoryButton.snp.removeConstraints()
+        categoryTag.snp.removeConstraints()
         removeHiddenViews()
         isClamp = false
     }
@@ -113,7 +113,7 @@ class TodoInSummaryTableViewCell: BaseTableViewCell {
         
         backgroundShadowView.addSubview(checkBox)
         backgroundShadowView.addSubview(titleLabel)
-        backgroundShadowView.addSubview(categoryButton)
+        backgroundShadowView.addSubview(categoryTag)
     }
     
     override func layout() {
@@ -173,7 +173,7 @@ class TodoInSummaryTableViewCell: BaseTableViewCell {
         timeLabel.text = todo.convertTime
         checkBox.isSelected = todo.isChecked
         
-        categoryButton.bindingData(title: todo.categoryTitle, color: todo.color)
+        categoryTag.bindingData(title: todo.categoryTitle, color: todo.color)
         
         hiddenLeftView.pinButton.isSelected = todo.isPinned! ? true : false
         hiddenLeftView.alarmBtn.isSelected = todo.isAlarmEnabled ? true : false
@@ -405,11 +405,11 @@ extension TodoInSummaryTableViewCell{
             $0.centerY.equalToSuperview().offset(1.4)
         }
 
-        categoryButton.snp.makeConstraints{
+        categoryTag.snp.makeConstraints{
             $0.centerY.equalToSuperview().offset(1)
         }
         
-        let titleTrailing: CGFloat = categoryButton.bounds.width + 6
+        let titleTrailing: CGFloat = categoryTag.bounds.width + 6
         
         if(todo.isAlarmEnabled){
             
@@ -435,7 +435,7 @@ extension TodoInSummaryTableViewCell{
                 pinImage.snp.makeConstraints{
                     $0.trailing.equalTo(alarmImage.snp.leading).offset(-2)
                 }
-                categoryButton.snp.makeConstraints{
+                categoryTag.snp.makeConstraints{
                     $0.trailing.equalTo(pinImage.snp.leading).offset(-3)
                 }
  
@@ -452,7 +452,7 @@ extension TodoInSummaryTableViewCell{
                     $0.trailing.equalTo(timeLabel.snp.leading).offset(-4)
                 }
                 
-                categoryButton.snp.makeConstraints{
+                categoryTag.snp.makeConstraints{
                     $0.trailing.equalTo(alarmImage.snp.leading).offset(-7)
                 }
                 
@@ -468,14 +468,14 @@ extension TodoInSummaryTableViewCell{
                 pinImage.snp.makeConstraints{
                     $0.trailing.equalToSuperview().offset(-18)
                 }
-                categoryButton.snp.makeConstraints{
+                categoryTag.snp.makeConstraints{
                     $0.trailing.equalTo(pinImage.snp.leading).offset(-7)
                 }
                 titleLabel.snp.makeConstraints{
                     $0.trailing.equalToSuperview().offset(-(titleTrailing + 34))
                 }
             }else{
-                categoryButton.snp.makeConstraints{
+                categoryTag.snp.makeConstraints{
                     $0.trailing.equalToSuperview().offset(-18)
                 }
                 titleLabel.snp.makeConstraints{
