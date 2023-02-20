@@ -406,10 +406,8 @@ extension TodoInSummaryTableViewCell{
             make.centerY.equalToSuperview().offset(1.4)
         }
 
-        categoryButton.snp.makeConstraints{ make in
-            make.width.equalTo(todo.categoryWidth)
-            make.height.equalTo(21)
-            make.centerY.equalToSuperview().offset(1)
+        categoryButton.snp.makeConstraints{
+            $0.centerY.equalToSuperview().offset(1)
         }
         
         let titleTrailing: CGFloat = categoryButton.bounds.width + 6
