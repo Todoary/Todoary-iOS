@@ -11,6 +11,8 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     
     //MARK: - UIcomponents
     func initView() {
+        
+        
         dateFormatterYear.dateFormat = "yyyy"
         dateFormatterMonth.dateFormat = "MM"
         dateFormatterDate.dateFormat = "dd"
@@ -20,6 +22,15 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         components.year = cal.component(.year, from: now)
         components.month = cal.component(.month, from: now)
         components.day = 1
+    
+        components_previous.year = components.year
+        components_previous.month = components.month! - 1
+        components_previous.day = 1
+        
+        components_next.year = components.year
+        components_next.month = components.month! + 1
+        components_next.day = 1
+        
         select = -1
 
         self.calculation()
@@ -32,11 +43,26 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
 
     
     func calculation() {
+        //해당 달
         let firstDayOfMonth = cal.date(from: components)
         let firstWeekday = cal.component(.weekday, from: firstDayOfMonth!)
         daysCountInMonth = cal.range(of: .day, in: .month, for: firstDayOfMonth!)!.count
         weekdayAdding = 2 - firstWeekday
         emptyDay = 0 - weekdayAdding
+        
+        //이전달
+        let firstDayOfMonth_previous = cal.date(from: components_previous)
+        let firstWeekday_previous = cal.component(.weekday, from: firstDayOfMonth_previous!)
+        daysCountInMonth_previous = cal.range(of: .day, in: .month, for: firstDayOfMonth_previous!)!.count
+        weekdayAdding_previous = 2 - firstWeekday_previous
+        previousEmptyDay = 0 - weekdayAdding_previous
+        
+        //다음달
+        let firstDayOfMonth_next = cal.date(from: components_next)
+        let firstWeekday_next = cal.component(.weekday, from: firstDayOfMonth_next!)
+        daysCountInMonth_next = cal.range(of: .day, in: .month, for: firstDayOfMonth_next!)!.count
+        weekdayAdding_next = 2 - firstWeekday_next
+        nextEmptyDay = 0 - weekdayAdding_next
         
         self.month_component = Int(dateFormatterMonth.string(from: firstDayOfMonth!))!
         self.year_component = Int(dateFormatterYear.string(from: firstDayOfMonth!))!
@@ -51,34 +77,56 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
                 self.days.append(String(day))
             }
         }
+        
+        self.previousDays.removeAll()
+        for day in weekdayAdding_previous...daysCountInMonth_previous {
+            if day < 1 {
+                self.previousDays.append("")
+            } else {
+                self.previousDays.append(String(day))
+            }
+        }
+        
+        self.nextDays.removeAll()
+        for day in weekdayAdding_next...daysCountInMonth_next {
+            if day < 1 {
+                self.nextDays.append("")
+            } else {
+                self.nextDays.append(String(day))
+            }
+        }
     }
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        switch indexPath.section {
-        case 0:
+        
+        if collectionView == mainView.weekCollectionView {
             return CGSize(width: view.frame.width/8.5, height: 30)
-        default:
+        }else {
             return CGSize(width: view.frame.width/8.5, height: view.frame.width/8.7)
         }
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case 0:
+        if collectionView == mainView.weekCollectionView {
             return 7
-        default:
+        }else if collectionView == mainView.previousCollectionView{
+            return self.previousDays.count
+        }else if collectionView == mainView.collectionView{
             return self.days.count
+        }else {
+            return self.nextDays.count
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        switch indexPath.section {
-        case 0:
+        if collectionView == mainView.weekCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "weekCell", for: indexPath) as! WeekCell
             if indexPath.row == 0 {
                 cell.weekLabel.textColor = .sunday
@@ -90,7 +138,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
             cell.weekLabel.text = weeks[indexPath.row]
             
             return cell
-        default:
+        }else if collectionView == mainView.collectionView{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "calendarCell", for: indexPath) as! CalendarCell
             cell.dateLabel.text = days[indexPath.row]
             cell.dateLabel.layer.backgroundColor = UIColor.transparent.cgColor
@@ -128,12 +176,33 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
                 }
             }else {
                 if select == (indexPath.row - emptyDay){
-                collectionView.selectItem(at: indexPath, animated: false , scrollPosition: .init())
-                cell.isSelected = true
+                    collectionView.selectItem(at: indexPath, animated: false , scrollPosition: .init())
+                    cell.isSelected = true
                 }
             }
+            return cell
+        }else if collectionView == mainView.previousCollectionView{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "calendarCell", for: indexPath) as! CalendarCell
+            cell.dateLabel.text = previousDays[indexPath.row]
+            cell.dateLabel.layer.backgroundColor = UIColor.transparent.cgColor
+            cell.dateLabel.textColor = .black
+            cell.dateLabel.layer.shadowRadius = 0
+            cell.dateLabel.layer.shadowColor = UIColor.transparent.cgColor
+            cell.dateLabel.layer.shadowOpacity = 0
+            cell.diary.isHidden = true
             
+    
+            return cell
             
+        }else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "calendarCell", for: indexPath) as! CalendarCell
+            cell.dateLabel.text = nextDays[indexPath.row]
+            cell.dateLabel.layer.backgroundColor = UIColor.transparent.cgColor
+            cell.dateLabel.textColor = .black
+            cell.dateLabel.layer.shadowRadius = 0
+            cell.dateLabel.layer.shadowColor = UIColor.transparent.cgColor
+            cell.dateLabel.layer.shadowOpacity = 0
+            cell.diary.isHidden = true
             
             return cell
         }
@@ -141,6 +210,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     
     //셀 선택o
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         
         guard let cell = collectionView.cellForItem(at: indexPath) as? CalendarCell else{
             fatalError()
@@ -157,7 +227,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         let convertDate = ConvertDate(year: year_component, month: month_component, date: days[indexPath.row])
         
         HomeViewController.bottomSheetVC.todoDate = convertDate
-                                             
+        
         requestGetTodoByDate(convertDate.dateSendServer)
         requestGetDiary(convertDate.dateSendServer)
         
@@ -204,39 +274,6 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         
     }
     
-    
-    
-    @objc func prevBtnDidTap() {
- 
-        select = -1
-        components.month = components.month! - 1
-        self.calculation()
-        let date = cal.date(from: components)
-        calendarRecord = [Int](repeating: 0, count: 32)
-        diaryRecord = [Int](repeating: 0, count: 32)
-        
-        requestGetTodoByYearMonth(yearMonth: "\(dateFormatterYear.string(from: date!))-\(dateFormatterMonth.string(from: date!))")
-        requestGetDiaryByYearMonth(yearMonth: "\(dateFormatterYear.string(from: date!))-\(dateFormatterMonth.string(from: date!))")
-        mainView.collectionView.reloadData()
-        
-        requestTodoFirstDayOfMonth()
-    }
-    
-    @objc func nextBtnDidTap() {
-
-        select = -1
-        components.month = components.month! + 1
-        self.calculation()
-        let date = cal.date(from: components)
-        calendarRecord = [Int](repeating: 0, count: 32)
-        diaryRecord = [Int](repeating: 0, count: 32)
-        requestGetTodoByYearMonth(yearMonth: "\(dateFormatterYear.string(from: date!))-\(dateFormatterMonth.string(from: date!))")
-        requestGetDiaryByYearMonth(yearMonth: "\(dateFormatterYear.string(from: date!))-\(dateFormatterMonth.string(from: date!))")
-        mainView.collectionView.reloadData()
-        
-        requestTodoFirstDayOfMonth()
-    }
-    
     func requestTodoFirstDayOfMonth(){
         
         let convertDate: ConvertDate!
@@ -251,6 +288,65 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         requestGetTodoByDate(convertDate.dateSendServer)
         requestGetDiary(convertDate.dateSendServer)
     }
+}
+
+extension HomeViewController: UIScrollViewDelegate {
     
     
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        switch targetContentOffset.pointee.x{
+        case 0:
+            scrollDirection = .left
+        case screenSize.width:
+            scrollDirection = .none
+        case screenSize.width*2:
+            scrollDirection = .right
+        default:
+            break
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        
+        switch scrollDirection{
+        case .left:
+            select = -1
+            components.month = components.month! - 1
+            components_previous.month = components_previous.month! - 1
+            components_next.month = components_next.month! - 1
+            self.calculation()
+            mainView.previousCollectionView.reloadData()
+            mainView.nextCollectionView.reloadData()
+            let date = cal.date(from: components)
+            calendarRecord = [Int](repeating: 0, count: 32)
+            diaryRecord = [Int](repeating: 0, count: 32)
+            
+            requestGetTodoByYearMonth(yearMonth: "\(dateFormatterYear.string(from: date!))-\(dateFormatterMonth.string(from: date!))")
+            requestGetDiaryByYearMonth(yearMonth: "\(dateFormatterYear.string(from: date!))-\(dateFormatterMonth.string(from: date!))")
+            mainView.collectionView.reloadData()
+            
+            requestTodoFirstDayOfMonth()
+            mainView.scrollView.setContentOffset(CGPoint(x: screenSize.width, y: 0), animated: false)
+        case .none:
+            break
+        case .right:
+            select = -1
+            components.month = components.month! + 1
+            components_previous.month = components_previous.month! + 1
+            components_next.month = components_next.month! + 1
+            self.calculation()
+            mainView.previousCollectionView.reloadData()
+            mainView.nextCollectionView.reloadData()
+            let date = cal.date(from: components)
+            calendarRecord = [Int](repeating: 0, count: 32)
+            diaryRecord = [Int](repeating: 0, count: 32)
+            requestGetTodoByYearMonth(yearMonth: "\(dateFormatterYear.string(from: date!))-\(dateFormatterMonth.string(from: date!))")
+            requestGetDiaryByYearMonth(yearMonth: "\(dateFormatterYear.string(from: date!))-\(dateFormatterMonth.string(from: date!))")
+            mainView.collectionView.reloadData()
+            
+            requestTodoFirstDayOfMonth()
+            mainView.scrollView.setContentOffset(CGPoint(x: screenSize.width, y: 0), animated: false)
+        }
+    }
 }

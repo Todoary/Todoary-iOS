@@ -9,34 +9,63 @@ import Foundation
 import UIKit
 import SnapKit
 import Then
+import Firebase
+
+enum scrollDiretion {
+    case left
+    case none
+    case right
+}
 
 class HomeViewController : UIViewController {
     
     
 //MARK: - Properties
     
+    var scrollDirection : scrollDiretion = .none
+    
     static var check : Int!
     
     var nickname = ""
     var introduce = ""
+    
     let now = Date()
     var cal = Calendar.current
     let dateFormatterYear = DateFormatter()
     let dateFormatterMonth = DateFormatter()
     let dateFormatterDate = DateFormatter()
+    
     var today : Int = 0
     var month_component : Int = 0
     var year_component : Int = 0
+    
     var month : Int = 0
     var year : Int = 0
+    
     var emptyDay : Int = 0
+    var previousEmptyDay : Int = 0
+    var nextEmptyDay : Int = 0
+    
     var components = DateComponents()
+    var components_previous = DateComponents()
+    var components_next = DateComponents()
     var component_select = DateComponents()
+    
     var select = -1
+    
     var weeks: [String] = ["일", "월", "화", "수", "목", "금", "토"]
     var days: [String] = []
+    var previousDays: [String] = []
+    var nextDays: [String] = []
+    
     var daysCountInMonth = 0
+    var daysCountInMonth_previous = 0
+    var daysCountInMonth_next = 0
+    
     var weekdayAdding = 0
+    var weekdayAdding_previous = 0
+    var weekdayAdding_next = 0
+    
     let inset = UIEdgeInsets(top: 1, left: 3, bottom: 0, right: 3)
     
     var calendarRecord = [Int](repeating: 0, count: 32)
@@ -47,6 +76,8 @@ class HomeViewController : UIViewController {
     let mainView = HomeView()
     
     var profileData: ProfileResultModel!
+    
+    let screenSize = UIScreen.main.bounds
     
 //MARK: - Lifecycles
 
@@ -85,16 +116,43 @@ class HomeViewController : UIViewController {
     
     func initialize() {
         
-        mainView.collectionView.delegate = self
-        mainView.collectionView.dataSource = self
-        mainView.collectionView.register(WeekCell.self, forCellWithReuseIdentifier: "weekCell")
-        mainView.collectionView.register(CalendarCell.self, forCellWithReuseIdentifier: "calendarCell")
+        self.view.layoutIfNeeded()
+        
+        
+        
+        mainView.scrollView.delegate = self
+        mainView.scrollView.showsHorizontalScrollIndicator = true
+        
+        mainView.weekCollectionView.do {
+            $0.delegate = self
+            $0.dataSource = self
+            $0.register(WeekCell.self, forCellWithReuseIdentifier: "weekCell")
+        }
+        
+        mainView.collectionView.do {
+            $0.delegate = self
+            $0.dataSource = self
+            $0.register(CalendarCell.self, forCellWithReuseIdentifier: "calendarCell")
+        }
+        
+        mainView.previousCollectionView.do {
+            $0.delegate = self
+            $0.dataSource = self
+            $0.register(CalendarCell.self, forCellWithReuseIdentifier: "calendarCell")
+        }
+        
+        mainView.nextCollectionView.do {
+            $0.delegate = self
+            $0.dataSource = self
+            $0.register(CalendarCell.self, forCellWithReuseIdentifier: "calendarCell")
+        }
+        
+        mainView.scrollView.setContentOffset(CGPoint(x: screenSize.width, y: 0), animated: false)
+        
         
         mainView.profileImage.addTarget(self, action: #selector(profileBtnDidTap), for: .touchUpInside)
         mainView.settingButton.addTarget(self, action: #selector(settingBtnDidTap), for: .touchUpInside)
         mainView.year_Month.addTarget(self, action: #selector(settingInit), for: .touchUpInside)
-        mainView.previousMonthButton.addTarget(self, action: #selector(prevBtnDidTap), for: .touchUpInside)
-        mainView.nextMonthButton.addTarget(self, action: #selector(nextBtnDidTap), for: .touchUpInside)
         
         self.initView()
     }
@@ -139,6 +197,11 @@ class HomeViewController : UIViewController {
         
         requestGetTodoByDate(convertDate)
         requestGetDiary(convertDate)
+        
+//        Analytics.logEvent("AppIcon", parameters: [
+//          "name": "comback_today" as NSObject,
+//          "full_text": "오늘로 돌아가기 버튼 터치" as NSObject,
+//        ])
     }
     
     //MARK: - API
@@ -257,6 +320,7 @@ class HomeViewController : UIViewController {
     }
     
 //MARK: - Helpers
+    
     
     static func dismissBottomSheet(){
         HomeViewController.bottomSheetVC.dismiss(animated: true, completion: nil)
