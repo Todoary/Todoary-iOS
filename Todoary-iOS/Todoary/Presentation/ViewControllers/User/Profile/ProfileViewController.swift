@@ -17,6 +17,8 @@ class ProfileViewController : BaseViewController , UITextFieldDelegate{
     
     let imagePickerController = UIImagePickerController()
     
+    var pickedImg = UIImage(named: "profile")
+    
     var isPhoto = false
     
     let mainView = ProfileView()
@@ -264,6 +266,7 @@ extension ProfileViewController {
             switch result{
             case .success:
                 print("로그: [requestModifyProfileImage] success")
+                mainView.profileImage.image = pickedImg
                 break
             default:
                 print("로그: [requestModifyProfileImage] fail")
@@ -295,8 +298,8 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             mainView.profileImage.contentMode = .scaleAspectFill
-            mainView.profileImage.image = pickedImage //4
-            requestModifyProfileImage(parameter: mainView.profileImage.image!)
+            pickedImg = pickedImage
+            requestModifyProfileImage(parameter: pickedImage)
         }
         UserDefaults.standard.set(false, forKey: "defaultImg")
         dismiss(animated: true, completion: nil)
