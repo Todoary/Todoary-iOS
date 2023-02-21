@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import Then
 import Photos
+import Kingfisher
 
 class ProfileViewController : BaseViewController , UITextFieldDelegate{
     
@@ -19,8 +20,6 @@ class ProfileViewController : BaseViewController , UITextFieldDelegate{
     var isPhoto = false
     
     let mainView = ProfileView()
-    
-    var delete = false
     
 
     
@@ -69,7 +68,6 @@ class ProfileViewController : BaseViewController , UITextFieldDelegate{
         mainView.confirmBtn.addTarget(self, action: #selector(confirmBtnDidTab), for: .touchUpInside)
         
         mainView.nickNameTf.delegate = self
-//        mainView.introduceTf.delegate = self
         
     }
     
@@ -95,13 +93,12 @@ class ProfileViewController : BaseViewController , UITextFieldDelegate{
         let removeAction = UIAlertAction(title: "현재 사진 삭제", style: .default, handler:
                                             {(UIAlertAction) in
             self.mainView.profileImage.image = UIImage(named: "profile")
+            UserDefaults.standard.set(true, forKey: "defaultImg")
             self.requestDeleteProfileImage()
-            self.delete = true
+            
         })
         
         let albumSelectAction = UIAlertAction(title: "갤러리에서 선택", style: .default, handler: { [self](UIAlertAction) in
-            
-            self.delete = false
             
             //접근권한 있는지 없는지 체크
             isPhoto = PhotoAuth()
@@ -128,9 +125,6 @@ class ProfileViewController : BaseViewController , UITextFieldDelegate{
     @objc func confirmBtnDidTab() {
         let profileRequestModel = ProfileRequestModel(nickname: mainView.nickNameTf.text, introduce: mainView.introduceTf.text)
         requestModifyProfile(parameter: profileRequestModel)
-        if self.delete == false {
-            requestModifyProfileImage(parameter: mainView.profileImage.image!)
-        }
     }
     
 //MARK: - Keyboard
@@ -220,10 +214,15 @@ extension ProfileViewController {
                     if ((profileData.introduce != nil)){
                         mainView.introduceCount.text = "\(profileData.introduce!.count)/30"
                     }
-                    if (profileData.profileImgUrl != nil){
-                        let url = URL(string: profileData.profileImgUrl!)
-                        mainView.profileImage.load(url: url!)
+                    if UserDefaults.standard.bool(forKey: "defaultImg") != true {
+                        if (profileData.profileImgUrl != nil){
+                            let url = URL(string: profileData.profileImgUrl!)
+                            mainView.profileImage.kf.setImage(with: url!)
+                        }
+                    }else{
+                        mainView.profileImage.image = UIImage(named: "profile")
                     }
+                    
                 }
                 break
             default:
@@ -297,7 +296,9 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             mainView.profileImage.contentMode = .scaleAspectFill
             mainView.profileImage.image = pickedImage //4
+            requestModifyProfileImage(parameter: mainView.profileImage.image!)
         }
+        UserDefaults.standard.set(false, forKey: "defaultImg")
         dismiss(animated: true, completion: nil)
     }
     
