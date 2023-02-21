@@ -18,11 +18,13 @@ target 'Todoary' do
   pod 'IRSticker-swift'
 
   pod 'StickerView'
+  
+  pod 'Kingfisher', '~> 7.0'
 
   # firebase 
   pod 'Firebase/Analytics' # Google Analytics
 
-  pod 'Firebase/Messaging'
+  pod 'Firebase/Messaging', '~> 7.6.0'
 
   target 'TodoaryTests' do
     inherit! :search_paths

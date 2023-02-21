@@ -86,7 +86,7 @@ class HomeView: BaseView{
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 1
         layout.minimumLineSpacing = 1
-        layout.sectionInset = UIEdgeInsets.init(top: 0, left: 21, bottom: 0, right: 21)
+        layout.sectionInset = UIEdgeInsets.init(top: 0, left: 19, bottom: 0, right: 19)
         $0.backgroundColor = .white
         $0.contentInset = UIEdgeInsets.init(top: 0, left: 2, bottom: 0, right: 2)
         $0.collectionViewLayout = layout
@@ -97,7 +97,7 @@ class HomeView: BaseView{
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 1
         layout.minimumLineSpacing = 1
-        layout.sectionInset = UIEdgeInsets.init(top: 0, left: 21, bottom: 0, right: 21)
+        layout.sectionInset = UIEdgeInsets.init(top: 3, left: 19, bottom: 0, right: 19)
         $0.backgroundColor = .white
         $0.contentInset = UIEdgeInsets.init(top: 0, left: 2, bottom: 0, right: 2)
         $0.collectionViewLayout = layout
@@ -107,7 +107,7 @@ class HomeView: BaseView{
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 1
         layout.minimumLineSpacing = 1
-        layout.sectionInset = UIEdgeInsets.init(top: 0, left: 21, bottom: 0, right: 21)
+        layout.sectionInset = UIEdgeInsets.init(top: 3, left: 19, bottom: 0, right: 19)
         $0.backgroundColor = .white
         $0.contentInset = UIEdgeInsets.init(top: 0, left: 2, bottom: 0, right: 2)
         $0.collectionViewLayout = layout
@@ -117,7 +117,7 @@ class HomeView: BaseView{
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 1
         layout.minimumLineSpacing = 1
-        layout.sectionInset = UIEdgeInsets.init(top: 0, left: 21, bottom: 0, right: 21)
+        layout.sectionInset = UIEdgeInsets.init(top: 3, left: 19, bottom: 0, right: 19)
         $0.backgroundColor = .white
         $0.contentInset = UIEdgeInsets.init(top: 0, left: 2, bottom: 0, right: 2)
         $0.collectionViewLayout = layout
@@ -206,7 +206,7 @@ class HomeView: BaseView{
         
         year_Month.snp.makeConstraints{ make in
             make.top.equalTo(homeBorderLine2.snp.bottom).offset(13)
-            make.leading.equalToSuperview().offset(45)
+            make.leading.equalToSuperview().offset(38)
             make.width.equalTo(100)
             make.height.equalTo(22)
         }
@@ -214,7 +214,7 @@ class HomeView: BaseView{
         let screenSize = UIScreen.main.bounds
         
         weekCollectionView.snp.makeConstraints{ make in
-            make.top.equalTo(year_Month.snp.bottom).offset(16)
+            make.top.equalTo(year_Month.snp.bottom).offset(14)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
             make.width.equalTo(screenSize.width)
@@ -222,7 +222,7 @@ class HomeView: BaseView{
         }
         
         scrollView.snp.makeConstraints{ make in
-            make.top.equalTo(weekCollectionView.snp.bottom).offset(5)
+            make.top.equalTo(weekCollectionView.snp.bottom).offset(2)
             make.width.equalTo(screenSize.width * 3)
             make.leading.trailing.bottom.equalToSuperview()
             make.height.equalTo(500)
