@@ -208,15 +208,14 @@ class SignUpView: BaseView {
 
         //id
         idTitle.snp.makeConstraints{ make in
-            make.top.equalToSuperview().offset(70)
+            make.top.equalToSuperview().offset(59)
             make.leading.equalToSuperview().offset(38)
-            make.height.equalTo(20)
         }
 
         idTextField.snp.makeConstraints{ make in
             make.top.equalTo(idTitle.snp.bottom).offset(16)
-            make.width.equalTo(261)
             make.height.equalTo(20)
+            make.trailing.equalToSuperview().offset(-50)
             make.leading.equalTo(idTitle)
         }
         
@@ -237,7 +236,7 @@ class SignUpView: BaseView {
             make.width.equalTo(65)
             make.height.equalTo(22)
             make.trailing.equalToSuperview().offset(-40)
-            make.top.equalToSuperview().offset(66)
+            make.top.equalToSuperview().offset(55)
         }
         
         //certification
@@ -366,6 +365,7 @@ class SignUpView: BaseView {
         
         //button
         nextButton.snp.makeConstraints{ make in
+            make.top.greaterThanOrEqualTo(nicknameCanUseLabel)
             make.bottom.equalToSuperview().offset(-47)
             make.leading.equalToSuperview().offset(26)
             make.trailing.equalToSuperview().offset(-26)
