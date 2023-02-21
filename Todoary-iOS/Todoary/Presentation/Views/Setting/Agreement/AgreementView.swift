@@ -10,91 +10,34 @@ import SnapKit
 
 
 class AgreementView: BaseView {
-    
-    //MARK: - 텍스트
 
-    let agreeTitle = UILabel().then{
+    private let agreeTitle = UILabel().then{
         $0.text = "Todoary 서비스 이용약관에 동의해 주세요."
-        $0.textColor = .headline
+        $0.textColor = .black
         $0.setTypoStyleWithSingleLine(typoStyle: .bold16_19)
     }
-    
-    let allCheckText = UILabel().then{
-        $0.text = "전체동의"
-        $0.textColor = .headline
-        $0.setTypoStyleWithSingleLine(typoStyle: .bold16_19)
+    private let agreementTitleBorderLine = UIView().then{
+        $0.backgroundColor = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1)
     }
-    
-    //MARK: - 약관 제목버튼(약관 내용페이지로 연결)
-    
-    let privacyTitle = UIButton().then{
-        $0.setTitle("개인 정보 취급방침 동의 (필수)", for: .normal)
-        $0.setTitleColor(.headline, for: .normal)
-        $0.titleLabel?.setTypoStyleWithSingleLine(typoStyle: .medium14_16)
-        $0.setUnderline()
+
+    let privacyField = AgreementField().then{
+        $0.titleLabel.text = "개인 정보 취급방침 동의 (필수)"
     }
-    
-    let useServiceTitle = UIButton().then{
-        $0.setTitle("서비스 이용약관 동의 (필수)", for: .normal)
-        $0.setTitleColor(.headline, for: .normal)
-        $0.titleLabel?.setTypoStyleWithSingleLine(typoStyle: .medium14_16)
-        $0.setUnderline()
+    let userServiceField = AgreementField().then{
+        $0.titleLabel.text = "서비스 이용약관 동의 (필수)"
     }
-    
-    let adTitle = UIButton().then{
-        $0.setTitle("광고성 정보 수신 동의 (선택)", for: .normal)
-        $0.setTitleColor(.headline, for: .normal)
-        $0.titleLabel?.setTypoStyleWithSingleLine(typoStyle: .medium14_16)
-        $0.titleLabel?.textAlignment = .left
-        $0.setUnderline()
+    let advertiseField = AgreementField().then{
+        $0.titleLabel.text = "광고성 정보 수신 동의 (선택)"
     }
-    
-    //MARK: - 약관 체크버튼 (필수 동의를 해야만 확인버튼을 누를수 있음)
-    
     let allCheckBtn = UIButton().then{
         $0.setImage(Image.blackCheckBoxFill, for: .selected)
         $0.setImage(Image.blackCheckBoxBlank, for: .normal)
     }
-    
-    let privacyCheckBtn = UIButton().then{
-        $0.setImage(Image.blackCheckBoxFill, for: .selected)
-        $0.setImage(Image.blackCheckBoxBlank, for: .normal)
-    }
-    
-    let useServiceCheckBtn = UIButton().then{
-        $0.setImage(Image.blackCheckBoxFill, for: .selected)
-        $0.setImage(Image.blackCheckBoxBlank, for: .normal)
-    }
-    
-    let adCheckBtn = UIButton().then{
-        $0.setImage(Image.blackCheckBoxFill, for: .selected)
-        $0.setImage(Image.blackCheckBoxBlank, for: .normal)
+    let allCheckText = UILabel().then{
+        $0.text = "전체동의"
+        $0.setTypoStyleWithSingleLine(typoStyle: .bold14)
     }
 
-    //MARK: - BorderLine
-    
-    let privacyBorderLine = UIView().then{
-        $0.backgroundColor = .todoaryGrey
-    }
-    
-    let useServiceBorderLine = UIView().then{
-        $0.backgroundColor = .todoaryGrey
-    }
-
-    let adBorderLine = UIView().then{
-        $0.backgroundColor = .todoaryGrey
-    }
-
-    let locationBorderLine = UIView().then{
-        $0.backgroundColor = .todoaryGrey
-    }
-
-    let agreeAllBorderLine = UIView().then{
-        $0.backgroundColor = .todoaryGrey
-    }
-    
-    //MARK: -  확인 버튼(필수 동의를 마치면 활성화)
-    
     let confirmBtn = UIButton().then{
         $0.isEnabled = false
         $0.setTitle("확인", for: .normal)
@@ -107,23 +50,12 @@ class AgreementView: BaseView {
     override func hierarchy(){
         
         self.addSubview(agreeTitle)
+        self.addSubview(agreementTitleBorderLine)
         
-        self.addSubview(privacyBorderLine)
-        self.addSubview(privacyCheckBtn)
-        self.addSubview(privacyTitle)
+        self.addSubview(privacyField)
+        self.addSubview(userServiceField)
+        self.addSubview(advertiseField)
         
-        self.addSubview(useServiceBorderLine)
-        self.addSubview(useServiceCheckBtn)
-        self.addSubview(useServiceTitle)
-
-        self.addSubview(adBorderLine)
-        self.addSubview(adCheckBtn)
-        self.addSubview(adTitle)
-   
-
-        self.addSubview(locationBorderLine)
-        
-        self.addSubview(agreeAllBorderLine)
         self.addSubview(allCheckBtn)
         self.addSubview(allCheckText)
 
@@ -132,113 +64,100 @@ class AgreementView: BaseView {
     }
     
     override func layout(){
-        //Title
-        agreeTitle.snp.makeConstraints{ make in
-            make.top.equalToSuperview().offset(50)
-            make.leading.equalToSuperview().offset(56)
-            make.centerX.equalToSuperview()
+        agreeTitle.snp.makeConstraints{
+            $0.top.equalToSuperview().offset(50)
+            $0.leading.equalToSuperview().offset(56)
+            $0.centerX.equalToSuperview()
         }
         
-        //약관제목&체크
-        privacyBorderLine.snp.makeConstraints{make in
-            make.height.equalTo(1)
-            make .width.equalTo(328)
-            make.centerX.equalTo(agreeTitle)
-            make.top.equalTo(agreeTitle.snp.bottom).offset(28)
+        agreementTitleBorderLine.snp.makeConstraints{
+            $0.top.equalTo(agreeTitle.snp.bottom).offset(28)
+            $0.leading.trailing.equalToSuperview().inset(31)
+            $0.height.equalTo(1)
         }
         
-        privacyCheckBtn.snp.makeConstraints{make in
-            make.width.equalTo(20)
-            make.height.equalTo(20)
-            make.left.equalTo(privacyBorderLine)
-            make.top.equalTo(privacyBorderLine.snp.bottom).offset(13)
+        privacyField.snp.makeConstraints{
+            $0.top.equalTo(agreementTitleBorderLine.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+        }
+        userServiceField.snp.makeConstraints{
+            $0.top.equalTo(privacyField.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+        }
+        advertiseField.snp.makeConstraints{
+            $0.top.equalTo(userServiceField.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+        }
+
+        allCheckBtn.snp.makeConstraints{
+            $0.width.height.equalTo(20)
+            $0.leading.equalToSuperview().offset(31)
+            $0.top.equalTo(advertiseField.snp.bottom).offset(15)
         }
         
-        privacyTitle.snp.makeConstraints{make in
-            make.height.equalTo(18)
-            make .width.equalTo(174)
-            make.centerY.equalTo(privacyCheckBtn)
-            make.leading.equalTo(privacyCheckBtn.snp.trailing).offset(8)
-        }
-        
-        useServiceBorderLine.snp.makeConstraints{make in
-            make.height.equalTo(1)
-            make .width.equalTo(328)
-            make.centerX.equalTo(agreeTitle)
-            make.top.equalTo(privacyTitle.snp.bottom).offset(15)
-        }
-        
-        useServiceCheckBtn.snp.makeConstraints{make in
-            make.width.equalTo(20)
-            make.height.equalTo(20)
-            make.left.equalTo(privacyBorderLine)
-            make.top.equalTo(useServiceBorderLine.snp.bottom).offset(13)
-        }
-        
-        useServiceTitle.snp.makeConstraints{make in
-            make.height.equalTo(18)
-            make .width.equalTo(158)
-            make.centerY.equalTo(useServiceCheckBtn)
-            make.leading.equalTo(useServiceCheckBtn.snp.trailing).offset(8)
-        }
-        
-        adBorderLine.snp.makeConstraints{make in
-            make.height.equalTo(1)
-            make .width.equalTo(328)
-            make.centerX.equalTo(agreeTitle)
-            make.top.equalTo(useServiceTitle.snp.bottom).offset(15)
-        }
-        
-        adCheckBtn.snp.makeConstraints{make in
-            make.width.equalTo(20)
-            make.height.equalTo(20)
-            make.left.equalTo(privacyBorderLine)
-            make.top.equalTo(adBorderLine.snp.bottom).offset(13)
-        }
-        
-        adTitle.snp.makeConstraints{make in
-            make.height.equalTo(18)
-            make .width.equalTo(162)
-            make.centerY.equalTo(adCheckBtn)
-            make.leading.equalTo(adCheckBtn.snp.trailing).offset(8)
-        }
-        
-        locationBorderLine.snp.makeConstraints{make in
-            make.height.equalTo(1)
-            make .width.equalTo(328)
-            make.centerX.equalTo(agreeTitle)
-            make.top.equalTo(adTitle.snp.bottom).offset(15)
-        }
-     
-        agreeAllBorderLine.snp.makeConstraints{make in
-            make.height.equalTo(1)
-            make .width.equalTo(328)
-            make.centerX.equalTo(agreeTitle)
-            make.top.equalTo(adTitle.snp.bottom).offset(15)
-        }
-        
-        allCheckBtn.snp.makeConstraints{ make in
-            make.width.equalTo(20)
-            make.height.equalTo(20)
-            make.left.equalTo(agreeAllBorderLine)
-            make.top.equalTo(agreeAllBorderLine.snp.bottom).offset(15)
-        }
-        
-        allCheckText.snp.makeConstraints{ make in
-            make.width.equalTo(58)
-            make.height.equalTo(19)
-            make.centerY.equalTo(allCheckBtn)
-            make.leading.equalTo(allCheckBtn.snp.trailing).offset(8)
+        allCheckText.snp.makeConstraints{
+            $0.centerY.equalTo(allCheckBtn)
+            $0.leading.equalTo(allCheckBtn.snp.trailing).offset(8)
             
         }
         
-        //button
-        confirmBtn.snp.makeConstraints{ make in
-            make.bottom.equalToSuperview().offset(-47)
-            make.leading.equalToSuperview().offset(26)
-            make.trailing.equalToSuperview().offset(-26)
-            make.height.equalTo(52)
+        confirmBtn.snp.makeConstraints{
+            $0.bottom.equalToSuperview().offset(-47)
+            $0.leading.trailing.equalToSuperview().inset(26)
+            $0.height.equalTo(52)
         }
     }
 }
 
+extension AgreementView{
+    
+    class AgreementField: BaseView{
+        
+        var isSelected = false{
+            didSet{
+                checkBox.isSelected = isSelected
+            }
+        }
+        
+        let checkBox = UIButton().then{
+            $0.setImage(Image.blackCheckBoxFill, for: .selected)
+            $0.setImage(Image.blackCheckBoxBlank, for: .normal)
+        }
+        
+        let titleLabel = UILabel().then{
+            $0.isUserInteractionEnabled = true
+            $0.setTypoStyleWithSingleLine(typoStyle: .medium14_16)
+            $0.setUnderline()
+        }
+        
+        let borderLine = UIView().then{
+            $0.backgroundColor = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1)
+        }
+        
+        override func hierarchy() {
+            self.addSubview(checkBox)
+            self.addSubview(titleLabel)
+            self.addSubview(borderLine)
+        }
+        
+        override func layout() {
+            checkBox.snp.makeConstraints{
+                $0.width.height.equalTo(20)
+                $0.top.equalToSuperview().offset(15)
+                $0.centerY.equalToSuperview()
+                $0.leading.equalToSuperview().offset(31)
+            }
+            
+            titleLabel.snp.makeConstraints{
+                $0.leading.equalTo(checkBox.snp.trailing).offset(8)
+                $0.centerY.equalToSuperview()
+            }
+            
+            borderLine.snp.makeConstraints{
+                $0.height.equalTo(1)
+                $0.leading.trailing.equalToSuperview().inset(31)
+                $0.bottom.equalToSuperview().offset(-1)
+            }
+        }
+    }
+}

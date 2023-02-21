@@ -16,7 +16,7 @@ import StickerView
  -> DiaryViewController를 수정하는 일은 네이밍 변경 등을 제외하고는 거의 없어야 합니다
  */
 
-class DiaryViewController: BaseViewController , UIGestureRecognizerDelegate{
+class DiaryViewController: BaseViewController{
     
     let mainView = DiaryView()
     

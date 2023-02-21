@@ -34,8 +34,9 @@ class BaseViewController: UIViewController {
     }
     
     func style(){
-        self.view.backgroundColor = .white
-        self.navigationController?.isNavigationBarHidden = true
+        view.backgroundColor = .white
+        navigationController?.isNavigationBarHidden = true
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     func layout(){
@@ -93,4 +94,10 @@ class BaseViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 
+}
+
+extension BaseViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return navigationController?.viewControllers.count ?? 0 > 1
+    }
 }
