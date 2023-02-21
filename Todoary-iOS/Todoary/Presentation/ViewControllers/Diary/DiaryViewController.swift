@@ -94,6 +94,11 @@ class DiaryViewController: BaseViewController{
         
         super.viewDidLoad()
         
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        LoadingHUD.show()
         requestGetDiarySticker(parameter: self.pickDate!.dateSendServer)
     }
     

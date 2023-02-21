@@ -11,58 +11,51 @@ import UIKit
 import Then
 import Alamofire
 
-
-
-class LoadingScreenViewController : UIViewController{
-
-    var isTap = false
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //테스트 할때 써주기
-//        LoadingHUD.show()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-}
-
 class LoadingHUD: NSObject {
     private static let sharedInstance = LoadingHUD()
     private var popupView: UIImageView?
+    private var backgroundView: UIView?
 
     class func show() {
-        let popupView = UIImageView(frame: CGRect.init(x: 0, y: 0, width: 40, height: 40))
+        let screenSize = UIScreen.main.bounds
+        
+        let backgroundView = UIView(frame: CGRect.init(x: 0, y: 0, width: screenSize.width, height: screenSize.height))
+        backgroundView.backgroundColor = .white
+        
+        let popupView = UIImageView(frame: CGRect.init(x: 0, y: 0, width: 71, height: 12))
         popupView.backgroundColor = nil
         popupView.animationImages = LoadingHUD.getAnimationImageArray()
-        popupView.animationDuration = 3.0
+        popupView.animationDuration = 2.0
         popupView.animationRepeatCount = 0
 
         if let window = UIApplication.shared.keyWindow {
-            window.backgroundColor = UIColor.silver_225
+            window.backgroundColor = .white
+            window.addSubview(backgroundView)
             window.addSubview(popupView)
+            backgroundView.center = window.center
             popupView.center = window.center
             popupView.startAnimating()
+            sharedInstance.backgroundView?.removeFromSuperview()
             sharedInstance.popupView?.removeFromSuperview()
+            sharedInstance.backgroundView = backgroundView
             sharedInstance.popupView = popupView
         }
     }
 
     class func hide() {
-        if let popupView = sharedInstance.popupView {
+        if let popupView = sharedInstance.popupView,
+           let backgroundView = sharedInstance.backgroundView {
             popupView.stopAnimating()
             popupView.removeFromSuperview()
+            backgroundView.removeFromSuperview()
         }
     }
 
     private class func getAnimationImageArray() -> [UIImage] {
         var animationArray: [UIImage] = []
-        animationArray.append(UIImage(named: "password1")!)
-        animationArray.append(UIImage(named: "password2")!)
-        animationArray.append(UIImage(named: "password3")!)
-        animationArray.append(UIImage(named: "password4")!)
+        animationArray.append(UIImage(named: "loading1")!)
+        animationArray.append(UIImage(named: "loading2")!)
+        animationArray.append(UIImage(named: "loading3")!)
 
         return animationArray
     }

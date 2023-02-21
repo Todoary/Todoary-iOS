@@ -80,6 +80,7 @@ class BaseService {
         AFManager.request(target, interceptor: Interceptor()).responseData { response in
             switch response.result {
             case .success:
+                LoadingHUD.hide()
                 guard let statusCode = response.response?.statusCode else { return }
                 guard let data = response.data else { return}
                 let networkResult = self.judgeStatus(by: statusCode, data, type: type, decodingMode: decodingMode)
@@ -97,6 +98,7 @@ class BaseService {
         AFManager.request(target, interceptor: Interceptor()).responseData { response in
             switch response.result {
             case .success:
+                LoadingHUD.hide()
                 guard let statusCode = response.response?.statusCode else { return }
                 guard let data = response.data else { return}
                 let networkResult = self.judgeStatusWithEmptyReponse(by: statusCode, data, decodingMode: decodingMode)

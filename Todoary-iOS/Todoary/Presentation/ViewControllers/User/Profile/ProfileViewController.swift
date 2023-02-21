@@ -32,8 +32,6 @@ class ProfileViewController : BaseViewController , UITextFieldDelegate{
         
         self.view.backgroundColor = .white
         
-        requestGetProfile()
-        
         //닉네임 textfield 10자 글자수제한 + observer
         NotificationCenter.default.addObserver(self,
                                             selector: #selector(textFieldDidChange(_:)),
@@ -45,6 +43,11 @@ class ProfileViewController : BaseViewController , UITextFieldDelegate{
                                             selector: #selector(textViewDidChange(_:)),
                                             name: UITextView.textDidChangeNotification,
                                             object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        LoadingHUD.show()
+        requestGetProfile()
     }
     
     override func style(){
@@ -188,9 +191,6 @@ class ProfileViewController : BaseViewController , UITextFieldDelegate{
                         let newString = text.substring(to: maxIndex)
                         mainView.introduceTf.text = newString
                     }
-                    
-                    
-                    
                 }
                 
             default:
@@ -300,6 +300,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
             mainView.profileImage.contentMode = .scaleAspectFill
             pickedImg = pickedImage
             requestModifyProfileImage(parameter: pickedImage)
+            LoadingHUD.show()
         }
         UserDefaults.standard.set(false, forKey: "defaultImg")
         dismiss(animated: true, completion: nil)
