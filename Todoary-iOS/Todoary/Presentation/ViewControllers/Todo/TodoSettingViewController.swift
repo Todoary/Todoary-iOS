@@ -55,7 +55,6 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        LoadingHUD.show()
         requestGetCategory()
     }
     

@@ -26,7 +26,6 @@ class AccountViewController : BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        LoadingHUD.show()
         requestGetProfile()
     }
     

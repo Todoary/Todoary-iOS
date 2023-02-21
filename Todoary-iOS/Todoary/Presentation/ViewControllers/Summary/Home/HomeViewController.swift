@@ -95,7 +95,6 @@ class HomeViewController : UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        LoadingHUD.show()
         
         apiSetting()
         showBottomSheet()

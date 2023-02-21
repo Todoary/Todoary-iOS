@@ -55,7 +55,6 @@ class CategoryViewController: BaseViewController, Pageable {
     
     //MARK: - Override
     override func viewWillAppear(_ animated: Bool) {
-        LoadingHUD.show()
         requestGetCategories()
     }
     

@@ -46,7 +46,6 @@ class ProfileViewController : BaseViewController , UITextFieldDelegate{
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        LoadingHUD.show()
         requestGetProfile()
     }
     
@@ -300,7 +299,6 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
             mainView.profileImage.contentMode = .scaleAspectFill
             pickedImg = pickedImage
             requestModifyProfileImage(parameter: pickedImage)
-            LoadingHUD.show()
         }
         UserDefaults.standard.set(false, forKey: "defaultImg")
         dismiss(animated: true, completion: nil)
