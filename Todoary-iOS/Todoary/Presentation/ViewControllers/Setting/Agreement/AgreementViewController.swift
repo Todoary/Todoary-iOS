@@ -30,10 +30,10 @@ class AgreementViewController : BaseViewController {
     }
     
     override func layout() {
+        
         super.layout()
         
         self.view.addSubview(mainView)
-        
         mainView.snp.makeConstraints{
             $0.top.equalToSuperview().offset(Const.Offset.top)
             $0.leading.bottom.equalToSuperview()
@@ -41,26 +41,28 @@ class AgreementViewController : BaseViewController {
     }
     
     override func initialize(){
-        mainView.privacyTitle.addTarget(self, action: #selector(privacyTitleDIdTab), for: .touchUpInside)
-        mainView.useServiceTitle.addTarget(self, action: #selector(useServiceTitleDIdTab), for: .touchUpInside)
-        mainView.adTitle.addTarget(self, action: #selector(ADTitleDIdTab), for: .touchUpInside)
+        
+        mainView.privacyField.titleLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(privacyTitleDIdTab)))
+        mainView.userServiceField.titleLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(useServiceTitleDIdTab)))
+        mainView.advertiseField.titleLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ADTitleDIdTab)))
+        
         
         mainView.allCheckBtn.addTarget(self, action: #selector(allcheckBtndidcheck), for: .touchUpInside)
         mainView.allCheckBtn.addTarget(self, action: #selector(essentialCheckBtnDidTab), for: .touchUpInside)
         
-        mainView.privacyCheckBtn.addTarget(self, action: #selector(essentialCheckBtnDidTab), for: .touchUpInside)
-        mainView.privacyCheckBtn.addTarget(self, action: #selector(privacydidCheck), for: .touchUpInside)
-        mainView.privacyCheckBtn.addTarget(self, action: #selector(essentialCheckBtnDidTab), for: .touchUpInside)
-        mainView.privacyCheckBtn.addTarget(self, action: #selector(allagreementdidcheck), for: .touchUpInside)
-        mainView.privacyCheckBtn.addTarget(self, action: #selector(essentialCheckBtnDidTab), for: .touchUpInside)
+        mainView.privacyField.checkBox.addTarget(self, action: #selector(essentialCheckBtnDidTab), for: .touchUpInside)
+        mainView.privacyField.checkBox.addTarget(self, action: #selector(privacydidCheck), for: .touchUpInside)
+        mainView.privacyField.checkBox.addTarget(self, action: #selector(essentialCheckBtnDidTab), for: .touchUpInside)
+        mainView.privacyField.checkBox.addTarget(self, action: #selector(allagreementdidcheck), for: .touchUpInside)
+        mainView.privacyField.checkBox.addTarget(self, action: #selector(essentialCheckBtnDidTab), for: .touchUpInside)
         
-        mainView.useServiceCheckBtn.addTarget(self, action: #selector(useServicedidCheck), for: .touchUpInside)
-        mainView.useServiceCheckBtn.addTarget(self, action: #selector(allagreementdidcheck), for: .touchUpInside)
-        mainView.useServiceCheckBtn.addTarget(self, action: #selector(essentialCheckBtnDidTab), for: .touchUpInside)
+        mainView.userServiceField.checkBox.addTarget(self, action: #selector(useServicedidCheck), for: .touchUpInside)
+        mainView.userServiceField.checkBox.addTarget(self, action: #selector(allagreementdidcheck), for: .touchUpInside)
+        mainView.userServiceField.checkBox.addTarget(self, action: #selector(essentialCheckBtnDidTab), for: .touchUpInside)
         
-        mainView.adCheckBtn.addTarget(self, action: #selector(ADdidCheck), for: .touchUpInside)
-        mainView.adCheckBtn.addTarget(self, action: #selector(allagreementdidcheck), for: .touchUpInside)
-        mainView.adCheckBtn.addTarget(self, action: #selector(essentialCheckBtnDidTab), for: .touchUpInside)
+        mainView.advertiseField.checkBox.addTarget(self, action: #selector(ADdidCheck), for: .touchUpInside)
+        mainView.advertiseField.checkBox.addTarget(self, action: #selector(allagreementdidcheck), for: .touchUpInside)
+        mainView.advertiseField.checkBox.addTarget(self, action: #selector(essentialCheckBtnDidTab), for: .touchUpInside)
         
         mainView.confirmBtn.addTarget(self, action: #selector(confirmBtnDidTab), for: .touchUpInside)
     }
@@ -71,19 +73,16 @@ class AgreementViewController : BaseViewController {
     @objc func privacyTitleDIdTab() {
         let PrivacyTextViewController = PrivacyTextViewController()
         navigationController?.pushViewController(PrivacyTextViewController, animated: true)
-        //        navigationController?.isNavigationBarHidden = true
     }
     
     @objc func useServiceTitleDIdTab() {
         let UseServiceViewController = UseServiceViewController()
         navigationController?.pushViewController(UseServiceViewController, animated: true)
-        //        navigationController?.isNavigationBarHidden = true
     }
     
     @objc func ADTitleDIdTab() {
         let AdTextViewController = AdvertiseTextViewController()
         navigationController?.pushViewController(AdTextViewController, animated: true)
-        //        navigationController?.isNavigationBarHidden = true
     }
     
     
@@ -92,52 +91,40 @@ class AgreementViewController : BaseViewController {
     //MARK: - eachCheckBtndidCheck
     
     @objc func privacydidCheck() {
-        if mainView.privacyCheckBtn.isSelected{ mainView.privacyCheckBtn.isSelected = false
-        } else {mainView.privacyCheckBtn.isSelected = true}
+        mainView.privacyField.isSelected.toggle()
     }
     
     @objc func useServicedidCheck() {
-        if mainView.useServiceCheckBtn.isSelected{ mainView.useServiceCheckBtn.isSelected = false
-        } else {mainView.useServiceCheckBtn.isSelected = true}
+        mainView.userServiceField.isSelected.toggle()
     }
     
     @objc func ADdidCheck() {
-        if mainView.adCheckBtn.isSelected{ mainView.adCheckBtn.isSelected = false
-        } else {mainView.adCheckBtn.isSelected = true}
+        mainView.advertiseField.isSelected.toggle()
     }
     
     //MARK: - allCheckBtndidCheck
     
     @objc func allcheckBtndidcheck() {
         if mainView.allCheckBtn.isSelected {
-            
             mainView.allCheckBtn.isSelected = false
-            mainView.privacyCheckBtn.isSelected = false
-            mainView.useServiceCheckBtn.isSelected = false
-            mainView.adCheckBtn.isSelected = false
-            //            locationCheckBtn.isSelected = false
-            
+            mainView.privacyField.isSelected = false
+            mainView.userServiceField.isSelected = false
+            mainView.advertiseField.isSelected = false
         } else {
-            
             mainView.allCheckBtn.isSelected = true
-            mainView.privacyCheckBtn.isSelected = true
-            mainView.useServiceCheckBtn.isSelected = true
-            mainView.adCheckBtn.isSelected = true
-            //            locationCheckBtn.isSelected = true
+            mainView.privacyField.isSelected = true
+            mainView.userServiceField.isSelected = true
+            mainView.advertiseField.isSelected = true
         }
     }
     
     @objc func allagreementdidcheck() {
-        if  mainView.privacyCheckBtn.isSelected == true
-                && mainView.useServiceCheckBtn.isSelected == true
-                && mainView.adCheckBtn.isSelected == true {
-            //            && locationCheckBtn.isSelected == true
-            
+        if  mainView.privacyField.isSelected == true
+                && mainView.userServiceField.isSelected == true
+                && mainView.advertiseField.isSelected == true {
             mainView.allCheckBtn.isSelected = true
-            
         } else {
             mainView.allCheckBtn.isSelected = false}
-        
     }
     
     //MARK: - essentialagreementdidcheck
@@ -159,25 +146,28 @@ class AgreementViewController : BaseViewController {
         
         if var appleInfo = appleUserInfo{
             //애플 소셜 회원가입 로직
-            appleInfo.isTermsEnable = mainView.adCheckBtn.isSelected
+            appleInfo.isTermsEnable = mainView.advertiseField.isSelected
             requestAppleSignUp(parameter: appleInfo)
         }else{
             //일반 회원가입 로직
             let vc = SignUpViewController()
-            vc.isMarketingAgree = mainView.adCheckBtn.isSelected
+            vc.isMarketingAgree = mainView.advertiseField.isSelected
             
             self.navigationController?.pushViewController(vc, animated: true)
         }
+        
     }
     
     @objc func essentialCheckBtnDidTab() {
-        if mainView.privacyCheckBtn.isSelected == false ||
-            mainView.useServiceCheckBtn.isSelected == false
+        
+        if mainView.privacyField.isSelected == false ||
+            mainView.userServiceField.isSelected == false
         {
             isconfirmBtnEnabled = false
         }else{
             isconfirmBtnEnabled = true
         }
+         
     }
     
     private func requestAppleSignUp(parameter: AppleSignUpRequestModel){

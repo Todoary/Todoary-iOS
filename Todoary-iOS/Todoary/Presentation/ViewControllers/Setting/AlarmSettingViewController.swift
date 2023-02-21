@@ -165,7 +165,7 @@ extension AlarmSettingViewController: UITableViewDelegate, UITableViewDataSource
 }
 
 //MARK: - GestureRecognizer
-extension AlarmSettingViewController: UIGestureRecognizerDelegate{
+extension AlarmSettingViewController{
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         currentInfoView?.removeFromSuperview()

@@ -19,7 +19,7 @@ import Then
  */
 
     
-class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarComplete , UIGestureRecognizerDelegate, UITextFieldDelegate{
+class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarComplete, UITextFieldDelegate{
     
     //카테고리 정보 받아오는 struct
     var categoryData : [CategoryModel]! = []
