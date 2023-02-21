@@ -1,7 +1,8 @@
 framework module FirebaseAnalytics {
-umbrella header "FirebaseAnalytics-umbrella.h"
+umbrella header "FirebaseAnalytics.h"
 export *
 module * { export * }
+  link framework "CoreTelephony"
   link framework "Foundation"
   link framework "Security"
   link framework "SystemConfiguration"

@@ -235,6 +235,7 @@ class SignUpViewController: BaseViewController{
                 let alert = ConfirmMessageAlertViewController(title: "회원가입을 축하합니다!", message: "이제 Todoary 서비스를 자유롭게 이용해보세요.").show(in: self)
                 
                 UserDefaults.standard.set("No", forKey: "isFirstTime")
+                UserDefaults.standard.set(true, forKey: "defaultImg")
                 
                 alert.alertHandler = {
                     self.navigationController?.popToRootViewController(animated: true)

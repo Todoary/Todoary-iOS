@@ -22,7 +22,7 @@
 #import "FBLPromises.h"
 #endif
 
-#import "FirebaseCore/Extension/FirebaseCoreInternal.h"
+#import "FirebaseCore/Sources/Private/FirebaseCoreInternal.h"
 
 #import "FirebaseInstallations/Source/Library/FIRInstallationsAuthTokenResultInternal.h"
 
@@ -72,17 +72,26 @@ static const NSUInteger kExpectedAPIKeyLength = 39;
 }
 
 - (instancetype)initWithApp:(FIRApp *)app {
+  return [self initWitAppOptions:app.options appName:app.name];
+}
+
+- (instancetype)initWitAppOptions:(FIROptions *)appOptions appName:(NSString *)appName {
   FIRInstallationsIDController *IDController =
-      [[FIRInstallationsIDController alloc] initWithApp:app];
+      [[FIRInstallationsIDController alloc] initWithGoogleAppID:appOptions.googleAppID
+                                                        appName:appName
+                                                         APIKey:appOptions.APIKey
+                                                      projectID:appOptions.projectID
+                                                    GCMSenderID:appOptions.GCMSenderID
+                                                    accessGroup:appOptions.appGroupID];
 
   // `prefetchAuthToken` is disabled due to b/156746574.
-  return [self initWithAppOptions:app.options
-                          appName:app.name
+  return [self initWithAppOptions:appOptions
+                          appName:appName
         installationsIDController:IDController
                 prefetchAuthToken:NO];
 }
 
-/// This designated initializer can be exposed for testing.
+/// The initializer is supposed to be used by tests to inject `installationsStore`.
 - (instancetype)initWithAppOptions:(FIROptions *)appOptions
                            appName:(NSString *)appName
          installationsIDController:(FIRInstallationsIDController *)installationsIDController
@@ -180,10 +189,10 @@ static const NSUInteger kExpectedAPIKeyLength = 39;
   if (!defaultApp) {
     [NSException raise:kFirebaseInstallationsErrorDomain
                 format:@"The default FirebaseApp instance must be configured before the default"
-                       @"FirebaseApp instance can be initialized. One way to ensure this is to "
-                       @"call `FirebaseApp.configure()` in the App  Delegate's "
-                       @"`application(_:didFinishLaunchingWithOptions:)` "
-                       @"(or the `@main` struct's initializer in SwiftUI)."];
+                       @"FirebaseApp instance can be initialized. One way to ensure that is to "
+                       @"call `[FIRApp configure];` (`FirebaseApp.configure()` in Swift) in the App"
+                       @" Delegate's `application:didFinishLaunchingWithOptions:` "
+                       @"(`application(_:didFinishLaunchingWithOptions:)` in Swift)."];
   }
 
   return [self installationsWithApp:defaultApp];
@@ -247,12 +256,9 @@ static const NSUInteger kExpectedAPIKeyLength = 39;
   return;
 #else
   if (![self isIIDVersionCompatible]) {
-    [NSException
-         raise:kFirebaseInstallationsErrorDomain
-        format:@"Firebase Instance ID is not compatible with Firebase 8.x+. Please remove the "
-               @"dependency from the app. See the documentation at "
-               @"https://firebase.google.com/docs/cloud-messaging/ios/"
-               @"client#fetching-the-current-registration-token."];
+    [NSException raise:kFirebaseInstallationsErrorDomain
+                format:@"FirebaseInstallations will not work correctly with current version of "
+                       @"Firebase Instance ID. Please update your Firebase Instance ID version."];
   }
 #endif
 }

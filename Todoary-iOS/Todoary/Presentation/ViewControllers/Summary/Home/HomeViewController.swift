@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import Then
 import Firebase
+import Kingfisher
 
 enum scrollDiretion {
     case left
@@ -244,10 +245,15 @@ class HomeViewController : UIViewController {
                     profileData = data
                     mainView.nickname.text = profileData.nickname
                     mainView.introduce.text = profileData.introduce
-                    if (profileData.profileImgUrl != nil){
-                        let url = URL(string: profileData.profileImgUrl!)
-                        mainView.profileImage.load(url: url!)
+                    if UserDefaults.standard.bool(forKey: "defaultImg") != true {
+                        if (profileData.profileImgUrl != nil){
+                            let url = URL(string: profileData.profileImgUrl!)
+                            mainView.profileImage.kf.setImage(with: url, for: .normal)
+                        }
+                    }else{
+                        mainView.profileImage.setImage(UIImage(named: "profile"), for: .normal)
                     }
+                    
                 }
                 break
             default:

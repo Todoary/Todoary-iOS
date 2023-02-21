@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import Then
 import AuthenticationServices
+import Kingfisher
 
 class AccountViewController : BaseViewController {
     
@@ -115,10 +116,16 @@ class AccountViewController : BaseViewController {
                     mainView.nickName.text = profileData.nickname
                     mainView.introduce.text = profileData.introduce
                     mainView.userAccount.text = profileData.email
-                    if (profileData.profileImgUrl != nil){
-                        let url = URL(string: profileData.profileImgUrl!)
-                        mainView.profileImage.load(url: url!)
+                    if UserDefaults.standard.bool(forKey: "defaultImg") != true {
+                        if (profileData.profileImgUrl != nil){
+                            let url = URL(string: profileData.profileImgUrl!)
+                            mainView.profileImage.kf.setImage(with: url!)
+                        }
+                    }else{
+                        mainView.profileImage.image = UIImage(named: "profile")
                     }
+                    
+                    
                 }
                 break
             default:

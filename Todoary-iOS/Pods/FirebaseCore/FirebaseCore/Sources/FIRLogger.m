@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "FirebaseCore/Extension/FIRLogger.h"
+#import "FirebaseCore/Sources/Private/FIRLogger.h"
 
 #import <GoogleUtilities/GULAppEnvironmentUtil.h>
 #import <GoogleUtilities/GULLogger.h>
@@ -20,12 +20,14 @@
 
 #import "FirebaseCore/Sources/Public/FirebaseCore/FIRVersion.h"
 
-FIRLoggerService kFIRLoggerCore = @"[FirebaseCore]";
+FIRLoggerService kFIRLoggerCore = @"[Firebase/Core]";
 
 // All the FIRLoggerService definitions should be migrated to clients. Do not add new ones!
-FIRLoggerService kFIRLoggerAnalytics = @"[FirebaseAnalytics]";
-FIRLoggerService kFIRLoggerCrash = @"[FirebaseCrash]";
-FIRLoggerService kFIRLoggerRemoteConfig = @"[FirebaseRemoteConfig]";
+FIRLoggerService kFIRLoggerAnalytics = @"[Firebase/Analytics]";
+FIRLoggerService kFIRLoggerCrash = @"[Firebase/Crash]";
+FIRLoggerService kFIRLoggerMLKit = @"[Firebase/MLKit]";
+FIRLoggerService kFIRLoggerPerf = @"[Firebase/Performance]";
+FIRLoggerService kFIRLoggerRemoteConfig = @"[Firebase/RemoteConfig]";
 
 /// Arguments passed on launch.
 NSString *const kFIRDisableDebugModeApplicationArgument = @"-FIRDebugDisabled";
@@ -169,13 +171,6 @@ FIR_LOGGING_FUNCTION(Debug)
          withMessage:(NSString *)message
             withArgs:(va_list)args {
   FIRLogBasic(level, service, messageCode, message, args);
-}
-
-+ (void)logWithLevel:(FIRLoggerLevel)level
-             service:(FIRLoggerService)service
-                code:(NSString *)code
-             message:(NSString *)message {
-  FIRLogBasic(level, service, code, message, NULL);
 }
 
 @end
