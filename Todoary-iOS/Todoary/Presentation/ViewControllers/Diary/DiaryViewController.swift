@@ -47,7 +47,6 @@ class DiaryViewController: BaseViewController{
     var tag = 3000
     
     var isEnterPressed = false
-    var isKeyboardShow = false
     var _selectedStickerView:StickerView?
         var selectedStickerView:StickerView? {
             get {
@@ -133,11 +132,7 @@ class DiaryViewController: BaseViewController{
         mainView.todoTableView.delegate = self
         mainView.todoTableView.dataSource = self
         mainView.todoTableView.separatorStyle = .none
-        
-//        let textViewGesture = UITapGestureRecognizer(target: self, action: #selector(keyboardWillDisappear)).then{
-//            $0.delegate = self
-//        }
-//        mainView.textView.addGestureRecognizer(textViewGesture)
+
         mainView.textView.delegate = self
         
         setTextToolBarAction()
