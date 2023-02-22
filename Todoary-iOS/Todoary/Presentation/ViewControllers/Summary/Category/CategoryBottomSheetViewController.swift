@@ -49,7 +49,6 @@ class CategoryBottomSheetViewController : BaseBottomSheetViewController {
     }
     
     override func layout() {
-        
         self.view.addSubview(mainView)
         mainView.snp.makeConstraints{
             $0.top.leading.trailing.equalToSuperview()
@@ -61,7 +60,11 @@ class CategoryBottomSheetViewController : BaseBottomSheetViewController {
         
         super.initialize()
         
-        mainView.categoryTextField.delegate = self
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewDidTapped)).then{
+            $0.delegate = self
+        }
+        self.view.addGestureRecognizer(tapGesture)
+        
         mainView.confirmBtn.addTarget(self, action: #selector(confirmBtnDidClicked), for: .touchUpInside)
         mainView.deleteBtn.addTarget(self, action: #selector(deleteCancelBtnDidClicked), for: .touchUpInside)
         
@@ -142,8 +145,7 @@ class CategoryBottomSheetViewController : BaseBottomSheetViewController {
         }
     }
     
-    @objc
-    func deleteCancelBtnDidClicked(){
+    @objc func deleteCancelBtnDidClicked(){
         
         guard let data = currentData, let categoryId = data.id else {
             //버튼: 취소일 경우
@@ -202,32 +204,10 @@ class CategoryBottomSheetViewController : BaseBottomSheetViewController {
 }
 
 //MARK: - Keyboard
-extension CategoryBottomSheetViewController: UITextFieldDelegate{
+extension CategoryBottomSheetViewController: UIGestureRecognizerDelegate{
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        //keyboard 올라와 있을 때, bottomsheet는 종료시키지 않고 키보드만 내리기
-        if(isKeyboardOpen){
-            self.view.endEditing(true)
-
-            UIView.animate(withDuration: 0.3){
-                self.view.window?.frame.origin.y = 0
-                self.isKeyboardOpen = false
-            }
-        }else{
-            // 흐린 부분 탭할 때, 바텀시트를 내리는 TapGesture
-//            hideBottomSheetAndGoBack()
-        }
-    }
-
-    
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
-        
-        UIView.animate(withDuration: 0.3){
-            self.view.window?.frame.origin.y -= 130
-        }
-        
-        isKeyboardOpen = true
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        guard touch.view?.isDescendant(of: mainView.colorCollectionView) == false else { return false }
         
         return true
     }

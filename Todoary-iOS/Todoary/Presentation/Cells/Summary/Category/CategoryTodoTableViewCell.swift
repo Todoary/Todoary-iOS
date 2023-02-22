@@ -111,7 +111,8 @@ class CategoryTodoTableViewCell: BaseTableViewCell {
             $0.height.equalTo(backgroundShadowView).offset(20)
         }
         backgroundShadowView.snp.makeConstraints{
-            $0.top.bottom.leading.trailing.equalToSuperview()
+            $0.top.bottom.equalToSuperview().inset(10)
+            $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(todoTitle).offset(68)
         }
         

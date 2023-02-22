@@ -132,7 +132,6 @@
 		AC5E27DC288FC0DA0056EC69 /* TodoAlarmBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27DB288FC0DA0056EC69 /* TodoAlarmBottomSheetViewController.swift */; };
 		AC5E27DF28901EEF0056EC69 /* AuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27DE28901EEF0056EC69 /* AuthInterceptor.swift */; };
 		AC5E27E52890211C0056EC69 /* AuthJwtResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5E27E42890211C0056EC69 /* AuthJwtResultModel.swift */; };
-		AC67C2DC2892904C00071763 /* SetKeboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC67C2DB2892904C00071763 /* SetKeboard.swift */; };
 		AC9128C9287AD5A80056932A /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9128C8287AD5A80056932A /* AccountViewController.swift */; };
 		AC9128CB287AD5D20056932A /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9128CA287AD5D20056932A /* AccountView.swift */; };
 		AC9128CD287AFE620056932A /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9128CC287AFE620056932A /* AccountTableViewCell.swift */; };
@@ -372,7 +371,6 @@
 		AC5E27DB288FC0DA0056EC69 /* TodoAlarmBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoAlarmBottomSheetViewController.swift; sourceTree = "<group>"; };
 		AC5E27DE28901EEF0056EC69 /* AuthInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInterceptor.swift; sourceTree = "<group>"; };
 		AC5E27E42890211C0056EC69 /* AuthJwtResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthJwtResultModel.swift; sourceTree = "<group>"; };
-		AC67C2DB2892904C00071763 /* SetKeboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetKeboard.swift; sourceTree = "<group>"; };
 		AC9128C8287AD5A80056932A /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		AC9128CA287AD5D20056932A /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		AC9128CC287AFE620056932A /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
@@ -1099,7 +1097,6 @@
 			isa = PBXGroup;
 			children = (
 				57FFEDBB28DC1C230041719B /* Const.swift */,
-				AC67C2DB2892904C00071763 /* SetKeboard.swift */,
 				5799DB722977A2D9001137EA /* TodoaryDateFormatter.swift */,
 				57B9F70D28D94F0300ACEC94 /* Alert */,
 				5701EA192956E8D700F21F63 /* BaseClass */,
@@ -1836,8 +1833,6 @@
 				575DE9662976529F00E61B8F /* AppleSignUpResultModel.swift in Sources */,
 				AC9128D0287B34B30056932A /* ProfileViewController.swift in Sources */,
 				575DE9602976523300E61B8F /* TodoResultModel.swift in Sources */,
-				AC1DFDC729A4DFDE0011EF87 /* GuideViewController.swift in Sources */,
-				AC67C2DC2892904C00071763 /* SetKeboard.swift in Sources */,
 				E03856BB28914D8500CEEFBA /* ColorPickerBottomsheetCollectionViewCell.swift in Sources */,
 				ACE7D5FC28A819C10093854A /* PinNumberSettingView.swift in Sources */,
 				57B9F70F28D94F4400ACEC94 /* BaseAlertViewController.swift in Sources */,

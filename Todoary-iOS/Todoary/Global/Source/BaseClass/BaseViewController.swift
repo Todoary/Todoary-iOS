@@ -93,6 +93,27 @@ class BaseViewController: UIViewController {
     @objc func backButtonDidClicked(_ sender: UIButton){
         self.navigationController?.popViewController(animated: true)
     }
+    
+    final func addKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillAppear(noti:)), name: UIResponder.keyboardWillShowNotification , object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillDisappear(noti:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    final func removeKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillAppear(noti: NSNotification) {
+    }
+
+    @objc func keyboardWillDisappear(noti: NSNotification) {
+        self.view.transform = .identity
+    }
+    
+    @objc func viewDidTapped(){
+        self.view.endEditing(true)
+    }
 
 }
 

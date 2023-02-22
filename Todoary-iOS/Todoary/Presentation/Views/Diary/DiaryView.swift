@@ -84,7 +84,7 @@ class DiaryView: BaseView {
             $0.top.equalTo(diaryTitle.snp.bottom).offset(17)
             $0.leading.equalToSuperview().offset(32)
             $0.trailing.equalToSuperview().offset(-30)
-            $0.bottom.equalToSuperview().offset(-28)
+            $0.bottom.equalToSuperview().offset(-80)
         }
     }
 

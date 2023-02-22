@@ -23,12 +23,14 @@ class AddTodoInCategoryTableViewCell: BaseTableViewCell {
     override func layout() {
         
         super.layout()
+        
         baseView.snp.updateConstraints{
             $0.leading.trailing.equalToSuperview().inset(31)
         }
         backgroundShadowView.snp.makeConstraints{
             $0.height.equalTo(47)
-            $0.top.bottom.leading.trailing.equalToSuperview()
+            $0.top.bottom.equalToSuperview().inset(10)
+            $0.leading.trailing.equalToSuperview()
         }
         addImage.snp.makeConstraints{
             $0.width.height.equalTo(25)
