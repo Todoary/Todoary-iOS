@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 import Then
 
-//TODO: - HTTP METHOD URL EMAIL_DUPLICATE -> "/auth/email/duplication"으로 변경ㅇ
 class SignUpViewController: BaseViewController{
     
     //MARK: - Properties
@@ -45,15 +44,20 @@ class SignUpViewController: BaseViewController{
     
     //MARK: - Override
     
+    override func viewWillAppear(_ animated: Bool) {
+        addKeyboardNotifications()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        removeKeyboardNotifications()
+    }
+    
     override func style() {
         super.style()
         self.navigationTitle.text = "회원가입"
     }
     
     override func layout() {
-        
         super.layout()
-        
         self.view.addSubview(mainView)
         mainView.snp.makeConstraints{
             $0.top.equalToSuperview().offset(Const.Offset.top)
@@ -66,12 +70,32 @@ class SignUpViewController: BaseViewController{
         addActionToTextFieldByCase()
         setTextFieldDelegate()
         
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewDidTapped)))
+        
         mainView.idCertificationButton.addTarget(self, action: #selector(certificationBtnDidClicked(_:)), for: .touchUpInside)
         mainView.certificationOkButton.addTarget(self, action: #selector(certificationOKBtnDidClicked(_:)), for: .touchUpInside)
         mainView.nextButton.addTarget(self, action: #selector(requestSignUp), for: .touchUpInside)
     }
     
-    func addActionToTextFieldByCase(){
+    override func keyboardWillAppear(noti: NSNotification) {
+        
+        if(!(mainView.nameTextField.isFirstResponder || mainView.nicknameTextField.isFirstResponder)){
+            return
+        }
+           
+        if let keyboardFrame: NSValue = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let moveHeight = keyboardRectangle.height - 25
+            UIView.animate(
+                withDuration: 0.3
+                , animations: {
+                    self.view.transform = CGAffineTransform(translationX: 0, y: -moveHeight)
+                }
+            )
+        }
+    }
+    
+    private func addActionToTextFieldByCase(){
         
         [mainView.idTextField, mainView.certificationTextField, mainView.pwCertificationTextField].forEach{ each in
             each.addTarget(self, action: #selector(textFieldDidEditingChanged(_:)), for: .editingChanged)
@@ -84,15 +108,15 @@ class SignUpViewController: BaseViewController{
         mainView.nicknameTextField.addTarget(self, action: #selector(initNicknameCanUseLabel), for: .editingDidBegin)
     }
     
-    func setTextFieldDelegate(){
-        [mainView.idTextField, mainView.certificationTextField, mainView.pwTextField, mainView.nameTextField, mainView.nicknameTextField].forEach{ each in
-            each.delegate = self
+    private func setTextFieldDelegate(){
+        [mainView.idTextField, mainView.certificationTextField, mainView.pwTextField, mainView.nameTextField, mainView.nicknameTextField].forEach{
+            $0.delegate = self
         }
     }
     
     //MARK: - Helper
 
-    func validateUserInput(){
+    private func validateUserInput(){
         if isValidName
             && isValidPasswd
             && isValidNickname
@@ -105,12 +129,12 @@ class SignUpViewController: BaseViewController{
     }
     
     //MARK: - Action
-    @objc func initNicknameCanUseLabel(){
+    @objc private func initNicknameCanUseLabel(){
         mainView.nicknameCanUseLabel.isHidden = false
         mainView.nicknameCanUseLabel.text = "*10자 이하의 한글,영어,숫자로만 가능합니다."
     }
     
-    @objc func textFieldDidEditingChanged(_ sender: UITextField){
+    @objc private func textFieldDidEditingChanged(_ sender: UITextField){
         
         let text = sender.text ?? ""
         
@@ -194,7 +218,7 @@ class SignUpViewController: BaseViewController{
             alertTitle = "인증코드가 일치하지 않습니다."
         }
         
-        let alert = ConfirmAlertViewController(title: alertTitle).show(in: self)
+        _ = ConfirmAlertViewController(title: alertTitle).show(in: self)
     }
     
     //MARK: - API
@@ -270,52 +294,23 @@ class SignUpViewController: BaseViewController{
 //MARK: - Keyboard
 extension SignUpViewController: UITextFieldDelegate{
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-        UIView.animate(withDuration: 0.3){
-            self.view.window?.frame.origin.y = 0
-        }
-    }
-    
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
-        
-        let size: CGFloat!
-        
-        switch textField{
-        case mainView.nameTextField:
-            size = 80
-            break
-        case mainView.nicknameTextField:
-            size = 200
-            break
-        default:
-            return true
-        }
-        
-        UIView.animate(withDuration: 0.3){
-            self.view.window?.frame.origin.y -= size
-        }
-        
-        return true
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == mainView.pwCertificationTextField {
+            return false
+        }
+        
         if textField == mainView.idTextField {
             mainView.certificationTextField.becomeFirstResponder()
-        } else if textField == mainView.certificationTextField {
-                mainView.pwTextField.becomeFirstResponder()
+        }else if textField == mainView.certificationTextField {
+            mainView.pwTextField.becomeFirstResponder()
         }else if textField == mainView.pwTextField {
-                mainView.pwCertificationTextField.becomeFirstResponder()
-        }else if textField == mainView.pwCertificationTextField {
-                mainView.nameTextField.becomeFirstResponder()
+            mainView.pwCertificationTextField.becomeFirstResponder()
         }else if textField == mainView.nameTextField {
-                mainView.nicknameTextField.becomeFirstResponder()
+            mainView.nicknameTextField.becomeFirstResponder()
         }else if textField == mainView.nicknameTextField {
-                mainView.nicknameTextField.resignFirstResponder()
-                UIView.animate(withDuration: 0.3){
-                    self.view.window?.frame.origin.y = 0
-                }
-            }
-            return true
+            mainView.nicknameTextField.resignFirstResponder()
         }
+        return true
+    }
 }
