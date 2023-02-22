@@ -90,17 +90,11 @@ class DiaryViewController: BaseViewController{
     //MARK: - Lifecycles
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         requestGetDiarySticker(parameter: self.pickDate!.dateSendServer)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         addKeyboardNotifications()
     }
     
