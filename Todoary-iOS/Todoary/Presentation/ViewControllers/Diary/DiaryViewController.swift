@@ -96,6 +96,41 @@ class DiaryViewController: BaseViewController{
         requestGetDiarySticker(parameter: self.pickDate!.dateSendServer)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        addKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        removeKeyboardNotifications()
+    }
+    
+    override func keyboardWillAppear(noti: NSNotification) {
+        
+        if(!mainView.textView.isFirstResponder){
+            return
+        }
+        
+        mainView.borderLine.isHidden = true
+        mainView.todoTableView.isHidden = true
+        
+        if let keyboardFrame: NSValue = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let moveHeight = keyboardRectangle.height - 120
+            UIView.animate(
+                withDuration: 0.3
+                , animations: {
+                    self.view.transform = CGAffineTransform(translationX: 0, y: -moveHeight)
+                }
+            )
+        }
+    }
+    
+    override func keyboardWillDisappear(noti: NSNotification) {
+        mainView.borderLine.isHidden = false
+        mainView.todoTableView.isHidden = false
+        super.keyboardWillDisappear(noti: noti)
+    }
+    
     override func style(){
         super.style()
         setRightButtonWithText("저장")
@@ -139,15 +174,6 @@ class DiaryViewController: BaseViewController{
     }
     
     //MARK: - Helpers
-    
-//    @objc private func keyboardWillDisappear(){
-//        self.view.endEditing(true)
-//        self.selectedStickerView = nil
-//    }
-
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        return isKeyboardShow ? true : false
-    }
     
     @objc func registerBtnDidClicked(){
         checkTextValidationAndRequestApi()
