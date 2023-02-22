@@ -36,8 +36,7 @@ class NoTodoInCategoryTableViewCell: BaseTableViewCell {
             $0.height.equalTo(88+20)
         }
         backgroundShadowView.snp.makeConstraints{
-            $0.top.equalToSuperview()
-            $0.bottom.equalToSuperview().offset(-20)
+            $0.top.bottom.equalToSuperview().inset(10)
             $0.leading.equalToSuperview().offset(32)
             $0.trailing.equalToSuperview().offset(-30)
         }
