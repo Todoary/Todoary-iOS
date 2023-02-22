@@ -31,32 +31,31 @@ NS_SWIFT_NAME(FirebaseOptions)
 + (nullable FIROptions *)defaultOptions NS_SWIFT_NAME(defaultOptions());
 
 /**
- * An API key used for authenticating requests from your Apple app, e.g.
- * The key must begin with "A" and contain exactly 39 alphanumeric characters, used to identify your
- * app to Google servers.
+ * An iOS API key used for authenticating requests from your app, e.g.
+ * @"AIzaSyDdVgKwhZl0sTTTLZ7iTmt1r3N2cJLnaDk", used to identify your app to Google servers.
  */
 @property(nonatomic, copy, nullable) NSString *APIKey NS_SWIFT_NAME(apiKey);
 
 /**
- * The bundle ID for the application. Defaults to `Bundle.main.bundleIdentifier` when not set
+ * The bundle ID for the application. Defaults to `[[NSBundle mainBundle] bundleID]` when not set
  * manually or in a plist.
  */
 @property(nonatomic, copy) NSString *bundleID;
 
 /**
- * The OAuth2 client ID for Apple applications used to authenticate Google users, for example
+ * The OAuth2 client ID for iOS application used to authenticate Google users, for example
  * @"12345.apps.googleusercontent.com", used for signing in with Google.
  */
 @property(nonatomic, copy, nullable) NSString *clientID;
 
 /**
- * Unused.
+ * The tracking ID for Google Analytics, e.g. @"UA-12345678-1", used to configure Google Analytics.
  */
-@property(nonatomic, copy, nullable) NSString *trackingID DEPRECATED_ATTRIBUTE;
+@property(nonatomic, copy, nullable) NSString *trackingID;
 
 /**
  * The Project Number from the Google Developer's console, for example @"012345678901", used to
- * configure Firebase Cloud Messaging.
+ * configure Google Cloud Messaging.
  */
 @property(nonatomic, copy) NSString *GCMSenderID NS_SWIFT_NAME(gcmSenderID);
 
@@ -66,9 +65,10 @@ NS_SWIFT_NAME(FirebaseOptions)
 @property(nonatomic, copy, nullable) NSString *projectID;
 
 /**
- * Unused.
+ * The Android client ID used in Google AppInvite when an iOS app has its Android version, for
+ * example @"12345.apps.googleusercontent.com".
  */
-@property(nonatomic, copy, nullable) NSString *androidClientID DEPRECATED_ATTRIBUTE;
+@property(nonatomic, copy, nullable) NSString *androidClientID;
 
 /**
  * The Google App ID that is used to uniquely identify an instance of an app.
@@ -98,30 +98,25 @@ NS_SWIFT_NAME(FirebaseOptions)
 @property(nonatomic, copy, nullable) NSString *appGroupID;
 
 /**
- * Initializes a customized instance of FirebaseOptions from the file at the given plist file path.
- * This will read the file synchronously from disk.
- * For example:
- * ```swift
- *   if let path = Bundle.main.path(forResource:"GoogleServices-Info", ofType:"plist") {
- *       let options = FirebaseOptions(contentsOfFile: path)
- *   }
- * ```
- * Note that it is not possible to customize `FirebaseOptions` for Firebase Analytics which expects
- * a static file named `GoogleServices-Info.plist` -
- * https://github.com/firebase/firebase-ios-sdk/issues/230.
- * Returns `nil` if the plist file does not exist or is invalid.
+ * Initializes a customized instance of FIROptions from the file at the given plist file path. This
+ * will read the file synchronously from disk.
+ * For example,
+ * NSString *filePath =
+ *     [[NSBundle mainBundle] pathForResource:@"GoogleService-Info" ofType:@"plist"];
+ * FIROptions *options = [[FIROptions alloc] initWithContentsOfFile:filePath];
+ * Returns nil if the plist file does not exist or is invalid.
  */
 - (nullable instancetype)initWithContentsOfFile:(NSString *)plistPath NS_DESIGNATED_INITIALIZER;
 
 /**
- * Initializes a customized instance of `FirebaseOptions` with required fields. Use the mutable
- * properties to modify fields for configuring specific services. Note that it is not possible to
- * customize `FirebaseOptions` for Firebase Analytics which expects a static file named
- * `GoogleServices-Info.plist` - https://github.com/firebase/firebase-ios-sdk/issues/230.
+ * Initializes a customized instance of FIROptions with required fields. Use the mutable properties
+ * to modify fields for configuring specific services.
  */
+// clang-format off
 - (instancetype)initWithGoogleAppID:(NSString *)googleAppID
                         GCMSenderID:(NSString *)GCMSenderID
-    NS_SWIFT_NAME(init(googleAppID:gcmSenderID:))NS_DESIGNATED_INITIALIZER;
+    NS_SWIFT_NAME(init(googleAppID:gcmSenderID:)) NS_DESIGNATED_INITIALIZER;
+// clang-format on
 
 /** Unavailable. Please use `init(contentsOfFile:)` or `init(googleAppID:gcmSenderID:)` instead. */
 - (instancetype)init NS_UNAVAILABLE;
