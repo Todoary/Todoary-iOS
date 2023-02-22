@@ -134,9 +134,9 @@ class DiaryViewController: BaseViewController{
         mainView.todoTableView.dataSource = self
         mainView.todoTableView.separatorStyle = .none
         
-        let textViewGesture = UITapGestureRecognizer(target: self, action: #selector(keyboardWillDisappear)).then{
-            $0.delegate = self
-        }
+//        let textViewGesture = UITapGestureRecognizer(target: self, action: #selector(keyboardWillDisappear)).then{
+//            $0.delegate = self
+//        }
 //        mainView.textView.addGestureRecognizer(textViewGesture)
         mainView.textView.delegate = self
         
@@ -145,10 +145,10 @@ class DiaryViewController: BaseViewController{
     
     //MARK: - Helpers
     
-    @objc private func keyboardWillDisappear(){
-        self.view.endEditing(true)
-        self.selectedStickerView = nil
-    }
+//    @objc private func keyboardWillDisappear(){
+//        self.view.endEditing(true)
+//        self.selectedStickerView = nil
+//    }
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         return isKeyboardShow ? true : false
