@@ -111,6 +111,10 @@ class DiaryViewController: BaseViewController{
         mainView.borderLine.isHidden = true
         mainView.todoTableView.isHidden = true
         
+        mainView.textView.snp.updateConstraints{
+            $0.bottom.equalToSuperview().offset(-130)
+        }
+        
         if let keyboardFrame: NSValue = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let moveHeight = keyboardRectangle.height - 120
@@ -126,6 +130,10 @@ class DiaryViewController: BaseViewController{
     override func keyboardWillDisappear(noti: NSNotification) {
         mainView.borderLine.isHidden = false
         mainView.todoTableView.isHidden = false
+        
+        mainView.textView.snp.updateConstraints{
+            $0.bottom.equalToSuperview().offset(-80)
+        }
         super.keyboardWillDisappear(noti: noti)
     }
     

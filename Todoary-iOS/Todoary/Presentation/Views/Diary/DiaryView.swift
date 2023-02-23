@@ -42,6 +42,7 @@ class DiaryView: BaseView {
         $0.setTextWithLineHeight(spaing: 25)
         $0.textColor = .silver_225
         $0.font = UIFont.nbFont(ofSize: 15, weight: .medium)
+        $0.showsVerticalScrollIndicator = false
     }
     
     override func style() {
@@ -84,7 +85,7 @@ class DiaryView: BaseView {
             $0.top.equalTo(diaryTitle.snp.bottom).offset(17)
             $0.leading.equalToSuperview().offset(32)
             $0.trailing.equalToSuperview().offset(-30)
-            $0.bottom.equalToSuperview().offset(-80)
+            $0.bottom.equalToSuperview().offset(-80) //80
         }
     }
 
