@@ -139,9 +139,12 @@ extension DiaryViewController: DiaryTodoCellDelegate{
         DiaryService.shared.generateDiary(date: pickDate.dateSendServer, request: parameter){ result in
             switch result{
             case .success:
+                print("LOG: SUCCESS POST DIARY")
                 self.exitBtnDidTab()
-                self.navigationController?.popViewController(animated: true)
+                self.checkStickerStateAndRequestApi()
+//                self.navigationController?.popViewController(animated: true)
             default:
+                print("LOG: FAIL POST DIARY", result)
                 DataBaseErrorAlert.show(in: self)
                 self.rightButton.isEnabled = true
                 break

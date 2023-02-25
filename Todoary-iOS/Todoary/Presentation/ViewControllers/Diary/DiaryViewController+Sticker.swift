@@ -93,10 +93,13 @@ extension DiaryViewController{
     }
     
     func requestModifyDiarySticker(date: String, parameter: DiaryStickerRequestModel){
+        print("LOG: REQUEST MODIFY DIARY")
         DiaryService.shared.modifyDiarySticker(date: date, request: parameter){ [self] result in
             switch result{
             case .success:
                 print("로그: [requestModifyDiarySticker] success")
+                self.exitBtnDidTab()
+                self.navigationController?.popViewController(animated: true)
                 break
             default:
                 print("로그: [requestModifyDiarySticker] fail")

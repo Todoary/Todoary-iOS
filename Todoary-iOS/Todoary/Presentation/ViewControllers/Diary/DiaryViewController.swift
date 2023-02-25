@@ -183,7 +183,6 @@ class DiaryViewController: BaseViewController{
     
     @objc func registerBtnDidClicked(){
         checkTextValidationAndRequestApi()
-        checkStickerStateAndRequestApi()
     }
 }
 
