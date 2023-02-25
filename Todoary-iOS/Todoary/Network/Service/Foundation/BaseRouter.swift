@@ -119,7 +119,7 @@ extension BaseRouter {
 
 extension BaseRouter {
     var baseURL: String {
-        return "https://todoary.com"
+        return "https://\(Bundle.main.infoDictionary?["API-BASE-URL"] as? String ?? "")"
     }
     
     var header: HeaderType {
