@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>$(CLIENT_ID)</string>
+	<string>635795718795-7fpb55r1sve4ilfmmcv1cp58k30hi8mh.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>$(REVERSED_CLIENT_ID)</string>
+	<string>com.googleusercontent.apps.635795718795-7fpb55r1sve4ilfmmcv1cp58k30hi8mh</string>
 	<key>API_KEY</key>
-	<string>$(API_KEY)</string>
+	<string>AIzaSyDZLT40lrlN6shsj-5TUZjLfSVlbZwtGSk</string>
 	<key>GCM_SENDER_ID</key>
-	<string>$(GCM_SENDER_ID)</string>
+	<string>635795718795</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>$(BUNDLE_ID)</string>
+	<string>com.todoary.ms.app</string>
 	<key>PROJECT_ID</key>
-	<string>$(PROJECT_ID)</string>
+	<string>todoary-cec3a</string>
 	<key>STORAGE_BUCKET</key>
-	<string>$(STORAGE_BUCKET)</string>
+	<string>todoary-cec3a.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>$(GOOGLE_APP_ID)</string>
+	<string>1:635795718795:ios:76286d5b0989183cb48a8e</string>
 	<key>FirebaseAutomaticScreenReportingEnabled</key>
 	<false/>
 </dict>
