@@ -445,6 +445,7 @@
 		EE06313329A36304002830FB /* PageableResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageableResponseModel.swift; sourceTree = "<group>"; };
 		EE12A17929A1D6FA009A9750 /* NoTodoInDiaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoTodoInDiaryTableViewCell.swift; sourceTree = "<group>"; };
 		EE135A88298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAddCollectionViewCell.swift; sourceTree = "<group>"; };
+		EE4BA0E829A9BA94002F928A /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		EE8BCEF5299F2836004EA821 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		EE8BCEF7299F2842004EA821 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		EE8BCEF9299F3AF9004EA821 /* ShadowDesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowDesignSystem.swift; sourceTree = "<group>"; };
@@ -571,6 +572,7 @@
 				572E5AE4286EBDCE00D1FAA0 /* LaunchScreen.storyboard */,
 				ACF46D84298D2A73005B9DFE /* GoogleService-Info.plist */,
 				572E5AE7286EBDCE00D1FAA0 /* Info.plist */,
+				EE4BA0E829A9BA94002F928A /* Config.xcconfig */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
