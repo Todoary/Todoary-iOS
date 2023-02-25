@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>API-BASE-URL</key>
+	<string>$(API_BASE_URL)</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>NSAppTransportSecurity</key>
@@ -10,11 +12,11 @@
 		<true/>
 	</dict>
 	<key>TODOARY_CODE_EMAIL</key>
-	<string>code@todoary.com</string>
+	<string>$(TODOARY_CODE_EMAIL)</string>
 	<key>TODOARY_EMAIL</key>
-	<string>todoary.app@gmail.com</string>
+	<string>$(TODOARY_EMAIL)</string>
 	<key>TODOARY_PW</key>
-	<string>cprknwdarqtsvkgl</string>
+	<string>$(TODOARY_PASSWORD)</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AppleSDGothicNeoEB.ttf</string>
