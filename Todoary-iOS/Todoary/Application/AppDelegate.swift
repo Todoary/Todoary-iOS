@@ -48,7 +48,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate  {
                 NetworkCheck().networkCheck()
             }
         }
-        return true
         
         if #available(iOS 12.0, *) {
             UNUserNotificationCenter.current().requestAuthorization(
@@ -66,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate  {
         
         application.registerForRemoteNotifications()
         
-        
+        return true
     }
         
     
