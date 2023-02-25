@@ -47,7 +47,6 @@ public enum StickerViewPosition:Int {
     @objc func stickerViewDidEndRotating(_ stickerView: StickerView)
     @objc func stickerViewDidClose(_ stickerView: StickerView)
     @objc func stickerViewDidTap(_ stickerView: StickerView)
-    @objc func stickerViewDidFlip(_ stickerView: StickerView)
 }
 
 public class StickerView: UIView {
@@ -105,7 +104,7 @@ public class StickerView: UIView {
     public  var outlineBorderColor:UIColor {
         set {
             _outlineBorderColor = newValue
-            self.contentView?.layer.borderColor = UIColor(red: 134/255, green: 182/255, blue: 255/255, alpha: 1).cgColor
+            self.contentView?.layer.borderColor = _outlineBorderColor.cgColor
         }
         get {
             return _outlineBorderColor
@@ -356,17 +355,6 @@ public class StickerView: UIView {
             self.deltaAngle = CGFloat(atan2f(Float(touchLocation.y - center.y), Float(touchLocation.x - center.x))) - CGAffineTransformGetAngle(self.transform)
             self.initialBounds = self.bounds
             self.initialDistance = CGPointGetDistance(point1: center, point2: touchLocation)
-            
-            var scale = CGPointGetDistance(point1: center, point2: touchLocation) / self.initialDistance
-            let minimumScale = 0.5
-            scale = max(scale, minimumScale)
-            var scaledBounds = CGRectScale(self.initialBounds, wScale: scale, hScale: scale)
-            if (scale > 2.5){
-                scale = max(2.5, minimumScale)
-                scaledBounds = CGRectScale(self.initialBounds, wScale: scale, hScale: scale)
-                self.bounds = scaledBounds
-            }
-            
             if let delegate = self.delegate {
                 delegate.stickerViewDidBeginRotating(self)
             }
@@ -376,13 +364,9 @@ public class StickerView: UIView {
             self.transform = CGAffineTransform(rotationAngle: CGFloat(-angleDiff))
             
             var scale = CGPointGetDistance(point1: center, point2: touchLocation) / self.initialDistance
-            let minimumScale = 0.5
+            let minimumScale = CGFloat(self.minimumSize) / min(self.initialBounds.size.width, self.initialBounds.size.height)
             scale = max(scale, minimumScale)
-            var scaledBounds = CGRectScale(CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0), wScale: scale, hScale: scale)
-            if (scale > 2.5 ){
-                scale = max(2.5, minimumScale)
-                scaledBounds = CGRectScale(CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0), wScale: scale, hScale: scale)
-            }
+            let scaledBounds = CGRectScale(self.initialBounds, wScale: scale, hScale: scale)
             self.bounds = scaledBounds
             self.setNeedsDisplay()
             
@@ -408,9 +392,6 @@ public class StickerView: UIView {
     
     @objc
     func handleFlipGesture(_ recognizer: UITapGestureRecognizer) {
-        if let delegate = self.delegate {
-            delegate.stickerViewDidFlip(self)
-        }
         UIView.animate(withDuration: 0.3) {
             self.contentView.transform = self.contentView.transform.scaledBy(x: -1, y: 1)
         }
