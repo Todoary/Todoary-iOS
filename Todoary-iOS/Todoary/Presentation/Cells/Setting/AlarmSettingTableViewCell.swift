@@ -122,8 +122,10 @@ class AlarmSettingTableViewCell: UITableViewCell {
     func processResponsePatchAlarmStatus(result: NetworkResult<Any>){
         switch result{
         case .success:
+            print("LOG: SUCCESS processResponsePatchAlarmStatus", result)
             break
         default:
+            print("LOG: FAIL processResponsePatchAlarmStatus", result)
             self.alarmSwitch.setOn(!alarmSwitch.isOn, animated: true)
             break
         }

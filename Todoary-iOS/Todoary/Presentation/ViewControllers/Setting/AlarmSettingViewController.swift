@@ -112,10 +112,12 @@ class AlarmSettingViewController: BaseViewController {
         AlarmService.shared.getUserAlarmActiveStatus{ result in
             switch result{
             case .success(let data):
+                print("LOG: SUCCESS requestGetAlarmActiveStatus",data)
                 guard let data = data as? AlarmActiveStautsResultModel else { return }
                 self.alarmData = data
                 break
             default:
+                print("LOG: Fail requestGetAlarmActiveStatus",result)
                 DataBaseErrorAlert.show(in: self)
                 break
             }
@@ -145,17 +147,17 @@ extension AlarmSettingViewController: UITableViewDelegate, UITableViewDataSource
         case 0:
             cell.alarmType = .Todoary
             cell.cellTitle.text = "Todoary 알림"
-            cell.alarmSwitch.setOn (alarmData.isTodoAlarmChecked, animated: true)
+            cell.alarmSwitch.setOn (alarmData.toDoAlarmEnable, animated: true)
             return cell
         case 1:
             cell.alarmType = .Diary
             cell.cellTitle.text = "하루기록 알림"
-            cell.alarmSwitch.setOn(alarmData.isDiaryAlarmChecked, animated: true)
+            cell.alarmSwitch.setOn(alarmData.dailyAlarmEnable, animated: true)
             return cell
         case 2:
             cell.alarmType = .Remind
             cell.cellTitle.text = "리마인드 알림"
-            cell.alarmSwitch.setOn(alarmData.isRemindAlarmChecked, animated: true)
+            cell.alarmSwitch.setOn(alarmData.remindAlarmEnable, animated: true)
             return cell
         default:
             fatalError("TableViewCell Error")

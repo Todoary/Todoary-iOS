@@ -8,7 +8,7 @@
 import Foundation
 
 struct AlarmActiveStautsResultModel: Codable{
-    var isTodoAlarmChecked: Bool = false
-    var isDiaryAlarmChecked: Bool = false
-    var isRemindAlarmChecked: Bool = false
+    var toDoAlarmEnable: Bool = false
+    var dailyAlarmEnable: Bool = false
+    var remindAlarmEnable: Bool = false
 }
