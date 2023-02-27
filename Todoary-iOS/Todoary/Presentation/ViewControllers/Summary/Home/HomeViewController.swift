@@ -169,7 +169,7 @@ class HomeViewController : UIViewController {
 
         requestGetProfile()
         
-        let fcmToken = FcmTokenRequestModel(fcm_token: UserDefaults.standard.string(forKey: "fcmToken"))
+        let fcmToken = FcmTokenRequestModel(fcmToken: UserDefaults.standard.string(forKey: "fcmToken"))
         requestModifyFcmToken(parameter: fcmToken)
         
     }
@@ -316,7 +316,7 @@ class HomeViewController : UIViewController {
         FcmTokenService.shared.modifyFcmToken(request: parameter){ result in
             switch result{
             case .success:
-                print("로그: [requestModifyFcmToken] success")
+                print("로그: [requestModifyFcmToken] success", parameter)
                 break
             default:
                 print("로그: [requestModifyFcmToken] fail")
