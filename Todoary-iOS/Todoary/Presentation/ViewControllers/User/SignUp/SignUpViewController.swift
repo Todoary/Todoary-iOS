@@ -266,6 +266,7 @@ class SignUpViewController: BaseViewController{
                 }
                 break
             case .invalidSuccess(let code):
+                print("LOG: FAIL SIGNUP",result, code)
                 switch code{
                 case 2017:
                     self.mainView.nextButton.isEnabled = false
@@ -284,6 +285,7 @@ class SignUpViewController: BaseViewController{
                 }
                 break
             default:
+                print("LOG: FAIL SIGNUP",result)
                 self.mainView.nextButton.isEnabled = false
                 DataBaseErrorAlert.show(in: self)
                 break
