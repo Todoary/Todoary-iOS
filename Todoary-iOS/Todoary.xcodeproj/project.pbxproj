@@ -198,8 +198,9 @@
 		E0C4BD6B2872128500FDEA0E /* AdvertiseTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C4BD6A2872128500FDEA0E /* AdvertiseTextViewController.swift */; };
 		E0F3CDC92895696E00A74AB7 /* TodoInDiaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F3CDC82895696E00A74AB7 /* TodoInDiaryTableViewCell.swift */; };
 		E0F998A4288A59A80051C7AA /* UserDeleteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998A3288A59A80051C7AA /* UserDeleteDataManager.swift */; };
-		EE00BB8B29AD9A0D007CE728 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE00BB8A29AD9A0D007CE728 /* GoogleService-Info.plist */; };
 		EE00BB8F29AD9B3E007CE728 /* TodoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE00BB8E29AD9B3E007CE728 /* TodoManager.swift */; };
+		EE00BBA129ADAC25007CE728 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EE00BBA029ADAC25007CE728 /* Config.xcconfig */; };
+		EE00BBA329ADAC2B007CE728 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE00BBA229ADAC2B007CE728 /* GoogleService-Info.plist */; };
 		EE06312E29A35326002830FB /* JpaRouter+Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06312D29A35326002830FB /* JpaRouter+Service.swift */; };
 		EE06313029A362C2002830FB /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06312F29A362C2002830FB /* LoadingTableViewCell.swift */; };
 		EE06313229A362D6002830FB /* Pageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06313129A362D6002830FB /* Pageable.swift */; };
@@ -439,15 +440,15 @@
 		E0C4BD6A2872128500FDEA0E /* AdvertiseTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertiseTextViewController.swift; sourceTree = "<group>"; };
 		E0F3CDC82895696E00A74AB7 /* TodoInDiaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoInDiaryTableViewCell.swift; sourceTree = "<group>"; };
 		E0F998A3288A59A80051C7AA /* UserDeleteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeleteDataManager.swift; sourceTree = "<group>"; };
-		EE00BB8A29AD9A0D007CE728 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EE00BB8E29AD9B3E007CE728 /* TodoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoManager.swift; sourceTree = "<group>"; };
+		EE00BBA029ADAC25007CE728 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		EE00BBA229ADAC2B007CE728 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EE06312D29A35326002830FB /* JpaRouter+Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JpaRouter+Service.swift"; sourceTree = "<group>"; };
 		EE06312F29A362C2002830FB /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
 		EE06313129A362D6002830FB /* Pageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pageable.swift; sourceTree = "<group>"; };
 		EE06313329A36304002830FB /* PageableResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageableResponseModel.swift; sourceTree = "<group>"; };
 		EE12A17929A1D6FA009A9750 /* NoTodoInDiaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoTodoInDiaryTableViewCell.swift; sourceTree = "<group>"; };
 		EE135A88298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAddCollectionViewCell.swift; sourceTree = "<group>"; };
-		EE4BA0E829A9BA94002F928A /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		EE8BCEF5299F2836004EA821 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		EE8BCEF7299F2842004EA821 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		EE8BCEF9299F3AF9004EA821 /* ShadowDesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowDesignSystem.swift; sourceTree = "<group>"; };
@@ -564,8 +565,8 @@
 			children = (
 				572E5AE4286EBDCE00D1FAA0 /* LaunchScreen.storyboard */,
 				572E5AE7286EBDCE00D1FAA0 /* Info.plist */,
-				EE00BB8A29AD9A0D007CE728 /* GoogleService-Info.plist */,
-				EE4BA0E829A9BA94002F928A /* Config.xcconfig */,
+				EE00BBA229ADAC2B007CE728 /* GoogleService-Info.plist */,
+				EE00BBA029ADAC25007CE728 /* Config.xcconfig */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -1608,14 +1609,15 @@
 				57DF45F828A60B310002D66C /* NotoSerifKR-SemiBold.otf in Resources */,
 				57DF45FB28A60B310002D66C /* IM_Hyemin-Bold.ttf in Resources */,
 				E02E7FA828747F1D0006F6FA /* UniStoryboard.storyboard in Resources */,
+				EE00BBA129ADAC25007CE728 /* Config.xcconfig in Resources */,
 				57DF460328A64A9E0002D66C /* IBMPlexSansKR-Text.otf in Resources */,
 				572E5AE6286EBDCE00D1FAA0 /* LaunchScreen.storyboard in Resources */,
 				E0BAB97B28748FA50055BA67 /* HolaStoryboard.storyboard in Resources */,
 				572E5AE3286EBDCE00D1FAA0 /* Assets.xcassets in Resources */,
 				57DF460528A64AA60002D66C /* IBMPlexSansKR-Medium.otf in Resources */,
-				EE00BB8B29AD9A0D007CE728 /* GoogleService-Info.plist in Resources */,
 				572E5AE1286EBDCC00D1FAA0 /* Main.storyboard in Resources */,
 				57DF45FA28A60B310002D66C /* GangwonEduAll-Bold.ttf in Resources */,
+				EE00BBA329ADAC2B007CE728 /* GoogleService-Info.plist in Resources */,
 				E0BAB97D28748FBF0055BA67 /* SsoyaStoryboard.storyboard in Resources */,
 				57DF45F628A60B310002D66C /* NotoSerifKR-Regular.otf in Resources */,
 				574A703A2883FF10003C8F99 /* AppleSDGothicNeoEB.ttf in Resources */,
@@ -2105,7 +2107,7 @@
 		};
 		572E5B01286EBDCF00D1FAA0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EE4BA0E829A9BA94002F928A /* Config.xcconfig */;
+			baseConfigurationReference = EE00BBA029ADAC25007CE728 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2145,7 +2147,7 @@
 		};
 		572E5B02286EBDCF00D1FAA0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EE4BA0E829A9BA94002F928A /* Config.xcconfig */;
+			baseConfigurationReference = EE00BBA029ADAC25007CE728 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
