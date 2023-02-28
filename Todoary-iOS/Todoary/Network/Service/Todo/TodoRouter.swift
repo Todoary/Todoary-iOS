@@ -56,7 +56,7 @@ extension TodoRouter: BaseRouter{
         case .patchTodo(_, let request):            return .requestBody(request)
         case .getTodoByDate:                        return .requestPlain
         case .getTodoByCategory(_ , let page):
-            let parameter: [String:Any] = ["page" : page, "size" : 1]
+            let parameter: [String:Any] = ["page" : page, "size" : 15]
                                                     return .query(parameter)
         case .patchCheck(let id, let isChecked):
             let parameter: [String:Any] = ["todoId" : id, "isChecked" : isChecked]
