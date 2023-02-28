@@ -199,6 +199,7 @@
 		E0F3CDC92895696E00A74AB7 /* TodoInDiaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F3CDC82895696E00A74AB7 /* TodoInDiaryTableViewCell.swift */; };
 		E0F998A4288A59A80051C7AA /* UserDeleteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998A3288A59A80051C7AA /* UserDeleteDataManager.swift */; };
 		EE00BB8B29AD9A0D007CE728 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE00BB8A29AD9A0D007CE728 /* GoogleService-Info.plist */; };
+		EE00BB8F29AD9B3E007CE728 /* TodoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE00BB8E29AD9B3E007CE728 /* TodoManager.swift */; };
 		EE06312E29A35326002830FB /* JpaRouter+Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06312D29A35326002830FB /* JpaRouter+Service.swift */; };
 		EE06313029A362C2002830FB /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06312F29A362C2002830FB /* LoadingTableViewCell.swift */; };
 		EE06313229A362D6002830FB /* Pageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06313129A362D6002830FB /* Pageable.swift */; };
@@ -439,6 +440,7 @@
 		E0F3CDC82895696E00A74AB7 /* TodoInDiaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoInDiaryTableViewCell.swift; sourceTree = "<group>"; };
 		E0F998A3288A59A80051C7AA /* UserDeleteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeleteDataManager.swift; sourceTree = "<group>"; };
 		EE00BB8A29AD9A0D007CE728 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EE00BB8E29AD9B3E007CE728 /* TodoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoManager.swift; sourceTree = "<group>"; };
 		EE06312D29A35326002830FB /* JpaRouter+Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JpaRouter+Service.swift"; sourceTree = "<group>"; };
 		EE06312F29A362C2002830FB /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
 		EE06313129A362D6002830FB /* Pageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pageable.swift; sourceTree = "<group>"; };
@@ -537,6 +539,7 @@
 		5701EA0C2956E20800F21F63 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				EE00BB8C29AD9B12007CE728 /* Util */,
 				5701EA312956EDC900F21F63 /* ViewControllers */,
 				5701EA592956F0C500F21F63 /* ViewModels */,
 				5701EA5A2956F0CB00F21F63 /* Views */,
@@ -1445,6 +1448,14 @@
 			path = AgreementText;
 			sourceTree = "<group>";
 		};
+		EE00BB8C29AD9B12007CE728 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				EE00BB8E29AD9B3E007CE728 /* TodoManager.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 		EE06312C29A3530A002830FB /* JPA_Test */ = {
 			isa = PBXGroup;
 			children = (
@@ -1796,6 +1807,7 @@
 				EE8BCEF6299F2836004EA821 /* UITableView.swift in Sources */,
 				57FFEDBC28DC1C230041719B /* Const.swift in Sources */,
 				572E9ABB287BC4BD00F915DF /* ScreenSettingView.swift in Sources */,
+				EE00BB8F29AD9B3E007CE728 /* TodoManager.swift in Sources */,
 				575DE96B29769EBD00E61B8F /* CodeResponse.swift in Sources */,
 				ACACD01128749F520029D5CE /* LoginViewController.swift in Sources */,
 				E0F3CDC92895696E00A74AB7 /* TodoInDiaryTableViewCell.swift in Sources */,
