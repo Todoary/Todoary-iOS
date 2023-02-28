@@ -119,8 +119,7 @@ extension BaseRouter {
 
 extension BaseRouter {
     var baseURL: String {
-        return "http://ec2-15-165-20-108.ap-northeast-2.compute.amazonaws.com"
-//        return "https://\(Bundle.main.infoDictionary?["API-BASE-URL"] as? String ?? "")"
+        return "https://\(Bundle.main.infoDictionary?["API-BASE-URL"] as? String ?? "")"
     }
     
     var header: HeaderType {
