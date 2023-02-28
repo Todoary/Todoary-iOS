@@ -29,6 +29,7 @@ class CategoryView: BaseView {
         $0.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         $0.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 22, right: 0)
         
+        $0.register(cellType: LoadingTableViewCell.self)
         $0.register(CategoryTodoTableViewCell.self, forCellReuseIdentifier: CategoryTodoTableViewCell.cellIdentifier)
         $0.register(NoTodoInCategoryTableViewCell.self, forCellReuseIdentifier: NoTodoInCategoryTableViewCell.cellIdentifier)
         $0.register(AddTodoInCategoryTableViewCell.self, forCellReuseIdentifier: AddTodoInCategoryTableViewCell.cellIdentifier)
