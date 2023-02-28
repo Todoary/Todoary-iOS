@@ -63,7 +63,6 @@ class CategoryViewController: BaseViewController, Pageable {
             requestGetTodoByCategory()
             TodoManager.shared.initialize()
         }
-        requestGetCategories()
     }
     
     override func style() {
