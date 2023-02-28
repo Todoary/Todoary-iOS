@@ -380,6 +380,7 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
             switch result{
             case .success:
                 print("로그: [requestGenerateTodo] success")
+                TodoManager.shared.isAdd = true
                 self.navigationController?.popViewController(animated: true)
                 break
             default:
