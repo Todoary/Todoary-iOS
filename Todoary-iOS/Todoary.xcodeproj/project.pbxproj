@@ -201,7 +201,6 @@
 		EE00BB8F29AD9B3E007CE728 /* TodoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE00BB8E29AD9B3E007CE728 /* TodoManager.swift */; };
 		EE00BBA129ADAC25007CE728 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EE00BBA029ADAC25007CE728 /* Config.xcconfig */; };
 		EE00BBA329ADAC2B007CE728 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE00BBA229ADAC2B007CE728 /* GoogleService-Info.plist */; };
-		EE06312E29A35326002830FB /* JpaRouter+Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06312D29A35326002830FB /* JpaRouter+Service.swift */; };
 		EE06313029A362C2002830FB /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06312F29A362C2002830FB /* LoadingTableViewCell.swift */; };
 		EE06313229A362D6002830FB /* Pageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06313129A362D6002830FB /* Pageable.swift */; };
 		EE06313429A36304002830FB /* PageableResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06313329A36304002830FB /* PageableResponseModel.swift */; };
@@ -443,7 +442,6 @@
 		EE00BB8E29AD9B3E007CE728 /* TodoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoManager.swift; sourceTree = "<group>"; };
 		EE00BBA029ADAC25007CE728 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		EE00BBA229ADAC2B007CE728 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		EE06312D29A35326002830FB /* JpaRouter+Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JpaRouter+Service.swift"; sourceTree = "<group>"; };
 		EE06312F29A362C2002830FB /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
 		EE06313129A362D6002830FB /* Pageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pageable.swift; sourceTree = "<group>"; };
 		EE06313329A36304002830FB /* PageableResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageableResponseModel.swift; sourceTree = "<group>"; };
@@ -596,7 +594,6 @@
 			isa = PBXGroup;
 			children = (
 				57C481BA29695344008731D9 /* HTTPMethodURL.swift */,
-				EE06312C29A3530A002830FB /* JPA_Test */,
 				57C481B5296952FF008731D9 /* Foundation */,
 				57C481B0296952A8008731D9 /* Auth */,
 				57C481AF296952A6008731D9 /* User */,
@@ -1457,14 +1454,6 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
-		EE06312C29A3530A002830FB /* JPA_Test */ = {
-			isa = PBXGroup;
-			children = (
-				EE06312D29A35326002830FB /* JpaRouter+Service.swift */,
-			);
-			path = JPA_Test;
-			sourceTree = "<group>";
-		};
 		EED1B34C298656D700F14CAC /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
@@ -1854,7 +1843,6 @@
 				AC5E27C9288C37E60056EC69 /* TodoSettingView.swift in Sources */,
 				AC3A668E297BC82100EF42BE /* NetworkCheckModel.swift in Sources */,
 				AC5E27DF28901EEF0056EC69 /* AuthInterceptor.swift in Sources */,
-				EE06312E29A35326002830FB /* JpaRouter+Service.swift in Sources */,
 				57F97DD728D9566F00D4697C /* CancelMessageAlertViewController.swift in Sources */,
 				57D5B60B29580F4400216C94 /* BaseTableViewCell.swift in Sources */,
 				E0AB9EB9287B1BA00064CADA /* SettingView.swift in Sources */,
