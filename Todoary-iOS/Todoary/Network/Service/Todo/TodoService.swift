@@ -19,7 +19,7 @@ extension TodoService {
     }
     
     func modifyTodo(id: Int, request: TodoRequestModel, completion: @escaping (NetworkResult<Any>) -> Void){
-        requestObjectWithEmptyResponse(TodoRouter.patchTodo(id: id, request: request), completion: completion)
+        requestObject(TodoRouter.patchTodo(id: id, request: request), type: TodoResultModel.self, decodingMode: .model, completion: completion)
     }
     
     func getTodoByDate(date: String, completion: @escaping (NetworkResult<Any>) -> Void) {
