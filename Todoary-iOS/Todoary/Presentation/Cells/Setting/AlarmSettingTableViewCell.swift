@@ -96,7 +96,7 @@ class AlarmSettingTableViewCell: UITableViewCell {
     }
     
     @objc func alarmSwitchWillChangeState(){
-        
+        print("LOG: REQUEST alarmSwitchWillChangeState", alarmType, alarmSwitch.isOn)
         switch alarmType {
         case .Todoary:
             AlarmService.shared.modifyTodoAlarmActiveStatus(request: self.alarmSwitch.isOn, completion: { result in
@@ -113,16 +113,12 @@ class AlarmSettingTableViewCell: UITableViewCell {
         default:
             return
         }
-        
-        
-        
-//        AlarmDataManager().patch(cell: self, isChecked: self.alarmSwitch.isOn, alarmType: self.alarmType)
     }
     
     func processResponsePatchAlarmStatus(result: NetworkResult<Any>){
         switch result{
         case .success:
-            print("LOG: SUCCESS processResponsePatchAlarmStatus", result)
+            print("LOG: SUCCESS processResponsePatchAlarmStatus", result, alarmType)
             break
         default:
             print("LOG: FAIL processResponsePatchAlarmStatus", result)
@@ -130,21 +126,6 @@ class AlarmSettingTableViewCell: UITableViewCell {
             break
         }
     }
-    /*
-    func checkAlarmApiResultCode(_ code: Int){
-        switch code{
-        case 1000:
-            print("알림 설정 변경")
-            return
-        default:
-            let alert = DataBaseErrorAlert()
-            navigation.present(alert, animated: true, completion: {
-                self.alarmSwitch.setOn(!self.alarmSwitch.isOn, animated: true)
-            })
-        }
-    }
-     */
-
 }
 
 class CellButtonTapGesture: UITapGestureRecognizer{
