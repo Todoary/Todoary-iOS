@@ -11,13 +11,7 @@ class CategoryViewController: BaseViewController, Pageable {
     
     //MARK: - Properties
     
-    var page: Int = 0{
-        didSet{
-            if(page == 0){
-                hasNextPage = false
-            }
-        }
-    }
+    var page: Int = 0
     var isPaging: Bool = false
     var hasNextPage: Bool = false
     
@@ -32,8 +26,9 @@ class CategoryViewController: BaseViewController, Pageable {
     let collectionViewInitialIndex: IndexPath = [0,0]
     var selectCategoryIndex : IndexPath!{
         didSet{
-            isEditingMode = false
             page = 0
+            hasNextPage = false
+            isEditingMode = false
         }
     }
 
@@ -42,6 +37,7 @@ class CategoryViewController: BaseViewController, Pageable {
             if(willDelete){
                 return
             }
+            isPaging = false
             mainView.todoTableView.reloadData()
         }
     }
@@ -54,7 +50,19 @@ class CategoryViewController: BaseViewController, Pageable {
     let mainView = CategoryView()
     
     //MARK: - Override
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        requestGetCategories()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
+        if(TodoManager.shared.isAdd){
+            page = 0
+            hasNextPage = false
+            isEditingMode = false
+            requestGetTodoByCategory()
+            TodoManager.shared.initialize()
+        }
         requestGetCategories()
     }
     
@@ -169,13 +177,10 @@ extension CategoryViewController: CategoryTodoCellDelegate{
         TodoService.shared.getTodoByCategory(id: categoryId, page: page) { result in
             switch result {
             case .success(let data):
-                print("[getTodoByCategory] success")
-                if let data = data as? [TodoResultModel]{
-                    self.todoData = data
+                print("[getTodoByCategory] success", data)
+                if let data = data as? PageableResponseModel{
+                    self.processResponseGetTodo(data: data)
                 }
-//                if let data = data as? PageableResponseModel{
-//                    self.processResponseGetTodo(data: data)
-//                }
                 break
             default:
                 print("[getTodoByCategory] fail", result)
@@ -265,6 +270,10 @@ extension CategoryViewController: CategoryTodoCellDelegate{
 //MARK: - TableView
 extension CategoryViewController: UITableViewDelegate, UITableViewDataSource{
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(section == 0){
             return todoData.count != 0 ? todoData.count + 1 : 2
@@ -321,6 +330,9 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource{
         }
         if(!todoData.isEmpty && indexPath.row != tableView.numberOfRows(inSection: 0) - 1){
             let vc = TodoSettingViewController()
+            vc.completion = {
+                self.todoData[indexPath.row] = $0
+            }
             vc.todoSettingData = todoData[indexPath.row]
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -411,6 +423,7 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
          // 스크롤이 테이블 뷰 Offset의 끝에 가게 되면 다음 페이지를 호출
          if offsetY > (contentHeight - height) {
              if isPaging == false && hasNextPage {
+                 print("여기?")
                  beginPaging()
              }
          }
