@@ -197,7 +197,6 @@
 		E0C4BD692872127C00FDEA0E /* AdvertiseTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C4BD682872127C00FDEA0E /* AdvertiseTextView.swift */; };
 		E0C4BD6B2872128500FDEA0E /* AdvertiseTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C4BD6A2872128500FDEA0E /* AdvertiseTextViewController.swift */; };
 		E0F3CDC92895696E00A74AB7 /* TodoInDiaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F3CDC82895696E00A74AB7 /* TodoInDiaryTableViewCell.swift */; };
-		E0F998A4288A59A80051C7AA /* UserDeleteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F998A3288A59A80051C7AA /* UserDeleteDataManager.swift */; };
 		EE00BB8F29AD9B3E007CE728 /* TodoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE00BB8E29AD9B3E007CE728 /* TodoManager.swift */; };
 		EE00BBA129ADAC25007CE728 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EE00BBA029ADAC25007CE728 /* Config.xcconfig */; };
 		EE00BBA329ADAC2B007CE728 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE00BBA229ADAC2B007CE728 /* GoogleService-Info.plist */; };
@@ -438,7 +437,6 @@
 		E0C4BD682872127C00FDEA0E /* AdvertiseTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertiseTextView.swift; sourceTree = "<group>"; };
 		E0C4BD6A2872128500FDEA0E /* AdvertiseTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertiseTextViewController.swift; sourceTree = "<group>"; };
 		E0F3CDC82895696E00A74AB7 /* TodoInDiaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoInDiaryTableViewCell.swift; sourceTree = "<group>"; };
-		E0F998A3288A59A80051C7AA /* UserDeleteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeleteDataManager.swift; sourceTree = "<group>"; };
 		EE00BB8E29AD9B3E007CE728 /* TodoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoManager.swift; sourceTree = "<group>"; };
 		EE00BBA029ADAC25007CE728 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		EE00BBA229ADAC2B007CE728 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -518,7 +516,6 @@
 		5701EA0A2956E1FB00F21F63 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				57C481C2296954FB008731D9 /* WillDelete */,
 				5701EA132956E59100F21F63 /* Entity */,
 				5701EA142956E59E00F21F63 /* Service */,
 				5701EA122956E58A00F21F63 /* Repository */,
@@ -1021,30 +1018,6 @@
 			path = AgreementText;
 			sourceTree = "<group>";
 		};
-		5701EA7829570DC200F21F63 /* Account */ = {
-			isa = PBXGroup;
-			children = (
-				E0F998A3288A59A80051C7AA /* UserDeleteDataManager.swift */,
-			);
-			path = Account;
-			sourceTree = "<group>";
-		};
-		5701EA7E29570DCD00F21F63 /* User */ = {
-			isa = PBXGroup;
-			children = (
-				5701EA7829570DC200F21F63 /* Account */,
-			);
-			path = User;
-			sourceTree = "<group>";
-		};
-		5701EA8329570E5700F21F63 /* DataManager */ = {
-			isa = PBXGroup;
-			children = (
-				5701EA7E29570DCD00F21F63 /* User */,
-			);
-			path = DataManager;
-			sourceTree = "<group>";
-		};
 		5701EA992957154000F21F63 /* Todo */ = {
 			isa = PBXGroup;
 			children = (
@@ -1315,14 +1288,6 @@
 				57C481BE29695370008731D9 /* HeaderType.swift */,
 			);
 			path = Foundation;
-			sourceTree = "<group>";
-		};
-		57C481C2296954FB008731D9 /* WillDelete */ = {
-			isa = PBXGroup;
-			children = (
-				5701EA8329570E5700F21F63 /* DataManager */,
-			);
-			path = WillDelete;
 			sourceTree = "<group>";
 		};
 		57C481C5296957E9008731D9 /* Diary */ = {
@@ -1772,7 +1737,6 @@
 				57E75EB928E33AD400AC24B2 /* AddButtonViewController.swift in Sources */,
 				ACBAE55E296E69B200E71CAD /* ProfileRouter.swift in Sources */,
 				E0AB9EB7287B1B8E0064CADA /* SettingViewController.swift in Sources */,
-				E0F998A4288A59A80051C7AA /* UserDeleteDataManager.swift in Sources */,
 				57C481BD2969535A008731D9 /* NetworkResult.swift in Sources */,
 				ACBAE57C297AE8B500E71CAD /* FcmTokenRequestModel.swift in Sources */,
 				57503665288BE42C006A9070 /* CategoryColor.swift in Sources */,
