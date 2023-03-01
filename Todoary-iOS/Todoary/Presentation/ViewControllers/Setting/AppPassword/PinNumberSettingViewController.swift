@@ -11,8 +11,6 @@ import Then
 
 class PinNumberSettingViewController : BaseViewController {
     
-    //TODO: 비밀번호 설정안하고 백 한 경우에 뭐 알아서 설정되는거 같은디..?
-    
     let mainView = PinNumberSettingView()
     
     //MARK: - Lifecycles
@@ -67,13 +65,13 @@ class PinNumberSettingViewController : BaseViewController {
     //알람 uiswitch 변경 제스쳐
     @objc func onClickSwitch(sender: UISwitch) {
         if sender.isOn {
-            if UserDefaults.standard.stringArray(forKey: "newPasswordArr") == nil{
-                let newAppPasswordViewController = NewAppPasswordViewController()
-                self.navigationController?.pushViewController(newAppPasswordViewController, animated: true)
-                self.navigationController?.isNavigationBarHidden = true
-            }
+            let newAppPasswordViewController = NewAppPasswordViewController()
+            self.navigationController?.pushViewController(newAppPasswordViewController, animated: true)
+            self.navigationController?.isNavigationBarHidden = true
         }else {
             UserDefaults.standard.set(false,forKey: "appPasswordCheck")
+            UserDefaults.standard.set(nil, forKey: "newPasswordArr")
+
         }
     }
 }
