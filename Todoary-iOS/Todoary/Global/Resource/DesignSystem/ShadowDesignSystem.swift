@@ -30,3 +30,17 @@ class ShadowView: BaseView{
         self.layer.cornerRadius = cornerRadius
     }
 }
+
+
+class DiaryShadowView: BaseView{
+    
+    override func style(){
+        self.backgroundColor = .white
+        self.layer.shadowRadius = 4
+        self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: 2) //2
+        self.layer.shadowOpacity = 1
+        self.layer.masksToBounds = false
+        self.layer.cornerRadius = 20
+    }
+}
