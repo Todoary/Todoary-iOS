@@ -223,14 +223,18 @@ class SignUpViewController: BaseViewController{
     
     //MARK: - API
     private func requestGetEmailDuplicate(){
+
         AccountService.shared.checkUserEmailDuplicate(email: self.email){ result in
             switch result{
             case .success:
+                print("LOG: SUCCESS requestGetEmailDuplicate", result)
+                self.view.endEditing(true)
                 self.mainView.idCanUseLabel.text = "*사용 가능한 이메일입니다."
                 self.mainView.idCanUseLabel.textColor = .todoaryGrey
                 MailSender.shared.sendEmail(email: self.email, viewController: self)
                 break
             case .invalidSuccess(let code):
+                print("LOG: invalidSuccess requestGetEmailDuplicate", result, code)
                 if(code == 2017){
                     self.mainView.idCanUseLabel.isHidden = false
                     self.mainView.idCanUseLabel.text = "*중복된 이메일 입니다."
@@ -239,6 +243,7 @@ class SignUpViewController: BaseViewController{
                 }
                 break
             default:
+                print("LOG: fail requestGetEmailDuplicate", result)
                 DataBaseErrorAlert.show(in: self)
                 break
             }
