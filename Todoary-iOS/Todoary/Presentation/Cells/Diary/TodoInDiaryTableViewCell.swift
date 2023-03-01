@@ -17,7 +17,7 @@ class TodoInDiaryTableViewCell: BaseTableViewCell {
     
     var delegate: DiaryTodoCellDelegate?
     
-    private let backgroundShadowView = ShadowView(cornerRadius: 20)
+    private let backgroundShadowView = DiaryShadowView()
     private lazy var checkBox = UIButton().then{
         $0.setImage(Image.todoCheckEmpty, for: .normal)
         $0.setImage(Image.todoCheck, for: .selected)

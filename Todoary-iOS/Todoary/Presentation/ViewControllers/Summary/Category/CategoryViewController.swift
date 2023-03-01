@@ -139,7 +139,7 @@ extension CategoryViewController: CategoryTodoCellDelegate{
         CategoryService.shared.getCategories{ result in
             switch result {
             case .success(let data):
-                print("[requestGetCategories] success")
+                print("LOG: success requestGetCategories", data)
                 if let data = data as? [CategoryModel]{
                     self.categories = data
                     self.isCategoryAdd = false
@@ -147,7 +147,7 @@ extension CategoryViewController: CategoryTodoCellDelegate{
                 }
                 break
             default:
-                print("[requestGetCategories] fail")
+                print("LOG: fail requestGetCategories", result)
                 DataBaseErrorAlert.show(in: self)
                 break
             }
@@ -176,13 +176,13 @@ extension CategoryViewController: CategoryTodoCellDelegate{
         TodoService.shared.getTodoByCategory(id: categoryId, page: page) { result in
             switch result {
             case .success(let data):
-                print("[getTodoByCategory] success", data)
+                print("LOG: success requestGetTodoByCategory", data)
                 if let data = data as? PageableResponseModel{
                     self.processResponseGetTodo(data: data)
                 }
                 break
             default:
-                print("[getTodoByCategory] fail", result)
+                print("LOG: fail requestGetTodoByCategory", result)
                 DataBaseErrorAlert.show(in: self)
                 break
             }
@@ -252,11 +252,11 @@ extension CategoryViewController: CategoryTodoCellDelegate{
         
         TodoService.shared.modifyTodoCheckStatus(id: data.todoId, isChecked: data.isChecked){ result in
             switch result{
-            case .success(_):
-                print("[requestPatchTodoCheckStatus] success")
+            case .success:
+                print("LOG: success requestPatchTodoCheckStatus", result)
                 break
             default:
-                print("[requestPatchTodoCheckStatus] fail")
+                print("LOG: fail requestPatchTodoCheckStatus", result)
                 self.todoData[index.row].isChecked.toggle()
                 DataBaseErrorAlert.show(in: self)
                 break
