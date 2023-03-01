@@ -118,6 +118,7 @@
 		99E5F60858A366755EE867A1 /* Pods_Todoary_TodoaryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A43119AF581797F7807639A /* Pods_Todoary_TodoaryUITests.framework */; };
 		AC1DFDC529A3D2480011EF87 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1DFDC429A3D2480011EF87 /* OnboardingView.swift */; };
 		AC1DFDC929A4DFF90011EF87 /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1DFDC829A4DFF90011EF87 /* GuideView.swift */; };
+		AC1DFDD129AF756F0011EF87 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC1DFDD029AF756F0011EF87 /* GoogleService-Info.plist */; };
 		AC3A668C297BC7D100EF42BE /* NetworkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3A668B297BC7D100EF42BE /* NetworkCheck.swift */; };
 		AC3A668E297BC82100EF42BE /* NetworkCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3A668D297BC82100EF42BE /* NetworkCheckModel.swift */; };
 		AC3A6690297BD69D00EF42BE /* AuthJwtRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3A668F297BD69D00EF42BE /* AuthJwtRequestModel.swift */; };
@@ -199,7 +200,6 @@
 		E0F3CDC92895696E00A74AB7 /* TodoInDiaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F3CDC82895696E00A74AB7 /* TodoInDiaryTableViewCell.swift */; };
 		EE00BB8F29AD9B3E007CE728 /* TodoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE00BB8E29AD9B3E007CE728 /* TodoManager.swift */; };
 		EE00BBA129ADAC25007CE728 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EE00BBA029ADAC25007CE728 /* Config.xcconfig */; };
-		EE00BBA329ADAC2B007CE728 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE00BBA229ADAC2B007CE728 /* GoogleService-Info.plist */; };
 		EE06313029A362C2002830FB /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06312F29A362C2002830FB /* LoadingTableViewCell.swift */; };
 		EE06313229A362D6002830FB /* Pageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06313129A362D6002830FB /* Pageable.swift */; };
 		EE06313429A36304002830FB /* PageableResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06313329A36304002830FB /* PageableResponseModel.swift */; };
@@ -356,6 +356,7 @@
 		A38C6195332A33ED0CF95425 /* Pods_TodoaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC1DFDC429A3D2480011EF87 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		AC1DFDC829A4DFF90011EF87 /* GuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideView.swift; sourceTree = "<group>"; };
+		AC1DFDD029AF756F0011EF87 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AC3A668B297BC7D100EF42BE /* NetworkCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCheck.swift; sourceTree = "<group>"; };
 		AC3A668D297BC82100EF42BE /* NetworkCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCheckModel.swift; sourceTree = "<group>"; };
 		AC3A668F297BD69D00EF42BE /* AuthJwtRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthJwtRequestModel.swift; sourceTree = "<group>"; };
@@ -439,7 +440,6 @@
 		E0F3CDC82895696E00A74AB7 /* TodoInDiaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoInDiaryTableViewCell.swift; sourceTree = "<group>"; };
 		EE00BB8E29AD9B3E007CE728 /* TodoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoManager.swift; sourceTree = "<group>"; };
 		EE00BBA029ADAC25007CE728 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		EE00BBA229ADAC2B007CE728 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EE06312F29A362C2002830FB /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
 		EE06313129A362D6002830FB /* Pageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pageable.swift; sourceTree = "<group>"; };
 		EE06313329A36304002830FB /* PageableResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageableResponseModel.swift; sourceTree = "<group>"; };
@@ -559,8 +559,8 @@
 			isa = PBXGroup;
 			children = (
 				572E5AE4286EBDCE00D1FAA0 /* LaunchScreen.storyboard */,
+				AC1DFDD029AF756F0011EF87 /* GoogleService-Info.plist */,
 				572E5AE7286EBDCE00D1FAA0 /* Info.plist */,
-				EE00BBA229ADAC2B007CE728 /* GoogleService-Info.plist */,
 				EE00BBA029ADAC25007CE728 /* Config.xcconfig */,
 			);
 			path = SupportingFiles;
@@ -1571,7 +1571,7 @@
 				57DF460528A64AA60002D66C /* IBMPlexSansKR-Medium.otf in Resources */,
 				572E5AE1286EBDCC00D1FAA0 /* Main.storyboard in Resources */,
 				57DF45FA28A60B310002D66C /* GangwonEduAll-Bold.ttf in Resources */,
-				EE00BBA329ADAC2B007CE728 /* GoogleService-Info.plist in Resources */,
+				AC1DFDD129AF756F0011EF87 /* GoogleService-Info.plist in Resources */,
 				E0BAB97D28748FBF0055BA67 /* SsoyaStoryboard.storyboard in Resources */,
 				57DF45F628A60B310002D66C /* NotoSerifKR-Regular.otf in Resources */,
 				574A703A2883FF10003C8F99 /* AppleSDGothicNeoEB.ttf in Resources */,

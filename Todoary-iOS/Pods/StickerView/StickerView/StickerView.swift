@@ -104,7 +104,7 @@ public class StickerView: UIView {
     public  var outlineBorderColor:UIColor {
         set {
             _outlineBorderColor = newValue
-            self.contentView?.layer.borderColor = _outlineBorderColor.cgColor
+            self.contentView?.layer.borderColor = UIColor(red: 90/255, green: 156/255, blue: 255/255, alpha: 1).cgColor
         }
         get {
             return _outlineBorderColor
