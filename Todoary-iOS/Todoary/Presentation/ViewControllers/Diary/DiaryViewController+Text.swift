@@ -41,7 +41,6 @@ extension DiaryViewController: UITableViewDelegate, UITableViewDataSource{
 extension DiaryViewController: UITextViewDelegate {
 
     func textViewDidBeginEditing(_ textView: UITextView) {
-        isKeyboardShow = true
         self.selectedStickerView = nil
         if textView.text == DiaryView.textViewPlaceHolder {
             textView.text = nil
@@ -49,11 +48,6 @@ extension DiaryViewController: UITextViewDelegate {
             textView.textColor = .black
             textView.font = UIFont.nbFont(ofSize: 15, weight: .medium)
         }
-        UIView.animate(withDuration: 0.3){
-            self.view.window?.frame.origin.y -= 275
-        }
-        
-        mainView.borderLine.isHidden = true
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -63,12 +57,6 @@ extension DiaryViewController: UITextViewDelegate {
             textView.textColor = .silver_225
             textView.font = UIFont.nbFont(ofSize: 15, weight: .medium)
         }
-    
-        UIView.animate(withDuration: 0.3){
-            self.view.window?.frame.origin.y = 0
-        }
-        isKeyboardShow = false
-        mainView.borderLine.isHidden = false
     }
     
     //엔터키 클릭시 하이라이트 취소 설정 메서드
@@ -151,9 +139,12 @@ extension DiaryViewController: DiaryTodoCellDelegate{
         DiaryService.shared.generateDiary(date: pickDate.dateSendServer, request: parameter){ result in
             switch result{
             case .success:
+                print("LOG: SUCCESS POST DIARY")
                 self.exitBtnDidTab()
-                self.navigationController?.popViewController(animated: true)
+                self.checkStickerStateAndRequestApi()
+//                self.navigationController?.popViewController(animated: true)
             default:
+                print("LOG: FAIL POST DIARY", result)
                 DataBaseErrorAlert.show(in: self)
                 self.rightButton.isEnabled = true
                 break

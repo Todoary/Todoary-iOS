@@ -11,9 +11,9 @@ import Alamofire
 class NetworkCheck{
     
     func networkCheck(){
-        let fcmToken = FcmTokenRequestModel(fcm_token: "networkCheck")
+        let fcmToken = FcmTokenRequestModel(fcmToken: "networkCheck")
         
-        AF.request("https://todoary.com/users/fcm_token", method: .patch, parameters: fcmToken,  encoder: JSONParameterEncoder.default , interceptor: Interceptor()).validate().responseDecodable(of: NetworkCheckModel.self) { response in
+        AF.request("https://\(Bundle.main.infoDictionary?["API-BASE-URL"] as? String ?? "")/member/fcm_token", method: .patch, parameters: fcmToken,  encoder: JSONParameterEncoder.default , interceptor: Interceptor()).validate().responseDecodable(of: NetworkCheckModel.self) { response in
             switch response.result {
             case .success(let result):
                 switch result.code {

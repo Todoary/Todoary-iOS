@@ -27,7 +27,7 @@ extension TodoRouter: BaseRouter{
         case .postTodo:                                 return HTTPMethodURL.POST.todo
         case .patchTodo(let id, _):                     return HTTPMethodURL.PATCH.todo + "/\(id)"
         case .getTodoByDate(let date):                  return HTTPMethodURL.GET.todoByDate + "/\(date)"
-        case .getTodoByCategory(let categoryId, _):     return HTTPMethodURL.GET.todoByCategory + "/\(categoryId)" //+ "/page"
+        case .getTodoByCategory(let categoryId, _):     return HTTPMethodURL.GET.todoByCategory + "/\(categoryId)" + "/page"
         case .patchCheck:                               return HTTPMethodURL.PATCH.todoCheckbox
         case .patchPin:                                 return HTTPMethodURL.PATCH.todoPin
         case .patchAlarm(let id, _):                    return HTTPMethodURL.PATCH.todoAlarm + "/\(id)/alarm"
@@ -55,9 +55,9 @@ extension TodoRouter: BaseRouter{
         case .postTodo(let request):                return .requestBody(request)
         case .patchTodo(_, let request):            return .requestBody(request)
         case .getTodoByDate:                        return .requestPlain
-        case .getTodoByCategory(_ , let page):      return .requestPlain
-//            let parameter: [String:Any] = ["page" : page, "size" : 1]
-//                                                    return .query(parameter)
+        case .getTodoByCategory(_ , let page):
+            let parameter: [String:Any] = ["page" : page, "size" : 15]
+                                                    return .query(parameter)
         case .patchCheck(let id, let isChecked):
             let parameter: [String:Any] = ["todoId" : id, "isChecked" : isChecked]
                                                     return .requestBodyWithDictionary(parameter)

@@ -21,6 +21,7 @@ import Then
     
 class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarComplete, UITextFieldDelegate{
     
+    var completion: ((TodoResultModel) -> Void)?
     //카테고리 정보 받아오는 struct
     var categoryData : [CategoryModel]! = []
     
@@ -55,6 +56,7 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        TodoManager.shared.initialize()
         requestGetCategory()
     }
     
@@ -378,6 +380,7 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
             switch result{
             case .success:
                 print("로그: [requestGenerateTodo] success")
+                TodoManager.shared.isAdd = true
                 self.navigationController?.popViewController(animated: true)
                 break
             default:
@@ -391,9 +394,12 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
     func requestModifyTodo(id: Int, parameter: TodoRequestModel){
         TodoService.shared.modifyTodo(id: id, request: parameter){ [self] result in
             switch result{
-            case .success:
+            case .success(let data):
                 print("로그: [requestModifyTodo] success")
-                self.navigationController?.popViewController(animated: true)
+                if let data = data as? TodoResultModel{
+                    completion?(data)
+                    self.navigationController?.popViewController(animated: true)
+                }
                 break
             default:
                 print("로그: [requestModifyTodo] fail")

@@ -24,13 +24,15 @@ class MailSender: NSObject, SKPSMTPMessageDelegate {
     var viewController: UIViewController!
     
     
+    
+    
     func randomGenerate() {
         var num = random_num
         UserDefaults.standard.set(num, forKey: "key")
         }
 
     func sendEmail(email: String, viewController: UIViewController) {
-        
+        LoadingHUD.show(backgroundColor: .popUpBackgroundColor)
         self.viewController = viewController
         
         let message = SKPSMTPMessage()
@@ -52,7 +54,9 @@ class MailSender: NSObject, SKPSMTPMessageDelegate {
     }
 
     func messageSent(_ message: SKPSMTPMessage!) {
+        
         print("Successfully sent email!")
+        LoadingHUD.hide()
         
         let alert = ConfirmAlertViewController(title: "인증코드가 메일로 발송되었습니다.")
         alert.modalPresentationStyle = .overFullScreen

@@ -67,5 +67,9 @@ class BaseBottomSheetViewController: UIViewController, UIViewControllerTransitio
         viewController.present(self, animated: true)
         return self
     }
+    
+    @objc func viewDidTapped(){
+        self.view.endEditing(true)
+    }
 
 }

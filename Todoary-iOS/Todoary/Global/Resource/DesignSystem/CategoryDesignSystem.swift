@@ -178,7 +178,7 @@ extension CustomCategoryTag where Self: CategoryTagView{
         self.contentEdgeInsets = UIEdgeInsets(top: padding.top,
                                               left: padding.left,
                                               bottom: padding.bottom,
-                                              right: padding.right)
+                                              right: padding.right-1)
         
         /*
         self.configuration?.contentInsets = NSDirectionalEdgeInsets(top: padding.top,
@@ -219,7 +219,6 @@ class CategoryTagView: UIButton{
         
         self.setTitle(title, for: .normal)
         self.color = UIColor.categoryColor[color]
-        
         self.setTitleColor(self.color, for: .normal)
         self.layer.borderColor = self.color.cgColor
     }

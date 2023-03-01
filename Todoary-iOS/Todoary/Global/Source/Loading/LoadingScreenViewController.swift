@@ -15,12 +15,12 @@ class LoadingHUD: NSObject {
     private static let sharedInstance = LoadingHUD()
     private var popupView: UIImageView?
     private var backgroundView: UIView?
-
-    class func show() {
+    
+    class func show(backgroundColor: UIColor = .white) {
         let screenSize = UIScreen.main.bounds
         
         let backgroundView = UIView(frame: CGRect.init(x: 0, y: 0, width: screenSize.width, height: screenSize.height))
-        backgroundView.backgroundColor = .white
+        backgroundView.backgroundColor = backgroundColor
         
         let popupView = UIImageView(frame: CGRect.init(x: 0, y: 0, width: 71, height: 12))
         popupView.backgroundColor = nil

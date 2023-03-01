@@ -47,7 +47,6 @@ class DiaryViewController: BaseViewController{
     var tag = 3000
     
     var isEnterPressed = false
-    var isKeyboardShow = false
     var _selectedStickerView:StickerView?
         var selectedStickerView:StickerView? {
             get {
@@ -91,14 +90,51 @@ class DiaryViewController: BaseViewController{
     //MARK: - Lifecycles
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         requestGetDiarySticker(parameter: self.pickDate!.dateSendServer)
+        addKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        removeKeyboardNotifications()
+    }
+    
+    override func keyboardWillAppear(noti: NSNotification) {
+        
+        if(!mainView.textView.isFirstResponder){
+            return
+        }
+        
+        mainView.borderLine.isHidden = true
+        mainView.todoTableView.isHidden = true
+        
+        mainView.textView.snp.updateConstraints{
+            $0.bottom.equalToSuperview().offset(-130)
+        }
+        
+        if let keyboardFrame: NSValue = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let moveHeight = keyboardRectangle.height - 120
+            UIView.animate(
+                withDuration: 0.3
+                , animations: {
+                    self.view.transform = CGAffineTransform(translationX: 0, y: -moveHeight)
+                }
+            )
+        }
+    }
+    
+    override func keyboardWillDisappear(noti: NSNotification) {
+        mainView.borderLine.isHidden = false
+        mainView.todoTableView.isHidden = false
+        
+        mainView.textView.snp.updateConstraints{
+            $0.bottom.equalToSuperview().offset(-80)
+        }
+        super.keyboardWillDisappear(noti: noti)
     }
     
     override func style(){
@@ -137,11 +173,7 @@ class DiaryViewController: BaseViewController{
         mainView.todoTableView.delegate = self
         mainView.todoTableView.dataSource = self
         mainView.todoTableView.separatorStyle = .none
-        
-        let textViewGesture = UITapGestureRecognizer(target: self, action: #selector(keyboardWillDisappear)).then{
-            $0.delegate = self
-        }
-//        mainView.textView.addGestureRecognizer(textViewGesture)
+
         mainView.textView.delegate = self
         
         setTextToolBarAction()
@@ -149,18 +181,8 @@ class DiaryViewController: BaseViewController{
     
     //MARK: - Helpers
     
-    @objc private func keyboardWillDisappear(){
-        self.view.endEditing(true)
-        self.selectedStickerView = nil
-    }
-
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        return isKeyboardShow ? true : false
-    }
-    
     @objc func registerBtnDidClicked(){
         checkTextValidationAndRequestApi()
-        checkStickerStateAndRequestApi()
     }
 }
 

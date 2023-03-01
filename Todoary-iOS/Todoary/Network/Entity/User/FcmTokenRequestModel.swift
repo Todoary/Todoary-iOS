@@ -7,5 +7,5 @@
 
 import Foundation
 struct FcmTokenRequestModel : Codable {
-    var fcm_token : String?
+    var fcmToken : String?
 }

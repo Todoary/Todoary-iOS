@@ -14,8 +14,8 @@ enum HTTPMethodURL{
         static let emailDuplicate = "/auth/email/duplication"
         static let emailExist =  "/auth/email/existence"
         //USER
-        static let profile =  "/users"
-        static let alarmActivate =  "/users/alarm"
+        static let profile =  "/member"
+        static let alarmActivate =  "/member/alarm"
         //TODO
         static let todoByDate = "/todo/date"
         static let todoByCategory = "/todo/category"
@@ -37,7 +37,7 @@ enum HTTPMethodURL{
         static let revokeApple = "/auth/revoke/apple"
         static let singupApple = "/auth/apple/token"
         //USER
-        static let signout = "/users/signout"
+        static let signout = "/member/signout"
         //TODO
         static let todo = "/todo"
         //CATEGORY
@@ -55,15 +55,15 @@ enum HTTPMethodURL{
         static let password = "/auth/password"
         
         //USER
-        static let fcmToken = "/users/fcm_token"
-        static let profile = "/users/profile"
-        static let imageUpdate = "/users/profile-img"
-        static let imageDelete = "/users/profile-img/default"
-        static let userDelete = "/users/status"
-        static let todoAlarmActivate = "/users/alarm/todo"
-        static let diaryAlarmActivate = "/users/alarm/diary"
-        static let remindAlarmActivate = "/users/alarm/remind"
-        static let marketing = "/users/service/terms"
+        static let fcmToken = "/member/fcm_token"
+        static let profile = "/member/profile"
+        static let imageUpdate = "/member/profile-img"
+        static let imageDelete = "/member/profile-img/default"
+        static let userDelete = "/member/status"
+        static let todoAlarmActivate = "/member/alarm/todo"
+        static let diaryAlarmActivate = "/member/alarm/diary"
+        static let remindAlarmActivate = "/member/alarm/remind"
+        static let marketing = "/member/service/terms"
         //TODO
         static let todo = "/todo"
         static let todoCheckbox = "/todo/check"

@@ -97,7 +97,7 @@ class AccountViewController : BaseViewController {
                 authorizationController.presentationContextProvider = self
                 authorizationController.performRequests()
             }else{
-                UserDeleteDataManager().patch(self)
+                self.requestDeleteUser()
             }
         }
         alert.modalPresentationStyle = .overFullScreen
@@ -136,6 +136,23 @@ class AccountViewController : BaseViewController {
         }
     }
     
+    func requestDeleteUser(){
+        AccountService.shared.deleteAccount{ result in
+            switch result{
+            case .success:
+                print("LOG: SUCCESS requestDeleteUser", result)
+                UserDefaults.standard.removeObject(forKey: "accessToken")
+                UserDefaults.standard.removeObject(forKey: "refreshToken")
+                self.navigationController?.pushViewController(LoginViewController(), animated: true)
+                break
+            default:
+                print("LOG: FAIL requestDeleteUser", result)
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+        }
+    }
+    
     func requestLogout(){
         AccountService.shared.logout(){ [self] result in
             switch result{
@@ -152,20 +169,6 @@ class AccountViewController : BaseViewController {
                 DataBaseErrorAlert.show(in: self)
                 break
             }
-        }
-    }
-    
-    func deleteApiResultCode(_ result: Int){
-        switch result{
-        case 1000:
-            self.navigationController?.pushViewController(LoginViewController(), animated: true)
-            return
-        case 2010, 4000:
-            let alert = DataBaseErrorAlert()
-            self.present(alert, animated: true, completion: nil)
-            return
-        default:
-            fatalError()
         }
     }
 }
@@ -235,7 +238,6 @@ extension AccountViewController: ASAuthorizationControllerPresentationContextPro
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
             let authorizationCode = String(data: appleIDCredential.authorizationCode!, encoding: .utf8)!
             requestDeleteAppleAccount(code: authorizationCode)
-//            UserDeleteDataManager().postAppleUserDelete(self, authorizationCode: authorizationCode)
         default:
             break
         }

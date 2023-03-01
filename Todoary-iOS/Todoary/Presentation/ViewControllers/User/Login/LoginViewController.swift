@@ -232,6 +232,7 @@ class LoginViewController: UIViewController {
                 }
                 break
             case .invalidSuccess(let code):
+                print("LOG: INVALID SUCCESS LOGIN", result,code)
                 switch code{
                 case 2011:
                     let alert = ConfirmAlertViewController(title: "회원정보가 존재하지 않습니다.")
@@ -249,10 +250,12 @@ class LoginViewController: UIViewController {
                     self.present(alert, animated: false, completion: nil)
                     break
                 default:
+                    print("로그: [requestLogin] fail", result, code)
+                    DataBaseErrorAlert.show(in: self)
                     break
                 }
             default:
-                print("로그: [requestLogin] fail")
+                print("로그: [requestLogin] fail", result)
                 DataBaseErrorAlert.show(in: self)
                 break
             }
@@ -362,6 +365,7 @@ extension LoginViewController: ASAuthorizationControllerPresentationContextProvi
         AccountService.shared.generateAppleAccount(request: parameter){ result in
             switch result{
             case .success(let data):
+                print("LOG: SUCCESS APLLE LOGIN", data)
                 guard let data = data as? AppleSignUpResultModel else { return }
                 KeyChain.create(key: Const.UserDefaults.appleIdentifier, value: parameter.userIdentifier)
                 KeyChain.create(key: Const.UserDefaults.appleRefreshToken, value: data.appleRefreshToken)
@@ -372,6 +376,7 @@ extension LoginViewController: ASAuthorizationControllerPresentationContextProvi
                 self.navigationController?.pushViewController(HomeViewController(), animated: true)
                 break
             default:
+                print("LOG: FAIL APPLE LOGIN", result)
                 DataBaseErrorAlert.show(in: self)
                 break
             }
