@@ -175,6 +175,7 @@ class AgreementViewController : BaseViewController {
         AccountService.shared.generateAppleAccount(request: parameter){ result in
             switch result{
             case .success(let data):
+                print("LOG: SUCCESS APPLE SIGNUP", data)
                 guard let data = data as? AppleSignUpResultModel else { return }
                 KeyChain.create(key: Const.UserDefaults.appleIdentifier, value: parameter.userIdentifier)
                 KeyChain.create(key: Const.UserDefaults.appleRefreshToken, value: data.appleRefreshToken)
@@ -185,6 +186,7 @@ class AgreementViewController : BaseViewController {
                 self.navigationController?.pushViewController(HomeViewController(), animated: true)
                 break
             default:
+                print("LOG: FAIL APPLE SIGNUP", result)
                 DataBaseErrorAlert.show(in: self)
                 break
             }
