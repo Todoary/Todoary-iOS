@@ -17,6 +17,9 @@ class UserManager {
     @UserDefault(key: UserDefaultKey.refreshToken, defaultValue: nil)
     static var refreshToken: String?
     
+    @UserDefault(key: UserDefaultKey.accessToken, defaultValue: nil)
+    static var accessToken: String?
+    
     @UserDefault(key: UserDefaultKey.defaultImg, defaultValue: nil)
     static var defaultImg: String?
     
