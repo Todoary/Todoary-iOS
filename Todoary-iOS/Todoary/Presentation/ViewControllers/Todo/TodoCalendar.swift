@@ -126,8 +126,8 @@ extension TodoCalendarBottomSheetViewController : UICollectionViewDelegate, UICo
         cell.dateLabel.layer.shadowOpacity = 1
         cell.dateLabel.layer.masksToBounds = false
         let firstDayOfMonth = cal.date(from: components)
-        let today = String(indexPath.row - emptyDay)
-        self.delegate?.calendarComplete(date: dateFormatterYear.string(from: firstDayOfMonth!)+"년 "+String(self.month_component)+"월 "+today+"일",date_api: dateFormatterYear.string(from: firstDayOfMonth!)+"-"+String(self.month_component)+"-"+today)
+        let today = String(format:"%02d", indexPath.row - emptyDay)
+        self.delegate?.calendarComplete(date: dateFormatterYear.string(from: firstDayOfMonth!)+"년 "+String(self.month_component)+"월 "+today+"일",date_api: dateFormatterYear.string(from: firstDayOfMonth!)+"-"+String(format:"%02d",self.month_component)+"-"+today)
         hideBottomSheetAndGoBack()
     }
     //셀 선택x

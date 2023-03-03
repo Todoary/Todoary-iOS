@@ -261,6 +261,7 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
             //받아온 날짜 형식에 맞게 변경
             let result = todoSettingData.targetDate.components(separatedBy: "-")
             
+            
             let year : Int? = Int(result[0])
             let month  : Int? = Int(result[1])
             let day : Int? = Int(result[2])
@@ -339,6 +340,7 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
     func calendarComplete(date: String, date_api: String) {
         self.mainView.date.setTitle(date, for: .normal)
         self.todoSettingData.targetDate = date_api
+        print("투두:", todoSettingData.targetDate)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
