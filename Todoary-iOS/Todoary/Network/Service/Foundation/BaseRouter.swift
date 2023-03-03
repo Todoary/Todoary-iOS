@@ -8,19 +8,6 @@
 import Foundation
 import Alamofire
 
-class UserManager{
-    static let shared = UserManager()
-    
-    let getAccessToken = UserDefaults.standard.string(forKey: "accessToken")!
-    var getRefreshToken = "refreshToken"
-    
-    func refreshToken() {
-        if UserDefaults.standard.string(forKey: "refreshToken") != nil {
-            getRefreshToken = UserDefaults.standard.string(forKey: "refreshToken")!
-        }
-    }
-}
-
 protocol BaseRouter: URLRequestConvertible {
     var baseURL: String { get }
     var method: HTTPMethod { get }
