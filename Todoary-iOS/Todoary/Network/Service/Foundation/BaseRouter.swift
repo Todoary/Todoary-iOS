@@ -41,19 +41,19 @@ extension BaseRouter {
             
         case .withToken:
             request.setValue(HeaderContent.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
-            request.setValue(UserManager.shared.getAccessToken, forHTTPHeaderField: HTTPHeaderField.accesstoken.rawValue)
+            request.setValue(UserManager.accessToken, forHTTPHeaderField: HTTPHeaderField.accesstoken.rawValue)
             
         case .multiPart:
             request.setValue(HeaderContent.multiPart.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
             
         case .multiPartWithToken:
             request.setValue(HeaderContent.multiPart.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
-            request.setValue(UserManager.shared.getAccessToken, forHTTPHeaderField: HTTPHeaderField.accesstoken.rawValue)
+            request.setValue(UserManager.accessToken, forHTTPHeaderField: HTTPHeaderField.accesstoken.rawValue)
             
         case .reissuance:
             request.setValue(HeaderContent.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
-            request.setValue(UserManager.shared.getAccessToken, forHTTPHeaderField: HTTPHeaderField.accesstoken.rawValue)
-            request.setValue(UserManager.shared.getRefreshToken, forHTTPHeaderField: HTTPHeaderField.refreshtoken.rawValue)
+            request.setValue(UserManager.accessToken, forHTTPHeaderField: HTTPHeaderField.accesstoken.rawValue)
+            request.setValue(UserManager.refreshToken, forHTTPHeaderField: HTTPHeaderField.refreshtoken.rawValue)
         }
         
         return request
