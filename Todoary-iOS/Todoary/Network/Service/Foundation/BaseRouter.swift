@@ -38,7 +38,6 @@ extension BaseRouter {
             
         case .default:
             request.setValue(HeaderContent.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
-            
         case .withToken:
             request.setValue(HeaderContent.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
             request.setValue(UserManager.accessToken, forHTTPHeaderField: HTTPHeaderField.accesstoken.rawValue)
