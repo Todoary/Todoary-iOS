@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct UserDefaultKey{
-    static let fcmToken = "fcmToken"
-    static let isFirstTime = "isFirstTime"
-    static let accessToken = "accessToken"
-    static let refreshToken = "refreshToken"
-    static let defaultImg = "defaultImg"
-    static let emailCertificationCode = "emailCertificationCode" //기존 key 네이밍
-    static let hasAppPassword = "hasAppPassword"
-    static let appPassword = "appPassword" //기존 newPasswordArr
+enum UserDefaultKey: String{
+    case fcmToken = "fcmToken"
+    case isFirstTime = "isFirstTime"
+    case accessToken = "accessToken"
+    case refreshToken = "refreshToken"
+    case defaultImg = "defaultImg"
+    case emailCertificationCode = "emailCertificationCode" //기존 key 네이밍
+    case hasAppPassword = "hasAppPassword"
+    case appPassword = "appPassword" //기존 newPasswordArr
 }
 
