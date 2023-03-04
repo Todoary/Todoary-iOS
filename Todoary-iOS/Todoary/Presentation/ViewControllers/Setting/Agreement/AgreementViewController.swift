@@ -180,8 +180,9 @@ class AgreementViewController : BaseViewController {
                 KeyChain.create(key: Const.UserDefaults.appleIdentifier, value: parameter.userIdentifier)
                 KeyChain.create(key: Const.UserDefaults.appleRefreshToken, value: data.appleRefreshToken)
 
-                UserDefaults.standard.set(data.token.accessToken, forKey: "accessToken")
-                UserDefaults.standard.set(data.token.refreshToken, forKey: "refreshToken")
+                
+                UserManager.accessToken = data.token.accessToken
+                UserManager.refreshToken = data.token.refreshToken
 
                 self.navigationController?.pushViewController(HomeViewController(), animated: true)
                 break
