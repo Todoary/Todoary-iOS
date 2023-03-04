@@ -139,7 +139,7 @@ class PasswordFindViewController: BaseViewController, UITextFieldDelegate {
     
     @objc func certificationOkBtnDidTap(){
         self.certification = mainView.certificationTf.text!
-        if self.certification == UserDefaults.standard.string(forKey: "key"){
+        if self.certification == UserManager.emailCertificationCode{
             isCertification = true
         }else{
             isCertification = false
