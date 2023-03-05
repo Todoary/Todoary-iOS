@@ -8,19 +8,6 @@
 import Foundation
 import Alamofire
 
-class UserManager{
-    static let shared = UserManager()
-    
-    let getAccessToken = UserDefaults.standard.string(forKey: "accessToken")!
-    var getRefreshToken = "refreshToken"
-    
-    func refreshToken() {
-        if UserDefaults.standard.string(forKey: "refreshToken") != nil {
-            getRefreshToken = UserDefaults.standard.string(forKey: "refreshToken")!
-        }
-    }
-}
-
 protocol BaseRouter: URLRequestConvertible {
     var baseURL: String { get }
     var method: HTTPMethod { get }
@@ -51,22 +38,21 @@ extension BaseRouter {
             
         case .default:
             request.setValue(HeaderContent.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
-            
         case .withToken:
             request.setValue(HeaderContent.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
-            request.setValue(UserManager.shared.getAccessToken, forHTTPHeaderField: HTTPHeaderField.accesstoken.rawValue)
+            request.setValue(UserManager.accessToken, forHTTPHeaderField: HTTPHeaderField.accesstoken.rawValue)
             
         case .multiPart:
             request.setValue(HeaderContent.multiPart.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
             
         case .multiPartWithToken:
             request.setValue(HeaderContent.multiPart.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
-            request.setValue(UserManager.shared.getAccessToken, forHTTPHeaderField: HTTPHeaderField.accesstoken.rawValue)
+            request.setValue(UserManager.accessToken, forHTTPHeaderField: HTTPHeaderField.accesstoken.rawValue)
             
         case .reissuance:
             request.setValue(HeaderContent.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
-            request.setValue(UserManager.shared.getAccessToken, forHTTPHeaderField: HTTPHeaderField.accesstoken.rawValue)
-            request.setValue(UserManager.shared.getRefreshToken, forHTTPHeaderField: HTTPHeaderField.refreshtoken.rawValue)
+            request.setValue(UserManager.accessToken, forHTTPHeaderField: HTTPHeaderField.accesstoken.rawValue)
+            request.setValue(UserManager.refreshToken, forHTTPHeaderField: HTTPHeaderField.refreshtoken.rawValue)
         }
         
         return request

@@ -23,13 +23,9 @@ class MailSender: NSObject, SKPSMTPMessageDelegate {
     
     var viewController: UIViewController!
     
-    
-    
-    
     func randomGenerate() {
-        var num = random_num
-        UserDefaults.standard.set(num, forKey: "key")
-        }
+        UserManager.emailCertificationCode = String(random_num)
+    }
 
     func sendEmail(email: String, viewController: UIViewController) {
         LoadingHUD.show(backgroundColor: .popUpBackgroundColor)
