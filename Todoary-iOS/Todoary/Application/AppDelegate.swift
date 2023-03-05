@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate  {
     
     public func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         let firebaseToken = fcmToken ?? ""
-        UserDefaults.standard.set(firebaseToken, forKey: "fcmToken")
+        UserManager.fcmToken = firebaseToken
     }
     
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
@@ -38,10 +38,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate  {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        if (UserDefaults.standard.string(forKey: "isFirstTime") == nil){
+        if(UserManager.isFirstTime){
             self.moveOnboardingViewController()
         }else{
-            if (UserDefaults.standard.string(forKey: "refreshToken") == nil){
+            if (UserManager.refreshToken == nil){
                 self.moveLoginViewController()
                 
             }else {
@@ -71,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate  {
     
     func successAPI(){
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
-            if UserDefaults.standard.bool(forKey: "appPasswordCheck") == true {
+            if (UserManager.hasAppPassword) {
                 self.navigationController = UINavigationController(rootViewController: AppPasswordViewController())
                 self.navigationController?.navigationBar.isHidden = true
                 self.window?.rootViewController = self.navigationController

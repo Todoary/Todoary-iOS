@@ -20,7 +20,7 @@ class PinNumberSettingViewController : BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if UserDefaults.standard.bool(forKey: "appPasswordCheck") == true {
+        if UserManager.hasAppPassword == true{
             mainView.pinSwitch.isOn = true
         }else {
             mainView.pinSwitch.isOn = false
@@ -69,9 +69,9 @@ class PinNumberSettingViewController : BaseViewController {
             self.navigationController?.pushViewController(newAppPasswordViewController, animated: true)
             self.navigationController?.isNavigationBarHidden = true
         }else {
-            UserDefaults.standard.set(false,forKey: "appPasswordCheck")
-            UserDefaults.standard.set(nil, forKey: "newPasswordArr")
-
+            UserManager.hasAppPassword = false
+            UserManager.removeObject(key: .appPassword)
         }
     }
 }
+

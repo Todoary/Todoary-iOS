@@ -93,8 +93,8 @@ class AppPasswordViewController : UIViewController {
             mainView.inputNotPw4.isHidden = true
             mainView.inputPw4.isHidden = false
             
-            let pw = defaults.object(forKey: "newPasswordArr")
-            if passwordArr == pw as! [String]
+            let pw = UserManager.appPassword
+            if passwordArr == pw
                 && mainView.inputPw1.isHidden == false
                 && mainView.inputPw2.isHidden == false
                 && mainView.inputPw3.isHidden == false

@@ -11,15 +11,15 @@ struct DiaryResultModel: Codable{
     let diaryId: Int
     var title: String
     var content: String
-    let created_at: String
+    let createdDate: String
     
     var content15AttributedString: NSAttributedString?{
     
-            let data = Data(content.utf8)
-            
-            if let attributedString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
-                return attributedString
-            }
+        let data = Data(content.utf8)
+        
+        if let attributedString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
+            return attributedString
+        }
         return nil
     }
     
