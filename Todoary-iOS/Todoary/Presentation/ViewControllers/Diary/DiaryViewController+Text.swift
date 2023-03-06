@@ -142,7 +142,6 @@ extension DiaryViewController: DiaryTodoCellDelegate{
                 print("LOG: SUCCESS POST DIARY")
                 self.exitBtnDidTab()
                 self.checkStickerStateAndRequestApi()
-//                self.navigationController?.popViewController(animated: true)
             default:
                 print("LOG: FAIL POST DIARY", result)
                 DataBaseErrorAlert.show(in: self)

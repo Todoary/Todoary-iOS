@@ -231,6 +231,7 @@ class HomeViewController : UIViewController {
                 break
             default:
                 HomeViewController.bottomSheetVC.processResponseGetDiary(data: nil)
+                DataBaseErrorAlert.show(in: self)
                 break
             }
         }
