@@ -12,6 +12,10 @@ class TodoCalendarBottomSheetViewController: UIViewController {
     
     // MARK: - Properties
     
+    var scrollDirection : scrollDiretion = .none
+    
+    let screenSize = UIScreen.main.bounds
+    
     //받아올 날짜 데이터
     var todoYear : Int = -1
     var todoMonth : Int = -1
@@ -37,20 +41,37 @@ class TodoCalendarBottomSheetViewController: UIViewController {
     let dateFormatterDate = DateFormatter()
     
     var today : Int = 0
+    
     var month_component : Int = 0
     var year_component : Int = 0
+    
+    var select_year : Int = 0
+    var select_month : Int = 0
+    var select_day : Int = 0
     
     var month : Int = 0
     var year : Int = 0
     
     var emptyDay : Int = 0
+    var previousEmptyDay : Int = 0
+    var nextEmptyDay : Int = 0
     
     var components = DateComponents()
+    var components_previous = DateComponents()
+    var components_next = DateComponents()
     
     var weeks: [String] = ["일", "월", "화", "수", "목", "금", "토"]
     var days: [String] = []
+    var previousDays: [String] = []
+    var nextDays: [String] = []
+    
     var daysCountInMonth = 0
+    var daysCountInMonth_previous = 0
+    var daysCountInMonth_next = 0
+    
     var weekdayAdding = 0
+    var weekdayAdding_previous = 0
+    var weekdayAdding_next = 0
     
     let inset = UIEdgeInsets(top: 1, left: 3, bottom: 0, right: 3)
     
@@ -75,20 +96,56 @@ class TodoCalendarBottomSheetViewController: UIViewController {
         $0.tintColor = .clear
     }
     
-    let previousMonthBtn = UIButton().then{
-        $0.setImage(UIImage(named: "home_previous"), for: .normal)
-        $0.addTarget(self, action: #selector(prevBtnDidTap), for: .touchUpInside)
+    lazy var completeBtn = UIButton().then{
+        $0.backgroundColor = .white
+        $0.setTitle("완료", for: .normal)
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.textAlignment = .center
+        $0.titleLabel?.setTypoStyleWithSingleLine(typoStyle: .semibold17)
+        $0.addTarget(self, action: #selector(calendarCompleteBtnDidTap), for: .touchUpInside)
     }
     
-    let nextMonthBtn = UIButton().then{
-        $0.setImage(UIImage(named: "home_next"), for: .normal)
-        $0.addTarget(self, action: #selector(nextBtnDidTap), for: .touchUpInside)
+    let scrollView = UIScrollView().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.isPagingEnabled = true
     }
     
-    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()).then {
+    let weekCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()).then {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = -2
+        layout.minimumInteritemSpacing = 1
+        layout.minimumLineSpacing = 1
+        layout.sectionInset = UIEdgeInsets.init(top: 0, left: 19, bottom: 0, right: 19)
+        $0.backgroundColor = .white
+        $0.contentInset = UIEdgeInsets.init(top: 0, left: 5, bottom: 0, right: 5)
+        $0.collectionViewLayout = layout
+    }
+    
+    
+    let mainCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()).then {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 1
+        layout.minimumLineSpacing = 1
+        layout.sectionInset = UIEdgeInsets.init(top: 3, left: 19, bottom: 0, right: 19)
+        $0.backgroundColor = .white
+        $0.contentInset = UIEdgeInsets.init(top: 0, left: 5, bottom: 0, right: 5)
+        $0.collectionViewLayout = layout
+    }
+    
+    let previousCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()).then {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 1
+        layout.minimumLineSpacing = 1
+        layout.sectionInset = UIEdgeInsets.init(top: 3, left: 19, bottom: 0, right: 19)
+        $0.backgroundColor = .white
+        $0.contentInset = UIEdgeInsets.init(top: 0, left: 5, bottom: 0, right: 5)
+        $0.collectionViewLayout = layout
+    }
+    
+    let nextCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()).then {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 1
+        layout.minimumLineSpacing = 1
+        layout.sectionInset = UIEdgeInsets.init(top: 3, left: 19, bottom: 0, right: 19)
         $0.backgroundColor = .white
         $0.contentInset = UIEdgeInsets.init(top: 0, left: 5, bottom: 0, right: 5)
         $0.collectionViewLayout = layout
@@ -98,14 +155,42 @@ class TodoCalendarBottomSheetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         hierarchy()
         setupGestureRecognizer()
         
         self.initView()
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
-        self.collectionView.register(TodoWeekCell.self, forCellWithReuseIdentifier: "todoWeekCell")
-        self.collectionView.register(TodoCalendarCell.self, forCellWithReuseIdentifier: "todoCalendarCell")
+        
+        scrollView.delegate = self
+        scrollView.showsHorizontalScrollIndicator = false
+        
+        weekCollectionView.do {
+            $0.delegate = self
+            $0.dataSource = self
+            $0.register(TodoWeekCell.self, forCellWithReuseIdentifier: "todoWeekCell")
+        }
+        
+        mainCollectionView.do {
+            $0.delegate = self
+            $0.dataSource = self
+            $0.register(TodoCalendarCell.self, forCellWithReuseIdentifier: "todoCalendarCell")
+        }
+        
+        previousCollectionView.do {
+            $0.delegate = self
+            $0.dataSource = self
+            $0.register(TodoCalendarCell.self, forCellWithReuseIdentifier: "todoCalendarCell")
+        }
+        
+        nextCollectionView.do {
+            $0.delegate = self
+            $0.dataSource = self
+            $0.register(TodoCalendarCell.self, forCellWithReuseIdentifier: "todoCalendarCell")
+        }
+        self.view.layoutIfNeeded()
+        
+        scrollView.setContentOffset(CGPoint(x: screenSize.width, y: 0), animated: false)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -118,11 +203,13 @@ class TodoCalendarBottomSheetViewController: UIViewController {
     private func hierarchy() {
         view.addSubview(dimmedBackView)
         view.addSubview(bottomSheetView)
-        bottomSheetView.addSubview(collectionView)
         bottomSheetView.addSubview(year_Month)
-        bottomSheetView.addSubview(previousMonthBtn)
-        bottomSheetView.addSubview(nextMonthBtn)
-        
+        bottomSheetView.addSubview(completeBtn)
+        bottomSheetView.addSubview(weekCollectionView)
+        bottomSheetView.addSubview(scrollView)
+        scrollView.addSubview(mainCollectionView)
+        scrollView.addSubview(previousCollectionView)
+        scrollView.addSubview(nextCollectionView)
             
         dimmedBackView.alpha = 0.0
         layout()
@@ -149,31 +236,66 @@ class TodoCalendarBottomSheetViewController: UIViewController {
         ])
         
         year_Month.snp.makeConstraints{ make in
-            make.top.equalTo(bottomSheetView.snp.top).offset(36)
+            make.top.equalTo(bottomSheetView.snp.top).offset(25)
             make.leading.equalTo(bottomSheetView.snp.leading).offset(51)
         }
         
-        previousMonthBtn.snp.makeConstraints{ make in
-            make.centerY.equalTo(year_Month)
-            make.trailing.equalTo(nextMonthBtn.snp.leading).offset(-13)
+        weekCollectionView.snp.makeConstraints{ make in
+            make.top.equalTo(year_Month.snp.bottom).offset(0)
+            make.leading.equalTo(bottomSheetView.snp.leading)
+            make.trailing.equalTo(bottomSheetView.snp.trailing)
+            make.width.equalTo(screenSize.width)
+            make.height.equalTo(20)
         }
         
-        nextMonthBtn.snp.makeConstraints{ make in
-            make.centerY.equalTo(year_Month)
-            make.trailing.equalTo(bottomSheetView.snp.trailing).offset(-34)
+        scrollView.snp.makeConstraints{ make in
+            make.top.equalTo(weekCollectionView.snp.bottom).offset(2)
+            make.width.equalTo(screenSize.width * 3)
+            make.leading.trailing.bottom.equalTo(bottomSheetView)
+            make.height.equalTo(250)
         }
         
-        collectionView.snp.makeConstraints{ make in
-            make.top.equalTo(year_Month.snp.bottom).offset(-2)
-            make.centerX.equalTo(bottomSheetView)
-            make.leading.equalTo(bottomSheetView.snp.leading).offset(34)
-            make.trailing.equalTo(bottomSheetView.snp.trailing).offset(-34)
-            make.bottom.equalTo(bottomSheetView.snp.bottom)
+        previousCollectionView.snp.makeConstraints{ make in
+            make.top.leading.bottom.equalToSuperview()
+            make.trailing.equalTo(mainCollectionView.snp.leading)
+            make.width.equalTo(screenSize.width)
+            make.height.equalToSuperview()
         }
+        
+        mainCollectionView.snp.makeConstraints{ make in
+            make.top.bottom.equalToSuperview()
+            make.leading.equalTo(previousCollectionView.snp.trailing)
+            make.trailing.equalTo(nextCollectionView.snp.leading)
+            make.width.equalTo(screenSize.width)
+            make.height.equalToSuperview()
+        }
+        
+        nextCollectionView.snp.makeConstraints{ make in
+            make.top.trailing.bottom.equalToSuperview()
+            make.leading.equalTo(mainCollectionView.snp.trailing)
+            make.width.equalTo(screenSize.width)
+            make.height.equalToSuperview()
+        }
+        
+        completeBtn.snp.makeConstraints{ make in
+            make.top.equalTo(bottomSheetView.snp.top)
+            make.trailing.equalTo(bottomSheetView.snp.trailing)
+            make.width.equalTo(80)
+            make.height.equalTo(60)
+        }
+        
+        
         
     }
     
     //MARK: - Actions
+    
+    @objc func calendarCompleteBtnDidTap() {
+        
+        self.delegate?.calendarComplete(date: "\(select_year)년 \(select_month)월 \(select_day)일",date_api: "\(select_year)-\(String(format:"%02d",select_month))-\(String(format:"%02d", select_day))")
+        
+        hideBottomSheetAndGoBack()
+    }
     
     //MARK: - Helpers
     
