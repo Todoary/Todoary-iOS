@@ -11,6 +11,13 @@ import Then
 
 class SignUpViewController: BaseViewController{
     
+    enum InvalidCode: Int{
+        case duplicateEmail = 2017
+        case quitEmail = 2020
+        case duplicateNickname = 2032
+        case `default`
+    }
+    
     //MARK: - Properties
     
     var email: String = ""
