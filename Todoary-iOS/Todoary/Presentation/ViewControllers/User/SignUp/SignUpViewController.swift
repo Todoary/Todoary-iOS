@@ -60,7 +60,7 @@ class SignUpViewController: BaseViewController{
     
     override func style() {
         super.style()
-        self.navigationTitle.text = "회원가입"
+        navigationTitle.text = "회원가입"
     }
     
     override func layout() {
@@ -204,28 +204,20 @@ class SignUpViewController: BaseViewController{
     }
     
     @objc func certificationBtnDidClicked(_ sender: UIButton){
-        
+        mainView.idCertificationButton.isEnabled = false
         mainView.idCanUseLabel.isHidden = false
-        
+
         if(isValidEmail){
             requestGetEmailDuplicate()
         }else{
             mainView.idCanUseLabel.text = "*이메일 형식이 올바르지 않습니다."
             mainView.idCanUseLabel.textColor = .noticeRed
         }
-            
     }
     
     @objc func certificationOKBtnDidClicked(_ sender: UIButton){
-        
-        let alertTitle : String!
-        if isValidCertiCode{
-            alertTitle = "인증이 완료되었습니다."
-        }else{
-            alertTitle = "인증코드가 일치하지 않습니다."
-        }
-        
-        _ = ConfirmAlertViewController(title: alertTitle).show(in: self)
+        let alertTitle: String = isValidCertiCode ? "인증이 완료되었습니다." : "인증코드가 일치하지 않습니다."
+        ConfirmAlertViewController(title: alertTitle).show(in: self)
     }
     
     //MARK: - API
@@ -277,10 +269,13 @@ class SignUpViewController: BaseViewController{
                 break
             }
         }
+        mainView.idCertificationButton.isEnabled = true
     }
     
     @objc private func requestSignUp(){
         
+        print("LOG: requestSignUp button did tapped")
+        mainView.nextButton.isEnabled = false
         let parameter = SignUpRequestModel(email: email,
                                            name: name,
                                            nickname: nickname,
@@ -313,7 +308,7 @@ class SignUpViewController: BaseViewController{
                 break
             default:
                 print("LOG: FAIL SIGNUP",result)
-                self.mainView.nextButton.isEnabled = false
+                mainView.nextButton.isEnabled = true
                 DataBaseErrorAlert.show(in: self)
                 break
             }

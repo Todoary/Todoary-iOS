@@ -127,12 +127,12 @@ class BaseAlertViewController: UIViewController {
     //MARK: - Action
     
     @objc func dismissAlertController(){
-        self.dismiss(animated: false, completion: nil)
+        dismiss(animated: false, completion: nil)
     }
     
     @objc func confirmBtnDidClicked(){
-        self.alertHandler?()
-        self.dismiss(animated: false, completion: nil)
+        alertHandler?()
+        dismiss(animated: false, completion: nil)
     }
     
     @discardableResult
