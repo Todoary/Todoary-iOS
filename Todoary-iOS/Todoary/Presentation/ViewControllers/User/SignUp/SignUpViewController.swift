@@ -250,7 +250,7 @@ class SignUpViewController: BaseViewController{
                     isValidEmail = false
                     break
                 case .quitEmail:
-                    let alert = CancelMessageAlertViewController(title: "1달 이내에 탈퇴한 계정입니다.\n해당 이메일로 새로\n회원가입 하시겠습니까?",
+                    let alert = CancelReverseMessageAlertViewController(title: "1달 이내에 탈퇴한 계정입니다.\n해당 이메일로 새로\n회원가입 하시겠습니까?",
                                                                  message: "새로 회원가입하면 기존의 데이터는 삭제됩니다.").show(in: self)
                     alert.alertHandler = {
                         guard let root = self.navigationController?.viewControllers.first else { return }
@@ -285,7 +285,8 @@ class SignUpViewController: BaseViewController{
         AccountService.shared.generateAccount(request: parameter){ [self] result in
             switch result{
             case .success:
-                let alert = ConfirmMessageAlertViewController(title: "회원가입을 축하합니다!", message: "이제 Todoary 서비스를 자유롭게 이용해보세요.").show(in: self)
+                let alert = ConfirmMessageAlertViewController(title: "회원가입을 축하합니다!",
+                                                              message: "이제 Todoary 서비스를 자유롭게 이용해보세요.").show(in: self)
                 alert.alertHandler = {
                     self.navigationController?.popToRootViewController(animated: true)
                 }
