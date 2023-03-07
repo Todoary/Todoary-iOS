@@ -18,7 +18,7 @@ class TodoInDiaryTableViewCell: BaseTableViewCell {
     var delegate: DiaryTodoCellDelegate?
     
     private let backgroundShadowView = DiaryShadowView()
-    private lazy var checkBox = UIButton().then{
+    lazy var checkBox = UIButton().then{
         $0.setImage(Image.todoCheckEmpty, for: .normal)
         $0.setImage(Image.todoCheck, for: .selected)
         $0.addTarget(self, action: #selector(checkBoxBtnDidClicked), for: .touchUpInside)
@@ -80,6 +80,7 @@ class TodoInDiaryTableViewCell: BaseTableViewCell {
     }
     
     @objc private func checkBoxBtnDidClicked(){
+        checkBox.isEnabled = false
         delegate?.requestPatchTodoCheckStatus(cell: self)
     }
     

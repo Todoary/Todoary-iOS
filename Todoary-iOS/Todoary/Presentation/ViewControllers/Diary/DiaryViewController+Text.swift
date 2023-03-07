@@ -126,7 +126,7 @@ extension DiaryViewController: DiaryTodoCellDelegate{
                 self.todoData[index].isChecked.toggle()
                 break
             }
-            
+            cell.checkBox.isEnabled = true
         }
     }
     
