@@ -21,7 +21,7 @@ class CategoryTodoTableViewCell: BaseTableViewCell {
     let backgroundShadowView = ShadowView(cornerRadius: 20)
     private let categoryLabel = CategoryTag.generateForCategoryTodo()
     
-    private lazy var checkBox = UIButton().then{
+    lazy var checkBox = UIButton().then{
         $0.setImage(Image.todoCheckEmpty, for: .normal)
         $0.setImage(Image.todoCheck, for: .selected)
         $0.addTarget(self, action: #selector(willChangeCheckBoxState), for: .touchUpInside)
@@ -156,6 +156,7 @@ class CategoryTodoTableViewCell: BaseTableViewCell {
     //MARK: - Action
     
     @objc private func willChangeCheckBoxState(){
+        checkBox.isEnabled = false
         delegate?.requestPatchTodoCheckStatus(cell: self)
     }
     
