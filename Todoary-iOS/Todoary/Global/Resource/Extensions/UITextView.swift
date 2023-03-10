@@ -81,6 +81,10 @@ extension UITextView {
             let lineHeight: CGFloat = spaing
             
             let style = NSMutableParagraphStyle()
+            if let originalStyle = attributedString.attribute(.paragraphStyle, at: 0, effectiveRange: nil) as? NSParagraphStyle{
+                style.alignment = originalStyle.alignment
+            }
+            
             style.maximumLineHeight = lineHeight
             style.minimumLineHeight = lineHeight
             
