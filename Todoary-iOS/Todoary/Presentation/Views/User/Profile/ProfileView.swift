@@ -65,7 +65,7 @@ class ProfileView: BaseView {
     }
     
     let introduceTitle = UILabel().then{
-        $0.text = "한줄소개"
+        $0.text = "한 줄 소개"
         $0.textColor = .black
         $0.addLetterSpacing(spacing: 0.28)
         $0.font = UIFont.nbFont(type: .body2)
