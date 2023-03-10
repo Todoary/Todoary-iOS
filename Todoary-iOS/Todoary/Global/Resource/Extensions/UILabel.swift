@@ -156,6 +156,11 @@ extension UILabel {
     private func setTextWithLineHeight(lineHeight: Double, attributedString: NSMutableAttributedString) -> NSMutableAttributedString{
         
         let style = NSMutableParagraphStyle()
+        
+        if let originalStyle = attributedString.attribute(.paragraphStyle, at: 0, effectiveRange: nil) as? NSParagraphStyle{
+            style.alignment = originalStyle.alignment
+        }
+        
         style.maximumLineHeight = lineHeight
         style.minimumLineHeight = lineHeight
         style.lineSpacing = lineHeight/4
