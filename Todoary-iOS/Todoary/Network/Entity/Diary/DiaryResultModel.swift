@@ -12,25 +12,38 @@ struct DiaryResultModel: Codable{
     var title: String
     var content: String
     let createdDate: String
-    
-    var content15AttributedString: NSAttributedString?{
-    
-        let data = Data(content.utf8)
-        
-        if let attributedString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
-            return attributedString
+
+    var content15AttributedString: NSMutableAttributedString?{
+        guard let data = content.data(using: .utf8) else {
+            return nil
         }
-        return nil
+        
+        guard let att = try? NSMutableAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding:String.Encoding.utf8.rawValue], documentAttributes: nil) else {
+            return nil
+        }
+        
+        if att.string.last == "\n" {
+            return att.attributedSubstring(from: NSRange(location: 0, length: att.length - 1)) as? NSMutableAttributedString
+        } else {
+            return att
+        }
     }
     
     var content12AttributedString: NSAttributedString?{
     
-        let data = Data(self.summaryCellContent.utf8)
-            
-            if let attributedString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
-                return attributedString
-            }
-        return nil
+        guard let data = summaryCellContent.data(using: .utf8) else {
+            return nil
+        }
+        
+        guard let att = try? NSMutableAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding:String.Encoding.utf8.rawValue], documentAttributes: nil) else {
+            return nil
+        }
+
+        if att.string.last == "\n" {
+            return att.attributedSubstring(from: NSRange(location: 0, length: att.length - 1)) as? NSMutableAttributedString
+        } else {
+            return att
+        }
     }
     
     //SummaryVC Cell에서 사용할 폰트 12 사이즈의 text

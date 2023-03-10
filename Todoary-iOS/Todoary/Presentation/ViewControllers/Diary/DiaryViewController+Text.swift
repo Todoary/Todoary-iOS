@@ -135,7 +135,7 @@ extension DiaryViewController: DiaryTodoCellDelegate{
         let text = NSAttributedString(attributedString: mainView.textView.attributedText)
         let parameter = DiaryRequestModel(title: mainView.diaryTitle.text!,
                                           content: text.attributedString2Html!)
-        
+
         DiaryService.shared.generateDiary(date: pickDate.dateSendServer, request: parameter){ result in
             switch result{
             case .success:
