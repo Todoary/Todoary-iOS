@@ -54,4 +54,14 @@ extension AccountService {
         requestObjectWithEmptyResponse(AccountRouter.patchPassword(request: request), completion: completion)
 
     }
+    
+    func regenerateAppleAccount(request: ReregistrationAppleRequestModel, completion: @escaping (NetworkResult<Any>) -> Void){
+        requestObjectWithEmptyResponse(AccountRouter.reregistrationApple(request: request), completion: completion)
+
+    }
+    
+    func restoreDeactivateAccount(request: RestoreRequestModel, completion: @escaping (NetworkResult<Any>) -> Void){
+        requestObjectWithEmptyResponse(AccountRouter.restore(request: request), completion: completion)
+
+    }
 }

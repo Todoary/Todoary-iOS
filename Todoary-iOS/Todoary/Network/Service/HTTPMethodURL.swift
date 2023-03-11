@@ -36,6 +36,7 @@ enum HTTPMethodURL{
         static let signup = "/auth/signup"
         static let revokeApple = "/auth/revoke/apple"
         static let singupApple = "/auth/apple/token"
+        static let regenerateApple = "/auth/signup/oauth2"
         //USER
         static let signout = "/member/signout"
         //TODO
@@ -53,6 +54,7 @@ enum HTTPMethodURL{
     struct PATCH {
         //AUTH
         static let password = "/auth/password"
+        static let restore = "/auth/restore"
         
         //USER
         static let fcmToken = "/member/fcm_token"

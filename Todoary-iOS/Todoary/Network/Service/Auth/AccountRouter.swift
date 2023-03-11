@@ -19,6 +19,8 @@ enum AccountRouter{
     case emailDuplicate(request: String)
     case emailExistence(request: String)
     case patchPassword(request: PasswordRequestModel)
+    case reregistrationApple(request: ReregistrationAppleRequestModel)
+    case restore(request: RestoreRequestModel)
 }
 
 extension AccountRouter: BaseRouter{
@@ -35,6 +37,10 @@ extension AccountRouter: BaseRouter{
         case .emailDuplicate:               return HTTPMethodURL.GET.emailDuplicate
         case .emailExistence:               return HTTPMethodURL.GET.emailExist
         case .patchPassword:                return HTTPMethodURL.PATCH.password
+        case .reregistrationApple:
+            return HTTPMethodURL.POST.regenerateApple
+        case .restore:
+            return HTTPMethodURL.PATCH.restore
         }
     }
     
@@ -50,6 +56,9 @@ extension AccountRouter: BaseRouter{
         case .emailDuplicate:               return .get
         case .emailExistence:               return .get
         case .patchPassword:                return .patch
+        case .reregistrationApple:          return .post
+        case .restore:                      return .patch
+                
         }
     }
     
@@ -69,6 +78,8 @@ extension AccountRouter: BaseRouter{
         case .autoLogin(let request):                   return .requestBody(request)
         case .logout:                                   return .requestPlain
         case .patchPassword(let request):               return .requestBody(request)
+        case .reregistrationApple(let request):         return .requestBody(request)
+        case .restore(request: let request):            return .requestBody(request)
         }
     }
     
