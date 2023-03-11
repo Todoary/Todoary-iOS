@@ -95,10 +95,11 @@ class HomeViewController : UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         apiSetting()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         showBottomSheet()
-        
     }
     
 //MARK: - BaseProtocol
