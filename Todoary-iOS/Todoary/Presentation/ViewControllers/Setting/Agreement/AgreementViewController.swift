@@ -179,12 +179,16 @@ class AgreementViewController : BaseViewController {
                 guard let data = data as? AppleSignUpResultModel else { return }
                 KeyChain.create(key: Const.UserDefaults.appleIdentifier, value: parameter.userIdentifier)
                 KeyChain.create(key: Const.UserDefaults.appleRefreshToken, value: data.appleRefreshToken)
+                KeyChain.create(key: Const.UserDefaults.providerId, value: data.providerId)
 
-                
                 UserManager.accessToken = data.token.accessToken
                 UserManager.refreshToken = data.token.refreshToken
-
-                self.navigationController?.pushViewController(HomeViewController(), animated: true)
+                
+                if(data.isDeactivatedUser){
+                    self.processDeactivatedAppleUserSingUp()
+                }else{
+                    self.navigationController?.pushViewController(HomeViewController(), animated: true)
+                }
                 break
             default:
                 print("LOG: FAIL APPLE SIGNUP", result)
@@ -195,6 +199,68 @@ class AgreementViewController : BaseViewController {
         }
     }
     
+    private func processDeactivatedAppleUserSingUp(){
+        let alert = CancelAlertViewController(title: "탈퇴 계정입니다 복구하시겠습니까?").show(in: self)
+        alert.cancelCompletion = {
+            //regenerate
+            self.requestRegenerateAppleAccount()
+        }
+        alert.alertHandler = {
+            //restore
+            self.requestRestoreAppleAccount()
+        }
+    }
+    
+    private func requestRegenerateAppleAccount(){
+
+        guard let appleUserInfo = appleUserInfo, let providerId = KeyChain.read(key: Const.UserDefaults.providerId) else {
+            DataBaseErrorAlert.show(in: self)
+            return
+        }
+        
+        let request = ReregistrationAppleRequestModel(name: appleUserInfo.name,
+                                                      email: appleUserInfo.email,
+                                                      providerId: providerId,
+                                                      isTermsEnable: appleUserInfo.isTermsEnable)
+        
+        AccountService.shared.regenerateAppleAccount(request: request){ result in
+            switch result{
+            case .success:
+                print("LOG: SUCCESS requestRegenerateAppleAccount")
+                self.navigationController?.pushViewController(HomeViewController(), animated: true)
+                break
+            default:
+                print("LOG: fail requestRegenerateAppleAccount")
+                DataBaseErrorAlert.show(in: self)
+                return
+            }
+        }
+    }
+    
+    private func requestRestoreAppleAccount(){
+        
+        guard let appleUserInfo = appleUserInfo, let providerId = KeyChain.read(key: Const.UserDefaults.providerId) else {
+            DataBaseErrorAlert.show(in: self)
+            return
+        }
+        
+        let request = RestoreRequestModel(email: appleUserInfo.email,
+                                          provider: "apple",
+                                          providerId: providerId)
+        
+        AccountService.shared.restoreDeactivateAccount(request: request){ result in
+            switch result{
+            case .success:
+                print("LOG: SUCCESS requestRestoreAppleAccount")
+                self.navigationController?.pushViewController(HomeViewController(), animated: true)
+                break
+            default:
+                print("LOG: fail requestRestoreAppleAccount")
+                DataBaseErrorAlert.show(in: self)
+                return
+            }
+        }
+    }
 }
 
 
