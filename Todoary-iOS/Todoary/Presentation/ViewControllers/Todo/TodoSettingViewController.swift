@@ -86,6 +86,8 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
         flowLayout.scrollDirection = .vertical
         flowLayout.minimumInteritemSpacing = CGFloat(8)
         
+        rightButton.isEnabled = true
+        
         
         //카테고리 컬렉션뷰(수평스크롤)
         mainView.collectionView.collectionViewLayout = flowLayout
@@ -137,6 +139,7 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
     
     //완료버튼 누르기 -> 투두생성api 호출 및 성공 시 홈화면 이동
     @objc func todocompleteBtnDidTap() {
+        rightButton.isEnabled = false
         
         //TODO: 투두 글자수 20자 이하 제한 걸기
         if todoSettingData.todoId != -1 {
