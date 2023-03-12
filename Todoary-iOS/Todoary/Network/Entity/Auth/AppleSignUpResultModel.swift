@@ -14,6 +14,6 @@ struct AppleSignUpResultModel: Codable{
     let email: String
     let provider: String
     let providerId: String
-    let token: Token //TODO: null로 바꿔야 할 수도
+    let token: Token
     let appleRefreshToken: String
 }
