@@ -158,11 +158,18 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
                 }
             }
             
+            if self.year == year_component && self.month == month_component {
+                if today == (indexPath.row - emptyDay) {
+                    cell.dateLabel.textColor = UIColor(red: 49/255, green: 131/255, blue: 255/255, alpha: 1)
+                }else {
+                    cell.dateLabel.textColor = .black
+                }
+            }
+            
             
             if select == -1 {
                 if self.year == year_component && self.month == month_component {
                     if today == (indexPath.row - emptyDay) {
-                        cell.dateLabel.textColor = UIColor(red: 49/255, green: 131/255, blue: 255/255, alpha: 1)
                         collectionView.selectItem(at: indexPath, animated: false , scrollPosition: .init())
                         cell.isSelected = true
                     }else {
