@@ -161,6 +161,8 @@ class TodoCalendarBottomSheetViewController: UIViewController {
         
         self.initView()
         
+        self.view.layoutIfNeeded()
+        
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
         
@@ -236,12 +238,13 @@ class TodoCalendarBottomSheetViewController: UIViewController {
         ])
         
         year_Month.snp.makeConstraints{ make in
-            make.top.equalTo(bottomSheetView.snp.top).offset(25)
+            make.top.equalTo(completeBtn.snp.top).offset(36)
+            make.height.equalTo(20)
             make.leading.equalTo(bottomSheetView.snp.leading).offset(51)
         }
         
         weekCollectionView.snp.makeConstraints{ make in
-            make.top.equalTo(year_Month.snp.bottom).offset(0)
+            make.top.equalTo(year_Month.snp.bottom).offset(20)
             make.leading.equalTo(bottomSheetView.snp.leading)
             make.trailing.equalTo(bottomSheetView.snp.trailing)
             make.width.equalTo(screenSize.width)
