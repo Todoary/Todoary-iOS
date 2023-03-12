@@ -22,6 +22,8 @@ class LoginViewController: UIViewController {
     
     var loginData: LoginResultModel!
     
+    var id :String = ""
+    
     //MARK: - Lifecycles
     
     override func viewDidLoad() {
@@ -127,11 +129,13 @@ class LoginViewController: UIViewController {
     
     @objc func loginButtonDidTab() {
         if validateAutoLogin == false {
+            id = mainView.idTextField.text ?? "id"
             let loginRequest = LoginRequestModel(email: mainView.idTextField.text, password: mainView.pwTextField.text)
             requestLogin(parameter: loginRequest)
             
         } else {
             // 자동로그인을 눌렀을 때
+            id = mainView.idTextField.text ?? "id"
             let autoLoginRequest = LoginRequestModel(email: mainView.idTextField.text, password: mainView.pwTextField.text)
             requestAutoLogin(parameter: autoLoginRequest)
         }
@@ -162,6 +166,7 @@ class LoginViewController: UIViewController {
             switch result {
             case .success(let data):
                 print("로그: [requestLogin] success")
+                UserManager.isFirstTime = false
                 
 //                Analytics.setUserID("userID = \(12)")
 //                Analytics.setUserProperty("ko", forName: "country")
@@ -196,7 +201,16 @@ class LoginViewController: UIViewController {
                     alert.modalPresentationStyle = .overFullScreen
                     self.present(alert, animated: false, completion: nil)
                     break
+                case 2020:
+                    let alert = CancelAlertViewController(title: "탈퇴 계정입니다 복구하시겠습니까?").show(in: self)
+                    alert.alertHandler = {
+                        let restoreRequestModel = RestoreRequestModel(email: self.id, provider: "", providerId: "")
+                        self.requestRestoreDeactivateAccount(parameter: restoreRequestModel)
+                    }
+                    break
                 default:
+                    print("로그: [requestLogin] fail")
+                    DataBaseErrorAlert.show(in: self)
                     break
                 }
             default:
@@ -212,11 +226,12 @@ class LoginViewController: UIViewController {
             switch result {
             case .success(let data):
                 print("로그: [requestAutoLogin] success")
-                let event = "autoLoginSuccess"
-                  let parameters = [
-                    "file": "loginviewcontroller",
-                    "function": "requestAutoLogin"
-                  ]
+                UserManager.isFirstTime = false
+//                let event = "autoLoginSuccess"
+//                  let parameters = [
+//                    "file": "loginviewcontroller",
+//                    "function": "requestAutoLogin"
+//                  ]
                 
                 let data = data as? LoginResultModel
                 UserDefaults.standard.set(data?.token?.accessToken, forKey: "accessToken")
@@ -249,6 +264,13 @@ class LoginViewController: UIViewController {
                     alert.modalPresentationStyle = .overFullScreen
                     self.present(alert, animated: false, completion: nil)
                     break
+                case 2020:
+                    let alert = CancelAlertViewController(title: "탈퇴 계정입니다 복구하시겠습니까?").show(in: self)
+                    alert.alertHandler = {
+                        let restoreRequestModel = RestoreRequestModel(email: self.id, provider: "", providerId: "")
+                        self.requestRestoreDeactivateAccount(parameter: restoreRequestModel)
+                    }
+                    break
                 default:
                     print("로그: [requestLogin] fail", result, code)
                     DataBaseErrorAlert.show(in: self)
@@ -256,6 +278,21 @@ class LoginViewController: UIViewController {
                 }
             default:
                 print("로그: [requestLogin] fail", result)
+                DataBaseErrorAlert.show(in: self)
+                break
+            }
+        }
+    }
+    
+    func requestRestoreDeactivateAccount(parameter: RestoreRequestModel){
+        AccountService.shared.restoreDeactivateAccount(request: parameter){ [self] result in
+            switch result{
+            case .success:
+                print("로그: [requestRestoreDeactivateAccount] success")
+                loginButtonDidTab()
+                break
+            default:
+                print("로그: [requestRestoreDeactivateAccount] fail")
                 DataBaseErrorAlert.show(in: self)
                 break
             }
