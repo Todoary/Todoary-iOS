@@ -9,6 +9,7 @@ import Foundation
 
 struct AppleSignUpResultModel: Codable{
     let isNewUser: Bool
+    let isDeactivatedUser: Bool
     let name: String
     let email: String
     let provider: String

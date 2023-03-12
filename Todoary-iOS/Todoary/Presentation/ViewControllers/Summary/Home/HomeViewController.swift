@@ -95,10 +95,11 @@ class HomeViewController : UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         apiSetting()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         showBottomSheet()
-        
     }
     
 //MARK: - BaseProtocol
@@ -231,6 +232,7 @@ class HomeViewController : UIViewController {
                 break
             default:
                 HomeViewController.bottomSheetVC.processResponseGetDiary(data: nil)
+                DataBaseErrorAlert.show(in: self)
                 break
             }
         }

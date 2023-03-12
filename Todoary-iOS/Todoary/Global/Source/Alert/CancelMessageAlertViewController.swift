@@ -55,3 +55,14 @@ class CancelMessageAlertViewController: CancelAlertViewController {
         }
     }
 }
+
+class CancelReverseMessageAlertViewController: CancelMessageAlertViewController{
+    override func cancelBtnDidClicked(){
+        alertHandler?()
+        self.dismiss(animated: false)
+    }
+    
+    override func confirmBtnDidClicked() {
+        self.dismiss(animated: false)
+    }
+}

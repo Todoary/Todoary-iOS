@@ -144,10 +144,9 @@ class AgreementViewController : BaseViewController {
      */
     @objc func confirmBtnDidTab() {
         
-        if var appleInfo = appleUserInfo{
-            //애플 소셜 회원가입 로직
-            appleInfo.isTermsEnable = mainView.advertiseField.isSelected
-            requestAppleSignUp(parameter: appleInfo)
+        if(appleUserInfo != nil){
+            appleUserInfo!.isTermsEnable = mainView.advertiseField.isSelected
+            requestAppleSignUp()
         }else{
             //일반 회원가입 로직
             let vc = SignUpViewController()
@@ -170,22 +169,26 @@ class AgreementViewController : BaseViewController {
          
     }
     
-    private func requestAppleSignUp(parameter: AppleSignUpRequestModel){
-        
+    private func requestAppleSignUp(){
+        guard let parameter = appleUserInfo else { return }
+        print("LGO: REQUEST requestAppleSignUp", parameter)
         AccountService.shared.generateAppleAccount(request: parameter){ result in
             switch result{
             case .success(let data):
                 print("LOG: SUCCESS APPLE SIGNUP", data)
                 guard let data = data as? AppleSignUpResultModel else { return }
+                
                 KeyChain.create(key: Const.UserDefaults.appleIdentifier, value: parameter.userIdentifier)
                 KeyChain.create(key: Const.UserDefaults.appleRefreshToken, value: data.appleRefreshToken)
-
-                
                 UserManager.accessToken = data.token.accessToken
                 UserManager.refreshToken = data.token.refreshToken
-
-                self.navigationController?.pushViewController(HomeViewController(), animated: true)
-                break
+                
+                if(data.isDeactivatedUser){
+                    self.processDeactivatedAppleUserSingUp(providerId: data.providerId)
+                }else{
+                    self.navigationController?.pushViewController(HomeViewController(), animated: true)
+                }
+                return
             default:
                 print("LOG: FAIL APPLE SIGNUP", result)
                 DataBaseErrorAlert.show(in: self)
@@ -195,6 +198,66 @@ class AgreementViewController : BaseViewController {
         }
     }
     
+    private func processDeactivatedAppleUserSingUp(providerId: String){
+        let alert = CancelAlertViewController(title: "탈퇴 계정입니다 복구하시겠습니까?").show(in: self)
+        alert.cancelCompletion = {
+            //regenerate
+            self.requestRegenerateAppleAccount(providerId)
+        }
+        alert.alertHandler = {
+            //restore
+            self.requestRestoreAppleAccount(providerId)
+        }
+    }
+    
+    private func requestRegenerateAppleAccount(_ providerId: String){
+
+        guard let appleUserInfo = appleUserInfo else { return }
+        
+        let request = ReregistrationAppleRequestModel(name: appleUserInfo.name,
+                                                      email: appleUserInfo.email,
+                                                      providerId: providerId,
+                                                      isTermsEnable: appleUserInfo.isTermsEnable)
+        
+        AccountService.shared.regenerateAppleAccount(request: request){ result in
+            switch result{
+            case .success(let data):
+                print("LOG: SUCCESS requestRegenerateAppleAccount", data)
+                if let data = data as? LoginResultModel, let token = data.token{
+                    UserManager.accessToken = token.accessToken
+                    UserManager.refreshToken = token.refreshToken
+                    self.navigationController?.pushViewController(HomeViewController(), animated: true)
+                }
+                break
+            default:
+                print("LOG: fail requestRegenerateAppleAccount")
+                DataBaseErrorAlert.show(in: self)
+                return
+            }
+        }
+    }
+    
+    private func requestRestoreAppleAccount(_ providerId: String){
+        
+        guard let appleUserInfo = appleUserInfo else { return }
+        
+        let request = RestoreRequestModel(email: appleUserInfo.email,
+                                          provider: "apple",
+                                          providerId: providerId)
+        print("LGO: REQUEST requestRestoreAppleAccount", request)
+        AccountService.shared.restoreDeactivateAccount(request: request){ result in
+            switch result{
+            case .success:
+                print("LOG: SUCCESS requestRestoreAppleAccount")
+                self.navigationController?.pushViewController(HomeViewController(), animated: true)
+                break
+            default:
+                print("LOG: fail requestRestoreAppleAccount", result)
+                DataBaseErrorAlert.show(in: self)
+                return
+            }
+        }
+    }
 }
 
 

@@ -261,7 +261,7 @@ extension CategoryViewController: CategoryTodoCellDelegate{
                 DataBaseErrorAlert.show(in: self)
                 break
             }
-            
+            cell.checkBox.isEnabled = true
         }
     }
 }

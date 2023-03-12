@@ -11,6 +11,13 @@ import Then
 
 class SignUpViewController: BaseViewController{
     
+    enum InvalidCode: Int{
+        case duplicateEmail = 2017
+        case quitEmail = 2020
+        case duplicateNickname = 2032
+        case `default`
+    }
+    
     //MARK: - Properties
     
     var email: String = ""
@@ -53,7 +60,7 @@ class SignUpViewController: BaseViewController{
     
     override func style() {
         super.style()
-        self.navigationTitle.text = "회원가입"
+        navigationTitle.text = "회원가입"
     }
     
     override func layout() {
@@ -197,49 +204,63 @@ class SignUpViewController: BaseViewController{
     }
     
     @objc func certificationBtnDidClicked(_ sender: UIButton){
-        
+        mainView.idCertificationButton.isEnabled = false
         mainView.idCanUseLabel.isHidden = false
-        
+
         if(isValidEmail){
             requestGetEmailDuplicate()
         }else{
             mainView.idCanUseLabel.text = "*이메일 형식이 올바르지 않습니다."
             mainView.idCanUseLabel.textColor = .noticeRed
         }
-            
     }
     
     @objc func certificationOKBtnDidClicked(_ sender: UIButton){
-        
-        let alertTitle : String!
-        if isValidCertiCode{
-            alertTitle = "인증이 완료되었습니다."
-        }else{
-            alertTitle = "인증코드가 일치하지 않습니다."
-        }
-        
-        _ = ConfirmAlertViewController(title: alertTitle).show(in: self)
+        let alertTitle: String = isValidCertiCode ? "인증이 완료되었습니다." : "인증코드가 일치하지 않습니다."
+        ConfirmAlertViewController(title: alertTitle).show(in: self)
     }
     
     //MARK: - API
+    
+    private func getInvalidationType(code: Int) -> InvalidCode{
+        return InvalidCode(rawValue: code) ?? .default
+    }
+    
     private func requestGetEmailDuplicate(){
 
-        AccountService.shared.checkUserEmailDuplicate(email: self.email){ result in
+        AccountService.shared.checkUserEmailDuplicate(email: self.email){ [self] result in
             switch result{
             case .success:
                 print("LOG: SUCCESS requestGetEmailDuplicate", result)
-                self.view.endEditing(true)
-                self.mainView.idCanUseLabel.text = "*사용 가능한 이메일입니다."
-                self.mainView.idCanUseLabel.textColor = .todoaryGrey
+                view.endEditing(true)
+                mainView.idCanUseLabel.text = "*사용 가능한 이메일입니다."
+                mainView.idCanUseLabel.textColor = .todoaryGrey
                 MailSender.shared.sendEmail(email: self.email, viewController: self)
                 break
             case .invalidSuccess(let code):
                 print("LOG: invalidSuccess requestGetEmailDuplicate", result, code)
-                if(code == 2017){
-                    self.mainView.idCanUseLabel.isHidden = false
-                    self.mainView.idCanUseLabel.text = "*중복된 이메일 입니다."
-                    self.mainView.idCanUseLabel.textColor = .noticeRed
-                    self.isValidEmail = false
+                
+                switch getInvalidationType(code: code){
+                case .duplicateEmail:
+                    mainView.idCanUseLabel.do{
+                        $0.isHidden = false
+                        $0.text = "*중복된 이메일입니다."
+                        $0.textColor = .noticeRed
+                    }
+                    isValidEmail = false
+                    break
+                case .quitEmail:
+                    let alert = CancelReverseMessageAlertViewController(title: "1달 이내에 탈퇴한 계정입니다.\n해당 이메일로 새로\n회원가입 하시겠습니까?",
+                                                                 message: "새로 회원가입하면 기존의 데이터는 삭제됩니다.").show(in: self)
+                    alert.alertHandler = {
+                        guard let root = self.navigationController?.viewControllers.first else { return }
+                        self.navigationController?.popToRootViewController(animated: true){
+                                ConfirmAlertViewController(title: "계정을 복구 하시려면\n다시 로그인해 주세요.").show(in: root)
+                            }
+                        }
+                    break
+                default:
+                    break
                 }
                 break
             default:
@@ -248,50 +269,47 @@ class SignUpViewController: BaseViewController{
                 break
             }
         }
+        mainView.idCertificationButton.isEnabled = true
     }
     
     @objc private func requestSignUp(){
         
+        print("LOG: requestSignUp button did tapped")
+        mainView.nextButton.isEnabled = false
         let parameter = SignUpRequestModel(email: email,
                                            name: name,
                                            nickname: nickname,
                                            password: passwd,
                                            isTermsEnable: isMarketingAgree)
         
-        AccountService.shared.generateAccount(request: parameter){ result in
+        AccountService.shared.generateAccount(request: parameter){ [self] result in
             switch result{
             case .success:
-                let alert = ConfirmMessageAlertViewController(title: "회원가입을 축하합니다!", message: "이제 Todoary 서비스를 자유롭게 이용해보세요.").show(in: self)
-                
-                UserManager.isFirstTime = false
-                UserManager.defaultImg = true
-                
+                let alert = ConfirmMessageAlertViewController(title: "회원가입을 축하합니다!",
+                                                              message: "이제 Todoary 서비스를 자유롭게 이용해보세요.").show(in: self)
                 alert.alertHandler = {
                     self.navigationController?.popToRootViewController(animated: true)
                 }
+                UserManager.isFirstTime = false
+                UserManager.defaultImg = true
                 break
             case .invalidSuccess(let code):
                 print("LOG: FAIL SIGNUP",result, code)
-                switch code{
-                case 2017:
-                    self.mainView.nextButton.isEnabled = false
-                    self.mainView.idCanUseLabel.isHidden = false
-                    self.mainView.idCanUseLabel.text = "중복된 이메일입니다."
-                    break
-                case 2032:
-                    self.mainView.nextButton.isEnabled = false
-                    self.mainView.nicknameCanUseLabel.isHidden = false
-                    self.mainView.nicknameCanUseLabel.text = "중복된 닉네임입니다."
+                switch getInvalidationType(code: code){
+                case .duplicateNickname:
+                    mainView.nextButton.isEnabled = false
+                    mainView.nicknameCanUseLabel.isHidden = false
+                    mainView.nicknameCanUseLabel.text = "중복된 닉네임입니다."
                     break
                 default:
-                    self.mainView.nextButton.isEnabled = false
+                    mainView.nextButton.isEnabled = true
                     DataBaseErrorAlert.show(in: self)
                     break
                 }
                 break
             default:
                 print("LOG: FAIL SIGNUP",result)
-                self.mainView.nextButton.isEnabled = false
+                mainView.nextButton.isEnabled = true
                 DataBaseErrorAlert.show(in: self)
                 break
             }
@@ -320,5 +338,21 @@ extension SignUpViewController: UITextFieldDelegate{
             mainView.nicknameTextField.resignFirstResponder()
         }
         return true
+    }
+}
+
+extension UINavigationController{
+    
+    func popToRootViewController(animated: Bool, completion: @escaping () -> Void) {
+        
+        popToRootViewController(animated: animated)
+
+        if animated, let coordinator = transitionCoordinator {
+            coordinator.animate(alongsideTransition: nil) { _ in
+                completion()
+            }
+        } else {
+            completion()
+        }
     }
 }

@@ -10,6 +10,6 @@ struct LoginResultModel : Codable {
 }
 
 struct Token : Codable {
-    var accessToken : String?
-    var refreshToken : String?
+    var accessToken : String
+    var refreshToken : String
 }

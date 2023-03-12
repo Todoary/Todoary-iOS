@@ -118,7 +118,9 @@ class BaseViewController: UIViewController {
 }
 
 extension BaseViewController: UIGestureRecognizerDelegate {
+
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        print("swipe gesture recognize")
         return navigationController?.viewControllers.count ?? 0 > 1
     }
 }

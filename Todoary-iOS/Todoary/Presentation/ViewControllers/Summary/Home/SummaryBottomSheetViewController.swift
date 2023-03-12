@@ -135,7 +135,6 @@ class SummaryBottomSheetViewController: UIViewController , UITextFieldDelegate{
 extension SummaryBottomSheetViewController: RequestSummaryCellDelegate{
     
     func requestPatchTodoCheckStatus(index: Int) {
-        
         todoData[index].isChecked.toggle()
         mainView.summaryTableView.reloadData()
         let data = todoData[index]
@@ -151,7 +150,10 @@ extension SummaryBottomSheetViewController: RequestSummaryCellDelegate{
                 DataBaseErrorAlert.show(in: self)
                 break
             }
-            
+        
+            if let cell = self.mainView.summaryTableView.cellForRow(at: [0, index + 1]) as? TodoInSummaryTableViewCell{
+                cell.checkBox.isEnabled = true
+            }
         }
     }
     

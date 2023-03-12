@@ -46,7 +46,7 @@ class TodoInSummaryTableViewCell: BaseTableViewCell {
     //MARK: - UI
     
     private let backgroundShadowView = ShadowView(cornerRadius: 20)
-    private lazy var checkBox = UIButton().then{
+    lazy var checkBox = UIButton().then{
         $0.setImage(Image.todoCheckEmpty, for: .normal)
         $0.setImage(Image.todoCheck, for: .selected)
     }
@@ -93,6 +93,7 @@ class TodoInSummaryTableViewCell: BaseTableViewCell {
         timeLabel.removeFromSuperview()
         titleLabel.text = ""
         checkBox.isSelected = false
+        checkBox.isEnabled = true
         
         titleLabel.snp.removeConstraints()
         categoryTag.snp.removeConstraints()
@@ -372,6 +373,7 @@ extension TodoInSummaryTableViewCell{
     }
     
     @objc func checkBoxDidClicked(){
+        checkBox.isEnabled = false
         guard let index = dataIndex else { return }
         requestDelegate.requestPatchTodoCheckStatus(index: index)
     }

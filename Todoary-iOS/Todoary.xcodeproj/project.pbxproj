@@ -205,6 +205,8 @@
 		EE06313429A36304002830FB /* PageableResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06313329A36304002830FB /* PageableResponseModel.swift */; };
 		EE12A17A29A1D6FA009A9750 /* NoTodoInDiaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE12A17929A1D6FA009A9750 /* NoTodoInDiaryTableViewCell.swift */; };
 		EE135A89298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE135A88298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift */; };
+		EE529E2129BC40DC002F3371 /* RestoreRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE529E2029BC40DC002F3371 /* RestoreRequestModel.swift */; };
+		EE529E2329BC4289002F3371 /* ReregistrationAppleRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE529E2229BC4289002F3371 /* ReregistrationAppleRequestModel.swift */; };
 		EE800B1229B1C4F100BAC862 /* UserDefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE800B1129B1C4F100BAC862 /* UserDefaultKey.swift */; };
 		EE800B1429B1C4FE00BAC862 /* UserDefaultWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE800B1329B1C4FE00BAC862 /* UserDefaultWrapper.swift */; };
 		EE800B1629B1C50A00BAC862 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE800B1529B1C50A00BAC862 /* UserManager.swift */; };
@@ -448,6 +450,8 @@
 		EE06313329A36304002830FB /* PageableResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageableResponseModel.swift; sourceTree = "<group>"; };
 		EE12A17929A1D6FA009A9750 /* NoTodoInDiaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoTodoInDiaryTableViewCell.swift; sourceTree = "<group>"; };
 		EE135A88298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAddCollectionViewCell.swift; sourceTree = "<group>"; };
+		EE529E2029BC40DC002F3371 /* RestoreRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreRequestModel.swift; sourceTree = "<group>"; };
+		EE529E2229BC4289002F3371 /* ReregistrationAppleRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReregistrationAppleRequestModel.swift; sourceTree = "<group>"; };
 		EE800B1129B1C4F100BAC862 /* UserDefaultKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKey.swift; sourceTree = "<group>"; };
 		EE800B1329B1C4FE00BAC862 /* UserDefaultWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultWrapper.swift; sourceTree = "<group>"; };
 		EE800B1529B1C50A00BAC862 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
@@ -1351,6 +1355,8 @@
 				AC5E27E42890211C0056EC69 /* AuthJwtResultModel.swift */,
 				AC3A668F297BD69D00EF42BE /* AuthJwtRequestModel.swift */,
 				AC3A6691297BDCCA00EF42BE /* PasswordRequestModel.swift */,
+				EE529E2029BC40DC002F3371 /* RestoreRequestModel.swift */,
+				EE529E2229BC4289002F3371 /* ReregistrationAppleRequestModel.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -1732,6 +1738,7 @@
 				AC3A6690297BD69D00EF42BE /* AuthJwtRequestModel.swift in Sources */,
 				572E5B12286EC3C800D1FAA0 /* SignUpViewController.swift in Sources */,
 				57B16857295ABAF900639A15 /* CategoryView.swift in Sources */,
+				EE529E2129BC40DC002F3371 /* RestoreRequestModel.swift in Sources */,
 				574913B9287ADF6500381BCD /* AlarmSettingView.swift in Sources */,
 				5722461228C1A223009B7C78 /* BaseViewController.swift in Sources */,
 				E0AB9EBB287B1BF40064CADA /* HomeViewController.swift in Sources */,
@@ -1901,6 +1908,7 @@
 				575DE968297652A600E61B8F /* DeleteAppleAccountRequestModel.swift in Sources */,
 				AC5E27CD288C38290056EC69 /* TodoWeekCell.swift in Sources */,
 				57397F88296D471B0088B5F4 /* AlarmRouter.swift in Sources */,
+				EE529E2329BC4289002F3371 /* ReregistrationAppleRequestModel.swift in Sources */,
 				57503663288BE3A0006A9070 /* CategoryTodoTableViewCell.swift in Sources */,
 				EE8BCEFA299F3AF9004EA821 /* ShadowDesignSystem.swift in Sources */,
 				572E9ABD287BC4DD00F915DF /* FontSettingViewController.swift in Sources */,

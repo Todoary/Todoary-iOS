@@ -126,7 +126,7 @@ extension DiaryViewController: DiaryTodoCellDelegate{
                 self.todoData[index].isChecked.toggle()
                 break
             }
-            
+            cell.checkBox.isEnabled = true
         }
     }
     
@@ -135,14 +135,13 @@ extension DiaryViewController: DiaryTodoCellDelegate{
         let text = NSAttributedString(attributedString: mainView.textView.attributedText)
         let parameter = DiaryRequestModel(title: mainView.diaryTitle.text!,
                                           content: text.attributedString2Html!)
-        
+
         DiaryService.shared.generateDiary(date: pickDate.dateSendServer, request: parameter){ result in
             switch result{
             case .success:
                 print("LOG: SUCCESS POST DIARY")
                 self.exitBtnDidTab()
                 self.checkStickerStateAndRequestApi()
-//                self.navigationController?.popViewController(animated: true)
             default:
                 print("LOG: FAIL POST DIARY", result)
                 DataBaseErrorAlert.show(in: self)

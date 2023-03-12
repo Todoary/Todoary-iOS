@@ -21,6 +21,7 @@ struct Const{
     struct UserDefaults{
         static let appleRefreshToken = "APPLE_REFRESH_TOKEN"
         static let appleIdentifier = "APPLE_IDENTIFIER"
+        static let providerId = "PROVIDER_ID"
         static let email = "APPLE_EMAIL"
         static let userName = "APPLE_USERNAME"
     }
