@@ -221,9 +221,13 @@ class AgreementViewController : BaseViewController {
         
         AccountService.shared.regenerateAppleAccount(request: request){ result in
             switch result{
-            case .success:
-                print("LOG: SUCCESS requestRegenerateAppleAccount")
-                self.navigationController?.pushViewController(HomeViewController(), animated: true)
+            case .success(let data):
+                print("LOG: SUCCESS requestRegenerateAppleAccount", data)
+                if let data = data as? LoginResultModel, let token = data.token{
+                    UserManager.accessToken = token.accessToken
+                    UserManager.refreshToken = token.refreshToken
+                    self.navigationController?.pushViewController(HomeViewController(), animated: true)
+                }
                 break
             default:
                 print("LOG: fail requestRegenerateAppleAccount")

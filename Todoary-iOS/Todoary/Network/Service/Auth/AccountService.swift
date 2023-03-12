@@ -56,8 +56,7 @@ extension AccountService {
     }
     
     func regenerateAppleAccount(request: ReregistrationAppleRequestModel, completion: @escaping (NetworkResult<Any>) -> Void){
-        requestObjectWithEmptyResponse(AccountRouter.reregistrationApple(request: request), completion: completion)
-
+        requestObject(AccountRouter.reregistrationApple(request: request), type: LoginResultModel.self, decodingMode: .model, completion: completion)
     }
     
     func restoreDeactivateAccount(request: RestoreRequestModel, completion: @escaping (NetworkResult<Any>) -> Void){
