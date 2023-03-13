@@ -231,9 +231,7 @@ class LoginView: BaseView{
         //button
         loginButton.snp.makeConstraints{ make in
             make.top.equalTo(pwBorderLine).offset(65)
-            make.centerX.equalToSuperview()
-            make.leading.equalToSuperview().offset(33)
-            make.height.equalTo(51)
+            make.leading.trailing.height.equalTo(appleLoginButton)
         }
         
         appleLoginButton.snp.makeConstraints{ make in
@@ -242,12 +240,10 @@ class LoginView: BaseView{
             make.leading.equalToSuperview().offset(33)
             make.height.equalTo(51)
         }
-        
+        appleLoginButton.backgroundColor = .black
         signUpButton.snp.makeConstraints{ make in
             make.top.equalTo(appleLoginButton.snp.bottom).offset(13)
-            make.centerX.equalToSuperview()
-            make.leading.equalToSuperview().offset(33)
-            make.height.equalTo(51)
+            make.leading.trailing.height.equalTo(appleLoginButton)
         }
         
         pwSearchButton.snp.makeConstraints{ make in
