@@ -28,9 +28,9 @@ class AdvertiseTextSettingView: BaseView {
     let adTitle = UIButton().then{
         $0.setTitle("동의 (선택)", for: .normal)
         $0.setTitleColor(.headline, for: .normal)
-        $0.titleLabel?.setTypoStyleWithSingleLine(typoStyle: .medium14_16)
+//        $0.titleLabel?.setTypoStyleWithSingleLine(typoStyle: .medium14_16)
         $0.titleLabel?.font = UIFont.nbFont(type: .body1)
-        $0.titleLabel?.textAlignment = .left
+//        $0.titleLabel?.textAlignment = .left
         $0.setUnderline()
     }
     
@@ -62,7 +62,7 @@ class AdvertiseTextSettingView: BaseView {
         
         adTitle.snp.makeConstraints{ make in
             make.top.equalTo(contentScrollView.snp.bottom).offset(2)
-            make.width.equalTo(63)
+            make.width.equalTo(adTitle.titleLabel!)
             make.height.equalTo(18)
             make.trailing.equalTo(contentScrollView.snp.trailing)
         }
