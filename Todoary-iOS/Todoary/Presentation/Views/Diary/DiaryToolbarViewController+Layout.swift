@@ -133,9 +133,9 @@ extension DiaryToolbar {
         
         textToolbar.addSubview(textStackView)
         
-        textStackView.snp.makeConstraints{ make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
+        textStackView.snp.makeConstraints{
+            $0.top.bottom.equalToSuperview().inset(11)
+            $0.leading.trailing.equalToSuperview().inset(33)
         }
 
         textStackView.addArrangedSubview(alignLeftBtn)
@@ -185,8 +185,10 @@ extension DiaryToolbar {
         fontToolbar.addSubview(fontStackView)
         
         fontStackView.snp.makeConstraints{ make in
-            make.centerX.equalToSuperview()
+//            make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
+            make.leading.equalToSuperview().offset(23)
+            make.trailing.equalToSuperview().inset(20)
         }
         
         fontStackView.addArrangedSubview(fontBtn1)
