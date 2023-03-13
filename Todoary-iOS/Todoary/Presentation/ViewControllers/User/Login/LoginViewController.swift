@@ -403,6 +403,7 @@ extension LoginViewController: ASAuthorizationControllerPresentationContextProvi
             switch result{
             case .success(let data):
                 print("LOG: SUCCESS APLLE LOGIN", data)
+                UserManager.isFirstTime = false
                 guard let data = data as? AppleSignUpResultModel else { return }
                 KeyChain.create(key: Const.UserDefaults.appleIdentifier, value: parameter.userIdentifier)
                 KeyChain.create(key: Const.UserDefaults.appleRefreshToken, value: data.appleRefreshToken)
