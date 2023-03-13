@@ -84,9 +84,9 @@ class AccountViewController : BaseViewController {
     
     @objc func accountDeleteCellDidTab() {
         
-        let alert = CancelMessageAlertViewController(title: "정말 계정을 삭제하시겠습니까?", message: "삭제된 데이터는 복구할 수 없습니다.")
+        let alert = CancelMessageAlertViewController(title: "정말 Todoary를 탈퇴하시겠습니까?", message: "탈퇴한 계정의 데이터는 1달 동안만 보관됩니다.\n그 이후에는 복구할 수 없습니다.")
         alert.alertHandler = {
-            
+    
             if KeyChain.read(key: Const.UserDefaults.appleIdentifier) != nil{
                 let appleIDProvider = ASAuthorizationAppleIDProvider()
                 let request = appleIDProvider.createRequest()
