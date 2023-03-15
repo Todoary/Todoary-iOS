@@ -178,7 +178,7 @@ class DiaryToolbar : UIView {
     let textStackView = UIStackView().then{
         $0.axis = .horizontal
         $0.distribution = .equalCentering
-        $0.spacing = 32
+        $0.spacing = 20
     }
     
     let textToolbar = UIView().then{
