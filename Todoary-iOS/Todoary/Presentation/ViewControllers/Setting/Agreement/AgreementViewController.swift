@@ -36,7 +36,7 @@ class AgreementViewController : BaseViewController {
         self.view.addSubview(mainView)
         mainView.snp.makeConstraints{
             $0.top.equalToSuperview().offset(Const.Offset.top)
-            $0.leading.bottom.equalToSuperview()
+            $0.leading.trailing.bottom.equalToSuperview()
         }
     }
     
