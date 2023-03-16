@@ -118,7 +118,6 @@
 		99E5F60858A366755EE867A1 /* Pods_Todoary_TodoaryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A43119AF581797F7807639A /* Pods_Todoary_TodoaryUITests.framework */; };
 		AC1DFDC529A3D2480011EF87 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1DFDC429A3D2480011EF87 /* OnboardingView.swift */; };
 		AC1DFDC929A4DFF90011EF87 /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1DFDC829A4DFF90011EF87 /* GuideView.swift */; };
-		AC1DFDD129AF756F0011EF87 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC1DFDD029AF756F0011EF87 /* GoogleService-Info.plist */; };
 		AC3A668C297BC7D100EF42BE /* NetworkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3A668B297BC7D100EF42BE /* NetworkCheck.swift */; };
 		AC3A668E297BC82100EF42BE /* NetworkCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3A668D297BC82100EF42BE /* NetworkCheckModel.swift */; };
 		AC3A6690297BD69D00EF42BE /* AuthJwtRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3A668F297BD69D00EF42BE /* AuthJwtRequestModel.swift */; };
@@ -210,6 +209,7 @@
 		EE800B1229B1C4F100BAC862 /* UserDefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE800B1129B1C4F100BAC862 /* UserDefaultKey.swift */; };
 		EE800B1429B1C4FE00BAC862 /* UserDefaultWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE800B1329B1C4FE00BAC862 /* UserDefaultWrapper.swift */; };
 		EE800B1629B1C50A00BAC862 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE800B1529B1C50A00BAC862 /* UserManager.swift */; };
+		EE813FD629C3258B0091F16E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE813FD529C3258B0091F16E /* GoogleService-Info.plist */; };
 		EE8BCEF6299F2836004EA821 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BCEF5299F2836004EA821 /* UITableView.swift */; };
 		EE8BCEF8299F2842004EA821 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BCEF7299F2842004EA821 /* UICollectionView.swift */; };
 		EE8BCEFA299F3AF9004EA821 /* ShadowDesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BCEF9299F3AF9004EA821 /* ShadowDesignSystem.swift */; };
@@ -361,7 +361,6 @@
 		A38C6195332A33ED0CF95425 /* Pods_TodoaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC1DFDC429A3D2480011EF87 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		AC1DFDC829A4DFF90011EF87 /* GuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideView.swift; sourceTree = "<group>"; };
-		AC1DFDD029AF756F0011EF87 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AC3A668B297BC7D100EF42BE /* NetworkCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCheck.swift; sourceTree = "<group>"; };
 		AC3A668D297BC82100EF42BE /* NetworkCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCheckModel.swift; sourceTree = "<group>"; };
 		AC3A668F297BD69D00EF42BE /* AuthJwtRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthJwtRequestModel.swift; sourceTree = "<group>"; };
@@ -455,6 +454,7 @@
 		EE800B1129B1C4F100BAC862 /* UserDefaultKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKey.swift; sourceTree = "<group>"; };
 		EE800B1329B1C4FE00BAC862 /* UserDefaultWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultWrapper.swift; sourceTree = "<group>"; };
 		EE800B1529B1C50A00BAC862 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		EE813FD529C3258B0091F16E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EE8BCEF5299F2836004EA821 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		EE8BCEF7299F2842004EA821 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		EE8BCEF9299F3AF9004EA821 /* ShadowDesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowDesignSystem.swift; sourceTree = "<group>"; };
@@ -569,7 +569,7 @@
 			isa = PBXGroup;
 			children = (
 				572E5AE4286EBDCE00D1FAA0 /* LaunchScreen.storyboard */,
-				AC1DFDD029AF756F0011EF87 /* GoogleService-Info.plist */,
+				EE813FD529C3258B0091F16E /* GoogleService-Info.plist */,
 				572E5AE7286EBDCE00D1FAA0 /* Info.plist */,
 				EE00BBA029ADAC25007CE728 /* Config.xcconfig */,
 			);
@@ -1594,7 +1594,7 @@
 				57DF460528A64AA60002D66C /* IBMPlexSansKR-Medium.otf in Resources */,
 				572E5AE1286EBDCC00D1FAA0 /* Main.storyboard in Resources */,
 				57DF45FA28A60B310002D66C /* GangwonEduAll-Bold.ttf in Resources */,
-				AC1DFDD129AF756F0011EF87 /* GoogleService-Info.plist in Resources */,
+				EE813FD629C3258B0091F16E /* GoogleService-Info.plist in Resources */,
 				E0BAB97D28748FBF0055BA67 /* SsoyaStoryboard.storyboard in Resources */,
 				57DF45F628A60B310002D66C /* NotoSerifKR-Regular.otf in Resources */,
 				574A703A2883FF10003C8F99 /* AppleSDGothicNeoEB.ttf in Resources */,

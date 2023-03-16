@@ -55,8 +55,11 @@ extension SummaryBottomSheetViewController: UIViewControllerTransitioningDelegat
         
         controller.delegate = self
         
-        let detent1: UISheetPresentationController.Detent = ._detent(withIdentifier: "Test1", constant: Const.Device.DEVICE_HEIGHT - (519 + 41)) //519 + 41
-        let detent2: UISheetPresentationController.Detent = ._detent(withIdentifier: "Test2", constant: Const.Device.DEVICE_HEIGHT - (95 + 41) ) //790 - 41
+        
+        let deleteArea1 = Const.Device.isSmallDevice ? 519.0 * Const.Device.DEVICE_HEIGHT / 844 : 519 + 41
+        let deleteArea2 = Const.Device.isSmallDevice ? 95.0 * Const.Device.DEVICE_HEIGHT / 844 : 95 + 41
+        let detent1: UISheetPresentationController.Detent = ._detent(withIdentifier: "Test1", constant: Const.Device.DEVICE_HEIGHT - deleteArea1) //519 + 41
+        let detent2: UISheetPresentationController.Detent = ._detent(withIdentifier: "Test2", constant: Const.Device.DEVICE_HEIGHT - deleteArea2 ) //790 - 41
         
         let detentIdentifier :UISheetPresentationController.Detent.Identifier = UISheetPresentationController.Detent.Identifier(rawValue: "Test2")
         
