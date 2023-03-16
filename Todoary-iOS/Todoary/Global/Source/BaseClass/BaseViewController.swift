@@ -46,7 +46,8 @@ class BaseViewController: UIViewController {
         navigationView.addSubview(navigationTitle)
         
         navigationView.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(40)
+            let offset = Const.Device.isSmallDevice ? 20 : 40
+            $0.top.equalToSuperview().offset(offset)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(55)
         }
