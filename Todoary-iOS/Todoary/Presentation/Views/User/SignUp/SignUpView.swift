@@ -170,37 +170,37 @@ class SignUpView: BaseView {
 
     override func hierarchy(){
 
-        self.addSubview(idTitle)
-        self.addSubview(idTextField)
-        self.addSubview(idBorderLine)
-        self.addSubview(idCanUseLabel)
-        self.addSubview(idCertificationButton)
+        addSubview(idTitle)
+        addSubview(idTextField)
+        addSubview(idBorderLine)
+        addSubview(idCanUseLabel)
+        addSubview(idCertificationButton)
 
-        self.addSubview(certificationTitle)
-        self.addSubview(certificationTextField)
-        self.addSubview(certificationBorderLine)
-        self.addSubview(certificationOkButton)
+        addSubview(certificationTitle)
+        addSubview(certificationTextField)
+        addSubview(certificationBorderLine)
+        addSubview(certificationOkButton)
         
-        self.addSubview(pwTitle)
-        self.addSubview(pwTextField)
-        self.addSubview(pwBorderLine)
-        self.addSubview(pwCanUseLabel)
+        addSubview(pwTitle)
+        addSubview(pwTextField)
+        addSubview(pwBorderLine)
+        addSubview(pwCanUseLabel)
         
-        self.addSubview(pwCertificationTextField)
-        self.addSubview(pwCertificationBorderLine)
-        self.addSubview(pwIncorrectLabel)
+        addSubview(pwCertificationTextField)
+        addSubview(pwCertificationBorderLine)
+        addSubview(pwIncorrectLabel)
         
-        self.addSubview(nameTitle)
-        self.addSubview(nameTextField)
-        self.addSubview(nameBorderLine)
-        self.addSubview(nameCanUseLabel)
+        addSubview(nameTitle)
+        addSubview(nameTextField)
+        addSubview(nameBorderLine)
+        addSubview(nameCanUseLabel)
         
-        self.addSubview(nicknameTitle)
-        self.addSubview(nicknameTextField)
-        self.addSubview(nicknameBorderLine)
-        self.addSubview(nicknameCanUseLabel)
+        addSubview(nicknameTitle)
+        addSubview(nicknameTextField)
+        addSubview(nicknameBorderLine)
+        addSubview(nicknameCanUseLabel)
         
-        self.addSubview(nextButton)
+        addSubview(nextButton)
     
     }
     
@@ -256,7 +256,7 @@ class SignUpView: BaseView {
         certificationBorderLine.snp.makeConstraints{ make in
             make.height.equalTo(1)
             make.leading.trailing.equalTo(idBorderLine)
-            make.bottom.equalTo(certificationTextField.snp.bottom).offset(2)
+            make.bottom.equalTo(certificationTextField).offset(2)
         }
         
         certificationOkButton.snp.makeConstraints{ make in

@@ -12,8 +12,10 @@ import SnapKit
 class AgreementView: BaseView {
 
     private let agreeTitle = UILabel().then{
-        $0.text = "Todoary 서비스 이용약관에 동의해 주세요."
+        $0.text = "Todoary 서비스 이용약관에 동의해주세요."
         $0.textColor = .black
+        $0.numberOfLines = 0
+        $0.textAlignment = .center
         $0.setTypoStyleWithSingleLine(typoStyle: .bold16_19)
     }
     private let agreementTitleBorderLine = UIView().then{
