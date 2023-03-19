@@ -24,7 +24,7 @@ class SettingAgreementView: BaseView{
         tableView.snp.makeConstraints{ make in
             make.top.equalToSuperview().offset(26)
             make.leading.trailing.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-572)
+            make.bottom.equalToSuperview()
         }
     }
 }

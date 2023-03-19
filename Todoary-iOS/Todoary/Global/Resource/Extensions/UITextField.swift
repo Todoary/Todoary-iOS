@@ -36,6 +36,31 @@ extension UITextField {
         
     }
     
+    func textFieldTypoSetting(type: TypoStyle = .semibold14){
+
+        if let labelText = text, labelText.isEmpty == false {
+            var attributedString = NSMutableAttributedString(string: labelText)
+            attributedString = addLetterSpacing(type: type, attributedString: attributedString)
+            
+            attributedText = attributedString
+        }
+        
+        font = type.font
+        textColor = .headline
+        setPlaceholderColor()
+        
+    }
+    
+    private func addLetterSpacing(type: TypoStyle, attributedString: NSMutableAttributedString) -> NSMutableAttributedString{
+        
+        attributedString.addAttribute(.kern,
+                                      value: type.labelDescription.kern,
+                                      range: NSRange(location: 0,
+                                                     length: attributedString.length-1))
+        
+        return attributedString
+    }
+    
     private func addLetterSpacing(type: TextStyles, attributedString: NSMutableAttributedString) -> NSMutableAttributedString{
         
         var value: Double = 0

@@ -12,6 +12,8 @@ import Then
 
 class CategoryBottomSheetViewController : BaseBottomSheetViewController {
     
+    private let isSmallDevice = Const.Device.isSmallDevice
+    
     enum State{
         case generate, modify, delete
     }
@@ -51,8 +53,7 @@ class CategoryBottomSheetViewController : BaseBottomSheetViewController {
     override func layout() {
         self.view.addSubview(mainView)
         mainView.snp.makeConstraints{
-            $0.top.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide)
+            $0.top.leading.trailing.bottom.equalToSuperview()
         }
     }
     
@@ -70,6 +71,13 @@ class CategoryBottomSheetViewController : BaseBottomSheetViewController {
         
         mainView.colorCollectionView.delegate = self
         mainView.colorCollectionView.dataSource = self
+    }
+    
+    override func getDetentSize() -> CGFloat {
+        if(Const.Device.isSmallDevice){
+            return 300
+        }
+        return BottomSheetType.category.rawValue
     }
     
     //MARK: - Actions
@@ -223,21 +231,18 @@ extension CategoryBottomSheetViewController : UICollectionViewDelegate, UICollec
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: ColorPickerCollectionViewCell.identifier, for : indexPath) as? ColorPickerCollectionViewCell else {
+            withReuseIdentifier: BottomSheetColorPickerCollectionViewCell.cellIdentifier, for : indexPath) as? BottomSheetColorPickerCollectionViewCell else {
             fatalError("셀 타입 케스팅 실패")
         }
     
-        cell.layer.cornerRadius = 30/2
+        cell.layer.cornerRadius = isSmallDevice ? 25.0 / 2 : 30 / 2
         cell.backgroundColor = .categoryColor[indexPath.row]
             
-        cell.colorBtnpick.layer.borderColor = UIColor.categoryColor[indexPath.row].cgColor
+        cell.colorPickBorderView.layer.borderColor = UIColor.categoryColor[indexPath.row].cgColor
         
         //카테고리 수정인 경우, 초기 카테고리 값 설정 상태로 만들어주기
         if(indexPath.row == currentData?.color){
-            cell.colorBtnpick.isHidden = false
-            cell.colorBtnpick.layer.borderWidth = 2
-            cell.colorBtnpick.layer.cornerRadius = 40/2
-            cell.colorBtnpick.isUserInteractionEnabled = true
+            cell.colorPickBorderView.isHidden = false
         }
 
         return cell
@@ -245,7 +250,7 @@ extension CategoryBottomSheetViewController : UICollectionViewDelegate, UICollec
 
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 30, height: 30)
+        Const.Device.isSmallDevice ? CGSize(width: 25, height: 25) : CGSize(width: 30, height: 30)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -253,7 +258,7 @@ extension CategoryBottomSheetViewController : UICollectionViewDelegate, UICollec
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(20)
+        return CGFloat(20)//20
     }
 
 
@@ -261,23 +266,14 @@ extension CategoryBottomSheetViewController : UICollectionViewDelegate, UICollec
 //MARK: - UICollectionViewDelegate
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at:indexPath) as? ColorPickerCollectionViewCell else{
-        fatalError()
+        if let cell = collectionView.cellForItem(at: indexPath) as? BottomSheetColorPickerCollectionViewCell{
+            cell.colorPickBorderView.isHidden = false
         }
-        
-        cell.colorBtnpick.isHidden = false
-        cell.colorBtnpick.layer.borderWidth = 2
-        cell.colorBtnpick.layer.cornerRadius = 40/2
-        cell.colorBtnpick.isUserInteractionEnabled = true
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at:indexPath) as? ColorPickerCollectionViewCell else{
-            fatalError()
+        if let cell = collectionView.cellForItem(at: indexPath) as? BottomSheetColorPickerCollectionViewCell{
+            cell.colorPickBorderView.isHidden = true
         }
-        cell.colorBtnpick.isHidden = true
-        cell.colorBtnpick.layer.borderWidth = 2
-        cell.colorBtnpick.layer.cornerRadius = 40/2
-        cell.colorBtnpick.isUserInteractionEnabled = true
     }
 }

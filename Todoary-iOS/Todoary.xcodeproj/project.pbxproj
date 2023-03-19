@@ -204,6 +204,7 @@
 		EE06313429A36304002830FB /* PageableResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE06313329A36304002830FB /* PageableResponseModel.swift */; };
 		EE12A17A29A1D6FA009A9750 /* NoTodoInDiaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE12A17929A1D6FA009A9750 /* NoTodoInDiaryTableViewCell.swift */; };
 		EE135A89298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE135A88298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift */; };
+		EE2801BA29C6E649003595A5 /* BottomSheetColorPickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2801B929C6E649003595A5 /* BottomSheetColorPickerCollectionViewCell.swift */; };
 		EE529E2129BC40DC002F3371 /* RestoreRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE529E2029BC40DC002F3371 /* RestoreRequestModel.swift */; };
 		EE529E2329BC4289002F3371 /* ReregistrationAppleRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE529E2229BC4289002F3371 /* ReregistrationAppleRequestModel.swift */; };
 		EE800B1229B1C4F100BAC862 /* UserDefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE800B1129B1C4F100BAC862 /* UserDefaultKey.swift */; };
@@ -449,6 +450,7 @@
 		EE06313329A36304002830FB /* PageableResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageableResponseModel.swift; sourceTree = "<group>"; };
 		EE12A17929A1D6FA009A9750 /* NoTodoInDiaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoTodoInDiaryTableViewCell.swift; sourceTree = "<group>"; };
 		EE135A88298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAddCollectionViewCell.swift; sourceTree = "<group>"; };
+		EE2801B929C6E649003595A5 /* BottomSheetColorPickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetColorPickerCollectionViewCell.swift; sourceTree = "<group>"; };
 		EE529E2029BC40DC002F3371 /* RestoreRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreRequestModel.swift; sourceTree = "<group>"; };
 		EE529E2229BC4289002F3371 /* ReregistrationAppleRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReregistrationAppleRequestModel.swift; sourceTree = "<group>"; };
 		EE800B1129B1C4F100BAC862 /* UserDefaultKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKey.swift; sourceTree = "<group>"; };
@@ -1048,6 +1050,7 @@
 				57503660288BE380006A9070 /* CategoryTagCollectionViewCell.swift */,
 				EE135A88298D12D500BE3E9D /* CategoryAddCollectionViewCell.swift */,
 				EE06312F29A362C2002830FB /* LoadingTableViewCell.swift */,
+				EE2801B929C6E649003595A5 /* BottomSheetColorPickerCollectionViewCell.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1833,6 +1836,7 @@
 				57B9F70F28D94F4400ACEC94 /* BaseAlertViewController.swift in Sources */,
 				AC5E27C9288C37E60056EC69 /* TodoSettingView.swift in Sources */,
 				AC3A668E297BC82100EF42BE /* NetworkCheckModel.swift in Sources */,
+				EE2801BA29C6E649003595A5 /* BottomSheetColorPickerCollectionViewCell.swift in Sources */,
 				AC5E27DF28901EEF0056EC69 /* AuthInterceptor.swift in Sources */,
 				57F97DD728D9566F00D4697C /* CancelMessageAlertViewController.swift in Sources */,
 				57D5B60B29580F4400216C94 /* BaseTableViewCell.swift in Sources */,

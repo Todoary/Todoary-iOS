@@ -14,23 +14,6 @@ class ColorPickerCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "ColorPickerCollectionViewCell"
     
-    override var isSelected: Bool{
-        didSet{
-            if isSelected{
-                colorBtnpick.isHidden = false
-                colorBtnpick.layer.borderWidth = 2
-                colorBtnpick.layer.cornerRadius = 40/2
-                colorBtnpick.isUserInteractionEnabled = true
-            }
-            else{
-                colorBtnpick.isHidden = true
-                colorBtnpick.layer.borderWidth = 2
-                colorBtnpick.layer.cornerRadius = 40/2
-                colorBtnpick.isUserInteractionEnabled = true
-            }
-        }
-    }
-    
     //MARK: - UIComponenets
     
    

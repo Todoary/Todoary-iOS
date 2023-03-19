@@ -88,10 +88,12 @@ class AddButtonViewController: UIViewController{
             $0.trailing.equalToSuperview().offset(-61)
             
             if(detent == DetentIdentifier.low){
-                let bottomHeight = Const.Device.DEVICE_HEIGHT - (519 + 41) //519 + 41
+                let location: CGFloat = Const.Device.isSmallDevice ? 431.22 + 65 : 519 + 41
+                let bottomHeight = Const.Device.DEVICE_HEIGHT - location //519 + 41
                 $0.bottom.equalToSuperview().offset(-(bottomHeight))
             }else{
-                let bottomHeight = 95 + 41 + 40 //519 + 41
+                let location = Const.Device.isSmallDevice ? 83.28 + 35 : 95 + 41
+                let bottomHeight = location + 40 //519 + 41
                 $0.top.equalToSuperview().offset((bottomHeight))
             }
         
