@@ -29,6 +29,7 @@ enum TypoStyle: Int, CaseIterable {
     
     case regualar12              // 12pt / medium / -0.08 / 16
     
+    case medium7                // 7pt / medium / 0 / 8
     case medium8                // 8pt / medium / 0.26 / 10.27
     case medium10               // 10pt / medium / 0.3 / 12
     case medium12_2             // 12pt / medium / 0.24 / 14.4
@@ -51,6 +52,7 @@ enum TypoStyle: Int, CaseIterable {
     case bold18_2               // 18pt / bold / 0.36 / 21.6
     
     case semibold10             // 10pt / semibold / 0.2 / 12
+    case semibold11             // 10pt / semibold / 0.22 / 13
     case semibold12             // 12pt / semibold / 0.23 / 14
     case semibold14             // 14pt / semibold / 0.28 / 16.8
     case semibold17             // 17pt / semibold / -0.41 / 22
@@ -65,6 +67,7 @@ extension TypoStyle {
         switch self {
         case .regualar12:               return FontDescription(font: .Regular, size: 12)
             
+        case .medium7:               return FontDescription(font: .Medium, size: 7)
         case .medium8:               return FontDescription(font: .Medium, size: 8.56)
         case .medium10:               return FontDescription(font: .Medium, size: 10)
         case .medium12_2:               return FontDescription(font: .Medium, size: 12)
@@ -88,6 +91,7 @@ extension TypoStyle {
         case .bold18_2:                 return FontDescription(font: .Bold, size: 18)
             
         case .semibold10:               return FontDescription(font: .SemiBold, size: 10)
+        case .semibold11:               return FontDescription(font: .SemiBold, size: 11)
         case .semibold12:               return FontDescription(font: .SemiBold, size: 12)
         case .semibold14:               return FontDescription(font: .SemiBold, size: 14)
         case .semibold17:               return FontDescription(font: .SemiBold, size: 17)
@@ -102,6 +106,7 @@ extension TypoStyle {
         switch self {
         case .regualar12:               return LabelDescription(kern: -0.08, lineHeight: 16)
             
+        case .medium7:                  return LabelDescription(kern: 0, lineHeight: 8)
         case .medium8:                  return LabelDescription(kern: 0.26, lineHeight: 10.27)
         case .medium10:                  return LabelDescription(kern: 0.3, lineHeight: 12)
         case .medium12_2:               return LabelDescription(kern: 0.24, lineHeight: 14.4)
@@ -124,6 +129,7 @@ extension TypoStyle {
         case .bold18_2:                 return LabelDescription(kern: 0.36, lineHeight: 21.6)
             
         case .semibold10:               return LabelDescription(kern: 0.2, lineHeight: 12)
+        case .semibold11:               return LabelDescription(kern: 0.22, lineHeight: 13)
         case .semibold12:               return LabelDescription(kern: 0.23, lineHeight: 14)
         case .semibold14:               return LabelDescription(kern: 0.28, lineHeight: 16.8)
         case .semibold17:               return LabelDescription(kern: 0.41, lineHeight: 22)

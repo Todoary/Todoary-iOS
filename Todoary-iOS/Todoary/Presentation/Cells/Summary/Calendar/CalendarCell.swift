@@ -22,7 +22,7 @@ class CalendarCell : UICollectionViewCell {
                 else{
                     dateLabel.textAlignment = .center
                     dateLabel.textColor = .black
-                    let font: CGFloat = Const.Device.isSmallDevice ? 11.5 : 15
+                    let font: CGFloat = Const.Device.isSmallDevice ? 11.5 : 14
                     dateLabel.font = UIFont.nbFont(ofSize: font, weight: .bold)
                     dateLabel.layer.backgroundColor = UIColor.calendarExistColor.cgColor
                     let cornerRadius: CGFloat = Const.Device.isSmallDevice ? 9.87 : 12
@@ -37,7 +37,7 @@ class CalendarCell : UICollectionViewCell {
         $0.text = "월"
         $0.textAlignment = .center
         $0.textColor = .black
-        let font: CGFloat = Const.Device.isSmallDevice ? 11.5 : 15
+        let font: CGFloat = Const.Device.isSmallDevice ? 11.5 : 14
         $0.font = UIFont.nbFont(ofSize: font, weight: .bold)
         $0.layer.backgroundColor = UIColor.calendarExistColor.cgColor
         let cornerRadius: CGFloat = Const.Device.isSmallDevice ? 9.87 : 12
