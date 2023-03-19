@@ -13,7 +13,8 @@ class WeekCell : UICollectionViewCell {
         $0.text = "월"
         $0.textAlignment = .center
         $0.textColor = .black
-        $0.font = UIFont.nbFont(ofSize: 13, weight: .extraBold)
+        let font: CGFloat = Const.Device.isSmallDevice ? 11.5 : 13
+        $0.font = UIFont.nbFont(ofSize: font, weight: .extraBold)
         $0.backgroundColor = .white
         $0.addLetterSpacing(spacing: 0.26)
     }

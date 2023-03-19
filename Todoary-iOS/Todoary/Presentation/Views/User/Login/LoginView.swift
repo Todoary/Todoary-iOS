@@ -10,6 +10,8 @@ import AuthenticationServices
 
 class LoginView: BaseView{
     
+    private let isSmallDevice = Const.Device.isSmallDevice
+    
     //MARK: - UIComponenets
     
     let logo = UIImageView().then{
@@ -19,25 +21,27 @@ class LoginView: BaseView{
     
     let comment = UIImageView().then{
         $0.image = UIImage(named: "login_comment")
-        $0.contentMode = .scaleAspectFill
+        $0.contentMode = .center
+        
     }
     
     let picture = UIImageView().then{
         $0.image = UIImage(named: "loginPic")
-        $0.contentMode = .scaleAspectFill
+        $0.contentMode = .center
     }
     
     //id
     let idTitle = UILabel().then{
         $0.text = "아이디"
         $0.textColor = .headline
-        $0.font = UIFont.nbFont(ofSize: 16, weight: .bold)
+        let font: CGFloat = Const.Device.isSmallDevice ? 13 : 16
+        $0.font = UIFont.nbFont(ofSize: font, weight: .bold)
     }
     
     let idTextField = UITextField().then{
         $0.placeholder = "가입하신 이메일을 입력해주세요"
-        $0.textFieldTypeSetting(type: .body1)
-        $0.font = UIFont.nbFont(type: .body2)
+        let font: CGFloat = Const.Device.isSmallDevice ? 11 : 14
+        $0.font = UIFont.nbFont(ofSize: font, weight: .semibold)
         $0.setPlaceholderColor()
         $0.returnKeyType = .next
         $0.enablesReturnKeyAutomatically = true
@@ -52,14 +56,15 @@ class LoginView: BaseView{
     let pwTitle = UILabel().then{
         $0.text = "비밀번호"
         $0.textColor = .headline
-        $0.font = UIFont.nbFont(ofSize: 16, weight: .bold)
+        let font: CGFloat = Const.Device.isSmallDevice ? 13 : 16
+        $0.font = UIFont.nbFont(ofSize: font, weight: .bold)
     }
 
     let pwTextField = UITextField().then{
         $0.placeholder = "비밀번호를 입력해주세요"
-        $0.textFieldTypeSetting(type: .body1)
+        let font: CGFloat = Const.Device.isSmallDevice ? 11 : 14
+        $0.font = UIFont.nbFont(ofSize: font, weight: .semibold)
         $0.isSecureTextEntry = true
-        $0.font = UIFont.nbFont(type: .body2)
         $0.setPlaceholderColor()
         $0.returnKeyType = .done
         $0.enablesReturnKeyAutomatically = true
@@ -72,9 +77,9 @@ class LoginView: BaseView{
     let autoLoginTitle = UILabel().then{
         $0.textAlignment = .center
         $0.text = "자동로그인"
-        $0.addLetterSpacing(spacing: 0.28)
         $0.textColor = .todoaryGrey
-        $0.font = UIFont.nbFont(type: .body2)
+        let font: TypoStyle = Const.Device.isSmallDevice ? .semibold11 : .semibold14
+        $0.setTypoStyleWithSingleLine(typoStyle: font)
     }
     
     let autoLoginButton = UIButton().then{
@@ -87,8 +92,10 @@ class LoginView: BaseView{
         $0.backgroundColor = UIColor(red: 184/255, green: 184/255, blue: 184/255, alpha: 1)
         $0.setTitleColor(.white, for: .normal)
         $0.titleLabel?.textAlignment = .center
-        $0.titleLabel?.font = UIFont.nbFont(ofSize: 20, weight: .semibold)
-        $0.layer.cornerRadius = 51/2
+        let font: CGFloat = Const.Device.isSmallDevice ? 14 : 20
+        $0.titleLabel?.font = UIFont.nbFont(ofSize: font, weight: .semibold)
+        let height: CGFloat = Const.Device.isSmallDevice ? 40 : 51
+        $0.layer.cornerRadius = height/2
         $0.isEnabled = false
     }
     
@@ -96,29 +103,34 @@ class LoginView: BaseView{
         $0.setImage(UIImage(named: "appleid_button 1"), for: .normal)
         $0.contentMode = .scaleToFill
         $0.imageView?.contentMode = .scaleToFill
-        $0.layer.cornerRadius = 51/2
+        let height: CGFloat = Const.Device.isSmallDevice ? 40 : 51
+        $0.layer.cornerRadius = height/2
     }
     
     let signUpButton = UIButton().then{
         $0.setTitle("회원가입", for: .normal)
         $0.backgroundColor = .white
         $0.setTitleColor(.todoaryGrey, for: .normal)
-        $0.titleLabel?.font = UIFont.nbFont(ofSize: 20, weight: .semibold)
+        let font: CGFloat = Const.Device.isSmallDevice ? 14 : 20
+        $0.titleLabel?.font = UIFont.nbFont(ofSize: font, weight: .semibold)
         $0.titleLabel?.textAlignment = .center
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.buttonColor.cgColor
-        $0.layer.cornerRadius = 51/2
+        let height: CGFloat = Const.Device.isSmallDevice ? 40 : 51
+        $0.layer.cornerRadius = height/2
     }
     
     let pwSearchButton = UIButton().then{
         $0.setTitle("비밀번호를 잊으셨나요?", for: .normal)
         $0.backgroundColor = .white
         $0.setTitleColor(.todoaryGrey, for: .normal)
-        $0.titleLabel?.font = UIFont.nbFont(type: .subButton)
+        let font: TypoStyle = Const.Device.isSmallDevice ? .medium7 : .medium10
+        $0.titleLabel?.setTypoStyleWithSingleLine(typoStyle: font)
         $0.titleLabel?.textAlignment = .center
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.todoaryGrey.cgColor
-        $0.layer.cornerRadius = 25/2
+        let height: CGFloat = Const.Device.isSmallDevice ? 20 : 25
+        $0.layer.cornerRadius = height/2
     }
     
     
@@ -147,42 +159,61 @@ class LoginView: BaseView{
     }
     
     override func layout(){
+        
+        let borderLineTrailing = isSmallDevice ? 35 : 39
+        let textHeight = isSmallDevice ? 18 : 20
+        let borderLineTop = isSmallDevice ? 2 : 3
+        let textFieldTop = isSmallDevice ? 11 : 16
+        let loginButtonTop = isSmallDevice ? 8 : 13
 
         logo.snp.makeConstraints{ make in
-            make.top.equalToSuperview().offset(100)
-            make.leading.equalToSuperview().offset(42)
-            make.bottom.equalTo(comment.snp.top).offset(-15)
-            make.width.equalTo(167)
-            make.height.equalTo(46)
+            let logoTop = isSmallDevice ? 60 : 100
+            make.top.equalToSuperview().offset(logoTop)
+            let logoLeading = isSmallDevice ? 33 : 42
+            make.leading.equalToSuperview().offset(logoLeading)
+            let logoBottom = isSmallDevice ? 18 : 15
+            make.bottom.equalTo(comment.snp.top).offset(-logoBottom)
+            let logoWidth = isSmallDevice ? 130 : 167
+            make.width.equalTo(logoWidth)
+            let logoHeight = isSmallDevice ? 40 : 46
+            make.height.equalTo(logoHeight)
         }
         
         comment.snp.makeConstraints{ make in
-            make.top.equalTo(logo.snp.bottom).offset(15)
+            let commentTop = isSmallDevice ? 18 : 15
+            make.top.equalTo(logo.snp.bottom).offset(commentTop)
             make.bottom.equalTo(picture.snp.top)
-            make.leading.equalToSuperview().offset(46)
-            make.width.equalTo(221)
-            make.height.equalTo(71)
+            let commentLeading = isSmallDevice ? 33 : 46
+            make.leading.equalToSuperview().offset(commentLeading)
+            let commentWidth = isSmallDevice ? 219 : 221
+            make.width.equalTo(commentWidth)
+            let commentHeight = isSmallDevice ? 52 : 71
+            make.height.equalTo(commentHeight)
         }
         
         picture.snp.makeConstraints{ make in
-            make.top.equalTo(comment.snp.bottom)
-            make.bottom.equalTo(idTitle.snp.top).offset(-28.94)
+            let pictureTop = isSmallDevice ? 0 : 0
+            make.top.equalTo(comment.snp.bottom).offset(pictureTop)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.height.equalTo(114.06)
+            let pictureHeight = isSmallDevice ? 89 : 114.06
+            make.width.equalToSuperview()
+            make.height.equalTo(pictureHeight)
         }
         
         //id
         idTitle.snp.makeConstraints{ make in
-            make.top.equalTo(picture.snp.bottom).offset(28.94)
-            make.leading.equalToSuperview().offset(37)
-            make.height.equalTo(20)
+            let idTop = isSmallDevice ? 3 : 28.94
+            make.top.equalTo(picture.snp.bottom).offset(idTop)
+            let idLeading = isSmallDevice ? 35 : 37
+            make.leading.equalToSuperview().offset(idLeading)
+            make.height.equalTo(textHeight)
         }
 
         idTextField.snp.makeConstraints{ make in
-            make.top.equalTo(idTitle.snp.bottom).offset(16)
-            make.trailing.equalToSuperview().offset(-39)
-            make.height.equalTo(20)
+            make.top.equalTo(idTitle.snp.bottom).offset(textFieldTop)
+            make.trailing.equalToSuperview().offset(-borderLineTrailing)
+            make.height.equalTo(textHeight)
             make.leading.equalTo(idTitle)
         }
         
@@ -190,20 +221,21 @@ class LoginView: BaseView{
             make.height.equalTo(1)
             make.leading.equalTo(idTextField.snp.leading)
             make.trailing.equalTo(idTextField.snp.trailing)
-            make.top.equalTo(idTextField.snp.bottom).offset(3)
+            make.top.equalTo(idTextField.snp.bottom).offset(borderLineTop)
         }
         
         //password
         pwTitle.snp.makeConstraints{ make in
-            make.top.equalTo(idBorderLine.snp.bottom).offset(31)
-            make.height.equalTo(20)
+            let pwTitleTop = isSmallDevice ? 22 : 31
+            make.top.equalTo(idBorderLine.snp.bottom).offset(pwTitleTop)
+            make.height.equalTo(textHeight)
             make.leading.equalTo(idTitle)
         }
         
         pwTextField.snp.makeConstraints{ make in
-            make.top.equalTo(pwTitle.snp.bottom).offset(16)
+            make.top.equalTo(pwTitle.snp.bottom).offset(textFieldTop)
             make.leading.equalTo(idTitle)
-            make.height.equalTo(20)
+            make.height.equalTo(textHeight)
             make.trailing.equalTo(idTextField.snp.trailing)
         }
         
@@ -211,48 +243,57 @@ class LoginView: BaseView{
             make.trailing.equalTo(idTextField.snp.trailing)
             make.height.equalTo(1)
             make.leading.equalTo(idTextField.snp.leading)
-            make.top.equalTo(pwTextField.snp.bottom).offset(3)
+            make.top.equalTo(pwTextField.snp.bottom).offset(borderLineTop)
         }
         
         //autologin
         autoLoginButton.snp.makeConstraints{ make in
             make.trailing.equalTo(pwBorderLine)
-            make.width.equalTo(22)
-            make.height.equalTo(22)
+            let autoLoginButtonSize = isSmallDevice ? 16 : 22
+            make.width.equalTo(autoLoginButtonSize)
+            make.height.equalTo(autoLoginButtonSize)
             make.centerY.equalTo(autoLoginTitle).offset(-1)
             
         }
         
         autoLoginTitle.snp.makeConstraints{ make in
-            make.top.equalTo(pwBorderLine).offset(10)
+            let autoLoginTitleTop = isSmallDevice ? 5 : 10
+            make.top.equalTo(pwBorderLine).offset(autoLoginTitleTop)
             make.trailing.equalTo(autoLoginButton.snp.leading).offset(-3)
         }
         
         //button
         loginButton.snp.makeConstraints{ make in
-            make.top.equalTo(pwBorderLine).offset(65)
+            let loginButtonTop = isSmallDevice ? 43 : 65
+            make.top.equalTo(pwBorderLine).offset(loginButtonTop)
             make.leading.trailing.height.equalTo(appleLoginButton)
         }
         
         appleLoginButton.snp.makeConstraints{ make in
-            make.top.equalTo(loginButton.snp.bottom).offset(13)
+            make.top.equalTo(loginButton.snp.bottom).offset(loginButtonTop)
             make.centerX.equalToSuperview()
-            make.leading.equalToSuperview().offset(33)
-            make.height.equalTo(51)
+            let appleLoginButtonLeading = isSmallDevice ? 50 : 33
+            make.leading.equalToSuperview().offset(appleLoginButtonLeading)
+            let appleLoginButtonHeight = isSmallDevice ? 40 : 51
+            make.height.equalTo(appleLoginButtonHeight)
         }
         appleLoginButton.backgroundColor = .black
         signUpButton.snp.makeConstraints{ make in
-            make.top.equalTo(appleLoginButton.snp.bottom).offset(13)
+            make.top.equalTo(appleLoginButton.snp.bottom).offset(loginButtonTop)
             make.leading.trailing.height.equalTo(appleLoginButton)
         }
         
         pwSearchButton.snp.makeConstraints{ make in
-            make.top.equalTo(signUpButton.snp.bottom).offset(24)
-            make.bottom.equalToSuperview().offset(-33.67)
+            let pwSearchButtonTop = isSmallDevice ? 13.5 : 24
+            make.top.equalTo(signUpButton.snp.bottom).offset(pwSearchButtonTop)
+            let pwSearchButtonBottom = isSmallDevice ? 15 : 33.67
+            make.bottom.equalToSuperview().offset(-pwSearchButtonBottom)
             make.centerX.equalToSuperview()
-            make.leading.equalToSuperview().offset(130)
-            make.trailing.equalToSuperview().offset(-130)
-            make.height.equalTo(25)
+            let pwSearchButtonCenter = isSmallDevice ? 114.3 : 130
+            make.leading.equalToSuperview().offset(pwSearchButtonCenter)
+            make.trailing.equalToSuperview().offset(-pwSearchButtonCenter)
+            let pwSearchButtonHeight = isSmallDevice ? 20 : 25
+            make.height.equalTo(pwSearchButtonHeight)
         }
     }
 }

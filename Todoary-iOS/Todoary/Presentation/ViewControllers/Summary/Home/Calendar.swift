@@ -100,11 +100,12 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
+        let width = Const.Device.isSmallDevice ? 8.8 : 8.5
+        let height = Const.Device.isSmallDevice ? 9.2 : 8.7
         if collectionView == mainView.weekCollectionView {
-            return CGSize(width: view.frame.width/8.5, height: 30)
+            return CGSize(width: view.frame.width/width, height: 30)
         }else {
-            return CGSize(width: view.frame.width/8.5, height: view.frame.width/8.7)
+            return CGSize(width: view.frame.width/width, height: view.frame.width/height)
         }
     }
     
