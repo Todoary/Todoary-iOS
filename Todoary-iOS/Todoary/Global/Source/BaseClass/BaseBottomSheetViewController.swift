@@ -39,7 +39,7 @@ class BaseBottomSheetViewController: UIViewController, UIViewControllerTransitio
         
         let controller: UISheetPresentationController = .init(presentedViewController: presented, presenting: presenting)
         
-        let constant = type.rawValue * Const.Device.DEVICE_HEIGHT / 844
+        let constant = getDetentSize()
         
         let detent: UISheetPresentationController.Detent = ._detent(withIdentifier: "Detent1", constant: constant)
     
