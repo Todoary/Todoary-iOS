@@ -71,5 +71,9 @@ class BaseBottomSheetViewController: UIViewController, UIViewControllerTransitio
     @objc func viewDidTapped(){
         self.view.endEditing(true)
     }
+        
+    func getDetentSize() -> CGFloat {
+        type.rawValue * Const.Device.DEVICE_HEIGHT / 844
+    }
 
 }
