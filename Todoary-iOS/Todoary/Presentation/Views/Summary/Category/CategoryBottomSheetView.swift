@@ -94,7 +94,7 @@ class CategoryBottomSheetView: BaseView {
             let topOffset: CGFloat = isSmallDevice ? 21.33 : 26
             let height: CGFloat = isSmallDevice ? 135 : 150
             make.top.equalTo(categoryTextField.snp.bottom).offset(topOffset)
-            make.leading.equalToSuperview().offset(45)
+            make.leading.equalToSuperview().offset(40)
             make.width.equalTo(300)
             make.height.equalTo(height)
             make.centerX.equalToSuperview()

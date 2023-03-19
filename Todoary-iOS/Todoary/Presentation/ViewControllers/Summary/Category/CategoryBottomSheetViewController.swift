@@ -77,7 +77,7 @@ class CategoryBottomSheetViewController : BaseBottomSheetViewController {
         if(Const.Device.isSmallDevice){
             return 300
         }
-        return super.getDetentSize()
+        return BottomSheetType.category.rawValue
     }
     
     //MARK: - Actions
@@ -258,7 +258,7 @@ extension CategoryBottomSheetViewController : UICollectionViewDelegate, UICollec
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(20)
+        return CGFloat(20)//20
     }
 
 
