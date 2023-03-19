@@ -255,7 +255,8 @@ class NewAppPasswordView: BaseView {
         
         //text
         appPwTitle.snp.makeConstraints{ make in
-            make.top.equalToSuperview().offset(76)
+            let offset = Const.Device.isSmallDevice ? 30 : 76
+            make.top.equalToSuperview().offset(offset)
             make.centerX.equalToSuperview()
         }
         
@@ -282,10 +283,11 @@ class NewAppPasswordView: BaseView {
         //inputNotPassword img
         
         inputNotPw.snp.makeConstraints{ make in
+            let offset = Const.Device.isSmallDevice ? 40 : 92
+            make.top.equalTo(newAppPwtext.snp.bottom).offset(offset)
+            make.centerX.equalToSuperview()
             make.width.equalTo(208)
             make.height.equalTo(40)
-            make.top.equalTo(newAppPwtext.snp.bottom).offset(92)
-            make.centerX.equalToSuperview()
         }
         
         inputNotPw.addSubview(inputNotPw1)
