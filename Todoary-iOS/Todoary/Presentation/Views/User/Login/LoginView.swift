@@ -10,6 +10,8 @@ import AuthenticationServices
 
 class LoginView: BaseView{
     
+    private let isSmallDevice = Const.Device.isSmallDevice
+    
     //MARK: - UIComponenets
     
     let logo = UIImageView().then{
