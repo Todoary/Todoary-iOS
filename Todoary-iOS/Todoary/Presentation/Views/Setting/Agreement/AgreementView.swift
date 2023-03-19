@@ -45,8 +45,10 @@ class AgreementView: BaseView {
         $0.setTitle("확인", for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColor = .buttonColor
-        $0.titleLabel?.setTypoStyleWithSingleLine(typoStyle: .semibold18)
-        $0.layer.cornerRadius = 52/2
+        let font: TypoStyle = Const.Device.isSmallDevice ? .semibold14 : .semibold18
+        $0.titleLabel?.setTypoStyleWithSingleLine(typoStyle: font)
+        let height: CGFloat = Const.Device.isSmallDevice ? 40 : 52
+        $0.layer.cornerRadius = height / 2
     }
 
     override func hierarchy(){
@@ -104,9 +106,12 @@ class AgreementView: BaseView {
         }
         
         confirmBtn.snp.makeConstraints{
-            $0.bottom.equalToSuperview().offset(-47)
-            $0.leading.trailing.equalToSuperview().inset(26)
-            $0.height.equalTo(52)
+            let bottomOffset = Const.Device.isSmallDevice ? 17 : 47
+            let height: CGFloat = Const.Device.isSmallDevice ? 40 : 52
+            let leadingTrailingOffset = Const.Device.isSmallDevice ? 31 : 26
+            $0.bottom.equalToSuperview().inset(bottomOffset)
+            $0.height.equalTo(height)
+            $0.leading.trailing.equalToSuperview().inset(leadingTrailingOffset)
         }
     }
 }
