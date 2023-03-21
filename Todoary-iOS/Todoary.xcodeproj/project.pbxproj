@@ -2104,7 +2104,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 65XRT42S6C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Todoary/SupportingFiles/Info.plist;
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Todoary가 사진에 접근하려고 합니다. 허용하지 않아도 Todoary를 사용할 수 있지만, 선택하신 기능을 사용할 수 없습니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Todoary 프로필 사진 수정을 위해 사진 라이브러리 접근 권한 동의가 필요합니다. 언제든지 설정에서 권한 변경이 가능합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -2144,7 +2144,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 65XRT42S6C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Todoary/SupportingFiles/Info.plist;
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Todoary가 사진에 접근하려고 합니다. 허용하지 않아도 Todoary를 사용할 수 있지만, 선택하신 기능을 사용할 수 없습니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Todoary 프로필 사진 수정을 위해 사진 라이브러리 접근 권한 동의가 필요합니다. 언제든지 설정에서 권한 변경이 가능합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
