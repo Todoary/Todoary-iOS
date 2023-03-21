@@ -268,10 +268,11 @@ class ColorPickerViewController : BaseViewController, UITextFieldDelegate{
         view.addSubview(ColorPickerCollectionView)
 
             ColorPickerCollectionView.snp.makeConstraints { make in
-                make.top.equalToSuperview().offset(208)
+                make.top.equalTo(mainView.colorview.snp.top).offset(23)
                 make.leading.equalToSuperview().offset(50)
                 make.width.equalTo(300)
-                make.height.equalTo(150)
+                let colorPickerViewHeight: CGFloat = Const.Device.isSmallDevice ? 120 : 150
+                make.height.equalTo(colorPickerViewHeight)
                 make.centerX.equalToSuperview()
            }
        }
@@ -311,8 +312,8 @@ extension ColorPickerViewController : UICollectionViewDelegate, UICollectionView
             for: indexPath) as? ColorPickerCollectionViewCell else {
                 fatalError("셀 타입 케스팅 실패")
             }
-        
-        cell.layer.cornerRadius = 30/2
+        let cellSize: CGFloat = Const.Device.isSmallDevice ? 25 : 30
+        cell.layer.cornerRadius = cellSize/2
         cell.backgroundColor = .categoryColor[indexPath.row]
         cell.colorBtnpick.layer.borderColor = UIColor.categoryColor[indexPath.row].cgColor
         
@@ -328,12 +329,14 @@ extension ColorPickerViewController : UICollectionViewDelegate, UICollectionView
     
     //셀 사이즈
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 30, height: 30)
+        let cellSize: CGFloat = Const.Device.isSmallDevice ? 25 : 30
+        return CGSize(width: cellSize, height: cellSize)
     }
     
     //셀 위아래 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(25)
+        let spacing: CGFloat = Const.Device.isSmallDevice ? 13 : 25
+        return CGFloat(spacing)
     }
     
     //셀 양옆 간격
@@ -350,10 +353,11 @@ extension ColorPickerViewController : UICollectionViewDelegate, UICollectionView
         guard let cell = collectionView.cellForItem(at:indexPath) as? ColorPickerCollectionViewCell else{
             fatalError()
         }
+        let cellSize: CGFloat = Const.Device.isSmallDevice ? 35 : 40
         selectColor = indexPath.row
         cell.colorBtnpick.isHidden = false
         cell.colorBtnpick.layer.borderWidth = 2
-        cell.colorBtnpick.layer.cornerRadius = 40/2
+        cell.colorBtnpick.layer.cornerRadius = cellSize/2
         cell.colorBtnpick.isUserInteractionEnabled = true
     }
     
@@ -362,9 +366,10 @@ extension ColorPickerViewController : UICollectionViewDelegate, UICollectionView
         guard let cell = collectionView.cellForItem(at:indexPath) as? ColorPickerCollectionViewCell else{
             fatalError()
         }
+        let cellSize: CGFloat = Const.Device.isSmallDevice ? 35 : 40
         cell.colorBtnpick.isHidden = true
         cell.colorBtnpick.layer.borderWidth = 2
-        cell.colorBtnpick.layer.cornerRadius = 40/2
+        cell.colorBtnpick.layer.cornerRadius = cellSize/2
         cell.colorBtnpick.isUserInteractionEnabled = true
     }
 }

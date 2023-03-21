@@ -62,7 +62,8 @@ class ColorPickerView: BaseView {
         colorview.snp.makeConstraints{ make in
             make.top.equalTo(categoryTitle.snp.bottom).offset(18)
             make.width.equalTo(326)
-            make.height.equalTo(196)
+            let height: CGFloat = Const.Device.isSmallDevice ? 160 : 196
+            make.height.equalTo(height)
             make.centerX.equalToSuperview()
         }
         

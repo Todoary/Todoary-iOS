@@ -14,12 +14,14 @@ class ColorPickerCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "ColorPickerCollectionViewCell"
     
+    
     //MARK: - UIComponenets
     
    
     let colorBtnpick = UIView().then{
         $0.layer.borderWidth = 2
-        $0.layer.cornerRadius = 40/2
+        let cellSize: CGFloat = Const.Device.isSmallDevice ? 35 : 40
+        $0.layer.cornerRadius = cellSize/2
         $0.isHidden = true
         $0.isUserInteractionEnabled = true
 
@@ -44,9 +46,9 @@ class ColorPickerCollectionViewCell: UICollectionViewCell {
         
         func setUpConstraint(){
             
-            
+            let cellSize: CGFloat = Const.Device.isSmallDevice ? 35 : 40
             colorBtnpick.snp.makeConstraints{ make in
-                make.width.height.equalTo(40)
+                make.width.height.equalTo(cellSize)
                 make.centerX.centerY.equalToSuperview()
                 
             }
