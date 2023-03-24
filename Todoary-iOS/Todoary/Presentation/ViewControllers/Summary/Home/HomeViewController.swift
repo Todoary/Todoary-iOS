@@ -250,7 +250,7 @@ class HomeViewController : UIViewController {
                     if UserDefaults.standard.bool(forKey: "defaultImg") != true {
                         if (profileData.profileImgUrl != nil){
                             let url = URL(string: profileData.profileImgUrl!)
-                            mainView.profileImage.kf.setImage(with: url, for: .normal)
+                            mainView.profileImage.kf.setImage(with: url!, for: .normal, placeholder: UIImage(named: "profile"))
                         }
                     }else{
                         mainView.profileImage.setImage(UIImage(named: "profile"), for: .normal)

@@ -21,12 +21,13 @@ import Then
     
 class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarComplete, UITextFieldDelegate{
     
+    
     var completion: ((TodoResultModel) -> Void)?
     //카테고리 정보 받아오는 struct
     var categoryData : [CategoryModel]! = []
     
     //선택된 카테고리
-    static var selectCategory: Int = -1
+    var selectCategory: Int = -1
     
     var dateFormatter = DateFormatter()
     
@@ -164,7 +165,7 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
                                                       targetDate: todoSettingData.targetDate,
                                                       isAlarmEnabled: todoSettingData.isAlarmEnabled,
                                                       targetTime: todoSettingData.targetTime ?? "",
-                                                      categoryId: TodoSettingViewController.selectCategory)
+                                                      categoryId: selectCategory)
                 requestModifyTodo(id: todoSettingData.todoId, parameter: todoRequest)
             }
 
@@ -189,7 +190,7 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
                                                         targetDate: todoSettingData.targetDate,
                                                         isAlarmEnabled: todoSettingData.isAlarmEnabled,
                                                         targetTime: todoSettingData.targetTime ?? "",
-                                                        categoryId: TodoSettingViewController.selectCategory)
+                                                        categoryId: selectCategory)
                 requestGenerateTodo(parameter: todoRequest)
             }
         }
@@ -200,6 +201,10 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
         let colorPickerViewController = ColorPickerViewController(rightButtonTitle: "완료")
         
         colorPickerViewController.mainView.confirmBtn.isHidden = true
+        
+        colorPickerViewController.completionHandler = {id in
+              self.selectCategory = id
+            }
         
         self.navigationController?.pushViewController(colorPickerViewController, animated: true)
         self.navigationController?.isNavigationBarHidden = true
@@ -248,6 +253,10 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
             
             colorPickerViewController.categoryData = CategoryData(id: categoryData[indexPath.row].id, title: categoryData[indexPath.row].title, color: categoryData[indexPath.row].color)
             
+            colorPickerViewController.completionHandler = {id in
+                  self.selectCategory = id
+                }
+            
             self.navigationController?.pushViewController(colorPickerViewController, animated: true)
             self.navigationController?.isNavigationBarHidden = true
         }
@@ -282,7 +291,7 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
                 dateFormatter.locale = Locale(identifier: "en_US")
                 mainView.time.setTitle(dateFormatter.string(from: initTime!), for: .normal)
                 
-                TodoSettingViewController.selectCategory = todoSettingData.categoryId
+                selectCategory = todoSettingData.categoryId
                 
             }
             
@@ -365,8 +374,8 @@ class TodoSettingViewController : BaseViewController, AlarmComplete, CalendarCom
                     }else {
                         categoryData = categorydata
                         //카테고리 초기값 설정
-                        if TodoSettingViewController.selectCategory == -1{
-                            TodoSettingViewController.selectCategory = categoryData[0].id
+                        if selectCategory == -1{
+                            selectCategory = categoryData[0].id
                         }
                         mainView.collectionView.reloadData()
                     }
@@ -437,7 +446,7 @@ extension TodoSettingViewController: UICollectionViewDelegate, UICollectionViewD
         cell.setBtnAttribute(title: categoryData[indexPath.row].title, color: .categoryColor[ categoryData[indexPath.row].color])
         cell.categoryLabel.layer.borderColor = UIColor.categoryColor[ categoryData[indexPath.row].color].cgColor
         
-        if TodoSettingViewController.selectCategory == categoryData[indexPath.row].id {
+        if selectCategory == categoryData[indexPath.row].id {
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
             cell.categoryLabel.backgroundColor = .categoryColor[categoryData[indexPath.row].color]
             cell.setBtnAttribute(title: categoryData[indexPath.row].title, color: .white)
@@ -456,7 +465,7 @@ extension TodoSettingViewController: UICollectionViewDelegate, UICollectionViewD
         guard let cell = collectionView.cellForItem(at:indexPath) as? TodoCategoryCell else{
             fatalError()
         }
-        TodoSettingViewController.selectCategory = categoryData[indexPath.row].id
+        selectCategory = categoryData[indexPath.row].id
         cell.categoryLabel.backgroundColor = .categoryColor[categoryData[indexPath.row].color]
         cell.setBtnAttribute(title: categoryData[indexPath.row].title, color: .white)
         cell.categoryLabel.isUserInteractionEnabled = true

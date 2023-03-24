@@ -218,7 +218,7 @@ extension ProfileViewController {
                     if UserDefaults.standard.bool(forKey: "defaultImg") != true {
                         if (profileData.profileImgUrl != nil){
                             let url = URL(string: profileData.profileImgUrl!)
-                            mainView.profileImage.kf.setImage(with: url!)
+                            mainView.profileImage.kf.setImage(with: url!, placeholder:UIImage(named: "profile"))
                         }
                     }else{
                         mainView.profileImage.image = UIImage(named: "profile")

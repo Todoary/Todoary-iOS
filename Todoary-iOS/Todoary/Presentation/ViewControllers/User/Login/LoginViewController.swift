@@ -404,6 +404,7 @@ extension LoginViewController: ASAuthorizationControllerPresentationContextProvi
             case .success(let data):
                 print("LOG: SUCCESS APLLE LOGIN", data)
                 UserManager.isFirstTime = false
+                UserManager.defaultImg = true
                 guard let data = data as? AppleSignUpResultModel else { return }
                 KeyChain.create(key: Const.UserDefaults.appleIdentifier, value: parameter.userIdentifier)
                 KeyChain.create(key: Const.UserDefaults.appleRefreshToken, value: data.appleRefreshToken)

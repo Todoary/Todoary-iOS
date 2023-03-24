@@ -323,7 +323,7 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(indexPath.row == tableView.numberOfRows(inSection: 0) - 1){
             let vc = TodoSettingViewController()
-            TodoSettingViewController.selectCategory = categories[selectCategoryIndex.row].id
+            vc.selectCategory = categories[selectCategoryIndex.row].id
             self.navigationController?.pushViewController(vc, animated: true)
             return
         }

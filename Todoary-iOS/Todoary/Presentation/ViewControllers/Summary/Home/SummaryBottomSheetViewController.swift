@@ -458,7 +458,7 @@ extension SummaryBottomSheetViewController: SelectedTableViewCellDeliver{
 
         let vc = TodoSettingViewController()
         vc.todoSettingData = tapCell.todo
-        TodoSettingViewController.selectCategory = tapCell.todo.categoryId
+        vc.selectCategory = tapCell.todo.categoryId
         
         self.homeNavigaiton.pushViewController(vc, animated: true)
     }
