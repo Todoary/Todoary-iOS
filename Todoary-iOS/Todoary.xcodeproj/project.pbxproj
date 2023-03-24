@@ -400,6 +400,8 @@
 		ACBAE579297ADFD600E71CAD /* FcmTokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcmTokenService.swift; sourceTree = "<group>"; };
 		ACBAE57B297AE8B500E71CAD /* FcmTokenRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcmTokenRequestModel.swift; sourceTree = "<group>"; };
 		ACBF6654ED1E38A919A0780B /* Pods-Todoary-TodoaryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todoary-TodoaryUITests.release.xcconfig"; path = "Target Support Files/Pods-Todoary-TodoaryUITests/Pods-Todoary-TodoaryUITests.release.xcconfig"; sourceTree = "<group>"; };
+		ACC42A7729CD6F3100D5A4F3 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
+		ACC42A7829CD6F3200D5A4F3 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		ACCD87C528965B7700C34CE7 /* TodoCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCategoryCell.swift; sourceTree = "<group>"; };
 		ACE7D5F928A819A70093854A /* PinNumberSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinNumberSettingViewController.swift; sourceTree = "<group>"; };
 		ACE7D5FB28A819C10093854A /* PinNumberSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinNumberSettingView.swift; sourceTree = "<group>"; };
@@ -1564,6 +1566,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 572E5ACD286EBDCC00D1FAA0;
 			packageReferences = (
@@ -1958,6 +1961,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				572E5AE0286EBDCC00D1FAA0 /* Base */,
+				ACC42A7729CD6F3100D5A4F3 /* ko */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1966,6 +1970,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				572E5AE5286EBDCE00D1FAA0 /* Base */,
+				ACC42A7829CD6F3200D5A4F3 /* ko */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1977,6 +1982,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -2038,6 +2044,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";

@@ -18,6 +18,9 @@ class ColorPickerViewController : BaseViewController, UITextFieldDelegate{
     
     private var ColorPickerCollectionView: UICollectionView!
     
+    //카테고리 id 전달 클로져
+    var completionHandler: ((Int) -> ())?
+    
     //선택된 컬러값
     var selectColor : Int!
     
@@ -180,7 +183,7 @@ class ColorPickerViewController : BaseViewController, UITextFieldDelegate{
                 print("로그: [requestGenerateCategory] success")
                 if let categorydata = data as? CategoryResultModel{
                     self.navigationController?.popViewController(animated: true)
-                    TodoSettingViewController.selectCategory = (categorydata.categoryId)!
+                    completionHandler?(categorydata.categoryId ?? -1)
                 }
                 
                 break
@@ -233,7 +236,7 @@ class ColorPickerViewController : BaseViewController, UITextFieldDelegate{
             switch result{
             case .success:
                 print("로그: [requestDeleteCategory] success")
-                TodoSettingViewController.selectCategory = -1
+                completionHandler?(-1)
                 self.navigationController?.popViewController(animated: true)
                 break
             default:
