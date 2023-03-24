@@ -67,6 +67,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate  {
         
         return true
     }
+    
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        NetworkCheck().networkCheck()
+    }
         
     
     func successAPI(){

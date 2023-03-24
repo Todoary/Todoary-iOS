@@ -219,67 +219,80 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     //셀 선택o
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        
-        guard let cell = collectionView.cellForItem(at: indexPath) as? CalendarCell else{
-            fatalError()
-        }
-        
-        select = indexPath.row - emptyDay
-        
-        cell.dateLabel.layer.backgroundColor = UIColor.calendarSelectColor.cgColor
-        cell.dateLabel.textColor = .white
-        cell.select.isHidden = false
-        
-        //선택한 날짜에 맞는 투두 리스트 불러오기
-        
-        let convertDate = ConvertDate(year: year_component, month: month_component, date: days[indexPath.row])
-        
-        HomeViewController.bottomSheetVC.todoDate = convertDate
-        
-        requestGetTodoByDate(convertDate.dateSendServer)
-        requestGetDiary(convertDate.dateSendServer)
-        
-        if self.year == year_component && self.month == month_component {
-            if today == (indexPath.row - emptyDay) {
-                cell.dateLabel.textColor = UIColor(red: 49/255, green: 131/255, blue: 255/255, alpha: 1)
+        if collectionView == mainView.weekCollectionView {
+            guard let cell = collectionView.cellForItem(at: indexPath) as? WeekCell else{
+                fatalError()
+            }
+        }else {
+            guard let cell = collectionView.cellForItem(at: indexPath) as? CalendarCell else{
+                fatalError()
+            }
+            
+            select = indexPath.row - emptyDay
+            
+            cell.dateLabel.layer.backgroundColor = UIColor.calendarSelectColor.cgColor
+            cell.dateLabel.textColor = .white
+            cell.select.isHidden = false
+            
+            //선택한 날짜에 맞는 투두 리스트 불러오기
+            
+            let convertDate = ConvertDate(year: year_component, month: month_component, date: days[indexPath.row])
+            
+            HomeViewController.bottomSheetVC.todoDate = convertDate
+            
+            requestGetTodoByDate(convertDate.dateSendServer)
+            requestGetDiary(convertDate.dateSendServer)
+            
+            if self.year == year_component && self.month == month_component {
+                if today == (indexPath.row - emptyDay) {
+                    cell.dateLabel.textColor = UIColor(red: 49/255, green: 131/255, blue: 255/255, alpha: 1)
+                }
             }
         }
+        
+        
     }
     
     //셀 선택x
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? CalendarCell else{
-            fatalError()
-        }
         
-        cell.select.isHidden = true
-        
-        if calendarRecord[indexPath.row-emptyDay] != 0 {
-            cell.dateLabel.layer.backgroundColor = UIColor.calendarExistColor.cgColor
-            cell.dateLabel.textColor = .black
-            cell.dateLabel.layer.shadowRadius = 0
-            cell.dateLabel.layer.shadowColor = UIColor.transparent.cgColor
-            cell.dateLabel.layer.shadowOpacity = 0
+        if collectionView == mainView.weekCollectionView {
+            guard let cell = collectionView.cellForItem(at: indexPath) as? WeekCell else{
+                fatalError()
+            }
         }else {
-            cell.dateLabel.layer.backgroundColor = UIColor.transparent.cgColor
-            cell.dateLabel.textColor = .black
-            cell.dateLabel.layer.shadowRadius = 0
-            cell.dateLabel.layer.shadowColor = UIColor.transparent.cgColor
-            cell.dateLabel.layer.shadowOpacity = 0
-        }
-        
-        if diaryRecord[indexPath.row-emptyDay] != 0 {
-            cell.diary.isHidden = false
-        }else {
-            cell.diary.isHidden = true
-        }
-        
-        if self.year == year_component && self.month == month_component {
-            if today == (indexPath.row - emptyDay) {
-                cell.dateLabel.textColor = UIColor(red: 49/255, green: 131/255, blue: 255/255, alpha: 1)
+            guard let cell = collectionView.cellForItem(at: indexPath) as? CalendarCell else{
+                fatalError()
+            }
+            
+            cell.select.isHidden = true
+            
+            if calendarRecord[indexPath.row-emptyDay] != 0 {
+                cell.dateLabel.layer.backgroundColor = UIColor.calendarExistColor.cgColor
+                cell.dateLabel.textColor = .black
+                cell.dateLabel.layer.shadowRadius = 0
+                cell.dateLabel.layer.shadowColor = UIColor.transparent.cgColor
+                cell.dateLabel.layer.shadowOpacity = 0
+            }else {
+                cell.dateLabel.layer.backgroundColor = UIColor.transparent.cgColor
+                cell.dateLabel.textColor = .black
+                cell.dateLabel.layer.shadowRadius = 0
+                cell.dateLabel.layer.shadowColor = UIColor.transparent.cgColor
+                cell.dateLabel.layer.shadowOpacity = 0
+            }
+            
+            if diaryRecord[indexPath.row-emptyDay] != 0 {
+                cell.diary.isHidden = false
+            }else {
+                cell.diary.isHidden = true
+            }
+            
+            if self.year == year_component && self.month == month_component {
+                if today == (indexPath.row - emptyDay) {
+                    cell.dateLabel.textColor = UIColor(red: 49/255, green: 131/255, blue: 255/255, alpha: 1)
+                }
             }
         }
-        
     }
     
     func requestTodoFirstDayOfMonth(){
