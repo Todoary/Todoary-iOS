@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate  {
     var navigationController : UINavigationController?
     var delay = 2
     
-    
     public func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         let firebaseToken = fcmToken ?? ""
         UserManager.fcmToken = firebaseToken
