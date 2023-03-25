@@ -210,11 +210,11 @@
 		EE800B1229B1C4F100BAC862 /* UserDefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE800B1129B1C4F100BAC862 /* UserDefaultKey.swift */; };
 		EE800B1429B1C4FE00BAC862 /* UserDefaultWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE800B1329B1C4FE00BAC862 /* UserDefaultWrapper.swift */; };
 		EE800B1629B1C50A00BAC862 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE800B1529B1C50A00BAC862 /* UserManager.swift */; };
-		EE813FD629C3258B0091F16E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE813FD529C3258B0091F16E /* GoogleService-Info.plist */; };
 		EE8BCEF6299F2836004EA821 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BCEF5299F2836004EA821 /* UITableView.swift */; };
 		EE8BCEF8299F2842004EA821 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BCEF7299F2842004EA821 /* UICollectionView.swift */; };
 		EE8BCEFA299F3AF9004EA821 /* ShadowDesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BCEF9299F3AF9004EA821 /* ShadowDesignSystem.swift */; };
 		EE8BCEFC299F4F48004EA821 /* SummaryCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BCEFB299F4F48004EA821 /* SummaryCellDelegate.swift */; };
+		EE938DA529CE864A003A5BF6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE938DA429CE864A003A5BF6 /* GoogleService-Info.plist */; };
 		EED1B34E298656E600F14CAC /* TypoDesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED1B34D298656E600F14CAC /* TypoDesignSystem.swift */; };
 		EED1B350298656FD00F14CAC /* CategoryDesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED1B34F298656FD00F14CAC /* CategoryDesignSystem.swift */; };
 		EEE326A52998AEB50017DF46 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE326A42998AEB50017DF46 /* Image.swift */; };
@@ -458,11 +458,11 @@
 		EE800B1129B1C4F100BAC862 /* UserDefaultKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKey.swift; sourceTree = "<group>"; };
 		EE800B1329B1C4FE00BAC862 /* UserDefaultWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultWrapper.swift; sourceTree = "<group>"; };
 		EE800B1529B1C50A00BAC862 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
-		EE813FD529C3258B0091F16E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EE8BCEF5299F2836004EA821 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		EE8BCEF7299F2842004EA821 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		EE8BCEF9299F3AF9004EA821 /* ShadowDesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowDesignSystem.swift; sourceTree = "<group>"; };
 		EE8BCEFB299F4F48004EA821 /* SummaryCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCellDelegate.swift; sourceTree = "<group>"; };
+		EE938DA429CE864A003A5BF6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EED1B34D298656E600F14CAC /* TypoDesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypoDesignSystem.swift; sourceTree = "<group>"; };
 		EED1B34F298656FD00F14CAC /* CategoryDesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDesignSystem.swift; sourceTree = "<group>"; };
 		EEE326A42998AEB50017DF46 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
@@ -573,7 +573,7 @@
 			isa = PBXGroup;
 			children = (
 				572E5AE4286EBDCE00D1FAA0 /* LaunchScreen.storyboard */,
-				EE813FD529C3258B0091F16E /* GoogleService-Info.plist */,
+				EE938DA429CE864A003A5BF6 /* GoogleService-Info.plist */,
 				572E5AE7286EBDCE00D1FAA0 /* Info.plist */,
 				EE00BBA029ADAC25007CE728 /* Config.xcconfig */,
 			);
@@ -1600,7 +1600,7 @@
 				57DF460528A64AA60002D66C /* IBMPlexSansKR-Medium.otf in Resources */,
 				572E5AE1286EBDCC00D1FAA0 /* Main.storyboard in Resources */,
 				57DF45FA28A60B310002D66C /* GangwonEduAll-Bold.ttf in Resources */,
-				EE813FD629C3258B0091F16E /* GoogleService-Info.plist in Resources */,
+				EE938DA529CE864A003A5BF6 /* GoogleService-Info.plist in Resources */,
 				E0BAB97D28748FBF0055BA67 /* SsoyaStoryboard.storyboard in Resources */,
 				57DF45F628A60B310002D66C /* NotoSerifKR-Regular.otf in Resources */,
 				574A703A2883FF10003C8F99 /* AppleSDGothicNeoEB.ttf in Resources */,
@@ -2124,7 +2124,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.todoary.ms.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Todoary Development";
@@ -2164,7 +2164,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.todoary.ms.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Ad Hoc";
